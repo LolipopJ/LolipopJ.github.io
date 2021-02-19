@@ -5,7 +5,7 @@ updated: 2021/2/19
 categories:
 - 技术琐事
 tags:
-- github actions
+- Github Actions
 ---
 这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
 

@@ -3,7 +3,7 @@ title: Hello Hexo World
 date: 2019/12/27
 updated: 2021/2/19
 categories:
-- web 前端
+- 技术琐事
 tags:
 - 博客开发
 ---

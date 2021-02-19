@@ -3,9 +3,9 @@ title: 基于 Archer 主题的博客开发
 date: 2019/12/27
 updated: 2020/8/21
 categories:
-- web 前端
+- 前端开发
 tags:
-- 博客开发
+- 开发日志
 ---
 本博客使用的主题 [Archer](https://github.com/fi3ework/hexo-theme-archer) 有足够稳定以支持长期运行。不过正好学习了一些前端开发技巧，不如在使用过程中对本博客的页面做一些小小的开发及优化。
 

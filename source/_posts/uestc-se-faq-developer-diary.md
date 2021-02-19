@@ -3,9 +3,9 @@ title: 电子科技大学 FAQ 网站开发者日志
 date: 2020/9/3
 updated: 2020/9/8
 categories:
-- web 全栈
+- 全栈开发
 tags:
-- web 开发
+- 开发日志
 ---
 ## 你好，成电
 
