@@ -1,6 +1,7 @@
 ---
 title: Hello Hexo World
 date: 2019/12/27
+updated: 2021/2/19
 categories:
 - web 前端
 tags:
@@ -12,7 +13,7 @@ tags:
 
 ## 开始前
 
-假设你已了解何为 Github page，并充分认识到它对于一个渴望搭建博客的中国人的难以替代性（是的，我不愿意备案）。在开始之前，我们首先要选择博客框架，并下载与之对应的依赖软件。
+假设你已了解何为 Github Pages，并充分认识到它对于一个渴望搭建博客的中国人的难以替代性（是的，我不愿意备案）。在开始之前，我们首先要选择博客框架，并下载与之对应的依赖软件。
 
 ### Hello, Hexo
 
@@ -57,7 +58,7 @@ npm install
 
 可以参见 [Hexo 配置官方文档](https://hexo.io/zh-cn/docs/configuration)，按照自己的需求进行更改。
 
-### 部署到 Github page
+### 部署到 Github Pages
 
 登录你的 Github，新建一个 Repository，命名为 **你的Github用户名.github.io**。
 
@@ -76,7 +77,7 @@ npm install hexo-deployer-git --save
 ``` json
 deploy:
   type: git
-  repo: 你的Github page链接 #例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+  repo: 你的 Github Pages 链接 # 例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: master
 ```
 
@@ -86,7 +87,7 @@ deploy:
 hexo clean && hexo deploy
 ```
 
-至此，博客便已经搭建完毕了！Hexo 拥有一个 landscape 的初始主题，意味着现在你就可以访问你自己的 Github page 了！
+至此，博客便已经搭建完毕了！Hexo 拥有一个 landscape 的初始主题，意味着现在你就可以访问你自己的 Github Pages 了！
 
 更多的主题可以在 [Hexo 官方主题页面](https://hexo.io/themes)上选择。
 

@@ -1,6 +1,7 @@
 ---
 title: 使用 Github Actions 持续集成与部署 Hexo 博客
 date: 2021/2/19
+updated: 2021/2/19
 categories:
 - 技术琐事
 tags:
@@ -13,14 +14,13 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
 > 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。
 > 很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。
 > 如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。
->
 > —— [GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
 不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如[百度贴吧自动签到](https://github.com/srcrs/TiebaSignIn)等。
 
 ## 持续集成与部署 Hexo 博客
 
-在[搭建自己的 Hexo 博客](https://lolipopj.github.io/2019/12/27/hello-hexo-world)那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)到仓库的方式，实现手动构建个人博客网页并推送部署到自己的 Github page.
+在[搭建自己的 Hexo 博客](https://lolipopj.github.io/2019/12/26/hello-hexo-world)那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)到仓库的方式，实现手动构建个人博客网页并推送部署到自己的 Github Pages.
 
 事实上，利用 Github Actions 就再也不用多此一举：每次提交代码到 Github 后，就可以触发 Github Actions 并自动部署新的博客内容。
 
@@ -94,7 +94,7 @@ jobs:
 
 很快 Github Actions 就会开始自动执行，并将最新的博客文件推送到仓库的 `master` 分支。
 
-最后，等到 Github page 也更新完毕后，就可以访问您的博客啦！
+最后，等到 Github Pages 也更新完毕后，就可以访问您的博客啦！
 
 ### 假如您采用了账户两重验证
 
