@@ -1,5 +1,6 @@
 ---
 title: Hello Hexo World
+date: 2019/12/27
 categories:
 - web 前端
 tags:

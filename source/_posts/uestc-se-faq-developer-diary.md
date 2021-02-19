@@ -1,5 +1,7 @@
 ---
 title: 电子科技大学 FAQ 网站开发者日志
+date: 2020/9/3
+updated: 2020/9/8
 categories:
 - web 全栈
 tags:
