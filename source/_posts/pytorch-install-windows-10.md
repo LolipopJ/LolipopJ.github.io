@@ -6,6 +6,7 @@ categories:
 - 技术琐事
 tags:
 - 机器学习
+- PyTorch
 ---
 ## 关于
 
