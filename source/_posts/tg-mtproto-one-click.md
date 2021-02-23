@@ -1,7 +1,7 @@
 ---
 title: 一键安装并配置 MTProto Proxy 代理 Telegram
 date: 2021/2/21
-updated: 2021/2/21
+updated: 2021/2/23
 categories:
 - 技术琐事
 tags:
@@ -73,7 +73,7 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
 curl -o MTProtoProxyInstall.sh -L https://git.io/fjo34 && bash MTProtoProxyInstall.sh
 ```
 
-根据提示进行配置，觉得不妥还可以重新执行上述命令重装代理。
+根据提示进行配置，觉得不妥还可以重新执行上述命令重装代理服务。
 
 假如只添加了一个代理服务器，在安装完成后会出现如下文本：
 
@@ -87,13 +87,15 @@ ${username}: tg://proxy?server=${ip}&port=${port}&secret=${secret}
 
 其中 \${username} 为之前输入的用户名（并不重要，只是标识），\${ip} 是服务器的公网 IP 或域名，\${port} 是设置的访问代理的端口，\${secret} 是设置或自动生成的密钥。
 
-执行如下命令启动服务：
+这里作者提示可以用 `systemctl start mtprotoproxy` 来启动代理服务了，作为补充，`systemctl` 是 `Systemd` 进程管理命令，而 `Systemd` 是一种 Linux 的系统工具，用来启动守护进程（即一直在后台运行的进程，daemon）。这说明当前 `mtprotoproxy` 已经是可以启动的服务了，在后续的过程中只需要对此服务进行管理就可以了。
+
+那么接下来就执行该命令来启动服务：
 
 ```bash
-systemctl start mtprotoproxy # 启动脚本代理服务
+systemctl start mtprotoproxy # 启动代理服务
 ```
 
-复制之前的链接 `tg://proxy?server=${ip}&port=${port}&secret=${secret}` 到剪切板，在手机端上通过 `设置 - 数据和存储 - 代理设置 - 添加代理 - 从剪贴板导入` 即可完成设置。建议把这个链接记下来并保存。
+复制之前的链接 `tg://proxy?server=${ip}&port=${port}&secret=${secret}` 到剪切板，在手机端的 Telegram 上通过 `设置 - 数据和存储 - 代理设置 - 添加代理 - 从剪贴板导入` 即可完成设置。建议把这个链接记下来并保存。
 
 ### Ops，一点小麻烦
 
@@ -102,7 +104,7 @@ systemctl start mtprotoproxy # 启动脚本代理服务
 可以先查阅一下日志信息，执行如下命令：
 
 ```bash
-systemctl status mtprotoproxy -l # 查看脚本日志信息
+systemctl status mtprotoproxy -l # 查看代理服务日志信息
 ```
 
 查询到如下结果：
@@ -140,15 +142,15 @@ vi config.py # 编辑配置文件
 
 在文件中添加一行配置信息 `PREFER_IPV6 = False` 即可。
 
-最后重启服务：
+由于服务没有热重载机制，因此在最后需要重启服务：
 
 ```bash
-systemctl restart mtprotoproxy # 重启脚本代理服务
+systemctl restart mtprotoproxy # 重启代理服务
 ```
 
 ### 一切搞定
 
-现在已经可以正常访问 tg 客户端啦！假如愿意，可以将刚刚得到的链接分享给好友，enjoy telegram world!
+现在已经可以正常访问 tg 客户端啦！假如愿意，可以将刚刚得到的链接分享给好友，enjoy tg world!
 
 或许你会愿意再次打印一下日志信息，结果如下所示：
 
@@ -169,8 +171,8 @@ Feb 21 15:17:25 ******** python3.8[39940]: Found uvloop, using it for optimal pe
 Feb 21 15:17:25 ******** python3.8[39940]: Got cert from the MASK_HOST www.cloudflare.com, its length is 1828
 ```
 
-作为补充，除了前文已出现过的命令，此脚本还可以通过如下命令进行操作或配置：
+除了前文已出现过的命令，别忘了此代理服务还可以暂停，依旧是作为服务进行管理就可以了：
 
 ```bash
-systemctl stop mtprotoproxy # 关闭脚本代理服务
+systemctl stop mtprotoproxy # 暂停代理服务
 ```
