@@ -355,6 +355,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2021/02/22/write-md-parser/" >
+            
+                <span>Webpack 读取本地 Markdown 文件并进行预处理</span>
+        </a>
+        <div class="abstract-content">
+            在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
+与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
+这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！
+自动导入本地的 .md 文件当然，首先要读取某个目录下已经撰写好的 .md 文件，才能对内容进行预处理。
+但如果每撰写好一个新的新闻或博客文件，就得在代码中 require 出来，太过于麻烦且不现实，因...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Markdown">Markdown</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/12/26/archer-theme-update-log/" >
             
                 <span>基于 Archer 主题的博客开发</span>
@@ -548,9 +583,20 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -563,6 +609,11 @@
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2021/02/22/write-md-parser/" >Webpack 读取本地 Markdown 文件并进行预处理</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -641,6 +692,10 @@
         <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
     
         <span class="sidebar-tag-name" data-tags="Vue-2"><span class="iconfont-archer">&#xe606;</span>Vue-2</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
