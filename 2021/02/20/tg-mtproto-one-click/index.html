@@ -214,7 +214,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
     
         <body class="post-body">
@@ -454,30 +454,39 @@ height:50vh;
 <p>这里我选择使用<strong>基于 Python 语言</strong>的代理，故下文将基于此版本阐述，若想使用其它版本可以自行查阅作者的<a target="_blank" rel="noopener" href="https://github.com/HirbodBehnam/MTProtoProxyInstaller#official-script">教程文档</a>。</p>
 <h3 id="部署一键脚本"><a href="#部署一键脚本" class="headerlink" title="部署一键脚本"></a>部署一键脚本</h3><p>执行如下命令进行安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o MTProtoProxyInstall.sh -L https://git.io/fjo34 &amp;&amp; bash MTProtoProxyInstall.sh</span><br></pre></td></tr></table></figure>
+
 <p>根据提示进行配置，觉得不妥还可以重新执行上述命令重装代理服务。</p>
 <p>假如只添加了一个代理服务器，在安装完成后会出现如下文本：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ok it must be done. I created a service to run or stop the proxy.</span><br><span class="line">Use &quot;systemctl start mtprotoproxy&quot; or &quot;systemctl stop mtprotoproxy&quot; to start or stop it</span><br><span class="line"></span><br><span class="line">Use these links to connect to your proxy:</span><br><span class="line">$&#123;username&#125;: tg://proxy?server=$&#123;ip&#125;&amp;port=$&#123;port&#125;&amp;secret=$&#123;secret&#125;</span><br></pre></td></tr></table></figure>
+
 <p>其中 ${username} 为之前输入的用户名（并不重要，只是标识），${ip} 是服务器的公网 IP 或域名，${port} 是设置的访问代理的端口，${secret} 是设置或自动生成的密钥。</p>
 <p>这里作者提示可以用 <code>systemctl start mtprotoproxy</code> 来启动代理服务了，作为补充，<code>systemctl</code> 是 <code>Systemd</code> 进程管理命令，而 <code>Systemd</code> 是一种 Linux 的系统工具，用来启动守护进程（即一直在后台运行的进程，daemon）。这说明当前 <code>mtprotoproxy</code> 已经是可以启动的服务了，在后续的过程中只需要对此服务进行管理就可以了。</p>
 <p>那么接下来就执行该命令来启动服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mtprotoproxy <span class="comment"># 启动代理服务</span></span><br></pre></td></tr></table></figure>
+
 <p>复制之前的链接 <code>tg://proxy?server=$&#123;ip&#125;&amp;port=$&#123;port&#125;&amp;secret=$&#123;secret&#125;</code> 到剪切板，在手机端的 Telegram 上通过 <code>设置 - 数据和存储 - 代理设置 - 添加代理 - 从剪贴板导入</code> 即可完成设置。建议把这个链接记下来并保存。</p>
 <h3 id="Ops，一点小麻烦"><a href="#Ops，一点小麻烦" class="headerlink" title="Ops，一点小麻烦"></a>Ops，一点小麻烦</h3><p>呃，似乎连接了半天也 ping 不通，这可如何是好，哪一步做错了吗？</p>
 <p>可以先查阅一下日志信息，执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mtprotoproxy -l <span class="comment"># 查看代理服务日志信息</span></span><br></pre></td></tr></table></figure>
+
 <p>查询到如下结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">● mtprotoproxy.service - MTProto Proxy Service</span><br><span class="line">     Loaded: loaded (/etc/systemd/system/mtprotoproxy.service; enabled; vendor preset: enabled)</span><br><span class="line">     Active: active (running) since Sun 2021-02-21 15:12:39 CST; 43s ago</span><br><span class="line">   Main PID: 39895 (python3.8)</span><br><span class="line">      Tasks: 5 (limit: 1111)</span><br><span class="line">     Memory: 23.7M</span><br><span class="line">     CGroup: /system.slice/mtprotoproxy.service</span><br><span class="line">             └─39895 /usr/bin/python3.8 /opt/mtprotoproxy/mtprotoproxy.py</span><br><span class="line"></span><br><span class="line">Feb 21 15:13:18 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:18 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:19 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:19 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:19 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:19 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:20 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:20 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:23 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br><span class="line">Feb 21 15:13:23 ******** python3.8[39895]: Unable to connect to ****:***:****:****::a *</span><br></pre></td></tr></table></figure>
+
 <p>幸运的是，在该仓库下的 Issues 里我找到了遇见相同问题的人（<a target="_blank" rel="noopener" href="https://github.com/HirbodBehnam/MTProtoProxyInstaller/issues/34">#34</a>）。</p>
 <p>原来在最新版本的 Python 代理软件中，默认使用 IPv6，进而导致 MTProto 无法正常连接。作者提出可以在设置文件中手动设置禁用优先 IPv6 连接。操作如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/mtprotoproxy <span class="comment"># 默认安装目录</span></span><br><span class="line">vi config.py <span class="comment"># 编辑配置文件</span></span><br></pre></td></tr></table></figure>
+
 <p>在文件中添加一行配置信息 <code>PREFER_IPV6 = False</code> 即可。</p>
 <p>由于服务没有热重载机制，因此在最后需要重启服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart mtprotoproxy <span class="comment"># 重启代理服务</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="一切搞定"><a href="#一切搞定" class="headerlink" title="一切搞定"></a>一切搞定</h3><p>现在已经可以正常访问 tg 客户端啦！假如愿意，可以将刚刚得到的链接分享给好友，enjoy tg world!</p>
 <p>或许你会愿意再次打印一下日志信息，结果如下所示：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">● mtprotoproxy.service - MTProto Proxy Service</span><br><span class="line">     Loaded: loaded (/etc/systemd/system/mtprotoproxy.service; enabled; vendor preset: enabled)</span><br><span class="line">     Active: active (running) since Sun 2021-02-21 15:17:25 CST; 4s ago</span><br><span class="line">   Main PID: 39940 (python3.8)</span><br><span class="line">      Tasks: 5 (limit: 1111)</span><br><span class="line">     Memory: 17.8M</span><br><span class="line">     CGroup: /system.slice/mtprotoproxy.service</span><br><span class="line">             └─39940 /usr/bin/python3.8 /opt/mtprotoproxy/mtprotoproxy.py</span><br><span class="line"></span><br><span class="line">Feb 21 15:17:25 ******** systemd[1]: Started MTProto Proxy Service.</span><br><span class="line">Feb 21 15:17:25 ******** python3.8[39940]: *: tg://proxy?server=*&amp;port=*&amp;secret=*&gt;</span><br><span class="line">Feb 21 15:17:25 ******** python3.8[39940]: *: tg://proxy?server=*&amp;port=*&amp;secret=*&gt;</span><br><span class="line">Feb 21 15:17:25 ******** python3.8[39940]: Found uvloop, using it for optimal performance</span><br><span class="line">Feb 21 15:17:25 ******** python3.8[39940]: Got cert from the MASK_HOST www.cloudflare.com, its length is 1828</span><br></pre></td></tr></table></figure>
+
 <p>除了前文已出现过的命令，别忘了此代理服务还可以暂停，依旧是作为服务进行管理就可以了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mtprotoproxy <span class="comment"># 暂停代理服务</span></span><br></pre></td></tr></table></figure>
+
     </article>
     <!-- license  -->
     
@@ -710,9 +719,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -725,6 +749,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2021/03/02/nodejs-eslint-prettier/" >Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -798,6 +827,12 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
     
         <span class="sidebar-tag-name" data-tags="Github Actions"><span class="iconfont-archer">&#xe606;</span>Github Actions</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="ESLint"><span class="iconfont-archer">&#xe606;</span>ESLint</span>
+    
+        <span class="sidebar-tag-name" data-tags="Prettier"><span class="iconfont-archer">&#xe606;</span>Prettier</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     

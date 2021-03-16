@@ -214,7 +214,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
     
         <body class="post-body">
@@ -431,8 +431,10 @@ height:50vh;
 <p>通常选择最新版本即可。</p>
 <h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>安装完毕依赖程序后，打开 Git bash，使用 npm 命令一键安装 Hexo 5.x 版本以及所需依赖。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
 <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>首先在 Git bash 的工作目录新建存放 Hexo 文件的文件夹，进入该文件夹并初始化。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init [文件夹名]</span><br><span class="line"><span class="built_in">cd</span> [文件夹名]</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
 <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在 Hexo 目录下的 <code>_config.yml</code> 修改大部分的配置，包括网站标题、副标题、您的名字、网站语言和网站时区等等。</p>
 <p>可以参见 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">Hexo 配置官方文档</a>，按照自己的需求进行更改。</p>
 <h3 id="部署到-Github-Pages"><a href="#部署到-Github-Pages" class="headerlink" title="部署到 Github Pages"></a>部署到 Github Pages</h3><p>登录你的 Github，新建一个 Repository，命名为 <strong>你的Github用户名.github.io</strong>。</p>
@@ -440,10 +442,13 @@ height:50vh;
 <p>Hexo 提供了快速方便的一键部署功能，配置完成以后只需要一条命令就可以将网站刷新并部署到网站上！</p>
 <p>1.安装 hexo-deployer-git。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
 <p>2.修改 Hexo 目录下的配置文件 <code>_config.yml</code> 中 deploy 的内容如下。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 你的 Github Pages 链接 # 例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
 <p>3.生成站点文件并推送至Github库。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+
 <p>至此，博客便已经搭建完毕了！Hexo 拥有一个 landscape 的初始主题，意味着现在你就可以访问你自己的 Github Pages 了！</p>
 <p>更多的主题可以在 <a target="_blank" rel="noopener" href="https://hexo.io/themes">Hexo 官方主题页面</a>上选择。</p>
 <h3 id="维护与更新博客"><a href="#维护与更新博客" class="headerlink" title="维护与更新博客"></a>维护与更新博客</h3><p>当执行 <code>hexo deploy</code> 时，Hexo 会将 <code>public</code> 目录中的文件和目录推送至 <code>_config.yml</code> 中指定的远端仓库和分支中，并且<strong>完全覆盖</strong>该分支下的已有内容。</p>
@@ -678,9 +683,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -693,6 +713,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2021/03/02/nodejs-eslint-prettier/" >Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -766,6 +791,12 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
     
         <span class="sidebar-tag-name" data-tags="Github Actions"><span class="iconfont-archer">&#xe606;</span>Github Actions</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="ESLint"><span class="iconfont-archer">&#xe606;</span>ESLint</span>
+    
+        <span class="sidebar-tag-name" data-tags="Prettier"><span class="iconfont-archer">&#xe606;</span>Prettier</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     

@@ -214,7 +214,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
     
         <body class="post-body">
@@ -425,24 +425,33 @@ height:50vh;
 <p>Webpack 提供了 <code>require.context()</code> 方法可以完美解决导入目录下所有文件的问题，该方法可以导入指定目录（也可以包括子目录）下指定格式的所有文件。关于此方法的更多细节可以在 Webpack 官方文档中<a target="_blank" rel="noopener" href="https://webpack.js.org/guides/dependency-management/#requirecontext">了解</a>。</p>
 <p>撰写代码自动读取 <code>@/docs/blog/</code> 及其子目录下的所有 .md 文件如下所示，其中 <code>blogFiles(key)</code> 为文件存储的具体内容：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> blogFiles = <span class="built_in">require</span>.context(<span class="string">&#x27;@/docs/blog/&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.md$/</span>);</span><br><span class="line">blogFiles.keys().forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(blogFiles(key))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h2 id="对-md-文件进行预处理"><a href="#对-md-文件进行预处理" class="headerlink" title="对 .md 文件进行预处理"></a>对 .md 文件进行预处理</h2><p>参考 Hexo 博客的撰写格式，可以规定 NetUnion 官网的新闻和博客撰写格式如下：</p>
 <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: $&#123;title&#125;</span><br><span class="line">date: $&#123;date&#125;</span><br><span class="line">author: $&#123;author&#125;</span><br><span class="line">---</span><br><span class="line">$&#123;main-text&#125;</span><br></pre></td></tr></table></figure>
+
 <p>即用两个 <code>---</code> 框住<strong>属性内容</strong>，在第二个 <code>---</code> 下面为<strong>正文内容</strong>。</p>
 <p>那么首先，可以用 <code>split()</code> 方法根据 <code>---</code> 及换行符将文章划分为长度不少于 3 （因为在正文中可能出现 <code>---</code>）的数组 arr。其中 arr[0] 为空，arr[1] 存储有属性内容，arr[2] 及之后存储正文内容。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// content 为传入的 .md 文件内容</span></span><br><span class="line"><span class="keyword">const</span> contentArray = content.split(<span class="regexp">/---+\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
+
 <p>对属性内容的处理同样可以先使用 <code>split()</code> 方法按换行符拆分为数组。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfo = contentArray[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> contentInfoArray = contentInfo.split(<span class="regexp">/\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
+
 <p>值得一提的是，在上面两次按换行符分割时，我都使用了 <code>/\r?\n/g</code> 正则表达式。其含义是匹配 0 个或 1 个 <code>\r</code> 及 1 个 <code>\n</code>，直到结束。因为在 <code>CRLF</code> 行尾序列的文件中，换行符由 <code>\r\n</code> 表示；而在 <code>LF</code> 行尾序列中，换行符由 <code>\n</code> 表示。这样就确保了在 Windows 和 Unix 两种不同的系统上撰写的文件，其解析不会受行尾序列所影响。</p>
 <p>接下来就可以提取属性对象了。这里使用 <code>trim()</code> 方法来删除属性名和属性值前后可能出现的多余空格。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfoItem = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; contentInfoArray.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> contentInfoParamArray = contentInfoArray[i].split(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">  contentInfoItem[contentInfoParamArray[<span class="number">0</span>].trim()] =</span><br><span class="line">      contentInfoParamArray[<span class="number">1</span>].trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>对正文内容的处理就相当简单了，只需要把 arr[2] 及之后存储的内容用 <code>---\n</code> 连接起来就可以了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentText = contentArray[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">if</span> (contentArray.length &gt; <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt; contentArray.length; i++) &#123;</span><br><span class="line">    contentText += <span class="string">&#x27;---\n&#x27;</span>;</span><br><span class="line">    contentText += contentArray[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>将属性对象与正文内容合并为一个新的对象，解析就完成了！</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = &#123;</span><br><span class="line">  ...contentInfoItem,</span><br><span class="line">  content: contentText,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>如果愿意，还可以在最后对格式进行一定规范，例如可以对 date 属性进行处理：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式为 YYYY-MM-DD</span></span><br><span class="line"><span class="keyword">if</span> (result.date != <span class="literal">null</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> dateArray = result.date.split(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> dateYear = dateArray[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> dateMonth = dateArray[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">let</span> dateDay = dateArray[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">if</span> (dateMonth.length == <span class="number">1</span>) &#123;</span><br><span class="line">    dateMonth = <span class="string">&#x27;0&#x27;</span> + dateMonth;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (dateDay.length == <span class="number">1</span>) &#123;</span><br><span class="line">    dateDay = <span class="string">&#x27;0&#x27;</span> + dateDay;</span><br><span class="line">  &#125;</span><br><span class="line">  result.date = dateYear + <span class="string">&#x27;-&#x27;</span> + dateMonth + <span class="string">&#x27;-&#x27;</span> + dateDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="解析-md-为-HTML"><a href="#解析-md-为-HTML" class="headerlink" title="解析 .md 为 HTML"></a>解析 .md 为 HTML</h2><p>将结果中的正文内容交给给任意 .md 解析器就可以了，例如 <a target="_blank" rel="noopener" href="https://github.com/markdown-it/markdown-it">markdown-it</a>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> md = <span class="built_in">require</span>(<span class="string">&#x27;markdown-it&#x27;</span>)(&#123;</span><br><span class="line">  linkify: <span class="literal">false</span>, <span class="comment">// 一些设置，并不重要，下同</span></span><br><span class="line">  breaks: <span class="literal">false</span>,</span><br><span class="line">  typographer: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> htmlContent = md.render(result.content);</span><br></pre></td></tr></table></figure>
+
     </article>
     <!-- license  -->
     
@@ -457,6 +466,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2021/03/02/nodejs-eslint-prettier/" title= "Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式">
+                    <div class="nextTitle">Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -670,9 +684,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -685,6 +714,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2021/03/02/nodejs-eslint-prettier/" >Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -758,6 +792,12 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
     
         <span class="sidebar-tag-name" data-tags="Github Actions"><span class="iconfont-archer">&#xe606;</span>Github Actions</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="ESLint"><span class="iconfont-archer">&#xe606;</span>ESLint</span>
+    
+        <span class="sidebar-tag-name" data-tags="Prettier"><span class="iconfont-archer">&#xe606;</span>Prettier</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
