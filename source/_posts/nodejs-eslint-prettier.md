@@ -1,13 +1,15 @@
 ---
 title: Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式
 date: 2021/3/3
-updated: 2021/3/3
+updated: 2021/3/16
 categories:
 - 技术琐事
 tags:
 - Node.js
 - ESLint
 - Prettier
+- Nuxt.js
+- VSCode
 ---
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
 
