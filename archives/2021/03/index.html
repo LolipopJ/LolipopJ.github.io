@@ -433,6 +433,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/09/xxx-is-not-a-symbolic-link/" >
+            
+                <span>提示 *** is not a symbolic link 解决方案</span>
+        </a>
+        <div class="abstract-content">
+            问题描述在 CentOS 环境下执行 yum update 和 ldconfig 命令时都出现提示警告，节选内容如下所示：
+123ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic linkldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic linkldconfig: /OSM/lib/libupb.so.9 is not a symbolic link
+
+错误分析进入到对应目录下查找可以发现，这里的 librdmacm.so.1 与 librdmacm.so.1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ldconfig">ldconfig</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2021/03/02/nodejs-eslint-prettier/" >
             
                 <span>Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
@@ -683,9 +717,22 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -712,6 +759,11 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/16</span><a class="archive-post-title" href= "/2021/03/15/tencent-map-api-get-current-location/" >使用腾讯位置服务进行 Web 前端定位</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2021/03/09/xxx-is-not-a-symbolic-link/" >提示 *** is not a symbolic link 解决方案</a>
         </li>
     
     
@@ -817,6 +869,10 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
         <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
     
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="ldconfig"><span class="iconfont-archer">&#xe606;</span>ldconfig</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

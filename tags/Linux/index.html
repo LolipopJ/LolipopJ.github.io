@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="http://lolipopj.github.io/tags/JavaScript/index.html">
+<meta property="og:url" content="http://lolipopj.github.io/tags/Linux/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale">
 <meta property="article:author" content="Lolipop">
@@ -355,143 +355,28 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/07/js-debounce-throttle/" >
+        <a class="abstract-title" href = "/2021/03/09/xxx-is-not-a-symbolic-link/" >
             
-                <span>函数防抖和节流，以及在 Vue 中的运用</span>
+                <span>提示 *** is not a symbolic link 解决方案</span>
         </a>
         <div class="abstract-content">
-            在前端性能优化中存在一个老生常谈的问题：如何优化高频率执行的 JS 代码？例如：
+            问题描述在 CentOS 环境下执行 yum update 和 ldconfig 命令时都出现提示警告，节选内容如下所示：
+123ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic linkldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic linkldconfig: /OSM/lib/libupb.so.9 is not a symbolic link
 
-我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。
-我们为网页添加了搜索功能，当用户输入搜索关键字后，会自动显示出搜索的结果。但是，用户每次更改输入都立即调用后端进行了搜索，彼时用户可能尚未输入完关键字，亦或是关键字输入错误需要修改。这样搜索出来的结果并非用户希望看到的...
+错误分析进入到对应目录下查找可以发现，这里的 librdmacm.so.1 与 librdmacm.so.1...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/08</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/16/amap-import-vue/" >
-            
-                <span>在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
-        </a>
-        <div class="abstract-content">
-            迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
-高德地图与腾讯地图定位功能区别高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。
-这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。
-此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。
-引入高德地图 JS API 库这里我们通过顺序同步加载的方式引入第三方库。
-编辑 nuxt.config.js 中 head 项以引入 JS API 库。
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Promise">Promise</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/15/tencent-map-api-get-current-location/" >
-            
-                <span>使用腾讯位置服务进行 Web 前端定位</span>
-        </a>
-        <div class="abstract-content">
-            正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
-终于在不起眼的地方找到了前端定位组件，适用于浏览器进行定位操作。
-本文基于 Nuxt.js 实现前端定位功能。
-它能做什么组件旨在优化纯 HTML5 Geolocation 定位能力弱，定位成功率不高的问题，提供简单、易用的接口帮助业务层获取用户当前的位置信息（需用户授权），以降低开发成本，提升定位精准度。
-除了常规的经纬度坐标以外，它返...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/22/write-md-parser/" >
-            
-                <span>Webpack 读取本地 Markdown 文件并进行预处理</span>
-        </a>
-        <div class="abstract-content">
-            在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
-与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
-这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！
-自动导入本地的 .md 文件当然，首先要读取某个目录下已经撰写好的 .md 文件，才能对内容进行预处理。
-但如果每撰写好一个新的新闻或博客文件，就得在代码中 require 出来，太过于麻烦且不现实，因...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Markdown">Markdown</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ldconfig">ldconfig</a>
     
 </div>
             

@@ -482,6 +482,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/09/xxx-is-not-a-symbolic-link/" >
+            
+                <span>提示 *** is not a symbolic link 解决方案</span>
+        </a>
+        <div class="abstract-content">
+            问题描述在 CentOS 环境下执行 yum update 和 ldconfig 命令时都出现提示警告，节选内容如下所示：
+123ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic linkldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic linkldconfig: /OSM/lib/libupb.so.9 is not a symbolic link
+
+错误分析进入到对应目录下查找可以发现，这里的 librdmacm.so.1 与 librdmacm.so.1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ldconfig">ldconfig</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2021/03/02/nodejs-eslint-prettier/" >
             
                 <span>Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
@@ -685,47 +719,6 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
         <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "PyTorch">PyTorch</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/09/02/uestc-se-faq-developer-diary/" >
-            
-                <span>电子科技大学 FAQ 网站开发者日志</span>
-        </a>
-        <div class="abstract-content">
-            你好，成电Hi，刚刚来到 UESTC 的新生，这里是专为你准备的 FAQ 网站！愿你在软件工程专业的道路上有一个好的开始，与一段充满收获的旅程。
-本项目的灵感来自于 se-faq.
-开发者日志2020-09-08
-修改的项目的文件目录结构。将前后端剥离开，增加可读性并且方便后续的网站部署工作。
-
-2020-09-04
-添加了 markdown-it 和 markdown-it-emoji 依赖。同学的提问和回答可以用 markdown 进行。
-添加了 nodemailer 依赖。提问者在问题有新回答等时应接受到相应邮件。
-
-2020-09-03
-初始化项目。本项目基于 Vue 语言，后端...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "开发日志">开发日志</a>
     
 </div>
             
@@ -1038,9 +1031,22 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -1067,6 +1073,11 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/16</span><a class="archive-post-title" href= "/2021/03/15/tencent-map-api-get-current-location/" >使用腾讯位置服务进行 Web 前端定位</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2021/03/09/xxx-is-not-a-symbolic-link/" >提示 *** is not a symbolic link 解决方案</a>
         </li>
     
     
@@ -1172,6 +1183,10 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
         <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
     
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="ldconfig"><span class="iconfont-archer">&#xe606;</span>ldconfig</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
