@@ -458,10 +458,10 @@ height:50vh;
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .eslintrc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="string">&quot;extends&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;您使用的其它拓展&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prettier&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="配置规则与脚本"><a href="#配置规则与脚本" class="headerlink" title="配置规则与脚本"></a>配置规则与脚本</h2><p>修改目录下的 <code>.eslintrc.js</code> 文件如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .eslintrc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  root: <span class="literal">true</span>,</span><br><span class="line">  env: &#123;</span><br><span class="line">    browser: <span class="literal">true</span>,</span><br><span class="line">    node: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;@nuxtjs/eslint-config-typescript&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;prettier&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;plugin:prettier/recommended&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;plugin:nuxt/recommended&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">  plugins: [<span class="string">&#x27;prettier&#x27;</span>],</span><br><span class="line">  rules: &#123;&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .eslintrc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">root</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">browser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">node</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;@nuxtjs/eslint-config-typescript&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;prettier&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;plugin:prettier/recommended&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;plugin:nuxt/recommended&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="string">&#x27;prettier&#x27;</span>],</span><br><span class="line">  <span class="attr">rules</span>: &#123;&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>添加 <code>yarn</code> 脚本如下所示：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;lint&quot;: &quot;eslint --ext \&quot;.js,.ts,.vue\&quot; --ignore-path .gitignore .&quot;,</span><br><span class="line">  &quot;format&quot;: &quot;prettier-eslint --write %INIT_CWD%/**/*.&#123;js,ts,vue&#125;&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;lint&quot;</span>: <span class="string">&quot;eslint --ext \&quot;.js,.ts,.vue\&quot; --ignore-path .gitignore .&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;format&quot;</span>: <span class="string">&quot;prettier-eslint --write %INIT_CWD%/**/*.&#123;js,ts,vue&#125;&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <h2 id="现在就格式化代码吧"><a href="#现在就格式化代码吧" class="headerlink" title="现在就格式化代码吧"></a>现在就格式化代码吧</h2><p>根据之前的配置，可以在项目根目录下执行 bash 脚本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只修复代码质量问题</span></span><br><span class="line">yarn lint</span><br><span class="line"><span class="comment"># 修复代码质量问题和代码风格</span></span><br><span class="line">yarn format</span><br></pre></td></tr></table></figure>
@@ -471,7 +471,7 @@ height:50vh;
 <li><p>设置<strong>格式化文档的方式</strong>默认为 <code>Prettier ESLint</code>。这样使用快捷键 <code>Shift + Alt + F</code> 可以自动格式化文档。</p>
 </li>
 <li><p>设置<strong>保存时自动格式化文档</strong>，如下所示。这样执行 <code>Ctrl + S</code> 保存时会自动格式化文档。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// settings.json</span></span><br><span class="line">&quot;editor.codeActionsOnSave&quot;: &#123;</span><br><span class="line">  &quot;source.fixAll.eslint&quot;: true</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// settings.json</span></span><br><span class="line"><span class="string">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dd07cca0a48e">ESLint+Prettier代码规范实践</a> - Bernie维 - 2019.06.04</li>
@@ -748,9 +748,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -763,6 +774,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js_debounce_throttle/" >防抖和节流函数在 Vue 中的使用</a>
+        </li>
     
     
         <li class="archive-post-item">

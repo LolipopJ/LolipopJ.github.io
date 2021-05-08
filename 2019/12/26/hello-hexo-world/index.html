@@ -444,7 +444,7 @@ height:50vh;
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 <p>2.修改 Hexo 目录下的配置文件 <code>_config.yml</code> 中 deploy 的内容如下。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 你的 Github Pages 链接 # 例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 你的 Github Pages 链接 # 例如https:<span class="comment">//bitbucket.org/JohnSmith/johnsmith.bitbucket.io</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 <p>3.生成站点文件并推送至Github库。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
@@ -720,9 +720,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -735,6 +746,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js_debounce_throttle/" >防抖和节流函数在 Vue 中的使用</a>
+        </li>
     
     
         <li class="archive-post-item">
