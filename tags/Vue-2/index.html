@@ -357,10 +357,13 @@
     <article class="index-post">
         <a class="abstract-title" href = "/2021/05/07/js_debounce_throttle/" >
             
-                <span>防抖和节流函数在 Vue 中的使用</span>
+                <span>函数防抖和节流，以及在 Vue 中的运用</span>
         </a>
         <div class="abstract-content">
-            
+            在前端性能优化中存在一个老生常谈的问题：如何优化高频率执行的 JS 代码？例如：
+
+我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。
+我们为网页添加了搜索功能，当用户输入搜索关键字后，会自动显示出搜索的结果。但是，用户每次更改输入都立即调用后端进行了搜索，彼时用户可能尚未输入完关键字，亦或是关键字输入错误需要修改。这样搜索出来的结果并非用户希望看到的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -735,7 +738,7 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js_debounce_throttle/" >防抖和节流函数在 Vue 中的使用</a>
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js_debounce_throttle/" >函数防抖和节流，以及在 Vue 中的运用</a>
         </li>
     
     
