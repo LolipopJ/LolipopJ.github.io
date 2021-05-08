@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="http://lolipopj.github.io/archives/2020/12/index.html">
+<meta property="og:url" content="http://lolipopj.github.io/archives/2021/04/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale">
 <meta property="article:author" content="Lolipop">
@@ -355,27 +355,31 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/12/28/ISO-IEC-IEEE-42010-des/" >
+        <a class="abstract-title" href = "/2021/04/19/linux-docker-gcc-update/" >
             
-                <span>IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</span>
+                <span>Linux 容器更新或降级 GCC 版本</span>
         </a>
         <div class="abstract-content">
-            关于本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
-本文绝大多数内容通过 DeepL 翻译 ISO/IEC/IEEE 42010 原文得来。
-本文系软件体系架构与设计模式课程中一项作业。
-访问我的 CSDN 博客以查看此文章。
+            如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
+12345yum -y install gccyum -y install gcc-c++# 或是一键安装开发工具软件包，包括 gcc, g++ 等yum groupinstall &quot;Development Tools&quot;
 
+本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
+NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/12/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/20</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "软件体系架构设计">软件体系架构设计</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "GCC">GCC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Docker">Docker</a>
     
 </div>
             
