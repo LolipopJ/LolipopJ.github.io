@@ -1,7 +1,7 @@
 ---
 title: Linux 系统编译安装基于 C++ 的 gRPC
 date: 2021/4/22
-updated: 2021/4/22
+updated: 2021/5/11
 categories:
 - 后端开发
 tags:
@@ -10,18 +10,13 @@ tags:
 - gRPC
 - Docker
 ---
-本文适用于 gRPC 的离线编译安装，但对于[下载 gRPC](#下载-grpc) 步骤强烈建议使用 git 进行。
+本文适用于 C++ 版本 gRPC 的离线编译安装，但对于[下载 gRPC](#下载-grpc) 步骤强烈建议使用 git 进行。
 
 如果在能直接连接外网的机器上编译，可直接按照 [gRPC 官网文档](https://github.com/grpc/grpc)的指引快速执行编译操作。
 
 ## 安装基本依赖
 
-一般这些基本依赖机器上都有；如果没有，那么可以：
-
-- （**推荐**）拉取编译环境，在 Docker 容器中执行编译操作；
-- 或需要下载相关的软件包，并配置镜像源安装到本机。
-
-确保机器上包括如下依赖：`autoconf`, `libtool`, `pkg-config` 与 C++ 编译环境。
+确保机器上包括这些基本依赖：`autoconf`, `libtool`, `pkg-config` 与 C++ 编译环境。
 
 ```bash
 # 检查是否有 autoconf
@@ -72,6 +67,7 @@ cmake --version
 解压，可以将 `/path/to/cmake-3.20.1-linux-x86_64/bin/` 目录下的二进制文件复制粘贴到 `/usr/bin/` 目录下；或是为它们创建软链接，创建软链接应使用绝对路径。
 
 ```bash
+# 解压
 tar -zxvf cmake-3.20.1-linux-x86_64.tar.gz
 # 为二进制文件创建软链接
 sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/bin/
@@ -79,9 +75,10 @@ sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/bin/
 cmake --version
 ```
 
-查看版本号时如果提示 `CMake Error: Could not find CMAKE_ROOT !!!`，可能是原本调用的 CMake 二进制文件存放在其它目录下。例如在 `euler-compile-doradoaa:latest` 容器环境里，原本的 CMake 二进制文件存放在 `/usr/local/bin/` 目录下，而调用命令时系统又优先从该目录搜索命令。因此应在创建软链接时应执行：
+查看版本号时如果提示 `CMake Error: Could not find CMAKE_ROOT !!!`，可能是原本调用的 CMake 二进制文件存放在其它目录下。例如，原来的 CMake 二进制文件存放在 `/usr/local/bin/` 目录下，而调用命令时系统又优先从该目录搜索命令。因此应在创建软链接时应执行：
 
 ```bash
+# 创建 cmake 二进制文件软链接
 sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/local/bin/
 ```
 
@@ -89,7 +86,7 @@ sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/local/bin/
 
 ## 下载 gRPC
 
-建议在能够连接外网的环境利用 git 克隆 gRPC 库并获取第三方依赖，再打包出来给其它环境编译使用。
+建议在能够直接访问外网的环境利用 git 克隆 gRPC 库并获取第三方依赖，再打包出来给其它环境编译使用。
 
 手动下载 gRPC 及第三方依赖耗时耗力，还有可能像我一样“赔了夫人又折兵”依然编译不了。
 
@@ -128,21 +125,22 @@ cmake -DgRPC_INSTALL=ON \
     -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \
     ../..
 # 执行编译
+# ${JOBS_NUM} 为同时执行的线程数，应替换为数字，下同
 make -j ${JOBS_NUM}
 # 安装 gRPC
 make install
 ```
 
-假如编译失败，可以参考我遇到的[错误和解决方案](#可能遇见的错误)。
-
-如果想要编译动态库 `.so` 文件，可以在执行 `cmake` 命令时设置 `-DBUILD_SHARED_LIBS=ON`，如：
+如果想要编译动态库 `.so` 文件，可以在上一步执行 `cmake` 命令时设置 `-DBUILD_SHARED_LIBS=ON`，如：
 
 ```bash
 # 生成编译 gRPC 的 Makefile 文件
 cmake -DBUILD_SHARED_LIBS=ON ../..
 ```
 
-gRPC 还依赖于 Abseil C++ 库，因此也需要编译安装它：
+假如编译失败，可以参考笔者遇到的[错误和解决方案](#可能遇见的错误)。
+
+C++ 版本的 gRPC 还依赖于 Abseil C++ 库，因此需要单独编译安装它：
 
 ```bash
 # 回到 gRPC 根目录
@@ -183,7 +181,7 @@ cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
 make -j ${JOBS_NUM}
 ```
 
-试试看吧！
+这样，在当前目录就会生成编译好的二进制文件。试试看吧！
 
 在当前终端启用 gRPC 示例的服务端，它会默认监听当前主机的 `50051` 端口：
 
@@ -226,4 +224,4 @@ error: no matching function for call to ‘StrFormat(const char [22], const char
 
 提示报错没有找到 `StrFormat` 函数，请确保 `gcc` 版本在 `4.9` 及以上，可以执行 `gcc -v` 命令查看当前版本。
 
-建议更新到 `gcc 4.9.4` 版本，我在该版本下顺利编译 gRPC。
+建议[更新](http://3ms.huawei.com/km/blogs/details/10193429)到 `gcc 4.9.4` 版本，笔者在该版本下顺利编译 gRPC。
