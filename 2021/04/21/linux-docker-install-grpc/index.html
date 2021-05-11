@@ -20,15 +20,15 @@
     <meta name="keywords" content="coder,learning,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="本文适用于 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。 安装基本依赖一般这些基本依赖机器上都有；如果没有，那么可以：  （推荐）拉取编译环境，在 Docker 容器中执行编译操作； 或需要下载相关的软件包，并配置镜像源安装到本机。  确保机器上包括如下依赖：autocon">
+    <meta name="description" content="本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。 安装基本依赖确保机器上包括这些基本依赖：autoconf, libtool, pkg-config 与 C++ 编译环境。 12345678# 检查是否有 autoconfwhich autoconf#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 系统编译安装基于 C++ 的 gRPC">
 <meta property="og:url" content="http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/index.html">
 <meta property="og:site_name" content="Lolipop">
-<meta property="og:description" content="本文适用于 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。 安装基本依赖一般这些基本依赖机器上都有；如果没有，那么可以：  （推荐）拉取编译环境，在 Docker 容器中执行编译操作； 或需要下载相关的软件包，并配置镜像源安装到本机。  确保机器上包括如下依赖：autocon">
+<meta property="og:description" content="本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。 安装基本依赖确保机器上包括这些基本依赖：autoconf, libtool, pkg-config 与 C++ 编译环境。 12345678# 检查是否有 autoconfwhich autoconf#">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-10T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
@@ -423,14 +423,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>本文适用于 gRPC 的离线编译安装，但对于<a href="#%E4%B8%8B%E8%BD%BD-grpc">下载 gRPC</a> 步骤强烈建议使用 git 进行。</p>
+        <p>本文适用于 C++ 版本 gRPC 的离线编译安装，但对于<a href="#%E4%B8%8B%E8%BD%BD-grpc">下载 gRPC</a> 步骤强烈建议使用 git 进行。</p>
 <p>如果在能直接连接外网的机器上编译，可直接按照 <a target="_blank" rel="noopener" href="https://github.com/grpc/grpc">gRPC 官网文档</a>的指引快速执行编译操作。</p>
-<h2 id="安装基本依赖"><a href="#安装基本依赖" class="headerlink" title="安装基本依赖"></a>安装基本依赖</h2><p>一般这些基本依赖机器上都有；如果没有，那么可以：</p>
-<ul>
-<li>（<strong>推荐</strong>）拉取编译环境，在 Docker 容器中执行编译操作；</li>
-<li>或需要下载相关的软件包，并配置镜像源安装到本机。</li>
-</ul>
-<p>确保机器上包括如下依赖：<code>autoconf</code>, <code>libtool</code>, <code>pkg-config</code> 与 C++ 编译环境。</p>
+<h2 id="安装基本依赖"><a href="#安装基本依赖" class="headerlink" title="安装基本依赖"></a>安装基本依赖</h2><p>确保机器上包括这些基本依赖：<code>autoconf</code>, <code>libtool</code>, <code>pkg-config</code> 与 C++ 编译环境。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查是否有 autoconf</span></span><br><span class="line"><span class="built_in">which</span> autoconf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有，则安装</span></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">yum install autoconf</span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">apt-get install autoconf</span><br></pre></td></tr></table></figure>
 
 <p>gRPC 的编译需要 <code>gcc</code> 版本在 <code>4.9</code> 及以上。假如版本低于此，应当在 Docker 容器中安装较新版本的 GCC 再执行编译操作。</p>
@@ -450,13 +445,13 @@ height:50vh;
 <p>在 <a target="_blank" rel="noopener" href="https://cmake.org/download/">CMake 官网</a>下载需要版本的 CMake 源码或二进制文件。</p>
 <p>例如下载适用于 x86_64 的 Linux 系统的二进制文件，可以选择下载 <code>cmake-3.20.1-linux-x86_64.tar.gz</code>，其中 <code>3.20.1</code> 为版本号。</p>
 <p>解压，可以将 <code>/path/to/cmake-3.20.1-linux-x86_64/bin/</code> 目录下的二进制文件复制粘贴到 <code>/usr/bin/</code> 目录下；或是为它们创建软链接，创建软链接应使用绝对路径。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf cmake-3.20.1-linux-x86_64.tar.gz</span><br><span class="line"><span class="comment"># 为二进制文件创建软链接</span></span><br><span class="line">sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/bin/</span><br><span class="line"><span class="comment"># 再次执行，确保安装成功</span></span><br><span class="line">cmake --version</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf cmake-3.20.1-linux-x86_64.tar.gz</span><br><span class="line"><span class="comment"># 为二进制文件创建软链接</span></span><br><span class="line">sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/bin/</span><br><span class="line"><span class="comment"># 再次执行，确保安装成功</span></span><br><span class="line">cmake --version</span><br></pre></td></tr></table></figure>
 
-<p>查看版本号时如果提示 <code>CMake Error: Could not find CMAKE_ROOT !!!</code>，可能是原本调用的 CMake 二进制文件存放在其它目录下。例如在 <code>euler-compile-doradoaa:latest</code> 容器环境里，原本的 CMake 二进制文件存放在 <code>/usr/local/bin/</code> 目录下，而调用命令时系统又优先从该目录搜索命令。因此应在创建软链接时应执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+<p>查看版本号时如果提示 <code>CMake Error: Could not find CMAKE_ROOT !!!</code>，可能是原本调用的 CMake 二进制文件存放在其它目录下。例如，原来的 CMake 二进制文件存放在 <code>/usr/local/bin/</code> 目录下，而调用命令时系统又优先从该目录搜索命令。因此应在创建软链接时应执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 cmake 二进制文件软链接</span></span><br><span class="line">sudo ln -sf /path/to/cmake-3.20.1-linux-x86_64/bin/* /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
 
 <p>对于其它路径，可以通过 <code>find / -name &quot;cmake&quot;</code> 来寻找。</p>
-<h2 id="下载-gRPC"><a href="#下载-gRPC" class="headerlink" title="下载 gRPC"></a>下载 gRPC</h2><p>建议在能够连接外网的环境利用 git 克隆 gRPC 库并获取第三方依赖，再打包出来给其它环境编译使用。</p>
+<h2 id="下载-gRPC"><a href="#下载-gRPC" class="headerlink" title="下载 gRPC"></a>下载 gRPC</h2><p>建议在能够直接访问外网的环境利用 git 克隆 gRPC 库并获取第三方依赖，再打包出来给其它环境编译使用。</p>
 <p>手动下载 gRPC 及第三方依赖耗时耗力，还有可能像我一样“赔了夫人又折兵”依然编译不了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆 gRPC 仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/grpc/grpc.git</span><br><span class="line"><span class="built_in">cd</span> grpc</span><br><span class="line"><span class="comment"># 获取 gRPC 第三方依赖</span></span><br><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
 
@@ -464,20 +459,20 @@ height:50vh;
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装到 $HOME/.local 中</span></span><br><span class="line"><span class="built_in">export</span> MY_INSTALL_DIR=<span class="variable">$HOME</span>/.<span class="built_in">local</span></span><br><span class="line"><span class="comment"># 确保目录存在</span></span><br><span class="line">mkdir -p <span class="variable">$MY_INSTALL_DIR</span></span><br><span class="line"><span class="comment"># 添加该路径下的 bin 目录到环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PATH</span>:<span class="variable">$MY_INSTALL_DIR</span>/bin&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>在 gRPC 根目录下执行<a target="_blank" rel="noopener" href="https://github.com/grpc/grpc/blob/master/BUILDING.md#building-with-cmake">下述操作</a>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建存放编译 gRPC 结果的目录</span></span><br><span class="line">mkdir -p cmake/build</span><br><span class="line"><span class="comment"># 进入到该目录</span></span><br><span class="line"><span class="built_in">pushd</span> cmake/build</span><br><span class="line"><span class="comment"># 生成编译 gRPC 的 Makefile 文件</span></span><br><span class="line"><span class="comment"># 其中 DCMAKE_INSTALL_PREFIX 指定了 gRPC 的安装路径</span></span><br><span class="line">cmake -DgRPC_INSTALL=ON \</span><br><span class="line">    -DgRPC_BUILD_TESTS=OFF \</span><br><span class="line">    -DCMAKE_INSTALL_PREFIX=<span class="variable">$MY_INSTALL_DIR</span> \</span><br><span class="line">    ../..</span><br><span class="line"><span class="comment"># 执行编译</span></span><br><span class="line">make -j <span class="variable">$&#123;JOBS_NUM&#125;</span></span><br><span class="line"><span class="comment"># 安装 gRPC</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建存放编译 gRPC 结果的目录</span></span><br><span class="line">mkdir -p cmake/build</span><br><span class="line"><span class="comment"># 进入到该目录</span></span><br><span class="line"><span class="built_in">pushd</span> cmake/build</span><br><span class="line"><span class="comment"># 生成编译 gRPC 的 Makefile 文件</span></span><br><span class="line"><span class="comment"># 其中 DCMAKE_INSTALL_PREFIX 指定了 gRPC 的安装路径</span></span><br><span class="line">cmake -DgRPC_INSTALL=ON \</span><br><span class="line">    -DgRPC_BUILD_TESTS=OFF \</span><br><span class="line">    -DCMAKE_INSTALL_PREFIX=<span class="variable">$MY_INSTALL_DIR</span> \</span><br><span class="line">    ../..</span><br><span class="line"><span class="comment"># 执行编译</span></span><br><span class="line"><span class="comment"># $&#123;JOBS_NUM&#125; 为同时执行的线程数，应替换为数字，下同</span></span><br><span class="line">make -j <span class="variable">$&#123;JOBS_NUM&#125;</span></span><br><span class="line"><span class="comment"># 安装 gRPC</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
-<p>假如编译失败，可以参考我遇到的<a href="#%E5%8F%AF%E8%83%BD%E9%81%87%E8%A7%81%E7%9A%84%E9%94%99%E8%AF%AF">错误和解决方案</a>。</p>
-<p>如果想要编译动态库 <code>.so</code> 文件，可以在执行 <code>cmake</code> 命令时设置 <code>-DBUILD_SHARED_LIBS=ON</code>，如：</p>
+<p>如果想要编译动态库 <code>.so</code> 文件，可以在上一步执行 <code>cmake</code> 命令时设置 <code>-DBUILD_SHARED_LIBS=ON</code>，如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成编译 gRPC 的 Makefile 文件</span></span><br><span class="line">cmake -DBUILD_SHARED_LIBS=ON ../..</span><br></pre></td></tr></table></figure>
 
-<p>gRPC 还依赖于 Abseil C++ 库，因此也需要编译安装它：</p>
+<p>假如编译失败，可以参考笔者遇到的<a href="#%E5%8F%AF%E8%83%BD%E9%81%87%E8%A7%81%E7%9A%84%E9%94%99%E8%AF%AF">错误和解决方案</a>。</p>
+<p>C++ 版本的 gRPC 还依赖于 Abseil C++ 库，因此需要单独编译安装它：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回到 gRPC 根目录</span></span><br><span class="line"><span class="built_in">popd</span></span><br><span class="line"><span class="comment"># 创建存放 Abseil C++ 编译结果的目录</span></span><br><span class="line">mkdir -p third_party/abseil-cpp/cmake/build</span><br><span class="line"><span class="comment"># 进入到编译目录</span></span><br><span class="line"><span class="built_in">pushd</span> third_party/abseil-cpp/cmake/build</span><br><span class="line"><span class="comment"># 生成编译 abseil-cpp 的 Makefile 文件</span></span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=<span class="variable">$MY_INSTALL_DIR</span> \</span><br><span class="line">    -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \</span><br><span class="line">    ../..</span><br><span class="line"><span class="comment"># 执行编译</span></span><br><span class="line">make -j <span class="variable">$&#123;JOBS_NUM&#125;</span></span><br><span class="line"><span class="comment"># 安装 Abseil C++</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
 <p>哈！大功告成。最后我们来测试一下 gRPC 是否安装成功。</p>
 <h2 id="测试编译安装-gRPC-成功"><a href="#测试编译安装-gRPC-成功" class="headerlink" title="测试编译安装 gRPC 成功"></a>测试编译安装 gRPC 成功</h2><p>首先编译 gRPC 提供的示例：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回到 gRPC 根目录</span></span><br><span class="line"><span class="built_in">popd</span></span><br><span class="line"><span class="comment"># 进入 example 目录</span></span><br><span class="line"><span class="built_in">cd</span> examples/cpp/helloworld</span><br><span class="line"><span class="comment"># 创建存放 example 编译结果的目录</span></span><br><span class="line">mkdir -p cmake/build</span><br><span class="line"><span class="comment"># 进入到编译目录</span></span><br><span class="line"><span class="built_in">pushd</span> cmake/build</span><br><span class="line"><span class="comment"># 生成编译 example 的 Makefile 文件</span></span><br><span class="line"><span class="comment"># 其中 DCMAKE_PREFIX_PATH 指定我们使用的 gRPC 路径，即 gRPC 的安装路径</span></span><br><span class="line">cmake -DCMAKE_PREFIX_PATH=<span class="variable">$MY_INSTALL_DIR</span> ../..</span><br><span class="line"><span class="comment"># 执行编译</span></span><br><span class="line">make -j <span class="variable">$&#123;JOBS_NUM&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>试试看吧！</p>
+<p>这样，在当前目录就会生成编译好的二进制文件。试试看吧！</p>
 <p>在当前终端启用 gRPC 示例的服务端，它会默认监听当前主机的 <code>50051</code> 端口：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./greeter_server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示内容如下</span></span><br><span class="line">Server listening on 0.0.0.0:50051</span><br></pre></td></tr></table></figure>
 
@@ -491,7 +486,7 @@ height:50vh;
 <h2 id="可能遇见的错误"><a href="#可能遇见的错误" class="headerlink" title="可能遇见的错误"></a>可能遇见的错误</h2><h3 id="编译-gRPC-执行-make-后提示-error"><a href="#编译-gRPC-执行-make-后提示-error" class="headerlink" title="编译 gRPC 执行 make 后提示 error"></a>编译 gRPC 执行 make 后提示 error</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: no matching <span class="keyword">function</span> <span class="keyword">for</span> call to ‘StrFormat(const char [22], const char*, char [64], int32_t&amp;, long int&amp;, const char*&amp;, int&amp;)’</span><br></pre></td></tr></table></figure>
 
 <p>提示报错没有找到 <code>StrFormat</code> 函数，请确保 <code>gcc</code> 版本在 <code>4.9</code> 及以上，可以执行 <code>gcc -v</code> 命令查看当前版本。</p>
-<p>建议更新到 <code>gcc 4.9.4</code> 版本，我在该版本下顺利编译 gRPC。</p>
+<p>建议<a target="_blank" rel="noopener" href="http://3ms.huawei.com/km/blogs/details/10193429">更新</a>到 <code>gcc 4.9.4</code> 版本，笔者在该版本下顺利编译 gRPC。</p>
 
     </article>
     <!-- license  -->
@@ -500,7 +495,7 @@ height:50vh;
             <p>原文作者：<a href="http://LolipopJ.github.io">Lolipop</a>
             <p>原文链接：<a href="http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/">http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/</a>
             <p>发表日期：<a href="http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/">April 21st 2021, 4:00:00 pm</a>
-            <p>更新日期：<a href="http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/">April 21st 2021, 4:00:00 pm</a>
+            <p>更新日期：<a href="http://lolipopj.github.io/2021/04/21/linux-docker-install-grpc/">May 10th 2021, 4:00:00 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
