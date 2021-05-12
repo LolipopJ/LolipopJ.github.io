@@ -60,7 +60,7 @@ function sayHello() {
 
 ## 匿名函数声明
 
-基于变量声明和函数声明之间的区别，在实际应用中，使用**匿名函数**的方式执行声明会更好：
+基于变量声明和函数声明之间的区别，在实际应用中，使用**匿名函数**的方式执行声明更不容易产生奇怪的 Bug：
 
 ```js
 sayHi() // Uncaught TypeError: sayHi is not a function
@@ -77,7 +77,7 @@ sayHi() // Hi there!
 
 在 ES6 中，提供了两个新的命令可以用于声明变量，它们是 `let` 和 `const`。使用 `let` 声明的变量可以修改，而使用 `const` 声明的变量将不可更改。使用 `const` 声明必须指定初始值。
 
-使用 `var`, `let` 和 `const` 的声明都会被“提升”，不同的是：
+包括 `var`, `let` 和 `const` 在内的一切声明都会被“提升”，不同的是：
 
 - `var` 命令在变量的定义被执行之前就初始化变量，并拥有一个默认的 `undefined` 值。
 - `let` 与 `const` 命令会形成**暂时性死区**，在变量的定义被执行之前都不会初始化变量，避免在声明语句之前的不正确调用。如果定义时没有给定值的话，`let` 声明的变量会赋值为 `undefined`，而 `const` 声明的变量会报错。
@@ -91,14 +91,14 @@ sayHi() // Hi there!
 
 ```js
 test() // Uncaught ReferenceError: Cannot access 'test' before initialization
-console.log(test) // Uncaught SyntaxError: Identifier 'test' has already been declared
+console.log(test) // Uncaught ReferenceError: Cannot access 'test' before initialization
 const test = function() {
     console.log('test')
 }
 test() // test
 ```
 
-在这里，我们使用了 `const` 命令声明函数，只要一进入当前作用域，所要使用的 `test` 变量就已经存在了，但是不可获取。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 `let` 命令也有同样的效果。
+在这里，我们使用了 `const` 命令声明函数，只要一进入当前作用域，所要使用的 `test` 变量就已经存在了，但是不可获取，如果获取则会抛出特别的错误 `Uncaught ReferenceError: Cannot access 'test' before initialization`（一般情况下，获取未声明的变量抛出的错误为 `Uncaught ReferenceError: test is not defined`）。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 `let` 命令也有同样的效果。
 
 *[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#features-use-const-and-let)* 建议使用 ES6 规范的 `const` 和 `let` 命令声明变量，舍弃容易造成错误的 `var` 命令。
 
