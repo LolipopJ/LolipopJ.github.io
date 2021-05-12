@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -438,12 +438,12 @@ height:50vh;
 <li>对于函数声明如 <code>function sayHello() &#123; console.log(&#39;Hello there!&#39;) &#125;</code>，会在内存里创建函数对象，并且直接初始化为该函数对象。</li>
 </ul>
 <p>因此，对于变量声明，在真正执行到赋值语句之前，我们就已经可以使用此变量，但是初值为 <code>undefined</code>；而对于函数声明，在执行到函数声明之前，函数对象就已经存在在内存当中，并可以直接调用了。</p>
-<h2 id="匿名函数声明"><a href="#匿名函数声明" class="headerlink" title="匿名函数声明"></a>匿名函数声明</h2><p>基于变量声明和函数声明之间的区别，在实际应用中，使用<strong>匿名函数</strong>的方式执行声明会更好：</p>
+<h2 id="匿名函数声明"><a href="#匿名函数声明" class="headerlink" title="匿名函数声明"></a>匿名函数声明</h2><p>基于变量声明和函数声明之间的区别，在实际应用中，使用<strong>匿名函数</strong>的方式执行声明更不容易产生奇怪的 Bug：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sayHi() <span class="comment">// Uncaught TypeError: sayHi is not a function</span></span><br><span class="line"><span class="built_in">console</span>.log(sayHi) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Hi there!&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">sayHi() <span class="comment">// Hi there!</span></span><br></pre></td></tr></table></figure>
 
 <p>使用匿名函数声明时，<code>sayHi</code> 声明发生变量提升，但赋值为 <code>undefined</code>，因此执行 <code>sayHi()</code> 时会报错 <code>Uncaught TypeError: sayHi is not a function</code>。随后执行完赋值语句后，才成为一个可以执行的函数变量。</p>
 <h2 id="防止变量提升"><a href="#防止变量提升" class="headerlink" title="防止变量提升"></a>防止变量提升</h2><p>在 ES6 中，提供了两个新的命令可以用于声明变量，它们是 <code>let</code> 和 <code>const</code>。使用 <code>let</code> 声明的变量可以修改，而使用 <code>const</code> 声明的变量将不可更改。使用 <code>const</code> 声明必须指定初始值。</p>
-<p>使用 <code>var</code>, <code>let</code> 和 <code>const</code> 的声明都会被“提升”，不同的是：</p>
+<p>包括 <code>var</code>, <code>let</code> 和 <code>const</code> 在内的一切声明都会被“提升”，不同的是：</p>
 <ul>
 <li><code>var</code> 命令在变量的定义被执行之前就初始化变量，并拥有一个默认的 <code>undefined</code> 值。</li>
 <li><code>let</code> 与 <code>const</code> 命令会形成<strong>暂时性死区</strong>，在变量的定义被执行之前都不会初始化变量，避免在声明语句之前的不正确调用。如果定义时没有给定值的话，<code>let</code> 声明的变量会赋值为 <code>undefined</code>，而 <code>const</code> 声明的变量会报错。</li>
@@ -453,9 +453,9 @@ height:50vh;
 <p>ES6 明确规定，如果区块中存在 <code>let</code> 和 <code>const</code> 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。<br>总之，在代码块内，使用 <code>let</code> 命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。</p>
 </blockquote>
 <p>下面是一个使用 <code>const</code> 声明函数的例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test() <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(test) <span class="comment">// Uncaught SyntaxError: Identifier &#x27;test&#x27; has already been declared</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">test() <span class="comment">// test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test() <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(test) <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">test() <span class="comment">// test</span></span><br></pre></td></tr></table></figure>
 
-<p>在这里，我们使用了 <code>const</code> 命令声明函数，只要一进入当前作用域，所要使用的 <code>test</code> 变量就已经存在了，但是不可获取。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 <code>let</code> 命令也有同样的效果。</p>
+<p>在这里，我们使用了 <code>const</code> 命令声明函数，只要一进入当前作用域，所要使用的 <code>test</code> 变量就已经存在了，但是不可获取，如果获取则会抛出特别的错误 <code>Uncaught ReferenceError: Cannot access &#39;test&#39; before initialization</code>（一般情况下，获取未声明的变量抛出的错误为 <code>Uncaught ReferenceError: test is not defined</code>）。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 <code>let</code> 命令也有同样的效果。</p>
 <p><em><a target="_blank" rel="noopener" href="https://google.github.io/styleguide/jsguide.html#features-use-const-and-let">Google JavaScript Style Guide</a></em> 建议使用 ES6 规范的 <code>const</code> 和 <code>let</code> 命令声明变量，舍弃容易造成错误的 <code>var</code> 命令。</p>
 <p>无论如何，养成“先声明，再赋值”的良好编程习惯非常重要。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="技术博客"><a href="#技术博客" class="headerlink" title="技术博客"></a>技术博客</h3><ul>
