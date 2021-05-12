@@ -1,7 +1,7 @@
 ---
 title: JavsScript 变量提升和函数提升
 date: 2021/5/11
-updated: 2021/5/11
+updated: 2021/5/12
 categories:
 - 技术琐事
 tags:
@@ -27,6 +27,7 @@ console.log(a) // 3
 ```js
 console.log(a) // undefined
 var a = 3
+console.log(a) // 3
 console.log(b) // Uncaught ReferenceError: b is not defined
 ```
 
@@ -43,13 +44,25 @@ function sayHello() {
 
 在执行声明函数语句之前，我们已经可以调用函数方法并正确输出。这便是**函数提升**。
 
-在 JS 中奇怪的一点是，我们可以在声明变量（使用 `var`）和声明函数之前使用它们，就好像变量和函数的声明被提升到了代码的顶部一样。
+在 JS 中奇怪的一点是，我们可以在声明变量（使用 `var`）和声明函数之前使用它们，就好像变量和函数的声明被提升到了代码的顶部一样：
+
+```js
+console.log(a) // undefined
+var a = 3
+console.log(a) // 3
+
+// 好像等于下面的代码
+var a
+console.log(a) // undefined
+a = 3
+console.log(a) // 3
+```
 
 实际上，JS 并不会移动代码，变量提升和函数提升并不是真正意义上的“提升”，而是解释执行 JS 代码过程所带来的“特性”。
 
 以现在最主流的 `V8` 引擎为例，其解释执行 JS 代码的过程大致分为生成抽象语法树（AST），生成字节码和生成机器码三个阶段。
 
-在生成抽象语法树阶段，又分为了词法分析和语法分析两个阶段。其中，在词法分析阶段，JS 会检测到使用到的所有变量和函数声明，并将这些变量和函数声明添加到一个名为**词法环境**（Lexical Environment）的内存空间当中。
+在生成抽象语法树阶段，又分为了词法分析和语法分析两个阶段。其中，在词法分析阶段，JS 会检测到当前**作用域**使用到的所有变量和函数声明，并将这些变量和函数声明添加到一个名为**词法环境**（Lexical Environment）的内存空间当中。
 
 在词法分析阶段，对于变量声明和函数声明，词法环境的处理是不一样的：
 
@@ -57,6 +70,56 @@ function sayHello() {
 - 对于函数声明如 `function sayHello() { console.log('Hello there!') }`，会在内存里创建函数对象，并且直接初始化为该函数对象。
 
 因此，对于变量声明，在真正执行到赋值语句之前，我们就已经可以使用此变量，但是初值为 `undefined`；而对于函数声明，在执行到函数声明之前，函数对象就已经存在在内存当中，并可以直接调用了。
+
+应当注意的是，函数声明的处理优先级要高于变量声明，那么则不难理解，下面的代码中函数和变量重名时，会发生什么：
+
+```js
+console.log(foo) // function foo() {}
+foo = 3
+console.log(foo) // 3
+function foo() {}
+
+// 相当于下面的代码
+var foo
+foo = function() {}
+console.log(foo) // function foo() {}
+foo = 3
+console.log(foo) // 3
+```
+
+最后，还需要理解的是，变量提升和函数提升，都是将声明“提升”到当前**作用域**的顶端：
+
+```js
+var foo = 5
+
+function hoist() {
+    console.log(foo) // function foo() {}
+    foo = 3
+    console.log(foo) // 3
+    function foo() {}
+}
+
+hoist()
+console.log(foo) // 5
+
+// 相当于下面的代码
+var hoist
+var foo
+
+hoist = function() {
+    var foo
+    foo = function() {}
+    console.log(foo) // function foo() {}
+    foo = 3
+    console.log(foo) // 3
+}
+foo = 5
+
+hoist()
+console.log(foo) // 5
+```
+
+`hoist` 方法中的 `console.log(foo)` 优先从当前作用域中寻找变量 `foo`，如果找不到才在父级作用域寻找。
 
 ## 匿名函数声明
 
