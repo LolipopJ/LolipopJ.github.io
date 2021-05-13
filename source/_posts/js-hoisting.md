@@ -179,6 +179,8 @@ test() // test
 > 当我说 TCP 协议可以保证消息一定能够到达，事实上并非如此。如果你的宠物蛇把网线给咬坏了，那即便是 TCP 协议也无法传输数据；如果你和网络管理员闹了矛盾，他将你的网口接到了一台负载很高的交换机上，那即便你的数据包可以传输，速度也会奇慢无比。
 > 这就是我所说的“抽象泄漏”。TCP 协议试图提供一个完整的抽象，将底层不可靠的数据传输包装起来，但是，底层的传输有时也会发生问题，即便是 TCP 协议也无法解决，这时你会发现，它也不是万能的。TCP 协议就是“抽象泄漏定律”的示例之一，其实，几乎所有的抽象都是泄漏的。
 
+言归正传，正是由于第一批 JS 虚拟机编译器上代码的设计失误，导致了变量在声明之前就被赋予了 `undefined` 的初始值，产生了变量提升。可能又由于这个失误产生的影响（无论好坏）过于广泛，因此在现在的 JS 编译器中仍保留了变量提升的“特性”。
+
 至于“为什么要函数提升”，有人提出可能是为了解决函数相互递归调用的问题，布兰登·艾克给予了肯定并补充道：
 
 > Brendan Eich: Yes, function declaration hoisting is for mutual recursion & generally to avoid painful bottom-up ML-like order. / 是的，函数提升是为了解决函数相互递归调用的问题，并在总体上避免了像 ML 语言那样痛苦地自下而上调用的问题。
@@ -227,7 +229,7 @@ function isOdd(n) {
 - [从本质上理解JavaScript中的变量提升](https://juejin.cn/post/6844903895341219854), 2019-07-23
 - [JS：深入理解JavaScript-词法环境](https://limeii.github.io/2019/05/js-lexical-environment/), 2019-05-06
 - [变量声明系列之ES5(变量提升)](https://blog.csdn.net/weixin_38080573/article/details/79372448), 2018-02-25
-- [JavaScript: 变量提升和函数提升](https://www.cnblogs.com/liuhe688/p/5891273.html)
+- [JavaScript: 变量提升和函数提升](https://www.cnblogs.com/liuhe688/p/5891273.html), 2016-10-18
 - [抽象泄漏定律](http://shzhangji.com/cnblogs/2013/12/17/the-law-of-leaky-abstractions/), 2013-12-17, 英文[原文链接](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/)
 
 ### 其它资料
