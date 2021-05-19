@@ -89,8 +89,8 @@
 
 </style>
 
-    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href= "/css/style.css?v=20210204" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20210204" media="(max-width: 980px)">
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
@@ -204,9 +204,10 @@
     <link rel="icon" href= "/assets/favicon.ico" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/js/all.min.js"  data-auto-replace-svg="nest" ></script>
     
     <!-- fancybox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
@@ -478,7 +479,31 @@ height:50vh;
     
 
     <!-- 评论 -->
+
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <script>
+      (function(){
+        var time = document.getElementsByClassName('post-intro-time')[0]
+        if (time === undefined) { return; }
+        var post = document.getElementsByTagName("article")[0]
+        if (post === undefined) { return; }
+
+        var pubTime = new Date(time.innerText)
+        var now = Date.now()
+        var interval = parseInt(now - pubTime)
+        var days = parseInt(interval / 86400000)
+        var outdated_threshold = parseInt()
+        if (interval > outdated_threshold*24*3600*1000){
+          post.innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+            '<div class="title">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+            '</p></p></div>' + post.innerHTML;
+        }
+      })();
+  </script>
+  
 </main>
+
             <!-- profile -->
             
         </div>
@@ -541,8 +566,8 @@ height:50vh;
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme Archer</a></span>
-    </div> 
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
     <!-- 不蒜子  -->
     
     <div class="busuanzi-container">

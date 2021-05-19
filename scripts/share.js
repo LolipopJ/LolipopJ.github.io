@@ -1,146 +1,11 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
-/******/ })
-/************************************************************************/
-/******/ ({
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-/***/ 18:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qrcode_generator__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qrcode_generator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_qrcode_generator__);
-/**
- * special thanks to hexo-theme-yilia
- * https://github.com/litten/hexo-theme-yilia/blob/master/source-src/js/share.js
- */
-
-
-function initQR(sURL) {
-  var typeNumber = 0;
-  var errorCorrectionLevel = 'L';
-  var qr = __WEBPACK_IMPORTED_MODULE_0_qrcode_generator___default()(typeNumber, errorCorrectionLevel);
-  qr.addData(sURL);
-  qr.make();
-  document.getElementsByClassName('share-qrcode')[0].innerHTML = qr.createImgTag();
-}
-
-function generate(templateURL, param) {
-  var shareURL = templateURL.replace(/<%-sURL%>/g, encodeURIComponent(param.sURL)).replace(/<%-sTitle%>/g, param.sTitle).replace(/<%-sDesc%>/g, param.sDesc).replace(/<%-sAuthor%>/g, param.sAuthor).replace(/<%-sImg%>/g, encodeURIComponent(param.sImg));
-  window.open(shareURL);
-}
-
-function handleShareClick(type, param) {
-  if (type === 'weibo') {
-    generate('http://service.weibo.com/share/share.php?url=<%-sURL%>&title=<%-sTitle%>&pic=<%-sImg%>', param);
-  } else if (type === 'qzone') {
-    generate('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<%-sURL%>&title=<%-sTitle%>&pics=<%-sImg%>&summary=<%-sDesc%>', param);
-  } else if (type === 'facebook') {
-    generate('https://www.facebook.com/sharer/sharer.php?u=<%-sURL%>', param);
-  } else if (type === 'twitter') {
-    generate('https://twitter.com/intent/tweet?text=<%-sTitle%>&url=<%-sURL%>&via=<%-sAuthor%>', param);
-  } else if (type === 'qr') {// pre init qr
-  }
-}
-
-function init() {
-  var sURL = window.location.href;
-  var sTitle = document.querySelector('title').innerHTML;
-  var sImg = document.querySelector('.article-entry img') && document.querySelector('.article-entry img').getAttribute('src');
-  sImg = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + sImg;
-  var sDesc = document.querySelector('.article-entry') && document.querySelector('.article-entry').innerText.substring(0, 30) + '...';
-  var sAuthor = window.siteMeta.author;
-  var param = {
-    sURL: sURL,
-    sTitle: sTitle,
-    sImg: sImg,
-    sDesc: sDesc,
-    sAuthor: sAuthor
-  };
-  var shareWrapper = document.querySelector('.shareList');
-
-  if (!shareWrapper) {
-    return;
-  }
-
-  initQR(sURL);
-  shareWrapper.addEventListener('click', function (e) {
-    if (!e.target.getAttribute('data-type')) {
-      return;
-    }
-
-    handleShareClick(e.target.getAttribute('data-type'), param);
-  });
-}
-
-init();
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/qrcode-generator/qrcode.js":
+/*!*************************************************!*\
+  !*** ./node_modules/qrcode-generator/qrcode.js ***!
+  \*************************************************/
+/***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//---------------------------------------------------------------------
 //
@@ -636,10 +501,32 @@ var qrcode = function() {
       return qrHtml;
     };
 
-    _this.createSvgTag = function(cellSize, margin) {
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
 
       cellSize = cellSize || 2;
       margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
       var size = _this.getModuleCount() * cellSize + margin * 2;
       var c, mc, r, mr, qrSvg='', rect;
 
@@ -647,10 +534,16 @@ var qrcode = function() {
         ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
 
       qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
-      qrSvg += ' width="' + size + 'px"';
-      qrSvg += ' height="' + size + 'px"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
       qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
-      qrSvg += ' preserveAspectRatio="xMinYMin meet">';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
       qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
       qrSvg += '<path d="';
 
@@ -710,12 +603,27 @@ var qrcode = function() {
       img += '"';
       if (alt) {
         img += '\u0020alt="';
-        img += alt;
+        img += escapeXml(alt);
         img += '"';
       }
       img += '/>';
 
       return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
     };
 
     var _createHalfASCII = function(margin) {
@@ -732,6 +640,13 @@ var qrcode = function() {
         '██': '█',
         '█ ': '▀',
         ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
         '  ': ' '
       };
 
@@ -754,13 +669,13 @@ var qrcode = function() {
           }
 
           // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
-          ascii += blocks[p];
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
         }
 
         ascii += '\n';
       }
 
-      if (size % 2) {
+      if (size % 2 && margin > 0) {
         return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
       }
 
@@ -2383,12 +2298,10 @@ var qrcode = function() {
 (function (factory) {
   if (true) {
       !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports === 'object') {
-      module.exports = factory();
-  }
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
 }(function () {
     return qrcode;
 }));
@@ -2396,4 +2309,149 @@ var qrcode = function() {
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!*************************!*\
+  !*** ./src/js/share.js ***!
+  \*************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var qrcode_generator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! qrcode-generator */ "./node_modules/qrcode-generator/qrcode.js");
+/* harmony import */ var qrcode_generator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(qrcode_generator__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * special thanks to hexo-theme-yilia
+ * https://github.com/litten/hexo-theme-yilia/blob/master/source-src/js/share.js
+ */
+
+
+function initQR(sURL) {
+  var typeNumber = 0;
+  var errorCorrectionLevel = 'L';
+  var qr = qrcode_generator__WEBPACK_IMPORTED_MODULE_0___default()(typeNumber, errorCorrectionLevel);
+  qr.addData(sURL);
+  qr.make();
+  document.getElementsByClassName('share-qrcode')[0].innerHTML = qr.createImgTag();
+}
+
+function generate(templateURL, param) {
+  var shareURL = templateURL.replace(/<%-sURL%>/g, encodeURIComponent(param.sURL)).replace(/<%-sTitle%>/g, param.sTitle).replace(/<%-sDesc%>/g, param.sDesc).replace(/<%-sAuthor%>/g, param.sAuthor).replace(/<%-sImg%>/g, encodeURIComponent(param.sImg));
+  window.open(shareURL);
+}
+
+function handleShareClick(type, param) {
+  if (type === 'weibo') {
+    generate('http://service.weibo.com/share/share.php?url=<%-sURL%>&title=<%-sTitle%>&pic=<%-sImg%>', param);
+  } else if (type === 'qzone') {
+    generate('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<%-sURL%>&title=<%-sTitle%>&pics=<%-sImg%>&summary=<%-sDesc%>', param);
+  } else if (type === 'facebook') {
+    generate('https://www.facebook.com/sharer/sharer.php?u=<%-sURL%>', param);
+  } else if (type === 'twitter') {
+    generate('https://twitter.com/intent/tweet?text=<%-sTitle%>&url=<%-sURL%>&via=<%-sAuthor%>', param);
+  } else if (type === 'qr') {// pre init qr
+  }
+}
+
+function init() {
+  var sURL = window.location.href;
+  var sTitle = document.querySelector('title').innerHTML;
+  var sImg = document.querySelector('.article-entry img') && document.querySelector('.article-entry img').getAttribute('src');
+  sImg = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + sImg;
+  var sDesc = document.querySelector('.article-entry') && document.querySelector('.article-entry').innerText.substring(0, 30) + '...';
+  var sAuthor = window.siteMeta.author;
+  var param = {
+    sURL: sURL,
+    sTitle: sTitle,
+    sImg: sImg,
+    sDesc: sDesc,
+    sAuthor: sAuthor
+  };
+  var shareWrapper = document.querySelector('.shareList');
+
+  if (!shareWrapper) {
+    return;
+  }
+
+  initQR(sURL);
+  shareWrapper.addEventListener('click', function (e) {
+    if (!e.target.getAttribute('data-type')) {
+      return;
+    }
+
+    handleShareClick(e.target.getAttribute('data-type'), param);
+  });
+}
+
+init();
+})();
+
+/******/ })()
+;
