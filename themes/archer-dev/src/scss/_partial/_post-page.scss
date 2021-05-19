@@ -215,16 +215,17 @@
   color: $post-content-color;
   li {
     word-wrap: break-all;
+    line-height: 1.625;
   }
   ul,
   ul li {
     list-style-type: initial;
-    margin-top: .5em;
+    margin-top: .25em;
   }
   ol,
   ol li {
     list-style-type: decimal-leading-zero;
-    margin-top: .5em;
+    margin-top: .25em;
   }
   @for $i from 1 through 6 {
     h#{$i} {
