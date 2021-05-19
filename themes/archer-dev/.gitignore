@@ -33,3 +33,6 @@ tags
 *.iws
 *.iml
 
+# Node
+yarn.lock
+package-lock.json
