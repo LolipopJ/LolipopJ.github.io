@@ -223,21 +223,30 @@
     
 <header class="header">
 
+    <!-- top read progress line -->
     <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
+    <!-- sidebar menu button -->
+    <div class="header-sidebar-menu"><i class="fas fa-bars"></i></div>
+    <!-- toggle banner for post layout -->
     
     <div class="banner">
-            <div class="blog-title">
-                <a href="/" >Lolipop&#39;s Studio.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">漫谈 JavsScript 类（Class）的使用</a>
-            </div>
+        <div class="blog-title">
+            <a href="/" >Lolipop&#39;s Studio.</a>
+        </div>
+        <div class="post-title">
+            <a href="#" class="post-name">漫谈 JavsScript 类（Class）的使用</a>
+        </div>
     </div>
     
+    <!-- back to home page text -->
     <a class="home-link" href=/>Lolipop's Studio.</a>
 </header>
+    
+<footer class="footer-fixed">
+
+    <!-- back to top button -->
+    <div class="back-top">&#xe639;</div>
+</footer>
     <div class="wrapper">
         <div class="site-intro" style="
 
@@ -620,7 +629,7 @@ height:50vh;
             
         </div>
         <footer class="footer footer-unloaded">
-    <!-- social  -->
+    <!-- social -->
     
     <div class="social">
         
@@ -676,11 +685,11 @@ height:50vh;
 
     </div>
     
-    <!-- powered by Hexo  -->
+    <!-- powered by Hexo -->
     <div class="copyright">
         <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
     </div>
-    <!-- 不蒜子  -->
+    <!-- 不蒜子 -->
     
     <div class="busuanzi-container">
     
@@ -711,7 +720,6 @@ top:50vh;
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">定义类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">原型方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">静态方法和属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84-this"><span class="toc-number">5.</span> <span class="toc-text">原型方法和静态方法中的 this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E6%96%B9%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">生成器方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">箭头函数定义方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E5%A3%B0%E6%98%8E"><span class="toc-number">8.</span> <span class="toc-text">字段声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E6%9C%89%E5%AD%97%E6%AE%B5%E5%A3%B0%E6%98%8E"><span class="toc-number">8.1.</span> <span class="toc-text">公有字段声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E5%AD%97%E6%AE%B5%E5%A3%B0%E6%98%8E"><span class="toc-number">8.2.</span> <span class="toc-text">私有字段声明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-extends-%E6%8B%93%E5%B1%95%E5%AD%90%E7%B1%BB"><span class="toc-number">9.</span> <span class="toc-text">使用 extends 拓展子类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-super-%E8%B0%83%E7%94%A8%E8%B6%85%E7%B1%BB"><span class="toc-number">10.</span> <span class="toc-text">使用 super 调用超类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Symbol-species-%E8%A6%86%E7%9B%96%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">使用 Symbol.species 覆盖构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Mix-ins-%E5%AE%9E%E7%8E%B0%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="toc-number">12.</span> <span class="toc-text">使用 Mix-ins 实现多重继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">13.</span> <span class="toc-text">参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%8D%9A%E6%96%87"><span class="toc-number">13.1.</span> <span class="toc-text">技术博文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E8%B5%84%E6%96%99"><span class="toc-number">13.2.</span> <span class="toc-text">其它资料</span></a></li></ol></li></ol>
     </div>
     
-    <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
         <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>

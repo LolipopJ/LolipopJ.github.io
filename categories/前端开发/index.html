@@ -216,12 +216,21 @@
     
 <header class="header">
 
+    <!-- top read progress line -->
     <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
+    <!-- sidebar menu button -->
+    <div class="header-sidebar-menu"><i class="fas fa-bars"></i></div>
+    <!-- toggle banner for post layout -->
     
+    <!-- back to home page text -->
     <a class="home-link" href=/>Lolipop's Studio.</a>
 </header>
+    
+<footer class="footer-fixed">
+
+    <!-- back to top button -->
+    <div class="back-top">&#xe639;</div>
+</footer>
     <div class="wrapper">
         <div class="site-intro" style="
 
@@ -511,12 +520,13 @@
         </a>
         <div class="abstract-content">
             本博客使用的主题 Archer 有足够稳定以支持长期运行。不过正好学习了一些前端开发技巧，不如在使用过程中对本博客的页面做一些小小的开发及优化。
-更新日志2021/05/19也算使用这个主题一阵子了，今天终于操刀把一些自己觉得可以改进的地方修改了一下。主要包括：
+更新日志2021/05/20刚好最近整理学习了函数节流和函数防抖的知识，用到了博客 JS 代码中的滚动事件上边，提高了一些性能。
 
-修改了主颜色。从原来充满活力的橙红色（#f75357）修改为了现在的叫不出名字的蓝绿色（#61bfad）。
-修改了部分颜色设计。譬如将大多数纯黑色修改成了灰黑色，更加柔和。
-为博文的列表添加间距。不知为何一直没有人修复这个，添加间距后列表会好看很多。
-修改博文向上滑动时，顶部出现的 banner 的设计。不大喜欢原来白色透明很...
+些许提高了页面滚动性能。坏处是悬浮按钮样式转变可能会有细微的不顺滑。
+修改了一些页面设计。例如，把悬浮按钮设置为侵略性更低的圆形，鼠标悬浮时呈主颜色。
+修复了打开侧边栏，回到顶部按钮不随侧边栏移动的问题。
+现在博文页面向上滑动更容易显示顶部 Banner 了。
+注意到链接有莫名奇妙的 padding-left: 2...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -543,7 +553,7 @@
             
         </div>
         <footer class="footer footer-unloaded">
-    <!-- social  -->
+    <!-- social -->
     
     <div class="social">
         
@@ -599,11 +609,11 @@
 
     </div>
     
-    <!-- powered by Hexo  -->
+    <!-- powered by Hexo -->
     <div class="copyright">
         <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
     </div>
-    <!-- 不蒜子  -->
+    <!-- 不蒜子 -->
     
     <div class="busuanzi-container">
     
@@ -616,7 +626,6 @@
     </div>
     <!-- toc -->
     
-    <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
         <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
