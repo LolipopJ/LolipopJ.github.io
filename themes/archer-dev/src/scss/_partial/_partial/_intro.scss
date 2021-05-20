@@ -43,10 +43,19 @@
 
 .intro-subtitle {
   font-size: 2rem;
+  margin-top: 0.5rem;
   transition-delay: 0.5s;
 }
 
 .intro-fade-in {
   opacity: 1;
   transform: translate(0, 0);
+}
+
+.home-body {
+  .intro-title,
+  .intro-subtitle {
+    text-align: center;
+    margin-top: 0;
+  }
 }
