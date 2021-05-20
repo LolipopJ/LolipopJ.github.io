@@ -7,8 +7,8 @@ let init = function () {
     bgRegResult = bgCSS.match(/url\("*([^"]*)"*\)/)
 
   if (bgRegResult.length < 2) {
-    console.log('...')
-    console.log(bgRegResult)
+    // console.log('...')
+    // console.log(bgRegResult)
     return
   }
 
@@ -19,7 +19,7 @@ let init = function () {
     // setTimeout(function () {
     introPlaceholder.remove()
     // }, 100)
-    console.info('PLACEHOLDER REMOVED')
+    // console.info('PLACEHOLDER REMOVED')
   }
   img.src = bgURL
 

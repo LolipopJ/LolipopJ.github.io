@@ -71,32 +71,6 @@ li {
   list-style-type: none;
 }
 
-// ========== back top ========== //
-.back-top {
-  position: fixed;
-  display: block;
-  font-family: 'iconfont-archer';
-  left: 1rem;
-  bottom: 1rem;
-  z-index: 10;
-  width: 1.5rem;
-  height: 1.5rem;
-  text-align: center;
-  line-height: 1.5rem;
-  border: 2px solid #333333;
-  cursor: pointer;
-  opacity: 0;
-  &:hover {
-    background-color: #333333;
-    color: #fff;
-  }
-}
-
-.back-top-show {
-  opacity: 1;
-  pointer-events: initial;
-}
-
 // selection
 ::selection {
   background: $selection-color;

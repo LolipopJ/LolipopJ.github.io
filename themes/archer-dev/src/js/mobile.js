@@ -27,12 +27,12 @@ let initMobile = function () {
 
   function mediaChangeHandler(mql) {
     if (mql.matches) {
-      console.log('mobile')
+      // console.log('mobile')
       // TODO: why
       mobilePreventScrollBreakdown()
       // document.body.addEventListener('touchstart', function () {})
     } else {
-      console.log('desktop')
+      // console.log('desktop')
     }
   }
 

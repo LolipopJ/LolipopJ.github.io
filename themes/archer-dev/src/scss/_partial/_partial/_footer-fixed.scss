@@ -1,0 +1,51 @@
+// ========== fixed footer ========== //
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: $footer-fixed-height;
+  overflow: hidden;
+  z-index: 10;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s ease-in 0s;
+}
+
+.footer-fixed-sidebar-active {
+  transform: translate3d($sidebar-width, 0, 0);
+  -webkit-transform: translate3d($sidebar-width, 0, 0);
+  -moz-transform: translate3d($sidebar-width, 0, 0);
+  -ms-transform: translate3d($sidebar-width, 0, 0);
+  -o-transform: translate3d($sidebar-width, 0, 0);
+}
+
+// ========== back top ========== //
+.back-top {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: #333333;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 2.7rem;
+  height: 2.7rem;
+  line-height: 2.7rem;
+  font-family: 'iconfont-archer';
+  text-align: center;
+  z-index: 21;
+  cursor: pointer;
+  display: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  &:hover {
+    color: #fff;
+    background-color: $feature-color;
+  }
+}
+
+.back-top-show {
+  display: unset;
+  pointer-events: initial;
+}

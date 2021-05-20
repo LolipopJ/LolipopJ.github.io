@@ -408,8 +408,8 @@ var init = function init() {
       bgRegResult = bgCSS.match(/url\("*([^"]*)"*\)/);
 
   if (bgRegResult.length < 2) {
-    console.log('...');
-    console.log(bgRegResult);
+    // console.log('...')
+    // console.log(bgRegResult)
     return;
   }
 
@@ -420,8 +420,7 @@ var init = function init() {
     // window.alert()
     // setTimeout(function () {
     introPlaceholder.remove(); // }, 100)
-
-    console.info('PLACEHOLDER REMOVED');
+    // console.info('PLACEHOLDER REMOVED')
   };
 
   img.src = bgURL;
@@ -497,12 +496,11 @@ var initMobile = function initMobile() {
 
   function mediaChangeHandler(mql) {
     if (mql.matches) {
-      console.log('mobile'); // TODO: why
-
+      // console.log('mobile')
+      // TODO: why
       mobilePreventScrollBreakdown(); // document.body.addEventListener('touchstart', function () {})
-    } else {
-      console.log('desktop');
-    }
+    } else {// console.log('desktop')
+      }
   }
 
   function mobilePreventScrollBreakdown() {}
@@ -533,15 +531,16 @@ var scroll = function scroll() {
       $homeLink = $('.home-link:first'),
       $backTop = $('.back-top:first'),
       $sidebarMenu = $('.header-sidebar-menu:first'),
-      bgTitleHeight = $bgEle.offset().top + $bgEle.outerHeight(),
       $tocWrapper = $('.toc-wrapper:first'),
       $tocCatalog = $tocWrapper.find('.toc-catalog'),
-      $progressBar = $('.read-progress'); // toc的收缩
+      $progressBar = $('.read-progress'),
+      bgTitleHeight = $bgEle.offset().top + $bgEle.outerHeight(); // toc 的收缩
 
   $tocCatalog.on('click', function () {
     $tocWrapper.toggleClass('toc-hide-children');
   }); // 滚动式切换文章标题和站点标题
 
+  var showBannerScrollHeight = -400;
   var previousHeight = 0,
       continueScroll = 0;
 
@@ -552,7 +551,7 @@ var scroll = function scroll() {
       // 向下滑动
       continueScroll = 0;
       return 1;
-    } else if (continueScroll < -800) {
+    } else if (continueScroll < showBannerScrollHeight) {
       // 向上滑动
       continueScroll = 0;
       return -1;
@@ -566,7 +565,7 @@ var scroll = function scroll() {
   var isHigherThanIntro = true;
 
   function isCrossingIntro(currTop) {
-    // 向下滑动超过intro
+    // 向下滑动超过 intro
     if (currTop > bgTitleHeight) {
       if (crossingState !== 1) {
         crossingState = 1;
@@ -574,7 +573,7 @@ var scroll = function scroll() {
         return 1;
       }
     } else {
-      // 向上滑动超过intro
+      // 向上滑动超过 intro
       if (crossingState !== -1) {
         crossingState = -1;
         isHigherThanIntro = true;
@@ -583,7 +582,7 @@ var scroll = function scroll() {
     }
 
     return 0;
-  } // 判断是否为post-page
+  } // 判断是否为 post-page
 
 
   var isPostPage = false;
@@ -614,13 +613,13 @@ var scroll = function scroll() {
     readPercent = readPercent >= 0 ? readPercent : 100;
     var restPercent = readPercent - 100 <= 0 ? readPercent - 100 : 0;
     $progressBar[0].style.transform = "translate3d(".concat(restPercent, "%, 0, 0)");
-  } // rAF操作
+  } // rAF 操作
 
 
   var tickingScroll = false;
 
   function updateScroll(scrollTop) {
-    var crossingState = isCrossingIntro(scrollTop); // intro边界切换
+    var crossingState = isCrossingIntro(scrollTop); // intro 边界切换
 
     if (crossingState === 1) {
       $tocWrapper.addClass('toc-fixed');
@@ -633,11 +632,11 @@ var scroll = function scroll() {
       $banner.removeClass('banner-show');
       $backTop.removeClass('back-top-show');
       $sidebarMenu.removeClass('header-sidebar-menu-black');
-    } // 如果不是post - page 以下忽略
+    } // 如果不是 post-page 以下忽略
 
 
     if (isPostPage) {
-      // 上下滑动一定距离显示/隐藏header
+      // 上下滑动一定距离显示/隐藏 header
       var upDownState = isScrollingUpOrDown(scrollTop);
 
       if (upDownState === 1) {
@@ -652,7 +651,7 @@ var scroll = function scroll() {
 
     previousHeight = scrollTop;
     tickingScroll = false;
-  } // scroll回调
+  } // scroll 回调
 
 
   function onScroll() {
@@ -661,7 +660,9 @@ var scroll = function scroll() {
     _util__WEBPACK_IMPORTED_MODULE_0__.default.rafTick(tickingScroll, bindedUpdate);
   }
 
-  $(document).on('scroll', onScroll) // 返回顶部
+  var throttleOnScroll = _util__WEBPACK_IMPORTED_MODULE_0__.default.throttle(onScroll, 25, true);
+  $(document).on('scroll', throttleOnScroll) // 每 25 ms 执行一次 onScroll() 方法
+  // 绑定返回顶部事件
   ;
   [$postBanner, $backTop].forEach(function (ele) {
     ele.on('click', _util__WEBPACK_IMPORTED_MODULE_0__.default.backTop);
@@ -748,6 +749,7 @@ var Sidebar = /*#__PURE__*/function () {
     value: function activateSidebar() {
       $('.wrapper').addClass('wrapper-sidebar-active');
       $('.header').addClass('header-sidebar-active');
+      $('.footer-fixed').addClass('footer-fixed-sidebar-active');
       $('.toc-wrapper').addClass('toc-slide');
       this.$menuButton.addClass('header-sidebar-menu-active');
       this.$sidebar.removeClass('sidebar-hide');
@@ -758,6 +760,7 @@ var Sidebar = /*#__PURE__*/function () {
     value: function _inactivateSidebar() {
       $('.wrapper').removeClass('wrapper-sidebar-active');
       $('.header').removeClass('header-sidebar-active');
+      $('.footer-fixed').removeClass('footer-fixed-sidebar-active');
       $('.toc-wrapper').removeClass('toc-slide');
       this.$menuButton.removeClass('header-sidebar-menu-active');
       this.$sidebar.removeClass("sidebar-active");
@@ -1324,14 +1327,10 @@ var archerUtil = {
   // 回到顶部
   backTop: function backTop(event) {
     event.preventDefault();
-    var topTimer = setInterval(function () {
-      var currTop = $(document).scrollTop();
-      window.scrollTo(0, Math.max(Math.floor(currTop * 0.8)));
-
-      if (currTop === 0) {
-        clearInterval(topTimer);
-      }
-    }, 20);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   },
   // 获取元素在页面上相对左上角的位置
   getAbsPosition: function getAbsPosition(e) {
@@ -1379,13 +1378,59 @@ var archerUtil = {
 
     return fmt;
   },
-  // rAF的ticking
+  // rAF 的 ticking
   rafTick: function rafTick(ticking, updateFunc) {
     if (!ticking) {
       requestAnimationFrame(updateFunc);
     }
 
     ticking = true;
+  },
+  // 函数节流
+  throttle: function throttle(func, wait) {
+    var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var timer;
+    return function () {
+      var _this = this;
+
+      var args = arguments;
+
+      if (!timer) {
+        if (immediate) {
+          timer = setTimeout(function () {
+            timer = undefined;
+          }, wait);
+          func.apply(this, args);
+        } else {
+          timer = setTimeout(function () {
+            timer = undefined;
+            func.apply(_this, args);
+          }, wait);
+        }
+      }
+    };
+  },
+  // 函数防抖
+  debounce: function debounce(func, wait) {
+    var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var timer;
+    return function () {
+      var _this2 = this;
+
+      var args = arguments;
+      timer && clearTimeout(timer);
+
+      if (immediate) {
+        !timer && func.apply(this, args);
+        timer = setTimeout(function () {
+          timer = undefined;
+        }, wait);
+      } else {
+        timer = setTimeout(function () {
+          func.apply(_this2, args);
+        }, wait);
+      }
+    };
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (archerUtil);
@@ -3184,11 +3229,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // print custom info
 
 var logStyle = 'color: #fff; background: #61bfad; padding: 1px; border-radius: 5px;';
 console.info('%c 🎯 hexo-theme-archer ⬇️ ', logStyle);
-console.info('%c 📅 Version date: 20210519', logStyle);
-console.info('%c 📦 Source repo: https://github.com/fi3ework/hexo-theme-archer', logStyle);
+console.info('%c 📅 Last updated: 2021-05-20', logStyle);
+console.info('%c 📦 Archer theme repo: https://github.com/fi3ework/hexo-theme-archer', logStyle);
 console.info('%c 📬 Lolipop version repo: https://github.com/LolipopJ/hexo-theme-archer', logStyle); // remove background placeholder
 
 (0,_init__WEBPACK_IMPORTED_MODULE_0__.default)(); // scroll event
@@ -3208,7 +3254,7 @@ metas.addTab({
 }); // init toc
 
 window.addEventListener('load', function (event) {
-  console.log('All resources finished loading!');
+  // console.log('All resources finished loading!')
   (0,_toc__WEBPACK_IMPORTED_MODULE_5__.default)();
 });
 (0,_mobile__WEBPACK_IMPORTED_MODULE_3__.initMobile)(); // initSearch()
