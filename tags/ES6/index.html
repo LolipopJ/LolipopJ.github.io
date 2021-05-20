@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="http://lolipopj.github.io/tags/Docker/index.html">
+<meta property="og:url" content="http://lolipopj.github.io/tags/ES6/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale">
 <meta property="article:author" content="Lolipop">
@@ -356,71 +356,29 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/04/21/linux-docker-install-grpc/" >
+        <a class="abstract-title" href = "/2021/05/19/js-use-class/" >
             
-                <span>Linux 系统编译安装基于 C++ 的 gRPC</span>
+                <span>漫谈 JavsScript 类（Class）的使用</span>
         </a>
         <div class="abstract-content">
-            本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。
-如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。
-安装基本依赖确保机器上包括这些基本依赖：autoconf, libtool, pkg-config 与 C++ 编译环境。
-12345678# 检查是否有 autoconfwhich autoconf# 如果没有，则安装# CentOSyum install autoconf# Ubuntuapt-get install autoconf
-
-gRPC 的编译需要 gcc 版本在 4.9 及以上...
+            类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的 class 语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。
+本博文将探讨 JavaScript 中如何使用类的相关知识，文章组织架构和内容基于 MDN 上关于类的章节。
+定义类类可以被看作一种“特殊的函数”，和函数的定义方法一样，类的定义方法有两种：类声明和类表达式。
+第一种方法是，直接使用 class 关键字声明类，即类声明的方法。
+123class User &#123;    /...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/22</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/20</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "C++">C++</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "gRPC">gRPC</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/04/19/linux-docker-gcc-update/" >
-            
-                <span>Linux 容器更新或降级 GCC 版本</span>
-        </a>
-        <div class="abstract-content">
-            如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
-12345yum -y install gccyum -y install gcc-c++# 或是一键安装开发工具软件包，包括 gcc, g++ 等yum groupinstall &quot;Development Tools&quot;
-
-本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
-NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "GCC">GCC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Docker">Docker</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ES6">ES6</a>
     
 </div>
             
