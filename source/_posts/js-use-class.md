@@ -58,7 +58,7 @@ console.log(User.name) // Admin
 const u = new User()
 ```
 
-### 构造函数
+## 构造函数
 
 `constructor()` 方法或**构造函数**，是用于创建和初始化一个由 `class` 创建的对象的特殊方法，一个类只能拥有一个 `constructor()` 方法。
 
@@ -102,7 +102,7 @@ const a = new Admin('Ming', 'Male', 'xxx489')
 console.log(a.name, a.gender, a.openId) // Ming Male xxx489
 ```
 
-### 原型方法
+## 原型方法
 
 在类体中可以声明函数方法。从底层实现来看，这些方法将会在对象的原型链上定义出来，故称作**原型方法**。
 
@@ -148,7 +148,7 @@ console.log(rec.area) // 200
 
 此外，由于 Setter 的特性，当我们在构造函数执行赋值操作，以及之后修改实例的属性时，将调用 Setter 的方法（即 Hook 函数）。因此在上面代码中的 `rec` 实例中，并不存在 `height` 和 `width` 属性，取而代之的是 `_height` 和 `_width` 属性。
 
-### 静态方法和属性
+## 静态方法和属性
 
 在类的方法前面添加关键字 `static` 可以定义**静态方法**或**静态属性**，它们可以通过类直接调用，但不能通过类的实例调用。静态方法和静态属性常用于为一个使用类的应用程序创建工具函数。
 
@@ -180,7 +180,7 @@ console.log(Point.distance(p1, p2)) // 7.0710678118654755
 
 上面的代码中，当我们使用实例访问静态方法和属性时，会显示 `undefined`。而当我们使用类来访问时，则能正常调用了。
 
-### 原型方法和静态方法中的 `this`
+## 原型方法和静态方法中的 `this`
 
 当调用静态或原型方法时没有指定 `this` 的值，那么方法内的 `this` 值将被置为 `undefined`。这是因为 `class` 内部的代码总是在**严格模式**下执行。
 
@@ -225,7 +225,7 @@ console.log(MyClass.getStaticThis()) // MyClass 函数（指定了 this 的初�
 console.log(getClassStaticThis()) // global object（没有指定 this 的初值）
 ```
 
-### 生成器方法
+## 生成器方法
 
 生成器函数使用 `function*` 语法定义，例如 `function* anyGenerator() {}`。而在类中，使用了更简短的定义语法，应将符号 `*` 放在方法名的前面，例如 `*anyGenerator() {}`。
 
@@ -248,7 +248,7 @@ console.log([...pentagon.getSides()]) // [1,2,3,4,5]
 
 关于生成器的更多介绍可参考[此页面](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)。
 
-### 箭头函数定义方法
+## 箭头函数定义方法
 
 类中还有另外一种常见的定义方法的方式：使用**箭头函数**。
 
@@ -289,11 +289,11 @@ c.sayHello() // I am your father.
 
 在类中，对于直接使用 `=` 的声明，从本质上而言就是 [Field Declarations](https://github.com/tc39/proposal-class-fields#field-declarations) 的语法，相当于**直接声明了一个实例的属性**。在接下来的[字段声明](#字段声明)小节中，也使用到了这个语法。
 
-### 字段声明
+## 字段声明
 
 > 在目前（2021 年 5 月），公共和私有字段声明仍是 JavaScript 标准委员会 TC39 提出的[实验性功能（第 3 阶段）](https://github.com/tc39/proposal-class-fields)。浏览器中的支持是有限的，但是可以通过 Babel 等系统构建后使用此功能。
 
-#### 公有字段声明
+### 公有字段声明
 
 在类中可以声明公有字段，使得类定义具有自我记录性，且这些字段将始终存在。字段的声明可以设置初始值。
 
@@ -313,7 +313,7 @@ class Point {
 console.log(new Point(5, 10).position) // [5, 10]
 ```
 
-#### 私有字段声明
+### 私有字段声明
 
 在声明的字段前面加上 `#` 表明为私有字段。私有字段同样可以设置初始值。
 
@@ -536,7 +536,7 @@ console.log(Square.help()) // I have 4 sides. They are all equal.
 
 更多补充可以查阅 MDN 上[关于 `super` 的介绍](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)。
 
-### 使用 `Symbol.species` 覆盖构造函数
+## 使用 `Symbol.species` 覆盖构造函数
 
 `Symbol.species` 访问器属性允许子类覆盖对象的默认构造函数。
 
@@ -569,7 +569,7 @@ class TimeoutPromise extends Promise {
 
 `Symbol.species` 帮助我们在处理子类实例时，能够有一套标准的操作流程，方便了开发，在某些场景十分实用。
 
-### 使用 Mix-ins 实现多重继承
+## 使用 Mix-ins 实现多重继承
 
 在 ECMAScript 中，一个类只能有一个单超类，因此想通过工具类的方法实现多重继承行为是不可能的。为了实现多重继承，我们可以使用 Mixin 的方法。
 
