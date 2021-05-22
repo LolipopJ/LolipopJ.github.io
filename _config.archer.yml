@@ -31,8 +31,6 @@ social:
 # friends
 friends:
   Bill Chen: //billc.io
-  friendB: 
-  friendC: 
 about:
   enable: true
   image: static/intro/about-bg.jpg

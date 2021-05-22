@@ -30,8 +30,8 @@ social:
   rss: 
 # friends
 friends:
-  friendA: //www.baidu.com
-  friendB: //www.google.com
+  friendA: 
+  friendB: 
   friendC: 
 about:
   enable: true
