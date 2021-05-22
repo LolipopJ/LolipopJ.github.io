@@ -93,7 +93,7 @@ ignore: ['**/themes/**/node_modules/**', '**/themes/**/node_modules', '**/themes
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: archer-dev
+theme: archer
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -1,6 +1,6 @@
 // You can change the following by yourself :-)
 // ========== DIY ========== //
-$feature-color: #f75357;
+$feature-color: #61bfad;
 $code-theme: 'atom-one-dark'; // atom-one-dark or atom-one-light
 // ========== global variables ========== //
 $body-background-color: #fff;
@@ -34,14 +34,19 @@ $selection-color: $feature-color;
   -moz-osx-font-smoothing: grayscale;
 }
 
+// ======= fixed footer ======= //
+$footer-fixed-height: 3.5rem;
 // ========== header ========== //
 $header-height: 3.5rem;
 $header-border-top-width: 3px;
 $header-border-top-color: rgba(0, 0, 0, 0.75);
+$header-banner-text-color: #333333;
+// ========= sidebar ========= //
+$sidebar-width: 400px;
 // ========== profile ========== //
 $profile-width: 200px;
 // ========== index ========== //
-$index-post-link-color: #787878;
+$index-post-link-color: #1f1f1f;
 $index-post-tag-color: #aaa;
 // ========== post ========== //
 $post-content-color: #23394d;
@@ -53,6 +58,7 @@ $code-color-map: (
     base: #fafafa,
     mono-1: #383a42,
     mono-2: #686b77,
+    mono-2-2: #a0a1a7,
     mono-3: #a0a1a7,
     hue-1: #0184bb,
     hue-2: #4078f2,
@@ -67,6 +73,7 @@ $code-color-map: (
     base: #282c34,
     mono-1: #abb2bf,
     mono-2: #818896,
+    mono-2-2: #7e828b,
     mono-3: #5c6370,
     hue-1: #56b6c2,
     hue-2: #61aeee,
@@ -82,3 +89,7 @@ $code-color-map: (
   $code-theme: 'atom-one-dark';
 }
 $theme-colors: map-get($code-color-map, $code-theme);
+
+// ========== algolia-search ========== //
+$algolia-search-padding-horiz: 20px;
+

@@ -1,5 +1,3 @@
-@import '../../_variables.scss';
-
 // ========== code style ========== //
 .abstract-content,
 .article-entry {
@@ -88,7 +86,7 @@
   .highlight {
     pre .comment,
     pre .quote {
-      color: map-get($theme-colors, 'mono-3');
+      color: map-get($theme-colors, 'mono-2-2');
       font-style: italic;
     }
 

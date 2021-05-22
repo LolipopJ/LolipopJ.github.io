@@ -1,16 +1,16 @@
 # ========== Profile ========== #
 # avatar
-avatar: /avatar/Misaka.jpg
+avatar: static/avatar/avatar.png
 # author name
-author: fi3ework
+author: Lolipop
 # signature
-signature: witness me
+signature: Make them happen.
 # SNS (you can custom the order)
 social:
-  email: 12345@qq.com
-  github: //github.com/fi3ework
+  email: lolipop0703@qq.com
+  github: https://github.com/LolipopJ
   # wechat and qq should be a path of qr-code image
-  wechat: /assets/example_qr.png
+  wechat: 
   qq: 
   telegram: 
   weibo: 
@@ -30,31 +30,30 @@ social:
   rss: 
 # friends
 friends:
-  friendA: //www.baidu.com
-  friendB: //www.google.com
+  Bill Chen: //billc.io
+  friendB: 
   friendC: 
 about:
   enable: true
-  image: '/intro/about-bg.jpg'
+  image: static/intro/about-bg.jpg
 
 # ========== Site ========== #
 # title of the site (good for SEO)
-SEO_title: fi3ework's Studio
+SEO_title: Lolipop's Studio
 # keywords for site (good for SEO)
 SEO_keywords:
-  - hexo
-  - 'hexo-theme'
-  - 'hexo-blog'
+  - 前端
+  - 全栈
 # main title shown in header image
-main_title: fi3ework's Studio.
+main_title: Lolipop's Studio.
 # subtitle
-subtitle: it's better to burn out than to fade away
+subtitle: how about groping lights through young ages
 # site haeder image
-site_header_image: '/intro/index-bg.jpg'
+site_header_image: static/intro/index-bg.jpg
 # post haeder image
-post_header_image: '/intro/post-bg.jpg'
+post_header_image: https://source.unsplash.com/1600x900/?coder
 # 404 image
-_404_image: '/intro/404-bg.jpg'
+_404_image: https://source.unsplash.com/collection/9295881
 
 # ========== Search ========== #
 algolia_search:
@@ -101,7 +100,7 @@ comment:
 # enable Busuanzi analytics
 busuanzi: true
 # fill in pv or uv
-busuanzi_pv_or_uv: 'pv'
+busuanzi_pv_or_uv: pv
 # custom analytic slogan, '${count}' is the analytic number, DO NOT modify it.
 busuanzi_slug: 'PV: ${count} :)'
 # Baidu analytics
@@ -113,7 +112,7 @@ CNZZ_analytics:
 
 # ========== Others ========== #
 # favicon
-favicon: /assets/favicon.ico
+favicon: static/assets/favicon.ico
 # truncate length of abstracts in index page (the default is 300, there will be no abstruct if you input 0)
 truncate_length: 
 # enable toc

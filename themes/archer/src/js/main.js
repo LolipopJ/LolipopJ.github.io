@@ -6,12 +6,19 @@ import InitSidebarLink from './tag'
 import toc from './toc'
 import fancybox from './fancybox'
 
-let logStyle =
-  'color: #fff; background: #f75357; padding: 1px; border-radius: 5px;'
+// print custom info
+const logStyle =
+  'color: #fff; background: #61bfad; padding: 1px; border-radius: 5px;'
 console.info('%c 🎯 hexo-theme-archer ⬇️ ', logStyle)
-console.info('%c 🏷 Version: 1.6.1 ', logStyle)
-console.info('%c 📅 Version date: 20180830 ', logStyle)
-console.info('%c 📦 https://github.com/fi3ework/hexo-theme-archer ', logStyle)
+console.info('%c 📅 Last updated: 2021-05-20', logStyle)
+console.info(
+  '%c 📦 Archer theme repo: https://github.com/fi3ework/hexo-theme-archer',
+  logStyle
+)
+console.info(
+  '%c 📬 Lolipop version repo: https://github.com/LolipopJ/hexo-theme-archer',
+  logStyle
+)
 
 // remove background placeholder
 init()
@@ -24,18 +31,18 @@ let metas = new InitSidebarLink()
 metas.addTab({
   metaName: 'tags',
   labelsContainer: '.sidebar-tags-name',
-  postsContainer: '.sidebar-tags-list'
+  postsContainer: '.sidebar-tags-list',
 })
 
 metas.addTab({
   metaName: 'categories',
   labelsContainer: '.sidebar-categories-name',
-  postsContainer: '.sidebar-categories-list'
+  postsContainer: '.sidebar-categories-list',
 })
 
 // init toc
 window.addEventListener('load', function (event) {
-  console.log('All resources finished loading!')
+  // console.log('All resources finished loading!')
   toc()
 })
 
