@@ -17,7 +17,7 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Lolipop">
     
-    <meta name="keywords" content="coder,learning,hexo-blog">
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog,前端,全栈">
     
     <meta name="description" content="">
     <meta name="description" content="如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如： 12345yum -y install gccyum -y install gcc-c++# 或是一键安装开发工具软件包，包括 gcc, g++ 等yum groupinstall &quot;Development Tools&quot;  本文适用于系统中包含有其它版本">
@@ -202,7 +202,7 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="icon" href= "/static/assets/favicon.ico" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
     <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
@@ -534,26 +534,6 @@ height:50vh;
 
     <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
     
-    <script>
-      (function(){
-        var time = document.getElementsByClassName('post-intro-time')[0]
-        if (time === undefined) { return; }
-        var post = document.getElementsByTagName("article")[0]
-        if (post === undefined) { return; }
-
-        var pubTime = new Date(time.innerText)
-        var now = Date.now()
-        var interval = parseInt(now - pubTime)
-        var days = parseInt(interval / 86400000)
-        var outdated_threshold = parseInt()
-        if (interval > outdated_threshold*24*3600*1000){
-          post.innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
-            '<div class="title">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
-            '</p></p></div>' + post.innerHTML;
-        }
-      })();
-  </script>
-  
 </main>
 
             <!-- profile -->
