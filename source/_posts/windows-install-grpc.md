@@ -94,9 +94,13 @@ cd grpc
 git submodule update --init
 ```
 
-## 编译 gRPC
+## 编译安装 gRPC
 
-首先创建文件夹存储编译结果，并执行 `cmake` 命令生成 Makefile 文件：
+特别的，如果您使用的 CMake 版本低于 3.13，或编译的 gRPC 版本低于 1.27，在执行 `cmake` 命令之前，需要自行手动编译安装 gRPC 的依赖库，且在执行 `cmake` 命令时指定这些库的路径，这里是[官方的说明](https://github.com/grpc/grpc/blob/master/BUILDING.md#install-after-build)。
+
+下面的内容基于的 CMake 版本不低于 3.13，且编译的 gRPC 版本不低于 1.27。
+
+首先创建文件夹存储编译结果，并执行 `cmake` 命令生成 Makefile 文件。使用**管理员权限**打开命令行界面，执行下面的命令：
 
 ```powershell
 # 在 grpc 目录下创建 .build 目录并进入
@@ -104,42 +108,39 @@ md .build
 cd .build
 # 生成 Makefile 文件
 # 其中 Visual Studio 15 2017 为当前的 VS 版本
-cmake .. -G "Visual Studio 15 2017"
-# 如果希望安装 gRPC，应设置 -DgRPC_INSTALL=ON，如：
-# cmake .. -DgRPC_INSTALL=ON -G "Visual Studio 15 2017"
+cmake .. -DgRPC_INSTALL=ON -G "Visual Studio 15 2017"
 ```
 
-[特别的](https://github.com/grpc/grpc/blob/master/BUILDING.md#install-after-build)，如果您希望安装 gRPC，但使用的 CMake 版本低于 3.13，或编译的 gRPC 版本低于 1.27，在执行生成 Makefile 文件的 `cmake` 命令之前，需要自行手动编译安装 gRPC 的依赖库，且在 `cmake` 命令时指定这些库的路径。
+> 尽管[不推荐](https://github.com/grpc/grpc/blob/master/BUILDING.md#windows-a-note-on-building-shared-libs-dlls)，在上面执行 `cmake` 命令时，您可以指定 `-DBUILD_SHARED_LIBS=ON` 以编译生成 gRPC C++ 的 DLL 文件。
 
-> 尽管[不推荐](https://github.com/grpc/grpc/blob/master/BUILDING.md#windows-a-note-on-building-shared-libs-dlls)，在生成 Makefile 文件时您也可以指定 `-DBUILD_SHARED_LIBS=ON` 以编译生成 gRPC C++ 的 DLL 文件。如：`cmake .. -DBUILD_SHARED_LIBS=ON -G "Visual Studio 15 2017"`
+接下来对 gRPC 进行编译安装操作，包括两种方式，这里更建议使用 VS。
 
-建议使用 VS 执行编译操作。
+### 使用 VS 编译并安装 gRPC
 
 首先，使用**管理员权限**打开 VS，否则在安装 gRPC 时会报错。
 
 接着使用 VS 打开此目录下的 `grpc.sln` 解决方案，找到**解决方案资源管理器**（默认情况下在 VS 的右侧）中的 `ALL_BUILD` 项，右键并选择**生成**按钮，开始执行编译操作。
 
-当然，您也可以使用命令行界面执行 `cmake` 命令来编译 gRPC：
+编译结束后，在**解决方案资源管理器**中找到 `INSTALL` 项，右键并选择**生成**按钮，开始执行安装操作。
+
+gRPC 默认安装在 `C:\Program Files (x86)\grpc` 目录。
+
+如果报错，请确保您已使用管理员权限打开 VS。使用管理员权限重新打开 VS 后，右键点击 `ALL_BUILD` 并选择**重新生成**按钮即可。
+
+### 使用命令行编译并安装 gRPC
+
+您也可以直接使用命令行界面，执行 `cmake` 命令来编译安装 gRPC。
 
 ```powershell
-# 执行编译
-# 编译的结果将存放在 grpc/.build/Release 目录下
-cmake --build . --config Release
+# 编译并安装 gRPC
+cmake --build . --target install --config Release
 ```
 
-等待编译结束，不妨泡杯咖啡听会儿歌。
+编译结束后，会自动进行安装操作。
 
-## 安装 gRPC
+gRPC 默认安装在 `C:\Program Files (x86)\grpc` 目录。
 
-对于使用 VS 执行编译操作，编译结束后，在**解决方案资源管理器**中找到 `INSTALL` 项，右键并选择**生成**按钮，开始执行安装操作。
-
-如果报错，请确保您已使用管理员权限打开 VS。打开后右键并选择**重新生成**按钮。
-
-生成的文件默认存放在 `C:\Program Files (x86)\grpc` 目录。
-
-对于使用命令行界面执行编译操作，将在 `grpc\.build\Release` 目录下生成 `address_sorting.lib`，`grpc.lib`，`gpr.lib`，`grpc++.lib` 等库。
-
-如果设置了 `-DgRPC_INSTALL=ON`，则可以在编译完成后执行 `make install` 命令进行安装。
+如果没有使用管理员权限打开命令行界面，安装时会发生报错。请重新使用管理员权限打开命令行界面，并执行上面的命令。
 
 ## 测试 gRPC 编译安装结果
 
