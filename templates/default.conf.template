@@ -1,0 +1,26 @@
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  server_name ${NGINX_HOST};
+  ssl_certificate ${NGINX_HOST_SSL_CRT};
+  ssl_certificate_key ${NGINX_HOST_SSL_KEY};
+
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
+
+  error_page 404 /404.html;
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /usr/share/nginx/html;
+  }
+}
+# 将 http 请求转为 https 请求
+server {
+  listen 80;
+  listen [::]:80;
+  server_name ${NGINX_HOST};
+  return 301 https://$host$request_uri; 
+}

@@ -17,12 +17,12 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Lolipop">
     
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog,前端,全栈">
+    <meta name="keywords" content="前端,全栈,frontend,full-stack">
     
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="http://lolipopj.github.io/tags/Markdown/index.html">
+<meta property="og:url" content="https://lolipopj.github.io/tags/Markdown/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale">
 <meta property="article:author" content="Lolipop">
@@ -202,7 +202,22 @@
     <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/js/all.min.js"  data-auto-replace-svg="nest" ></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/js/all.min.js"  data-auto-replace-svg="nest" ></script>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"搜索博客","hits_empty":"Ops，我未能提供任何搜索结果：${query}","hits_stats":"在 ${time} ms 内找到了 ${hits} 个结果"}')
+
+            var algolia = {
+                applicationID: 'V9YD7AWBOS',
+                apiKey: '5cb206cb0658a9daff865eef79de4bc4',
+                indexName: 'lolipopJ.github.io',
+                hits: hits,
+                labels: labels
+            }
+        </script>
     
     <!-- fancybox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
@@ -217,19 +232,39 @@
 <header class="header">
 
     <!-- top read progress line -->
-    <div class="read-progress"></div>
+    <div class="header-element">
+        
+        <div class="read-progress read-progress-feature"></div>
+        
+    </div>
     <!-- sidebar menu button -->
-    <div class="header-sidebar-menu"><i class="fas fa-bars"></i></div>
+    <div class="header-element">
+        
+        <div class="header-sidebar-menu header-sidebar-menu-rounded">
+        
+            
+            <i class="fas fa-bars"></i>
+            
+        </div>
+    </div>
+    <!-- back to home page text -->
+    <a class="home-link header-element" href=/>Lolipop's Studio.</a>
     <!-- toggle banner for post layout -->
     
-    <!-- back to home page text -->
-    <a class="home-link" href=/>Lolipop's Studio.</a>
 </header>
     
 <footer class="footer-fixed">
 
     <!-- back to top button -->
-    <div class="back-top">&#xe639;</div>
+    <div class="footer-fixed-element">
+        
+        <div class="back-top back-top-rounded">
+        
+            
+            <i class="fas fa-chevron-up"></i>
+            
+        </div>
+    </div>
 </footer>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -401,7 +436,7 @@
             
         </div>
         <footer class="footer footer-unloaded">
-    <!-- social -->
+    <!-- social  -->
     
     <div class="social">
         
@@ -457,11 +492,22 @@
 
     </div>
     
-    <!-- powered by Hexo -->
+    <!-- powered by Hexo  -->
     <div class="copyright">
         <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
     </div>
-    <!-- 不蒜子 -->
+    <!-- website approve for Chinese user -->
+    
+    <div class="website-approve">
+        
+        <span id="icp-approve" class="icp-approve">
+            <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备 2021015698号</a>
+        </span>
+        
+        
+    </div>
+    
+    <!-- 不蒜子  -->
     
     <div class="busuanzi-container">
     
@@ -719,11 +765,28 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
         
     </div>
     
@@ -734,6 +797,11 @@
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href= "/2021/06/24/website-deployment-docker-nginx/" >使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -904,6 +972,8 @@
     
         <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
     
+        <span class="sidebar-tag-name" data-tags="Nginx"><span class="iconfont-archer">&#xe606;</span>Nginx</span>
+    
         <span class="sidebar-tag-name" data-tags="Windows"><span class="iconfont-archer">&#xe606;</span>Windows</span>
     
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
@@ -978,6 +1048,31 @@ jsonContent:
     </script>
     <script src="/scripts/main.js"></script>
     <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.24.1/dist/instantsearch.production.min.js" crossorigin="anonymous"></script>
+        <script src="/scripts/search.js" defer></script>
     
     <!-- busuanzi  -->
     
