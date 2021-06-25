@@ -93,7 +93,7 @@ comment:
   gitalk_owner: LolipopJ
   gitalk_repo: LolipopJ.github.io
   gitalk_pathname_id: true
-  gitalk_create_issue_manually: true
+  gitalk_create_issue_manually: false
   # utteranc site: https://utteranc.es/
   utteranc_repo:  
   utteranc_label: 
