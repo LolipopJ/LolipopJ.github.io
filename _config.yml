@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://LolipopJ.github.io
+url: https://LolipopJ.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -30,6 +30,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - README.md
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -121,3 +122,9 @@ jsonContent:
     excerpt: false
     categories: true
     tags: true
+
+# Algolia 搜索支持
+algolia:
+  appId: V9YD7AWBOS
+  apiKey: 5cb206cb0658a9daff865eef79de4bc4
+  indexName: lolipopJ.github.io

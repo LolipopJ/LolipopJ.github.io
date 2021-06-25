@@ -4,7 +4,7 @@ const archerUtil = {
     event.preventDefault()
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   },
 
@@ -61,7 +61,7 @@ const archerUtil = {
   },
 
   // 函数节流
-  throttle: function(func, wait, immediate = false) {
+  throttle: function (func, wait, immediate = false) {
     let timer
     return function () {
       const args = arguments
@@ -82,13 +82,13 @@ const archerUtil = {
   },
 
   // 函数防抖
-  debounce: function(func, wait, immediate = false) {
+  debounce: function (func, wait, immediate = false) {
     let timer
     return function () {
       const args = arguments
-  
+
       timer && clearTimeout(timer)
-  
+
       if (immediate) {
         !timer && func.apply(this, args)
         timer = setTimeout(() => {
@@ -100,7 +100,7 @@ const archerUtil = {
         }, wait)
       }
     }
-  }
+  },
 }
 
 export default archerUtil

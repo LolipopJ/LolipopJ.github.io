@@ -18,12 +18,14 @@ $selection-color: $feature-color;
 
 // ========== iconfont ========== //
 @font-face {
-  font-family: 'iconfont-archer';  /* project id 327081 */
+  font-family: 'iconfont-archer'; /* project id 327081 */
   src: url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot');
-  src: url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff') format('woff'),
-  url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer') format('svg');
+  src: url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.eot?#iefix')
+      format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.woff') format('woff'),
+    url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_327081_s1wbjxwfu9c.svg#iconfont-archer')
+      format('svg');
 }
 
 .iconfont-archer {
@@ -58,7 +60,6 @@ $code-color-map: (
     base: #fafafa,
     mono-1: #383a42,
     mono-2: #686b77,
-    mono-2-2: #a0a1a7,
     mono-3: #a0a1a7,
     hue-1: #0184bb,
     hue-2: #4078f2,
@@ -67,13 +68,12 @@ $code-color-map: (
     hue-5: #e45649,
     hue-5-2: #c91243,
     hue-6: #986801,
-    hue-6-2: #c18401
+    hue-6-2: #c18401,
   ),
   'atom-one-dark': (
     base: #282c34,
     mono-1: #abb2bf,
     mono-2: #818896,
-    mono-2-2: #7e828b,
     mono-3: #5c6370,
     hue-1: #56b6c2,
     hue-2: #61aeee,
@@ -82,8 +82,8 @@ $code-color-map: (
     hue-5: #e06c75,
     hue-5-2: #be5046,
     hue-6: #d19a66,
-    hue-6-2: #e6c07b
-  )
+    hue-6-2: #e6c07b,
+  ),
 );
 @if not(map-has-key($code-color-map, $code-theme)) {
   $code-theme: 'atom-one-dark';
@@ -92,4 +92,3 @@ $theme-colors: map-get($code-color-map, $code-theme);
 
 // ========== algolia-search ========== //
 $algolia-search-padding-horiz: 20px;
-

@@ -74,17 +74,7 @@ li {
 // selection
 ::selection {
   background: $selection-color;
-  color: rgb(255, 255, 255);
-}
-
-::-moz-selection {
-  background: $selection-color;
-  color: rgb(255, 255, 255);
-}
-
-::-webkit-selection {
-  background: $selection-color;
-  color: rgb(255, 255, 255);
+  color: #eee;
 }
 
 .fancy-link {
@@ -97,7 +87,6 @@ li {
   border-left: 0.35rem solid;
   border-radius: 0.35rem;
   margin: 1.5rem 0;
-
 }
 
 .note-warning {
@@ -109,4 +98,3 @@ li {
     font-weight: 500;
   }
 }
-

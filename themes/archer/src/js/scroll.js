@@ -18,7 +18,7 @@ let scroll = function () {
   })
 
   // 滚动式切换文章标题和站点标题
-  const showBannerScrollHeight = -400
+  const showBannerScrollHeight = -500
   let previousHeight = 0,
     continueScroll = 0
 

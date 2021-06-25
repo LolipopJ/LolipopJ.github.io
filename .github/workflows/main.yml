@@ -23,6 +23,10 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
+      - name: Get algolia objects
+        run: npm run algolia
+        env:
+          HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
       - name: Build
         run: npm run build
       - name: Deploy

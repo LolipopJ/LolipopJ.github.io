@@ -4,5 +4,17 @@
 <footer class="footer-fixed">
 <% } %>
     <!-- back to top button -->
-    <div class="back-top">&#xe639;</div>
+    <div class="footer-fixed-element">
+        <% if(theme.float_button_theme === 'rounded') { %>
+        <div class="back-top back-top-rounded">
+        <% } else { %>
+        <div class="back-top">
+        <% } %>
+            <% if(theme.float_button_theme === 'rounded') { %>
+            <i class="fas fa-chevron-up"></i>
+            <% } else { %>
+            <div>&#xe639;</div>
+            <% } %>
+        </div>
+    </div>
 </footer>

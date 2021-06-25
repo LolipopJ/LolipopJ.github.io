@@ -10,15 +10,9 @@ import fancybox from './fancybox'
 const logStyle =
   'color: #fff; background: #61bfad; padding: 1px; border-radius: 5px;'
 console.info('%c 🎯 hexo-theme-archer ⬇️ ', logStyle)
-console.info('%c 📅 Last updated: 2021-05-20', logStyle)
-console.info(
-  '%c 📦 Archer theme repo: https://github.com/fi3ework/hexo-theme-archer',
-  logStyle
-)
-console.info(
-  '%c 📬 Lolipop version repo: https://github.com/LolipopJ/hexo-theme-archer',
-  logStyle
-)
+console.info('%c 🏷 Version: 1.6.2 ', logStyle)
+console.info('%c 📅 Version date: 20210531', logStyle)
+console.info('%c 📦 https://github.com/fi3ework/hexo-theme-archer ', logStyle)
 
 // remove background placeholder
 init()
@@ -42,7 +36,7 @@ metas.addTab({
 
 // init toc
 window.addEventListener('load', function (event) {
-  // console.log('All resources finished loading!')
+  console.log('All resources finished loading!')
   toc()
 })
 
