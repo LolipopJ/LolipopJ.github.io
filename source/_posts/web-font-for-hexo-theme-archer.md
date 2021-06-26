@@ -20,6 +20,8 @@ tags:
 
 ## 引入字体文件
 
+### 直接引入本地字体文件
+
 最容易理解的方式莫过于编辑 Archer 主题目录下的 `src/scss/_variables.scss` 文件，添加新的 `@font-face` 如下：
 
 ```scss
@@ -31,7 +33,11 @@ tags:
 
 其中，url 路径 `../font/GlowSansSC-Normal-Book.otf` 是如何得来的呢？我们知道，在执行 `hexo g` 时，会将主题目录下的 `source` 中的文件拷贝到博客根目录下的 `public` 目录中。而根据 Archer 主题的 gulp 生成规则，编译好的 `.css` 文件存放在主题目录下的 `source/css` 中。因此，为了最终正确指向博客根目录下 `public/font/GlowSansSC-Normal-Book.otf` 文件，应该设置 url 为上一级目录下的 `font` 目录。
 
-这种方式的优点是，由于加载完字体才会显示网页，用户能得到无缝体验。但缺点也很明显：慢！样式表文件的加载使用了 `rel="preload"` 属性，这意味着样式表将最优先加载。为了用户的体验，更建议在 HTML 中新建一个 \<link /\> 标签单独来引入字体文件。此处不再赘述。
+这种方式的优点是，方便配置。但缺点也很明显：慢！尤其对于大多数人建立个人博客时，会使用自己的“小水管”服务器，字体文件要加载老半天才能正常显示出来。最好的方式还是使用 CDN 保平安吧！
+
+### 引入 CDN 字体文件
+
+由于直接在 `@font-face` 中拉取 CDN 的字体文件时，可能会发生跨域错误，因此可以使用 [webfontloader](https://github.com/typekit/webfontloader) 实现加载 CDN 字体。
 
 ## 更换博客字体
 
