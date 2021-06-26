@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Lolipop">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Lolipop">
+    
+    <meta name="keywords" content="前端,全栈,frontend,full-stack">
+    
+    <meta name="description" content="">
+    <meta name="description" content="看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。 下载字体文件如果字体文件有 CDN 加速，可以跳过此小节。 以更换中文字体为未来荧黑为例，首先，去开源的 Realease 页下载字体文件。其中，以 GlowSansSC 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为 Archer 主题更换中文字体">
+<meta property="og:url" content="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/index.html">
+<meta property="og:site_name" content="Lolipop">
+<meta property="og:description" content="看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。 下载字体文件如果字体文件有 CDN 加速，可以跳过此小节。 以更换中文字体为未来荧黑为例，首先，去开源的 Realease 页下载字体文件。其中，以 GlowSansSC 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 G">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T16:00:00.000Z">
+<meta property="article:author" content="Lolipop">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-Theme-Archer">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <title>为 Archer 主题更换中文字体 · Lolipop&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20210204" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20210204" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/static/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/js/all.min.js"  data-auto-replace-svg="nest" ></script>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"搜索博客","hits_empty":"Ops，我未能提供任何搜索结果：${query}","hits_stats":"在 ${time} ms 内找到了 ${hits} 个结果"}')
+
+            var algolia = {
+                applicationID: 'V9YD7AWBOS',
+                apiKey: '5cb206cb0658a9daff865eef79de4bc4',
+                indexName: 'lolipopJ.github.io',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <!-- top read progress line -->
+    <div class="header-element">
+        
+        <div class="read-progress read-progress-feature"></div>
+        
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+        <div class="header-sidebar-menu header-sidebar-menu-rounded">
+        
+            
+            <i class="fas fa-bars"></i>
+            
+        </div>
+    </div>
+    <!-- back to home page text -->
+    <a class="home-link header-element" href=/>Lolipop's Studio.</a>
+    <!-- toggle banner for post layout -->
+    
+    
+    <div class="banner banner-clean">
+    
+        <div class="blog-title header-element">
+            <a href="/" >Lolipop&#39;s Studio.</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name">为 Archer 主题更换中文字体</a>
+        </div>
+    </div>
+    
+</header>
+    
+<footer class="footer-fixed">
+
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+        <div class="back-top back-top-rounded">
+        
+            
+            <i class="fas fa-chevron-up"></i>
+            
+        </div>
+    </div>
+</footer>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/1600x900/?coder)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            为 Archer 主题更换中文字体
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo-Theme-Archer">Hexo-Theme-Archer</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/06/26</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 <a target="_blank" rel="noopener" href="https://github.com/fi3ework/hexo-theme-archer">Hexo-Theme-Archer</a> 展示如何更换博客的中文字体。</p>
+<h2 id="下载字体文件"><a href="#下载字体文件" class="headerlink" title="下载字体文件"></a>下载字体文件</h2><p>如果字体文件有 CDN 加速，可以跳过此小节。</p>
+<p>以更换中文字体为<strong>未来荧黑</strong>为例，首先，去<a target="_blank" rel="noopener" href="https://github.com/welai/glow-sans/releases">开源的 Realease 页</a>下载字体文件。其中，以 <code>GlowSansSC</code> 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 <code>GlowSansSC-Normal-v0.92.zip</code>。</p>
+<p>解压之，可以很多不同字重的 <code>.otf</code> 字体文件，这里我选择了 <code>GlowSansSC-Normal-Book.otf</code>。将字体文件复制到 Archer 主题的 <code>source/font</code> 目录下。</p>
+<h2 id="引入字体文件"><a href="#引入字体文件" class="headerlink" title="引入字体文件"></a>引入字体文件</h2><p>最容易理解的方式莫过于编辑 Archer 主题目录下的 <code>src/scss/_variables.scss</code> 文件，添加新的 <code>@font-face</code> 如下：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.otf&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，url 路径 <code>../font/GlowSansSC-Normal-Book.otf</code> 是如何得来的呢？我们知道，在执行 <code>hexo g</code> 时，会将主题目录下的 <code>source</code> 中的文件拷贝到博客根目录下的 <code>public</code> 目录中。而根据 Archer 主题的 gulp 生成规则，编译好的 <code>.css</code> 文件存放在主题目录下的 <code>source/css</code> 中。因此，为了最终正确指向博客根目录下 <code>public/font/GlowSansSC-Normal-Book.otf</code> 文件，应该设置 url 为上一级目录下的 <code>font</code> 目录。</p>
+<p>这种方式的优点是，由于加载完字体才会显示网页，用户能得到无缝体验。但缺点也很明显：慢！样式表文件的加载使用了 <code>rel=&quot;preload&quot;</code> 属性，这意味着样式表将最优先加载。为了用户的体验，更建议在 HTML 中新建一个 &lt;link /&gt; 标签单独来引入字体文件。此处不再赘述。</p>
+<h2 id="更换博客字体"><a href="#更换博客字体" class="headerlink" title="更换博客字体"></a>更换博客字体</h2><p>接下来，只需要修改 Archer 主题 <code>src/scss/_variables.scss</code> 文件中的 <code>$base-font-family</code> 变量，就可以实现更换中文字体了：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>, -apple-system, BlinkMacSystemFont, <span class="string">&#x27;Helvetica Neue&#x27;</span>, Arial,</span><br><span class="line">  <span class="string">&#x27;PingFang SC&#x27;</span>, <span class="string">&#x27;Hiragino Sans GB&#x27;</span>, STHeiti, <span class="string">&#x27;Microsoft YaHei&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Microsoft JhengHei&#x27;</span>, <span class="string">&#x27;Source Han Sans SC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK SC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Source Han Sans CN&#x27;</span>, <span class="string">&#x27;Noto Sans SC&#x27;</span>, <span class="string">&#x27;Source Han Sans TC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK TC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;WenQuanYi Micro Hei&#x27;</span>, SimSun, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p>在前面，我们定义了 <code>font-family</code> 为 <code>glow-sans-sc</code>，因此在这里只需要在最前面加上这个值就可以了，这会告诉浏览器优先使用我们自定义的中文字体。等到字体下载完成之后，就会使用此字体了。</p>
+<p>特别的，Archer 主题提供了另一个变量 <code>$feature-font-family</code>，渲染为主题中 Profile，Intro，Footer 等地方的字体，如果希望，也可以更换。</p>
+<p>在上传到 Github 之前，别忘了在主题根目录执行 <code>yarn build</code>。</p>
+<h2 id="压缩中文字体"><a href="#压缩中文字体" class="headerlink" title="压缩中文字体"></a>压缩中文字体</h2><p><strong>笔者并未成功在 Archer 主题中实现</strong>，这里只是给出实现思路和方法。</p>
+<p>适用于在本地引入字体的方式。</p>
+<p>因为中文字体的编码相比英文字体多很多，导致中文字体通常特别大，十分耗费网络资源，还会降低用户体验。以 Archer 主题自带的字体为例，英文字体 <code>Oswald-Regular.ttf</code> 只有 89 KB 大小，而刚刚引入的中文字体 <code>GlowSansSC-Normal-Book.otf</code> 有 8971 KB 之大。如果能对中文字体进行压缩，将能大大提高用户体验。</p>
+<p>一款国人开源的智能 WebFont 压缩工具 <a target="_blank" rel="noopener" href="https://github.com/aui/font-spider">font-spider</a> 能够满足我们的需求。</p>
+<p>这款工具能够获取网页中使用到的中文文字，然后从源字体文件中提取出来这些文字，生成一个只包含这些文字的字体文件。而我们只需要引入这个生成的字体文件，就可以实现压缩中文字体了！</p>
+<p>为了能使用 Github Actions 自动集成部署博客，这里我在博客根目录引入了 font-spider 作为项目的开发依赖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D font-spider</span><br></pre></td></tr></table></figure>
+
+<p>由于 font-spider 需要使用 <code>.ttf</code> 格式的字体进行转换，因此首先需要把之前下载的 <code>.otf</code> 格式转换为 <code>.ttf</code> 格式，这可以借助于这个<a target="_blank" rel="noopener" href="https://convertio.co/zh/otf-ttf/">格式转换网站</a>。将转换完成后的 <code>GlowSansSC-Normal-Book.ttf</code> 字体文件放在主题目录下的 <code>source/font</code> 中。</p>
+<p>编辑主题目录下的 <code>src/scss/_variables.scss</code> 文件，修改刚刚的样式表属性：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot&#x27;</span>);</span><br><span class="line">  <span class="attribute">src</span>:</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot?#font-spider&#x27;</span>) format(<span class="string">&#x27;embedded-opentype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff2&#x27;</span>) format(<span class="string">&#x27;woff2&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff&#x27;</span>) format(<span class="string">&#x27;woff&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.ttf&#x27;</span>) format(<span class="string">&#x27;truetype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.svg&#x27;</span>) format(<span class="string">&#x27;svg&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在主题根目录执行 <code>yarn build</code> 生成打包好的样式表文件。</p>
+<p>回到博客根目录，编辑 <code>package.json</code>，添加脚本：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;font-spider&quot;</span>: <span class="string">&quot;font-spider public/*.html&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>public</code> 是 Hexo 生成静态博客文件的默认目录。</p>
+<p>在博客根目录分别执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态博客文件</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="comment"># 压缩中文字体文件</span></span><br><span class="line">yarn font-spider</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.wfublog.com/2019/01/noto-sans-serif-traditional-chinese-web-font_11.html">網頁是否安裝思源黑體、中文字型的考量﹍影響載入速度的因素及作法分析</a></li>
+</ul>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://LolipopJ.github.io">Lolipop</a>
+            <p>原文链接：<a href="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/">https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/</a>
+            <p>发表日期：<a href="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/">June 25th 2021, 4:00:00 pm</a>
+            <p>更新日期：<a href="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/">June 25th 2021, 4:00:00 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/06/24/website-deployment-docker-nginx/" title= "使用基于 Docker 的 Nginx 部署静态网页项目">
+                    <div class="prevTitle">使用基于 Docker 的 Nginx 部署静态网页项目</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"></link>
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+    <script>
+        let idOption = '1624636800000'
+        
+        idOption = location.pathname
+        
+        const gitalk = new Gitalk({
+            clientID: '3e27d4e7935138a80cd8',
+            clientSecret: 'cd3eda2bf0740e7a51b8b611ade908eb95590e45',
+            repo: 'LolipopJ.github.io',
+            owner: 'LolipopJ',
+            admin: ["LolipopJ"],
+            id: idOption,
+            distractionFreeMode: false,
+            createIssueManually: false,
+        })
+        console.log(gitalk)
+        gitalk.render('gitalk-container')
+    </script>
+    <noscript>为正常使用 Gitalk 评论功能，您需要激活 JavaScript</noscript>
+ 
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+</main>
+
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:lolipop0703@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/LolipopJ" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <div class="website-approve">
+        
+        <span id="icp-approve" class="icp-approve">
+            <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备 2021015698号</a>
+        </span>
+        
+        
+    </div>
+    
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">下载字体文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">引入字体文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E5%8D%9A%E5%AE%A2%E5%AD%97%E4%BD%93"><span class="toc-number">3.</span> <span class="toc-text">更换博客字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93"><span class="toc-number">4.</span> <span class="toc-text">压缩中文字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+    
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 22
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2021/06/25/web-font-for-hexo-theme-archer/" >为 Archer 主题更换中文字体</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href= "/2021/06/24/website-deployment-docker-nginx/" >使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href= "/2021/05/19/js-use-class/" >漫谈 JavsScript 类（Class）的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/17/js-closure/" >漫谈 JavsScript 闭包</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2021/05/10/js-hoisting/" >JavsScript 变量提升和函数提升</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js-debounce-throttle/" >函数防抖和节流，以及在 Vue 中的运用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/25/windows-install-grpc/" >Windows 系统编译安装基于 C++ 的 gRPC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/2021/04/21/linux-docker-install-grpc/" >Linux 系统编译安装基于 C++ 的 gRPC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/19/linux-docker-gcc-update/" >Linux 容器更新或降级 GCC 版本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2021/03/28/protobuf-learning/" >Protobuf 学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2021/03/16/amap-import-vue/" >在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href= "/2021/03/15/tencent-map-api-get-current-location/" >使用腾讯位置服务进行 Web 前端定位</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2021/03/09/xxx-is-not-a-symbolic-link/" >提示 *** is not a symbolic link 解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2021/03/02/nodejs-eslint-prettier/" >Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2021/02/22/write-md-parser/" >Webpack 读取本地 Markdown 文件并进行预处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/20/tg-mtproto-one-click/" >一键安装并配置 MTProto Proxy 代理 Telegram</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "/2021/02/18/hexo-github-actions-ci-cd/" >使用 Github Actions 持续集成与部署 Hexo 博客</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/29</span><a class="archive-post-title" href= "/2020/12/28/ISO-IEC-IEEE-42010-des/" >IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/28</span><a class="archive-post-title" href= "/2020/09/27/pytorch-install-windows-10/" >PyTorch 在 Windows 10 系统下的环境配置及安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span><a class="archive-post-title" href= "/2020/09/02/uestc-se-faq-developer-diary/" >电子科技大学 FAQ 网站开发者日志</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/27</span><a class="archive-post-title" href= "/2019/12/26/archer-theme-update-log/" >基于 Archer 主题的博客开发</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/27</span><a class="archive-post-title" href= "/2019/12/26/hello-hexo-world/" >Hello Hexo World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="软件体系架构设计"><span class="iconfont-archer">&#xe606;</span>软件体系架构设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vue-2"><span class="iconfont-archer">&#xe606;</span>Vue-2</span>
+    
+        <span class="sidebar-tag-name" data-tags="Nuxt.js"><span class="iconfont-archer">&#xe606;</span>Nuxt.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="Promise"><span class="iconfont-archer">&#xe606;</span>Promise</span>
+    
+        <span class="sidebar-tag-name" data-tags="开发日志"><span class="iconfont-archer">&#xe606;</span>开发日志</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="Github Actions"><span class="iconfont-archer">&#xe606;</span>Github Actions</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="GCC"><span class="iconfont-archer">&#xe606;</span>GCC</span>
+    
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="gRPC"><span class="iconfont-archer">&#xe606;</span>gRPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="ESLint"><span class="iconfont-archer">&#xe606;</span>ESLint</span>
+    
+        <span class="sidebar-tag-name" data-tags="Prettier"><span class="iconfont-archer">&#xe606;</span>Prettier</span>
+    
+        <span class="sidebar-tag-name" data-tags="VSCode"><span class="iconfont-archer">&#xe606;</span>VSCode</span>
+    
+        <span class="sidebar-tag-name" data-tags="Protobuf"><span class="iconfont-archer">&#xe606;</span>Protobuf</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="PyTorch"><span class="iconfont-archer">&#xe606;</span>PyTorch</span>
+    
+        <span class="sidebar-tag-name" data-tags="Telegram"><span class="iconfont-archer">&#xe606;</span>Telegram</span>
+    
+        <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo-Theme-Archer"><span class="iconfont-archer">&#xe606;</span>Hexo-Theme-Archer</span>
+    
+        <span class="sidebar-tag-name" data-tags="Nginx"><span class="iconfont-archer">&#xe606;</span>Nginx</span>
+    
+        <span class="sidebar-tag-name" data-tags="Windows"><span class="iconfont-archer">&#xe606;</span>Windows</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="ldconfig"><span class="iconfont-archer">&#xe606;</span>ldconfig</span>
+    
+        <span class="sidebar-tag-name" data-tags="ES6"><span class="iconfont-archer">&#xe606;</span>ES6</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="学习琐事"><span class="iconfont-archer">&#xe60a;</span>学习琐事</span>
+    
+        <span class="sidebar-category-name" data-categories="前端开发"><span class="iconfont-archer">&#xe60a;</span>前端开发</span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事"><span class="iconfont-archer">&#xe60a;</span>技术琐事</span>
+    
+        <span class="sidebar-category-name" data-categories="后端开发"><span class="iconfont-archer">&#xe60a;</span>后端开发</span>
+    
+        <span class="sidebar-category-name" data-categories="全栈开发"><span class="iconfont-archer">&#xe60a;</span>全栈开发</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Lolipop"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.24.1/dist/instantsearch.production.min.js" crossorigin="anonymous"></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

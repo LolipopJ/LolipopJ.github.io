@@ -400,6 +400,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/16/amap-import-vue/" >
+            
+                <span>在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
+        </a>
+        <div class="abstract-content">
+            迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
+高德地图与腾讯地图定位功能区别高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。
+这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。
+此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。
+引入高德地图 JS API 库这里我们通过顺序同步加载的方式引入第三方库。
+编辑 nuxt.config.js 中 head 项以引入 JS API 库。
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Promise">Promise</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2021/03/15/tencent-map-api-get-current-location/" >
             
                 <span>使用腾讯位置服务进行 Web 前端定位</span>
@@ -966,9 +1007,26 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -985,6 +1043,11 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2021/06/25/web-font-for-hexo-theme-archer/" >为 Archer 主题更换中文字体</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1159,6 +1222,8 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
         <span class="sidebar-tag-name" data-tags="Telegram"><span class="iconfont-archer">&#xe606;</span>Telegram</span>
     
         <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo-Theme-Archer"><span class="iconfont-archer">&#xe606;</span>Hexo-Theme-Archer</span>
     
         <span class="sidebar-tag-name" data-tags="Nginx"><span class="iconfont-archer">&#xe606;</span>Nginx</span>
     
