@@ -2,9 +2,14 @@
 // ========== DIY ========== //
 $feature-color: #61bfad;
 $code-theme: 'atom-one-dark'; // atom-one-dark or atom-one-light
+
+@font-face {
+  font-family: 'Source Han Sans CN';
+  src: url('../font/SourceHanSansCN-VF.otf.woff2')
+}
 // ========== global variables ========== //
 $body-background-color: #fff;
-$base-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
+$base-font-family: 'Source Han Sans CN', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
   'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei',
   'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
   'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC',
