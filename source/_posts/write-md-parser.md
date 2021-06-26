@@ -68,8 +68,13 @@ const contentInfoArray = contentInfo.split(/\r?\n/g);
 const contentInfoItem = {};
 for (let i = 0; i < contentInfoArray.length - 1; i++) {
   const contentInfoParamArray = contentInfoArray[i].split(':');
-  contentInfoItem[contentInfoParamArray[0].trim()] =
-      contentInfoParamArray[1].trim();
+  let contentInfoParamValue = '';
+  for (let n = 1; n < contentInfoParamArray.length; n++) {
+    contentInfoParamValue += contentInfoParamArray[n] + ':';
+  }
+  contentInfoItem[
+      contentInfoParamArray[0].trim()
+  ] = contentInfoParamValue.slice(0, -1).trim();
 }
 ```
 
@@ -125,3 +130,5 @@ const md = require('markdown-it')({
 });
 const htmlContent = md.render(result.content);
 ```
+
+完整的解析文件[在这里](https://github.com/uestclug/nu-official/blob/frontend/src/utils/mdParser.js)。
