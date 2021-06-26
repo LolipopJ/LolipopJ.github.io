@@ -1,16 +1,36 @@
 ---
 title: 基于 Archer 主题的博客开发
 date: 2019/12/27
-updated: 2021/5/19
+updated: 2021/6/26
 categories:
 - 前端开发
 tags:
 - 开发日志
 - Hexo
+- Hexo-Theme-Archer
 ---
 本博客使用的主题 [Archer](https://github.com/fi3ework/hexo-theme-archer) 有足够稳定以支持长期运行。不过正好学习了一些前端开发技巧，不如在使用过程中对本博客的页面做一些小小的开发及优化。
 
 ## 更新日志
+
+### 2021/06/26
+
+有幸成为了 Hexo-Theme-Archer 的维护者的一员，最近也把自己开发的 [v1.6.2 版本](https://github.com/fi3ework/hexo-theme-archer/pull/299)合并到了主题的主分支上去。
+
+- 修复了代码格式化脚本。现在使用 `npm run prettier` 能够正确地格式化项目代码。
+- 修复了一些已知问题。
+  - 顶部 header 元素不再遮挡点击事件。
+  - 回到顶部按钮现在正确配合侧边栏动画移动。
+  - 博文的列表间距现在更加合理。
+  - 修复博文的超链接，以及 banner 博客名的间距配置。
+  - 去除博文标题前面占位的 headerlink。
+  - 修复 Toc 过长时隐藏的问题。
+- 添加了一些主题配置。
+- 添加了中国建站用户备案信息配置。
+- 优化了前端工程化代码生成逻辑。添加了 postcss autoprefixer 支持。
+- 优化包括移动端在内的博客样式表配置。
+- 更新了评论插件 Gitalk 版本，并添加主题颜色支持。
+- 移除了不必要的依赖。
 
 ### 2021/05/20
 
