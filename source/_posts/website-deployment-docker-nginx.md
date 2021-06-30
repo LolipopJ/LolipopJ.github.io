@@ -23,7 +23,7 @@ cd /
 mkdir www
 ```
 
-现在，我已经有了一个完整的静态网页项目——我的[个人博客](https://github.com/LolipopJ/LolipopJ.github.io)。首先通过 `git` 命令将它克隆下来：
+现在，我已经有了一个完整的静态网页项目——我的[个人博客](https://github.com/LolipopJ/LolipopJ.github.io)。我的个人博客基于 Hexo，其中代码放在 `source` 分支，生成的静态网页文件放在 `master` 分支。首先通过 `git` 命令将静态网页文件克隆下来：
 
 ```bash
 cd /www
@@ -48,7 +48,7 @@ mkdir /www/cert
 cp blog.towind.fun/Nginx/* /www/cert
 ```
 
-接下来需要做的，就是将 `/www/LolipopJ.github.io` 目录下的文件交给 Nginx 解析。
+之后，只需要将 `/www/cert` 目录挂载到 Nginx 的容器中，再通过 Nginx 配置访问即可。
 
 ## 创建 Nginx 容器
 
@@ -74,9 +74,9 @@ services:
     container_name: blog-nginx
     restart: always
     volumes:
-      - ./:/usr/share/nginx/html
-      - ./templates:/etc/nginx/templates
-      - /www/cert:/etc/nginx/cert
+      - ./:/usr/share/nginx/html # 挂载当前静态网页文件目录
+      - ./templates:/etc/nginx/templates # 挂载 Nginx 配置模板目录
+      - /www/cert:/etc/nginx/cert # 挂载 SSL 证书目录
     ports:
       - 80:80
       - 443:443
@@ -110,10 +110,11 @@ server {
     root /usr/share/nginx/html;
   }
 }
+
 # 将 http 请求转为 https 请求
 server {
   listen 80;
-  listen [::]:80 ssl;
+  listen [::]:80;
   server_name ${NGINX_HOST};
   return 301 https://$host$request_uri; 
 }
