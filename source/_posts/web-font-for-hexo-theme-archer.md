@@ -14,7 +14,7 @@ tags:
 
 如果字体文件有 CDN 加速，可以跳过此小节。
 
-以更换中文字体为**未来荧黑**为例，首先，去[开源的 Realease 页](https://github.com/welai/glow-sans/releases)下载字体文件。其中，以 `GlowSansSC` 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 `GlowSansSC-Normal-v0.92.zip`。
+以更换中文字体为未来荧黑为例，首先，去[开源的 Realease 页](https://github.com/welai/glow-sans/releases)下载字体文件。其中，以 `GlowSansSC` 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 `GlowSansSC-Normal-v0.92.zip`。
 
 解压之，可以很多不同字重的 `.otf` 字体文件，这里我选择了 `GlowSansSC-Normal-Book.otf`。将字体文件复制到 Archer 主题的 `source/font` 目录下。
 
@@ -26,7 +26,7 @@ tags:
 
 ```scss
 @font-face {
-  font-family: 'glow-sans-sc';
+  font-family: 'Glow Sans SC';
   src: url('../font/GlowSansSC-Normal-Book.otf');
 }
 ```
@@ -44,14 +44,14 @@ tags:
 接下来，只需要修改 Archer 主题 `src/scss/_variables.scss` 文件中的 `$base-font-family` 变量，就可以实现更换中文字体了：
 
 ```scss
-$base-font-family: 'glow-sans-sc', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
+$base-font-family: 'Glow Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
   'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei',
   'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
   'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC',
   'WenQuanYi Micro Hei', SimSun, sans-serif;
 ```
 
-在前面，我们定义了 `font-family` 为 `glow-sans-sc`，因此在这里只需要在最前面加上这个值就可以了，这会告诉浏览器优先使用我们自定义的中文字体。等到字体下载完成之后，就会使用此字体了。
+在前面，我们定义了 `font-family` 为 `Glow Sans SC`，因此在这里只需要在最前面加上这个值就可以了，这会告诉浏览器优先使用我们自定义的中文字体。等到字体下载完成之后，就会使用此字体了。
 
 特别的，Archer 主题提供了另一个变量 `$feature-font-family`，渲染为主题中 Profile，Intro，Footer 等地方的字体，如果希望，也可以更换。
 
@@ -81,7 +81,7 @@ yarn add -D font-spider
 
 ```scss
 @font-face {
-  font-family: 'glow-sans-sc';
+  font-family: 'Glow Sans SC';
   src: url('../font/GlowSansSC-Normal-Book.eot');
   src:
     url('../font/GlowSansSC-Normal-Book.eot?#font-spider') format('embedded-opentype'),

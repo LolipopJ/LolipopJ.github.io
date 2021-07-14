@@ -6,6 +6,7 @@ categories:
 - 前端开发
 tags:
 - 开发日志
+- 博客开发
 - Hexo
 - Hexo-Theme-Archer
 ---
