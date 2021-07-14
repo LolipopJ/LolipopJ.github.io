@@ -466,18 +466,18 @@ height:50vh;
     <article class="article-entry">
         <p>看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 <a target="_blank" rel="noopener" href="https://github.com/fi3ework/hexo-theme-archer">Hexo-Theme-Archer</a> 展示如何更换博客的中文字体。</p>
 <h2 id="下载字体文件"><a href="#下载字体文件" class="headerlink" title="下载字体文件"></a>下载字体文件</h2><p>如果字体文件有 CDN 加速，可以跳过此小节。</p>
-<p>以更换中文字体为<strong>未来荧黑</strong>为例，首先，去<a target="_blank" rel="noopener" href="https://github.com/welai/glow-sans/releases">开源的 Realease 页</a>下载字体文件。其中，以 <code>GlowSansSC</code> 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 <code>GlowSansSC-Normal-v0.92.zip</code>。</p>
+<p>以更换中文字体为未来荧黑为例，首先，去<a target="_blank" rel="noopener" href="https://github.com/welai/glow-sans/releases">开源的 Realease 页</a>下载字体文件。其中，以 <code>GlowSansSC</code> 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 <code>GlowSansSC-Normal-v0.92.zip</code>。</p>
 <p>解压之，可以很多不同字重的 <code>.otf</code> 字体文件，这里我选择了 <code>GlowSansSC-Normal-Book.otf</code>。将字体文件复制到 Archer 主题的 <code>source/font</code> 目录下。</p>
 <h2 id="引入字体文件"><a href="#引入字体文件" class="headerlink" title="引入字体文件"></a>引入字体文件</h2><h3 id="直接引入本地字体文件"><a href="#直接引入本地字体文件" class="headerlink" title="直接引入本地字体文件"></a>直接引入本地字体文件</h3><p>最容易理解的方式莫过于编辑 Archer 主题目录下的 <code>src/scss/_variables.scss</code> 文件，添加新的 <code>@font-face</code> 如下：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.otf&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;Glow Sans SC&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.otf&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中，url 路径 <code>../font/GlowSansSC-Normal-Book.otf</code> 是如何得来的呢？我们知道，在执行 <code>hexo g</code> 时，会将主题目录下的 <code>source</code> 中的文件拷贝到博客根目录下的 <code>public</code> 目录中。而根据 Archer 主题的 gulp 生成规则，编译好的 <code>.css</code> 文件存放在主题目录下的 <code>source/css</code> 中。因此，为了最终正确指向博客根目录下 <code>public/font/GlowSansSC-Normal-Book.otf</code> 文件，应该设置 url 为上一级目录下的 <code>font</code> 目录。</p>
 <p>这种方式的优点是，方便配置。但缺点也很明显：慢！尤其对于大多数人建立个人博客时，会使用自己的“小水管”服务器，字体文件要加载老半天才能正常显示出来。最好的方式还是使用 CDN 保平安吧！</p>
 <h3 id="引入-CDN-字体文件"><a href="#引入-CDN-字体文件" class="headerlink" title="引入 CDN 字体文件"></a>引入 CDN 字体文件</h3><p>由于直接在 <code>@font-face</code> 中拉取 CDN 的字体文件时，可能会发生跨域错误，因此可以使用 <a target="_blank" rel="noopener" href="https://github.com/typekit/webfontloader">webfontloader</a> 实现加载 CDN 字体。</p>
 <h2 id="更换博客字体"><a href="#更换博客字体" class="headerlink" title="更换博客字体"></a>更换博客字体</h2><p>接下来，只需要修改 Archer 主题 <code>src/scss/_variables.scss</code> 文件中的 <code>$base-font-family</code> 变量，就可以实现更换中文字体了：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>, -apple-system, BlinkMacSystemFont, <span class="string">&#x27;Helvetica Neue&#x27;</span>, Arial,</span><br><span class="line">  <span class="string">&#x27;PingFang SC&#x27;</span>, <span class="string">&#x27;Hiragino Sans GB&#x27;</span>, STHeiti, <span class="string">&#x27;Microsoft YaHei&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Microsoft JhengHei&#x27;</span>, <span class="string">&#x27;Source Han Sans SC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK SC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Source Han Sans CN&#x27;</span>, <span class="string">&#x27;Noto Sans SC&#x27;</span>, <span class="string">&#x27;Source Han Sans TC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK TC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;WenQuanYi Micro Hei&#x27;</span>, SimSun, sans-serif;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-family</span>: <span class="string">&#x27;Glow Sans SC&#x27;</span>, -apple-system, BlinkMacSystemFont, <span class="string">&#x27;Helvetica Neue&#x27;</span>, Arial,</span><br><span class="line">  <span class="string">&#x27;PingFang SC&#x27;</span>, <span class="string">&#x27;Hiragino Sans GB&#x27;</span>, STHeiti, <span class="string">&#x27;Microsoft YaHei&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Microsoft JhengHei&#x27;</span>, <span class="string">&#x27;Source Han Sans SC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK SC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Source Han Sans CN&#x27;</span>, <span class="string">&#x27;Noto Sans SC&#x27;</span>, <span class="string">&#x27;Source Han Sans TC&#x27;</span>, <span class="string">&#x27;Noto Sans CJK TC&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;WenQuanYi Micro Hei&#x27;</span>, SimSun, sans-serif;</span><br></pre></td></tr></table></figure>
 
-<p>在前面，我们定义了 <code>font-family</code> 为 <code>glow-sans-sc</code>，因此在这里只需要在最前面加上这个值就可以了，这会告诉浏览器优先使用我们自定义的中文字体。等到字体下载完成之后，就会使用此字体了。</p>
+<p>在前面，我们定义了 <code>font-family</code> 为 <code>Glow Sans SC</code>，因此在这里只需要在最前面加上这个值就可以了，这会告诉浏览器优先使用我们自定义的中文字体。等到字体下载完成之后，就会使用此字体了。</p>
 <p>特别的，Archer 主题提供了另一个变量 <code>$feature-font-family</code>，渲染为主题中 Profile，Intro，Footer 等地方的字体，如果希望，也可以更换。</p>
 <p>在上传到 Github 之前，别忘了在主题根目录执行 <code>yarn build</code>。</p>
 <h2 id="压缩中文字体"><a href="#压缩中文字体" class="headerlink" title="压缩中文字体"></a>压缩中文字体</h2><p><strong>笔者并未成功在 Archer 主题中实现</strong>，这里只是给出实现思路和方法。</p>
@@ -490,7 +490,7 @@ height:50vh;
 
 <p>由于 font-spider 需要使用 <code>.ttf</code> 格式的字体进行转换，因此首先需要把之前下载的 <code>.otf</code> 格式转换为 <code>.ttf</code> 格式，这可以借助于这个<a target="_blank" rel="noopener" href="https://convertio.co/zh/otf-ttf/">格式转换网站</a>。将转换完成后的 <code>GlowSansSC-Normal-Book.ttf</code> 字体文件放在主题目录下的 <code>source/font</code> 中。</p>
 <p>编辑主题目录下的 <code>src/scss/_variables.scss</code> 文件，修改刚刚的样式表属性：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;glow-sans-sc&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot&#x27;</span>);</span><br><span class="line">  <span class="attribute">src</span>:</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot?#font-spider&#x27;</span>) format(<span class="string">&#x27;embedded-opentype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff2&#x27;</span>) format(<span class="string">&#x27;woff2&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff&#x27;</span>) format(<span class="string">&#x27;woff&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.ttf&#x27;</span>) format(<span class="string">&#x27;truetype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.svg&#x27;</span>) format(<span class="string">&#x27;svg&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;Glow Sans SC&#x27;</span>;</span><br><span class="line">  <span class="attribute">src</span>: url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot&#x27;</span>);</span><br><span class="line">  <span class="attribute">src</span>:</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.eot?#font-spider&#x27;</span>) format(<span class="string">&#x27;embedded-opentype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff2&#x27;</span>) format(<span class="string">&#x27;woff2&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.woff&#x27;</span>) format(<span class="string">&#x27;woff&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.ttf&#x27;</span>) format(<span class="string">&#x27;truetype&#x27;</span>),</span><br><span class="line">    url(<span class="string">&#x27;../font/GlowSansSC-Normal-Book.svg&#x27;</span>) format(<span class="string">&#x27;svg&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在主题根目录执行 <code>yarn build</code> 生成打包好的样式表文件。</p>
 <p>回到博客根目录，编辑 <code>package.json</code>，添加脚本：</p>
@@ -518,6 +518,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2021/07/09/switch-travis-to-github-workflow/" title= "更换持续集成工具，从 Travis 到 Github Actions">
+                    <div class="nextTitle">更换持续集成工具，从 Travis 到 Github Actions</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -955,9 +960,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -974,6 +996,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/2021/07/09/switch-travis-to-github-workflow/" >更换持续集成工具，从 Travis 到 Github Actions</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1120,13 +1147,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="开发日志"><span class="iconfont-archer">&#xe606;</span>开发日志</span>
     
+        <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
+    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo-Theme-Archer"><span class="iconfont-archer">&#xe606;</span>Hexo-Theme-Archer</span>
     
-        <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
-    
-        <span class="sidebar-tag-name" data-tags="Github Actions"><span class="iconfont-archer">&#xe606;</span>Github Actions</span>
+        <span class="sidebar-tag-name" data-tags="Github-Actions"><span class="iconfont-archer">&#xe606;</span>Github-Actions</span>
     
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
@@ -1151,6 +1178,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
         <span class="sidebar-tag-name" data-tags="PyTorch"><span class="iconfont-archer">&#xe606;</span>PyTorch</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis"><span class="iconfont-archer">&#xe606;</span>Travis</span>
     
         <span class="sidebar-tag-name" data-tags="Telegram"><span class="iconfont-archer">&#xe606;</span>Telegram</span>
     
