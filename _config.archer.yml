@@ -136,7 +136,7 @@ copyright:
 website_approve:
   enable: true
   icp_approve: 蜀ICP备 2021015698号
-  beian_approve: 
+  beian_approve: 51010802001109
   beian_img: /assets/beian.png
 # Blog page article timeliness days reminder, 0 for no threshold
 outdated_threshold: 0
