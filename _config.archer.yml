@@ -28,7 +28,7 @@ social:
   linkedin: 
   steam: 
   others: 
-  rss: 
+  rss: /atom.xml
 # friends
 friends:
   Bill Chen: //billc.io
