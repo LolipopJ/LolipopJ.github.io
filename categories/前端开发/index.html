@@ -202,6 +202,9 @@
     <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.cnpmjs.org">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/js/all.min.js"  data-auto-replace-svg="nest" ></script>
     
         <!-- algolia -->
@@ -402,13 +405,12 @@
     <article class="index-post">
         <a class="abstract-title" href = "/2021/06/25/web-font-for-hexo-theme-archer/" >
             
-                <span>为 Archer 主题更换中文字体</span>
+                <span>为 Archer 主题更换字体</span>
         </a>
         <div class="abstract-content">
             看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。
-下载字体文件如果字体文件有 CDN 加速，可以跳过此小节。
-以更换中文字体为未来荧黑为例，首先，去开源的 Realease 页下载字体文件。其中，以 GlowSansSC 开头的字体为未来荧黑的简体中文字体。这里我选择下载了 GlowSansSC-Normal-v0.92.zip。
-解压之，可以很多不同字重的 .otf 字体文件，这里我选择了 GlowSansSC-Normal-Book.otf。将字体文件复制到 Ar...
+引入字体文件这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。
+引入 CDN 字体文件以更换字体为思源黑体（Google 字体上叫 Noto Sans，Adobe 版本叫 Source Han Sans）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑需要通过第三方 CDN 的方式引入它。据笔者测试，目前找到了这...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -453,9 +455,9 @@
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
     
@@ -492,9 +494,9 @@
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
     
@@ -531,9 +533,9 @@
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
     
@@ -992,26 +994,9 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 23
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1036,7 +1021,7 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2021/06/25/web-font-for-hexo-theme-archer/" >为 Archer 主题更换中文字体</a>
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2021/06/25/web-font-for-hexo-theme-archer/" >为 Archer 主题更换字体</a>
         </li>
     
     
@@ -1139,11 +1124,6 @@
         </li>
     
     
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/03</span><a class="archive-post-title" href= "/2020/09/02/uestc-se-faq-developer-diary/" >电子科技大学 FAQ 网站开发者日志</a>
-        </li>
-    
-    
     
     
     
@@ -1167,17 +1147,17 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="开发日志"><span class="iconfont-archer">&#xe606;</span>开发日志</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vue-2"><span class="iconfont-archer">&#xe606;</span>Vue-2</span>
+    
         <span class="sidebar-tag-name" data-tags="软件体系架构设计"><span class="iconfont-archer">&#xe606;</span>软件体系架构设计</span>
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="Vue-2"><span class="iconfont-archer">&#xe606;</span>Vue-2</span>
-    
         <span class="sidebar-tag-name" data-tags="Nuxt.js"><span class="iconfont-archer">&#xe606;</span>Nuxt.js</span>
     
         <span class="sidebar-tag-name" data-tags="Promise"><span class="iconfont-archer">&#xe606;</span>Promise</span>
-    
-        <span class="sidebar-tag-name" data-tags="开发日志"><span class="iconfont-archer">&#xe606;</span>开发日志</span>
     
         <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
     
@@ -1189,13 +1169,13 @@
     
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
-        <span class="sidebar-tag-name" data-tags="gRPC"><span class="iconfont-archer">&#xe606;</span>gRPC</span>
+        <span class="sidebar-tag-name" data-tags="GCC"><span class="iconfont-archer">&#xe606;</span>GCC</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
-        <span class="sidebar-tag-name" data-tags="GCC"><span class="iconfont-archer">&#xe606;</span>GCC</span>
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="gRPC"><span class="iconfont-archer">&#xe606;</span>gRPC</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
@@ -1267,8 +1247,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="技术琐事"><span class="iconfont-archer">&#xe60a;</span>技术琐事</span>
     
         <span class="sidebar-category-name" data-categories="后端开发"><span class="iconfont-archer">&#xe60a;</span>后端开发</span>
-    
-        <span class="sidebar-category-name" data-categories="全栈开发"><span class="iconfont-archer">&#xe60a;</span>全栈开发</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
