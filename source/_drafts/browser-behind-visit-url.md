@@ -1,11 +1,13 @@
 ---
 title: 在浏览器中输入 URL 到显示网页，背后发生了什么
 date: 2021/7/8
-updated: 2021/7/22
+updated: 2021/7/23
 categories:
 - 学习琐事
 tags:
 - 计算机网络
+- 网络安全
+- 密码学
 ---
 最近学习前端基础知识的时候，看到了这个问题和[一个回答](https://www.zhihu.com/question/34873227/answer/518086565)，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。
 
@@ -229,7 +231,7 @@ DNS 由客户端和服务端两部分组成，其中，客户端发起查询请�
 
 因此，在实际网络中，无论是局域网内通信，还是跨网段通信，绝大多数情况下还是使用的是 ARP，而非代理 ARP。代理 ARP 是对 ARP 的补充，是 ARP 的拓展使用。
 
-言归正传，假如我们使用的是 IPv4 网络，通过 ARP 协议，我们将收到主机设置的网关设备的 MAC 地址，这样我们就顺利地为数据包添加了 MAC 头部。现在，完整的数据包从主机传输到网关设备上，再驶入互联网的快车道，抵达了服务器。
+言归正传，假如我们使用的是 IPv4 网络，通过 ARP 协议，我们将收到主机设置的网关设备的 MAC 地址，这样我们就顺利地为数据包添加了 MAC 头部。现在，完整的数据包就可以从主机传输到网关设备上，再驶入互联网的快车道，最终抵达服务器了。
 
 ### RARP 和 IARP
 
@@ -254,33 +256,135 @@ IARP 即逆向 ARP（Inverse ARP），在帧中继网络（广域网）中实现
 
 ## 使用 TLS 与服务器建立安全的 TCP 连接
 
-为了保证数据传输的**可靠性**，客户端要先通过三次握手与服务器建立 TCP 连接。
+在发送包含 HTTP 报文的数据包之前，客户端还要先通过三次握手与服务器建立 TCP 连接，这是为了保证数据传输的**可靠性**。在前面，我们已经得到了服务器的 MAC 地址，因此包含建立 TCP 连接请求报文的数据包可以顺利发送到服务器。
 
-1. TCP 第一次握手，客户端主动向服务器发送 TCP 请求报文。设置其首部：SYN = 1，seq = x（任意值，下面的 y 同）。
-2. TCP 第二次握手，服务器监听请求，当接收到客户端的请求报文时，若同意连接请求，则发回确认报文。设置其首部：SYN = 1，ACK = 1，ack = x + 1，seq = y。
-3. TCP 第三次握手，客户端收到确认报文，通知上层应用（即我们的浏览器）连接已建立，并向服务器发送确认报文。设置其首部：ACK = 1，ack = y + 1。服务器接收到确认报文后，也通知其上层应用连接已建立。
+1. TCP 第一次握手，客户端主动向服务器发送 TCP 请求报文。设置其首部：`SYN = 1, seq = x`。其中，x 和下面步骤中的 y 为随机值。
+2. TCP 第二次握手，服务器监听请求，当接收到客户端的请求报文时，若同意连接请求，则发回确认报文。设置其首部：`SYN = 1, ACK = 1, ack = x + 1, seq = y`。
+3. TCP 第三次握手，客户端收到确认报文，通知上层应用（即我们的浏览器）连接已建立，并向服务器发送确认报文。设置其首部：`ACK = 1, ack = y + 1`。服务器接收到确认报文后，也通知其上层应用连接已建立。
 
 由于前面我们提到的 HSTS 机制，我们的 HTTP 请求将基于 HTTPS 协议。严格来说，HTTPS 并非应用层的一种新协议，它只是将 HTTP 协议的**通信接口**部分使用**传输层安全性协议 TLS**（Transport Layer Security）代替罢了。通常，HTTP 直接与 TCP 通信。当使用 TLS 时，HTTP 先与 TLS 通信，再由 TLS 与 TCP 通信。
 
-在这种情况下，为了保证数据传输的**安全性**，客户端还要通过四次握手与服务器协商 TLS 协议参数，这个过程通常称为 TLS 握手。TLS 握手是在 TCP 连接建立之后进行的。
+在这种情况下，为了保证数据传输的**安全性**，客户端还要与服务器协商 TLS 协议参数，这个过程通常称为 TLS 握手。在 TLS 1.0, 1.1 及 1.2 版本中，握手有四次；而在 TLS 1.3 版本中，握手只需要三次。TLS 握手是在 TCP 连接建立之后进行的。
 
-4. TLS 第一次握手，客户端发出 Client Hello 消息给服务器，主要包含：客户端支持的 TLS 版本，客户端支持的加密算法，客户端支持的压缩算法，用于生成密钥的随机数或字符串 Client Random。
-5. TLS 第二次握手，服务器接收到消息后，响应 Server Hello 消息给客户端，主要包含：确认使用的 TLS 版本，服务器选用的加密算法，服务器 CA 证书，另一个用于生成密钥的随机数或字符串 Server Random。
+以 [TLS 1.3 协议](https://datatracker.ietf.org/doc/html/rfc8446)为例，握手过程如下所示：
 
-客户端收到服务器响应信息后，首先对服务器发来的 CA 证书文件进行检查，若可信，则从中获取服务器公钥。接着，客户端又生成了一个随机数或字符串，并使用服务器公钥对它进行加密，称之为 Premaster Secret。
+``` plaintext
+       Client                                           Server
 
-6. TLS 第三次握手，
-7. TLS 第四次握手，
+Key  ^ ClientHello
+Exch | + key_share*
+     | + signature_algorithms*
+     | + psk_key_exchange_modes*
+     v + pre_shared_key*       -------->
+                                                  ServerHello  ^ Key
+                                                 + key_share*  | Exch
+                                            + pre_shared_key*  v
+                                        {EncryptedExtensions}  ^  Server
+                                        {CertificateRequest*}  v  Params
+                                               {Certificate*}  ^
+                                         {CertificateVerify*}  | Auth
+                                                   {Finished}  v
+                               <--------  [Application Data*]
+     ^ {Certificate*}
+Auth | {CertificateVerify*}
+     v {Finished}              -------->
+       [Application Data]      <------->  [Application Data]
+
+              +  Indicates noteworthy extensions sent in the
+                 previously noted message.
+
+              *  Indicates optional or situation-dependent
+                 messages/extensions that are not always sent.
+
+              {} Indicates messages protected using keys
+                 derived from a [sender]_handshake_traffic_secret.
+
+              [] Indicates messages protected using keys
+                 derived from [sender]_application_traffic_secret_N.
+```
+
+这样，我们的客户端和服务器建立了基于 TLS 1.3 的安全 TCP 连接，是时候传输数据了！
 
 ### TLS 与 SSL
 
 - [「传输层安全性协议」](https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A)，Wikipedia
 
-在日常使用中，我们经常会说 SSL 或 TLS/SSL，它们之间有什么关系呢？
+在日常使用中，我们经常会说 SSL 或 TLS/SSL，那么 TLS 和 SSL 之间有什么关系呢？
 
-原来，**安全套接层 SSL（Secure Sockets Layer）**是 TLS 的前身。TLS 基于 SSL 3.0 协议，是 SSL 协议标准化后的协议名。由于 SSL 3.0 设计中的缺陷，在 2015 年 6 月，[RFC 7568](https://datatracker.ietf.org/doc/html/rfc7568) 宣布弃用 SSL 3.0。
+原来，**安全套接层 SSL**（Secure Sockets Layer） 是 TLS 的前身。TLS 基于 SSL 3.0 协议，是 SSL 协议标准化后的协议名。由于 SSL 3.0 设计中的缺陷，在 2015 年 6 月，[RFC 7568](https://datatracker.ietf.org/doc/html/rfc7568) 宣布弃用 SSL 3.0。
 
-目前最新的 TLS 1.3 协议在 2018 年 8 月发表的 [RFC 8446](https://datatracker.ietf.org/doc/html/rfc8446) 中定义。而较老的 TLS 1.0 和 TLS 1.1 也已于 2021 年 3 月，于 [RFC 8996](https://datatracker.ietf.org/doc/html/rfc8996) 中宣告被弃用。
+目前最新的 TLS 1.3 协议在 2018 年 8 月发表的 [RFC 8446](https://datatracker.ietf.org/doc/html/rfc8446) 中定义。而较老的 TLS 1.0 和 TLS 1.1 也已于 2021 年 3 月，在 [RFC 8996](https://datatracker.ietf.org/doc/html/rfc8996) 中宣告被弃用。
+
+结论是，理论上我们现在用的加密协议大抵都是 TLS，在讨论中直接使用 TLS 即可。
+
+### TLS 1.3 的进步
+
+- [「A Detailed Look at RFC 8446 (a.k.a. TLS 1.3)」](https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/)，2018-08-11
+
+TLS 已经存在相当多的问题：例如代码缺乏测试，稳健性较低；存在许多设计缺陷，出现很多漏洞等。
+
+在近些年来，互联网上一直存在一个主要趋势，即全面启用 HTTPS。这可以保护用户的安全，但会导致连接速度变慢。自 TLS 标准化以来，在发送加密数据之前，客户端到服务器的握手请求会进行两次往返（或者会话恢复连接时进行一次往返）。与单独的 HTTP 相比，HTTPS 中 TLS 握手的额外成本可能带来潜在的问题，并对以性能为中心的应用产生负面影响。在 [TLS 1.2 协议](https://datatracker.ietf.org/doc/html/rfc5246)中，握手过程如下所示：
+
+``` plaintext
+Client                                                Server
+
+ClientHello                   -------->
+                                                 ServerHello
+                                                Certificate*
+                                          ServerKeyExchange*
+                                         CertificateRequest*
+                              <--------      ServerHelloDone
+Certificate*
+ClientKeyExchange
+CertificateVerify*
+[ChangeCipherSpec]
+Finished                      -------->
+                                          [ChangeCipherSpec]
+                              <--------             Finished
+Application Data              <------->     Application Data
+
+* Indicates optional or situation-dependent messages that are not
+always sent.
+```
+
+IETF 对 TLS 1.2 的过时设计和两次往返开销不满意，着手定义新版本的 TLS，即 TLS 1.3，旨在解决如下的主要问题：
+
+- 减少握手延迟；
+- 加密更多的握手信息；
+- 提高对跨协议攻击的恢复能力；
+- 删除遗留的功能。
+
+在过去的二十年里，对密码学的研究帮助人们学到更多关于如何编写**更安全的加密协议**的知识。TLS 1.3 的设计目标之一就是删除潜在的危险元素，纠正过去的错误设计。例如：
+
+- **移除 RSA 密钥交换模式**，仅保留 Diffie-Hellman（下简称 DH）密钥协议。RSA 模式存在两个严重的问题，一是它不是前向加密（forward secret），意味着如果有人记录下加密的会话，如果在某天获取到服务器的私钥，就可以对会话进行破解。二是存在难以修复的漏洞，可以参见 [ROBOT 攻击](https://robotattack.org/)。删除 RSA 模式，只保留 DH 密钥协议，带来了一些性能优势，我们在后面进行讨论。
+- **提供更少的可选项**。在密码学中，提供太多的选项可能导致更多的错误。这个原则在选择 DH 密钥协议的参数时尤为明显。该协议的安全性取决于选择的 DH 参数值，它一方面要为较大的值，另一方面需要具有某些[正确的数学属性](https://arstechnica.com/information-technology/2016/01/high-severity-bug-in-openssl-allows-attackers-to-decrypt-https-traffic/)。在以前版本的 TLS 中，DH 参数由参与者决定；而在 TLS 1.3 版本中，则将参数限制为已知安全的值，减少用户的可选项。
+
+更多关于安全性的改进可以访问该小节开头的[参考博客](https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/)。下面我们来看看 TLS 1.3 在**性能表现上的优势**。
+
+在 DH 密钥协议中，客户端和服务器都从创建公钥-私钥对开始，然后交换各自的公钥，并根据自己的私钥和对方的公钥生成最终的密钥。最终的密钥自始至终都不会通过网络传输，DH 算法通过数学定律保证双方算出的结果一致。接下来，客户端和服务器就可以使用这个密钥对数据进行加密和解密。
+
+TLS 1.3 使用这样一个更简单的密钥协商模式和一组更少的密钥协商选项，这意味着每个连接都将使用基于 DH 的密钥协议，服务器支持的 DH 参数更容易被猜到。有限的选择使得客户端可以在第一条消息中就发送自己的公钥，而无需等待服务器确认支持的类型。
+
+在服务器不支持客户端使用协商选项的罕见情况下，服务器可以发送 `HelloRetryRequest` 的消息，让客户端知道自己支持哪些协商选项组。
+
+作为小结：
+
+> TLS 1.3 is a modern security protocol built with modern tools like formal analysis that retains its backwards compatibility. It has been tested widely and iterated upon using real world deployment data. It’s a cleaner, faster, and more secure protocol ready to become the de facto two-party encryption protocol online.
+> It is one the best recent examples of how it is possible to take 20 years of deployed legacy code and change it on the fly, resulting in a better internet for everyone. TLS 1.3 has been debated and analyzed for the last three years \(2015 - 2018) and it’s now ready for prime time.
+
+### 对称密钥加密，非对称密钥加密与混合加密
+
+简单来说，在**对称密钥加密**中，对数据的加密和解密都使用同一个密钥。相较于非对称密钥加密，它的速度更快；但是由于密钥在传输过程中容易被获取，因此其安全性较低。
+
+在**非对称密钥加密**（或公开密钥加密）中，使用一对密钥进行加密和解密，分别为公开密钥和私有密钥。公开密钥所有人都可以获得，客户端使用公开密钥对数据进行加密，服务器使用私有密钥对数据进行解密。同样，服务器对响应的数据使用私有密钥加密，客户端则可以通过公开密钥进行解密。相较于对称密钥加密，只要保管好私有密钥，就能保证客户端传输的消息不被破解，因此它的安全性更高；由于算法和过程更为繁琐，因此其速度较慢。
+
+HTTPS 采用的是**混合加密**机制——在 TLS 1.3 以前，客户端首先使用服务器提供的公钥，加密一个随机值，然后将它传输给服务器。服务器使用私钥解密，获得随机值，然后使用与客户端相同的密钥生成算法，基于这个随机值和之前握手中创建的另外两个随机值，生成与客户端相同的密钥，之后客户端和服务器就可以使用这把对称密钥进行通信了。在 TLS 1.3 中，基于 DH 密钥协议，不再赘述。这样，客户端和服务器之间的通信就兼顾了对称密钥加密的高效性和非对称密钥加密的安全性。
+
+## 欢迎访问我的博客
+
+现在，浏览器知道了已经与远方的服务器建立好了安全可靠的传输通道，于是将 HTTP 请求信息打包好，传输到服务器上的 443 端口。服务器使用密钥解密获得其中的信息，发现是请求我博客的 HTTP 报文，遂转发给相应的 HTTP 服务。最终将我们所需的 HTML, CSS, JS 以及相关的静态文件发送给浏览器，浏览器再把它们渲染出来。
+
+Oh, Welcome to visit my blog！
 
 ## 参考文章
 
@@ -294,4 +398,4 @@ IARP 即逆向 ARP（Inverse ARP），在帧中继网络（广域网）中实现
 - [「36 张图详解 ARP ：网络世界没有我，你哪也别想去」](https://zhuanlan.zhihu.com/p/379015679)，2021-06-08
 - [「图解HTTP」](https://www.ituring.com.cn/book/1229)，\[日]上野宣 著，于均良 译
 - [「详解TCP三次握手以及TLS/SSL握手」](https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/)，2018-11-02
-- [「HTTPS详解二：SSL / TLS 工作原理和详细握手过程」](https://segmentfault.com/a/1190000021559557)
+- [「HTTPS详解二：SSL / TLS 工作原理和详细握手过程」](https://segmentfault.com/a/1190000021559557)，2020-01-19
