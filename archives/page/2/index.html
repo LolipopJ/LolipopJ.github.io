@@ -3,7 +3,7 @@
     <!-- title -->
 
 
-
+    
 
 <!-- keywords -->
 
@@ -12,12 +12,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Lolipop">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Lolipop">
     
-    <meta name="keywords" content="前端,全栈,frontend,full-stack">
+        <meta name="keywords" content="前端,全栈,frontend,full-stack">
     
     <meta name="description" content="">
     <meta property="og:type" content="website">
@@ -29,9 +29,119 @@
 <meta property="article:tag" content="coder, frontend, fullstack">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/static/assets/favicon.ico">
     
     <title>Lolipop&#39;s Studio</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -81,135 +191,25 @@
             transform: translate3d(0, 0, 0);
         }
     }
-
 </style>
 
-    <link rel="preload" href= "/css/style.css?v=20210204" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "/css/mobile.css?v=20210204" media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
-
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/static/assets/favicon.ico" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js?v=20210204" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    <link rel="preload" href="/css/style.css?v=202107" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=202107" as="style">
+    <link rel="stylesheet" href="/css/mobile.css?v=202107" media="(max-width: 980px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=202107" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=202107" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.cnpmjs.org">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/js/all.min.js"  data-auto-replace-svg="nest" ></script>
+    <link href="https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/js/all.min.js" data-auto-replace-svg="nest"></script>
+    <!-- algolia -->
     
-        <!-- algolia -->
         <script>
-            
             var hits = JSON.parse('{"per_page":10}')
             var labels = JSON.parse('{"input_placeholder":"搜索博客","hits_empty":"Ops，我未能提供任何搜索结果：${query}","hits_stats":"在 ${time} ms 内找到了 ${hits} 个结果"}')
 
@@ -222,8 +222,6 @@
             }
         </script>
     
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
     <!-- 谷歌统计  -->
@@ -231,47 +229,65 @@
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
     
-    
-<header class="header">
-
+        <!-- header -->
+        <header class="header header-mobile">
     <!-- top read progress line -->
     <div class="header-element">
-        
         <div class="read-progress read-progress-feature"></div>
-        
     </div>
     <!-- sidebar menu button -->
     <div class="header-element">
         
-        <div class="header-sidebar-menu header-sidebar-menu-rounded">
+            <div class="header-sidebar-menu header-sidebar-menu-rounded">
         
             
-            <i class="fas fa-bars"></i>
+                <i class="fas fa-bars"></i>
             
         </div>
     </div>
-    <!-- back to home page text -->
-    <a class="home-link header-element" href=/>Lolipop's Studio.</a>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>Lolipop's Studio.</a>
+        </span>
+    </div>
     <!-- toggle banner for post layout -->
     
 </header>
-    
-<footer class="footer-fixed">
 
+        <!-- dark mode -->
+        <script src="/scripts/dark.js"></script>
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
     <!-- back to top button -->
     <div class="footer-fixed-element">
         
-        <div class="back-top back-top-rounded">
+            <div class="back-top back-top-hidden back-top-rounded">
         
-            
+        
             <i class="fas fa-chevron-up"></i>
-            
+        
         </div>
     </div>
 </footer>
-    <div class="wrapper">
-        <div class="site-intro" style="
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
 
 
 
@@ -295,343 +311,567 @@
             <!-- 主页副标题  -->
             
         </p>
-        <!-- 文章页meta -->
+        <!-- 文章页 meta -->
         
     </div>
 </div>
-        <script>
- 
+
+            <script>
   // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
   }
-  console.log("userAgent:" + browser.versions.userAgent);
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
 
   // callback
   function fontLoaded() {
-    console.log('font loaded');
+    console.log('font loaded')
     if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
       var postIntros = document.getElementsByClassName('post-intros')[0]
       if (postIntros) {
-        postIntros.classList.add('post-fade-in');
+        postIntros.classList.add('post-fade-in')
       }
     }
   }
 
   // UC不支持跨域，所以直接显示
-  function asyncCb(){
+  function asyncCb() {
     if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
+      console.log('UCBrowser')
+      fontLoaded()
     } else {
       WebFont.load({
         custom: {
-          families: ['Oswald-Regular']
+          families: ['Oswald-Regular'],
         },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
         },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
         },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
         },
-        timeout: 5000 // Set the timeout to two seconds
-      });
+        timeout: 5000, // Set the timeout to two seconds
+      })
     }
   }
 
-  function asyncErr(){
+  function asyncErr() {
     console.warn('script load from CDN failed, will load local script')
   }
 
   // load webfont-loader async, and add callback function
   function async(u, cb, err) {
-    var d = document, t = 'script',
+    var d = document,
+      t = 'script',
       o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
   }
 
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
 
-      async(arr[0], success, currReject)
+    async(arr[0], success, currReject)
   }
 
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+        
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main index-page">
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/28/protobuf-learning/" >
+        
+        
+        
             
-                <span>Protobuf 学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/04/21/linux-docker-install-grpc/">
+                
+                <span class="abstract-title-text">Linux 系统编译安装基于 C++ 的 gRPC</span>
+            </a>
+            <div class="abstract-content">
+                本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。
+如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。
+安装基本依赖确保机器上包括这些基本依赖：autoconf, libtool, pkg-config 与 C++ 编译环境。
+12345678# 检查是否有 autoconfwhich autoconf# 如果没有，则安装# CentOSyum install autoconf# Ubuntuapt-get install autoconf
+
+gRPC 的编译需要 gcc 版本在 4.9 及以上...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/22</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="C++">C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/04/19/linux-docker-gcc-update/">
+                
+                <span class="abstract-title-text">Linux 容器更新或降级 GCC 版本</span>
+            </a>
+            <div class="abstract-content">
+                如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
+12345yum -y install gccyum -y install gcc-c++# 或是一键安装开发工具软件包，包括 gcc, g++ 等yum groupinstall &quot;Development Tools&quot;
+
+本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
+NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="GCC">GCC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/28/protobuf-learning/">
+                
+                <span class="abstract-title-text">Protobuf 学习笔记</span>
+            </a>
+            <div class="abstract-content">
+                实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。
 什么是 ProtobufProtobuf 是 Google 公司研发的一种用于序列化结构数据的机制，全称为 Protocol Buffers，具有语言无关、平台无关以及可拓展的特性。
 我们常常把 Protobuf 与 XML (Extensible Markup Language) 相比较，它们二者都被设计来传输和存储结构化数据。相比于 XML，Protobuf 有如下优势与缺点：
 
 Protobuf 占用的空间更小。Protobuf 采用二进制格式存储数据，适合网络传输和高性能场景；而 XML 采...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/29</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/29</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="学习琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                学习琐事
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "gRPC">gRPC</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Protobuf">Protobuf</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Protobuf">Protobuf</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/16/amap-import-vue/" >
-            
-                <span>在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
-        </a>
-        <div class="abstract-content">
-            迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/16/amap-import-vue/">
+                
+                <span class="abstract-title-text">在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
+            </a>
+            <div class="abstract-content">
+                迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
 高德地图与腾讯地图定位功能区别高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。
 这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。
 此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。
 引入高德地图 JS API 库这里我们通过顺序同步加载的方式引入第三方库。
 编辑 nuxt.config.js 中 head 项以引入 JS API 库。
 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Promise">Promise</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt.js">Nuxt.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Promise">Promise</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/15/tencent-map-api-get-current-location/" >
-            
-                <span>使用腾讯位置服务进行 Web 前端定位</span>
-        </a>
-        <div class="abstract-content">
-            正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/15/tencent-map-api-get-current-location/">
+                
+                <span class="abstract-title-text">使用腾讯位置服务进行 Web 前端定位</span>
+            </a>
+            <div class="abstract-content">
+                正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
 终于在不起眼的地方找到了前端定位组件，适用于浏览器进行定位操作。
 本文基于 Nuxt.js 实现前端定位功能。
 它能做什么组件旨在优化纯 HTML5 Geolocation 定位能力弱，定位成功率不高的问题，提供简单、易用的接口帮助业务层获取用户当前的位置信息（需用户授权），以降低开发成本，提升定位精准度。
 除了常规的经纬度坐标以外，它返...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/16</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/16</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Vue-2">Vue-2</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt.js">Nuxt.js</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/09/xxx-is-not-a-symbolic-link/" >
-            
-                <span>提示 *** is not a symbolic link 解决方案</span>
-        </a>
-        <div class="abstract-content">
-            问题描述在 CentOS 环境下执行 yum update 和 ldconfig 命令时都出现提示警告，节选内容如下所示：
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/09/xxx-is-not-a-symbolic-link/">
+                
+                <span class="abstract-title-text">提示 *** is not a symbolic link 解决方案</span>
+            </a>
+            <div class="abstract-content">
+                问题描述在 CentOS 环境下执行 yum update 和 ldconfig 命令时都出现提示警告，节选内容如下所示：
 123ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic linkldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic linkldconfig: /OSM/lib/libupb.so.9 is not a symbolic link
 
 错误分析进入到对应目录下查找可以发现，这里的 librdmacm.so.1 与 librdmacm.so.1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ldconfig">ldconfig</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/02/nodejs-eslint-prettier/" >
-            
-                <span>Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
-        </a>
-        <div class="abstract-content">
-            哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/02/nodejs-eslint-prettier/">
+                
+                <span class="abstract-title-text">Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
+            </a>
+            <div class="abstract-content">
+                哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
 本文基于 Nuxt.js + VSCode 阐述如何配置并实现 ESLint + Prettier 检查并规范代码质量与格式。
 ESLint 与 PrettierESLint 是一个开源的 Jav...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/03</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/03</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Nuxt.js">Nuxt.js</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt.js">Nuxt.js</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ESLint">ESLint</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Node.js">Node.js</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Prettier">Prettier</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="ESLint">ESLint</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "VSCode">VSCode</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Prettier">Prettier</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="VSCode">VSCode</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/22/write-md-parser/" >
-            
-                <span>Webpack 读取本地 Markdown 文件并进行预处理</span>
-        </a>
-        <div class="abstract-content">
-            在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/02/22/write-md-parser/">
+                
+                <span class="abstract-title-text">Webpack 读取本地 Markdown 文件并进行预处理</span>
+            </a>
+            <div class="abstract-content">
+                在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
 这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！
 自动导入本地的 .md 文件当然，首先要读取某个目录下已经撰写好的 .md 文件，才能对内容进行预处理。
 但如果每撰写好一个新的新闻或博客文件，就得在代码中 require 出来，太过于麻烦且不现实，因...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/23</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/23</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Markdown">Markdown</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Markdown">Markdown</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/20/tg-mtproto-one-click/" >
-            
-                <span>一键安装并配置 MTProto Proxy 代理 Telegram</span>
-        </a>
-        <div class="abstract-content">
-            Telegram 和 MTProto 是什么Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/02/20/tg-mtproto-one-click/">
+                
+                <span class="abstract-title-text">一键安装并配置 MTProto Proxy 代理 Telegram</span>
+            </a>
+            <div class="abstract-content">
+                Telegram 和 MTProto 是什么Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
 
 私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。
 安全性。端对端加密，不受审查。
@@ -640,141 +880,105 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
 当然，在被屏蔽的地域需要翻墙使用。
 MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务器的 Api 接口。
 我们要做什么我们想要搭建...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Telegram">Telegram</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "MTProto">MTProto</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MTProto">MTProto</a>
     
 </div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/18/hexo-github-actions-ci-cd/" >
-            
-                <span>使用 Github Actions 持续集成与部署 Hexo 博客</span>
-        </a>
-        <div class="abstract-content">
-            这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
+                
+                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
+            </a>
+            <div class="abstract-content">
+                这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
 
 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。如果你需要某个 action，不必自...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
             </div>
-            <!-- tags  -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
             
-            <div class= abstract-tags >
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Github-Actions">Github-Actions</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-Actions">Github-Actions</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/12/28/ISO-IEC-IEEE-42010-des/" >
-            
-                <span>IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</span>
-        </a>
-        <div class="abstract-content">
-            关于本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
-本文绝大多数内容通过 DeepL 翻译 ISO/IEC/IEEE 42010 原文得来。
-本文系软件体系架构与设计模式课程中一项作业。
-访问我的 CSDN 博客以查看此文章。
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/12/29</span>
+                
             </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "软件体系架构设计">软件体系架构设计</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/09/27/pytorch-install-windows-10/" >
-            
-                <span>PyTorch 在 Windows 10 系统下的环境配置及安装</span>
-        </a>
-        <div class="abstract-content">
-            关于PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
-本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
-访问我的 CSDN 博客以查看此文章。
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "PyTorch">PyTorch</a>
-    
-</div>
-            
-        </div>
-    </article>
+        </article>
+        <div class="index-post-divider"></div>
     
     <!-- paginator  -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &gt;</a>
-    </nav>
+        <nav class="page-nav">
+            <a class="extend prev" rel="prev" href="/archives/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &gt;</a>
+        </nav>
     
 </main>
-            <!-- profile -->
-            
-        </div>
-        <footer class="footer footer-unloaded">
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
     <!-- social  -->
     
-    <div class="social">
-        
+        <div class="social">
+            
     
         
             
@@ -784,7 +988,7 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
         
             
-                <a href="https://github.com/LolipopJ" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/LolipopJ" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -829,7 +1033,8 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
         
     
 
-    </div>
+
+        </div>
     
     <!-- powered by Hexo  -->
     <div class="copyright">
@@ -837,316 +1042,340 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     </div>
     <!-- website approve for Chinese user -->
     
-    <div class="website-approve">
-        
-        <span id="icp-approve" class="icp-approve">
-            <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备 2021015698号</a>
-        </span>
-        
-        
-        
-        <img class="beian-img" src="/assets/beian.png" />
-        <span id="beian-approve" class="beian-approve">
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010802001109" target="_blank">京公网安备 51010802001109号</a>
-        </span>
-        
-    </div>
+        <div class="website-approve">
+            
+                <span id="icp-approve" class="icp-approve">
+                    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备 2021015698号</a>
+                </span>
+            
+            
+                
+                <img class="beian-img" src="/assets/beian.png" />
+                <span id="beian-approve" class="beian-approve">
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010802001109" target="_blank">京公网安备 51010802001109号</a>
+                </span>
+            
+        </div>
     
     <!-- 不蒜子  -->
     
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
 </footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="sidebar sidebar-hide">
+
+        </div>
+        <!-- toc -->
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
         <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
         <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
         <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
     </ul>
     <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     
     
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 24
         </div>
         <!-- search  -->
         
-            <div class="site-search popup-trigger">
+            <div class="site-search site-search-loading popup-trigger">
                 <span class="iconfont-archer search-icon">&#xe627;</span>
             </div>
         
@@ -1154,305 +1383,434 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
     <div class="post-archive">
     
-    
-    
-    
-    <div class="archive-year"> 2021 </div>
-    <ul class="year-list">
-    
-    
+        
+            
+            
+            <div class="archive-year"> 2021 </div>
+            <ul class="year-list">
+            
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/2021/07/09/switch-travis-to-github-workflow/" >更换持续集成工具，从 Travis 到 Github Actions</a>
+            <span class="archive-post-date">07/10</span>
+            <a class="archive-post-title" href="/2021/07/09/switch-travis-to-github-workflow/">更换持续集成工具，从 Travis 到 Github Actions</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2021/06/25/web-font-for-hexo-theme-archer/" >为 Archer 主题更换字体</a>
+            <span class="archive-post-date">07/08</span>
+            <a class="archive-post-title" href="/2021/07/07/browser-behind-visit-url/">在浏览器中输入 URL 到显示网页，背后发生了什么</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">06/25</span><a class="archive-post-title" href= "/2021/06/24/website-deployment-docker-nginx/" >使用基于 Docker 的 Nginx 部署静态网页项目</a>
+            <span class="archive-post-date">06/26</span>
+            <a class="archive-post-title" href="/2021/06/25/web-font-for-hexo-theme-archer/">为 Archer 主题更换字体</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href= "/2021/05/19/js-use-class/" >漫谈 JavsScript 类（Class）的使用</a>
+            <span class="archive-post-date">06/25</span>
+            <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/17/js-closure/" >漫谈 JavsScript 闭包</a>
+            <span class="archive-post-date">06/04</span>
+            <a class="archive-post-title" href="/2021/06/03/euler-install-mysql/">在 Euler 系统上离线安装 MySQL 5.7</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2021/05/10/js-hoisting/" >JavsScript 变量提升和函数提升</a>
+            <span class="archive-post-date">05/20</span>
+            <a class="archive-post-title" href="/2021/05/19/js-use-class/">漫谈 JavsScript 类（Class）的使用</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2021/05/07/js-debounce-throttle/" >函数防抖和节流，以及在 Vue 中的运用</a>
+            <span class="archive-post-date">05/18</span>
+            <a class="archive-post-title" href="/2021/05/17/js-closure/">漫谈 JavsScript 闭包</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/25/windows-install-grpc/" >Windows 系统编译安装基于 C++ 的 gRPC</a>
+            <span class="archive-post-date">05/11</span>
+            <a class="archive-post-title" href="/2021/05/10/js-hoisting/">JavsScript 变量提升和函数提升</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/2021/04/21/linux-docker-install-grpc/" >Linux 系统编译安装基于 C++ 的 gRPC</a>
+            <span class="archive-post-date">05/08</span>
+            <a class="archive-post-title" href="/2021/05/07/js-debounce-throttle/">函数防抖和节流，以及在 Vue 中的运用</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/19/linux-docker-gcc-update/" >Linux 容器更新或降级 GCC 版本</a>
+            <span class="archive-post-date">04/26</span>
+            <a class="archive-post-title" href="/2021/04/25/windows-install-grpc/">Windows 系统编译安装基于 C++ 的 gRPC</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2021/03/28/protobuf-learning/" >Protobuf 学习笔记</a>
+            <span class="archive-post-date">04/22</span>
+            <a class="archive-post-title" href="/2021/04/21/linux-docker-install-grpc/">Linux 系统编译安装基于 C++ 的 gRPC</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2021/03/16/amap-import-vue/" >在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</a>
+            <span class="archive-post-date">04/20</span>
+            <a class="archive-post-title" href="/2021/04/19/linux-docker-gcc-update/">Linux 容器更新或降级 GCC 版本</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/16</span><a class="archive-post-title" href= "/2021/03/15/tencent-map-api-get-current-location/" >使用腾讯位置服务进行 Web 前端定位</a>
+            <span class="archive-post-date">03/29</span>
+            <a class="archive-post-title" href="/2021/03/28/protobuf-learning/">Protobuf 学习笔记</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/10</span><a class="archive-post-title" href= "/2021/03/09/xxx-is-not-a-symbolic-link/" >提示 *** is not a symbolic link 解决方案</a>
+            <span class="archive-post-date">03/17</span>
+            <a class="archive-post-title" href="/2021/03/16/amap-import-vue/">在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2021/03/02/nodejs-eslint-prettier/" >Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
+            <span class="archive-post-date">03/16</span>
+            <a class="archive-post-title" href="/2021/03/15/tencent-map-api-get-current-location/">使用腾讯位置服务进行 Web 前端定位</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2021/02/22/write-md-parser/" >Webpack 读取本地 Markdown 文件并进行预处理</a>
+            <span class="archive-post-date">03/10</span>
+            <a class="archive-post-title" href="/2021/03/09/xxx-is-not-a-symbolic-link/">提示 *** is not a symbolic link 解决方案</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/20/tg-mtproto-one-click/" >一键安装并配置 MTProto Proxy 代理 Telegram</a>
+            <span class="archive-post-date">03/03</span>
+            <a class="archive-post-title" href="/2021/03/02/nodejs-eslint-prettier/">Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "/2021/02/18/hexo-github-actions-ci-cd/" >使用 Github Actions 持续集成与部署 Hexo 博客</a>
+            <span class="archive-post-date">02/23</span>
+            <a class="archive-post-title" href="/2021/02/22/write-md-parser/">Webpack 读取本地 Markdown 文件并进行预处理</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2020 </div>
-    <ul class="year-list">
-    
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">12/29</span><a class="archive-post-title" href= "/2020/12/28/ISO-IEC-IEEE-42010-des/" >IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</a>
+            <span class="archive-post-date">02/21</span>
+            <a class="archive-post-title" href="/2021/02/20/tg-mtproto-one-click/">一键安装并配置 MTProto Proxy 代理 Telegram</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">09/28</span><a class="archive-post-title" href= "/2020/09/27/pytorch-install-windows-10/" >PyTorch 在 Windows 10 系统下的环境配置及安装</a>
+            <span class="archive-post-date">02/19</span>
+            <a class="archive-post-title" href="/2021/02/18/hexo-github-actions-ci-cd/">使用 Github Actions 持续集成与部署 Hexo 博客</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span><a class="archive-post-title" href= "/2019/12/26/archer-theme-update-log/" >基于 Archer 主题的博客开发</a>
+            <span class="archive-post-date">12/29</span>
+            <a class="archive-post-title" href="/2020/12/28/ISO-IEC-IEEE-42010-des/">IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</a>
         </li>
     
-    
+        
         <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span><a class="archive-post-title" href= "/2019/12/26/hello-hexo-world/" >Hello Hexo World</a>
+            <span class="archive-post-date">09/28</span>
+            <a class="archive-post-title" href="/2020/09/27/pytorch-install-windows-10/">PyTorch 在 Windows 10 系统下的环境配置及安装</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2019 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/27</span>
+            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/27</span>
+            <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
     </div>
-  </div>
+</div>
+
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="开发日志"><span class="iconfont-archer">&#xe606;</span>开发日志</span>
-    
-        <span class="sidebar-tag-name" data-tags="Vue-2"><span class="iconfont-archer">&#xe606;</span>Vue-2</span>
-    
-        <span class="sidebar-tag-name" data-tags="软件体系架构设计"><span class="iconfont-archer">&#xe606;</span>软件体系架构设计</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
-    
-        <span class="sidebar-tag-name" data-tags="Nuxt.js"><span class="iconfont-archer">&#xe606;</span>Nuxt.js</span>
-    
-        <span class="sidebar-tag-name" data-tags="Promise"><span class="iconfont-archer">&#xe606;</span>Promise</span>
-    
-        <span class="sidebar-tag-name" data-tags="博客开发"><span class="iconfont-archer">&#xe606;</span>博客开发</span>
-    
-        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="Hexo-Theme-Archer"><span class="iconfont-archer">&#xe606;</span>Hexo-Theme-Archer</span>
-    
-        <span class="sidebar-tag-name" data-tags="Github-Actions"><span class="iconfont-archer">&#xe606;</span>Github-Actions</span>
-    
-        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
-    
-        <span class="sidebar-tag-name" data-tags="GCC"><span class="iconfont-archer">&#xe606;</span>GCC</span>
-    
-        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
-    
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
-        <span class="sidebar-tag-name" data-tags="gRPC"><span class="iconfont-archer">&#xe606;</span>gRPC</span>
-    
-        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
-    
-        <span class="sidebar-tag-name" data-tags="ESLint"><span class="iconfont-archer">&#xe606;</span>ESLint</span>
-    
-        <span class="sidebar-tag-name" data-tags="Prettier"><span class="iconfont-archer">&#xe606;</span>Prettier</span>
-    
-        <span class="sidebar-tag-name" data-tags="VSCode"><span class="iconfont-archer">&#xe606;</span>VSCode</span>
-    
-        <span class="sidebar-tag-name" data-tags="Protobuf"><span class="iconfont-archer">&#xe606;</span>Protobuf</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="PyTorch"><span class="iconfont-archer">&#xe606;</span>PyTorch</span>
-    
-        <span class="sidebar-tag-name" data-tags="Travis"><span class="iconfont-archer">&#xe606;</span>Travis</span>
-    
-        <span class="sidebar-tag-name" data-tags="Telegram"><span class="iconfont-archer">&#xe606;</span>Telegram</span>
-    
-        <span class="sidebar-tag-name" data-tags="MTProto"><span class="iconfont-archer">&#xe606;</span>MTProto</span>
-    
-        <span class="sidebar-tag-name" data-tags="Nginx"><span class="iconfont-archer">&#xe606;</span>Nginx</span>
-    
-        <span class="sidebar-tag-name" data-tags="Windows"><span class="iconfont-archer">&#xe606;</span>Windows</span>
-    
-        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
-    
-        <span class="sidebar-tag-name" data-tags="ldconfig"><span class="iconfont-archer">&#xe606;</span>ldconfig</span>
-    
-        <span class="sidebar-tag-name" data-tags="ES6"><span class="iconfont-archer">&#xe606;</span>ES6</span>
-    
+        
+            <span class="sidebar-tag-name" data-tags="开发日志">
+                <span class="iconfont-archer">&#xe606;</span>
+                开发日志
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue-2">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue-2
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="软件体系架构设计">
+                <span class="iconfont-archer">&#xe606;</span>
+                软件体系架构设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Nuxt.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Nuxt.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Promise">
+                <span class="iconfont-archer">&#xe606;</span>
+                Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="博客开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MySQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                MySQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Github-Actions">
+                <span class="iconfont-archer">&#xe606;</span>
+                Github-Actions
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="GCC">
+                <span class="iconfont-archer">&#xe606;</span>
+                GCC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="C++">
+                <span class="iconfont-archer">&#xe606;</span>
+                C++
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="gRPC">
+                <span class="iconfont-archer">&#xe606;</span>
+                gRPC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="ESLint">
+                <span class="iconfont-archer">&#xe606;</span>
+                ESLint
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Prettier">
+                <span class="iconfont-archer">&#xe606;</span>
+                Prettier
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="VSCode">
+                <span class="iconfont-archer">&#xe606;</span>
+                VSCode
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Protobuf">
+                <span class="iconfont-archer">&#xe606;</span>
+                Protobuf
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="机器学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                机器学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PyTorch">
+                <span class="iconfont-archer">&#xe606;</span>
+                PyTorch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Travis">
+                <span class="iconfont-archer">&#xe606;</span>
+                Travis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Telegram">
+                <span class="iconfont-archer">&#xe606;</span>
+                Telegram
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MTProto">
+                <span class="iconfont-archer">&#xe606;</span>
+                MTProto
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo-Theme-Archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo-Theme-Archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Nginx">
+                <span class="iconfont-archer">&#xe606;</span>
+                Nginx
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Markdown">
+                <span class="iconfont-archer">&#xe606;</span>
+                Markdown
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
+            </span>
+        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
     </div> 
     <div class="sidebar-tags-list"></div>
 </div>
+
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事"><span class="iconfont-archer">&#xe60a;</span>学习琐事</span>
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
+        </span>
     
-        <span class="sidebar-category-name" data-categories="前端开发"><span class="iconfont-archer">&#xe60a;</span>前端开发</span>
+        <span class="sidebar-category-name" data-categories="前端开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端开发
+        </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事"><span class="iconfont-archer">&#xe60a;</span>技术琐事</span>
+        <span class="sidebar-category-name" data-categories="后端开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            后端开发
+        </span>
     
-        <span class="sidebar-category-name" data-categories="后端开发"><span class="iconfont-archer">&#xe60a;</span>后端开发</span>
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
+        </span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
     <div class="sidebar-categories-list"></div>
 </div>
+
     </div>
-</div> 
-    <script>
+</div>
+
+        <!-- site-meta -->
+        <script>
     var siteMeta = {
         root: "/",
         author: "Lolipop"
     }
 </script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-        <div class="site-search">
-  <div class="algolia-popup popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
 
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
+        <!-- main func -->
+        <script src="/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+            <div class="site-search site-search-loading">
+    <div class="algolia-popup popup">
+        <div class="algolia-search">
+            <div class="algolia-search-input-icon">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="algolia-search-input" id="algolia-search-input"></div>
+            <div class="popup-btn-close">
+                <i class="iconfont-archer">&#xe609;</i>
+            </div>
+        </div>
 
-    <span class="popup-btn-close">
-      <i class="iconfont-archer">&#xe609;</i>
-    </span>
-  </div>
+        <div class="algolia-results">
+            <div id="algolia-stats" class="algolia-stats"></div>
+            <div id="algolia-hits"></div>
+            <div id="algolia-pagination" class="algolia-pagination"></div>
+        </div>
+    </div>
 </div>
 
-
-        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.24.1/dist/instantsearch.production.min.js" crossorigin="anonymous"></script>
-        <script src="/scripts/search.js" defer></script>
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
+            <script src="/scripts/search.js" defer></script>
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+        <!-- mermaid -->
+        
     </body>
 </html>
-
-
