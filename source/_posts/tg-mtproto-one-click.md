@@ -2,6 +2,7 @@
 title: 一键安装并配置 MTProto Proxy 代理 Telegram
 date: 2021/2/21
 updated: 2021/2/23
+timeliness: true
 categories:
 - 技术琐事
 tags:

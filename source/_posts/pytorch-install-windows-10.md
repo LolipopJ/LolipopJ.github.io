@@ -2,6 +2,7 @@
 title: PyTorch 在 Windows 10 系统下的环境配置及安装
 date: 2020/9/28
 updated: 2021/2/19
+timeliness: true
 categories:
 - 技术琐事
 tags:

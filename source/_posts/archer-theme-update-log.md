@@ -1,22 +1,28 @@
 ---
 title: 基于 Archer 主题的博客开发
 date: 2019/12/27
-updated: 2021/6/26
+updated: 2021/7/28
 categories:
 - 前端开发
 tags:
 - 开发日志
 - 博客开发
 - Hexo
-- Hexo-Theme-Archer
+- hexo-theme-archer
 ---
 本博客使用的主题 [Archer](https://github.com/fi3ework/hexo-theme-archer) 有足够稳定以支持长期运行。不过正好学习了一些前端开发技巧，不如在使用过程中对本博客的页面做一些小小的开发及优化。
 
 ## 更新日志
 
+### 2021/07/28
+
+把 [v1.6.3 版本](https://github.com/fi3ework/hexo-theme-archer/pull/305)合并到了主分支，主要添加了 Dark 模式支持。
+
+添加了一些令人舒适的动效，另外修复了很多编码和依赖相关的问题。
+
 ### 2021/06/26
 
-有幸成为了 Hexo-Theme-Archer 的维护者的一员，最近也把自己开发的 [v1.6.2 版本](https://github.com/fi3ework/hexo-theme-archer/pull/299)合并到了主题的主分支上去。
+有幸成为了 hexo-theme-archer 的维护者的一员，最近也把自己开发的 [v1.6.2 版本](https://github.com/fi3ework/hexo-theme-archer/pull/299)合并到了主题的主分支上去。
 
 - 修复了代码格式化脚本。现在使用 `npm run prettier` 能够正确地格式化项目代码。
 - 修复了一些已知问题。

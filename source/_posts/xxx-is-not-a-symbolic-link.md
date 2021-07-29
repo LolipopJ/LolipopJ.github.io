@@ -3,10 +3,9 @@ title: 提示 *** is not a symbolic link 解决方案
 date: 2021/3/10
 updated: 2021/3/10
 categories:
-- 学习琐事
+- 技术琐事
 tags:
 - Linux
-- ldconfig
 ---
 ## 问题描述
 
