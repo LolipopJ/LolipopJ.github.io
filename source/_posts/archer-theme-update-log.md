@@ -7,6 +7,7 @@ categories:
 tags:
 - 开发日志
 - 博客开发
+- Node
 - Hexo
 - hexo-theme-archer
 ---

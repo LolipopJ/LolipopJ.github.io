@@ -7,6 +7,8 @@ categories:
 tags:
 - Markdown
 - JavaScript
+- Node
+- Webpack
 ---
 在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
 

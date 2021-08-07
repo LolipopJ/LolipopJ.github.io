@@ -5,6 +5,7 @@ updated: 2021/8/7
 categories:
 - 技术琐事
 tags:
+- Node
 - Nuxt
 - ESLint
 - Prettier
@@ -57,7 +58,7 @@ yarn add --dev eslint prettier
 - [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)：ESLint 插件，包括了 ESLint 需要检查的一些额外代码格式规则。在幕后，它使用到了 Prettier，相当于将 Prettier 作为 ESLint 的一部分运行。
 - [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)：ESLint 配置，可以关闭所有不必要或者可能与 Prettier 产生冲突的代码格式规则。
 
-这两个库相辅相成，eslint-config-prettier 可以关闭 ESLint 中与 Prettier 相冲突的代码格式规则，这样我们就将代码格式化的问题全都交给我们的 Prettier 处理。
+二者相辅相成，eslint-config-prettier 可以关闭 ESLint 中与 Prettier 相冲突的代码格式规则，这样我们就将代码格式化的问题全都交给我们的 Prettier 处理。
 
 ```bash
 yarn add --dev eslint-plugin-prettier eslint-config-prettier
@@ -93,39 +94,38 @@ module.exports = {
 
 ## 现在就格式化代码吧
 
-修改 `package.json` 文件，添加脚本如下：
+修改 `package.json` 文件，添加脚本：
 
 ```json
 // package.json
 "scripts": {
   "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
-  "format": "yarn lint --fix",
-  "prettier": "prettier --ignore-path .gitignore --write **/* --ignore-unknown"
+  "lint:fix": "yarn lint --fix",
+  "lint:prettier": "prettier --ignore-path .gitignore --write **/* --ignore-unknown"
 },
 ```
 
-根据之前的配置，可以在项目根目录下执行 bash 脚本：
+这里笔者使用了比较偷懒的方法，调用了 Prettier 一键修复**所有可修复**的代码风格问题，而不限于我们指定的 `.ts` 文件等。既然在前面我们已经配置好了 ESLint 和 Prettier 之间的关系，所以在这里单独通过 Prettier 修复后，VSCode 中并不会显示可恶的红色波浪线。
+
+根据上面的配置，可以在项目根目录下执行如下脚本：
 
 ```bash
 # 只检查 .ts, .js, .vue 文件的代码质量问题
 yarn lint
 # 检查并修复 .ts, .js, .vue 文件的代码质量问题
-yarn format
-# 修复所有已知格式的代码风格问题
-yarn prettier
+yarn lint:fix
+# 修复所有可修复的代码风格问题
+yarn lint:prettier
 ```
 
-此外，对于 VSCode 还可以配置：
+此外，VSCode 还可以设置**保存时自动修复代码问题**，如下所示。这样执行 `Ctrl + S` 保存时会自动格式化代码文件。
 
-- 设置**格式化文档的方式**默认为 `Prettier ESLint`。这样使用快捷键 `Shift + Alt + F` 可以自动格式化文档。
-- 设置**保存时自动格式化文档**，如下所示。这样执行 `Ctrl + S` 保存时会自动格式化文档。
-
-  ```json
-  // settings.json
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  ```
+```json
+// settings.json
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+},
+```
 
 ## 参考资料
 

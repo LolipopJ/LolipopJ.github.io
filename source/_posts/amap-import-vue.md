@@ -7,6 +7,7 @@ categories:
 - 前端开发
 tags:
 - JavaScript
+- Node
 - Vue-2
 - Nuxt
 - Promise
