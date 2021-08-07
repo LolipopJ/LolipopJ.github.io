@@ -6,7 +6,7 @@ categories:
 - 后端开发
 tags:
 - Windows
-- C++
+- CPP
 - gRPC
 ---
 本博客基于 CMake 实现编译 `gRPC 1.28.1` 版本。

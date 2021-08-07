@@ -1,14 +1,13 @@
 ---
-title: Node.js 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式
+title: Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式
 date: 2021/3/3
-updated: 2021/3/16
+updated: 2021/8/7
 categories:
 - 技术琐事
 tags:
-- Node.js
+- Nuxt
 - ESLint
 - Prettier
-- Nuxt
 - VSCode
 ---
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
@@ -36,80 +35,84 @@ ESLint 认为代码风格并没有那么重要，因此并未完全解决代码�
 
 ## 安装依赖和编译器插件
 
+首先，自然是安装 ESLint 和 Prettier 作为项目依赖。
+
 ```bash
-yarn add --dev eslint prettier prettier-eslint prettier-eslint-cli
+yarn add --dev eslint prettier
 ```
 
 在 VSCode 扩展商店查找并安装：
 
 - ESLint
 - Prettier
-- Prettier ESLint
 
-### 其它的相关依赖
+在过去，我们可能会使用 `prettier-eslint` 作为项目依赖，通过它依次执行 `prettier` 然后是 `eslint --fix`，实现修复代码格式和质量问题。但是：
 
-#### eslint-config-prettier
+> It's the recommended practice to let Prettier handle formatting and ESLint for non-formatting issues, `prettier-eslint` is not in the same direction as that practice, hence `prettier-eslint` is not recommended anymore. You can use `eslint-plugin-prettier` and `eslint-config-prettier` together.
 
-[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) 可以关闭所有不必要或者可能与 Prettier 产生冲突的规则
+最佳实践是让 Prettier 处理代码格式问题，让 ESLint 处理代码质量问题。
+
+这可以通过以下两个库实现：
+
+- [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)：ESLint 插件，包括了 ESLint 需要检查的一些额外代码格式规则。在幕后，它使用到了 Prettier，相当于将 Prettier 作为 ESLint 的一部分运行。
+- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)：ESLint 配置，可以关闭所有不必要或者可能与 Prettier 产生冲突的代码格式规则。
+
+这两个库相辅相成，eslint-config-prettier 可以关闭 ESLint 中与 Prettier 相冲突的代码格式规则，这样我们就将代码格式化的问题全都交给我们的 Prettier 处理。
 
 ```bash
-yarn add --dev eslint-config-prettier
+yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```
 
-只需要将它放在 "extends" 项的最后即可；当然，位置取决于您的具体项目格式化需求。
+修改 `.eslintrc.js` 中配置，将 `plugin:prettier/recommended` 和 `prettier` 放到拓展的最后两项，如下所示：
 
 ```js
 // .eslintrc.js
 module.exports = {
   "extends": [
-    "您使用的其它拓展",
+    "您使用的其它 ESLint 拓展",
+    "plugin:prettier/recommended",
     "prettier"
   ]
 }
 ```
 
-## 配置规则与脚本
+## 配置 Prettier
 
-修改目录下的 `.eslintrc.js` 文件如下所示：
+参考 Prettier 的官方[配置文档](https://prettier.io/docs/en/options.html)，自由地配置项目代码的风格吧！
 
-```js
-// .eslintrc.js
-module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true,
-  },
-  extends: [
-    '@nuxtjs/eslint-config-typescript',
-    'prettier',
-    'plugin:prettier/recommended',
-    'plugin:nuxt/recommended',
-  ],
-  plugins: ['prettier'],
-  rules: {},
+只需要在项目目录创建 `.prettierrc.json` 文件，填写配置即可。例如：
+
+```json
+{
+  "semi": false, // 句末是否添加分号
+  "singleQuote": true // 是否使用单引号（而非双引号）
 }
 ```
 
-添加 `yarn` 脚本如下所示：
+由于 Prettier 是以插件的形式添加到 ESLint 中，因此您需要在修改后重新启动 VSCode 工作区。
+
+## 现在就格式化代码吧
+
+修改 `package.json` 文件，添加脚本如下：
 
 ```json
 // package.json
 "scripts": {
-  "lint": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
-  "format": "prettier-eslint --write %INIT_CWD%/**/*.{js,ts,vue}"
+  "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
+  "format": "yarn lint --fix",
+  "prettier": "prettier --ignore-path .gitignore --write **/* --ignore-unknown"
 },
 ```
-
-## 现在就格式化代码吧
 
 根据之前的配置，可以在项目根目录下执行 bash 脚本：
 
 ```bash
-# 只修复代码质量问题
+# 只检查 .ts, .js, .vue 文件的代码质量问题
 yarn lint
-# 修复代码质量问题和代码风格
+# 检查并修复 .ts, .js, .vue 文件的代码质量问题
 yarn format
+# 修复所有已知格式的代码风格问题
+yarn prettier
 ```
 
 此外，对于 VSCode 还可以配置：
@@ -126,6 +129,7 @@ yarn format
 
 ## 参考资料
 
-- [ESLint+Prettier代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie维 - 2019.06.04
-- [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300) - 乃乎 - 2019.08.31
+- [What's the difference between prettier-eslint, eslint-plugin-prettier and eslint-config-prettier?](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) - stackoverflow
 - [Error: 'basePath' should be an absolute path](https://github.com/prettier/prettier-eslint-cli/issues/208#issuecomment-673631308) - mathiaswillburger - 2020.08.14
+- [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300) - 乃乎 - 2019.08.31
+- [ESLint+Prettier代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie维 - 2019.06.04

@@ -6,7 +6,7 @@ categories:
 - 前端开发
 tags:
 - Hexo
-- Hexo-Theme-Archer
+- hexo-theme-archer
 ---
 看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 [Hexo-Theme-Archer](https://github.com/fi3ework/hexo-theme-archer) 展示如何更换博客的中文字体。
 
