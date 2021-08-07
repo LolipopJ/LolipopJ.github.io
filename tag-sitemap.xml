@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://lolipopj.github.io/tags/VSCode/</loc>
+        <lastmod>2021-08-06T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/Prettier/</loc>
+        <lastmod>2021-08-06T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/ESLint/</loc>
+        <lastmod>2021-08-06T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/Nuxt/</loc>
+        <lastmod>2021-08-06T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://lolipopj.github.io/tags/MySQL/</loc>
         <lastmod>2021-07-28T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -66,13 +94,6 @@
     </url>
 
     <url>
-        <loc>https://lolipopj.github.io/tags/Hexo-Theme-Archer/</loc>
-        <lastmod>2021-07-16T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://lolipopj.github.io/tags/Travis/</loc>
         <lastmod>2021-07-13T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -129,15 +150,8 @@
     </url>
 
     <url>
-        <loc>https://lolipopj.github.io/tags/C/</loc>
+        <loc>https://lolipopj.github.io/tags/CPP/</loc>
         <lastmod>2021-05-10T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/Nuxt/</loc>
-        <lastmod>2021-05-07T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -173,34 +187,6 @@
     <url>
         <loc>https://lolipopj.github.io/tags/Promise/</loc>
         <lastmod>2021-03-17T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/VSCode/</loc>
-        <lastmod>2021-03-15T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/Prettier/</loc>
-        <lastmod>2021-03-15T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/ESLint/</loc>
-        <lastmod>2021-03-15T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/Node-js/</loc>
-        <lastmod>2021-03-15T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
