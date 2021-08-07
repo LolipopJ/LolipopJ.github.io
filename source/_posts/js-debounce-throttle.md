@@ -7,7 +7,7 @@ categories:
 tags:
 - JavaScript
 - Vue-2
-- Nuxt.js
+- Nuxt
 ---
 在前端性能优化中存在一个老生常谈的问题：如何优化**高频率执行**的 JS 代码？例如：
 

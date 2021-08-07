@@ -107,6 +107,13 @@ deploy:
   repo: https://github.com/LolipopJ/LolipopJ.github.io
   branch: master
 
+# Sitemap
+## Docs: https://github.com/ludoviclefevre/hexo-generator-seo-friendly-sitemap
+sitemap:
+  path: sitemap.xml
+  tag: true
+  category: false
+
 # Archer主题侧边栏支持
 jsonContent:
   meta: true

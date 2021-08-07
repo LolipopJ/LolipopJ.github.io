@@ -41,10 +41,11 @@ about:
 SEO_title: Lolipop's Studio
 # keywords for site (good for SEO)
 SEO_keywords:
-  - 前端
-  - 全栈
+  - Lolipop
   - frontend
   - full-stack
+  - 前端
+  - 全栈
 # main title shown in header image
 main_title: Lolipop's Studio.
 # subtitle

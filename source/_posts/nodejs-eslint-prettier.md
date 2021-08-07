@@ -8,7 +8,7 @@ tags:
 - Node.js
 - ESLint
 - Prettier
-- Nuxt.js
+- Nuxt
 - VSCode
 ---
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？

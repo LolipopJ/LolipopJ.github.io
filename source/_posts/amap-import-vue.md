@@ -8,7 +8,7 @@ categories:
 tags:
 - JavaScript
 - Vue-2
-- Nuxt.js
+- Nuxt
 - Promise
 ---
 迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！

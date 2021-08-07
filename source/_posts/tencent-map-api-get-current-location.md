@@ -8,7 +8,7 @@ categories:
 tags:
 - JavaScript
 - Vue-2
-- Nuxt.js
+- Nuxt
 ---
 正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的[定位解决方案](https://lbs.qq.com/location/#anchor)里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
 
