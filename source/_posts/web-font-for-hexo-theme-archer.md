@@ -1,7 +1,7 @@
 ---
 title: 为 Archer 主题更换字体
 date: 2021/6/26
-updated: 2021/7/17
+updated: 2021/8/10
 categories:
 - 前端开发
 tags:
@@ -17,7 +17,7 @@ tags:
 
 ### 引入 CDN 字体文件
 
-以更换字体为思源黑体（Google 字体上叫 `Noto Sans`，Adobe 版本叫 `Source Han Sans`）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑需要通过第三方 CDN 的方式引入它。据笔者测试，目前找到了这四个 CDN 站点能够使用：
+以更换字体为思源黑体（Google 字体上叫 `Noto Sans`，Adobe 版本叫 `Source Han Sans`）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑通过 CDN 的方式引入它。据笔者测试，目前有这四个 CDN 站点可以提供稳定的服务：
 
 - `https://fonts.googleapis.cnpmjs.org`
 - `https://fonts.font.im`，可参考：<http://www.googlefonts.cn/old>
@@ -32,7 +32,7 @@ tags:
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
 ```
 
-使用 CDN 加速的方式，只需要将上面代码中的 `https://fonts.googleapis.com` 更换为前边对应 CDN 站点名即可。例如使用中国科学技术大学的镜像站加速，应修改代码如下：
+使用 CDN 加速的方式，只需要将上面代码中的 `https://fonts.googleapis.com` 部分更换为前边对应 CDN 链接即可。例如使用中国科学技术大学的镜像站加速，应修改代码如下：
 
 ```html
 <link rel="preconnect" href="https://fonts.proxy.ustclug.org">
@@ -69,7 +69,7 @@ tags:
 
 ## 更换博客字体
 
-接下来，只需要修改 Archer 主题 `src/scss/_variables.scss` 文件中的 `$base-font-family` 变量，就可以实现更换字体为思源黑体了：
+接下来，修改 Archer 主题 `src/scss/_variables.scss` 文件中的 `$base-font-family` 变量：
 
 ```scss
 $base-font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
@@ -79,7 +79,7 @@ $base-font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica
   'WenQuanYi Micro Hei', SimSun, sans-serif;
 ```
 
-如果使用示例中本地引入的方式，在这里只需要在 `$base-font-family` 最前面加上（或修改为） `Glow Sans SC` 就可以更换字体为未来黑体了。浏览器顺序使用字体，如果前面的字体没有，则依次使用后面的字体。
+如上所示，在 `$base-font-family` 最前面加上 `Noto Sans SC`（或 `Glow Sans SC`）就可以更换字体为思源黑体（或未来黑体）了。浏览器按顺序读取并使用字体，如果前面的字体没有，则依次使用后面的字体。
 
 特别的，Archer 主题提供了另一个变量 `$feature-font-family`，渲染为主题中 Profile，Intro，Footer 等地方的字体，如果希望，也可以更换。
 
