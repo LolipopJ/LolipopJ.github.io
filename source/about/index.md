@@ -37,7 +37,7 @@ layout: about
 
 由 [Hexo](https://hexo.io) 驱动，使用了超棒的 [Archer](https://github.com/fi3ework/hexo-theme-archer) 主题。
 
-Post 和 [404] 页面使用了 [unsplush 接口](https://source.unsplash.com/)，分别会随机获得关键词为 'coder' 的图片和我的收藏里的图片。
+Post 和 [404] 页面使用了 [unsplush 接口](https://source.unsplash.com/)，分别会随机获得 unsplush 上关键词为 `coder` 的图片和我的收藏里的图片。
 
 #### 文章分类
 

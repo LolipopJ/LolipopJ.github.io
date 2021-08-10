@@ -81,7 +81,7 @@ module.exports = {
 
 参考 Prettier 的官方[配置文档](https://prettier.io/docs/en/options.html)，自由地配置项目代码的风格吧！
 
-只需要在项目目录创建 `.prettierrc.json` 文件，填写配置即可。例如：
+只需要在项目目录创建 `.prettierrc.json` 文件，填写配置即可。例如（注意，JSON 文件中不应该添加注释）：
 
 ```json
 {
@@ -98,11 +98,13 @@ module.exports = {
 
 ```json
 // package.json
-"scripts": {
-  "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
-  "lint:fix": "yarn lint --fix",
-  "lint:prettier": "prettier --ignore-path .gitignore --write **/* --ignore-unknown"
-},
+{
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
+    "lint:fix": "yarn lint --fix",
+    "lint:prettier": "prettier --ignore-path .gitignore --write **/* --ignore-unknown"
+  }
+}
 ```
 
 这里笔者使用了比较偷懒的方法，调用了 Prettier 一键修复**所有可修复**的代码风格问题，而不限于我们指定的 `.ts` 文件等。既然在前面我们已经配置好了 ESLint 和 Prettier 之间的关系，所以在这里单独通过 Prettier 修复后，VSCode 中并不会显示可恶的红色波浪线。
