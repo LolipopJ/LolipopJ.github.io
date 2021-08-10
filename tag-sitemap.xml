@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://lolipopj.github.io/tags/hexo-theme-archer/</loc>
+        <lastmod>2021-08-09T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/Hexo/</loc>
+        <lastmod>2021-08-09T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/Node/</loc>
+        <lastmod>2021-08-09T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://lolipopj.github.io/tags/VSCode/</loc>
         <lastmod>2021-08-07T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,13 +39,6 @@
 
     <url>
         <loc>https://lolipopj.github.io/tags/EditorConfig/</loc>
-        <lastmod>2021-08-07T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/Node/</loc>
         <lastmod>2021-08-07T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -54,20 +68,6 @@
     <url>
         <loc>https://lolipopj.github.io/tags/Linux/</loc>
         <lastmod>2021-07-28T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/hexo-theme-archer/</loc>
-        <lastmod>2021-07-27T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/Hexo/</loc>
-        <lastmod>2021-07-27T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
