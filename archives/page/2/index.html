@@ -448,6 +448,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/04/25/windows-install-grpc/">
+                
+                <span class="abstract-title-text">Windows 系统编译安装基于 C++ 的 gRPC</span>
+            </a>
+            <div class="abstract-content">
+                本博客基于 CMake 实现编译 gRPC 1.28.1 版本。
+本博客的 Windows 端使用的命令提示符界面为 Powershell。
+安装编译依赖软件在 Windows 系统上编译 gRPC 需要首先准备下述软件：
+
+Visual Studio 2015（或 2017），将使用到 Visual C++ compiler
+Git
+CMake
+nasm
+ninja（可选）
+
+Visual Studio 2015 (或 2017)用于编译 gRPC。下简称 VS。
+在微软的 VS 官网下载安装即可。
+Git用于拉取 gRPC 库并下载所需的第三方依赖。
+在 Git 官网下载并安装即可。...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/26</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/04/21/linux-docker-install-grpc/">
                 
                 <span class="abstract-title-text">Linux 系统编译安装基于 C++ 的 gRPC</span>
@@ -800,11 +861,11 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="ESLint">ESLint</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="Prettier">Prettier</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="VSCode">VSCode</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="ESLint">ESLint</a>
     
 </div>
 
@@ -913,55 +974,6 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
         <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="MTProto">MTProto</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
-                
-                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
-            </a>
-            <div class="abstract-content">
-                这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
-Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
-
-大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。如果你需要某个 action，不必自...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="far fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Github-Actions">Github-Actions</a>
     
 </div>
 
@@ -1209,7 +1221,16 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
         
         
         
@@ -1378,7 +1399,7 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 24
+        Total : 25
         </div>
         <!-- search  -->
         
@@ -1396,6 +1417,12 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2021/08/06/editorconfig-prettier/">使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/10</span>
@@ -1614,6 +1641,21 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
                 hexo-theme-archer
             </span>
         
+            <span class="sidebar-tag-name" data-tags="EditorConfig">
+                <span class="iconfont-archer">&#xe606;</span>
+                EditorConfig
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Prettier">
+                <span class="iconfont-archer">&#xe606;</span>
+                Prettier
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="VSCode">
+                <span class="iconfont-archer">&#xe606;</span>
+                VSCode
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Linux">
                 <span class="iconfont-archer">&#xe606;</span>
                 Linux
@@ -1652,16 +1694,6 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
             <span class="sidebar-tag-name" data-tags="ESLint">
                 <span class="iconfont-archer">&#xe606;</span>
                 ESLint
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Prettier">
-                <span class="iconfont-archer">&#xe606;</span>
-                Prettier
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="VSCode">
-                <span class="iconfont-archer">&#xe606;</span>
-                VSCode
             </span>
         
             <span class="sidebar-tag-name" data-tags="Protobuf">
@@ -1755,14 +1787,14 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="后端开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            后端开发
-        </span>
-    
         <span class="sidebar-category-name" data-categories="技术琐事">
             <span class="iconfont-archer">&#xe60a;</span>
             技术琐事
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="后端开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            后端开发
         </span>
     
     </div>
