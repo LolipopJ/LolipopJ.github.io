@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:description" content="看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。 引入字体文件这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。 引入 CDN 字体文件以更换字体为思源黑体（Google 字体上叫 Noto Sans，Adobe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png">
-<meta property="og:image" content="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/Google-Fonts-Version.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Google-Fonts-Version.png">
 <meta property="article:published_time" content="2021-06-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-08-09T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="hexo-theme-archer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lolipopj.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/static/assets/favicon.ico">
@@ -587,12 +587,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态博客文件</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="comment"># 压缩中文字体文件</span></span><br><span class="line">yarn font-spider</span><br></pre></td></tr></table></figure>
 
 <p>特别的，假如使用 Github Actions 一类的 CI 系统，别忘了将压缩中文字体文件的步骤加入到 CI 配置中。</p>
-<h2 id="文末碎碎念"><a href="#文末碎碎念" class="headerlink" title="文末碎碎念"></a>文末碎碎念</h2><p>笔者最开始使用的是 Github 上<a target="_blank" rel="noopener" href="https://github.com/adobe-fonts/source-han-sans">开源的思源黑体</a>，通过本地引入的方式加载字体。而后选择使用了 CDN 引入 Google 字体中的思源黑体。惊讶地发现两者竟然有一些些区别，前者更好看一些……均使用 <code>Regular</code> 字重，页面效果如下：</p>
+<h2 id="文末碎碎念"><a href="#文末碎碎念" class="headerlink" title="文末碎碎念"></a>文末碎碎念</h2><p>笔者最开始使用的是 Github 上<a target="_blank" rel="noopener" href="https://github.com/adobe-fonts/source-han-sans">开源的思源黑体</a>，通过本地引入的方式加载字体。而后选择使用了 CDN 引入 Google 字体中的思源黑体。发现两者竟然有不小的区别，总的来说前者更好看一些……均使用 <code>Regular</code> 字重，页面效果如下：</p>
 <p>Github 开源版本：</p>
-<p><img src="/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png" alt="Github 开源版本思源黑体"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png" alt="Github 开源版本思源黑体"></p>
 <p>Google 字体版本：</p>
-<p><img src="/2021/06/25/web-font-for-hexo-theme-archer/Google-Fonts-Version.png" alt="Github 开源版本思源黑体"></p>
-<p>前者字形更高，颜色更淡雅一些。但考虑到页面加载速度，还是暂且选用 CDN 加速版本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Google-Fonts-Version.png" alt="Google 字体版本思源黑体"></p>
+<p>前者字形更高，颜色更淡雅一些。可能需要额外的配置？考虑到页面加载速度，暂且选用 CDN 加速版本。</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.wfublog.com/2019/01/noto-sans-serif-traditional-chinese-web-font_11.html">網頁是否安裝思源黑體、中文字型的考量﹍影響載入速度的因素及作法分析</a></li>
 </ul>
@@ -933,7 +933,20 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1106,7 +1119,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -1124,6 +1137,12 @@
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span>
+            <a class="archive-post-title" href="/2021/08/12/github-jsdelivr-hold-image/">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/07</span>
@@ -1371,6 +1390,16 @@
             <span class="sidebar-tag-name" data-tags="MySQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 MySQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Github">
+                <span class="iconfont-archer">&#xe606;</span>
+                Github
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="jsDiliver">
+                <span class="iconfont-archer">&#xe606;</span>
+                jsDiliver
             </span>
         
             <span class="sidebar-tag-name" data-tags="Github-Actions">

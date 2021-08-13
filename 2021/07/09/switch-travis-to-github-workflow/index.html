@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:description" content="我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lolipopj.github.io/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png">
 <meta property="article:published_time" content="2021-07-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-07-13T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
 <meta property="article:tag" content="Github-Actions">
 <meta property="article:tag" content="Travis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lolipopj.github.io/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/static/assets/favicon.ico">
@@ -547,7 +547,7 @@
 
 <p>其中，<code>design-patterns-for-humans-zh-gh-pages.pub</code> 为公钥，应上传到 <a target="_blank" rel="noopener" href="https://github.com/settings/keys">Github 账户 SSH keys 设置</a>中；不带后缀的为私钥，应作为 <a target="_blank" rel="noopener" href="https://github.com/LolipopJ/design-patterns-for-humans-zh/settings/secrets/actions">Github 项目仓库的 Secret</a>，根据前面的配置，这里命名为 <code>ACCESS_TOKEN</code>。</p>
 <h2 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h2><p>最后，移除 Github 仓库中用于 Travis 的删除原有部署密钥，例如 <code>CI_DEPLOY_TOKEN</code>，删除项目中的 <code>.travis.yml</code> 文件，提交代码到 Github 即可。</p>
-<p><img src="/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png" alt="CI部署成功"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/07/09/switch-travis-to-github-workflow/deploy-finished.png" alt="CI 部署成功"></p>
 
     </article>
     <!-- license -->
@@ -885,7 +885,20 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1058,7 +1071,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -1076,6 +1089,12 @@
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span>
+            <a class="archive-post-title" href="/2021/08/12/github-jsdelivr-hold-image/">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/07</span>
@@ -1323,6 +1342,16 @@
             <span class="sidebar-tag-name" data-tags="MySQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 MySQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Github">
+                <span class="iconfont-archer">&#xe606;</span>
+                Github
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="jsDiliver">
+                <span class="iconfont-archer">&#xe606;</span>
+                jsDiliver
             </span>
         
             <span class="sidebar-tag-name" data-tags="Github-Actions">

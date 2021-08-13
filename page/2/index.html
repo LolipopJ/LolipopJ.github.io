@@ -462,6 +462,57 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/05/07/js-debounce-throttle/">
+                
+                <span class="abstract-title-text">函数防抖和节流，以及在 Vue 中的运用</span>
+            </a>
+            <div class="abstract-content">
+                在前端性能优化中存在一个老生常谈的问题：如何优化高频率执行的 JS 代码？例如：
+
+我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。
+我们为网页添加了搜索功能，当用户输入搜索关键字后，会自动显示出搜索的结果。但是，用户每次更改输入都立即调用后端进行了搜索，彼时用户可能尚未输入完关键字，亦或是关键字输入错误需要修改。这样搜索出来的结果并非用户希望看到的...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/08</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/04/25/windows-install-grpc/">
                 
                 <span class="abstract-title-text">Windows 系统编译安装基于 C++ 的 gRPC</span>
@@ -942,60 +993,6 @@ ESLint 与 PrettierESLint 是一个开源的 Jav...
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/02/20/tg-mtproto-one-click/">
-                
-                <span class="abstract-title-text">一键安装并配置 MTProto Proxy 代理 Telegram</span>
-            </a>
-            <div class="abstract-content">
-                Telegram 和 MTProto 是什么Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
-
-私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。
-安全性。端对端加密，不受审查。
-完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告，“钞能力”还是抵不过越来越多涌入的各国用户。
-
-当然，在被屏蔽的地域需要翻墙使用。
-MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务器的 Api 接口。
-我们要做什么我们想要搭建...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="far fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MTProto">MTProto</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1328,7 +1325,20 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1501,7 +1511,7 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -1519,6 +1529,12 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span>
+            <a class="archive-post-title" href="/2021/08/12/github-jsdelivr-hold-image/">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/07</span>
@@ -1766,6 +1782,16 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
             <span class="sidebar-tag-name" data-tags="MySQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 MySQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Github">
+                <span class="iconfont-archer">&#xe606;</span>
+                Github
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="jsDiliver">
+                <span class="iconfont-archer">&#xe606;</span>
+                jsDiliver
             </span>
         
             <span class="sidebar-tag-name" data-tags="Github-Actions">
