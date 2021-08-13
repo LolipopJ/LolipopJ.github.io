@@ -38,6 +38,10 @@ npm install hexo-wordcount --save
 git clone https://github.com/fi3ework/hexo-theme-archer.git themes/archer --depth=1
 ```
 
+如果您没有安装 Git 工具，也可以在 Hexo 根目录下手动创建 `themes/archer` 文件夹，然后将此仓库的源码放入该目录下。
+
+> 仓库的 `dev` 分支包含正在开发中的主题代码，如果您是**进阶开发者**或追新用户，能够承受代码的不足之处和低稳定性，并乐于关注我们开发的最新进展，也可以使用此分支：`git clone -b dev https://github.com/fi3ework/hexo-theme-archer.git themes/archer --depth=1`
+
 ### 设置 Hexo 主题为 Archer
 
 修改 Hexo 根目录下的 `_config.yml` 文件中的 `theme` 字段为 `archer`：
@@ -273,7 +277,7 @@ Archer 主题在主页为置顶的文章显示一个小标记。
 
 在默认情况下，Hexo 使用 [`hexo-generator-index`](https://github.com/hexojs/hexo-generator-index) 生成文章索引。假如您需要置顶某篇文章，只需要在它的 Front-matter 处添加 `sticky` 属性即可：
 
-```md
+``` md
 ---
 title: Hello World
 date: 2013/7/13 20:46:25
@@ -285,7 +289,7 @@ sticky: 100
 
 假如您使用其它的插件生成索引，也可以手动添加 `top` 属性以显示小标记：
 
-```md
+``` md
 ---
 title: Hello World
 date: 2013/7/13 20:46:25
@@ -299,13 +303,13 @@ top: true
 
 您可以通过配置 Archer 主题目录下的 `_config.yml` 以**全局**关闭文章目录：
 
-```yml
+``` yml
 toc: false
 ```
 
 或者，您也可以指定某些文章不显示目录。只需要在文章的 Front-matter 部分设置 `toc` 属性即可：
 
-```md
+``` md
 ---
 title: Hello World
 date: 2013/7/13 20:46:25
@@ -313,7 +317,11 @@ toc: false
 ---
 ```
 
+当然，在全局关闭文章目录的情况下，您也可以在文章中手动设置 `toc: true`，以显示该文章的目录。
+
 ## 更新主题
+
+主题的更新内容发布在仓库的 [Release](https://github.com/fi3ework/hexo-theme-archer/releases) 页面。
 
 提供两种方法供参考：
 
@@ -329,34 +337,6 @@ toc: false
 ### 重新克隆主题
 
 首先备份 Archer 主题目录下所有您自定义过的文件（包括 `_config.yml` 和 `source` 文件夹下添加的文件等），然后删除 Archer 主题目录，再重新安装，最后将备份的文件替换到原来的位置即可。
-
-## 更新日志
-
-- 2017.08.17 - 『添加了置顶显示』
-- 2017.08.26 - 『添加了二次开发文档，文章页 header 在下滑时隐藏』
-- 2017.09.10 - 『添加了 about 页面』
-- 2017.09.25 - 『可以直接添加 disqus，gitment 了』
-- 2017.09.30 - 『添加了 rss，修复了 placeholder 的 bug，更流畅』
-- 2017.10.05 - 『添加 toc，默认开启，可在配置中关闭』
-- 2017.10.16 - 『修复移动端 bug，增加渐入效果』
-- 2017.12.17 - 『增加阅读进度条，在 post 页的顶部』
-- 2017.12.27 - 『增加~~百度分享和~~页面浏览量统计』
-- 2018.02.04 - 『代码重构，性能优化，样式更新，V1.0.0』
-- 2018.02.24 - 『支持显示微信和 QQ 二维码』
-- 2018.02.28 - 『重写分享功能，分享按钮在头图上』
-- 2018.03.04 - 『头图的高度可以自定义了，配置 \_config 即可』
-- 2018.03.11 - 『toc 可以根据阅读位置自动展开和收缩了』
-- 2018.03.18 - 『添加 fancybox』
-- 2018.05.01 - 『添加 license』
-- 2018.05.24 - 『可自定义访问量统计/增加字数统计及阅读时间』
-- 2018.06.04 - 『添加 Algolia 搜索，[详情](https://github.com/fi3ework/hexo-theme-archer/wiki/%E5%90%AF%E7%94%A8-Algolia-%E6%90%9C%E7%B4%A2)』
-- 2018.06.23 - 『添加 Valine 评论，感谢 [hulichao](https://github.com/fi3ework/hexo-theme-archer/issues/115) 同学』
-- 2018.07.09 - 『可以切换深/浅色代码配色方案了，[详情](https://github.com/fi3ework/hexo-theme-archer/wiki/%E5%88%87%E6%8D%A2%E4%BB%A3%E7%A0%81%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88)』
-- 2018.08.26 - 『添加 i18n 支持』
-- 2020.03.02 - 『添加 Gitalk评论 支持』
-- 2020.03.04 - 『添加 utteranc评论 支持』
-- 2021.01.26 - 『更新使用的 nodejs，以及相关依赖包的版本』
-- 2021.02.03 - 『添加“文章时效性”提示』
 
 ## 许可证
 
