@@ -198,14 +198,14 @@
     }
 </style>
 
-    <link rel="preload" href="/css/style.css?v=202107" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/dark.css?v=202107" as="style">
-    <link rel="stylesheet" href="/css/mobile.css?v=202107" media="(max-width: 980px)">
+    <link rel="preload" href="/css/style.css?v=" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=" as="style">
+    <link rel="stylesheet" href="/css/mobile.css?v=" media="(max-width: 960px)">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js?v=202107" as="script">
-    <link rel="preload" href="/scripts/dark.js?v=202107" as="script">
+    <link rel="preload" href="/scripts/main.js?v=" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=" as="script">
     <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.cnpmjs.org">
@@ -286,8 +286,6 @@
     
 </header>
 
-        <!-- dark mode -->
-        <script src="/scripts/dark.js"></script>
         <!-- fixed footer -->
         <footer class="footer-fixed">
     <!-- back to top button -->
@@ -304,6 +302,7 @@
 
         <!-- wrapper -->
         <div class="wrapper">
+            <div class="background-holder"></div>
             <div class="site-intro" style="
 
 
@@ -568,7 +567,7 @@
 </ul>
 <h2 id="补齐-URL"><a href="#补齐-URL" class="headerlink" title="补齐 URL"></a>补齐 URL</h2><p>前面我们在使用 URL 时，并没有添加它的前缀例如 <code>https://</code>。那么我们具体使用的是 HTTP 协议还是 HTTPS 协议呢？</p>
 <p>针对这种情况，浏览器有自己的预案，即默认使用 HTTP 协议。假如您是<strong>第一次</strong>访问我的博客（更严谨地说是第一次访问 <code>github.io</code> 域名下的网站），除非在输入的最开始就使用了 <code>https://lolipopj.github.io</code> 这个 URL，否则均会被默认补齐为 <code>http://lolipopj.github.io</code>。对于启用了 <a href="#%E4%BB%80%E4%B9%88%E6%98%AF-hsts%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E5%AE%83">HSTS 保护</a>的网站，从第二次的访问开始，浏览器将根据第一次访问时得到的响应结果，自动补齐协议。</p>
-<p>随着 HSTS 的推广使用，现代浏览器中还内置了一个列表 <a href="#hsts-%E7%9A%84-preload-list-%E6%9C%BA%E5%88%B6">Preload List</a>，记录常用网站所使用的协议。对于这些网站，输入的 URL 将自动在前面补上记录的协议，再由浏览器发送请求。因此在实际情况中，第一次访问时，我们输入的 URL 就会被补齐为 **<code>https://lolipopj.github.io</code>**。</p>
+<p>随着 HSTS 的推广使用，现代浏览器中还内置了一个列表 <a href="#hsts-%E7%9A%84-preload-list-%E6%9C%BA%E5%88%B6">Preload List</a>，记录常用网站所使用的协议。对于这些网站，输入的 URL 将自动在前面补上记录的协议，再由浏览器发送请求。因此在实际情况中，第一次访问时，我们输入的 URL 就会被补齐为 <code>https://lolipopj.github.io</code>。</p>
 <h3 id="HTTP-严格传输安全-HSTS"><a href="#HTTP-严格传输安全-HSTS" class="headerlink" title="HTTP 严格传输安全 HSTS"></a>HTTP 严格传输安全 HSTS</h3><p>以下内容主要参考此文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25537440">「HSTS详解」</a>，2017-03-03</li>
@@ -929,7 +928,7 @@
         </div>
         <!-- toc -->
         
-            <div class="toc-wrapper" style=
+            <div class="toc-wrapper toc-wrapper-loding" style=
 
 
 
@@ -1670,7 +1669,9 @@
 </script>
 
         <!-- main func -->
-        <script src="/scripts/main.js"></script>
+        <script src="/scripts/main.js?v="></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v="></script>
         <!-- fancybox -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
         <!-- algolia -->
@@ -1695,7 +1696,7 @@
     </div>
 </div>
 
-            <script src="/scripts/search.js" defer></script>
+            <script src="/scripts/search.js?v=" defer></script>
         
         <!-- busuanzi -->
         
@@ -1705,7 +1706,7 @@
         
         <!-- async load share.js -->
         
-            <script src="/scripts/share.js" async></script>    
+            <script src="/scripts/share.js?v=" async></script>    
         
         <!-- mermaid -->
         
