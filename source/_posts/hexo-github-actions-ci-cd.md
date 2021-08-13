@@ -21,7 +21,7 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
 
 ## 持续集成与部署 Hexo 博客
 
-在[搭建自己的 Hexo 博客](https://lolipopj.github.io/2019/12/26/hello-hexo-world)那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署到仓库](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.
+在{% post_link hello-hexo-world '搭建自己的 Hexo 博客' %}那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署到仓库](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.
 
 事实上，利用 Github Actions 就再也不用多此一举：每次提交代码到 Github 后，就可以触发 Github Actions 并自动部署新的博客内容。
 

@@ -69,10 +69,6 @@ tags:
 - 现在可以通过点击按钮关闭侧边栏。由 [Stark-X](https://github.com/fi3ework/hexo-theme-archer/pull/165) 修复。
 - 为推文页面的头图和 404 页面开启了 unsplush 随机图片接口。Watch your network flow!
 
-### 2019/12/27
-
-- 将页面底端的 Copyright 内容的链接去除，整合到 [About-me](https://lolipopj.github.io/about/) 页面中。
-
 ## 预计开发的内容
 
 ### 网页菜单栏

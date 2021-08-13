@@ -275,4 +275,4 @@ this.$Geolocation
 
 ## 相关链接
 
-- [使用腾讯位置服务进行 Web 前端定位](https://lolipopj.github.io/2021/03/15/tencent-map-api-get-current-location/)
+- {% post_link tencent-map-api-get-current-location '使用腾讯位置服务进行 Web 前端定位' %}

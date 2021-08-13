@@ -55,7 +55,7 @@ site_header_image: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/stati
 # post haeder image
 post_header_image: https://source.unsplash.com/1600x900/?coder
 # 404 image
-_404_image: https://source.unsplash.com/collection/9295881
+_404_image: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/intro/404-bg.jpg
 
 # ========== Theme ========== #
 # Blog float button theme ('default' or 'rounded')

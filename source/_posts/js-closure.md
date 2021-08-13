@@ -9,7 +9,7 @@ tags:
 ---
 JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。
 
-为了更好理解闭包的作用，不妨看看我的[这篇博客](https://lolipopj.github.io/2021/05/10/js-hoisting/)关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
+为了更好理解闭包的作用，不妨看看我的{% post_link js-hoisting '这一篇博客' %}关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
 
 ## 作用域
 
@@ -247,7 +247,7 @@ console.log(arr[2]()) // 2
 
 ### 函数防抖和节流
 
-函数防抖和函数节流就是典型的闭包用例，我在[这篇博客](https://lolipopj.github.io/2021/05/07/js-debounce-throttle/)里对它们进行了编写。
+函数防抖和函数节流就是典型的闭包用例，我在{% post_link js-debounce-throttle '这一篇博客' %}里对它们进行了编写。
 
 ### 函数工厂
 

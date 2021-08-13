@@ -33,7 +33,7 @@ gRPC 的编译需要 `gcc` 版本在 `4.9` 及以上。假如版本低于此，�
 
 我使用 `gcc 4.9.4` 成功编译 `gRPC 1.28.x`，另外[有人测试](https://github.com/grpc/grpc/issues/24932#issuecomment-754344093)在 `4.9.2`, `5.3.1` 以及 `7.3.1` 版本编译成功；而我使用撰写此文时使用最新版本 `10.3.0` 编译报错，请读者加以选择。
 
-更新 GCC 的方法可以参考我的[这一篇博客](https://lolipopj.github.io/2021/04/19/linux-docker-gcc-update)。
+更新 GCC 的方法可以参考我的{% post_link linux-docker-gcc-update '这一篇博客' %}。
 
 ```bash
 # 查看 gcc 版本
