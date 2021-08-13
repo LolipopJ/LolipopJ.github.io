@@ -145,17 +145,17 @@ yarn font-spider
 
 ## 文末碎碎念
 
-笔者最开始使用的是 Github 上[开源的思源黑体](https://github.com/adobe-fonts/source-han-sans)，通过本地引入的方式加载字体。而后选择使用了 CDN 引入 Google 字体中的思源黑体。惊讶地发现两者竟然有一些些区别，前者更好看一些……均使用 `Regular` 字重，页面效果如下：
+笔者最开始使用的是 Github 上[开源的思源黑体](https://github.com/adobe-fonts/source-han-sans)，通过本地引入的方式加载字体。而后选择使用了 CDN 引入 Google 字体中的思源黑体。发现两者竟然有不小的区别，总的来说前者更好看一些……均使用 `Regular` 字重，页面效果如下：
 
 Github 开源版本：
 
-![Github 开源版本思源黑体](Github-Open-Source-Version.png)
+![Github 开源版本思源黑体](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png)
 
 Google 字体版本：
 
-![Github 开源版本思源黑体](Google-Fonts-Version.png)
+![Google 字体版本思源黑体](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/06/25/web-font-for-hexo-theme-archer/Google-Fonts-Version.png)
 
-前者字形更高，颜色更淡雅一些。但考虑到页面加载速度，还是暂且选用 CDN 加速版本。
+前者字形更高，颜色更淡雅一些。可能需要额外的配置？考虑到页面加载速度，暂且选用 CDN 加速版本。
 
 ## 参考文章
 
