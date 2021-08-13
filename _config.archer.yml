@@ -1,6 +1,6 @@
 # ========== Profile ========== #
 # avatar
-avatar: static/avatar/avatar.png
+avatar: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/avatar/avatar.png
 # author name
 author: Lolipop
 # signature
@@ -34,7 +34,7 @@ friends:
   Bill Chen: //billc.io
 about:
   enable: true
-  image: static/intro/about-bg.jpg
+  image: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/intro/about-bg.jpg
 
 # ========== Site ========== #
 # title of the site (good for SEO)
@@ -51,7 +51,7 @@ main_title: Lolipop's Studio.
 # subtitle
 subtitle: how about groping lights through young ages
 # site haeder image
-site_header_image: static/intro/index-bg.jpg
+site_header_image: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/intro/index-bg.jpg
 # post haeder image
 post_header_image: https://source.unsplash.com/1600x900/?coder
 # 404 image
