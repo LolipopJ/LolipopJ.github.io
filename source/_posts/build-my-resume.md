@@ -1,13 +1,14 @@
 ---
 title: 把自己的简历做成 Web 页面
 date: 2021/8/19
-updated: 2021/8/19
+updated: 2021/8/20
 categories:
 - 前端开发
 tags:
 - resume
+- CSS
 - Vue-2
-- Github-Actions
+- Github-actions
 - rxjs
 ---
 去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 [best-resume-ever](https://github.com/salomonelli/best-resume-ever) 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
@@ -359,7 +360,7 @@ const waitForServerReady = () => {
 };
 ```
 
-最后，利用 puppeteer 的强大功能，打印出简历的 PDF 文档，顺便再给屏幕截个图好了：
+接下来，利用 puppeteer 的强大功能，打印出简历的 PDF 文档，顺便再给屏幕截个图好了：
 
 ``` js
 const puppeteer = require("puppeteer");
@@ -460,7 +461,7 @@ const convert = async function () {
 
 完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/main/scripts/export.js)。
 
-Final and final step，见证劳动的成果：
+最后，见证劳动的成果吧。执行刚刚我们编写的脚本：
 
 ``` bash
 PS C:\Users\Lolipop\Github\resume> yarn export
@@ -484,5 +485,7 @@ PS C:\Users\Lolipop\Github\resume> yarn export
 [0] npm run serve exited with code 1
 Done in 42.14s.
 ```
+
+顺利地导出了我的简历，此外还有截图和英文版本：
 
 ![resume export](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/08/18/build-my-resume/resume-export.png)

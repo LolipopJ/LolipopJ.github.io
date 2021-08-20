@@ -39,7 +39,7 @@ layout: about
 
 文章页面使用了 [unsplush 接口](https://source.unsplash.com/)，会随机获取 unsplush 上一张关键词为 `coder` 的图片作为头图。
 
-#### 文章分类
+### 文章分类
 
 我将博客文章按 Category 大抵分为了五类：
 
