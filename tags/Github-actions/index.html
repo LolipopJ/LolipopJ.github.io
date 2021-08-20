@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="https://lolipopj.github.io/tags/hexo-theme-archer/index.html">
+<meta property="og:url" content="https://lolipopj.github.io/tags/Github-actions/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Lolipop">
@@ -447,19 +447,21 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2021/06/25/web-font-for-hexo-theme-archer/">
+            <a class="abstract-title" href="/2021/08/18/build-my-resume/">
                 
-                <span class="abstract-title-text">为 Archer 主题更换字体</span>
+                <span class="abstract-title-text">把自己的简历做成 Web 页面</span>
             </a>
             <div class="abstract-content">
-                看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。
-引入字体文件这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。
-引入 CDN 字体文件以更换字体为思源黑体（Google 字体上叫 Noto Sans，Adobe 版本叫 Source Han Sans）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑通过 CDN 的方式引入它。据笔者测试，目前有这四个 CDN ...
+                去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 best-resume-ever 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
+
+然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写，可以用自己已有的知识对简历做一些改造手术。
+改造简历举三个改造的例子好了。
+添加 Chip 纸片在 Creative 模板的技能专长栏目中，使用了纸片的形式展示比较擅长的编程语言，很好看！为纯纯的文字多增添了些不...
             </div>
             <div class="abstract-post-meta">
                 <!-- date -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/26</span>
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/08/19</span>
                 </div>
                 <!-- tags -->
                 
@@ -478,11 +480,15 @@
         </span>
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="resume">resume</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo-theme-archer">hexo-theme-archer</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="CSS">CSS</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="rxjs">rxjs</a>
     
 </div>
 
@@ -497,24 +503,19 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2019/12/26/archer-theme-update-log/">
+            <a class="abstract-title" href="/2021/07/09/switch-travis-to-github-workflow/">
                 
-                <span class="abstract-title-text">基于 Archer 主题的博客开发</span>
+                <span class="abstract-title-text">更换持续集成工具，从 Travis 到 Github Actions</span>
             </a>
             <div class="abstract-content">
-                本博客使用的主题 Archer 有足够稳定以支持长期运行。不过正好学习了一些前端开发技巧，不如在使用过程中对本博客的页面做一些小小的开发及优化。
-更新日志2021/07/28把 v1.6.3 版本合并到了主分支，主要添加了 Dark 模式支持。
-添加了一些令人舒适的动效，另外修复了很多编码和依赖相关的问题。
-2021/06/26有幸成为了 hexo-theme-archer 的维护者的一员，最近也把自己开发的 v1.6.2 版本合并到了主题的主分支上去。
-
-修复了代码格式化脚本。现在使用 npm run prettier 能够正确地格式化项目代码。
-修复了一些已知问题。
-顶部 heade...
+                我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。
+当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。
+编写新的 workflow.yml那么首先，我们就需要...
             </div>
             <div class="abstract-post-meta">
                 <!-- date -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/27</span>
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/10</span>
                 </div>
                 <!-- tags -->
                 
@@ -525,23 +526,66 @@
             
         
         
-        <span class="post-category" data-categories="前端开发"">
+        <span class="post-category" data-categories="技术琐事"">
             <i class="far fa-folder post-category-icon"></i>
             <span class="post-category-text">
-                前端开发
+                技术琐事
             </span>
         </span>
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="开发日志">开发日志</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Travis">Travis</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="博客开发">博客开发</a>
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
+                
+                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
+            </a>
+            <div class="abstract-content">
+                这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
+Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
+
+大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。如果你需要某个 action，不必自...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="far fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo-theme-archer">hexo-theme-archer</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
     
 </div>
 

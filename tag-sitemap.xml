@@ -4,28 +4,35 @@
 
     <url>
         <loc>https://lolipopj.github.io/tags/rxjs/</loc>
-        <lastmod>2021-08-18T16:00:00.000Z</lastmod>
+        <lastmod>2021-08-19T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://lolipopj.github.io/tags/Github-Actions/</loc>
-        <lastmod>2021-08-18T16:00:00.000Z</lastmod>
+        <loc>https://lolipopj.github.io/tags/Github-actions/</loc>
+        <lastmod>2021-08-19T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/CSS/</loc>
+        <lastmod>2021-08-19T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://lolipopj.github.io/tags/resume/</loc>
-        <lastmod>2021-08-18T16:00:00.000Z</lastmod>
+        <lastmod>2021-08-19T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://lolipopj.github.io/tags/Vue-2/</loc>
-        <lastmod>2021-08-18T16:00:00.000Z</lastmod>
+        <lastmod>2021-08-19T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
