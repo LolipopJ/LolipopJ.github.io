@@ -205,7 +205,7 @@ Run yarn install to install new versions.
 PS C:\Users\Lolipop\Github\resume> yarn install
 ```
 
-启动项目开发模式，确保能正常运行：
+启动项目服务端渲染，确保能正常运行：
 
 ``` bash
 PS C:\Users\Lolipop\Github\resume> yarn serve
