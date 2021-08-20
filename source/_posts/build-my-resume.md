@@ -19,7 +19,7 @@ tags:
 
 ## 改造简历
 
-举三个改造的例子好了。
+举四个改造的例子好了。
 
 ### 添加 Chip 纸片
 
@@ -87,18 +87,18 @@ tags:
 
 现在互联网企业的简历大多使用专门的招聘网站上传提交，似乎不必拘泥于 A4 纸的大小了。电脑屏幕那么大，何不将整个简历直接“贴脸上”呢！
 
-首先将页面的宽度和高度设置为 100%，即宽度覆盖整个浏览器，高度足以容纳所有编写的内容。
+首先将页面的宽度和高度设置为 100%，即宽度覆盖整个浏览器，高度足以容纳所有简历上所有内容。
 
-然后利用省心的 Flex 布局，将页面右边的正文内容分为两栏。
+然后利用省心的 Flex 布局，将页面右边的正文内容分为左右两栏。
 
 编写页面的布局形如：
 
 ``` html
 <div class="resume">
-  <div class="left-column"><!-- 左边栏 --></div>
+  <div class="left-column"><!-- 左栏 --></div>
   <div class="right-column">
-    <div class="right-column-section"><!-- 右边栏的左侧 --></div>
-    <div class="right-column-section"><!-- 右边栏的右侧 --></div>
+    <div class="right-column-section"><!-- 右栏的左侧 --></div>
+    <div class="right-column-section"><!-- 右栏的右侧 --></div>
   </div>
 </div>
 ```
@@ -130,11 +130,52 @@ tags:
 
 ![resume preview](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/08/18/build-my-resume/resume-preview.png)
 
+但是，使用 Flex 布局把 `right-column` 分成的两栏，如果两边刚好高度差不多，那便没有什么问题；但如果某一栏比另一栏高很多，页面就会显得参差不齐。手动把一些元素挪到另一栏似乎能够解决这个问题，但在实现上非常不优雅。
+
+因此，后来我选用了 Multiple-column 布局作为 `right-column` 的布局。
+
+编写页面的布局形如：
+
+``` html
+<div class="resume">
+  <div class="left-column"><!-- 左栏 --></div>
+  <div class="right-column"><!-- 右栏 --></div>
+</div>
+```
+
+样式表内容形如：
+
+``` less
+.resume {
+  display: flex;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  flex: 3;
+
+  display: block;
+  column-count: 2;
+  column-gap: 4%;
+}
+```
+
+还有个小问题，我希望我的项目经历中的每一段经历都是完整的，内容不随着分栏分离。只需要为它们设置 `break-inside: avoid;` 即可：
+
+``` less
+.section-content__item {
+  break-inside: avoid;
+}
+```
+
 ### 适配移动端界面
 
 既然计划部署为网页，那么横向三栏的设计显然对移动端设备很不友好。
 
-由于我们没有限制页面的高度，因此可以使用 Flex 布局中的 `flex-direction` 来快速调整页面布局的方向。编写样式表代码如下：
+如果网页和右栏均为 Flex 布局，可以使用 `flex-direction` 来快速调整页面布局的方向。编写样式表代码如下：
 
 ``` less
 @media (max-width: 960px) {
@@ -151,6 +192,94 @@ tags:
 Easy as a cake. 当页面宽度小于 960px 时，将把原有的三栏纵向依次排列出来。效果如下：
 
 ![resume mobile preview](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/08/18/build-my-resume/resume-mobile.png)
+
+如果网页为 Flex 布局，右栏为 Multiple-column 布局，修改网页的 `flex-direction` 和右栏的 `column-count` 即可：
+
+``` less
+@media (max-width: 960px) {
+  .resume {
+    flex-direction: column;
+  }
+
+  .right-column {
+    column-count: 1;
+  }
+}
+```
+
+### 添加夜间模式
+
+使用 CSS 提供的 [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) 能力来实现页面的主题切换，其浏览器兼容性[见于此](https://caniuse.com/?search=CSS%20Variables)。
+
+首先创建一个主题配置文件 `src/assets/themes.json` 来存储不同主题的颜色，例如：
+
+``` json
+{
+  "light": {
+    "backgroundColor": "#fafafa",
+    "textColor": "rgba(0, 0, 0, 0.87)"
+  },
+  "dark": {
+    "backgroundColor": "#121212",
+    "textColor": "rgba(255, 255, 255, 0.87)",
+  }
+}
+```
+
+编写 Vue 脚本如下：
+
+``` js
+<script>
+const themes = require("@/assets/themes");
+
+export default {
+  data() {
+    return {
+      themeMode: "light",
+    };
+  },
+  methods: {
+    setThemeMode(mode) {
+      this.themeMode = mode;
+      document.documentElement.style.setProperty(
+        "--theme-background-color",
+        themes[mode].backgroundColor
+      );
+      document.documentElement.style.setProperty(
+        "--theme-text-color",
+        themes[mode].textColor
+      );
+    },
+  },
+  created() {
+    this.setThemeMode("light");
+  },
+}
+</script>
+```
+
+当我们执行 `this.setThemeMode("light")` 时，相当于覆盖（或添加）了如下的 CSS 样式表：
+
+``` css
+:root {
+  --theme-background-color: #fafafa;
+  --theme-text-color: rgba(0, 0, 0, 0.87);
+}
+```
+
+同理，当未来执行 `this.setThemeMode("dark")` 时，则会把之前在 `src/assets/themes.json` 配置的颜色覆盖到此处。
+
+最后，只需要用上我们定义好的这些 CSS 变量就可以了，例如：
+
+``` less
+.resume {
+  color: var(--theme-text-color);
+}
+
+.right-column {
+  background-color: var(--theme-background-color);
+}
+```
 
 ## 部署为静态网页
 
@@ -395,7 +524,7 @@ const convert = async function () {
       screenshotFullPage = true,
       screenshotQuality = 100,
     }) {
-      const url = `http://localhost:${port}/${code}`;
+      const url = `http://localhost:${port}/${code}/exportMode=true`;
       const filename = `resume-${code}`;
 
       const codeUpperCase = code.toUpperCase();
@@ -457,7 +586,9 @@ const convert = async function () {
 
 又到了爷最喜欢的**约定大于配置**环节，在上面的代码里，假设每个翻译版本的简历有不同的 URL 值，对应不同的 `code`。例如 `http://localhost:8088/cn` 为简历的中文版本，对应的 `code` 值为 `cn`。这样，最终导出文件为 `export/resume-cn.jpeg` 和 `export/resume-cn.pdf`。
 
-此外，如果需要配置不同翻译版本的简历的 PDF 文档（或截图）的大小，可以在 `config.json` 中配置。例如需要配置中文版本简历 PDF 文档的高度，设置 `"EXPORT_PDF_HEIGHT_CN": 850` 即可，其中 `_CN` 为 `code` 的大写值前面加上短横线。
+如果需要配置不同翻译版本的简历的 PDF 文档（或截图）的大小，可以在 `config.json` 中配置。例如需要配置中文版本简历 PDF 文档的高度，设置 `"EXPORT_PDF_HEIGHT_CN": 850` 即可，其中 `_CN` 为 `code` 的大写值前面加上短横线。
+
+此外，在 URL 的结尾我设置了 `?exportMode=true`，供 Vue Router 查询使用。正常访问网页时，默认为「非导出模式」，网页上会显示切换语言和切换夜间模式按钮等；使用此脚本时，访问的网页为「导出模式」，隐藏掉不必要的内容。
 
 完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/main/scripts/export.js)。
 
@@ -485,6 +616,8 @@ PS C:\Users\Lolipop\Github\resume> yarn export
 [0] npm run serve exited with code 1
 Done in 42.14s.
 ```
+
+为了避免导出失败或异常，在此期间应避免修改页面源文件。
 
 顺利地导出了我的简历，此外还有截图和英文版本：
 
