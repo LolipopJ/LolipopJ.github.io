@@ -524,7 +524,7 @@ const convert = async function () {
       screenshotFullPage = true,
       screenshotQuality = 100,
     }) {
-      const url = `http://localhost:${port}/${code}/exportMode=true`;
+      const url = `http://localhost:${port}/#/${code}?exportMode=true`;
       const filename = `resume-${code}`;
 
       const codeUpperCase = code.toUpperCase();
@@ -584,11 +584,40 @@ const convert = async function () {
 };
 ```
 
-又到了爷最喜欢的**约定大于配置**环节，在上面的代码里，假设每个翻译版本的简历有不同的 URL 值，对应不同的 `code`。例如 `http://localhost:8088/cn` 为简历的中文版本，对应的 `code` 值为 `cn`。这样，最终导出文件为 `export/resume-cn.jpeg` 和 `export/resume-cn.pdf`。
+在 URL 的结尾我设置了 `?exportMode=true`，供 Vue Router 查询使用。正常访问网页时，默认为「非导出模式」，网页上会显示切换语言和切换夜间模式按钮等；使用此脚本时，访问的网页为「导出模式」，隐藏掉不必要的内容。
+
+然后又到了爷最喜欢的**约定大于配置**环节，在上面的代码里，假设每个翻译版本的简历有不同的 URL 值，对应不同的 `code`。例如 `http://localhost:8088/#/cn` 为简历的中文版本，对应的 `code` 值为 `cn`。这样，最终导出文件为 `export/resume-cn.jpeg` 和 `export/resume-cn.pdf`。
 
 如果需要配置不同翻译版本的简历的 PDF 文档（或截图）的大小，可以在 `config.json` 中配置。例如需要配置中文版本简历 PDF 文档的高度，设置 `"EXPORT_PDF_HEIGHT_CN": 850` 即可，其中 `_CN` 为 `code` 的大写值前面加上短横线。
 
-此外，在 URL 的结尾我设置了 `?exportMode=true`，供 Vue Router 查询使用。正常访问网页时，默认为「非导出模式」，网页上会显示切换语言和切换夜间模式按钮等；使用此脚本时，访问的网页为「导出模式」，隐藏掉不必要的内容。
+不过，手动配置打印 PDF 高度在实现上并不优雅，仔细想想，既然 puppeteer 能够模仿浏览器中的所有行为，那么：在固定页面宽度的情况下，获取当前页面的高度也是理所应当能够做到的吧。[`page.evaluate()`](https://pptr.dev/#?product=Puppeteer&version=v10.2.0&show=api-pageevaluatepagefunction-args) 方法可以实现这个需求：
+
+``` js
+const exportResume = async function ({
+  autoFitPdf = true,
+}) {
+  // ...
+  const pdfHeight = autoFitPdf
+    ? await page.evaluate(() => {
+        const body = document.body,
+          html = document.documentElement;
+
+        const pageHeight = Math.max(
+          body.scrollHeight,
+          body.offsetHeight,
+          html.clientHeight,
+          html.scrollHeight,
+          html.offsetHeight
+        );
+
+        // 确保容纳下所有的内容，
+        // 而不会因小数点后的差值分页
+        return pageHeight + 10;
+      })
+    : config[`EXPORT_PDF_HEIGHT_${codeUpperCase}`] || defaultPdfHeight;
+  // ...
+}
+```
 
 完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/main/scripts/export.js)。
 
