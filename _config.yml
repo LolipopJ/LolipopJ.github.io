@@ -114,6 +114,13 @@ sitemap:
   tag: true
   category: false
 
+# excerpt
+excerpt:
+  depth: 6
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true
+
 # Archer主题侧边栏支持
 jsonContent:
   meta: true
