@@ -87,9 +87,9 @@ jobs:
 
 ## 创建 SSH Deploy Key
 
-这一步是为了给 Github Actions 远程服务器访问我的 Github 账号提供凭证。
+这一步是为了给 Github Actions 远程服务器访问我的 Github 账号提供凭证。如果没有设置 Github 账户双重验证或其它安全验证，可以移除上面脚本中的 `deploy_key` 属性然后跳过这一步。但是假如以后设置了安全验证，回来改又会很麻烦，不如一步到位了吧 🤗。
 
-假如**没有**启用账号二重验证，您也可以生成 Personal access token 作为替代。
+您也可以生成 Personal access token 作为替代，不过前面的脚本中的 `deploy_key` 应该修改为 `personal_token`。
 
 启动命令行工具，创建 SSH 部署密钥：
 

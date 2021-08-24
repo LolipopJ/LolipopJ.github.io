@@ -97,7 +97,7 @@ jobs:
 
 ### 假如您采用了账户两重验证
 
-Ops, 也许您的邮箱收到了一份新的邮件，遗憾地通知您 Github Actions 执行失败，这时也许您可以想一想自己是否启用了 Github 账号的双重验证或其它安全访问验证。这都可能导致自动部署失败。
+Ops, 也许您的邮箱收到了一份新的邮件，遗憾地通知您 Github Actions 执行失败。这时您可以想一想自己是否启用了 Github 账号的双重验证或其它安全访问验证。这都可能导致自动部署失败。
 
 但是别担心，您可以通过[添加 SSH 身份验证](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-create-ssh-deploy-key)来解决这个问题。
 
@@ -145,5 +145,7 @@ jobs:
 ```
 
 其中 `ACCESS_TOKEN` 为新建的 `secret` 的名字，您应当修改为刚刚您创建 `secret` 时指定的名字。
+
+当然，您也可以生成 Github personal access token，本文不再赘述。
 
 最后，提交您的修改，一切都工作得如此完美。
