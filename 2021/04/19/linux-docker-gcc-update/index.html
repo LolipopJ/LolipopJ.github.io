@@ -198,14 +198,14 @@
     }
 </style>
 
-    <link rel="preload" href="/css/style.css?v=20210823" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/dark.css?v=20210823" as="style">
-    <link rel="stylesheet" href="/css/dark.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="/css/mobile.css?v=20210823" media="(max-width: 960px)">
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js?v=20210823" as="script">
-    <link rel="preload" href="/scripts/dark.js?v=20210823" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
     <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <!-- algolia -->
@@ -651,6 +651,8 @@
 
 
             
+            
+
             
 
         </div>
@@ -1110,8 +1112,6 @@
         
         
         
-        
-        
     
     
     
@@ -1372,6 +1372,41 @@
                 hexo-theme-archer
             </span>
         
+            <span class="sidebar-tag-name" data-tags="resume">
+                <span class="iconfont-archer">&#xe606;</span>
+                resume
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Github-actions">
+                <span class="iconfont-archer">&#xe606;</span>
+                Github-actions
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="rxjs">
+                <span class="iconfont-archer">&#xe606;</span>
+                rxjs
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1407,9 +1442,9 @@
                 jsDiliver
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Github-actions">
+            <span class="sidebar-tag-name" data-tags="ES6">
                 <span class="iconfont-archer">&#xe606;</span>
-                Github-actions
+                ES6
             </span>
         
             <span class="sidebar-tag-name" data-tags="GCC">
@@ -1437,11 +1472,6 @@
                 ESLint
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Protobuf">
-                <span class="iconfont-archer">&#xe606;</span>
-                Protobuf
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="机器学习">
                 <span class="iconfont-archer">&#xe606;</span>
                 机器学习
@@ -1455,6 +1485,11 @@
             <span class="sidebar-tag-name" data-tags="Travis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Travis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Protobuf">
+                <span class="iconfont-archer">&#xe606;</span>
+                Protobuf
             </span>
         
             <span class="sidebar-tag-name" data-tags="Telegram">
@@ -1485,41 +1520,6 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="resume">
-                <span class="iconfont-archer">&#xe606;</span>
-                resume
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="rxjs">
-                <span class="iconfont-archer">&#xe606;</span>
-                rxjs
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="计算机网络">
-                <span class="iconfont-archer">&#xe606;</span>
-                计算机网络
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络安全">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络安全
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="密码学">
-                <span class="iconfont-archer">&#xe606;</span>
-                密码学
             </span>
         
     </div>
@@ -1563,19 +1563,26 @@
 
         <!-- site-meta -->
         <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
     var siteMeta = {
-        root: "/",
+        url: "https://LolipopJ.github.io",
+        root: siteMetaRoot,
         author: "Lolipop"
     }
 </script>
 
-        <!-- experimental options -->
-        <!-- Check browser compatibility of CSS variables -->
-<script>
-    var browserSupportCSSVariables = window.CSS?.supports && window.CSS.supports('--a', 0)
-</script>
-<!-- Custom Font -->
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
 
+    <!-- Check browser compatibility of CSS variables -->
+    <script>
+        if (browserSupportCSSVariables === undefined) {
+            var browserSupportCSSVariables = window.CSS && window.CSS.supports && window.CSS.supports('--a', 0);
+        }
+    </script>
     <script>
         if (browserSupportCSSVariables) {
             var customFontName = 'Noto Sans SC:n3,n4,n5,n7'
@@ -1590,13 +1597,13 @@
             console.error('Current browser doesn\'t support custom font.')
         }
     </script>
-    <script src="/scripts/custmoFontLoader.js?v=20210823" defer></script>
+    <script src="/scripts/customFontLoader.js?v=20211217" defer></script>
 
 
         <!-- main func -->
-        <script src="/scripts/main.js?v=20210823"></script>
+        <script src="/scripts/main.js?v=20211217"></script>
         <!-- dark mode -->
-        <script src="/scripts/dark.js?v=20210823"></script>
+        <script src="/scripts/dark.js?v=20211217"></script>
         <!-- fancybox -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
         <!-- algolia -->
@@ -1621,7 +1628,7 @@
     </div>
 </div>
 
-            <script src="/scripts/search.js?v=20210823" defer></script>
+            <script src="/scripts/search.js?v=20211217" defer></script>
         
         <!-- busuanzi -->
         
@@ -1631,7 +1638,7 @@
         
         <!-- async load share.js -->
         
-            <script src="/scripts/share.js?v=20210823" async></script>
+            <script src="/scripts/share.js?v=20211217" async></script>
         
         <!-- mermaid -->
         
