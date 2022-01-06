@@ -4,7 +4,7 @@
 
 ## 在线预览
 
-🎯 主题预览：[Demo](https://fi3ework.github.io/archer-demo)。
+🎯 主题预览：[Demo](https://fi3ework.github.io/hexo-theme-archer)
 
 ## 文档
 
@@ -95,7 +95,7 @@ jsonContent:
 
 您可以通过 `hexo -v` 命令，或在 Hexo 根目录下的 `package.json` 中查看您当前使用的 Hexo 版本。
 
-如果 Hexo 版本 >= 5.0.0，建议复制 Archer 主题目录下的 [`_config.yml`](./_config.yml) 到 Hexo 根目录，并命名为 `_config.archer.yml`，接下来修改此文件即可对主题进行配置。现在，您可以删除 Archer 主题目录下的 `_config.yml` 文件，避免配置合并或冲突。
+如果 Hexo 版本 >= 5.0.0，建议复制 Archer 主题目录下的 [`_config.yml`](./_config.yml) 到 Hexo 根目录，并命名为 `_config.archer.yml`，接下来修改此文件即可对主题进行配置。现在，您可以删除 Archer 主题目录下的 `_config.yml` 文件，或将它重命名为 `_config.yml.template`，避免配置合并或冲突。
 
 如果 Hexo 版本 >= 2.8.2，修改 Archer 主题目录下的 `_config.yml` 文件即可对主题进行配置。
 
@@ -114,6 +114,7 @@ jsonContent:
 - [启用 RSS 订阅](#启用-rss-订阅)
 - [启用 Mermaid](#启用-mermaid)
 - [启用 LaTeX 数学公式](#启用-latex-数学公式)
+- [启用自定义字体](#启用自定义字体)
 - [自定义单独文章页头图](https://github.com/fi3ework/hexo-theme-archer/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E7%AB%A0%E9%A1%B5%E5%A4%B4%E5%9B%BE)
 - [将 Unsplash 的随机图片作为头图](https://github.com/fi3ework/hexo-theme-archer/wiki/%E5%B0%86-Unsplash-%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E5%A4%B4%E5%9B%BE)
 - [自定义文章在首页的摘要](https://github.com/fi3ework/hexo-theme-archer/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E7%AB%A0%E5%9C%A8%E9%A6%96%E9%A1%B5%E7%9A%84%E6%91%98%E8%A6%81)
@@ -221,13 +222,13 @@ mermaid:
 
 > ❗️❗️❗️ 注意：如果您需要使用**类图**，请编辑您 Hexo 根目录下的 `_config.yml` 文件，设置 `external_link: false`。请确保这个设置对您原来的页面功能没有影响，这是 Hexo 本身的 bug。
 
-## 启用 LaTeX 数学公式
+### 启用 LaTeX 数学公式
 
 这个[维基页面](https://github.com/fi3ework/hexo-theme-archer/wiki/%E5%90%AF%E7%94%A8-Latex-%E6%94%AF%E6%8C%81)包含启用 LaTeX 数学公式支持的完整介绍。
 
 Archer 主题已经内置了 MathJax，但是您需要**替换 Hexo 默认的 Markdown 渲染引擎**来支持解析 LaTeX 数学公式语法。此示例中将替换为 [`hexo-renderer-pandoc`](https://github.com/wzpan/hexo-renderer-pandoc)。
 
-请留意：替换渲染引擎可能会带来编写上的区别，或导致一些潜在的问题。
+请留意：替换渲染引擎为 `hexo-renderer-pandoc` 会带来编写上的区别，可能导致一些潜在的问题。
 
 首先，确保系统中已经[安装](https://pandoc.org/installing.html)了 `pandoc`，版本不低于 2.0。
 
@@ -264,6 +265,23 @@ z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &
 \right.
 \end{equation}
 ```
+
+### 启用自定义字体
+
+**实验性功能**，自定义字体依赖于 [CSS Variables](https://caniuse.com/?search=CSS%20Variables) 能力，部分浏览器存在**兼容性问题**。
+
+配置 Archer 主题目录下的 `_config.yml` 文件：
+
+``` yml
+custom_font:
+  enable: true
+  name: 'Noto Sans SC:n3,n4,n5,n7'
+  url: 'https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap'
+```
+
+其中，`name` 为引入的自定义字体名称。`:` 后跟引入字体的变体和字重，使用 `,` 间隔。例如 `name: 'Noto Sans SC:i5,n7'` 表示引入 `Noto Sans SC` 的斜体 500 字重和正常 700 字重。
+
+`url` 为引入的自定义字体的 CDN 链接或本地链接。
 
 ## 文章撰写增强
 

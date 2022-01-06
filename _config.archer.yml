@@ -133,6 +133,11 @@ comment:
   valine_appId: 
   valine_appKey: 
   valine_placeHolder: 
+  # Waline  site: https://waline.js.org/
+  waline_serverURL: 
+  waline_placeHolder: 
+  waline_avatar: 
+  waline_login: 
   # gitalk site: https://github.com/gitalk/gitalk/
   # Value 'true' is recommended for gitalk_pathname_id setting
   gitalk_client_id: 3e27d4e7935138a80cd8
@@ -216,4 +221,4 @@ custom_font:
 # ========== Theme Dev ========== #
 # Ensure visitor to get the latest version of source.
 # Set a higher value before creating new release.
-source_version: 20210823
+source_version: 20211217

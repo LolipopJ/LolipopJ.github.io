@@ -48,8 +48,8 @@
         <%- partial('_partial/sidebar/base-sidebar', {}, {cache: true}) %>
         <!-- site-meta -->
         <%- partial('./site-meta.ejs') %>
-        <!-- experimental options -->
-        <%- partial('_partial/experimental-options.ejs') %>
+        <!-- import experimental options here -->
+        <%- partial('_partial/custom-font', {}, {cache: true}) %>
         <!-- main func -->
         <script src="<%- url_for('scripts/main.js') %>?v=<%- theme.source_version %>"></script>
         <!-- dark mode -->
@@ -80,7 +80,7 @@
             </div>
         <% } %>
         <!-- async load share.js -->
-        <% if(is_post()) { %>
+        <% if (is_post()) { %>
             <script src="<%- url_for('scripts/share.js') %>?v=<%- theme.source_version %>" async></script>
         <% } %>
         <!-- mermaid -->

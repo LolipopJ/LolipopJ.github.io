@@ -7,10 +7,10 @@ import fancybox from './fancybox'
 
 // print custom info
 const logStyle =
-  'color: #fff; background: #f75357; padding: 1px; border-radius: 5px;'
+  'color: #fff; background: #61bfad; padding: 1px; border-radius: 5px;'
 console.info('%c 🎯 hexo-theme-archer ⬇️ ', logStyle)
-console.info('%c 🏷 Version: 1.6.4 ', logStyle)
-console.info('%c 📅 Version date: 20210811 ', logStyle)
+console.info('%c 🏷 Version: 1.6.5 ', logStyle)
+console.info('%c 📅 Version date: 20211217 ', logStyle)
 console.info('%c 📦 https://github.com/fi3ework/hexo-theme-archer ', logStyle)
 
 window.addEventListener('load', function (event) {
