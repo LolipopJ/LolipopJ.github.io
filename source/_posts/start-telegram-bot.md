@@ -72,7 +72,7 @@ npm install node-telegram-bot-api
 
 ![create a new bot](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/01/08/start-telegram-bot/create-bot.png)
 
-记录下当中的 **HTTP API** 即 Telegram Bot Token，作为项目的环境变量保存，切勿上传到远程代码仓库中。
+记录下当中的 **HTTP API** 的值即 Telegram Bot Token，作为项目的环境变量保存，切勿上传到远程代码仓库中。
 
 ```js
 const token = process.env.TELEGRAM_BOT_TOKEN
@@ -102,7 +102,7 @@ const bot = new TelegramBot(token, {
 })
 ```
 
-如何 SOCKS5 工作不正常（[这是](https://github.com/yagop/node-telegram-bot-api/issues/696#issuecomment-613023532)一个可能的原因），也可以尝试使用 HTTP 代理：
+如何 SOCKS5 工作不正常（[这是](https://github.com/yagop/node-telegram-bot-api/issues/696#issuecomment-613023532)一个可能的原因），也可以尝试使用 **HTTP 代理**：
 
 ```js
 const TelegramBot = require('node-telegram-bot-api')
@@ -138,7 +138,7 @@ Telegram Bot 可以通过轮询（polling）和网络钩子（webhook）两种�
 
 ![ngrok](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/01/08/start-telegram-bot/ngrok.png)
 
-如上图所示，当 ngrok 运行时，Telegram Bot 发向 `https://e865-182-141-75-13.ngrok.io` 的请求，将转发给运行在本地 `http://localhost:4000` 上的程序。
+如上图所示，当 ngrok 运行时，Telegram Bot 发向 `https://a75b-182-141-75-13.ngrok.io` 的请求，将转发给运行在本地 `http://localhost:4000` 上的程序。
 
 这样，只需要同时运行我们的项目和 ngrok，我们就可以正常地接收到信息并进行处理了。修改连接 Bot 的代码如下：
 
@@ -155,13 +155,13 @@ globalThis.bot = bot
 现在，Telegram 上收到的消息会立即发送给我们的服务器。最后，在服务器需要处理接收到的 POST 类型请求 `/bot${TELEGRAM_BOT_TOKEN}`，告知 Telegram 我们已经收到新的消息了。可以将在 `routes/index.js` 中添加代码如下：
 
 ```js
-router.post(`bot${process.env.TELEGRAM_BOT_TOKEN}`, (ctx) => {
+router.post(`bot${token}`, (ctx) => {
   globalThis.bot.processUpdate(ctx.request.body)
   ctx.status = 200
 })
 ```
 
-需要补充的是，通过上面代码中 Bot 的 [`processUpdate`](https://github.com/yagop/node-telegram-bot-api/blob/master/doc/api.md#telegrambotprocessupdateupdate) 方法，可以对接收到的信息进行相应的处理，触发正确的时间并执行回调方法。
+需要补充的是，通过上面代码中 Bot 的 [`processUpdate`](https://github.com/yagop/node-telegram-bot-api/blob/master/doc/api.md#telegrambotprocessupdateupdate) 方法，可以对接收到的消息进行相应的处理，触发正确的事件并执行回调方法。
 
 现在，我们的机器人将不再笨拙地轮询 Telegram 服务器，查看是否有未处理的消息，而是静静等待 Telegram 服务器发送过来的请求。
 
@@ -169,7 +169,7 @@ router.post(`bot${process.env.TELEGRAM_BOT_TOKEN}`, (ctx) => {
 
 万事俱备，接下来就是根据自己的需求进行开发的时间了。
 
-[这里](https://github.com/LolipopJ/telly-bot/tree/acbe0b122eb164dd3a44d95ed216877cbb9b0464)是笔者配置好的项目，可以作为 Start-up 供君参考。
+[这里](https://github.com/LolipopJ/telly-bot/tree/acbe0b122eb164dd3a44d95ed216877cbb9b0464)是笔者简单配置好的项目代码，可以作为 Start-up 供君参考。
 
 ## 参考文章
 
