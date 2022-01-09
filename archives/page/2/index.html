@@ -444,6 +444,69 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/05/17/js-closure/">
+                
+                <span class="abstract-title-text">漫谈 JavsScript 闭包</span>
+            </a>
+            <div class="abstract-content">
+                <p>JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。</p>
+<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="这一篇博客">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在 JavaScript 中，<strong>作用域</strong>（Scope）是当前代码执行的上下文，也即是值和表达式在其中可访问到的上下文。</p>
+<ul>
+<li>如果一个变量或其它表达式不在当前作用域中，就会沿<strong>作用域链</strong>（Scope Chain）往父作用域搜索。如果也仍未找到它的话，那么它就是不可用的。</li>
+<li>最顶级的父作用域是全局对象。</li>
+<li>父作用域不能引用子作用域中的变量和定义。</li>
+</ul>
+<p>目前，作用域有三种：<strong>全局作用域</strong>和<strong>函数作用域</strong>，以及 ES6 新增的<strong>块级作用域</strong>。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/05/17/js-closure/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/05/18">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/18</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/05/10/js-hoisting/">
                 
                 <span class="abstract-title-text">JavsScript 变量提升和函数提升</span>
@@ -1022,76 +1085,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/03/02/nodejs-eslint-prettier/">
-                
-                <span class="abstract-title-text">Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
-            </a>
-            <div class="abstract-content">
-                <p>哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？</p>
-<p>在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码<strong>质量</strong>问题，还是会在编译器里看到红色波浪线，提醒还有些代码<strong>风格</strong>需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。</p>
-<p>本文基于 Nuxt.js + VSCode 阐述如何配置并实现 ESLint + Prettier 检查并规范代码质量与格式。</p>
-<h2 id="ESLint-与-Prettier"><a href="#ESLint-与-Prettier" class="headerlink" title="ESLint 与 Prettier"></a>ESLint 与 Prettier</h2><p>ESLint 是一个开源的 JavaScript 代码检查工具，Prettier 是一款代码格式工具。它们的功能侧重如下所示：</p>
-<ul>
-<li>ESLint：主要负责代码<strong>质量</strong>的校验，其次包含代码<strong>风格</strong>的检验。</li>
-<li>Prettier：主要负责代码<strong>风格</strong>的校验。</li>
-</ul>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/03/02/nodejs-eslint-prettier/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/07">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/03</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Prettier">Prettier</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="VSCode">VSCode</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ESLint">ESLint</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1135,6 +1128,10 @@
     
         
     
+        
+            
+                <a href="https://twitter.com/Lolipop_0703" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+            
         
     
         
@@ -1346,7 +1343,30 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1537,7 +1557,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1551,6 +1571,21 @@
     
         
             
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2022/01/08/start-telegram-bot/">从零开始使用 Telegram Bot</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2021 </div>
             <ul class="year-list">
@@ -1791,6 +1826,21 @@
                 hexo-theme-archer
             </span>
         
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="resume">
                 <span class="iconfont-archer">&#xe606;</span>
                 resume
@@ -1809,21 +1859,6 @@
             <span class="sidebar-tag-name" data-tags="rxjs">
                 <span class="iconfont-archer">&#xe606;</span>
                 rxjs
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="计算机网络">
-                <span class="iconfont-archer">&#xe606;</span>
-                计算机网络
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络安全">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络安全
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="密码学">
-                <span class="iconfont-archer">&#xe606;</span>
-                密码学
             </span>
         
             <span class="sidebar-tag-name" data-tags="EditorConfig">
@@ -1891,6 +1926,11 @@
                 ESLint
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Protobuf">
+                <span class="iconfont-archer">&#xe606;</span>
+                Protobuf
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="机器学习">
                 <span class="iconfont-archer">&#xe606;</span>
                 机器学习
@@ -1901,19 +1941,24 @@
                 PyTorch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Travis">
-                <span class="iconfont-archer">&#xe606;</span>
-                Travis
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Protobuf">
-                <span class="iconfont-archer">&#xe606;</span>
-                Protobuf
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Telegram">
                 <span class="iconfont-archer">&#xe606;</span>
                 Telegram
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Bot">
+                <span class="iconfont-archer">&#xe606;</span>
+                Bot
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Koa">
+                <span class="iconfont-archer">&#xe606;</span>
+                Koa
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Travis">
+                <span class="iconfont-archer">&#xe606;</span>
+                Travis
             </span>
         
             <span class="sidebar-tag-name" data-tags="MTProto">
