@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Lolipop">
-<meta property="og:url" content="https://lolipopj.github.io/archives/2021/08/index.html">
+<meta property="og:url" content="https://lolipopj.github.io/tags/Sequelize/index.html">
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Lolipop">
@@ -444,21 +444,21 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2021/08/18/build-my-resume/">
+            <a class="abstract-title" href="/2022/01/08/start-telegram-bot/">
                 
-                <span class="abstract-title-text">把自己的简历做成 Web 页面</span>
+                <span class="abstract-title-text">从零开始使用 Telegram Bot</span>
             </a>
             <div class="abstract-content">
-                <p>去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 <a target="_blank" rel="noopener" href="https://github.com/salomonelli/best-resume-ever">best-resume-ever</a> 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/08/18/build-my-resume/my-first-resume.jpg" alt="my first resume"></p>
-<p>然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写，可以用自己已有的知识对简历做一些改造手术。</p>
-<h2 id="改造简历"><a href="#改造简历" class="headerlink" title="改造简历"></a>改造简历</h2><p>举四个改造的例子好了。</p>
-<h3 id="添加-Chip-纸片"><a href="#添加-Chip-纸片" class="headerlink" title="添加 Chip 纸片"></a>添加 Chip 纸片</h3>
+                <p>本文旨在基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，帮助笔者更好地将爱传递给 Telegram！</p>
+<p>本文假设您已对 Node.js 和 Koa 有一定的了解。</p>
+<h2 id="初始化-Koa-项目"><a href="#初始化-Koa-项目" class="headerlink" title="初始化 Koa 项目"></a>初始化 Koa 项目</h2><p><a target="_blank" rel="noopener" href="https://koajs.com/">Koa</a> 是为 Node.js 设计的下一代 Web 框架，其幕后开发者主要来自知名的 Express 团队。</p>
+<p>尽管使用 <a target="_blank" rel="noopener" href="https://github.com/i5ting/koa-generator">koa-generator</a> 来初始化 Koa 项目是一个不错的选择，但笔者还是喜欢从头开始的感觉。</p>
+<p>那么首先，新建文件夹并进入，使用 <code>npm init</code> 初始化 <code>package.json</code>。</p>
             </div>
             <!-- read more -->
             
                 <div class="abstract-read-more-button">
-                    <a href="/2021/08/18/build-my-resume/">
+                    <a href="/2022/01/08/start-telegram-bot/">
                         <span style="margin-right: 0.2rem;">阅读全文</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
@@ -466,8 +466,8 @@
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/20">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/08/19</span>
+                <div class="abstract-date" title="Last updated: 2022/01/11">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/01/09</span>
                 </div>
                 <!-- tags -->
                 
@@ -478,149 +478,25 @@
             
         
         
-        <span class="post-category" data-categories="前端开发"">
+        <span class="post-category" data-categories="后端开发"">
             <i class="fas fa-folder post-category-icon"></i>
             <span class="post-category-text">
-                前端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="resume">resume</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CSS">CSS</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="rxjs">rxjs</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/08/12/github-jsdelivr-hold-image/">
-                
-                <span class="abstract-title-text">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天突然想去搞个图床，使用 CDN 加速图片资源。因为博客放在小水管服务器上，直接用这个服务器向用户传输图片资源对带宽有很大影响。</p>
-<p>遂上网搜索有无免费图床的服务，看到有人提起，便出现了此文的主题：使用 jsDelivr 加速 Github 仓库资源，用作图床使用。</p>
-<p>在国内，直接使用 Github 链接来加载图片是很慢的，甚至于加载不出来；但访问 jsDelivr 速度较快。通过 jsDelivr 来加速 Github 上的图片资源，即可以实现我们想要的图床服务。</p>
-<p>使用其它的可以加速 Github 资源的 CDN 服务来替换 jsDelivr 也可以；这应该算是目前对于个人开发者来说，最简单且经济的方式了。</p>
-<h2 id="创建图床仓库"><a href="#创建图床仓库" class="headerlink" title="创建图床仓库"></a>创建图床仓库</h2>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/08/12/github-jsdelivr-hold-image/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/13">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/08/13</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Github">Github</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="jsDiliver">jsDiliver</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/08/06/editorconfig-prettier/">
-                
-                <span class="abstract-title-text">使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化</span>
-            </a>
-            <div class="abstract-content">
-                <p>笔者想要给自己翻译的设计模式教程添加<strong>多编程语言</strong>支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。</p>
-<p>部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。</p>
-<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="这一篇博客">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
-<h2 id="编写时-EditorConfig"><a href="#编写时-EditorConfig" class="headerlink" title="编写时 EditorConfig"></a>编写时 EditorConfig</h2><p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a> 有助于为跨各种编辑器或 IDE 而处理同一项目的多个开发人员保持一致的编码风格。</p>
-<p>VSCode 并没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">其插件</a>。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/08/06/editorconfig-prettier/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/08">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/08/07</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
+                后端开发
             </span>
         </span>
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="EditorConfig">EditorConfig</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Prettier">Prettier</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Bot">Bot</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="VSCode">VSCode</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Koa">Koa</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PostgreSQL">PostgreSQL</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Sequelize">Sequelize</a>
     
 </div>
 
