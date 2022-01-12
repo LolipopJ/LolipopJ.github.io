@@ -246,7 +246,7 @@ const sequelize = new Sequelize(
 module.exports = sequelize
 ```
 
-为了实现自动转发 Github Issues 中的评论，我们需要一张数据表来存储上一次转发的评论（或编辑记录）的**最后更新日期**。这样，下一次执行任务时，只需要查看该日期之后是否有新的评论（或编辑记录）就可以了。对于每一个 Issue，都会在该表中创建一条数据。为 Sequelize 添加模型 `db/model/ServiceGithubIssueComment.js` 如下：
+为了实现自动转发 Github Issues 中的评论，我们需要一张数据表来存储上一次转发的评论（或编辑记录）的**最后更新日期**（`lastUpdateCommentAt`)。这样，下一次执行任务时，只需要查看该日期之后是否有新的评论（或编辑记录）就可以了。对于每一个 Issue，都会在该表中创建一条数据。为 Sequelize 添加模型 `db/model/ServiceGithubIssueComment.js` 如下：
 
 ```js
 const { DataTypes } = require('sequelize')
@@ -310,23 +310,25 @@ npm install @octokit/core
 
 ```js
 const config = {
-  // other config
   github: {
-    issueComment: [
-      {
-        owner: 'LolipopJ',
-        repo: 'LolipopJ',
-        issueNumber: 2,
-        issueUserId: [42314340],
-        forwardChannelId: '@lolipop_thoughts',
-        since: '2022-01-01T00:00:00.000Z',
-      },
-    ],
+    forwardIssueComment: {
+      duration: 3600,
+      task: [
+        {
+          owner: 'LolipopJ',
+          repo: 'LolipopJ',
+          issueNumber: 2,
+          issueUserId: [42314340],
+          forwardChannelId: '@lolipop_thoughts',
+          since: '2022-01-01T00:00:00.000Z',
+        },
+      ],
+    },
   },
 }
 ```
 
-在前面的配置中存在 `issueUserId` 项，这是因为我们可能只想要转发自己发送的评论，在后面只需要根据该项过滤该用户 ID 的评论即可（可以通过 `https://api.github.com/users/your_github_user_name` 查看指定 Github 账户的 ID）。
+其中，`duration` 为两次执行期间间隔的时间（秒）。此外，配置中存在 `issueUserId` 项，这是因为我们可能只想要转发自己发送的评论，在后面只需要根据该项过滤该用户 ID 的评论即可（可以通过 `https://api.github.com/users/your_github_user_name` 查看指定 Github 账户的 ID）。
 
 [这里](https://docs.github.com/en/rest/reference/issues#list-issue-comments)是获取指定 Issues 中的评论的方法。编写 `service/github.js` 代码如下（**仅做参考**：代码截取实现功能的部分，刨除提高鲁棒性的部分，也去除了第一次执行的部分）：
 
@@ -339,7 +341,7 @@ const bot = globalThis.bot
 const sequelize = globalThis.sequelize
 
 const forwardGithubIssueComment = async function () {
-  const issues = config.issueComment
+  const issues = config.forwardIssueComment.task
   const ServiceGithubIssueComment = sequelize.models.ServiceGithubIssueComment
 
   for (const issue of issues) {
@@ -358,12 +360,19 @@ const forwardGithubIssueComment = async function () {
     const perPage = 100
     let page = 0
 
+    // 查询 Github Issues 的评论的最后更新日期 lastUpdateCommentAt
     const issueServiceInfo = await ServiceGithubIssueComment.findOne({
       where: queryConfig,
     })
-    const issueServiceData = issueServiceInfo.dataValues
-    const since = issueServiceData.lastUpdateCommentAt
+    const lastUpdateCommentDate = issueServiceInfo.dataValues.lastUpdateCommentAt
+    
+    // 将 lastUpdateCommentAt 加上 1ms 作为下一次查询的起始日期
+    const since = new Date(
+      new Date(lastUpdateCommentDate).getTime() + 1
+    ).toISOString()
 
+    // 调用 Github API 获取指定 issue 的评论信息
+    // 查询的评论更新日期从 since 开始
     let issueComments = []
     while (issueComments.length === perPage * page) {
       ++page
@@ -381,6 +390,7 @@ const forwardGithubIssueComment = async function () {
       issueComments = issueComments.concat(res.data)
     }
 
+    // 如果设置了 issueUserId 项，则只保留数组中用户 ID 的评论
     if (Array.isArray(issueUserId) && issueUserId.length > 0) {
       issueComments = issueComments.filter((comment) => {
         const commentUserId = comment.user.id
@@ -414,8 +424,9 @@ const octokit = new Octokit(octokitOptions)
 
 ```js
 if (issueComments.length > 0) {
-  let lastUpdateCommentAt = since
+  let lastUpdateCommentAt = new Date(0).toISOString()
 
+  // 转发评论到 Telegram 频道
   for (const issueComment of issueComments) {
     try {
       await bot.sendMessage(
@@ -438,9 +449,10 @@ if (issueComments.length > 0) {
     }
   }
 
+  // 维护数据库，保存 Github Issue 评论的最后更新日期
   await ServiceGithubIssueComment.update(
     {
-      lastUpdateCommentAt: lastUpdateCommentAt,
+      lastUpdateCommentAt,
       lastExecServiceAt: new Date().toISOString(),
     },
     {
@@ -467,6 +479,8 @@ const {
 
 const githubService = require('./github')
 
+const config = require('../config')
+
 const scheduler = new ToadScheduler()
 const taskForwardGithubIssueComment = new AsyncTask(
   'Forward Github Issue Comment',
@@ -478,7 +492,10 @@ const taskForwardGithubIssueComment = new AsyncTask(
   }
 )
 const jobForwardGithubIssueComment = new SimpleIntervalJob(
-  { hours: 1, runImmediately: true },
+  {
+    seconds: config.github.forwardIssueComment.duration,
+    runImmediately: true,
+  },
   taskForwardGithubIssueComment
 )
 
@@ -491,9 +508,11 @@ scheduler.addSimpleIntervalJob(jobForwardGithubIssueComment)
 npm run pm2
 ```
 
-笔者的频道顺利收到了来自 Github Issue 中的信息！
+笔者的频道顺利收到了来自 Github Issue 中的评论信息！
 
 ![Forward Github Issue's comments to my channel](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/01/08/start-telegram-bot/forward-to-my-channel.png)
+
+仍然，该服务还有许多可以优化的地方，例如：当评论发生更新时，应编辑已发送的频道消息为最新评论内容，而不是重新发一条新的消息等。不再在此文赘述。
 
 ## 参考文章
 
