@@ -444,6 +444,72 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/01/12/random-get-me-a-picture/">
+                
+                <span class="abstract-title-text">这位客官，要来一张我珍藏许久的图片吗</span>
+            </a>
+            <div class="abstract-content">
+                <p>笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。</p>
+<p>独乐乐不如众乐乐！笔者想做一个 web 页面来随机访问我的收藏，不过在此之前，可以先实现服务端上的内容。再之后做网页时，不过是简单的读取数据库罢了！</p>
+<p>最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 <a target="_blank" rel="noopener" href="https://pixiv.re/">Pixiv 图片代理网站</a> 可以快速下载到图片，大喜，于是开始了这个小工程。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/01/12/random-get-me-a-picture/pixiv-cat.png" alt="请求需包含 Referer"></p>
+<p>实现此功能分为两个阶段：一，为本地的图片生成数据库索引条目。二，开发 Telegram Bot 接口，随机从数据库索引中获取一张图片转发给聊天。</p>
+<h2 id="为本地的-Pixiv-图片建立索引"><a href="#为本地的-Pixiv-图片建立索引" class="headerlink" title="为本地的 Pixiv 图片建立索引"></a>为本地的 Pixiv 图片建立索引</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/01/12/random-get-me-a-picture/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/01/13">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/01/13</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Bot">Bot</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Koa">Koa</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/01/08/start-telegram-bot/">
                 
                 <span class="abstract-title-text">从零开始使用 Telegram Bot</span>
@@ -1015,67 +1081,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/05/19/js-use-class/">
-                
-                <span class="abstract-title-text">漫谈 JavsScript 类（Class）的使用</span>
-            </a>
-            <div class="abstract-content">
-                <p>类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的 <code>class</code> 语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。</p>
-<p>本博文将探讨 JavaScript 中<strong>如何使用类</strong>的相关知识，文章组织架构和内容基于 MDN 上关于类的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">章节</a>。</p>
-<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>类可以被看作一种“特殊的函数”，和函数的定义方法一样，类的定义方法有两种：<strong>类声明</strong>和<strong>类表达式</strong>。</p>
-<p>第一种方法是，直接使用 <code>class</code> 关键字声明类，即<strong>类声明</strong>的方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/05/19/js-use-class/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/05/20">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/20</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ES6">ES6</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1339,7 +1344,24 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1548,7 +1570,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1566,6 +1588,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2022/01/12/random-get-me-a-picture/">这位客官，要来一张我珍藏许久的图片吗</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/09</span>

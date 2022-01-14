@@ -459,6 +459,65 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/03/09/xxx-is-not-a-symbolic-link/">
+                
+                <span class="abstract-title-text">提示 *** is not a symbolic link 解决方案</span>
+            </a>
+            <div class="abstract-content">
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在 CentOS 环境下执行 <code>yum update</code> 和 <code>ldconfig</code> 命令时都出现提示警告，节选内容如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libupb.so.9 is not a symbolic link</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>进入到对应目录下查找可以发现，这里的 <code>librdmacm.so.1</code> 与 <code>librdmacm.so.1.1.17.4</code> 实际上是相同的动态库文件，而非我们期望的符号链接和动态库文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xxx ~]<span class="comment"># cd /OSM/lib</span></span><br><span class="line">[root@xxx lib]<span class="comment"># find librdmacm.so.1* | xargs ls -l</span></span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1</span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1.1.17.4</span><br></pre></td></tr></table></figure>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/03/09/xxx-is-not-a-symbolic-link/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/03/10">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/03/02/nodejs-eslint-prettier/">
                 
                 <span class="abstract-title-text">Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
@@ -1336,7 +1395,24 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1545,7 +1621,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1563,6 +1639,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2022/01/12/random-get-me-a-picture/">这位客官，要来一张我珍藏许久的图片吗</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/09</span>

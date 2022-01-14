@@ -444,6 +444,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/05/19/js-use-class/">
+                
+                <span class="abstract-title-text">漫谈 JavsScript 类（Class）的使用</span>
+            </a>
+            <div class="abstract-content">
+                <p>类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的 <code>class</code> 语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。</p>
+<p>本博文将探讨 JavaScript 中<strong>如何使用类</strong>的相关知识，文章组织架构和内容基于 MDN 上关于类的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">章节</a>。</p>
+<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>类可以被看作一种“特殊的函数”，和函数的定义方法一样，类的定义方法有两种：<strong>类声明</strong>和<strong>类表达式</strong>。</p>
+<p>第一种方法是，直接使用 <code>class</code> 关键字声明类，即<strong>类声明</strong>的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/05/19/js-use-class/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/05/20">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="ES6">ES6</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/05/17/js-closure/">
                 
                 <span class="abstract-title-text">漫谈 JavsScript 闭包</span>
@@ -1026,65 +1087,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/03/09/xxx-is-not-a-symbolic-link/">
-                
-                <span class="abstract-title-text">提示 *** is not a symbolic link 解决方案</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在 CentOS 环境下执行 <code>yum update</code> 和 <code>ldconfig</code> 命令时都出现提示警告，节选内容如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libupb.so.9 is not a symbolic link</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>进入到对应目录下查找可以发现，这里的 <code>librdmacm.so.1</code> 与 <code>librdmacm.so.1.1.17.4</code> 实际上是相同的动态库文件，而非我们期望的符号链接和动态库文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xxx ~]<span class="comment"># cd /OSM/lib</span></span><br><span class="line">[root@xxx lib]<span class="comment"># find librdmacm.so.1* | xargs ls -l</span></span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1</span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1.1.17.4</span><br></pre></td></tr></table></figure>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/03/09/xxx-is-not-a-symbolic-link/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/03/10">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/10</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1348,7 +1350,24 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1557,7 +1576,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1575,6 +1594,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2022/01/12/random-get-me-a-picture/">这位客官，要来一张我珍藏许久的图片吗</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/09</span>
