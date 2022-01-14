@@ -365,7 +365,7 @@ const forwardGithubIssueComment = async function () {
       where: queryConfig,
     })
     const lastUpdateCommentDate = issueServiceInfo.dataValues.lastUpdateCommentAt
-    
+
     // 将 lastUpdateCommentAt 加上 1ms 作为下一次查询的起始日期
     const since = new Date(
       new Date(lastUpdateCommentDate).getTime() + 1
