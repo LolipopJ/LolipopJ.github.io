@@ -1,7 +1,7 @@
 ---
 title: 这位客官，要来一张我珍藏许久的图片吗
 date: 2022/1/13
-updated: 2022/1/13
+updated: 2022/1/15
 categories:
   - 后端开发
 tags:
@@ -393,38 +393,56 @@ bot.onText(/\/random_pixiv/, async (msg) => {
     );
 
     const data = res.data;
+    const {
+      id,
+      picNameMD,
+      picUrl,
+      picSize,
+      picProxyUrl,
+      picId,
+      picIndex,
+      picType,
+    } = data;
 
-    const caption = `Pixiv Artwork: ${data.picNameMD}\n[source](${data.picUrl}) \\| powered by [pixiv\\.cat](https://pixiv.cat/)`;
+    const caption = `[source](${picUrl})`;
 
-    if (data.picSize >= 5) {
-      // Artwork size is not smaller than 5 MB, send caption message
-      await bot.sendMessage(chatId, caption, {
-        parse_mode: "MarkdownV2",
-        disable_web_page_preview: false,
-      });
-    } else {
+    let msgReplied = false;
+
+    if (picSize < 5) {
       // Artwork size is smaller than 5 MB, send photo message
       const sendPhotoOptions = {
         caption,
         parse_mode: "MarkdownV2",
         disable_web_page_preview: true,
       };
+
       try {
-        await bot.sendPhoto(chatId, data.picProxyUrl, sendPhotoOptions);
+        await bot.sendPhoto(chatId, picProxyUrl, sendPhotoOptions);
+
+        msgReplied = true;
       } catch (err) {
-        try {
-          // Comic mode artwork with index=0 may send failed
-          // Use comic mode url instead
-          const picProxyUrl = `https://pixiv.cat/${data.picId}-1.${data.picType}`;
-          await bot.sendPhoto(chatId, picProxyUrl, sendPhotoOptions);
-        } catch (err) {
-          // If failed again, send caption message
-          await bot.sendMessage(chatId, caption, {
-            parse_mode: "MarkdownV2",
-            disable_web_page_preview: false,
-          });
+        if (picIndex == 0) {
+          try {
+            // Comic mode artwork with index=0 may send failed
+            // Use comic mode url instead
+            const picProxyUrl = `https://pixiv.cat/${picId}-1.${picType}`;
+            await bot.sendPhoto(chatId, picProxyUrl, sendPhotoOptions);
+
+            msgReplied = true;
+          } catch (err) {
+            //
+          }
         }
       }
+    }
+
+    // Artwork size is not smaller than 5 MB or send failed again,
+    // send caption message
+    if (!msgReplied) {
+      await bot.sendMessage(chatId, caption, {
+        parse_mode: "MarkdownV2",
+        disable_web_page_preview: false,
+      });
     }
 
     // Remove placeholder message
