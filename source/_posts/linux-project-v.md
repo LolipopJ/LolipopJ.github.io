@@ -1,3 +1,13 @@
+---
+title: 在 Linux 系统下启用 Project-V
+date: 2021/6/9
+updated: 2021/6/9
+categories:
+- 后端开发
+tags:
+- Linux
+---
+
 ## 下载 Release
 
 在 Project-V 的 [Github Releases](https://github.com/v2fly/v2ray-core/releases) 页面下载最新的二进制包。
