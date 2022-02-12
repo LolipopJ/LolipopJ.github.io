@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -444,13 +444,145 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/03/16/amap-import-vue/">
+                
+                <span class="abstract-title-text">在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
+            </a>
+            <div class="abstract-content">
+                <p>迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！</p>
+<h2 id="高德地图与腾讯地图定位功能区别"><a href="#高德地图与腾讯地图定位功能区别" class="headerlink" title="高德地图与腾讯地图定位功能区别"></a>高德地图与腾讯地图定位功能区别</h2><p>高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。</p>
+<p>这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。</p>
+<p>此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。</p>
+<h2 id="引入高德地图-JS-API-库"><a href="#引入高德地图-JS-API-库" class="headerlink" title="引入高德地图 JS API 库"></a>引入高德地图 JS API 库</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/03/16/amap-import-vue/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/03/18">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Promise">Promise</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/03/15/tencent-map-api-get-current-location/">
+                
+                <span class="abstract-title-text">使用腾讯位置服务进行 Web 前端定位</span>
+            </a>
+            <div class="abstract-content">
+                <p>正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的<a target="_blank" rel="noopener" href="https://lbs.qq.com/location/#anchor">定位解决方案</a>里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。</p>
+<p>终于在不起眼的地方找到了<a target="_blank" rel="noopener" href="https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation">前端定位组件</a>，适用于浏览器进行定位操作。</p>
+<p>本文基于 Nuxt.js 实现前端定位功能。</p>
+<h2 id="它能做什么"><a href="#它能做什么" class="headerlink" title="它能做什么"></a>它能做什么</h2><p>组件旨在优化纯 <a target="_blank" rel="noopener" href="https://w3c.github.io/geolocation-api">HTML5 Geolocation</a> 定位能力弱，定位成功率不高的问题，提供简单、易用的接口帮助业务层获取用户当前的位置信息（需用户授权），以降低开发成本，提升定位精准度。</p>
+<p>除了常规的经纬度坐标以外，它返回的结果里还包含了 <code>city</code> 和 <code>district</code> 项，非常方面。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/03/15/tencent-map-api-get-current-location/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/03/16">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/16</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/03/09/xxx-is-not-a-symbolic-link/">
                 
                 <span class="abstract-title-text">提示 *** is not a symbolic link 解决方案</span>
             </a>
             <div class="abstract-content">
                 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在 CentOS 环境下执行 <code>yum update</code> 和 <code>ldconfig</code> 命令时都出现提示警告，节选内容如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic link</span><br><span class="line">ldconfig: /OSM/lib/libupb.so.9 is not a symbolic link</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic <span class="built_in">link</span></span><br><span class="line">ldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic <span class="built_in">link</span></span><br><span class="line">ldconfig: /OSM/lib/libupb.so.9 is not a symbolic <span class="built_in">link</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>进入到对应目录下查找可以发现，这里的 <code>librdmacm.so.1</code> 与 <code>librdmacm.so.1.1.17.4</code> 实际上是相同的动态库文件，而非我们期望的符号链接和动态库文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xxx ~]<span class="comment"># cd /OSM/lib</span></span><br><span class="line">[root@xxx lib]<span class="comment"># find librdmacm.so.1* | xargs ls -l</span></span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1</span><br><span class="line">-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1.1.17.4</span><br></pre></td></tr></table></figure>
@@ -927,72 +1059,10 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2019/12/26/hello-hexo-world/">
-                
-                <span class="abstract-title-text">Hello Hexo World</span>
-            </a>
-            <div class="abstract-content">
-                <p>搭建一个自己的博客是多少投身于IT行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！</p>
-<p>正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。</p>
-<h2 id="开始前"><a href="#开始前" class="headerlink" title="开始前"></a>开始前</h2><p>假设你已了解何为 Github Pages，并充分认识到它对于一个渴望搭建博客的中国人的难以替代性（是的，我不愿意备案）。在开始之前，我们首先要选择博客框架，并下载与之对应的依赖软件。</p>
-<h3 id="Hello-Hexo"><a href="#Hello-Hexo" class="headerlink" title="Hello, Hexo"></a>Hello, Hexo</h3><p>Hexo 基于 Node.js，是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2019/12/26/hello-hexo-world/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/02/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/27</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="博客开发">博客开发</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/page/2/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+            <a class="extend prev" rel="prev" href="/archives/page/2/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">NEXT &gt;</a>
         </nav>
     
 </main>
@@ -1257,7 +1327,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1478,7 +1574,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1496,6 +1592,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1557,6 +1659,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1788,6 +1896,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1883,11 +2001,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1906,11 +2019,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1944,14 +2052,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

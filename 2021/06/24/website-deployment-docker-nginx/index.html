@@ -227,7 +227,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -529,7 +529,7 @@
         <p>现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？</p>
 <p>本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。</p>
 <h2 id="准备静态网页项目"><a href="#准备静态网页项目" class="headerlink" title="准备静态网页项目"></a>准备静态网页项目</h2><p>为了更方便管理网页项目，可以在主机根目录下新建一个目录，例如 <code>www</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">mkdir www</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> www</span><br></pre></td></tr></table></figure>
 
 <p>现在，我已经有了一个完整的静态网页项目——我的<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io">个人博客</a>。我的个人博客基于 Hexo，其中代码放在 <code>source</code> 分支，生成的静态网页文件放在 <code>master</code> 分支。首先通过 <code>git</code> 命令将静态网页文件克隆下来：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /www</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/LolipopJ/LolipopJ.github.io.git -b master</span><br></pre></td></tr></table></figure>
@@ -539,11 +539,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将文件解压到当前目录下的 blog.towind.fun 目录中</span></span><br><span class="line">unzip blog.towind.fun.zip -d blog.towind.fun</span><br></pre></td></tr></table></figure>
 
 <p>可以将 <code>blog.towind.fun/Nginx</code> 目录下的文件放置到 <code>/www/cert</code> 目录下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /www/cert</span><br><span class="line">cp blog.towind.fun/Nginx/* /www/cert</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /www/cert</span><br><span class="line"><span class="built_in">cp</span> blog.towind.fun/Nginx/* /www/cert</span><br></pre></td></tr></table></figure>
 
 <p>之后，只需要将 <code>/www/cert</code> 目录挂载到 Nginx 的容器中，再通过 Nginx 配置访问即可。</p>
 <h2 id="创建-Nginx-容器"><a href="#创建-Nginx-容器" class="headerlink" title="创建 Nginx 容器"></a>创建 Nginx 容器</h2><p>从 Nginx 1.19 版本开始，允许在配置中自定义环境变量，只需要编写一个 <code>docker-compose.yml</code> 文件。<code>docker-compose</code> 是用来将 Docker 自动化的命令，如果还没有，需要先安装它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/bin/docker-compose /usr/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> -o /usr/local/bin/docker-compose</span><br><span class="line">sudo <span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/bin/docker-compose /usr/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
 <p>可以用 <code>docker-compose --version</code> 命令测试安装的结果。</p>
 <p>在默认情况下，Nginx 会寻找容器的 <code>/usr/share/nginx/html</code> 目录下的网页文件，因此我们需要把网页文件放到这个目录下去。最简单的方式是通过挂载 volume 使得容器可以访问到我们的 <code>/www/LolipopJ.github.io</code> 目录。</p>
@@ -590,8 +590,8 @@
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2021/06/03/euler-install-mysql/" title="在 Euler 系统上离线安装 MySQL 5.7">
-                    <div class="prevTitle">在 Euler 系统上离线安装 MySQL 5.7</div>
+                <a href="/2021/06/08/linux-project-v/" title="在 Linux 系统下启用 Project-V">
+                    <div class="prevTitle">在 Linux 系统下启用 Project-V</div>
                 </a>
             
         </li>
@@ -928,7 +928,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1149,7 +1175,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1167,6 +1193,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1228,6 +1260,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1459,6 +1497,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1554,11 +1602,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1577,11 +1620,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1615,14 +1653,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

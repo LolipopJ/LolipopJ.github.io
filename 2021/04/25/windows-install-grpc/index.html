@@ -29,9 +29,9 @@
 <meta property="article:published_time" content="2021-04-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-04-25T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
+<meta property="article:tag" content="Windows">
 <meta property="article:tag" content="CPP">
 <meta property="article:tag" content="gRPC">
-<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -227,7 +227,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -354,11 +354,11 @@
         </span>
     
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
+    
         <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
     
 </div>
 
@@ -540,7 +540,7 @@
 <p>在微软的 <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/">VS 官网</a>下载安装即可。</p>
 <h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>用于拉取 gRPC 库并下载所需的第三方依赖。</p>
 <p>在 <a target="_blank" rel="noopener" href="https://git-scm.com/">Git 官网</a>下载并安装即可。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; git -<span class="literal">-version</span></span><br><span class="line">git version <span class="number">2.21</span>.<span class="number">0</span>.windows.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; git <span class="literal">--version</span></span><br><span class="line">git version <span class="number">2.21</span>.<span class="number">0</span>.windows.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><p>用于生成编译 gRPC 的 Makefile 文件。</p>
 <p>在 <a target="_blank" rel="noopener" href="https://cmake.org/download/">CMake 官网</a>下载，可以选择下载 <code>.msi</code> 文件直接安装。</p>
@@ -558,13 +558,13 @@
 </tr>
 </tbody></table>
 <p>下载并运行 <code>.msi</code> 文件安装即可。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; cmake -<span class="literal">-version</span></span><br><span class="line">cmake version <span class="number">3.20</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; cmake <span class="literal">--version</span></span><br><span class="line">cmake version <span class="number">3.20</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="nasm"><a href="#nasm" class="headerlink" title="nasm"></a>nasm</h3><p>gRPC 的第三方依赖 <code>boringssl</code> 需要此软件。</p>
 <p>在 <a target="_blank" rel="noopener" href="https://www.nasm.us/">nasm 官网</a>下载，可以选择下载 <code>.exe</code> 文件直接安装。</p>
 <p>例如对于 64 位的 Windows 电脑安装 <code>nasm 2.15.05</code>，可以进入 <code>/pub/nasm/releasebuilds/2.15.05/win64</code> 目录下载 <code>nasm-2.15.05-installer-x64.exe</code> 文件并执行安装操作。</p>
 <p>nasm 默认安装目录为 <code>C:\Users\$&#123;您的工号&#125;\AppData\Local\bin\NASM</code>（若非此目录，请在安装界面确认安装的路径），将该目录添加到环境变量中即可。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; nasm -<span class="literal">-version</span></span><br><span class="line">NASM version <span class="number">2.15</span>.<span class="number">05</span> compiled on Aug <span class="number">28</span> <span class="number">2020</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\Users\lolipop&gt; nasm <span class="literal">--version</span></span><br><span class="line">NASM version <span class="number">2.15</span>.<span class="number">05</span> compiled on Aug <span class="number">28</span> <span class="number">2020</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="ninja（可选）"><a href="#ninja（可选）" class="headerlink" title="ninja（可选）"></a>ninja（可选）</h3><p>您可以使用 Ninja 来加速编译。</p>
 <p>假如您希望使用它，后续的编译操作可参考<a target="_blank" rel="noopener" href="https://github.com/grpc/grpc/blob/master/BUILDING.md#windows-using-ninja-faster-build">官方文档</a>，本博客<strong>不使用</strong> Ninja 加速编译。</p>
@@ -586,7 +586,7 @@
 <p>gRPC 默认安装在 <code>C:\Program Files (x86)\grpc</code> 目录。</p>
 <p>如果报错，请确保您已使用管理员权限打开 VS。使用管理员权限重新打开 VS 后，右键点击 <code>ALL_BUILD</code> 并选择<strong>重新生成</strong>按钮即可。</p>
 <h3 id="使用命令行编译并安装-gRPC"><a href="#使用命令行编译并安装-gRPC" class="headerlink" title="使用命令行编译并安装 gRPC"></a>使用命令行编译并安装 gRPC</h3><p>您也可以直接使用命令行界面，执行 <code>cmake</code> 命令来编译安装 gRPC。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译并安装 gRPC</span></span><br><span class="line">cmake -<span class="literal">-build</span> . -<span class="literal">-target</span> install -<span class="literal">-config</span> Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译并安装 gRPC</span></span><br><span class="line">cmake <span class="literal">--build</span> . <span class="literal">--target</span> install <span class="literal">--config</span> Release</span><br></pre></td></tr></table></figure>
 
 <p>编译结束后，会自动进行安装操作。</p>
 <p>gRPC 默认安装在 <code>C:\Program Files (x86)\grpc</code> 目录。</p>
@@ -973,7 +973,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1194,7 +1220,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1212,6 +1238,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1273,6 +1305,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1504,6 +1542,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1599,11 +1647,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1622,11 +1665,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1660,14 +1698,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

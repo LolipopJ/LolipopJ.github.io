@@ -226,7 +226,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -545,7 +545,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -I --user=root</span><br></pre></td></tr></table></figure>
 
 <p>接下来，为目录移除可读权限，这是因为 MySQL 为了安全考虑，会忽略到权限过高的文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql /var/lib/mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R mysql:mysql /var/lib/mysql</span><br></pre></td></tr></table></figure>
 
 <h2 id="启动-MySQL-服务"><a href="#启动-MySQL-服务" class="headerlink" title="启动 MySQL 服务"></a>启动 MySQL 服务</h2><p>配置完成后，就可以启动 MySQL 服务了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
@@ -554,14 +554,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld status</span><br></pre></td></tr></table></figure>
 
 <h2 id="登录-MySQL"><a href="#登录-MySQL" class="headerlink" title="登录 MySQL"></a>登录 MySQL</h2><p>在之前的初始化过程中，我们生成了一个超级用户和它的随机登录密码。可以通过下面的命令查看这个随机密码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n <span class="string">&#x27;password&#x27;</span> /var/<span class="built_in">log</span>/mysqld.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n <span class="string">&#x27;password&#x27;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
 
 <p>例如，打印结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Storage:~ <span class="comment"># grep -n &#x27;password&#x27; /var/log/mysqld.log</span></span><br><span class="line">7:2021-06-02T07:50:39.284449Z 1 [Note] A temporary password is generated <span class="keyword">for</span> root@localhost: IN2Scm=ERki9</span><br></pre></td></tr></table></figure>
 
 <p>则默认的随机密码为：<code>IN2Scm=ERki9</code>，您应当保管好此密码不要泄露，或是修改为新的密码。</p>
 <p>使用这个密码，我们就可以登录到 MySQL 中去了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Storage:~ <span class="comment"># mysql -uroot -pIN2Scm=ERki9</span></span><br><span class="line">mysql: [Warning] Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 2</span><br><span class="line">Server version: 5.7.33 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2021, Oracle and/or its affiliates.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Storage:~ <span class="comment"># mysql -uroot -pIN2Scm=ERki9</span></span><br><span class="line">mysql: [Warning] Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection <span class="built_in">id</span> is 2</span><br><span class="line">Server version: 5.7.33 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2021, Oracle and/or its affiliates.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
 
 <p>此时已经可以正常执行 MySQL 数据库操作了。</p>
 <p>假如需要修改密码，可以执行下面的语句：</p>
@@ -591,8 +591,8 @@
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2021/06/24/website-deployment-docker-nginx/" title="使用基于 Docker 的 Nginx 部署静态网页项目">
-                    <div class="nextTitle">使用基于 Docker 的 Nginx 部署静态网页项目</div>
+                <a href="/2021/06/08/linux-project-v/" title="在 Linux 系统下启用 Project-V">
+                    <div class="nextTitle">在 Linux 系统下启用 Project-V</div>
                 </a>
             
         </li>
@@ -937,7 +937,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1158,7 +1184,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1176,6 +1202,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1237,6 +1269,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1468,6 +1506,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1563,11 +1611,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1586,11 +1629,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1624,14 +1662,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

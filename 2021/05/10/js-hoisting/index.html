@@ -225,7 +225,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -524,18 +524,18 @@
 <p>不过在学习闭包之前，为了更好理解它的作用，容我先从 JS 的变量提升（Hoisting）现象慢慢道来。</p>
 <h2 id="JS-变量提升和函数提升"><a href="#JS-变量提升和函数提升" class="headerlink" title="JS 变量提升和函数提升"></a>JS 变量提升和函数提升</h2><p>在 ES6 规范出现之前，声明变量只有 <code>var</code>, <code>function</code> 以及隐式声明三种方式。</p>
 <p>按照一般编程的正常思维，我们会选择使用“先声明，后调用”的方式去使用变量，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
 <p>上述代码使用 <code>var</code> 声明了一个变量并向控制台输出这个变量，顺利打印出其值 <code>3</code>。但假如反过来，我们“先调用，后声明”，会发生什么呢？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b) <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br></pre></td></tr></table></figure>
 
 <p>在声明变量 <code>a</code> 之前打印变量，控制台输出的结果是 <code>undefined</code>，而不是预期中的报错 <code>Uncaught ReferenceError: a is not defined</code>。这就是<strong>变量提升</strong>。</p>
 <p>而对于函数的声明与使用，也出现的相似的情况：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sayHello() <span class="comment">// Hello there!</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Hello there!&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">sayHello</span>() <span class="comment">// Hello there!</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello there!&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在执行声明函数语句之前，我们已经可以调用函数方法并正确输出。这便是<strong>函数提升</strong>。</p>
 <p>在 JS 中奇怪的一点是，我们可以在声明变量（使用 <code>var</code>）和声明函数之前使用它们，就好像变量和函数的声明被提升到了代码的顶部一样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 好像等于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br><span class="line">a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 好像等于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// undefined</span></span><br><span class="line">a = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
 <p>实际上，JS 并不会移动代码，变量提升和函数提升并不是真正意义上的“提升”，而是解释执行 JS 代码过程所带来的“特性”。</p>
 <p>以现在最主流的 <code>V8</code> 引擎为例，其解释执行 JS 代码的过程大致分为生成抽象语法树（AST），生成字节码和生成机器码三个阶段。</p>
@@ -547,14 +547,14 @@
 </ul>
 <p>因此，对于变量声明，在真正执行到赋值语句之前，我们就已经可以使用此变量，但是初值为 <code>undefined</code>；而对于函数声明，在执行到函数声明之前，函数对象就已经存在在内存当中，并可以直接调用了。</p>
 <p>应当注意的是，函数声明的处理优先级要高于变量声明（意味着函数会“提升”到更靠前的位置），那么则不难理解，下面的代码中函数和变量重名时，会发生什么：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">foo = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> foo</span><br><span class="line">foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">foo = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">foo = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> foo</span><br><span class="line">foo = <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">foo = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
 <p>最后，还需要理解的是，变量提升和函数提升，都是将声明“提升”到当前<strong>作用域</strong>的顶端：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hoist</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">    foo = <span class="number">3</span></span><br><span class="line">    <span class="built_in">console</span>.log(foo) <span class="comment">// 3</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hoist()</span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> hoist</span><br><span class="line"><span class="keyword">var</span> foo</span><br><span class="line"></span><br><span class="line">hoist = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo</span><br><span class="line">    foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="built_in">console</span>.log(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">    foo = <span class="number">3</span></span><br><span class="line">    <span class="built_in">console</span>.log(foo) <span class="comment">// 3</span></span><br><span class="line">&#125;</span><br><span class="line">foo = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">hoist()</span><br><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hoist</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">    foo = <span class="number">3</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 3</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">hoist</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于下面的代码</span></span><br><span class="line"><span class="keyword">var</span> hoist</span><br><span class="line"><span class="keyword">var</span> foo</span><br><span class="line"></span><br><span class="line">hoist = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> foo</span><br><span class="line">    foo = <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// function foo() &#123;&#125;</span></span><br><span class="line">    foo = <span class="number">3</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 3</span></span><br><span class="line">&#125;</span><br><span class="line">foo = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">hoist</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
 
 <p><code>hoist</code> 方法中的 <code>console.log(foo)</code> 优先从当前作用域中寻找变量 <code>foo</code>，如果找不到才在父级作用域寻找。</p>
 <h2 id="匿名函数声明"><a href="#匿名函数声明" class="headerlink" title="匿名函数声明"></a>匿名函数声明</h2><p>基于变量声明和函数声明之间的区别，在实际应用中，使用<strong>匿名函数</strong>的方式执行声明更不容易产生奇怪的 Bug：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sayHi() <span class="comment">// Uncaught TypeError: sayHi is not a function</span></span><br><span class="line"><span class="built_in">console</span>.log(sayHi) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Hi there!&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">sayHi() <span class="comment">// Hi there!</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">sayHi</span>() <span class="comment">// Uncaught TypeError: sayHi is not a function</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sayHi) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> sayHi = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hi there!&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">sayHi</span>() <span class="comment">// Hi there!</span></span><br></pre></td></tr></table></figure>
 
 <p>使用匿名函数声明时，<code>sayHi</code> 声明发生变量提升，但赋值为 <code>undefined</code>，因此执行 <code>sayHi()</code> 时会报错 <code>Uncaught TypeError: sayHi is not a function</code>。随后执行完赋值语句后，才成为一个可以执行的函数变量。</p>
 <h2 id="防止变量提升"><a href="#防止变量提升" class="headerlink" title="防止变量提升"></a>防止变量提升</h2><p>在 ES6 中，提供了两个新的命令可以用于声明变量，它们是 <code>let</code> 和 <code>const</code>。使用 <code>let</code> 声明的变量可以修改，而使用 <code>const</code> 声明的变量将不可更改。使用 <code>const</code> 声明必须指定初始值。</p>
@@ -568,7 +568,7 @@
 <p>ES6 明确规定，如果区块中存在 <code>let</code> 和 <code>const</code> 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。<br>总之，在代码块内，使用 <code>let</code> 命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。</p>
 </blockquote>
 <p>下面是一个使用 <code>const</code> 声明函数的例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test() <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(test) <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">test() <span class="comment">// test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>() <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test) <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;test&#x27; before initialization</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>() <span class="comment">// test</span></span><br></pre></td></tr></table></figure>
 
 <p>在这里，我们使用了 <code>const</code> 命令声明函数，只要一进入当前作用域，所要使用的 <code>test</code> 变量就已经存在了，但是不可获取，如果获取则会抛出特别的错误 <code>Uncaught ReferenceError: Cannot access &#39;test&#39; before initialization</code>（一般情况下，获取未声明的变量抛出的错误为 <code>Uncaught ReferenceError: test is not defined</code>）。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 <code>let</code> 命令也有同样的效果。</p>
 <p><em><a target="_blank" rel="noopener" href="https://google.github.io/styleguide/jsguide.html#features-use-const-and-let">Google JavaScript Style Guide</a></em> 建议使用 ES6 规范的 <code>const</code> 和 <code>let</code> 命令声明变量，舍弃容易造成错误的 <code>var</code> 命令。</p>
@@ -588,7 +588,7 @@
 </blockquote>
 <p><strong>函数相互递归调用</strong>，可以理解为 A 函数内会调用到 B 函数，而 B 函数也会调用到 A 函数。ML 语言是 20 世纪 70 年代早期开发出来的通用的函数式编程语言。</p>
 <p>举一个经典的例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断 n 是否为偶数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEven</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isOdd(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(isEven(<span class="number">4</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 n 是否为奇数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isOdd</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isEven(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断 n 是否为偶数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isEven</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">isOdd</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isEven</span>(<span class="number">4</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 n 是否为奇数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isOdd</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">isEven</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果没有函数提升，那么在调用 <code>isEven</code> 方法时，<code>isOdd</code> 方法还未声明，那么在 <code>isEven</code> 方法内部就无法调用 <code>isOdd</code> 方法。通过函数提升，<code>isEven</code> 和 <code>isOdd</code> 方法都相当于在当前作用域的顶部进行了声明，函数之间的相互递归调用也就可以实现了。</p>
 <p>最后，布兰登·艾克还对变量提升和函数提升做了总结：</p>
@@ -981,7 +981,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1202,7 +1228,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1220,6 +1246,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1281,6 +1313,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1512,6 +1550,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1607,11 +1655,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1630,11 +1673,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1668,14 +1706,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -444,6 +444,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/02/11/connect-with-pgsql/">
+                
+                <span class="abstract-title-text">连接到 Windows 端的 PostgreSQL 数据库</span>
+            </a>
+            <div class="abstract-content">
+                <p>假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在 <code>C:\Program Files\PostgreSQL\14</code> 目录下，数据库文件保存在 <code>C:\Program Files\PostgreSQL\14\data</code> 目录，欲访问的数据库名为 <code>db_name</code>，访问数据库的用户为 <code>db_user</code>。</p>
+<h2 id="配置-postgresql-conf"><a href="#配置-postgresql-conf" class="headerlink" title="配置 postgresql.conf"></a>配置 <code>postgresql.conf</code></h2><p>编辑数据库配置文件 <code>C:\Program Files\PostgreSQL\14\data\postgresql.conf</code>，设置监听的远程连接地址。将 <code>listen_addresses</code> 项的值设置为 <code>*</code>，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># - Connection Settings -</span><br><span class="line"></span><br><span class="line">listen_addresses = &#x27;*&#x27;		# what IP address(es) to listen on;</span><br><span class="line">					# comma-separated list of addresses;</span><br><span class="line">					# defaults to &#x27;localhost&#x27;; use &#x27;*&#x27; for all</span><br><span class="line">					# (change requires restart)</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-pg-hba-conf"><a href="#配置-pg-hba-conf" class="headerlink" title="配置 pg_hba.conf"></a>配置 <code>pg_hba.conf</code></h2><p>编辑数据库客户端认证配置文件 <code>C:\Program Files\PostgreSQL\14\data\pg_hba.conf</code>，设置允许连接到数据库的客户端 IP 地址。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/02/11/connect-with-pgsql/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/02/12">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/02/12</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PostgreSQL">PostgreSQL</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/01/12/random-get-me-a-picture/">
                 
                 <span class="abstract-title-text">这位客官，要来一张我珍藏许久的图片吗</span>
@@ -554,13 +615,13 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="PostgreSQL">PostgreSQL</a>
+    
         <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Bot">Bot</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Koa">Koa</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PostgreSQL">PostgreSQL</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Sequelize">Sequelize</a>
     
@@ -971,7 +1032,7 @@
                 <p>现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？</p>
 <p>本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。</p>
 <h2 id="准备静态网页项目"><a href="#准备静态网页项目" class="headerlink" title="准备静态网页项目"></a>准备静态网页项目</h2><p>为了更方便管理网页项目，可以在主机根目录下新建一个目录，例如 <code>www</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">mkdir www</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> www</span><br></pre></td></tr></table></figure>
 
 <p>现在，我已经有了一个完整的静态网页项目——我的<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io">个人博客</a>。我的个人博客基于 Hexo，其中代码放在 <code>source</code> 分支，生成的静态网页文件放在 <code>master</code> 分支。首先通过 <code>git</code> 命令将静态网页文件克隆下来：</p>
             </div>
@@ -1019,72 +1080,10 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/06/03/euler-install-mysql/">
-                
-                <span class="abstract-title-text">在 Euler 系统上离线安装 MySQL 5.7</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="查看系统-OS-及架构"><a href="#查看系统-OS-及架构" class="headerlink" title="查看系统 OS 及架构"></a>查看系统 OS 及架构</h2><p>以 Euler 系统为例，在终端上输入命令查看，可以通过 <code>rpm -qa | grep euleros-release</code> 命令找到 rpm 包，再通过 <code>rpm -qi $&#123;包名&#125;</code> 查看系统 OS 及架构信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@lolipop ~]<span class="comment"># rpm -qa | grep euleros-release</span></span><br><span class="line">euleros-release-2.0SP5-13.eulerosv2r7.x86_64</span><br><span class="line">[root@lolipop ~]<span class="comment"># rpm -qi euleros-release-2.0SP5-13.eulerosv2r7.x86_64</span></span><br><span class="line">Name        : euleros-release</span><br><span class="line">Version     : 2.0SP5</span><br><span class="line">Release     : 13.eulerosv2r7</span><br><span class="line">Architecture: x86_64</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-<p>当然，也可以使用通用的 <code>uname -a</code> 命令。</p>
-<p>当前系统为 Euler 2.0 (SP5)，处理器架构为 x86_64。</p>
-<h2 id="下载-MySQL"><a href="#下载-MySQL" class="headerlink" title="下载 MySQL"></a>下载 MySQL</h2>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/06/03/euler-install-mysql/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/07/29">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/04</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="后端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                后端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &gt;</a>
+            <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &gt;</a>
         </nav>
     
 </main>
@@ -1349,7 +1348,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1570,7 +1595,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1588,6 +1613,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1649,6 +1680,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1880,6 +1917,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1975,11 +2022,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1998,11 +2040,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -2036,14 +2073,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

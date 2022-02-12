@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -459,6 +459,126 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/06/08/linux-project-v/">
+                
+                <span class="abstract-title-text">在 Linux 系统下启用 Project-V</span>
+            </a>
+            <div class="abstract-content">
+                <h2 id="下载-Release"><a href="#下载-Release" class="headerlink" title="下载 Release"></a>下载 Release</h2><p>在 Project-V 的 <a target="_blank" rel="noopener" href="https://github.com/v2fly/v2ray-core/releases">Github Releases</a> 页面下载最新的二进制包。</p>
+<p>本文以通用于 x86_64 机器的 <code>v2ray-linux-64.zip</code> 为例。下载完成后传入 Linux 主机即可。</p>
+<h2 id="安装-Project-V"><a href="#安装-Project-V" class="headerlink" title="安装 Project-V"></a>安装 Project-V</h2><p>执行 <code>unzip</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip v2ray-linux-64.zip</span><br></pre></td></tr></table></figure>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/06/08/linux-project-v/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/06/09">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/09</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/06/03/euler-install-mysql/">
+                
+                <span class="abstract-title-text">在 Euler 系统上离线安装 MySQL 5.7</span>
+            </a>
+            <div class="abstract-content">
+                <h2 id="查看系统-OS-及架构"><a href="#查看系统-OS-及架构" class="headerlink" title="查看系统 OS 及架构"></a>查看系统 OS 及架构</h2><p>以 Euler 系统为例，在终端上输入命令查看，可以通过 <code>rpm -qa | grep euleros-release</code> 命令找到 rpm 包，再通过 <code>rpm -qi $&#123;包名&#125;</code> 查看系统 OS 及架构信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@lolipop ~]<span class="comment"># rpm -qa | grep euleros-release</span></span><br><span class="line">euleros-release-2.0SP5-13.eulerosv2r7.x86_64</span><br><span class="line">[root@lolipop ~]<span class="comment"># rpm -qi euleros-release-2.0SP5-13.eulerosv2r7.x86_64</span></span><br><span class="line">Name        : euleros-release</span><br><span class="line">Version     : 2.0SP5</span><br><span class="line">Release     : 13.eulerosv2r7</span><br><span class="line">Architecture: x86_64</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以使用通用的 <code>uname -a</code> 命令。</p>
+<p>当前系统为 Euler 2.0 (SP5)，处理器架构为 x86_64。</p>
+<h2 id="下载-MySQL"><a href="#下载-MySQL" class="headerlink" title="下载 MySQL"></a>下载 MySQL</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/06/03/euler-install-mysql/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/07/29">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/04</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/05/19/js-use-class/">
                 
                 <span class="abstract-title-text">漫谈 JavsScript 类（Class）的使用</span>
@@ -468,7 +588,7 @@
 <p>本博文将探讨 JavaScript 中<strong>如何使用类</strong>的相关知识，文章组织架构和内容基于 MDN 上关于类的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">章节</a>。</p>
 <h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>类可以被看作一种“特殊的函数”，和函数的定义方法一样，类的定义方法有两种：<strong>类声明</strong>和<strong>类表达式</strong>。</p>
 <p>第一种方法是，直接使用 <code>class</code> 关键字声明类，即<strong>类声明</strong>的方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             </div>
             <!-- read more -->
             
@@ -592,7 +712,7 @@
 <p>不过在学习闭包之前，为了更好理解它的作用，容我先从 JS 的变量提升（Hoisting）现象慢慢道来。</p>
 <h2 id="JS-变量提升和函数提升"><a href="#JS-变量提升和函数提升" class="headerlink" title="JS 变量提升和函数提升"></a>JS 变量提升和函数提升</h2><p>在 ES6 规范出现之前，声明变量只有 <code>var</code>, <code>function</code> 以及隐式声明三种方式。</p>
 <p>按照一般编程的正常思维，我们会选择使用“先声明，后调用”的方式去使用变量，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
             </div>
             <!-- read more -->
             
@@ -756,11 +876,11 @@
         </span>
     
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
+    
         <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
     
 </div>
 
@@ -970,142 +1090,10 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/03/16/amap-import-vue/">
-                
-                <span class="abstract-title-text">在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</span>
-            </a>
-            <div class="abstract-content">
-                <p>迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！</p>
-<h2 id="高德地图与腾讯地图定位功能区别"><a href="#高德地图与腾讯地图定位功能区别" class="headerlink" title="高德地图与腾讯地图定位功能区别"></a>高德地图与腾讯地图定位功能区别</h2><p>高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。</p>
-<p>这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。</p>
-<p>此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。</p>
-<h2 id="引入高德地图-JS-API-库"><a href="#引入高德地图-JS-API-库" class="headerlink" title="引入高德地图 JS API 库"></a>引入高德地图 JS API 库</h2>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/03/16/amap-import-vue/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/03/18">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="前端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                前端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Promise">Promise</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/03/15/tencent-map-api-get-current-location/">
-                
-                <span class="abstract-title-text">使用腾讯位置服务进行 Web 前端定位</span>
-            </a>
-            <div class="abstract-content">
-                <p>正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的<a target="_blank" rel="noopener" href="https://lbs.qq.com/location/#anchor">定位解决方案</a>里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。</p>
-<p>终于在不起眼的地方找到了<a target="_blank" rel="noopener" href="https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation">前端定位组件</a>，适用于浏览器进行定位操作。</p>
-<p>本文基于 Nuxt.js 实现前端定位功能。</p>
-<h2 id="它能做什么"><a href="#它能做什么" class="headerlink" title="它能做什么"></a>它能做什么</h2><p>组件旨在优化纯 <a target="_blank" rel="noopener" href="https://w3c.github.io/geolocation-api">HTML5 Geolocation</a> 定位能力弱，定位成功率不高的问题，提供简单、易用的接口帮助业务层获取用户当前的位置信息（需用户授权），以降低开发成本，提升定位精准度。</p>
-<p>除了常规的经纬度坐标以外，它返回的结果里还包含了 <code>city</code> 和 <code>district</code> 项，非常方面。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/03/15/tencent-map-api-get-current-location/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/03/16">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/16</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="前端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                前端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
-            <a class="extend prev" rel="prev" href="/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">NEXT &gt;</a>
+            <a class="extend prev" rel="prev" href="/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">NEXT &gt;</a>
         </nav>
     
 </main>
@@ -1498,7 +1486,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1719,7 +1733,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1737,6 +1751,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1798,6 +1818,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -2029,6 +2055,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -2124,11 +2160,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -2147,11 +2178,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -2185,14 +2211,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>

@@ -228,7 +228,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -536,33 +536,33 @@
 <p>但如果每撰写好一个新的新闻或博客文件，就得在代码中 <code>require</code> 出来，太过于麻烦且不现实，因此就需要<strong>自动导入</strong>的方法。</p>
 <p>Webpack 提供了 <code>require.context()</code> 方法可以完美解决导入目录下所有文件的问题，该方法可以导入指定目录（也可以包括子目录）下指定格式的所有文件。关于此方法的更多细节可以在 Webpack 官方文档中<a target="_blank" rel="noopener" href="https://webpack.js.org/guides/dependency-management/#requirecontext">了解</a>。</p>
 <p>撰写代码自动读取 <code>@/docs/blog/</code> 及其子目录下的所有 .md 文件如下所示，其中 <code>blogFiles(key)</code> 为文件存储的具体内容：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> blogFiles = <span class="built_in">require</span>.context(<span class="string">&#x27;@/docs/blog/&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.md$/</span>);</span><br><span class="line">blogFiles.keys().forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(blogFiles(key))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> blogFiles = <span class="built_in">require</span>.<span class="title function_">context</span>(<span class="string">&#x27;@/docs/blog/&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.md$/</span>);</span><br><span class="line">blogFiles.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">blogFiles</span>(key))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="对-md-文件进行预处理"><a href="#对-md-文件进行预处理" class="headerlink" title="对 .md 文件进行预处理"></a>对 .md 文件进行预处理</h2><p>参考 Hexo 博客的撰写格式，可以规定 NetUnion 官网的新闻和博客撰写格式如下：</p>
 <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: $&#123;title&#125;</span><br><span class="line">date: $&#123;date&#125;</span><br><span class="line"><span class="section">author: $&#123;author&#125;</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line">$&#123;main-text&#125;</span><br></pre></td></tr></table></figure>
 
 <p>即用两个 <code>---</code> 框住<strong>属性内容</strong>，在第二个 <code>---</code> 下面为<strong>正文内容</strong>。</p>
 <p>那么首先，可以用 <code>split()</code> 方法根据 <code>---</code> 及换行符将文章划分为长度不少于 3 （因为在正文中可能出现 <code>---</code>）的数组 arr。其中 arr[0] 为空，arr[1] 存储有属性内容，arr[2] 及之后存储正文内容。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// content 为传入的 .md 文件内容</span></span><br><span class="line"><span class="keyword">const</span> contentArray = content.split(<span class="regexp">/---+\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// content 为传入的 .md 文件内容</span></span><br><span class="line"><span class="keyword">const</span> contentArray = content.<span class="title function_">split</span>(<span class="regexp">/---+\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
 
 <p>对属性内容的处理同样可以先使用 <code>split()</code> 方法按换行符拆分为数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfo = contentArray[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> contentInfoArray = contentInfo.split(<span class="regexp">/\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfo = contentArray[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> contentInfoArray = contentInfo.<span class="title function_">split</span>(<span class="regexp">/\r?\n/g</span>);</span><br></pre></td></tr></table></figure>
 
 <p>值得一提的是，在上面两次按换行符分割时，我都使用了 <code>/\r?\n/g</code> 正则表达式。其含义是匹配 0 个或 1 个 <code>\r</code> 及 1 个 <code>\n</code>，直到结束。因为在 <code>CRLF</code> 行尾序列的文件中，换行符由 <code>\r\n</code> 表示；而在 <code>LF</code> 行尾序列中，换行符由 <code>\n</code> 表示。这样就确保了在 Windows 和 Unix 两种不同的系统上撰写的文件，其解析不会受行尾序列所影响。</p>
 <p>接下来就可以提取属性对象了。这里使用 <code>trim()</code> 方法来删除属性名和属性值前后可能出现的多余空格。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfoItem = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; contentInfoArray.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> contentInfoParamArray = contentInfoArray[i].split(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> contentInfoParamValue = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> n = <span class="number">1</span>; n &lt; contentInfoParamArray.length; n++) &#123;</span><br><span class="line">    contentInfoParamValue += contentInfoParamArray[n] + <span class="string">&#x27;:&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  contentInfoItem[</span><br><span class="line">      contentInfoParamArray[<span class="number">0</span>].trim()</span><br><span class="line">  ] = contentInfoParamValue.slice(<span class="number">0</span>, -<span class="number">1</span>).trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> contentInfoItem = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; contentInfoArray.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> contentInfoParamArray = contentInfoArray[i].<span class="title function_">split</span>(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> contentInfoParamValue = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> n = <span class="number">1</span>; n &lt; contentInfoParamArray.<span class="property">length</span>; n++) &#123;</span><br><span class="line">    contentInfoParamValue += contentInfoParamArray[n] + <span class="string">&#x27;:&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  contentInfoItem[</span><br><span class="line">      contentInfoParamArray[<span class="number">0</span>].<span class="title function_">trim</span>()</span><br><span class="line">  ] = contentInfoParamValue.<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">1</span>).<span class="title function_">trim</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>对正文内容的处理就相当简单了，只需要把 arr[2] 及之后存储的内容用 <code>---\n</code> 连接起来就可以了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentText = contentArray[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">if</span> (contentArray.length &gt; <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt; contentArray.length; i++) &#123;</span><br><span class="line">    contentText += <span class="string">&#x27;---\n&#x27;</span>;</span><br><span class="line">    contentText += contentArray[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentText = contentArray[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">if</span> (contentArray.<span class="property">length</span> &gt; <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt; contentArray.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    contentText += <span class="string">&#x27;---\n&#x27;</span>;</span><br><span class="line">    contentText += contentArray[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>将属性对象与正文内容合并为一个新的对象，解析就完成了！</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = &#123;</span><br><span class="line">  ...contentInfoItem,</span><br><span class="line">  <span class="attr">content</span>: contentText,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>如果愿意，还可以在最后对格式进行一定规范，例如可以对 date 属性进行处理：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式为 YYYY-MM-DD</span></span><br><span class="line"><span class="keyword">if</span> (result.date != <span class="literal">null</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> dateArray = result.date.split(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> dateYear = dateArray[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> dateMonth = dateArray[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">let</span> dateDay = dateArray[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">if</span> (dateMonth.length == <span class="number">1</span>) &#123;</span><br><span class="line">    dateMonth = <span class="string">&#x27;0&#x27;</span> + dateMonth;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (dateDay.length == <span class="number">1</span>) &#123;</span><br><span class="line">    dateDay = <span class="string">&#x27;0&#x27;</span> + dateDay;</span><br><span class="line">  &#125;</span><br><span class="line">  result.date = dateYear + <span class="string">&#x27;-&#x27;</span> + dateMonth + <span class="string">&#x27;-&#x27;</span> + dateDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式为 YYYY-MM-DD</span></span><br><span class="line"><span class="keyword">if</span> (result.<span class="property">date</span> != <span class="literal">null</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> dateArray = result.<span class="property">date</span>.<span class="title function_">split</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> dateYear = dateArray[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> dateMonth = dateArray[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">let</span> dateDay = dateArray[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">if</span> (dateMonth.<span class="property">length</span> == <span class="number">1</span>) &#123;</span><br><span class="line">    dateMonth = <span class="string">&#x27;0&#x27;</span> + dateMonth;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (dateDay.<span class="property">length</span> == <span class="number">1</span>) &#123;</span><br><span class="line">    dateDay = <span class="string">&#x27;0&#x27;</span> + dateDay;</span><br><span class="line">  &#125;</span><br><span class="line">  result.<span class="property">date</span> = dateYear + <span class="string">&#x27;-&#x27;</span> + dateMonth + <span class="string">&#x27;-&#x27;</span> + dateDay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="解析-md-为-HTML"><a href="#解析-md-为-HTML" class="headerlink" title="解析 .md 为 HTML"></a>解析 .md 为 HTML</h2><p>将结果中的正文内容交给给任意 .md 解析器就可以了，例如 <a target="_blank" rel="noopener" href="https://github.com/markdown-it/markdown-it">markdown-it</a>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> md = <span class="built_in">require</span>(<span class="string">&#x27;markdown-it&#x27;</span>)(&#123;</span><br><span class="line">  <span class="attr">linkify</span>: <span class="literal">false</span>, <span class="comment">// 一些设置，并不重要，下同</span></span><br><span class="line">  <span class="attr">breaks</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">typographer</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> htmlContent = md.render(result.content);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> md = <span class="built_in">require</span>(<span class="string">&#x27;markdown-it&#x27;</span>)(&#123;</span><br><span class="line">  <span class="attr">linkify</span>: <span class="literal">false</span>, <span class="comment">// 一些设置，并不重要，下同</span></span><br><span class="line">  <span class="attr">breaks</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">typographer</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> htmlContent = md.<span class="title function_">render</span>(result.<span class="property">content</span>);</span><br></pre></td></tr></table></figure>
 
 <p>完整的解析文件<a target="_blank" rel="noopener" href="https://github.com/uestclug/nu-official/blob/frontend/src/utils/mdParser.js">在这里</a>。</p>
 
@@ -928,7 +928,33 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1149,7 +1175,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1167,6 +1193,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span>
+            <a class="archive-post-title" href="/2022/02/11/connect-with-pgsql/">连接到 Windows 端的 PostgreSQL 数据库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">01/13</span>
@@ -1228,6 +1260,12 @@
         <li class="archive-post-item">
             <span class="archive-post-date">06/25</span>
             <a class="archive-post-title" href="/2021/06/24/website-deployment-docker-nginx/">使用基于 Docker 的 Nginx 部署静态网页项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span>
+            <a class="archive-post-title" href="/2021/06/08/linux-project-v/">在 Linux 系统下启用 Project-V</a>
         </li>
     
         
@@ -1459,6 +1497,16 @@
                 rxjs
             </span>
         
+            <span class="sidebar-tag-name" data-tags="PostgreSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PostgreSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Windows">
+                <span class="iconfont-archer">&#xe606;</span>
+                Windows
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="EditorConfig">
                 <span class="iconfont-archer">&#xe606;</span>
                 EditorConfig
@@ -1554,11 +1602,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PostgreSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PostgreSQL
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1577,11 +1620,6 @@
             <span class="sidebar-tag-name" data-tags="Nginx">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nginx
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Windows">
-                <span class="iconfont-archer">&#xe606;</span>
-                Windows
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1615,14 +1653,14 @@
             前端开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>
