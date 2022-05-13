@@ -225,7 +225,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -575,7 +575,7 @@
 <p>无论如何，养成“先声明，再赋值”的良好编程习惯非常重要。</p>
 <h2 id="为什么要变量提升和函数提升"><a href="#为什么要变量提升和函数提升" class="headerlink" title="为什么要变量提升和函数提升"></a>为什么要变量提升和函数提升</h2><p>布兰登·艾克（Brendan Eich）是 JavaScript 的主要创造者与架构师，关于“为什么要变量提升”这个问题，他给出了这样的回答：</p>
 <blockquote>
-<p>Q: So what is one of the main (if not the main) reasons of variables “hoisting”? / 那么，变量“提升”的主要（或者并非主要）的原因之一是什么呢？<br>Brendan Eich: An “abstraction leak” from the first JS VM. Compiler indexes vars to stack slots, binds names to slots on entry. / 这源于第一批 JS 虚拟机的“抽象泄漏”问题。编译器在入口处将变量索引到了堆栈插槽，并把变量名绑定给了插槽。</p>
+<p>Q: So what is one of the main (if not the main) reasons of variables “hoisting”? &#x2F; 那么，变量“提升”的主要（或者并非主要）的原因之一是什么呢？<br>Brendan Eich: An “abstraction leak” from the first JS VM. Compiler indexes vars to stack slots, binds names to slots on entry. &#x2F; 这源于第一批 JS 虚拟机的“抽象泄漏”问题。编译器在入口处将变量索引到了堆栈插槽，并把变量名绑定给了插槽。</p>
 </blockquote>
 <p><strong>抽象泄漏</strong>是一个计算机术语，指“本应隐藏实现细节的抽象化不可避免地暴露出底层细节与局限性”。这是一个非常有意思的概念，以 TCP 协议举例：</p>
 <blockquote>
@@ -584,7 +584,7 @@
 <p>言归正传，正是由于第一批 JS 虚拟机编译器上代码的设计失误，导致了变量在声明之前就被赋予了 <code>undefined</code> 的初始值，产生了变量提升。可能又由于这个失误产生的影响（无论好坏）过于广泛，因此在现在的 JS 编译器中仍保留了变量提升的“特性”。</p>
 <p>至于“为什么要函数提升”，有人提出可能是为了解决函数相互递归调用的问题，布兰登·艾克给予了肯定并补充道：</p>
 <blockquote>
-<p>Brendan Eich: Yes, function declaration hoisting is for mutual recursion &amp; generally to avoid painful bottom-up ML-like order. / 是的，函数提升是为了解决函数相互递归调用的问题，并在总体上避免了像 ML 语言那样痛苦地自下而上调用的问题。</p>
+<p>Brendan Eich: Yes, function declaration hoisting is for mutual recursion &amp; generally to avoid painful bottom-up ML-like order. &#x2F; 是的，函数提升是为了解决函数相互递归调用的问题，并在总体上避免了像 ML 语言那样痛苦地自下而上调用的问题。</p>
 </blockquote>
 <p><strong>函数相互递归调用</strong>，可以理解为 A 函数内会调用到 B 函数，而 B 函数也会调用到 A 函数。ML 语言是 20 世纪 70 年代早期开发出来的通用的函数式编程语言。</p>
 <p>举一个经典的例子：</p>
@@ -593,7 +593,7 @@
 <p>如果没有函数提升，那么在调用 <code>isEven</code> 方法时，<code>isOdd</code> 方法还未声明，那么在 <code>isEven</code> 方法内部就无法调用 <code>isOdd</code> 方法。通过函数提升，<code>isEven</code> 和 <code>isOdd</code> 方法都相当于在当前作用域的顶部进行了声明，函数之间的相互递归调用也就可以实现了。</p>
 <p>最后，布兰登·艾克还对变量提升和函数提升做了总结：</p>
 <blockquote>
-<p>Brendan Eich: A bit more history: <code>var</code> hoisting was an implementation artifact. <code>function</code> hoisting was better motivated. / 更多的历史：变量提升源于工具实现。函数提升则是一种更好的改进。</p>
+<p>Brendan Eich: A bit more history: <code>var</code> hoisting was an implementation artifact. <code>function</code> hoisting was better motivated. &#x2F; 更多的历史：变量提升源于工具实现。函数提升则是一种更好的改进。</p>
 </blockquote>
 <p>言下之意，变量提升是在最初一批 JS 虚拟机设计实现上的纰漏，而函数提升是设计好的针对函数相互递归调用等问题的改进。</p>
 <p>作为针对变量提升的改进，ES6 中提出了最好使用 <code>let</code> 和 <code>const</code> 命令来声明变量，避免变量提升现象的发生。</p>
@@ -664,7 +664,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
     <script>
-        let idOption = 'Mon May 10 2021 16:00:00 GMT+0000'
+        let idOption = '1620662400000'
         
             idOption = location.pathname
         
