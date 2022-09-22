@@ -225,7 +225,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -521,7 +521,7 @@
                 <main class="main post-page">
     <article class="article-entry">
         <p>JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。</p>
-<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="这一篇博客">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
+<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="JavsScript 变量提升和函数提升">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
 <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在 JavaScript 中，<strong>作用域</strong>（Scope）是当前代码执行的上下文，也即是值和表达式在其中可访问到的上下文。</p>
 <ul>
 <li>如果一个变量或其它表达式不在当前作用域中，就会沿<strong>作用域链</strong>（Scope Chain）往父作用域搜索。如果也仍未找到它的话，那么它就是不可用的。</li>
@@ -595,7 +595,7 @@
 </blockquote>
 <p><em>You Don’t Know Javascript</em> 中如是写道。</p>
 <h2 id="如何使用闭包"><a href="#如何使用闭包" class="headerlink" title="如何使用闭包"></a>如何使用闭包</h2><p>如果不是某些特定任务需要使用到闭包，那么在函数中创建另一个函数是不明智的。闭包会使得函数中的变量保存在<strong>内存</strong>中，可能造成性能问题。</p>
-<h3 id="函数防抖和节流"><a href="#函数防抖和节流" class="headerlink" title="函数防抖和节流"></a>函数防抖和节流</h3><p>函数防抖和函数节流就是典型的闭包用例，我在<a href="/2021/05/07/js-debounce-throttle/" title="这一篇博客">这一篇博客</a>里对它们进行了编写。</p>
+<h3 id="函数防抖和节流"><a href="#函数防抖和节流" class="headerlink" title="函数防抖和节流"></a>函数防抖和节流</h3><p>函数防抖和函数节流就是典型的闭包用例，我在<a href="/2021/05/07/js-debounce-throttle/" title="函数防抖和节流，以及在 Vue 中的运用">这一篇博客</a>里对它们进行了编写。</p>
 <h3 id="函数工厂"><a href="#函数工厂" class="headerlink" title="函数工厂"></a>函数工厂</h3><p>这是一个函数工厂的示例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeAdder</span>(<span class="params">x</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">y</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add5 = <span class="title function_">makeAdder</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">var</span> add10 = <span class="title function_">makeAdder</span>(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add5</span>(<span class="number">2</span>)) <span class="comment">// 7</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add10</span>(<span class="number">2</span>)) <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
 
@@ -1224,14 +1224,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1256,6 +1248,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1460,12 +1458,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1475,9 +1467,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1490,16 +1512,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -1508,21 +1520,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -1610,6 +1607,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -1690,11 +1702,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1706,14 +1713,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -435,6 +435,75 @@
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
                 <main class="main index-page">
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2022/09/21/js-webworker-settimeout/">
+                
+                <span class="abstract-title-text">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</span>
+            </a>
+            <div class="abstract-content">
+                <p>业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。</p>
+<p>想都没想，直接在 <code>useEffect()</code> 里用 <code>setTimeout()</code> 定个时，12 个小时后触发相应跳转事件：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">LEAVE_PAGE_COUNTDOWN</span> = <span class="number">12</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>; <span class="comment">// 12h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** 离开页面的方法 */</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">leavePage</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...离开当前页面的业务代码</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化时设置定时器</span></span><br><span class="line">    <span class="keyword">const</span> timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">leavePage</span>();</span><br><span class="line">    &#125;, <span class="variable constant_">LEAVE_PAGE_COUNTDOWN</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 页面卸载时清除定时器</span></span><br><span class="line">      <span class="keyword">if</span> (timer) <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>没想到，今天上班来，切换到没有关闭的标签页，发现还在当前页面，掐指一算怎么也有 12 个小时了，这是怎么一回事儿……？</p>
+<p>昨天晚上走的时候还在和前辈探讨页面卸载（<code>unload</code>）事件与浏览器后台优化的坑，于是首先就想到了可能是浏览器优化的缘故，导致定时器没有正常执行。以「setTimeout」和「后台失效」为搜索关键词，很快找到了原因和优化解决方案。</p>
+<h2 id="失效原因"><a href="#失效原因" class="headerlink" title="失效原因"></a>失效原因</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/09/21/js-webworker-settimeout/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/09/22">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/09/22</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Web-Worker">Web-Worker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Webpack">Webpack</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
     
         
         
@@ -1129,14 +1198,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1161,6 +1222,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1365,12 +1432,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1380,9 +1441,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1395,16 +1486,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -1413,21 +1494,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -1515,6 +1581,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -1595,11 +1676,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1611,14 +1687,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

@@ -226,7 +226,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -529,7 +529,7 @@
 <p>大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。<br>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。<br>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。<br>—— <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
 </blockquote>
 <p>不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如<a target="_blank" rel="noopener" href="https://github.com/srcrs/TiebaSignIn">百度贴吧自动签到</a>（注：已失效。Github 官方会对此类利用服务器实现签到功能的仓库进行封禁打击，还是不要使用了吧）等。</p>
-<h2 id="持续集成与部署-Hexo-博客"><a href="#持续集成与部署-Hexo-博客" class="headerlink" title="持续集成与部署 Hexo 博客"></a>持续集成与部署 Hexo 博客</h2><p>在<a href="/2019/12/26/hello-hexo-world/" title="搭建自己的 Hexo 博客">搭建自己的 Hexo 博客</a>那篇文章的最后，我们使用的是 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">hexo-deployer-git 一键部署到仓库</a>的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.</p>
+<h2 id="持续集成与部署-Hexo-博客"><a href="#持续集成与部署-Hexo-博客" class="headerlink" title="持续集成与部署 Hexo 博客"></a>持续集成与部署 Hexo 博客</h2><p>在<a href="/2019/12/26/hello-hexo-world/" title="Hello Hexo World">搭建自己的 Hexo 博客</a>那篇文章的最后，我们使用的是 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">hexo-deployer-git 一键部署到仓库</a>的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.</p>
 <p>事实上，利用 Github Actions 就再也不用多此一举：每次提交代码到 Github 后，就可以触发 Github Actions 并自动部署新的博客内容。</p>
 <h3 id="文档是您最有用的帮手"><a href="#文档是您最有用的帮手" class="headerlink" title="文档是您最有用的帮手"></a>文档是您最有用的帮手</h3><p>更确切的说，英文文档是您最有用的帮手！</p>
 <p>在此处记一个小插曲，在本博客初次撰写的时候，中文的 Hexo 文档页面仍在使用 Travis CI 实现自动化部署，而英文的 Hexo 文档已经更新到推荐使用 Github Actions 实现自动化部署操作了。</p>
@@ -1153,14 +1153,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1185,6 +1177,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1389,12 +1387,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1404,9 +1396,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1419,16 +1441,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -1437,21 +1449,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -1539,6 +1536,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -1619,11 +1631,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1635,14 +1642,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

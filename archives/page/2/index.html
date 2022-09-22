@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -444,6 +444,70 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/06/24/website-deployment-docker-nginx/">
+                
+                <span class="abstract-title-text">使用基于 Docker 的 Nginx 部署静态网页项目</span>
+            </a>
+            <div class="abstract-content">
+                <p>现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？</p>
+<p>本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。</p>
+<h2 id="准备静态网页项目"><a href="#准备静态网页项目" class="headerlink" title="准备静态网页项目"></a>准备静态网页项目</h2><p>为了更方便管理网页项目，可以在主机根目录下新建一个目录，例如 <code>www</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> www</span><br></pre></td></tr></table></figure>
+
+<p>现在，我已经有了一个完整的静态网页项目——我的<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io">个人博客</a>。我的个人博客基于 Hexo，其中代码放在 <code>source</code> 分支，生成的静态网页文件放在 <code>master</code> 分支。首先通过 <code>git</code> 命令将静态网页文件克隆下来：</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/06/24/website-deployment-docker-nginx/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/06/25">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/25</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nginx">Nginx</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/06/08/linux-project-v/">
                 
                 <span class="abstract-title-text">在 Linux 系统下启用 Project-V</span>
@@ -631,7 +695,7 @@
             </a>
             <div class="abstract-content">
                 <p>JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。</p>
-<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="这一篇博客">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
+<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="JavsScript 变量提升和函数提升">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
 <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在 JavaScript 中，<strong>作用域</strong>（Scope）是当前代码执行的上下文，也即是值和表达式在其中可访问到的上下文。</p>
 <ul>
 <li>如果一个变量或其它表达式不在当前作用域中，就会沿<strong>作用域链</strong>（Scope Chain）往父作用域搜索。如果也仍未找到它的话，那么它就是不可用的。</li>
@@ -792,9 +856,9 @@
         </span>
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
     
@@ -998,75 +1062,6 @@
         <a class="post-tag" href="javascript:void(0);" data-tags="GCC">GCC</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/03/28/protobuf-learning/">
-                
-                <span class="abstract-title-text">Protobuf 学习笔记</span>
-            </a>
-            <div class="abstract-content">
-                <p>实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。</p>
-<h2 id="什么是-Protobuf"><a href="#什么是-Protobuf" class="headerlink" title="什么是 Protobuf"></a>什么是 Protobuf</h2><p>Protobuf 是 Google 公司研发的一种用于序列化结构数据的机制，全称为 Protocol Buffers，具有语言无关、平台无关以及可拓展的特性。</p>
-<p>我们常常把 Protobuf 与 XML (Extensible Markup Language) 相比较，它们二者都被设计来传输和存储结构化数据。相比于 XML，Protobuf 有如下优势与缺点：</p>
-<ul>
-<li><strong>Protobuf 占用的空间更小</strong>。Protobuf 采用二进制格式存储数据，适合网络传输和高性能场景；而 XML 采用文本格式存储数据，数据冗余度较高。</li>
-<li><strong>Protobuf 编码和解码更快</strong>。测试 Protobuf 库和 tinyxml2 库执行序列化和反序列化操作（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91313277">相关链接</a>），Protobuf 序列化速度大约是 XML 的 5 - 9 倍，反序列化速度大约是 XML 的 9 - 12 倍，更加适合高性能场景。</li>
-<li><strong>Protobuf 不具有可读性</strong>。Protobuf 传输的值为二进制数据，需要专用工具生成和解析；而 XML 自身的标签和文本内容具有一定的可读性。</li>
-</ul>
-<details>
-<summary>使用 Protobuf，只需要编写 <code>.proto</code> 文件来描述需要传输和存储的结构数据，随后编译器会为之创建一个类，实现结构数据的自动编码和解码。</summary>
-
-<p>With protocol buffers, you write a .proto description of the data structure you wish to store. From that, the protocol buffer compiler creates a class that implements automatic encoding and parsing of the protocol buffer data with an efficient binary format. The generated class provides getters and setters for the fields that make up a protocol buffer and takes care of the details of reading and writing the protocol buffer as a unit.</p>
-</details>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/03/28/protobuf-learning/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/03/29">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/29</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="学习琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                学习琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Protobuf">Protobuf</a>
     
 </div>
 
@@ -1576,14 +1571,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1608,6 +1595,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1812,12 +1805,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1827,9 +1814,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1842,16 +1859,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -1860,21 +1867,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -1962,6 +1954,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -2042,11 +2049,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -2058,14 +2060,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

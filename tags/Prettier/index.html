@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -451,7 +451,7 @@
             <div class="abstract-content">
                 <p>笔者想要给自己翻译的设计模式教程添加<strong>多编程语言</strong>支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。</p>
 <p>部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。</p>
-<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="这一篇博客">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
+<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
 <h2 id="编写时-EditorConfig"><a href="#编写时-EditorConfig" class="headerlink" title="编写时 EditorConfig"></a>编写时 EditorConfig</h2><p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a> 有助于为跨各种编辑器或 IDE 而处理同一项目的多个开发人员保持一致的编码风格。</p>
 <p>VSCode 并没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">其插件</a>。</p>
             </div>
@@ -1068,14 +1068,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1100,6 +1092,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1304,12 +1302,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1319,9 +1311,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1334,16 +1356,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -1352,21 +1364,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -1454,6 +1451,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -1534,11 +1546,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1550,14 +1557,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

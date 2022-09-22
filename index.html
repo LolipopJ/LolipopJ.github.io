@@ -221,7 +221,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -450,6 +450,75 @@
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
                 <main class="main index-page">
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2022/09/21/js-webworker-settimeout/">
+                
+                <span class="abstract-title-text">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</span>
+            </a>
+            <div class="abstract-content">
+                <p>业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。</p>
+<p>想都没想，直接在 <code>useEffect()</code> 里用 <code>setTimeout()</code> 定个时，12 个小时后触发相应跳转事件：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">LEAVE_PAGE_COUNTDOWN</span> = <span class="number">12</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>; <span class="comment">// 12h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** 离开页面的方法 */</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">leavePage</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...离开当前页面的业务代码</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化时设置定时器</span></span><br><span class="line">    <span class="keyword">const</span> timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">leavePage</span>();</span><br><span class="line">    &#125;, <span class="variable constant_">LEAVE_PAGE_COUNTDOWN</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 页面卸载时清除定时器</span></span><br><span class="line">      <span class="keyword">if</span> (timer) <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>没想到，今天上班来，切换到没有关闭的标签页，发现还在当前页面，掐指一算怎么也有 12 个小时了，这是怎么一回事儿……？</p>
+<p>昨天晚上走的时候还在和前辈探讨页面卸载（<code>unload</code>）事件与浏览器后台优化的坑，于是首先就想到了可能是浏览器优化的缘故，导致定时器没有正常执行。以「setTimeout」和「后台失效」为搜索关键词，很快找到了原因和优化解决方案。</p>
+<h2 id="失效原因"><a href="#失效原因" class="headerlink" title="失效原因"></a>失效原因</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/09/21/js-webworker-settimeout/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/09/22">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/09/22</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Web-Worker">Web-Worker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Webpack">Webpack</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
     
         
         
@@ -790,7 +859,7 @@
             <div class="abstract-content">
                 <p>笔者想要给自己翻译的设计模式教程添加<strong>多编程语言</strong>支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。</p>
 <p>部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。</p>
-<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="这一篇博客">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
+<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
 <h2 id="编写时-EditorConfig"><a href="#编写时-EditorConfig" class="headerlink" title="编写时 EditorConfig"></a>编写时 EditorConfig</h2><p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a> 有助于为跨各种编辑器或 IDE 而处理同一项目的多个开发人员保持一致的编码风格。</p>
 <p>VSCode 并没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">其插件</a>。</p>
             </div>
@@ -1023,70 +1092,6 @@
         <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="hexo-theme-archer">hexo-theme-archer</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/06/24/website-deployment-docker-nginx/">
-                
-                <span class="abstract-title-text">使用基于 Docker 的 Nginx 部署静态网页项目</span>
-            </a>
-            <div class="abstract-content">
-                <p>现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？</p>
-<p>本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。</p>
-<h2 id="准备静态网页项目"><a href="#准备静态网页项目" class="headerlink" title="准备静态网页项目"></a>准备静态网页项目</h2><p>为了更方便管理网页项目，可以在主机根目录下新建一个目录，例如 <code>www</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i <span class="comment"># 切换为管理员用户</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> www</span><br></pre></td></tr></table></figure>
-
-<p>现在，我已经有了一个完整的静态网页项目——我的<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io">个人博客</a>。我的个人博客基于 Hexo，其中代码放在 <code>source</code> 分支，生成的静态网页文件放在 <code>master</code> 分支。首先通过 <code>git</code> 命令将静态网页文件克隆下来：</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/06/24/website-deployment-docker-nginx/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/06/25">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/25</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Nginx">Nginx</a>
     
 </div>
 
@@ -1724,14 +1729,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -1756,6 +1753,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span>
+            <a class="archive-post-title" href="/2022/09/21/js-webworker-settimeout/">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span>
@@ -1960,12 +1963,6 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/27</span>
-            <a class="archive-post-title" href="/2019/12/26/archer-theme-update-log/">基于 Archer 主题的博客开发</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/27</span>
             <a class="archive-post-title" href="/2019/12/26/hello-hexo-world/">Hello Hexo World</a>
         </li>
     
@@ -1975,9 +1972,39 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="开发日志">
+            <span class="sidebar-tag-name" data-tags="博客开发">
                 <span class="iconfont-archer">&#xe606;</span>
-                开发日志
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1990,16 +2017,6 @@
                 软件体系架构设计
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Nuxt">
                 <span class="iconfont-archer">&#xe606;</span>
                 Nuxt
@@ -2008,21 +2025,6 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
@@ -2110,6 +2112,21 @@
                 ES6
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Web-Worker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Webpack">
+                <span class="iconfont-archer">&#xe606;</span>
+                Webpack
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="GCC">
                 <span class="iconfont-archer">&#xe606;</span>
                 GCC
@@ -2190,11 +2207,6 @@
                 Markdown
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Webpack">
-                <span class="iconfont-archer">&#xe606;</span>
-                Webpack
-            </span>
-        
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -2206,14 +2218,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             前端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习琐事
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">

@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://LolipopJ.github.io/2022/09/21/js-webworker-settimeout/</loc>
+        <lastmod>2022-09-21T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://LolipopJ.github.io/2022/02/11/connect-with-pgsql/</loc>
         <lastmod>2022-02-11T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -75,14 +83,6 @@
     <url>
         <loc>https://LolipopJ.github.io/2021/06/03/euler-install-mysql/</loc>
         <lastmod>2021-07-28T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://LolipopJ.github.io/2019/12/26/archer-theme-update-log/</loc>
-        <lastmod>2021-07-27T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
