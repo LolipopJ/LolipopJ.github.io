@@ -367,7 +367,7 @@ Umi 4.x 内置 Webpack 5.x 作为默认 Bundler，因此[查阅文档](https://w
 
 以 `alewin/useWorker` 为例，可以这样改进前面的代码：
 
-```ts
+```tsx
 import React, { useEffect } from "react";
 import { useWorker } from "@koale/useworker";
 
