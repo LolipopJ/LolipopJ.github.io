@@ -351,7 +351,7 @@ export default () => {
 };
 ```
 
-![在开发者工具中查看 Worker 源码]((https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg))
+![在开发者工具中查看 Worker 源码](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg)
 
 对于 Umi 3.4.1 以前版本的项目，可以通过 [`chainWebpack`](https://v3.umijs.org/config#chainwebpack) 添加 `worker-loader` 或 `worker-plugin` 插件的支持。
 
