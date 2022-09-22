@@ -216,12 +216,10 @@ Worker 线程一旦创建成功，将**始终运行**，不会被主线程上的
 首先编写一个 Web Worker 脚本文件 `leavePage.worker.js`：
 
 ```js
-const LEAVE_PAGE_COUNTDOWN = 12 * 60 * 60 * 1000;
-
 let timer;
 
 self.onmessage = (event) => {
-  console.log("Received message from main thread", event.data);
+  // console.log("Received message from main thread", event.data);
 
   if (timer) {
     clearTimeout(timer);
@@ -230,7 +228,8 @@ self.onmessage = (event) => {
   timer = setTimeout(() => {
     // 向主线程发出消息
     self.postMessage(`Time to leave page ${new Date()}`);
-  }, LEAVE_PAGE_COUNTDOWN);
+    // event.data 即离开页面的倒计时（ms）
+  }, event.data);
 };
 ```
 
@@ -249,15 +248,15 @@ const leavePage = () => {
 export default () => {
   useEffect(() => {
     // 新建 Worker 线程
-    const worker = new Worker("path/to/leavePage.worker.js");
+    // const worker = new Worker("path/to/leavePage.worker.js");
 
-    // 向 Worker 线程发出消息
-    worker.postMessage(new Date());
+    // 向 Worker 线程发出消息，设定 12h 后返回消息
+    worker.postMessage(12 * 60 * 60 * 1000);
 
     // 监听 Worker 返回的消息
     worker.onmessage = (event) => {
-      console.log("Received message from worker thread", event.data);
       // 一旦接收到消息，执行离开页面的业务代码
+      console.log("Received message from worker thread", event.data);
       leavePage();
       // 一旦完成响应，关闭 Worker 线程
       worker.terminate();
@@ -279,31 +278,32 @@ export default () => {
 
 ```js
 // leavePage.worker.js
-const worker = `
+const leavePageWorker = `
 var timer;
 self.onmessage = function (event) {
   // ...
 };
 `;
 
-export default worker;
+export default leavePageWorker;
 ```
 
 在主线程的代码里导入字符串并创建真正的 Worker 线程：
 
 ```ts
-import leavePageWorker from "path/to/leavePage.worker.js";
+import LeavePageWorker from "path/to/leavePage.worker.js";
 
-const loadWebWorker = (worker) => {
-  const code = worker.toString();
+const loadWebWorker = (code: string): Worker => {
   const blob = new Blob(["(" + code + ")()"]);
   return new Worker(URL.createObjectURL(blob));
 };
 
-const worker = loadWebWorker(leavePageWorker);
+const leavePageWorker = loadWebWorker(LeavePageWorker);
 ```
 
 需注意的是，使用动态加载的方式意味着 Worker 的代码将不经 Webpack 而直接调用，所以应当使用兼容性更好的「古早 JavaScript 语法」，例如 `var` `function(){}` 等。
+
+由于浏览器的 Content Security Policy (CSP) 策略，通过此方法创建 Worker 可能会失败，可以参考[此介绍](https://stackoverflow.com/questions/30280370/how-does-content-security-policy-csp-work)进行解决。
 
 ### Umi 项目的方式
 
@@ -338,7 +338,7 @@ import LeavePageWorker from "path/to/leavePage.worker.js";
 export default () => {
   useEffect(() => {
     // 新建 Worker 线程
-    const worker = new LeavePageWorker();
+    const worker: Worker = new LeavePageWorker();
 
     // 像之前一样监听 worker 事件即可
     // ...
@@ -346,10 +346,12 @@ export default () => {
     return () => {
       // 别忘了使用完后关闭 Worker 线程
       worker.terminate();
-    }
+    };
   }, []);
 };
 ```
+
+Worker 的编译和运行均在后台执行，这意味着即使出现报错也不会显式提醒您。您可以随时在开发者工具里找到编译得到的 Worker 的代码：
 
 ![在开发者工具中查看 Worker 源码](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg)
 
@@ -359,12 +361,49 @@ Umi 4.x 内置 Webpack 5.x 作为默认 Bundler，因此[查阅文档](https://w
 
 ### 三方库的方式
 
-如果不介意 Web Worker 编写是否原生，笔者更推荐选用一些封装了 Web Worker 能力的三方库，例如 [`alewin/useWorker`](https://github.com/alewin/useWorker) 和 [`developit/greenlet`](https://github.com/developit/greenlet/) 等。
+如果不介意 Web Worker 编写是否原生（笔者从不介意！），更推荐选用封装了 Web Worker 能力的三方库，例如 [`alewin/useWorker`](https://github.com/alewin/useWorker) 和 [`developit/greenlet`](https://github.com/developit/greenlet/) 等。
 
-它们降低了使用 Web Worker 的心智成本，使得调用 Web Worker 就像编写普通的 `async` 函数一样；此外，我们也不必理会包含 Webpack 等 Bundler 的项目在引入 Web Worker 时带来的奇怪问题。
+它们降低了使用 Web Worker 的心智成本，使得调用 Web Worker 就像编写普通的 `async` 异步函数一样；重要的是，不必再担心引入 Web Worker 时带来的各种各样的奇怪问题（CDN 部署时，可能发生同源问题）。
+
+以 `alewin/useWorker` 为例，可以这样改进前面的代码：
+
+```ts
+import React, { useEffect } from "react";
+import { useWorker } from "@koale/useworker";
+
+/**
+ * 休眠 @timeout 毫秒
+ */
+const setTimeoutAsync = (timeout: number) => {
+  return new Promise<void>((resolve) =>
+    setTimeout(() => {
+      resolve();
+    }, timeout)
+  );
+};
+
+export default () => {
+  const [setTimeoutWorker, { kill: killSetTimeoutWorker }] =
+    useWorker(setTimeoutAsync);
+
+  useEffect(() => {
+    const runLeavePageWorker = async () => {
+      await setTimeoutWorker(12 * 60 * 60 * 1000);
+      // ... 在此处执行离开页面的业务代码
+    };
+
+    runLeavePageWorker();
+
+    return () => {
+      killSetTimeoutWorker();
+    };
+  }, []);
+};
+```
 
 ## 参考文章
 
 - [Web Worker 使用教程 - 阮一峰](https://www.ruanyifeng.com/blog/2018/07/web-worker.html)
 - [记一次定时器问题的优雅解决](https://juejin.cn/post/6855583384375132174)
 - [web worker onmessage - Uncaught SyntaxError: Unexpected token <](https://stackoverflow.com/questions/49171791/web-worker-onmessage-uncaught-syntaxerror-unexpected-token)
+- [Combination of async function + await + setTimeout](https://stackoverflow.com/questions/33289726/combination-of-async-function-await-settimeout)
