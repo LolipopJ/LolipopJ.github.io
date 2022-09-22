@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Lolipop">
 <meta property="og:description" content="业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。 想都没想，直接在 useEffect() 里用 setTimeout() 定个时，12 个小时后触发相应跳转事件： 12345678910111213141516171819202122import React, &amp;#123; useEffect &amp;#125; from &quot;react&amp;quot">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lolipopj.github.io/(https:/cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg)">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg">
 <meta property="article:published_time" content="2022-09-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-21T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
@@ -36,7 +36,7 @@
 <meta property="article:tag" content="Umi">
 <meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lolipopj.github.io/(https:/cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg)">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/assets/favicon.ico">
@@ -595,7 +595,7 @@
 <p>可知 Umi 基于 <code>worker-loader</code>，将 <code>worker.ts</code> 或 <code>worker.js</code> 结尾的文件当作 Web Worker 处理。那么可以这样编写主线程的代码：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">LeavePageWorker</span> <span class="keyword">from</span> <span class="string">&quot;path/to/leavePage.worker.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 新建 Worker 线程</span></span><br><span class="line">    <span class="keyword">const</span> worker = <span class="keyword">new</span> <span class="title class_">LeavePageWorker</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 像之前一样监听 worker 事件即可</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 别忘了使用完后关闭 Worker 线程</span></span><br><span class="line">      worker.<span class="title function_">terminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/(https:/cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg)" alt="在开发者工具中查看 Worker 源码"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/09/21/js-webworker-settimeout/webworker-source.jpg" alt="在开发者工具中查看 Worker 源码"></p>
 <p>对于 Umi 3.4.1 以前版本的项目，可以通过 <a target="_blank" rel="noopener" href="https://v3.umijs.org/config#chainwebpack"><code>chainWebpack</code></a> 添加 <code>worker-loader</code> 或 <code>worker-plugin</code> 插件的支持。</p>
 <p>Umi 4.x 内置 Webpack 5.x 作为默认 Bundler，因此<a target="_blank" rel="noopener" href="https://webpack.js.org/guides/web-workers">查阅文档</a>使用即可。</p>
 <h3 id="三方库的方式"><a href="#三方库的方式" class="headerlink" title="三方库的方式"></a>三方库的方式</h3><p>如果不介意 Web Worker 编写是否原生，笔者更推荐选用一些封装了 Web Worker 能力的三方库，例如 <a target="_blank" rel="noopener" href="https://github.com/alewin/useWorker"><code>alewin/useWorker</code></a> 和 <a target="_blank" rel="noopener" href="https://github.com/developit/greenlet/"><code>developit/greenlet</code></a> 等。</p>
