@@ -695,7 +695,7 @@
             </a>
             <div class="abstract-content">
                 <p>JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。</p>
-<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="JavaScript 变量提升和函数提升">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
+<p>为了更好理解闭包的作用，不妨看看我的<a href="/2021/05/10/js-hoisting/" title="漫谈 JavaScript 变量提升和函数提升">这一篇博客</a>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。</p>
 <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>在 JavaScript 中，<strong>作用域</strong>（Scope）是当前代码执行的上下文，也即是值和表达式在其中可访问到的上下文。</p>
 <ul>
 <li>如果一个变量或其它表达式不在当前作用域中，就会沿<strong>作用域链</strong>（Scope Chain）往父作用域搜索。如果也仍未找到它的话，那么它就是不可用的。</li>
@@ -754,14 +754,17 @@
         <article class="index-post">
             <a class="abstract-title" href="/2021/05/10/js-hoisting/">
                 
-                <span class="abstract-title-text">JavaScript 变量提升和函数提升</span>
+                <span class="abstract-title-text">漫谈 JavaScript 变量提升和函数提升</span>
             </a>
             <div class="abstract-content">
-                <p>JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。</p>
-<p>不过在学习闭包之前，为了更好理解它的作用，容我先从 JS 的变量提升（Hoisting）现象慢慢道来。</p>
-<h2 id="JS-变量提升和函数提升"><a href="#JS-变量提升和函数提升" class="headerlink" title="JS 变量提升和函数提升"></a>JS 变量提升和函数提升</h2><p>在 ES6 规范出现之前，声明变量只有 <code>var</code>, <code>function</code> 以及隐式声明三种方式。</p>
-<p>按照一般编程的正常思维，我们会选择使用“先声明，后调用”的方式去使用变量，例如：</p>
+                <p>在 ES6 规范出现之前，使用 JavaScript 声明变量只有 <code>var</code>, <code>function</code> 以及隐式声明三种方式。</p>
+<p>按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>但假如反过来，我们“先调用，后声明”，会发生什么呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>如上所示，在声明变量 <code>a</code> 之前尝试将它的值打印出来，控制台输出的结果是 <code>undefined</code>，而不是预期中的报错 <code>Uncaught ReferenceError: a is not defined</code>。这就是<strong>变量提升</strong>。</p>
             </div>
             <!-- read more -->
             
@@ -774,7 +777,7 @@
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/05/13">
+                <div class="abstract-date" title="Last updated: 2022/10/21">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/11</span>
                 </div>
                 <!-- tags -->
@@ -1697,7 +1700,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/11</span>
-            <a class="archive-post-title" href="/2021/05/10/js-hoisting/">JavaScript 变量提升和函数提升</a>
+            <a class="archive-post-title" href="/2021/05/10/js-hoisting/">漫谈 JavaScript 变量提升和函数提升</a>
         </li>
     
         
