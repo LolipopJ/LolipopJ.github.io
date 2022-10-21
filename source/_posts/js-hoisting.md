@@ -1,5 +1,5 @@
 ---
-title: JavsScript 变量提升和函数提升
+title: JavaScript 变量提升和函数提升
 date: 2021/5/11
 updated: 2021/5/13
 categories:

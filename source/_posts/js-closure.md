@@ -1,5 +1,5 @@
 ---
-title: 漫谈 JavsScript 闭包
+title: 漫谈 JavaScript 闭包
 date: 2021/5/18
 updated: 2021/5/18
 categories:

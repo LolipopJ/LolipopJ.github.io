@@ -1,5 +1,5 @@
 ---
-title: 漫谈 JavsScript 类（Class）的使用
+title: 漫谈 JavaScript 类（Class）的使用
 date: 2021/5/20
 updated: 2021/5/20
 categories:
