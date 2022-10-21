@@ -4,14 +4,15 @@ date: 2021/3/17
 updated: 2021/3/18
 timeliness: true
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- JavaScript
-- Node
-- Vue-2
-- Nuxt
-- Promise
+  - JavaScript
+  - Node
+  - Vue-2
+  - Nuxt
+  - Promise
 ---
+
 迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
 
 ## 高德地图与腾讯地图定位功能区别
@@ -60,7 +61,7 @@ const geolocation = new AMap.Geolocation({
   timeout: 10000, // 超过 10 秒后停止定位
   noIpLocate: 1, // 禁止移动端使用 IP 定位
   useNative: true, // 使用安卓定位 sdk 用来进行定位
-})
+});
 ```
 
 更多的构造选项可参考 [AMap.Geolocation 插件官方文档](https://developer.amap.com/api/javascript-api/reference/location)。
@@ -69,14 +70,14 @@ const geolocation = new AMap.Geolocation({
 
 ```js
 geolocation.getCurrentPosition((status, result) => {
-  if (status === 'complete') {
+  if (status === "complete") {
     // 定位成功
-    console.log(result)
+    console.log(result);
   } else {
     // 定位失败
-    console.log(result.message)
+    console.log(result.message);
   }
-})
+});
 ```
 
 为了封装函数，无法在回调函数里添加 `return` 进行返回，因此选择使用 `Promise` 的方法：
@@ -85,19 +86,19 @@ geolocation.getCurrentPosition((status, result) => {
 function getCurrentPosition() {
   return new Promise((resolve, reject) => {
     geolocation.getCurrentPosition((status, positionResult) => {
-      if (status === 'complete') {
+      if (status === "complete") {
         // 定位成功
         resolve({
           status: 1,
-          msg: '获取地理位置成功',
+          msg: "获取地理位置成功",
           result: positionResult,
-        })
+        });
       } else {
         // 定位失败
-        reject(new Error(`获取地理位置失败：${positionResult.message}`))
+        reject(new Error(`获取地理位置失败：${positionResult.message}`));
       }
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -106,11 +107,11 @@ function getCurrentPosition() {
 ```js
 getCurrentPosition()
   .then((res) => {
-    console.log(res)
+    console.log(res);
   })
   .catch((err) => {
-    console.log(err)
-  })
+    console.log(err);
+  });
 ```
 
 ## 高德地图逆地理编码功能实现
@@ -130,33 +131,33 @@ function getCurrentAddress() {
         const lnglat = [
           positionResult.result.position.lng,
           positionResult.result.position.lat,
-        ]
+        ];
         // 构造地理编码或逆地理编码功能实例
-        const geocoder = new AMap.Geocoder()
+        const geocoder = new AMap.Geocoder();
         // 获得逆编码信息
         geocoder.getAddress(lnglat, (addressStatus, addressResult) => {
-          if (addressStatus === 'complete' && addressResult.regeocode) {
+          if (addressStatus === "complete" && addressResult.regeocode) {
             // 获取成功
             resolve({
               status: 1,
-              msg: '获取地理位置和地区信息成功',
+              msg: "获取地理位置和地区信息成功",
               result: { positionResult: positionResult.result, addressResult },
-            })
+            });
           } else {
             // 获取失败
             resolve({
               status: 2,
-              msg: '获取地理位置成功，但获取地区信息失败',
+              msg: "获取地理位置成功，但获取地区信息失败",
               result: { positionResult: positionResult.result },
-            })
+            });
           }
-        })
+        });
       })
       .catch((err) => {
         // 定位失败
-        reject(err)
-      })
-  })
+        reject(err);
+      });
+  });
 }
 ```
 
@@ -168,13 +169,13 @@ function getCurrentAddress() {
 
 ```js
 // plugins/amapGeolocation.js
-import Vue from 'vue'
+import Vue from "vue";
 
 const geolocation = new AMap.Geolocation({
   timeout: 10000, // 超过 10 秒后停止定位
   noIpLocate: 1, // 禁止移动端使用 IP 定位
   useNative: true, // 使用安卓定位 sdk 用来进行定位
-})
+});
 
 /**
  * 获取当前的经纬度坐标
@@ -183,19 +184,19 @@ const geolocation = new AMap.Geolocation({
 function getCurrentPosition() {
   return new Promise((resolve, reject) => {
     geolocation.getCurrentPosition((status, positionResult) => {
-      if (status === 'complete') {
+      if (status === "complete") {
         // 定位成功
         resolve({
           status: 1,
-          msg: '获取地理位置成功',
+          msg: "获取地理位置成功",
           result: positionResult,
-        })
+        });
       } else {
         // 定位失败
-        reject(new Error(`获取地理位置失败：${positionResult.message}`))
+        reject(new Error(`获取地理位置失败：${positionResult.message}`));
       }
-    })
-  })
+    });
+  });
 }
 
 /**
@@ -209,31 +210,31 @@ function getCurrentAddress() {
         const lnglat = [
           positionResult.result.position.lng,
           positionResult.result.position.lat,
-        ]
-        const geocoder = new AMap.Geocoder()
+        ];
+        const geocoder = new AMap.Geocoder();
         geocoder.getAddress(lnglat, (addressStatus, addressResult) => {
-          if (addressStatus === 'complete' && addressResult.regeocode) {
+          if (addressStatus === "complete" && addressResult.regeocode) {
             // 逆编码成功
             resolve({
               status: 1,
-              msg: '获取地理位置和地区信息成功',
+              msg: "获取地理位置和地区信息成功",
               result: { positionResult: positionResult.result, addressResult },
-            })
+            });
           } else {
             // 逆编码失败
             resolve({
               status: 2,
-              msg: '获取地理位置成功，但获取地区信息失败',
+              msg: "获取地理位置成功，但获取地区信息失败",
               result: { positionResult: positionResult.result },
-            })
+            });
           }
-        })
+        });
       })
       .catch((err) => {
         // 定位失败
-        reject(err)
-      })
-  })
+        reject(err);
+      });
+  });
 }
 
 const amapGeolocation = {
@@ -241,11 +242,11 @@ const amapGeolocation = {
     Vue.prototype.$Geolocation = {
       getCurrentPosition,
       getCurrentAddress,
-    }
+    };
   },
-}
+};
 
-Vue.use(amapGeolocation)
+Vue.use(amapGeolocation);
 ```
 
 将此文件作为插件引入 Nuxt.js 后，可以在 Vue 文件中通过如下代码轻松调用：
@@ -256,21 +257,21 @@ Vue.use(amapGeolocation)
 this.$Geolocation
   .getCurrentPosition()
   .then((res) => {
-    console.log(res)
+    console.log(res);
   })
   .catch((error) => {
-    console.log(error)
-  })
+    console.log(error);
+  });
 
 // 获取地理坐标及所在地址
 this.$Geolocation
   .getCurrentAddress()
   .then((res) => {
-    console.log(res)
+    console.log(res);
   })
   .catch((error) => {
-    console.log(error)
-  })
+    console.log(error);
+  });
 ```
 
 ## 相关链接

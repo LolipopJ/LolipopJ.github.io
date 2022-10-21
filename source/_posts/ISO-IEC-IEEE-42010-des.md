@@ -3,10 +3,11 @@ title: IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法
 date: 2020/12/29
 updated: 2021/2/19
 categories:
-- 学习琐事
+  - 学习琐事
 tags:
-- 软件体系架构设计
+  - 软件体系架构设计
 ---
+
 ## 关于
 
 本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。

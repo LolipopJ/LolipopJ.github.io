@@ -3,10 +3,11 @@ title: 提示 *** is not a symbolic link 解决方案
 date: 2021/3/10
 updated: 2021/3/10
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Linux
+  - Linux
 ---
+
 ## 问题描述
 
 在 CentOS 环境下执行 `yum update` 和 `ldconfig` 命令时都出现提示警告，节选内容如下所示：
@@ -76,5 +77,5 @@ ldconfig 2> dupNote ; cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs 
 
 ## 相关链接
 
-- [/usr/lib/*** is not a symbolic link问题解决 - CSDN](https://blog.csdn.net/qq_34213260/article/details/107399507)
+- [/usr/lib/\*\*\* is not a symbolic link 问题解决 - CSDN](https://blog.csdn.net/qq_34213260/article/details/107399507)
 - [Linux ln 命令 - 菜鸟教程](https://www.runoob.com/linux/linux-comm-ln.html)

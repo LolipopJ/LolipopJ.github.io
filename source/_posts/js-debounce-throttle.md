@@ -3,12 +3,13 @@ title: 函数防抖和节流，以及在 Vue 中的运用
 date: 2021/5/8
 updated: 2021/5/8
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- JavaScript
-- Vue-2
-- Nuxt
+  - JavaScript
+  - Vue-2
+  - Nuxt
 ---
+
 在前端性能优化中存在一个老生常谈的问题：如何优化**高频率执行**的 JS 代码？例如：
 
 1. 我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。
@@ -31,16 +32,19 @@ tags:
  * @returns 节流执行的函数
  */
 function throttle1(func, wait) {
-  let timer // 维护的定时器编号
-  return function () { // 返回节流执行的函数，可以绑定给事件
-    const args = arguments // 执行函数的参数
-    if (!timer) { // 当定时器不存在或已到期时
-      timer = setTimeout(() => { // 启用一个新的定时器
-        timer = undefined // 到期后设置定时器编号为空
-        func.apply(this, args) // 到期后执行函数
-      }, wait) // 定时器等待 wait 毫秒后执行
+  let timer; // 维护的定时器编号
+  return function () {
+    // 返回节流执行的函数，可以绑定给事件
+    const args = arguments; // 执行函数的参数
+    if (!timer) {
+      // 当定时器不存在或已到期时
+      timer = setTimeout(() => {
+        // 启用一个新的定时器
+        timer = undefined; // 到期后设置定时器编号为空
+        func.apply(this, args); // 到期后执行函数
+      }, wait); // 定时器等待 wait 毫秒后执行
     }
-  }
+  };
 }
 ```
 
@@ -65,17 +69,18 @@ function throttle1(func, wait) {
  * @returns 节流执行的函数
  */
 function throttle2(func, wait) {
-  let timer
+  let timer;
   return function () {
-    const args = arguments
-    const that = this // 获取作用域上下文
+    const args = arguments;
+    const that = this; // 获取作用域上下文
     if (!timer) {
-      timer = setTimeout(function () { // 使用 function () {} 的方式
-        timer = undefined
-        func.apply(that, args) // 使用绑定的上下文对象
-      }, wait)
+      timer = setTimeout(function () {
+        // 使用 function () {} 的方式
+        timer = undefined;
+        func.apply(that, args); // 使用绑定的上下文对象
+      }, wait);
     }
-  }
+  };
 }
 ```
 
@@ -90,15 +95,16 @@ function throttle2(func, wait) {
  * @returns 节流执行的函数
  */
 function throttle3(func, wait) {
-  let previous = new Date()
+  let previous = new Date();
   return function () {
-    const args = arguments
-    const now = new Date() // 获取当前的时间
-    if (now - previous > wait) { // Date 对象在计算时会隐式转换为时间戳，当间隔时间大于等待时间时
-      previous = now // 设置维护的时间为当前的时间
-      func.apply(this, args) // 执行函数
+    const args = arguments;
+    const now = new Date(); // 获取当前的时间
+    if (now - previous > wait) {
+      // Date 对象在计算时会隐式转换为时间戳，当间隔时间大于等待时间时
+      previous = now; // 设置维护的时间为当前的时间
+      func.apply(this, args); // 执行函数
     }
-  }
+  };
 }
 ```
 
@@ -116,23 +122,25 @@ function throttle3(func, wait) {
  * @returns 节流执行的函数
  */
 function throttle4(func, wait, immediate = false) {
-  let timer
+  let timer;
   return function () {
-    const args = arguments
+    const args = arguments;
     if (!timer) {
-      if (immediate) { // 设置立即执行函数
-        timer = setTimeout(() => { // 启用一个新的定时器
-          timer = undefined // 到期后设置定时器编号为空
-        }, wait) // 定时器等待 wait 毫秒后执行
-        func.apply(this, args) // 立即执行函数
+      if (immediate) {
+        // 设置立即执行函数
+        timer = setTimeout(() => {
+          // 启用一个新的定时器
+          timer = undefined; // 到期后设置定时器编号为空
+        }, wait); // 定时器等待 wait 毫秒后执行
+        func.apply(this, args); // 立即执行函数
       } else {
         timer = setTimeout(() => {
-          timer = undefined
-          func.apply(this, args)
-        }, wait)
+          timer = undefined;
+          func.apply(this, args);
+        }, wait);
       }
     }
-  }
+  };
 }
 ```
 
@@ -158,23 +166,27 @@ function throttle4(func, wait, immediate = false) {
  * @returns 防抖执行的函数
  */
 function debounce(func, wait, immediate = false) {
-  let timer
+  let timer;
   return function () {
-    const args = arguments
+    const args = arguments;
 
-    timer && clearTimeout(timer) // 如果定时器编号不为空，则清除定时器。此处只是清除定时器，并未清除定时器编号
+    timer && clearTimeout(timer); // 如果定时器编号不为空，则清除定时器。此处只是清除定时器，并未清除定时器编号
 
-    if (immediate) { // 设置立即执行函数
-      !timer && func.apply(this, args) // 如果定时器编号不为空，即在等待时间内，不执行函数；若为空，则执行函数
-      timer = setTimeout(() => { // 启用新的定时器
-        timer = undefined // 定时器到期后清空定时器编号
-      }, wait) // 定时器等待 wait 毫秒后执行
-    } else { // 不立即执行函数
-      timer = setTimeout(() => {  // 启用新的定时器
-        func.apply(this, args) // 定时器到期后执行函数
-      }, wait) // 定时器等待 wait 毫秒后执行
+    if (immediate) {
+      // 设置立即执行函数
+      !timer && func.apply(this, args); // 如果定时器编号不为空，即在等待时间内，不执行函数；若为空，则执行函数
+      timer = setTimeout(() => {
+        // 启用新的定时器
+        timer = undefined; // 定时器到期后清空定时器编号
+      }, wait); // 定时器等待 wait 毫秒后执行
+    } else {
+      // 不立即执行函数
+      timer = setTimeout(() => {
+        // 启用新的定时器
+        func.apply(this, args); // 定时器到期后执行函数
+      }, wait); // 定时器等待 wait 毫秒后执行
     }
-  }
+  };
 }
 ```
 
@@ -184,7 +196,7 @@ function debounce(func, wait, immediate = false) {
 
 ```js
 // plugins/main.js
-import Vue from 'vue'
+import Vue from "vue";
 
 function throttle() {
   //
@@ -200,21 +212,19 @@ const main = {
     Vue.prototype.$Main = {
       throttle,
       debounce,
-    }
+    };
   },
-}
+};
 
-Vue.use(main)
+Vue.use(main);
 ```
 
 接下来在 `nuxt.config.js` 中引入：
 
 ```js
 export default {
-  plugins: [
-    '~/plugins/main.js',
-  ],
-}
+  plugins: ["~/plugins/main.js"],
+};
 ```
 
 就可以在组件中通过 `this.$Main.throttle()` 调用函数了。其中 `this` 指向了全局的 Vue 对象。
@@ -258,25 +268,25 @@ export default {
   }),
   mounted() {
     // 每 500 毫秒获取当前的 scrollVal 值
-    const throttleOnScroll = this.$Main.throttle(this.onScroll, 500)
+    const throttleOnScroll = this.$Main.throttle(this.onScroll, 500);
     // 为 window 添加滚动事件
-    window.addEventListener('scroll', throttleOnScroll)
+    window.addEventListener("scroll", throttleOnScroll);
   },
   methods: {
     // 获取 window.pageYOffset 值并赋值给 scrollVal
     onScroll() {
-      this.scrollVal = window.pageYOffset
+      this.scrollVal = window.pageYOffset;
     },
     // 回到顶端
     backToTop() {
       window.scroll({
         top: 0,
         left: 0,
-        behavior: 'smooth',
-      })
+        behavior: "smooth",
+      });
     },
   },
-}
+};
 </script>
 ```
 

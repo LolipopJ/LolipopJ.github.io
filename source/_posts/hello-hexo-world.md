@@ -3,13 +3,14 @@ title: Hello Hexo World
 date: 2019/12/27
 updated: 2021/2/19
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- 博客开发
-- Node
-- Hexo
+  - 博客开发
+  - Node
+  - Hexo
 ---
-搭建一个自己的博客是多少投身于IT行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！
+
+搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！
 
 正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。
 
@@ -38,7 +39,7 @@ Hexo 基于 Node.js，是一个快速、简洁且高效的博客框架。Hexo �
 
 安装完毕依赖程序后，打开 Git bash，使用 npm 命令一键安装 Hexo 5.x 版本以及所需依赖。
 
-``` bash
+```bash
 npm install -g hexo-cli
 ```
 
@@ -48,7 +49,7 @@ npm install -g hexo-cli
 
 首先在 Git bash 的工作目录新建存放 Hexo 文件的文件夹，进入该文件夹并初始化。
 
-``` bash
+```bash
 hexo init [文件夹名]
 cd [文件夹名]
 npm install
@@ -62,7 +63,7 @@ npm install
 
 ### 部署到 Github Pages
 
-登录你的 Github，新建一个 Repository，命名为 **你的Github用户名.github.io**。
+登录你的 Github，新建一个 Repository，命名为 **你的 Github 用户名.github.io**。
 
 现在你可以随时通过浏览器访问 `https://你的Github用户名.github.io` 的方式，进入到库中根目录下的 `index.html` 页面（如果有的话）。
 
@@ -70,22 +71,22 @@ Hexo 提供了快速方便的一键部署功能，配置完成以后只需要一
 
 1.安装 hexo-deployer-git。
 
-``` bash
+```bash
 npm install hexo-deployer-git --save
 ```
 
 2.修改 Hexo 目录下的配置文件 `_config.yml` 中 deploy 的内容如下。
 
-``` json
+```json
 deploy:
   type: git
   repo: 你的 Github Pages 链接 # 例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: master
 ```
 
-3.生成站点文件并推送至Github库。
+3.生成站点文件并推送至 Github 库。
 
-``` bash
+```bash
 hexo clean && hexo deploy
 ```
 

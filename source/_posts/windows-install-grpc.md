@@ -3,12 +3,13 @@ title: Windows 系统编译安装基于 C++ 的 gRPC
 date: 2021/4/26
 updated: 2021/4/26
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Windows
-- CPP
-- gRPC
+  - Windows
+  - CPP
+  - gRPC
 ---
+
 本博客基于 CMake 实现编译 `gRPC 1.28.1` 版本。
 
 本博客的 Windows 端使用的命令提示符界面为 Powershell。
@@ -48,9 +49,9 @@ git version 2.21.0.windows.1
 
 例如对于 64 位的 Windows 电脑安装 `CMake 3.20.1`，找到：
 
-|Platform|Files|
-|---|---|
-|Windows x64 Installer: Installer tool has changed. Uninstall CMake 3.4 or lower first!|cmake-3.20.1-windows-x86_64.msi|
+| Platform                                                                               | Files                           |
+| -------------------------------------------------------------------------------------- | ------------------------------- |
+| Windows x64 Installer: Installer tool has changed. Uninstall CMake 3.4 or lower first! | cmake-3.20.1-windows-x86_64.msi |
 
 下载并运行 `.msi` 文件安装即可。
 
@@ -182,4 +183,4 @@ Hello, gRPC world!
 
 ## 参考资料
 
-- [编译gRPC(windows)和测试demo](https://blog.csdn.net/xiaoyafang123/article/details/76529917) - 2017.08.01 - 注：博主填的转载，暂未找到原文链接
+- [编译 gRPC(windows)和测试 demo](https://blog.csdn.net/xiaoyafang123/article/details/76529917) - 2017.08.01 - 注：博主填的转载，暂未找到原文链接

@@ -3,11 +3,12 @@ title: 使用 jsDelivr 加速 Github 仓库搭建自己的图床服务
 date: 2021/8/13
 updated: 2021/8/13
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Github
-- jsDiliver
+  - Github
+  - jsDiliver
 ---
+
 ## 起因
 
 今天突然想去搞个图床，使用 CDN 加速图片资源。因为博客放在小水管服务器上，直接用这个服务器向用户传输图片资源对带宽有很大影响。

@@ -3,11 +3,12 @@ title: 在 Euler 系统上离线安装 MySQL 5.7
 date: 2021/6/4
 updated: 2021/7/29
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Linux
-- MySQL
+  - Linux
+  - MySQL
 ---
+
 ## 查看系统 OS 及架构
 
 以 Euler 系统为例，在终端上输入命令查看，可以通过 `rpm -qa | grep euleros-release` 命令找到 rpm 包，再通过 `rpm -qi ${包名}` 查看系统 OS 及架构信息：

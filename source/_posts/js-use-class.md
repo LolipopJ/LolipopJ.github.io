@@ -3,11 +3,12 @@ title: 漫谈 JavaScript 类（Class）的使用
 date: 2021/5/20
 updated: 2021/5/20
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- JavaScript
-- ES6
+  - JavaScript
+  - ES6
 ---
+
 类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的 `class` 语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。
 
 本博文将探讨 JavaScript 中**如何使用类**的相关知识，文章组织架构和内容基于 MDN 上关于类的[章节](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)。
@@ -20,17 +21,17 @@ tags:
 
 ```js
 class User {
-    //
+  //
 }
 ```
 
 但是，与函数声明不同的是，使用类声明的方式**不会提升**。这意味着必须先声明类，再使用它。
 
 ```js
-const u = new User() // Uncaught ReferenceError: User is not defined
+const u = new User(); // Uncaught ReferenceError: User is not defined
 
 class User {
-    //
+  //
 }
 ```
 
@@ -39,15 +40,15 @@ class User {
 ```js
 // 匿名类
 let User = class {
-    //
-}
-console.log(User.name) // User
+  //
+};
+console.log(User.name); // User
 
 // 命名类
 let User = class Admin {
-    //
-}
-console.log(User.name) // Admin
+  //
+};
+console.log(User.name); // Admin
 ```
 
 同样，使用类表达式的方式也**不会提升**。
@@ -55,7 +56,7 @@ console.log(User.name) // Admin
 定义类之后，就可以使用 `new` 关键字实例化类了。
 
 ```js
-const u = new User()
+const u = new User();
 ```
 
 ## 构造函数
@@ -66,17 +67,18 @@ const u = new User()
 
 ```js
 class User {
-    constructor(name, gender) { // 构造函数
-        this.name = name
-        this.gender = gender
-    }
+  constructor(name, gender) {
+    // 构造函数
+    this.name = name;
+    this.gender = gender;
+  }
 }
 
-const u = new User('Ming', 'Male') // 初始化对象
-console.log(u.name, u.gender) // Ming Male
+const u = new User("Ming", "Male"); // 初始化对象
+console.log(u.name, u.gender); // Ming Male
 
-const u2 = new User('Xiao') // 初始化赋值参数少于构造函数参数时
-console.log(u2.name, u2.gender) // Xiao undefined
+const u2 = new User("Xiao"); // 初始化赋值参数少于构造函数参数时
+console.log(u2.name, u2.gender); // Xiao undefined
 ```
 
 对于 `new` 创建实例时的每个参数，将依次赋值给构造函数。多余的参数将被忽略。
@@ -85,21 +87,24 @@ console.log(u2.name, u2.gender) // Xiao undefined
 
 ```js
 class User {
-    constructor(name, gender) { // User 类的构造函数
-        this.name = name
-        this.gender = gender
-    }
+  constructor(name, gender) {
+    // User 类的构造函数
+    this.name = name;
+    this.gender = gender;
+  }
 }
 
-class Admin extends User { // 使用 extends 创建 User 的子类 Admin
-    constructor(name, gender, openId) { // Admin 类的构造函数
-        super(name, gender) // 调用父类 User 的构造函数
-        this.openId = openId
-    }
+class Admin extends User {
+  // 使用 extends 创建 User 的子类 Admin
+  constructor(name, gender, openId) {
+    // Admin 类的构造函数
+    super(name, gender); // 调用父类 User 的构造函数
+    this.openId = openId;
+  }
 }
 
-const a = new Admin('Ming', 'Male', 'xxx489')
-console.log(a.name, a.gender, a.openId) // Ming Male xxx489
+const a = new Admin("Ming", "Male", "xxx489");
+console.log(a.name, a.gender, a.openId); // Ming Male xxx489
 ```
 
 ## 原型方法
@@ -108,40 +113,44 @@ console.log(a.name, a.gender, a.openId) // Ming Male xxx489
 
 ```js
 class Rectangle {
-    // Field declarations
-    log = [] // 日志属性
-    // Constructor
-    constructor(height, width) {
-        this.height = height
-        this.width = width
-    }
-    // Getter
-    get area() { // 获取当前的面积
-        return this.calcArea()
-    }
-    // Setter
-    set height(h) { // 修改 height 属性时添加日志
-        this._height = h // 如果为 this.height = h 会循环调用这个 Setter，发生堆栈溢出
-        this.log.push(`set height: ${h}`)
-    }
-    set width(w) { // 修改 width 属性时添加日志
-        this._width = w
-        this.log.push(`set width: ${w}`)
-    }
-    // Method
-    calcArea() { // 计算当前的面积
-        return this._height * this._width
-    }
+  // Field declarations
+  log = []; // 日志属性
+  // Constructor
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    // 获取当前的面积
+    return this.calcArea();
+  }
+  // Setter
+  set height(h) {
+    // 修改 height 属性时添加日志
+    this._height = h; // 如果为 this.height = h 会循环调用这个 Setter，发生堆栈溢出
+    this.log.push(`set height: ${h}`);
+  }
+  set width(w) {
+    // 修改 width 属性时添加日志
+    this._width = w;
+    this.log.push(`set width: ${w}`);
+  }
+  // Method
+  calcArea() {
+    // 计算当前的面积
+    return this._height * this._width;
+  }
 }
 
-const rec = new Rectangle(5, 10)
-console.log(rec.log) // ["set height: 5", "set width: 10"]
-console.log(rec.area) // 50
+const rec = new Rectangle(5, 10);
+console.log(rec.log); // ["set height: 5", "set width: 10"]
+console.log(rec.area); // 50
 
-rec.height = 10
-rec.width = 20
-console.log(rec.log) // ["set height: 5", "set width: 10", "set height: 10", "set width: 20"]
-console.log(rec.area) // 200
+rec.height = 10;
+rec.width = 20;
+console.log(rec.log); // ["set height: 5", "set width: 10", "set height: 10", "set width: 20"]
+console.log(rec.area); // 200
 ```
 
 上面的类中定义计算当前面积的方法 `calcArea()` 时，使用了 ES6 引入的[更简短的定义语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions)，这种语法与 Setter 和 Getter 的语法相似，它直接将方法名赋值给了函数。
@@ -154,28 +163,29 @@ console.log(rec.area) // 200
 
 ```js
 class Point {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-    }
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
-    static className = 'Point' // 定义 Point 类的静态属性
+  static className = "Point"; // 定义 Point 类的静态属性
 
-    static distance(a, b) { // 定义 Point 类的静态方法
-        const dx = a.x - b.x
-        const dy = a.y - b.y
-        return Math.hypot(dx, dy) // Math.hypot() 返回所有参数的平方和的平方根，在此处用于求两点之间的距离
-    }
+  static distance(a, b) {
+    // 定义 Point 类的静态方法
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+    return Math.hypot(dx, dy); // Math.hypot() 返回所有参数的平方和的平方根，在此处用于求两点之间的距离
+  }
 }
 
-const p1 = new Point(5, 5)
-const p2 = new Point(10,10)
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
 
-console.log(p1.className) // undefined
-console.log(p1.distance) // undefined
+console.log(p1.className); // undefined
+console.log(p1.distance); // undefined
 
-console.log(Point.className) // Point
-console.log(Point.distance(p1, p2)) // 7.0710678118654755
+console.log(Point.className); // Point
+console.log(Point.distance(p1, p2)); // 7.0710678118654755
 ```
 
 上面的代码中，当我们使用实例访问静态方法和属性时，会显示 `undefined`。而当我们使用类来访问时，则能正常调用了。
@@ -186,43 +196,44 @@ console.log(Point.distance(p1, p2)) // 7.0710678118654755
 
 ```js
 class MyClass {
-    getThis() {
-        return this
-    }
-    static getStaticThis() {
-        return this
-    }
+  getThis() {
+    return this;
+  }
+  static getStaticThis() {
+    return this;
+  }
 }
 
-const obj = new MyClass()
-const getObjThis = obj.getThis
-console.log(obj.getThis()) // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
-console.log(getObjThis()) // undefined（没有指定 this 的初值）
+const obj = new MyClass();
+const getObjThis = obj.getThis;
+console.log(obj.getThis()); // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
+console.log(getObjThis()); // undefined（没有指定 this 的初值）
 
-const getClassStaticThis = MyClass.getStaticThis
-console.log(MyClass.getStaticThis()) // MyClass 类（指定了 this 的初值，在这里相当于 console.log(MyClass)）
-console.log(getClassStaticThis()) // undefined（没有指定 this 的初值）
+const getClassStaticThis = MyClass.getStaticThis;
+console.log(MyClass.getStaticThis()); // MyClass 类（指定了 this 的初值，在这里相当于 console.log(MyClass)）
+console.log(getClassStaticThis()); // undefined（没有指定 this 的初值）
 ```
 
 作为对比，将上面的代码使用传统的基于函数的语法实现，在**非严格模式**下，若 `this` 的初值没有指定，则会被置为全局对象。
 
 ```js
 function MyClass() {}
-MyClass.prototype.getThis = function() {
-    return this
-}
-MyClass.getStaticThis = function() { // 相当于静态方法
-    return this
-}
+MyClass.prototype.getThis = function () {
+  return this;
+};
+MyClass.getStaticThis = function () {
+  // 相当于静态方法
+  return this;
+};
 
-const obj = new MyClass()
-const getObjThis = obj.getThis
-console.log(obj.getThis()) // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
-console.log(getObjThis()) // global object（没有指定 this 的初值）
+const obj = new MyClass();
+const getObjThis = obj.getThis;
+console.log(obj.getThis()); // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
+console.log(getObjThis()); // global object（没有指定 this 的初值）
 
-const getClassStaticThis = MyClass.getStaticThis
-console.log(MyClass.getStaticThis()) // MyClass 函数（指定了 this 的初值，在这里相当于 console.log(MyClass)）
-console.log(getClassStaticThis()) // global object（没有指定 this 的初值）
+const getClassStaticThis = MyClass.getStaticThis;
+console.log(MyClass.getStaticThis()); // MyClass 函数（指定了 this 的初值，在这里相当于 console.log(MyClass)）
+console.log(getClassStaticThis()); // global object（没有指定 this 的初值）
 ```
 
 ## 生成器方法
@@ -230,20 +241,23 @@ console.log(getClassStaticThis()) // global object（没有指定 this 的初值
 生成器函数使用 `function*` 语法定义，例如 `function* anyGenerator() {}`。而在类中，使用了更简短的定义语法，应将符号 `*` 放在方法名的前面，例如 `*anyGenerator() {}`。
 
 ```js
-class Polygon { // 定义五角形类
-    constructor(...sides) { // 将传入的参数变成一个数组并执行构造方法
-        this.sides = sides
+class Polygon {
+  // 定义五角形类
+  constructor(...sides) {
+    // 将传入的参数变成一个数组并执行构造方法
+    this.sides = sides;
+  }
+  // Method
+  *getSides() {
+    // 定义生成器方法
+    for (const side of this.sides) {
+      yield side;
     }
-    // Method
-    *getSides() { // 定义生成器方法
-        for (const side of this.sides) {
-            yield side
-        }
-    }
+  }
 }
 
-const pentagon = new Polygon(1,2,3,4,5)
-console.log([...pentagon.getSides()]) // [1,2,3,4,5]
+const pentagon = new Polygon(1, 2, 3, 4, 5);
+console.log([...pentagon.getSides()]); // [1,2,3,4,5]
 ```
 
 关于生成器的更多介绍可参考[此页面](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)。
@@ -254,10 +268,11 @@ console.log([...pentagon.getSides()]) // [1,2,3,4,5]
 
 ```js
 class Rectangle {
-    //
-    calcArea = () => { // 使用箭头函数定义原型方法
-        return this.height * this.width
-    }
+  //
+  calcArea = () => {
+    // 使用箭头函数定义原型方法
+    return this.height * this.width;
+  };
 }
 ```
 
@@ -265,20 +280,20 @@ class Rectangle {
 
 ```js
 class Father {
-    sayHello = () => {
-        console.log('I am your father.')
-    }
+  sayHello = () => {
+    console.log("I am your father.");
+  };
 }
 
 class Chird extends Father {
-    sayHello() {
-        super.sayHello()
-        console.log('I am a chird.')
-    }
+  sayHello() {
+    super.sayHello();
+    console.log("I am a chird.");
+  }
 }
 
-const c = new Chird()
-c.sayHello() // I am your father.
+const c = new Chird();
+c.sayHello(); // I am your father.
 ```
 
 上面的代码并没有像我们预想的那样，依次打印出 `I am your father.` 和 `I am a chird.`，而是只打印出了 `I am your father.`。
@@ -299,18 +314,18 @@ c.sayHello() // I am your father.
 
 ```js
 class Point {
-    x // 公有字段 x
-    y = 0 // 公有字段 y，初始值为 0
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-    }
-    get position() {
-        return [this.x, this.y]
-    }
+  x; // 公有字段 x
+  y = 0; // 公有字段 y，初始值为 0
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  get position() {
+    return [this.x, this.y];
+  }
 }
 
-console.log(new Point(5, 10).position) // [5, 10]
+console.log(new Point(5, 10).position); // [5, 10]
 ```
 
 ### 私有字段声明
@@ -319,18 +334,18 @@ console.log(new Point(5, 10).position) // [5, 10]
 
 ```js
 class Point {
-    #x // 私有字段 x
-    #y = 0 // 私有字段 y，初始值为 0
-    constructor(x, y) {
-        this.#x = x
-        this.#y = y
-    }
-    get position() {
-        return [this.#x, this.#y]
-    }
+  #x; // 私有字段 x
+  #y = 0; // 私有字段 y，初始值为 0
+  constructor(x, y) {
+    this.#x = x;
+    this.#y = y;
+  }
+  get position() {
+    return [this.#x, this.#y];
+  }
 }
 
-console.log(new Point(10, 5).position) // [10, 5]
+console.log(new Point(10, 5).position); // [10, 5]
 ```
 
 与公有字段不同的是：
@@ -341,28 +356,28 @@ console.log(new Point(10, 5).position) // [10, 5]
 
 ```js
 class Point {
-    name = 'point'
-    #x
-    #y = 0
-    // #z // 假如不在这里显式声明 #z
-    constructor(x, y, z) {
-        this.#x = x
-        this.#y = y
-        // this.#z = z // Uncaught SyntaxError: Private field '#z' must be declared in an enclosing class
-    }
-    get position() {
-        return [this.#x, this.#y]
-    }
-    get position3D() {
-        // return [this.#x, this.#y, this.#z] // Uncaught SyntaxError: Private field '#z' must be declared in an enclosing class
-    }
+  name = "point";
+  #x;
+  #y = 0;
+  // #z // 假如不在这里显式声明 #z
+  constructor(x, y, z) {
+    this.#x = x;
+    this.#y = y;
+    // this.#z = z // Uncaught SyntaxError: Private field '#z' must be declared in an enclosing class
+  }
+  get position() {
+    return [this.#x, this.#y];
+  }
+  get position3D() {
+    // return [this.#x, this.#y, this.#z] // Uncaught SyntaxError: Private field '#z' must be declared in an enclosing class
+  }
 }
 
-const p = new Point(10, 5, 15)
-p.name = 'point3D' // 实例可以通过赋值修改公有字段
-console.log(p.name) // point3D
-p.#x = 20 // 实例不可通过赋值修改私有字段，Uncaught SyntaxError: Private field '#x' must be declared in an enclosing class
-console.log(p.#x) // 实例不可在外部访问私有字段，Uncaught SyntaxError: Private field '#x' must be declared in an enclosing class
+const p = new Point(10, 5, 15);
+p.name = "point3D"; // 实例可以通过赋值修改公有字段
+console.log(p.name); // point3D
+p.#x = 20; // 实例不可通过赋值修改私有字段，Uncaught SyntaxError: Private field '#x' must be declared in an enclosing class
+console.log(p.#x); // 实例不可在外部访问私有字段，Uncaught SyntaxError: Private field '#x' must be declared in an enclosing class
 ```
 
 在上面的代码中，我们尝试在类中不显式声明私有字段 `#z` 的情况下，访问 `#z`，结果会抛出 `SyntaxError`。此外，我们尝试在实例中直接对私有字段 `#x` 进行赋值和获取操作，也会抛出 `SyntaxError`。
@@ -373,38 +388,60 @@ console.log(p.#x) // 实例不可在外部访问私有字段，Uncaught SyntaxEr
 
 ```js
 class MyDate extends Date {
-    constructor() {
-        super()
-    }
+  constructor() {
+    super();
+  }
 
-    getFormattedDate() { // 定义子类的方法，该方法可以获取格式化后的日期
-        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-        return this.getDate() + ' - ' + months[this.getMonth()] + ' - ' + this.getFullYear()
-    }
+  getFormattedDate() {
+    // 定义子类的方法，该方法可以获取格式化后的日期
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return (
+      this.getDate() +
+      " - " +
+      months[this.getMonth()] +
+      " - " +
+      this.getFullYear()
+    );
+  }
 }
 
-console.log(new MyDate().getFormattedDate()) // 20 - May - 2021
+console.log(new MyDate().getFormattedDate()); // 20 - May - 2021
 ```
 
 类不过是一种语法糖，因此我们也可以用 `extends` 来继承传统的基于函数的“类”：
 
 ```js
-function Animal (name) { // 定义 Animal “类”
-    this.name = name
+function Animal(name) {
+  // 定义 Animal “类”
+  this.name = name;
 }
 Animal.prototype.speak = function () {
-    console.log(this.name + ' makes a noise.')
+  console.log(this.name + " makes a noise.");
+};
+
+class Dog extends Animal {
+  // 使用 extends 拓展 Animal “类”
+  speak() {
+    super.speak();
+    console.log(this.name + " barks.");
+  }
 }
 
-class Dog extends Animal { // 使用 extends 拓展 Animal “类”
-    speak() {
-        super.speak()
-        console.log(this.name + ' barks.')
-    }
-}
-
-const d = new Dog('Mitzie')
-d.speak()
+const d = new Dog("Mitzie");
+d.speak();
 // Mitzie makes a noise.
 // Mitzie barks.
 ```
@@ -412,26 +449,27 @@ d.speak()
 对于**不可构造**的常规对象，要实现继承的话，可以使用 `Object.setPrototypeOf()` 方法，它可以设置一个指定对象的原型到另一个对象：
 
 ```js
-const Animal = { // 定义 Animal 对象
-    speak() {
-        console.log(this.name + ' makes a noise.')
-    }
-}
+const Animal = {
+  // 定义 Animal 对象
+  speak() {
+    console.log(this.name + " makes a noise.");
+  },
+};
 
 class Dog {
-    constructor(name) {
-        this.name = name
-    }
-    speak() {
-        super.speak()
-        console.log(this.name + ' barks.')
-    }
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    super.speak();
+    console.log(this.name + " barks.");
+  }
 }
 
-Object.setPrototypeOf(Dog.prototype, Animal) // 如果不这样做，在调用 speak 时会返回 TypeError
+Object.setPrototypeOf(Dog.prototype, Animal); // 如果不这样做，在调用 speak 时会返回 TypeError
 
-const d = new Dog('Mitzie')
-d.speak()
+const d = new Dog("Mitzie");
+d.speak();
 // Mitzie makes a noise.
 // Mitzie barks.
 ```
@@ -444,23 +482,23 @@ d.speak()
 
 ```js
 class Cat {
-    constructor(name) {
-        this.name = name
-    }
-    speak() {
-        console.log(`${this.name}: meo~~!`)
-    }
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(`${this.name}: meo~~!`);
+  }
 }
 
 class Lion extends Cat {
-    speak() {
-        super.speak() // 调用 Cat 对象的 speak 方法
-        console.log(`${this.name}: roars!!!`)
-    }
+  speak() {
+    super.speak(); // 调用 Cat 对象的 speak 方法
+    console.log(`${this.name}: roars!!!`);
+  }
 }
 
-const l = new Lion('Li')
-l.speak()
+const l = new Lion("Li");
+l.speak();
 // Li: meo~~!
 // Li: roars!!!
 ```
@@ -471,55 +509,57 @@ l.speak()
 
 ```js
 class Rectangle {
-    constructor(height, width) {
-        this._name = 'Rectangle'
-        this._height = height
-        this._width = width
-    }
-    get name() {
-        return `Hi, I am a ${this._name}.`
-    }
-    get area() {
-        return this._height * this._width
-    }
+  constructor(height, width) {
+    this._name = "Rectangle";
+    this._height = height;
+    this._width = width;
+  }
+  get name() {
+    return `Hi, I am a ${this._name}.`;
+  }
+  get area() {
+    return this._height * this._width;
+  }
 }
 
 class Square extends Rectangle {
-    constructor(length) {
-        // this._height = length // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
-        super(length, length) // 调用 Rectangle 的构造函数，length 分别作 height 和 width
-        this._name = 'Square' // 修改 name 属性为 Square
-    }
+  constructor(length) {
+    // this._height = length // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+    super(length, length); // 调用 Rectangle 的构造函数，length 分别作 height 和 width
+    this._name = "Square"; // 修改 name 属性为 Square
+  }
 }
 
-const s = new Square(15)
-console.log(s.name) // Hi, I am a Square.
-console.log(s.area) // 225
+const s = new Square(15);
+console.log(s.name); // Hi, I am a Square.
+console.log(s.area); // 225
 ```
 
 `super` 也可以用来调用父类的静态方法：
 
 ```js
 class Rectangle {
-    constructor(height, width) {
-        this._height = height
-        this._width = width
-    }
-    static help() { // 父类的静态方法
-        return 'I have 4 sides.'
-    }
+  constructor(height, width) {
+    this._height = height;
+    this._width = width;
+  }
+  static help() {
+    // 父类的静态方法
+    return "I have 4 sides.";
+  }
 }
 
 class Square extends Rectangle {
-    constructor(length) {
-        super(length, length)
-    }
-    static help() { // 子类的静态方法，使用 super 调用父类的 help 方法
-        return super.help() + ' They are all equal.'
-    }
+  constructor(length) {
+    super(length, length);
+  }
+  static help() {
+    // 子类的静态方法，使用 super 调用父类的 help 方法
+    return super.help() + " They are all equal.";
+  }
 }
 
-console.log(Square.help()) // I have 4 sides. They are all equal.
+console.log(Square.help()); // I have 4 sides. They are all equal.
 
 // 假如只去除子类 help 方法前面的 static 关键字
 // console.log(new Square(10).help()) // Uncaught TypeError: (intermediate value).help is not a function
@@ -544,13 +584,14 @@ console.log(Square.help()) // I have 4 sides. They are all equal.
 
 ```js
 class MyArray extends Array {
-    static get [Symbol.species]() { // 设置 getter，当获取 MyArray 类的构造函数时，返回 Array 类的构造函数
-        return Array
-    }
+  static get [Symbol.species]() {
+    // 设置 getter，当获取 MyArray 类的构造函数时，返回 Array 类的构造函数
+    return Array;
+  }
 }
 
-const a = new MyArray(1, 2, 3)
-const mapped = a.map(x => x * x)
+const a = new MyArray(1, 2, 3);
+const mapped = a.map((x) => x * x);
 console.log(mapped instanceof MyArray); // false
 console.log(mapped instanceof Array); // true
 ```
@@ -559,9 +600,9 @@ console.log(mapped instanceof Array); // true
 
 ```js
 class TimeoutPromise extends Promise {
-    static get [Symbol.species]() {
-        return Promise
-    }
+  static get [Symbol.species]() {
+    return Promise;
+  }
 }
 ```
 
@@ -576,38 +617,40 @@ class TimeoutPromise extends Promise {
 什么是 Mixin？简单来说，Mixin 也是一个类，包括了一些方法，这些方法可以被其它类使用。但在其它类中使用这些方法**不需要继承** Mixin。举一个简单的例子：
 
 ```js
-let sayHiMixin = { // Mixin
-    // Methods that useful
-    sayHi() {
-        alert(`Hello, ${this.name}`)
-    },
-    sayBye() {
-        alert(`Bye, ${this.name}`)
-    }
+let sayHiMixin = {
+  // Mixin
+  // Methods that useful
+  sayHi() {
+    alert(`Hello, ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye, ${this.name}`);
+  },
+};
+
+class User {
+  // Class
+  constructor(name) {
+    this.name = name;
+  }
 }
 
-class User { // Class
-    constructor(name) {
-        this.name = name
-    }
-}
+Object.assign(User.prototype, sayHiMixin); // 将 Mixin 中的方法复制到 Class 类中
 
-Object.assign(User.prototype, sayHiMixin) // 将 Mixin 中的方法复制到 Class 类中
-
-new User('Dude').sayHi() // Hello, Dude!
+new User("Dude").sayHi(); // Hello, Dude!
 ```
 
 我们又知道，创建类的[两种声明方式](#定义类)是等价的：
 
 ```js
 class Mixin1 {
-    //
+  //
 }
 
 // 等价于
 const Mixin2 = class {
-    //
-}
+  //
+};
 ```
 
 其中，第二种方式，或者说使用类表达式声明类的方式，允许我们**动态生成自定义的类**。根据这个特性，我们就可以编写 Mixin 代码来实现多重继承了：
@@ -632,14 +675,15 @@ class MyMixin extends CatMixin(DogMixin(Animal)) { // 实现多重继承
 
 ```js
 class DogMixin extends Animal {
-    //
+  //
 }
-class CatMixin extends DogMixin { // 这显然是不合理的，猫猫工具类怎么能继承狗狗工具类
-    //
+class CatMixin extends DogMixin {
+  // 这显然是不合理的，猫猫工具类怎么能继承狗狗工具类
+  //
 }
 
 class MyMixin extends CatMixin {
-    //
+  //
 }
 ```
 
@@ -651,9 +695,9 @@ class MyMixin extends CatMixin {
 
 ### 技术博文
 
-- [JavaScript或ES6如何实现多继承总结【Mixin混合继承模式】](https://cloud.tencent.com/developer/article/1700017), 2020-09-18
+- [JavaScript 或 ES6 如何实现多继承总结【Mixin 混合继承模式】](https://cloud.tencent.com/developer/article/1700017), 2020-09-18
 - [ES6 Class Methods 定义方式的差异](https://github.com/dwqs/blog/issues/67), 2018-06-25
-- [[学习es6]setter/getter探究](https://segmentfault.com/a/1190000007356931), 2016-11-02
+- [[学习 es6]setter/getter 探究](https://segmentfault.com/a/1190000007356931), 2016-11-02
 - [Metaprogramming in ES6: Symbols and why they're awesome](https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/#symbolspecies), 2015-06-18
 
 ### 其它资料

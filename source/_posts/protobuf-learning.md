@@ -4,11 +4,12 @@ date: 2021/3/29
 updated: 2021/3/29
 timeliness: true
 categories:
-- 学习琐事
+  - 学习琐事
 tags:
-- gRPC
-- Protobuf
+  - gRPC
+  - Protobuf
 ---
+
 实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。
 
 ## 什么是 Protobuf
@@ -25,12 +26,14 @@ Protobuf 是 Google 公司研发的一种用于序列化结构数据的机制，
 <summary>使用 Protobuf，只需要编写 <code>.proto</code> 文件来描述需要传输和存储的结构数据，随后编译器会为之创建一个类，实现结构数据的自动编码和解码。</summary>
 
 With protocol buffers, you write a .proto description of the data structure you wish to store. From that, the protocol buffer compiler creates a class that implements automatic encoding and parsing of the protocol buffer data with an efficient binary format. The generated class provides getters and setters for the fields that make up a protocol buffer and takes care of the details of reading and writing the protocol buffer as a unit.
+
 </details>
 
 <details>
 <summary>此外，Protobuf 支持使用特定的方式来拓展格式，使代码能够解析以前格式编码得到的数据。</summary>
 
 Importantly, the protocol buffer format supports the idea of extending the format over time in such a way that the code can still read data encoded with the old format.
+
 </details>
 
 ## 定义协议格式
@@ -121,7 +124,8 @@ message SearchRequest {
 - `optional`. 一则 message 中只能拥有不超过一个该字段，相当于 proto3 的 singular.
 - `repeated`. 一则 message 可以拥有任意个该字段，相当于 proto3 的 `repeated`.
 
-[相关链接]((https://developers.google.com/protocol-buffers/docs/proto#specifying_field_rules))
+[相关链接](<(https://developers.google.com/protocol-buffers/docs/proto#specifying_field_rules)>)
+
 </details>
 
 ### [保留字段](https://developers.google.com/protocol-buffers/docs/proto3#reserved)

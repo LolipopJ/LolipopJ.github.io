@@ -3,11 +3,12 @@ title: 更换持续集成工具，从 Travis 到 Github Actions
 date: 2021/7/10
 updated: 2021/7/14
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Travis
-- Github-actions
+  - Travis
+  - Github-actions
 ---
+
 我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。
 
 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。
@@ -60,7 +61,7 @@ jobs:
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:

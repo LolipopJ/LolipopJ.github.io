@@ -3,13 +3,14 @@ title: Webpack 读取本地 Markdown 文件并进行预处理
 date: 2021/2/23
 updated: 2021/6/26
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- Markdown
-- JavaScript
-- Node
-- Webpack
+  - Markdown
+  - JavaScript
+  - Node
+  - Webpack
 ---
+
 在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。
 
 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
@@ -27,9 +28,9 @@ Webpack 提供了 `require.context()` 方法可以完美解决导入目录下所
 撰写代码自动读取 `@/docs/blog/` 及其子目录下的所有 .md 文件如下所示，其中 `blogFiles(key)` 为文件存储的具体内容：
 
 ```js
-const blogFiles = require.context('@/docs/blog/', true, /\.md$/);
+const blogFiles = require.context("@/docs/blog/", true, /\.md$/);
 blogFiles.keys().forEach((key) => {
-  console.log(blogFiles(key))
+  console.log(blogFiles(key));
 });
 ```
 
@@ -43,6 +44,7 @@ title: ${title}
 date: ${date}
 author: ${author}
 ---
+
 ${main-text}
 ```
 
@@ -69,14 +71,14 @@ const contentInfoArray = contentInfo.split(/\r?\n/g);
 ```js
 const contentInfoItem = {};
 for (let i = 0; i < contentInfoArray.length - 1; i++) {
-  const contentInfoParamArray = contentInfoArray[i].split(':');
-  let contentInfoParamValue = '';
+  const contentInfoParamArray = contentInfoArray[i].split(":");
+  let contentInfoParamValue = "";
   for (let n = 1; n < contentInfoParamArray.length; n++) {
-    contentInfoParamValue += contentInfoParamArray[n] + ':';
+    contentInfoParamValue += contentInfoParamArray[n] + ":";
   }
-  contentInfoItem[
-      contentInfoParamArray[0].trim()
-  ] = contentInfoParamValue.slice(0, -1).trim();
+  contentInfoItem[contentInfoParamArray[0].trim()] = contentInfoParamValue
+    .slice(0, -1)
+    .trim();
 }
 ```
 
@@ -86,7 +88,7 @@ for (let i = 0; i < contentInfoArray.length - 1; i++) {
 let contentText = contentArray[2];
 if (contentArray.length > 3) {
   for (let i = 3; i < contentArray.length; i++) {
-    contentText += '---\n';
+    contentText += "---\n";
     contentText += contentArray[i];
   }
 }
@@ -106,17 +108,17 @@ const result = {
 ```js
 // 格式为 YYYY-MM-DD
 if (result.date != null) {
-  const dateArray = result.date.split('-');
+  const dateArray = result.date.split("-");
   const dateYear = dateArray[0];
   let dateMonth = dateArray[1];
   let dateDay = dateArray[2];
   if (dateMonth.length == 1) {
-    dateMonth = '0' + dateMonth;
+    dateMonth = "0" + dateMonth;
   }
   if (dateDay.length == 1) {
-    dateDay = '0' + dateDay;
+    dateDay = "0" + dateDay;
   }
-  result.date = dateYear + '-' + dateMonth + '-' + dateDay;
+  result.date = dateYear + "-" + dateMonth + "-" + dateDay;
 }
 ```
 
@@ -125,7 +127,7 @@ if (result.date != null) {
 将结果中的正文内容交给给任意 .md 解析器就可以了，例如 [markdown-it](https://github.com/markdown-it/markdown-it)。
 
 ```js
-const md = require('markdown-it')({
+const md = require("markdown-it")({
   linkify: false, // 一些设置，并不重要，下同
   breaks: false,
   typographer: true,

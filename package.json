@@ -6,7 +6,9 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "algolia": "hexo algolia"
+    "algolia": "hexo algolia",
+    "prettier": "prettier --write . --ignore-unknown",
+    "prepare": "husky install"
   },
   "hexo": {
     "version": "6.2.0"
@@ -28,5 +30,13 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "lint-staged": {
+    "**/*": "npm run prettier"
   }
 }

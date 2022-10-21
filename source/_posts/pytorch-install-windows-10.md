@@ -4,11 +4,12 @@ date: 2020/9/28
 updated: 2021/2/19
 timeliness: true
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- 机器学习
-- PyTorch
+  - 机器学习
+  - PyTorch
 ---
+
 ## 关于
 
 PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。

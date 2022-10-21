@@ -3,10 +3,11 @@ title: JavaScript 变量提升和函数提升
 date: 2021/5/11
 updated: 2021/5/13
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- JavaScript
+  - JavaScript
 ---
+
 JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。
 
 不过在学习闭包之前，为了更好理解它的作用，容我先从 JS 的变量提升（Hoisting）现象慢慢道来。
@@ -18,17 +19,17 @@ JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适�
 按照一般编程的正常思维，我们会选择使用“先声明，后调用”的方式去使用变量，例如：
 
 ```js
-var a = 3
-console.log(a) // 3
+var a = 3;
+console.log(a); // 3
 ```
 
 上述代码使用 `var` 声明了一个变量并向控制台输出这个变量，顺利打印出其值 `3`。但假如反过来，我们“先调用，后声明”，会发生什么呢？
 
 ```js
-console.log(a) // undefined
-var a = 3
-console.log(a) // 3
-console.log(b) // Uncaught ReferenceError: b is not defined
+console.log(a); // undefined
+var a = 3;
+console.log(a); // 3
+console.log(b); // Uncaught ReferenceError: b is not defined
 ```
 
 在声明变量 `a` 之前打印变量，控制台输出的结果是 `undefined`，而不是预期中的报错 `Uncaught ReferenceError: a is not defined`。这就是**变量提升**。
@@ -36,9 +37,9 @@ console.log(b) // Uncaught ReferenceError: b is not defined
 而对于函数的声明与使用，也出现的相似的情况：
 
 ```js
-sayHello() // Hello there!
+sayHello(); // Hello there!
 function sayHello() {
-    console.log('Hello there!')
+  console.log("Hello there!");
 }
 ```
 
@@ -47,15 +48,15 @@ function sayHello() {
 在 JS 中奇怪的一点是，我们可以在声明变量（使用 `var`）和声明函数之前使用它们，就好像变量和函数的声明被提升到了代码的顶部一样：
 
 ```js
-console.log(a) // undefined
-var a = 3
-console.log(a) // 3
+console.log(a); // undefined
+var a = 3;
+console.log(a); // 3
 
 // 好像等于下面的代码
-var a
-console.log(a) // undefined
-a = 3
-console.log(a) // 3
+var a;
+console.log(a); // undefined
+a = 3;
+console.log(a); // 3
 ```
 
 实际上，JS 并不会移动代码，变量提升和函数提升并不是真正意义上的“提升”，而是解释执行 JS 代码过程所带来的“特性”。
@@ -74,49 +75,49 @@ console.log(a) // 3
 应当注意的是，函数声明的处理优先级要高于变量声明（意味着函数会“提升”到更靠前的位置），那么则不难理解，下面的代码中函数和变量重名时，会发生什么：
 
 ```js
-console.log(foo) // function foo() {}
-foo = 3
-console.log(foo) // 3
+console.log(foo); // function foo() {}
+foo = 3;
+console.log(foo); // 3
 function foo() {}
 
 // 相当于下面的代码
-var foo
-foo = function() {}
-console.log(foo) // function foo() {}
-foo = 3
-console.log(foo) // 3
+var foo;
+foo = function () {};
+console.log(foo); // function foo() {}
+foo = 3;
+console.log(foo); // 3
 ```
 
 最后，还需要理解的是，变量提升和函数提升，都是将声明“提升”到当前**作用域**的顶端：
 
 ```js
-var foo = 5
+var foo = 5;
 
 function hoist() {
-    console.log(foo) // function foo() {}
-    foo = 3
-    console.log(foo) // 3
-    function foo() {}
+  console.log(foo); // function foo() {}
+  foo = 3;
+  console.log(foo); // 3
+  function foo() {}
 }
 
-hoist()
-console.log(foo) // 5
+hoist();
+console.log(foo); // 5
 
 // 相当于下面的代码
-var hoist
-var foo
+var hoist;
+var foo;
 
-hoist = function() {
-    var foo
-    foo = function() {}
-    console.log(foo) // function foo() {}
-    foo = 3
-    console.log(foo) // 3
-}
-foo = 5
+hoist = function () {
+  var foo;
+  foo = function () {};
+  console.log(foo); // function foo() {}
+  foo = 3;
+  console.log(foo); // 3
+};
+foo = 5;
 
-hoist()
-console.log(foo) // 5
+hoist();
+console.log(foo); // 5
 ```
 
 `hoist` 方法中的 `console.log(foo)` 优先从当前作用域中寻找变量 `foo`，如果找不到才在父级作用域寻找。
@@ -126,12 +127,12 @@ console.log(foo) // 5
 基于变量声明和函数声明之间的区别，在实际应用中，使用**匿名函数**的方式执行声明更不容易产生奇怪的 Bug：
 
 ```js
-sayHi() // Uncaught TypeError: sayHi is not a function
-console.log(sayHi) // undefined
-var sayHi = function() {
-    console.log('Hi there!')
-}
-sayHi() // Hi there!
+sayHi(); // Uncaught TypeError: sayHi is not a function
+console.log(sayHi); // undefined
+var sayHi = function () {
+  console.log("Hi there!");
+};
+sayHi(); // Hi there!
 ```
 
 使用匿名函数声明时，`sayHi` 声明发生变量提升，但赋值为 `undefined`，因此执行 `sayHi()` 时会报错 `Uncaught TypeError: sayHi is not a function`。随后执行完赋值语句后，才成为一个可以执行的函数变量。
@@ -153,17 +154,17 @@ sayHi() // Hi there!
 下面是一个使用 `const` 声明函数的例子：
 
 ```js
-test() // Uncaught ReferenceError: Cannot access 'test' before initialization
-console.log(test) // Uncaught ReferenceError: Cannot access 'test' before initialization
-const test = function() {
-    console.log('test')
-}
-test() // test
+test(); // Uncaught ReferenceError: Cannot access 'test' before initialization
+console.log(test); // Uncaught ReferenceError: Cannot access 'test' before initialization
+const test = function () {
+  console.log("test");
+};
+test(); // test
 ```
 
 在这里，我们使用了 `const` 命令声明函数，只要一进入当前作用域，所要使用的 `test` 变量就已经存在了，但是不可获取，如果获取则会抛出特别的错误 `Uncaught ReferenceError: Cannot access 'test' before initialization`（一般情况下，获取未声明的变量抛出的错误为 `Uncaught ReferenceError: test is not defined`）。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。当然，使用 `let` 命令也有同样的效果。
 
-*[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#features-use-const-and-let)* 建议使用 ES6 规范的 `const` 和 `let` 命令声明变量，舍弃容易造成错误的 `var` 命令。
+_[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#features-use-const-and-let)_ 建议使用 ES6 规范的 `const` 和 `let` 命令声明变量，舍弃容易造成错误的 `var` 命令。
 
 无论如何，养成“先声明，再赋值”的良好编程习惯非常重要。
 
@@ -192,20 +193,20 @@ test() // test
 ```js
 // 判断 n 是否为偶数
 function isEven(n) {
-    if (n === 0) {
-        return true;
-    }
-    return isOdd(n - 1);
+  if (n === 0) {
+    return true;
+  }
+  return isOdd(n - 1);
 }
 
 console.log(isEven(4)); // true
 
 // 判断 n 是否为奇数
 function isOdd(n) {
-    if (n === 0) {
-        return false;
-    }
-    return isEven(n - 1);
+  if (n === 0) {
+    return false;
+  }
+  return isEven(n - 1);
 }
 ```
 
@@ -226,9 +227,9 @@ function isOdd(n) {
 ### 技术博客
 
 - [JavaScript 中的 Var，Let 和 Const 有什么区别](https://chinese.freecodecamp.org/news/javascript-var-let-and-const), 2020-12-08
-- [从本质上理解JavaScript中的变量提升](https://juejin.cn/post/6844903895341219854), 2019-07-23
-- [JS：深入理解JavaScript-词法环境](https://limeii.github.io/2019/05/js-lexical-environment/), 2019-05-06
-- [变量声明系列之ES5(变量提升)](https://blog.csdn.net/weixin_38080573/article/details/79372448), 2018-02-25
+- [从本质上理解 JavaScript 中的变量提升](https://juejin.cn/post/6844903895341219854), 2019-07-23
+- [JS：深入理解 JavaScript-词法环境](https://limeii.github.io/2019/05/js-lexical-environment/), 2019-05-06
+- [变量声明系列之 ES5(变量提升)](https://blog.csdn.net/weixin_38080573/article/details/79372448), 2018-02-25
 - [JavaScript: 变量提升和函数提升](https://www.cnblogs.com/liuhe688/p/5891273.html), 2016-10-18
 - [抽象泄漏定律](http://shzhangji.com/cnblogs/2013/12/17/the-law-of-leaky-abstractions/), 2013-12-17, 英文[原文链接](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/)
 
@@ -238,14 +239,14 @@ function isOdd(n) {
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [let 和 const 命令 - 《ECMAScript 6 入门》](https://es6.ruanyifeng.com)
 - [Leaky abstraction - Wikipedia](https://en.wikipedia.org/wiki/Leaky_abstraction)
-- [ML (programming language) - Wikipedia](https://en.wikipedia.org/wiki/ML_(programming_language))
+- [ML (programming language) - Wikipedia](<https://en.wikipedia.org/wiki/ML_(programming_language)>)
 
 ## 最后关于抽象泄漏的补充
 
-艾林·约耳·斯波尔斯基（Avram Joel Spolsky）是程序员必备的问答网站 Stack Overflow 的创始人之一，于 2002 年 11 月 11 日在博文 [*The Law of Leaky Abstractions*](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) 中对抽象泄漏定律做了非常详尽的描述，其中一些看法实在燃烧起了我的阅读之魂，遂记录在这里：
+艾林·约耳·斯波尔斯基（Avram Joel Spolsky）是程序员必备的问答网站 Stack Overflow 的创始人之一，于 2002 年 11 月 11 日在博文 [_The Law of Leaky Abstractions_](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) 中对抽象泄漏定律做了非常详尽的描述，其中一些看法实在燃烧起了我的阅读之魂，遂记录在这里：
 
 > ......
-> One reason the law of leaky abstractions is problematic is that it means that abstractions do not really simplify our lives as much as they were meant to. When I’m training someone to be a C++ programmer, it would be nice if I never had to teach them about char*’s and pointer arithmetic. It would be nice if I could go straight to STL strings. But one day they’ll write the code “foo” + “bar”, and truly bizarre things will happen, and then I’ll have to stop and teach them all about char*’s anyway. Or one day they’ll be trying to call a Windows API function that is documented as having an OUT LPTSTR argument and they won’t be able to understand how to call it until they learn about char*’s, and pointers, and Unicode, and wchar_t’s, and the TCHAR header files, and all that stuff that leaks up.
+> One reason the law of leaky abstractions is problematic is that it means that abstractions do not really simplify our lives as much as they were meant to. When I’m training someone to be a C++ programmer, it would be nice if I never had to teach them about char*’s and pointer arithmetic. It would be nice if I could go straight to STL strings. But one day they’ll write the code “foo” + “bar”, and truly bizarre things will happen, and then I’ll have to stop and teach them all about char*’s anyway. Or one day they’ll be trying to call a Windows API function that is documented as having an OUT LPTSTR argument and they won’t be able to understand how to call it until they learn about char\*’s, and pointers, and Unicode, and wchar_t’s, and the TCHAR header files, and all that stuff that leaks up.
 > 抽象泄漏引发的麻烦之一是，它并没有完全简化我们的工作。当我指导别人学习 C++ 时，我当然希望可以跳过 char \* 和指针运算，直接讲解 STL 字符串类库的使用。但是，当某一天他写出了 “foo” + “bar” 这样的代码，并询问我为什么编译错误时，我还是需要告诉他 char \* 的存在。或者说，当他需要调用一个 Windows API，需要指定 OUT LPTSTR 参数，这时他就必须学习 char \*、指针、Unicode、wchar_t、TCHAR 头文件等一系列知识，这些都是抽象泄漏。
 > ......
 > In teaching someone about ASP.NET programming, it would be nice if I could just teach them that they can double-click on things and then write code that runs on the server when the user clicks on those things. Indeed ASP.NET abstracts away the difference between writing the HTML code to handle clicking on a hyperlink (\<a>) and the code to handle clicking on a button. Problem: the ASP.NET designers needed to hide the fact that in HTML, there’s no way to submit a form from a hyperlink. They do this by generating a few lines of JavaScript and attaching an onclick handler to the hyperlink. The abstraction leaks, though. If the end-user has JavaScript disabled, the ASP.NET application doesn’t work correctly, and if the programmer doesn’t understand what ASP.NET was abstracting away, they simply won’t have any clue what is wrong.

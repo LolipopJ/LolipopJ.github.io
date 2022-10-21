@@ -3,13 +3,14 @@ title: Linux 系统编译安装基于 C++ 的 gRPC
 date: 2021/4/22
 updated: 2021/5/11
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Linux
-- CPP
-- gRPC
-- Docker
+  - Linux
+  - CPP
+  - gRPC
+  - Docker
 ---
+
 本文适用于 C++ 版本 gRPC 的离线编译安装，但对于[下载 gRPC](#下载-grpc) 步骤强烈建议使用 git 进行。
 
 如果在能直接连接外网的机器上编译，可直接按照 [gRPC 官网文档](https://github.com/grpc/grpc)的指引快速执行编译操作。

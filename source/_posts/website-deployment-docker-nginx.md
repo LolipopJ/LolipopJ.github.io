@@ -3,12 +3,13 @@ title: 使用基于 Docker 的 Nginx 部署静态网页项目
 date: 2021/6/25
 updated: 2021/6/25
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Nginx
-- Docker
-- Linux
+  - Nginx
+  - Docker
+  - Linux
 ---
+
 现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？
 
 本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。
@@ -116,7 +117,7 @@ server {
   listen 80;
   listen [::]:80;
   server_name ${NGINX_HOST};
-  return 301 https://$host$request_uri; 
+  return 301 https://$host$request_uri;
 }
 ```
 

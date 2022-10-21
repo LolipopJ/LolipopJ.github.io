@@ -3,12 +3,13 @@ title: 在浏览器中输入 URL 到显示网页，背后发生了什么
 date: 2021/7/8
 updated: 2021/7/23
 categories:
-- 学习琐事
+  - 学习琐事
 tags:
-- 计算机网络
-- 网络安全
-- 密码学
+  - 计算机网络
+  - 网络安全
+  - 密码学
 ---
+
 最近学习前端基础知识的时候，看到了这个问题和[一个回答](https://www.zhihu.com/question/34873227/answer/518086565)，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。
 
 现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入 `lolipopj.github.io` 这个 URL 然后敲下回车键。
@@ -72,7 +73,7 @@ URI 具体包括如下部分：
 
 以下内容主要参考此文章：
 
-- [「HSTS详解」](https://zhuanlan.zhihu.com/p/25537440)，2017-03-03
+- [「HSTS 详解」](https://zhuanlan.zhihu.com/p/25537440)，2017-03-03
 
 ### 什么是 HSTS，为什么我们需要它
 
@@ -207,7 +208,7 @@ DNS 由客户端和服务端两部分组成，其中，客户端发起查询请�
 ## 通过 ARP 获取 MAC 地址
 
 - [「地址解析协议」](https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE)，Wikipedia
-- [「图解ARP协议（四）代理ARP：善意的欺骗」](https://blog.51cto.com/chenxinjie/1961255)，2017-09-01
+- [「图解 ARP 协议（四）代理 ARP：善意的欺骗」](https://blog.51cto.com/chenxinjie/1961255)，2017-09-01
 
 经过传输层和网络层封装后的包含有 HTTP 报文的数据包，现在来到了链路层。在这里，还将为它加上 MAC 头部。
 
@@ -235,7 +236,7 @@ DNS 由客户端和服务端两部分组成，其中，客户端发起查询请�
 
 ### RARP 和 IARP
 
-- [「图解ARP协议（六）RARP与IARP：被遗忘的兄弟协议」](https://zhuanlan.zhihu.com/p/29081692)，2017-09-05
+- [「图解 ARP 协议（六）RARP 与 IARP：被遗忘的兄弟协议」](https://zhuanlan.zhihu.com/p/29081692)，2017-09-05
 
 RARP 即反向 ARP（Reverse ARP），功能与 ARP 恰巧相反，用来实现 MAC 地址到 IP 地址的映射。
 
@@ -268,7 +269,7 @@ IARP 即逆向 ARP（Inverse ARP），在帧中继网络（广域网）中实现
 
 以 [TLS 1.3 协议](https://datatracker.ietf.org/doc/html/rfc8446)为例，握手过程如下所示：
 
-``` plaintext
+```plaintext
        Client                                           Server
 
 Key  ^ ClientHello
@@ -325,7 +326,7 @@ TLS 已经存在相当多的问题：例如代码缺乏测试，稳健性较低�
 
 在近些年来，互联网上一直存在一个主要趋势，即全面启用 HTTPS。这可以保护用户的安全，但会导致连接速度变慢。自 TLS 标准化以来，在发送加密数据之前，客户端到服务器的握手请求会进行两次往返（或者会话恢复连接时进行一次往返）。与单独的 HTTP 相比，HTTPS 中 TLS 握手的额外成本可能带来潜在的问题，并对以性能为中心的应用产生负面影响。在 [TLS 1.2 协议](https://datatracker.ietf.org/doc/html/rfc5246)中，握手过程如下所示：
 
-``` plaintext
+```plaintext
 Client                                                Server
 
 ClientHello                   -------->
@@ -390,12 +391,12 @@ Oh, Welcome to visit my blog！
 
 除了正文中特别罗列出来的网站文章，还包括：
 
-- [「在浏览器地址栏输入一个URL后回车，背后会进行哪些技术步骤？」](https://www.zhihu.com/question/34873227/answer/518086565)，2020-03-28
+- [「在浏览器地址栏输入一个 URL 后回车，背后会进行哪些技术步骤？」](https://www.zhihu.com/question/34873227/answer/518086565)，2020-03-28
 - [「上古面试题——浏览器地址栏输入后回车会发生什么」](https://segmentfault.com/a/1190000021000934)，2019-11-14
 - [「搞懂这 9 步，DNS 访问原理就明明白白了」](https://segmentfault.com/a/1190000039650564)，2021-03-17
-- [「DNS查询机制」](https://segmentfault.com/a/1190000039406281)，2021-03-13
+- [「DNS 查询机制」](https://segmentfault.com/a/1190000039406281)，2021-03-13
 - [「DNS 服务器有哪些不同类型？」](https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/)，Cloudflare
 - [「36 张图详解 ARP ：网络世界没有我，你哪也别想去」](https://zhuanlan.zhihu.com/p/379015679)，2021-06-08
-- [「图解HTTP」](https://www.ituring.com.cn/book/1229)，\[日]上野宣 著，于均良 译
-- [「详解TCP三次握手以及TLS/SSL握手」](https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/)，2018-11-02
-- [「HTTPS详解二：SSL / TLS 工作原理和详细握手过程」](https://segmentfault.com/a/1190000021559557)，2020-01-19
+- [「图解 HTTP」](https://www.ituring.com.cn/book/1229)，\[日]上野宣 著，于均良 译
+- [「详解 TCP 三次握手以及 TLS/SSL 握手」](https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/)，2018-11-02
+- [「HTTPS 详解二：SSL / TLS 工作原理和详细握手过程」](https://segmentfault.com/a/1190000021559557)，2020-01-19

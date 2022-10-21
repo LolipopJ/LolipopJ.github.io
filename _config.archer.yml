@@ -10,24 +10,24 @@ social:
   email: lolipop0703@qq.com
   github: //github.com/LolipopJ
   # wechat should be a path of qr-code image path
-  wechat: 
+  wechat:
   # qq should be a path of qr-code image path
-  qq: 
-  telegram: 
-  weibo: 
-  zhihu: 
-  douban: 
-  facebook: 
+  qq:
+  telegram:
+  weibo:
+  zhihu:
+  douban:
+  facebook:
   twitter: https://twitter.com/Lolipop_0703
-  instagram: 
-  stack-overflow: 
-  segmentFault: 
-  juejin: 
-  v2ex: 
-  bilibili: 
-  linkedin: 
-  steam: 
-  others: 
+  instagram:
+  stack-overflow:
+  segmentFault:
+  juejin:
+  v2ex:
+  bilibili:
+  linkedin:
+  steam:
+  others:
   rss: /atom.xml
 # friends
 friends:
@@ -47,14 +47,14 @@ search:
 # https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=brands,solid&m=free
 profile_icons:
   enable: true
-  friends: 'fas fa-heart'
-  about: 'fas fa-id-card'
-  search: 'fas fa-search'
+  friends: "fas fa-heart"
+  about: "fas fa-id-card"
+  search: "fas fa-search"
 # Additional profile links
 profile_links:
   - name: THINKING
     url: //github.com/LolipopJ/LolipopJ/issues/2
-    icon: 'fas fa-video'
+    icon: "fas fa-video"
 
 # ========== Site ========== #
 # title of the site (good for SEO)
@@ -119,53 +119,53 @@ algolia_search:
 # If you want to add other comment plugin, edit in "custom.ejs"
 comment:
   # Livere  site: https://livere.com/
-  livere_uid: 
+  livere_uid:
   # Disqus  site: https://disqus.com/
-  disqus_shortname: 
+  disqus_shortname:
   # Gitment  site: https://github.com/imsun/gitment
-  gitment_owner: 
-  gitment_repo: 
-  gitment_client_id: 
-  gitment_client_secret: 
+  gitment_owner:
+  gitment_repo:
+  gitment_client_id:
+  gitment_client_secret:
   # Youyan  site: http://www.uyan.cc/
-  youyan_uid: 
+  youyan_uid:
   # Valine  site: https://valine.js.org/
-  valine_appId: 
-  valine_appKey: 
-  valine_placeHolder: 
+  valine_appId:
+  valine_appKey:
+  valine_placeHolder:
   # Waline  site: https://waline.js.org/
-  waline_serverURL: 
-  waline_placeHolder: 
-  waline_avatar: 
-  waline_login: 
+  waline_serverURL:
+  waline_placeHolder:
+  waline_avatar:
+  waline_login:
   # gitalk site: https://github.com/gitalk/gitalk/
   # Value 'true' is recommended for gitalk_pathname_id setting
   gitalk_client_id: 3e27d4e7935138a80cd8
   gitalk_client_secret: cd3eda2bf0740e7a51b8b611ade908eb95590e45
-  gitalk_admin: ['LolipopJ']
+  gitalk_admin: ["LolipopJ"]
   gitalk_owner: LolipopJ
   gitalk_repo: LolipopJ.github.io
   gitalk_pathname_id: true
   gitalk_create_issue_manually: false
   # utteranc site: https://utteranc.es/
-  utteranc_repo:  
-  utteranc_label: 
-  utteranc_theme: 
-  utteranc_issue_term: 
+  utteranc_repo:
+  utteranc_label:
+  utteranc_theme:
+  utteranc_issue_term:
 
 # ========== Analytics ========== #
 # enable Busuanzi analytics
 busuanzi: true
 # fill in pv or uv
-busuanzi_pv_or_uv: 'pv'
+busuanzi_pv_or_uv: "pv"
 # custom analytic slogan, '${count}' is the analytic number, DO NOT modify it.
-busuanzi_slug: 'PV: ${count} :)'
+busuanzi_slug: "PV: ${count} :)"
 # Baidu analytics
-baidu_analytics: 
+baidu_analytics:
 # Google analytics
-google_analytics: 
+google_analytics:
 # CNZZ analytics
-CNZZ_analytics: 
+CNZZ_analytics:
 
 # ========== Others ========== #
 # Favicon
@@ -214,9 +214,9 @@ math:
 custom_font:
   enable: true
   # Font name, use ':' to select font weight and font style
-  name: 'Noto Sans SC:n3,n4,n5,n7'
+  name: "Noto Sans SC:n3,n4,n5,n7"
   # Font CDN url
-  url: 'https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap'
+  url: "https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
 
 # ========== Theme Dev ========== #
 # Ensure visitor to get the latest version of source.

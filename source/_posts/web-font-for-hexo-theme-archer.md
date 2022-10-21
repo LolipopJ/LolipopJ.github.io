@@ -3,12 +3,13 @@ title: 为 Archer 主题更换字体
 date: 2021/6/26
 updated: 2021/8/10
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- Node
-- Hexo
-- hexo-theme-archer
+  - Node
+  - Hexo
+  - hexo-theme-archer
 ---
+
 看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 [Hexo-Theme-Archer](https://github.com/fi3ework/hexo-theme-archer) 展示如何更换博客的中文字体。
 
 ## 引入字体文件
@@ -27,17 +28,23 @@ tags:
 使用方法非常简单，在 Google 字体上选择[思源黑体简体中文版本](https://fonts.google.com/specimen/Noto+Sans+SC?subset=chinese-simplified#standard-styles)，再选择需要的字重如 `Regular 400`，如果使用 `<link>` 的方式引入，则代码如下所示：
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 使用 CDN 加速的方式，只需要将上面代码中的 `https://fonts.googleapis.com` 部分更换为前边对应 CDN 链接即可。例如使用中国科学技术大学的镜像站加速，应修改代码如下：
 
 ```html
-<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 然后将上面这段代码放到 Archer 主题目录下的 `layout/_partial/base-head.ejs` 代码片段中即可。
@@ -54,8 +61,8 @@ tags:
 
 ```scss
 @font-face {
-  font-family: 'Glow Sans SC';
-  src: url('../font/GlowSansSC-Normal-Book.otf');
+  font-family: "Glow Sans SC";
+  src: url("../font/GlowSansSC-Normal-Book.otf");
 }
 ```
 
@@ -72,11 +79,10 @@ tags:
 接下来，修改 Archer 主题 `src/scss/_variables.scss` 文件中的 `$base-font-family` 变量：
 
 ```scss
-$base-font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
-  'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei',
-  'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
-  'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC',
-  'WenQuanYi Micro Hei', SimSun, sans-serif;
+$base-font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+  Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei",
+  "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC",
+  "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
 ```
 
 如上所示，在 `$base-font-family` 最前面加上 `Noto Sans SC`（或 `Glow Sans SC`）就可以更换字体为思源黑体（或未来黑体）了。浏览器按顺序读取并使用字体，如果前面的字体没有，则依次使用后面的字体。
@@ -109,14 +115,13 @@ yarn add -D font-spider
 
 ```scss
 @font-face {
-  font-family: 'Glow Sans SC';
-  src: url('../font/GlowSansSC-Normal-Book.eot');
-  src:
-    url('../font/GlowSansSC-Normal-Book.eot?#font-spider') format('embedded-opentype'),
-    url('../font/GlowSansSC-Normal-Book.woff2') format('woff2'),
-    url('../font/GlowSansSC-Normal-Book.woff') format('woff'),
-    url('../font/GlowSansSC-Normal-Book.ttf') format('truetype'),
-    url('../font/GlowSansSC-Normal-Book.svg') format('svg');
+  font-family: "Glow Sans SC";
+  src: url("../font/GlowSansSC-Normal-Book.eot");
+  src: url("../font/GlowSansSC-Normal-Book.eot?#font-spider") format("embedded-opentype"),
+    url("../font/GlowSansSC-Normal-Book.woff2") format("woff2"),
+    url("../font/GlowSansSC-Normal-Book.woff") format("woff"), url("../font/GlowSansSC-Normal-Book.ttf")
+      format("truetype"),
+    url("../font/GlowSansSC-Normal-Book.svg") format("svg");
 }
 ```
 

@@ -3,14 +3,15 @@ title: Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格�
 date: 2021/3/3
 updated: 2021/8/7
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Node
-- Nuxt
-- ESLint
-- Prettier
-- VSCode
+  - Node
+  - Nuxt
+  - ESLint
+  - Prettier
+  - VSCode
 ---
+
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
 
 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码**质量**问题，还是会在编译器里看到红色波浪线，提醒还有些代码**风格**需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
@@ -69,12 +70,12 @@ yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```js
 // .eslintrc.js
 module.exports = {
-  "extends": [
+  extends: [
     "您使用的其它 ESLint 拓展",
     "plugin:prettier/recommended",
-    "prettier"
-  ]
-}
+    "prettier",
+  ],
+};
 ```
 
 ## 配置 Prettier
@@ -134,4 +135,4 @@ yarn lint:prettier
 - [What's the difference between prettier-eslint, eslint-plugin-prettier and eslint-config-prettier?](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) - stackoverflow
 - [Error: 'basePath' should be an absolute path](https://github.com/prettier/prettier-eslint-cli/issues/208#issuecomment-673631308) - mathiaswillburger - 2020.08.14
 - [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300) - 乃乎 - 2019.08.31
-- [ESLint+Prettier代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie维 - 2019.06.04
+- [ESLint+Prettier 代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie 维 - 2019.06.04

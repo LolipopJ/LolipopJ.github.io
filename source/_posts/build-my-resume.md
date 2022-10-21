@@ -3,14 +3,15 @@ title: 把自己的简历做成 Web 页面
 date: 2021/8/19
 updated: 2021/8/20
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- resume
-- CSS
-- Vue-2
-- Github-actions
-- rxjs
+  - resume
+  - CSS
+  - Vue-2
+  - Github-actions
+  - rxjs
 ---
+
 去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 [best-resume-ever](https://github.com/salomonelli/best-resume-ever) 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
 
 ![my first resume](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2021/08/18/build-my-resume/my-first-resume.jpg)
@@ -29,7 +30,7 @@ tags:
 
 模仿我经常使用的 Vue UI 组件库 Vuetify 的编写，添加样式表类如下：
 
-``` less
+```less
 .chip {
   display: inline-block;
   color: white;
@@ -52,19 +53,9 @@ tags:
 
 添加 Vue 模板代码如下，当 platform 属性不为空时，显示拥有 platform 内容的纸片；当 dev 属性不为空时，显示有“开发中”文本的次要配色的纸片。
 
-``` html
-<span
-  v-if="project.platform"
-  class="chip"
->{{
-  project.platform
-}}</span>
-<span
-  v-if="project.dev"
-  class="chip chip-secondary"
->{{
-  lang.underDev
-}}</span>
+```html
+<span v-if="project.platform" class="chip">{{ project.platform }}</span>
+<span v-if="project.dev" class="chip chip-secondary">{{ lang.underDev }}</span>
 ```
 
 显示的结果如下：
@@ -73,9 +64,9 @@ tags:
 
 ### 修改页面布局
 
-这个项目里的所有主题基于 A4 纸张（21 * 29.7cm）设计：
+这个项目里的所有主题基于 A4 纸张（21 \* 29.7cm）设计：
 
-``` css
+```css
 /**
  * https://github.com/salomonelli/best-resume-ever/blob/master/src/pages/resume.vue
  */
@@ -93,7 +84,7 @@ tags:
 
 编写页面的布局形如：
 
-``` html
+```html
 <div class="resume">
   <div class="left-column"><!-- 左栏 --></div>
   <div class="right-column">
@@ -105,7 +96,7 @@ tags:
 
 样式表内容形如：
 
-``` less
+```less
 .resume {
   display: flex;
 }
@@ -136,7 +127,7 @@ tags:
 
 编写页面的布局形如：
 
-``` html
+```html
 <div class="resume">
   <div class="left-column"><!-- 左栏 --></div>
   <div class="right-column"><!-- 右栏 --></div>
@@ -145,7 +136,7 @@ tags:
 
 样式表内容形如：
 
-``` less
+```less
 .resume {
   display: flex;
 }
@@ -165,7 +156,7 @@ tags:
 
 还有个小问题，我希望我的项目经历中的每一段经历都是完整的，内容不随着分栏分离。只需要为它们设置 `break-inside: avoid;` 即可：
 
-``` less
+```less
 .section-content__item {
   break-inside: avoid;
 }
@@ -177,7 +168,7 @@ tags:
 
 如果网页和右栏均为 Flex 布局，可以使用 `flex-direction` 来快速调整页面布局的方向。编写样式表代码如下：
 
-``` less
+```less
 @media (max-width: 960px) {
   .resume {
     flex-direction: column;
@@ -195,7 +186,7 @@ Easy as a cake. 当页面宽度小于 960px 时，将把原有的三栏纵向依
 
 如果网页为 Flex 布局，右栏为 Multiple-column 布局，修改网页的 `flex-direction` 和右栏的 `column-count` 即可：
 
-``` less
+```less
 @media (max-width: 960px) {
   .resume {
     flex-direction: column;
@@ -213,7 +204,7 @@ Easy as a cake. 当页面宽度小于 960px 时，将把原有的三栏纵向依
 
 首先创建一个主题配置文件 `src/assets/themes.json` 来存储不同主题的颜色，例如：
 
-``` json
+```json
 {
   "light": {
     "backgroundColor": "#fafafa",
@@ -221,14 +212,14 @@ Easy as a cake. 当页面宽度小于 960px 时，将把原有的三栏纵向依
   },
   "dark": {
     "backgroundColor": "#121212",
-    "textColor": "rgba(255, 255, 255, 0.87)",
+    "textColor": "rgba(255, 255, 255, 0.87)"
   }
 }
 ```
 
 编写 Vue 脚本如下：
 
-``` js
+```js
 <script>
 const themes = require("@/assets/themes");
 
@@ -260,7 +251,7 @@ export default {
 
 当我们执行 `this.setThemeMode("light")` 时，相当于覆盖（或添加）了如下的 CSS 样式表：
 
-``` css
+```css
 :root {
   --theme-background-color: #fafafa;
   --theme-text-color: rgba(0, 0, 0, 0.87);
@@ -271,7 +262,7 @@ export default {
 
 最后，只需要用上我们定义好的这些 CSS 变量就可以了，例如：
 
-``` less
+```less
 .resume {
   color: var(--theme-text-color);
 }
@@ -293,7 +284,7 @@ export default {
 
 总之先全局安装 Vue CLI：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github> yarn global add @vue/cli
 ...
 # 由于安装过其它版本的 Vue CLI
@@ -304,13 +295,13 @@ PS C:\Users\Lolipop\Github> C:\Users\Lolipop\AppData\Local\Yarn\bin\vue.cmd --ve
 
 创建新的 Vue 项目：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github> C:\Users\Lolipop\AppData\Local\Yarn\bin\vue.cmd create resume
 ```
 
 习惯性更新依赖为最新版本：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github> cd resume
 PS C:\Users\Lolipop\Github\resume> ncu -u -t minor
 Using yarn
@@ -337,7 +328,7 @@ PS C:\Users\Lolipop\Github\resume> yarn install
 
 启动项目服务端渲染，确保能正常运行：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github\resume> yarn serve
 ```
 
@@ -345,7 +336,7 @@ PS C:\Users\Lolipop\Github\resume> yarn serve
 
 别忘了配置 `vue.config.js` 中的 `publicPath` 项。我们的项目将部署在域名的根路径，例如 `https://lolipopj.github.io/resume`，因此需要配置如下：
 
-``` js
+```js
 // vue.config.js
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/resume/" : "/",
@@ -354,7 +345,7 @@ module.exports = {
 
 Okay... 一切就绪，最后只需要执行：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github\resume> yarn build
 ...
 
@@ -374,7 +365,7 @@ Beatiful. 现在，只需要将 `dist/` 目录下的静态资源部署即可。
 
 创建并编写 `.github/workflows/deploy.yml` 如下：
 
-``` yml
+```yml
 name: Resume Deployment
 
 on:
@@ -390,7 +381,7 @@ jobs:
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -423,13 +414,13 @@ jobs:
 
 知名的 [puppeteer](https://www.npmjs.com/package/puppeteer) 项目可以帮助我们生成页面的 PDF 文档，让我们开始吧：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github\resume> yarn add -D puppeteer@10.2.0
 ```
 
 由于我们需要先启动本地服务，才能用 puppeteer 访问。这意味着我们需要先执行 `yarn serve` 命令，当服务启动成功后，再执行后续的操作。我们可以通过 [concurrently](https://www.npmjs.com/package/concurrently) 和 [rxjs](https://www.npmjs.com/package/rxjs) 实现：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github\resume> yarn add -D concurrently@6.2.1 rxjs@7.3.0
 ```
 
@@ -437,11 +428,11 @@ concurrently 可以在一个终端中同时运行多个命令，一旦某个命�
 
 假设我们编写的脚本文件为 `scripts/export.js`，那么在 `package.json` 中可以添加这样一条命令：
 
-``` json
+```json
 {
   "scripts": {
     "export": "concurrently \"npm run serve\" \"node scripts/export.js\" --success first --kill-others"
-  },
+  }
 }
 ```
 
@@ -449,7 +440,7 @@ concurrently 可以在一个终端中同时运行多个命令，一旦某个命�
 
 rxjs 是一个用于编写异步、事件驱动的程序的库，我们可以使用它来监听页面是否就绪，避免在尚未加载完成的情况下就打印简历 PDF 文档：
 
-``` js
+```js
 const http = require("http");
 const { interval } = require("rxjs");
 const { filter, first, mergeMap } = require("rxjs/operators");
@@ -491,7 +482,7 @@ const waitForServerReady = () => {
 
 接下来，利用 puppeteer 的强大功能，打印出简历的 PDF 文档，顺便再给屏幕截个图好了：
 
-``` js
+```js
 const puppeteer = require("puppeteer");
 const path = require("path");
 const fs = require("fs");
@@ -592,10 +583,8 @@ const convert = async function () {
 
 不过，手动配置打印 PDF 高度在实现上并不优雅，仔细想想，既然 puppeteer 能够模仿浏览器中的所有行为，那么：在固定页面宽度的情况下，获取当前页面的高度也是理所应当能够做到的吧。[`page.evaluate()`](https://pptr.dev/#?product=Puppeteer&version=v10.2.0&show=api-pageevaluatepagefunction-args) 方法可以实现这个需求：
 
-``` js
-const exportResume = async function ({
-  autoFitPdf = true,
-}) {
+```js
+const exportResume = async function ({ autoFitPdf = true }) {
   // ...
   const pdfHeight = autoFitPdf
     ? await page.evaluate(() => {
@@ -616,14 +605,14 @@ const exportResume = async function ({
       })
     : config[`EXPORT_PDF_HEIGHT_${codeUpperCase}`] || defaultPdfHeight;
   // ...
-}
+};
 ```
 
 完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/main/scripts/export.js)。
 
 最后，见证劳动的成果吧。执行刚刚我们编写的脚本：
 
-``` bash
+```bash
 PS C:\Users\Lolipop\Github\resume> yarn export
 ...
 [0] <s> [webpack.Progress] 100%

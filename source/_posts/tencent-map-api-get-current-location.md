@@ -4,13 +4,14 @@ date: 2021/3/16
 updated: 2021/3/16
 timeliness: true
 categories:
-- 前端开发
+  - 前端开发
 tags:
-- JavaScript
-- Node
-- Vue-2
-- Nuxt
+  - JavaScript
+  - Node
+  - Vue-2
+  - Nuxt
 ---
+
 正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的[定位解决方案](https://lbs.qq.com/location/#anchor)里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
 
 终于在不起眼的地方找到了[前端定位组件](https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation)，适用于浏览器进行定位操作。
@@ -55,16 +56,15 @@ export default {
   head: {
     script: [
       {
-        type: 'text/javascript',
+        type: "text/javascript",
         // 引入腾讯地图前端定位组件
         // YOUR-APP-KEY 即腾讯位置服务应用的 key
         // YOUR-APP-NAME 即腾讯位置服务应用的名称
-        src:
-          'https://apis.map.qq.com/tools/geolocation/min?key=YOUR-APP-KEY&referer=YOUR-APP-NAME',
+        src: "https://apis.map.qq.com/tools/geolocation/min?key=YOUR-APP-KEY&referer=YOUR-APP-NAME",
       },
     ],
   },
-}
+};
 ```
 
 如果获取脚本失败，请关闭浏览器中拦截广告的插件等。
@@ -76,22 +76,24 @@ export default {
 编写代码如下：
 
 ```js
-const geolocation = new qq.maps.Geolocation()
+const geolocation = new qq.maps.Geolocation();
 
 geolocation.getLocation(
-  (position) => { // 成功获取位置信息
-    console.log(position)
+  (position) => {
+    // 成功获取位置信息
+    console.log(position);
     // 将位置信息序列化存储在 localStorage 中
     const currentLocation = {
       city: position.city,
       district: position.district,
-    }
-    localStorage.currentLocation = JSON.stringify(currentLocation)
+    };
+    localStorage.currentLocation = JSON.stringify(currentLocation);
   },
-  (error) => { // 获取位置信息失败
-    console.log(error)
+  (error) => {
+    // 获取位置信息失败
+    console.log(error);
   }
-)
+);
 ```
 
 执行代码，得到结果如下（其中 `*` 为我手动打码）：

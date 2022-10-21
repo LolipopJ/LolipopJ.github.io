@@ -55,8 +55,8 @@ MDN 指出：JavaScript 是一种具有函数优先的轻量级，**解释型**�
 解释型语言和编译型语言的一个重要区别是，编译型语言需要较长的时间来准备执行，因为它需要对整个代码进行词法分析，执行优化等工作；而解释型语言几乎在执行后的一瞬间就开始，不会有代码优化的准备时间。考虑这一段代码：
 
 ```js
-for(i = 0; i < 10000; i++){
-    sum += i;
+for (i = 0; i < 10000; i++) {
+  sum += i;
 }
 ```
 
@@ -97,7 +97,7 @@ for(i = 0; i < 10000; i++){
 ### 技术博文
 
 - [解释型语言和编译型语言的区别](https://chinese.freecodecamp.org/news/compiled-versus-interpreted-languages/), 2021-01-06
-- [JavaScript到底是解释型语言还是编译型语言?](https://segmentfault.com/a/1190000013126460), 2019-07-30, 英文[原文链接](https://www.voidcanvas.com/is-javascript-really-interpreted-or-compiled-language/)
+- [JavaScript 到底是解释型语言还是编译型语言?](https://segmentfault.com/a/1190000013126460), 2019-07-30, 英文[原文链接](https://www.voidcanvas.com/is-javascript-really-interpreted-or-compiled-language/)
 - [A crash course in just-in-time (JIT) compilers](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/), 2017-02-28
 
 ### 其它资料

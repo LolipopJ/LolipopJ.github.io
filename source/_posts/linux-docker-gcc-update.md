@@ -3,12 +3,13 @@ title: Linux 容器更新或降级 GCC 版本
 date: 2021/4/20
 updated: 2021/4/20
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Linux
-- GCC
-- Docker
+  - Linux
+  - GCC
+  - Docker
 ---
+
 如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
 
 ```bash
@@ -149,4 +150,4 @@ gcc version 10.3.0 (GCC)
 
 ## 参考文档
 
-- [GCC编译器下载和安装教程（针对Linux发行版）](http://c.biancheng.net/view/7933.html)
+- [GCC 编译器下载和安装教程（针对 Linux 发行版）](http://c.biancheng.net/view/7933.html)

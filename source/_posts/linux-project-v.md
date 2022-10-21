@@ -3,9 +3,9 @@ title: 在 Linux 系统下启用 Project-V
 date: 2021/6/9
 updated: 2021/6/9
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Linux
+  - Linux
 ---
 
 ## 下载 Release
@@ -42,60 +42,64 @@ ln -s /path/to/v2ray /usr/local/bin
 {
   // 前略
   // List of inbound proxy configurations.
-  "inbounds": [{
-    // Port to listen on. You may need root access if the value is less than 1024.
-    "port": 1080, // 本机监听的端口，应为不加双引号的数字
+  "inbounds": [
+    {
+      // Port to listen on. You may need root access if the value is less than 1024.
+      "port": 1080, // 本机监听的端口，应为不加双引号的数字
 
-    // IP address to listen on. Change to "0.0.0.0" to listen on all network interfaces.
-    "listen": "127.0.0.1",
+      // IP address to listen on. Change to "0.0.0.0" to listen on all network interfaces.
+      "listen": "127.0.0.1",
 
-    // Tag of the inbound proxy. May be used for routing.
-    "tag": "socks-inbound",
+      // Tag of the inbound proxy. May be used for routing.
+      "tag": "socks-inbound",
 
-    // Protocol name of inbound proxy.
-    "protocol": "socks",
+      // Protocol name of inbound proxy.
+      "protocol": "socks",
 
-    // Settings of the protocol. Varies based on protocol.
-    "settings": {
-      "auth": "noauth",
-      "udp": false,
-      "ip": "127.0.0.1"
-    },
+      // Settings of the protocol. Varies based on protocol.
+      "settings": {
+        "auth": "noauth",
+        "udp": false,
+        "ip": "127.0.0.1"
+      },
 
-    // Enable sniffing on TCP connection.
-    "sniffing": {
-      "enabled": true,
-      // Target domain will be overriden to the one carried by the connection, if the connection is HTTP or HTTPS.
-      "destOverride": ["http", "tls"]
+      // Enable sniffing on TCP connection.
+      "sniffing": {
+        "enabled": true,
+        // Target domain will be overriden to the one carried by the connection, if the connection is HTTP or HTTPS.
+        "destOverride": ["http", "tls"]
+      }
     }
-  }],
+  ],
   // List of outbound proxy configurations.
-  "outbounds": [{
-    // Protocol name of the outbound proxy.
-    "protocol": "vmess", // 使用的代理协议
+  "outbounds": [
+    {
+      // Protocol name of the outbound proxy.
+      "protocol": "vmess", // 使用的代理协议
 
-    // Settings of the protocol. Varies based on protocol.
-    "settings": {
-      "vnext": [
-        {
-          "address": "V2RAY_SERVER_ADDRESS", // 代理的服务器地址
-          "port": 16823, // 代理服务器的端口，应为不加双引号的数字
-          "users": [
-            {
-              "id": "V2RAY_UUID", // 代理服务器的 UUID
-              "alterId": 64 // 代理服务器的 Alter Id，应为不加双引号的数字
-            }
-          ]
-        },
-        {
-          // 添加更多的 VMESS 协议代理服务器
-        }
-      ]
-    },
+      // Settings of the protocol. Varies based on protocol.
+      "settings": {
+        "vnext": [
+          {
+            "address": "V2RAY_SERVER_ADDRESS", // 代理的服务器地址
+            "port": 16823, // 代理服务器的端口，应为不加双引号的数字
+            "users": [
+              {
+                "id": "V2RAY_UUID", // 代理服务器的 UUID
+                "alterId": 64 // 代理服务器的 Alter Id，应为不加双引号的数字
+              }
+            ]
+          },
+          {
+            // 添加更多的 VMESS 协议代理服务器
+          }
+        ]
+      },
 
-    // Tag of the outbound. May be used for routing.
-    "tag": "vmess_serve"
-  }]
+      // Tag of the outbound. May be used for routing.
+      "tag": "vmess_serve"
+    }
+  ]
   // 后略
 }
 ```

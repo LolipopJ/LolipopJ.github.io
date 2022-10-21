@@ -3,15 +3,16 @@ title: 从零开始使用 Telegram Bot
 date: 2022/1/9
 updated: 2022/1/11
 categories:
-- 后端开发
+  - 后端开发
 tags:
-- Telegram
-- Bot
-- Node
-- Koa
-- PostgreSQL
-- Sequelize
+  - Telegram
+  - Bot
+  - Node
+  - Koa
+  - PostgreSQL
+  - Sequelize
 ---
+
 本文旨在基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，帮助笔者更好地将爱传递给 Telegram！
 
 本文假设您已对 Node.js 和 Koa 有一定的了解。
@@ -77,7 +78,7 @@ npm install node-telegram-bot-api
 记录下当中的 **HTTP API** 的值即 Telegram Bot Token，作为项目的环境变量保存，切勿上传到远程代码仓库中。
 
 ```js
-const token = process.env.TELEGRAM_BOT_TOKEN
+const token = process.env.TELEGRAM_BOT_TOKEN;
 ```
 
 ### 与 Bot 建立连接
@@ -85,8 +86,8 @@ const token = process.env.TELEGRAM_BOT_TOKEN
 我们的项目可能无法直接访问到 Telegram 的服务器，可以使用 [**SOCKS5 代理**](https://github.com/mattcg/socks5-https-client)解决这个问题：
 
 ```js
-const TelegramBot = require('node-telegram-bot-api')
-const proxySocks5Agent = require('socks5-https-client/lib/Agent')
+const TelegramBot = require("node-telegram-bot-api");
+const proxySocks5Agent = require("socks5-https-client/lib/Agent");
 
 requestOptions = {
   agentClass: proxySocks5Agent,
@@ -96,27 +97,27 @@ requestOptions = {
     socksUsername: process.env.PROXY_SOCKS5_USERNAME,
     socksPassword: process.env.PROXY_SOCKS5_PASSWORD,
   },
-}
+};
 
 const bot = new TelegramBot(token, {
   polling: true,
   request: requestOptions,
-})
+});
 ```
 
 如何 SOCKS5 工作不正常（[这是](https://github.com/yagop/node-telegram-bot-api/issues/696#issuecomment-613023532)一个可能的原因），也可以尝试使用 **HTTP 代理**：
 
 ```js
-const TelegramBot = require('node-telegram-bot-api')
+const TelegramBot = require("node-telegram-bot-api");
 
 requestOptions = {
   proxy: process.env.PROXY_HTTP,
-}
+};
 
 const bot = new TelegramBot(token, {
   polling: true,
   request: requestOptions,
-})
+});
 ```
 
 对 Bot 进行测试，添加如下代码：
@@ -124,8 +125,8 @@ const bot = new TelegramBot(token, {
 ```js
 bot.onText(/\/start/, (msg) => {
   // console.log(msg)
-  bot.sendMessage(msg.chat.id, 'Hi, this is Telly Bot!')
-})
+  bot.sendMessage(msg.chat.id, "Hi, this is Telly Bot!");
+});
 ```
 
 打开 Telegram，对 Bot 发送 `/start`，看看是否会得到 `Hi, this is Telly Bot!` 的回应。
@@ -147,20 +148,20 @@ Telegram Bot 可以通过轮询（polling）和网络钩子（webhook）两种�
 ```js
 const bot = new TelegramBot(token, {
   request: requestOptions,
-})
+});
 
-bot.setWebHook(`${process.env.WEBHOOK_HOST}/bot${token}`)
+bot.setWebHook(`${process.env.WEBHOOK_HOST}/bot${token}`);
 
-globalThis.bot = bot
+globalThis.bot = bot;
 ```
 
 现在，Telegram 上机器人收到的消息会立即发送给我们的服务器。最后，在服务器需要处理接收到的 POST 类型请求 `/bot${TELEGRAM_BOT_TOKEN}`，告知 Telegram 我们已经收到新的消息了。可以在 `routes/index.js` 中添加代码如下：
 
 ```js
 router.post(`bot${token}`, (ctx) => {
-  globalThis.bot.processUpdate(ctx.request.body)
-  ctx.status = 200
-})
+  globalThis.bot.processUpdate(ctx.request.body);
+  ctx.status = 200;
+});
 ```
 
 需要补充的是，通过上面代码中 Bot API 库提供的 [`processUpdate`](https://github.com/yagop/node-telegram-bot-api/blob/master/doc/api.md#telegrambotprocessupdateupdate) 方法，可以对接收到的消息进行相应的处理，触发正确的事件并执行回调方法。
@@ -193,17 +194,17 @@ npm install pg
 const config = {
   database: {
     postgresql: {
-      host: 'localhost',
+      host: "localhost",
       port: 5432,
-      database: 'telly_bot_db',
-      user: 'telly_bot_db_user',
-      password: 'telly_bot_db_pwd',
-      timezone: '+08:00',
+      database: "telly_bot_db",
+      user: "telly_bot_db_user",
+      password: "telly_bot_db_pwd",
+      timezone: "+08:00",
     },
   },
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 ### 使用 ORM 管理数据库
@@ -217,39 +218,39 @@ npm install sequelize pg-hstore
 修改 `db/index.js` 代码如下：
 
 ```js
-const { Sequelize } = require('sequelize')
-const pgsqlConfig = require('../config').database.postgresql
+const { Sequelize } = require("sequelize");
+const pgsqlConfig = require("../config").database.postgresql;
 const options = {
-  timezone: pgsqlConfig.timezone || '+08:00',
-}
+  timezone: pgsqlConfig.timezone || "+08:00",
+};
 const sequelize = new Sequelize(
   `postgres://${pgsqlConfig.user}:${pgsqlConfig.password}@${pgsqlConfig.host}:${pgsqlConfig.port}/${pgsqlConfig.database}`,
   options
-)
+);
 
-;(async () => {
+(async () => {
   try {
-    await sequelize.authenticate()
+    await sequelize.authenticate();
     console.log(
       `Connection with ${pgsqlConfig.database} has been established successfully.`
-    )
-    await sequelize.sync({ alter: true })
-    console.log('All models were synchronized successfully.')
+    );
+    await sequelize.sync({ alter: true });
+    console.log("All models were synchronized successfully.");
   } catch (error) {
     console.error(
       `Unable to connect to the database ${pgsqlConfig.database}:`,
       error
-    )
+    );
   }
-})()
+})();
 
-module.exports = sequelize
+module.exports = sequelize;
 ```
 
 为了实现自动转发 Github Issues 中的评论，我们需要一张数据表来存储上一次转发的评论（或编辑记录）的**最后更新日期**（`lastUpdateCommentAt`)。这样，下一次执行任务时，只需要查看该日期之后是否有新的评论（或编辑记录）就可以了。对于每一个 Issue，都会在该表中创建一条数据。为 Sequelize 添加模型 `db/model/ServiceGithubIssueComment.js` 如下：
 
 ```js
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require("sequelize");
 
 module.exports = {
   // The ID of the forwarding Github Issue service
@@ -280,17 +281,14 @@ module.exports = {
   lastExecServiceAt: {
     type: DataTypes.DATE,
   },
-}
+};
 ```
 
 一个模型将成为数据库中的一张数据表。向 `db/index.js` 中添加如下代码：
 
 ```js
-const serviceGithubIssueCommentModel = require('./model/ServiceGithubIssueComment')
-sequelize.define(
-  'ServiceGithubIssueComment',
-  serviceGithubIssueCommentModel
-)
+const serviceGithubIssueCommentModel = require("./model/ServiceGithubIssueComment");
+sequelize.define("ServiceGithubIssueComment", serviceGithubIssueCommentModel);
 // sequelize.sync({ alter: true })
 ```
 
@@ -315,17 +313,17 @@ const config = {
       duration: 3600,
       task: [
         {
-          owner: 'LolipopJ',
-          repo: 'LolipopJ',
+          owner: "LolipopJ",
+          repo: "LolipopJ",
           issueNumber: 2,
           issueUserId: [42314340],
-          forwardChannelId: '@lolipop_thoughts',
-          since: '2022-01-01T00:00:00.000Z',
+          forwardChannelId: "@lolipop_thoughts",
+          since: "2022-01-01T00:00:00.000Z",
         },
       ],
     },
   },
-}
+};
 ```
 
 其中，`duration` 为两次执行期间间隔的时间（秒）。此外，配置中存在 `issueUserId` 项，这是因为我们可能只想要转发自己发送的评论，在后面只需要根据该项过滤该用户 ID 的评论即可（可以通过 `https://api.github.com/users/your_github_user_name` 查看指定 Github 账户的 ID）。
@@ -333,51 +331,52 @@ const config = {
 [这里](https://docs.github.com/en/rest/reference/issues#list-issue-comments)是获取指定 Issues 中的评论的方法。编写 `service/github.js` 代码如下（**仅做参考**：代码截取实现功能的部分，刨除提高鲁棒性的部分，也去除了第一次执行的部分）：
 
 ```js
-const { Octokit } = require('@octokit/core')
-const config = require('../config').github
-const octokit = new Octokit(octokitOptions)
+const { Octokit } = require("@octokit/core");
+const config = require("../config").github;
+const octokit = new Octokit(octokitOptions);
 
-const bot = globalThis.bot
-const sequelize = globalThis.sequelize
+const bot = globalThis.bot;
+const sequelize = globalThis.sequelize;
 
 const forwardGithubIssueComment = async function () {
-  const issues = config.forwardIssueComment.task
-  const ServiceGithubIssueComment = sequelize.models.ServiceGithubIssueComment
+  const issues = config.forwardIssueComment.task;
+  const ServiceGithubIssueComment = sequelize.models.ServiceGithubIssueComment;
 
   for (const issue of issues) {
-    const owner = issue.owner
-    const repo = issue.repo
-    const issueNumber = issue.issueNumber
-    const forwardChannelId = issue.forwardChannelId
-    const issueUserId = issue.issueUserId
-    const issueUrl = `${owner}/${repo}/issues/${issueNumber}`
+    const owner = issue.owner;
+    const repo = issue.repo;
+    const issueNumber = issue.issueNumber;
+    const forwardChannelId = issue.forwardChannelId;
+    const issueUserId = issue.issueUserId;
+    const issueUrl = `${owner}/${repo}/issues/${issueNumber}`;
 
     const queryConfig = {
       issueUrl,
       issueUserId,
       forwardChannelId,
-    }
-    const perPage = 100
-    let page = 0
+    };
+    const perPage = 100;
+    let page = 0;
 
     // 查询 Github Issues 的评论的最后更新日期 lastUpdateCommentAt
     const issueServiceInfo = await ServiceGithubIssueComment.findOne({
       where: queryConfig,
-    })
-    const lastUpdateCommentDate = issueServiceInfo.dataValues.lastUpdateCommentAt
+    });
+    const lastUpdateCommentDate =
+      issueServiceInfo.dataValues.lastUpdateCommentAt;
 
     // 将 lastUpdateCommentAt 加上 1ms 作为下一次查询的起始日期
     const since = new Date(
       new Date(lastUpdateCommentDate).getTime() + 1
-    ).toISOString()
+    ).toISOString();
 
     // 调用 Github API 获取指定 issue 的评论信息
     // 查询的评论更新日期从 since 开始
-    let issueComments = []
+    let issueComments = [];
     while (issueComments.length === perPage * page) {
-      ++page
+      ++page;
       const res = await octokit.request(
-        'GET /repos/{owner}/{repo}/issues/{issue_number}/comments',
+        "GET /repos/{owner}/{repo}/issues/{issue_number}/comments",
         {
           owner,
           repo,
@@ -386,34 +385,34 @@ const forwardGithubIssueComment = async function () {
           per_page: perPage,
           page,
         }
-      )
-      issueComments = issueComments.concat(res.data)
+      );
+      issueComments = issueComments.concat(res.data);
     }
 
     // 如果设置了 issueUserId 项，则只保留数组中用户 ID 的评论
     if (Array.isArray(issueUserId) && issueUserId.length > 0) {
       issueComments = issueComments.filter((comment) => {
-        const commentUserId = comment.user.id
+        const commentUserId = comment.user.id;
         if (issueUserId.includes(commentUserId)) {
-          return true
+          return true;
         } else {
-          return false
+          return false;
         }
-      })
+      });
     }
   }
-}
+};
 ```
 
 如果 Issue 存放在私人仓库中，则需要用到 [Personal Access Token](https://github.com/settings/tokens/new?scopes=repo) 进行鉴权。在创建 `octokit` 对象时传递相应参数：
 
 ```js
-const octokitOptions = {}
-const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN
+const octokitOptions = {};
+const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 if (authToken) {
-  octokitOptions.auth = authToken
+  octokitOptions.auth = authToken;
 }
-const octokit = new Octokit(octokitOptions)
+const octokit = new Octokit(octokitOptions);
 ```
 
 ### 定时转发评论到 Telegram 频道
@@ -424,28 +423,21 @@ const octokit = new Octokit(octokitOptions)
 
 ```js
 if (issueComments.length > 0) {
-  let lastUpdateCommentAt = new Date(0).toISOString()
+  let lastUpdateCommentAt = new Date(0).toISOString();
 
   // 转发评论到 Telegram 频道
   for (const issueComment of issueComments) {
     try {
-      await bot.sendMessage(
-        forwardChannelId,
-        issueComment.body,
-        {
-          parse_mode: 'MarkdownV2',
-        }
-      )
+      await bot.sendMessage(forwardChannelId, issueComment.body, {
+        parse_mode: "MarkdownV2",
+      });
     } catch (error) {
-      await bot.sendMessage(
-        forwardChannelId,
-        issueComment.html_url,
-      )
+      await bot.sendMessage(forwardChannelId, issueComment.html_url);
     }
 
-    const issueCommentUpdatedAt = issueComment.updated_at
+    const issueCommentUpdatedAt = issueComment.updated_at;
     if (issueCommentUpdatedAt > lastUpdateCommentAt) {
-      lastUpdateCommentAt = issueCommentUpdatedAt
+      lastUpdateCommentAt = issueCommentUpdatedAt;
     }
   }
 
@@ -458,7 +450,7 @@ if (issueComments.length > 0) {
     {
       where: queryConfig,
     }
-  )
+  );
 }
 ```
 
@@ -475,31 +467,31 @@ const {
   ToadScheduler,
   SimpleIntervalJob,
   AsyncTask,
-} = require('toad-scheduler')
+} = require("toad-scheduler");
 
-const githubService = require('./github')
+const githubService = require("./github");
 
-const config = require('../config')
+const config = require("../config");
 
-const scheduler = new ToadScheduler()
+const scheduler = new ToadScheduler();
 const taskForwardGithubIssueComment = new AsyncTask(
-  'Forward Github Issue Comment',
+  "Forward Github Issue Comment",
   async () => {
-    await githubService.forwardGithubIssueComment()
+    await githubService.forwardGithubIssueComment();
   },
   (error) => {
-    console.error(error)
+    console.error(error);
   }
-)
+);
 const jobForwardGithubIssueComment = new SimpleIntervalJob(
   {
     seconds: config.github.forwardIssueComment.duration,
     runImmediately: true,
   },
   taskForwardGithubIssueComment
-)
+);
 
-scheduler.addSimpleIntervalJob(jobForwardGithubIssueComment)
+scheduler.addSimpleIntervalJob(jobForwardGithubIssueComment);
 ```
 
 一切就绪，运行我们的 Bot 程序！

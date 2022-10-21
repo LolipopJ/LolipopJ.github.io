@@ -3,13 +3,14 @@ title: 使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化
 date: 2021/8/7
 updated: 2021/8/8
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Node
-- EditorConfig
-- Prettier
-- VSCode
+  - Node
+  - EditorConfig
+  - Prettier
+  - VSCode
 ---
+
 笔者想要给自己翻译的设计模式教程添加**多编程语言**支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。
 
 部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。

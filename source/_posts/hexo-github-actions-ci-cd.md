@@ -3,11 +3,12 @@ title: 使用 Github Actions 持续集成与部署 Hexo 博客
 date: 2021/2/19
 updated: 2021/2/19
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Github-actions
-- Hexo
+  - Github-actions
+  - Hexo
 ---
+
 这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
 
 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
@@ -59,7 +60,7 @@ name: Hexo Blog CI & CD
 on:
   push:
     branches:
-      - source  # 存放 Hexo 源文件的分支
+      - source # 存放 Hexo 源文件的分支
 
 jobs:
   pages:
@@ -69,7 +70,7 @@ jobs:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -85,8 +86,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 无需修改
-          publish_dir: ./public  # hexo generate 生成的博客文件默认存放在 /public 目录下
-          publish_branch: master  # 存放展示的博客文件的分支
+          publish_dir: ./public # hexo generate 生成的博客文件默认存放在 /public 目录下
+          publish_branch: master # 存放展示的博客文件的分支
 ```
 
 工作流采用了别人编写好的 [actions-gh-pages@v3](https://github.com/peaceiris/actions-gh-pages)，其中 `GITHUB_TOKEN` 为 Github Actions 在运行中自动生成的，用于验证身份的 Token，无需修改。关于 `GITHUB_TOKEN` 的更多介绍，可以查看[此文档](https://docs.github.com/en/actions/reference/authentication-in-a-workflow)。
@@ -123,7 +124,7 @@ jobs:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -139,7 +140,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.ACCESS_TOKEN }}  # 添加 ACCESS_TOKEN
+          deploy_key: ${{ secrets.ACCESS_TOKEN }} # 添加 ACCESS_TOKEN
           publish_dir: ./public
           publish_branch: master
 ```

@@ -93,7 +93,13 @@ pagination_dir: page
 ## include:/exclude: options only apply to the 'source/' folder
 include:
 exclude:
-ignore: ['**/themes/**/node_modules/**', '**/themes/**/node_modules', '**/themes/**/.git', '**/themes/**/.git/**']
+ignore:
+  [
+    "**/themes/**/node_modules/**",
+    "**/themes/**/node_modules",
+    "**/themes/**/.git",
+    "**/themes/**/.git/**",
+  ]
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/

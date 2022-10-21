@@ -4,11 +4,12 @@ date: 2021/2/21
 updated: 2021/2/23
 timeliness: true
 categories:
-- 技术琐事
+  - 技术琐事
 tags:
-- Telegram
-- MTProto
+  - Telegram
+  - MTProto
 ---
+
 ## Telegram 和 MTProto 是什么
 
 Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
