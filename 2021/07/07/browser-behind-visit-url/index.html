@@ -565,7 +565,7 @@
 <p>随着 HSTS 的推广使用，现代浏览器中还内置了一个列表 <a href="#hsts-%E7%9A%84-preload-list-%E6%9C%BA%E5%88%B6">Preload List</a>，记录常用网站所使用的协议。对于这些网站，输入的 URL 将自动在前面补上记录的协议，再由浏览器发送请求。因此在实际情况中，第一次访问时，我们输入的 URL 就会被补齐为 <code>https://lolipopj.github.io</code>。</p>
 <h3 id="HTTP-严格传输安全-HSTS"><a href="#HTTP-严格传输安全-HSTS" class="headerlink" title="HTTP 严格传输安全 HSTS"></a>HTTP 严格传输安全 HSTS</h3><p>以下内容主要参考此文章：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25537440">「HSTS详解」</a>，2017-03-03</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25537440">「HSTS 详解」</a>，2017-03-03</li>
 </ul>
 <h3 id="什么是-HSTS，为什么我们需要它"><a href="#什么是-HSTS，为什么我们需要它" class="headerlink" title="什么是 HSTS，为什么我们需要它"></a>什么是 HSTS，为什么我们需要它</h3><p>在过去，假如服务器使用的是 HTTPS 协议，当我们默认使用 <code>http://lolipopj.github.io</code> 发起请求时，也会在服务器端通过 301 重定向到 <code>https://lolipopj.github.io</code>。在这个过程中，浏览器首先使用了 HTTP 协议发起请求，得到重定向的响应后，浏览器会重新发起基于 HTTPS 协议的请求并最终与服务器建立通信。</p>
 <p>这是一个存在风险的操作，因为在建立 HTTPS 通信之前，我们有一次明文的 HTTP 请求以及重定向操作。HTTP 主要有如下不足：</p>
@@ -641,7 +641,7 @@
 <p>递归解析器将最后一次查询得到的 IP 地址作为访问 URL 的最终地址，返回给浏览器，同时缓存到本地。浏览器使用此 IP 地址直接向应用服务器发起网络连接，开始进行业务通信。</p>
 <h2 id="通过-ARP-获取-MAC-地址"><a href="#通过-ARP-获取-MAC-地址" class="headerlink" title="通过 ARP 获取 MAC 地址"></a>通过 ARP 获取 MAC 地址</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE">「地址解析协议」</a>，Wikipedia</li>
-<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/chenxinjie/1961255">「图解ARP协议（四）代理ARP：善意的欺骗」</a>，2017-09-01</li>
+<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/chenxinjie/1961255">「图解 ARP 协议（四）代理 ARP：善意的欺骗」</a>，2017-09-01</li>
 </ul>
 <p>经过传输层和网络层封装后的包含有 HTTP 报文的数据包，现在来到了链路层。在这里，还将为它加上 MAC 头部。</p>
 <blockquote>
@@ -661,7 +661,7 @@
 <p>因此，在实际网络中，无论是局域网内通信，还是跨网段通信，绝大多数情况下还是使用的是 ARP，而非代理 ARP。代理 ARP 是对 ARP 的补充，是 ARP 的拓展使用。</p>
 <p>言归正传，假如我们使用的是 IPv4 网络，通过 ARP 协议，我们将收到主机设置的网关设备的 MAC 地址，这样我们就顺利地为数据包添加了 MAC 头部。现在，完整的数据包就可以从主机传输到网关设备上，再驶入互联网的快车道，最终抵达服务器了。</p>
 <h3 id="RARP-和-IARP"><a href="#RARP-和-IARP" class="headerlink" title="RARP 和 IARP"></a>RARP 和 IARP</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29081692">「图解ARP协议（六）RARP与IARP：被遗忘的兄弟协议」</a>，2017-09-05</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29081692">「图解 ARP 协议（六）RARP 与 IARP：被遗忘的兄弟协议」</a>，2017-09-05</li>
 </ul>
 <p>RARP 即反向 ARP（Reverse ARP），功能与 ARP 恰巧相反，用来实现 MAC 地址到 IP 地址的映射。</p>
 <p>一个简单的例子是，当一台主机刚刚接入网络，这时它还没有局域网分配的内网 IP 地址。通过 RARP，它可以向局域网发送广播，广播包含自己的 MAC 地址，如果局域网内有 RARP 服务器且<strong>记录有此 MAC 地址的映射 IP 地址</strong>，那么它将接收到 RARP 响应，于是主机就拥有了自己的 IP 地址。</p>
@@ -729,15 +729,15 @@
 <p>Oh, Welcome to visit my blog！</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>除了正文中特别罗列出来的网站文章，还包括：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34873227/answer/518086565">「在浏览器地址栏输入一个URL后回车，背后会进行哪些技术步骤？」</a>，2020-03-28</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34873227/answer/518086565">「在浏览器地址栏输入一个 URL 后回车，背后会进行哪些技术步骤？」</a>，2020-03-28</li>
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021000934">「上古面试题——浏览器地址栏输入后回车会发生什么」</a>，2019-11-14</li>
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039650564">「搞懂这 9 步，DNS 访问原理就明明白白了」</a>，2021-03-17</li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039406281">「DNS查询机制」</a>，2021-03-13</li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039406281">「DNS 查询机制」</a>，2021-03-13</li>
 <li><a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/">「DNS 服务器有哪些不同类型？」</a>，Cloudflare</li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/379015679">「36 张图详解 ARP ：网络世界没有我，你哪也别想去」</a>，2021-06-08</li>
-<li><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1229">「图解HTTP」</a>，[日]上野宣 著，于均良 译</li>
-<li><a target="_blank" rel="noopener" href="https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/">「详解TCP三次握手以及TLS&#x2F;SSL握手」</a>，2018-11-02</li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021559557">「HTTPS详解二：SSL &#x2F; TLS 工作原理和详细握手过程」</a>，2020-01-19</li>
+<li><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1229">「图解 HTTP」</a>，[日]上野宣 著，于均良 译</li>
+<li><a target="_blank" rel="noopener" href="https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/">「详解 TCP 三次握手以及 TLS&#x2F;SSL 握手」</a>，2018-11-02</li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021559557">「HTTPS 详解二：SSL &#x2F; TLS 工作原理和详细握手过程」</a>，2020-01-19</li>
 </ul>
 
     </article>
@@ -1613,14 +1613,14 @@
                 TypeScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue-2">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue-2
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue-2">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue-2
             </span>
         
             <span class="sidebar-tag-name" data-tags="Nuxt">

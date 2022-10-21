@@ -571,7 +571,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev eslint-plugin-prettier eslint-config-prettier</span><br></pre></td></tr></table></figure>
 
 <p>修改 <code>.eslintrc.js</code> 中配置，将 <code>plugin:prettier/recommended</code> 和 <code>prettier</code> 放到拓展的最后两项，如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .eslintrc.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="string">&quot;extends&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;您使用的其它 ESLint 拓展&quot;</span>,</span><br><span class="line">    <span class="string">&quot;plugin:prettier/recommended&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prettier&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .eslintrc.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&quot;您使用的其它 ESLint 拓展&quot;</span>,</span><br><span class="line">    <span class="string">&quot;plugin:prettier/recommended&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prettier&quot;</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="配置-Prettier"><a href="#配置-Prettier" class="headerlink" title="配置 Prettier"></a>配置 Prettier</h2><p>参考 Prettier 的官方<a target="_blank" rel="noopener" href="https://prettier.io/docs/en/options.html">配置文档</a>，自由地配置项目代码的风格吧！</p>
 <p>只需要在项目目录创建 <code>.prettierrc.json</code> 文件，填写配置即可。例如（注意，JSON 文件中不应该添加注释）：</p>
@@ -592,7 +592,7 @@
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint">What’s the difference between prettier-eslint, eslint-plugin-prettier and eslint-config-prettier?</a> - stackoverflow</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/prettier/prettier-eslint-cli/issues/208#issuecomment-673631308">Error: ‘basePath’ should be an absolute path</a> - mathiaswillburger - 2020.08.14</li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80574300">搞懂 ESLint 和 Prettier</a> - 乃乎 - 2019.08.31</li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dd07cca0a48e">ESLint+Prettier代码规范实践</a> - Bernie维 - 2019.06.04</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dd07cca0a48e">ESLint+Prettier 代码规范实践</a> - Bernie 维 - 2019.06.04</li>
 </ul>
 
     </article>
@@ -1468,14 +1468,14 @@
                 TypeScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue-2">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue-2
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue-2">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue-2
             </span>
         
             <span class="sidebar-tag-name" data-tags="Nuxt">
