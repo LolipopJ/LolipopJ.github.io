@@ -444,6 +444,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/10/22/umi-plugin-usemodel/">
+                
+                <span class="abstract-title-text">为什么我使用 Umi 的 model 简易数据流管理插件</span>
+            </a>
+            <div class="abstract-content">
+                <p>Umi 是一款企业级的 React 前端应用框架，云巧产业数字组件中心推荐使用基于 Umi 的 Koi 框架统一前端应用研发流程，支撑前端项目从研发、联调到上线、发布的全流程。</p>
+<p>本文假设您正在或计划使用 Umi 或 Koi 作为底层框架支撑前端应用的开发，并且对 Umi 有一定的了解。</p>
+<h2 id="数据治理的原则"><a href="#数据治理的原则" class="headerlink" title="数据治理的原则"></a>数据治理的原则</h2><p>React 的核心特征是“数据驱动视图”，用公式表达即 <code>UI = render(data)</code>，通过数据变化来驱动视图变化。React 将组件内部自有的数据称作 state（状态），通过管理 state 来实现对组件的管理。</p>
+<p>通过 Props 传参，可以在 React 中实现简单的父子、子父和兄弟组件间数据传递。对于跨级组件间的数据传递，React 提供了基于生产者-消费者模式的 Context API 来实现全局通信。</p>
+<p>随着应用的膨胀，组件内部的状态变得愈加复杂，数据流管理的成本也越来越高。如果说所有代码的末路都是成为一座难以维护的大山的话，在那之前，我们应当好好想想如何尽可能多地延长代码的寿命，去重新思考我们的 React 项目的代码组织逻辑。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/10/22/umi-plugin-usemodel/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/10/23">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/10/23</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/09/21/js-webworker-settimeout/">
                 
                 <span class="abstract-title-text">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</span>
@@ -492,9 +553,9 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="Web-Worker">Web-Worker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Webpack">Webpack</a>
     
@@ -1018,73 +1079,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/06/25/web-font-for-hexo-theme-archer/">
-                
-                <span class="abstract-title-text">为 Archer 主题更换字体</span>
-            </a>
-            <div class="abstract-content">
-                <p>看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 <a target="_blank" rel="noopener" href="https://github.com/fi3ework/hexo-theme-archer">Hexo-Theme-Archer</a> 展示如何更换博客的中文字体。</p>
-<h2 id="引入字体文件"><a href="#引入字体文件" class="headerlink" title="引入字体文件"></a>引入字体文件</h2><p>这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。</p>
-<h3 id="引入-CDN-字体文件"><a href="#引入-CDN-字体文件" class="headerlink" title="引入 CDN 字体文件"></a>引入 CDN 字体文件</h3><p>以更换字体为思源黑体（Google 字体上叫 <code>Noto Sans</code>，Adobe 版本叫 <code>Source Han Sans</code>）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑通过 CDN 的方式引入它。据笔者测试，目前有这四个 CDN 站点可以提供稳定的服务：</p>
-<ul>
-<li><code>https://fonts.googleapis.cnpmjs.org</code></li>
-<li><code>https://fonts.font.im</code>，可参考：<a target="_blank" rel="noopener" href="http://www.googlefonts.cn/old">http://www.googlefonts.cn/old</a></li>
-<li><code>https://fonts.proxy.ustclug.org</code></li>
-<li><code>https://fonts.loli.net</code>，可参考：<a target="_blank" rel="noopener" href="https://sb.sb/blog/css-cdn">https://sb.sb/blog/css-cdn</a></li>
-</ul>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/06/25/web-font-for-hexo-theme-archer/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/10">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/26</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="前端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                前端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo-theme-archer">hexo-theme-archer</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1363,7 +1357,22 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1592,7 +1601,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1610,6 +1619,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span>
+            <a class="archive-post-title" href="/2022/10/22/umi-plugin-usemodel/">为什么我使用 Umi 的 model 简易数据流管理插件</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/22</span>
@@ -1864,11 +1879,6 @@
                 TypeScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Umi">
-                <span class="iconfont-archer">&#xe606;</span>
-                Umi
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
@@ -1977,6 +1987,11 @@
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
             </span>
         
             <span class="sidebar-tag-name" data-tags="Webpack">

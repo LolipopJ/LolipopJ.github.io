@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://LolipopJ.github.io/2022/10/22/umi-plugin-usemodel/</loc>
+        <lastmod>2022-10-22T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://LolipopJ.github.io/2021/05/10/js-hoisting/</loc>
         <lastmod>2022-10-20T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>

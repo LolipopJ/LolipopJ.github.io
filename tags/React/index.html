@@ -444,6 +444,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/10/22/umi-plugin-usemodel/">
+                
+                <span class="abstract-title-text">为什么我使用 Umi 的 model 简易数据流管理插件</span>
+            </a>
+            <div class="abstract-content">
+                <p>Umi 是一款企业级的 React 前端应用框架，云巧产业数字组件中心推荐使用基于 Umi 的 Koi 框架统一前端应用研发流程，支撑前端项目从研发、联调到上线、发布的全流程。</p>
+<p>本文假设您正在或计划使用 Umi 或 Koi 作为底层框架支撑前端应用的开发，并且对 Umi 有一定的了解。</p>
+<h2 id="数据治理的原则"><a href="#数据治理的原则" class="headerlink" title="数据治理的原则"></a>数据治理的原则</h2><p>React 的核心特征是“数据驱动视图”，用公式表达即 <code>UI = render(data)</code>，通过数据变化来驱动视图变化。React 将组件内部自有的数据称作 state（状态），通过管理 state 来实现对组件的管理。</p>
+<p>通过 Props 传参，可以在 React 中实现简单的父子、子父和兄弟组件间数据传递。对于跨级组件间的数据传递，React 提供了基于生产者-消费者模式的 Context API 来实现全局通信。</p>
+<p>随着应用的膨胀，组件内部的状态变得愈加复杂，数据流管理的成本也越来越高。如果说所有代码的末路都是成为一座难以维护的大山的话，在那之前，我们应当好好想想如何尽可能多地延长代码的寿命，去重新思考我们的 React 项目的代码组织逻辑。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2022/10/22/umi-plugin-usemodel/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/10/23">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/10/23</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/09/21/js-webworker-settimeout/">
                 
                 <span class="abstract-title-text">定时器 SetTimeout 在后台失效？试试 Web Worker 吧</span>
@@ -492,9 +553,9 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="Web-Worker">Web-Worker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Umi">Umi</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Webpack">Webpack</a>
     
@@ -779,7 +840,22 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1008,7 +1084,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1026,6 +1102,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span>
+            <a class="archive-post-title" href="/2022/10/22/umi-plugin-usemodel/">为什么我使用 Umi 的 model 简易数据流管理插件</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/22</span>
@@ -1280,11 +1362,6 @@
                 TypeScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Umi">
-                <span class="iconfont-archer">&#xe606;</span>
-                Umi
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
@@ -1393,6 +1470,11 @@
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
             </span>
         
             <span class="sidebar-tag-name" data-tags="Webpack">

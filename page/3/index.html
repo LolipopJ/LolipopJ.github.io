@@ -459,6 +459,72 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/04/19/linux-docker-gcc-update/">
+                
+                <span class="abstract-title-text">Linux 容器更新或降级 GCC 版本</span>
+            </a>
+            <div class="abstract-content">
+                <p>如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc</span><br><span class="line">yum -y install gcc-c++</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或是一键安装开发工具软件包，包括 gcc, g++ 等</span></span><br><span class="line">yum groupinstall <span class="string">&quot;Development Tools&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>本文适用于系统中<strong>包含有</strong>其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。</p>
+<p>NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能否兼容新版本的 GCC，建议在 <strong>Docker 容器环境</strong>中执行编译和安装操作，并在容器中使用 GCC 编译器进行编译源码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前系统中 GCC 的版本</span></span><br><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载-GCC-并解压"><a href="#下载-GCC-并解压" class="headerlink" title="下载 GCC 并解压"></a>下载 GCC 并解压</h2>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/04/19/linux-docker-gcc-update/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/04/20">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="GCC">GCC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/03/28/protobuf-learning/">
                 
                 <span class="abstract-title-text">Protobuf 学习笔记</span>
@@ -1025,58 +1091,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2020/09/27/pytorch-install-windows-10/">
-                
-                <span class="abstract-title-text">PyTorch 在 Windows 10 系统下的环境配置及安装</span>
-            </a>
-            <div class="abstract-content">
-                关于PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
-本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
-访问我的 CSDN 博客以查看此文章。
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/02/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/28</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PyTorch">PyTorch</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1483,7 +1497,22 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1712,7 +1741,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1730,6 +1759,12 @@
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span>
+            <a class="archive-post-title" href="/2022/10/22/umi-plugin-usemodel/">为什么我使用 Umi 的 model 简易数据流管理插件</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/22</span>
@@ -1984,11 +2019,6 @@
                 TypeScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Umi">
-                <span class="iconfont-archer">&#xe606;</span>
-                Umi
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
@@ -2097,6 +2127,11 @@
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Umi">
+                <span class="iconfont-archer">&#xe606;</span>
+                Umi
             </span>
         
             <span class="sidebar-tag-name" data-tags="Webpack">
