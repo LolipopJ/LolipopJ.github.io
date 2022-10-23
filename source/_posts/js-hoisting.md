@@ -29,7 +29,7 @@ console.log(b); // Uncaught ReferenceError: b is not defined
 
 如上所示，在声明变量 `a` 之前尝试将它的值打印出来，控制台输出的结果是 `undefined`，而不是预期中的报错 `Uncaught ReferenceError: a is not defined`。这就是**变量提升**。
 
-而对于函数的声明与使用，也出现的相似的情况：
+而对于函数的声明与使用，也出现了相似的情况：
 
 ```js
 sayHello(); // Hello there!
@@ -238,7 +238,7 @@ function isOdd(n) {
 
 ## 关于抽象泄漏的补充
 
-艾林·约耳·斯波尔斯基（Avram Joel Spolsky）是程序员必备的问答网站 Stack Overflow 的创始人之一，于 2002 年 11 月 11 日在博文 [_The Law of Leaky Abstractions_](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) 中对抽象泄漏定律做了非常详尽的描述，其中一些看法让我再赞同不过了，遂记录在这里：
+艾林·约耳·斯波尔斯基（Avram Joel Spolsky）是程序员必备的问答网站 Stack Overflow 的创始人之一，于 2002 年 11 月 11 日在博文 [_The Law of Leaky Abstractions_](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) 中对抽象泄漏定律做了非常详尽的描述，其中一些看法让我再赞同不过了，遂记录在这里（中文翻译来自[此博客](http://shzhangji.com/cnblogs/2013/12/17/the-law-of-leaky-abstractions/)）：
 
 > ......
 > One reason the law of leaky abstractions is problematic is that it means that abstractions do not really simplify our lives as much as they were meant to. When I’m training someone to be a C++ programmer, it would be nice if I never had to teach them about char*’s and pointer arithmetic. It would be nice if I could go straight to STL strings. But one day they’ll write the code “foo” + “bar”, and truly bizarre things will happen, and then I’ll have to stop and teach them all about char*’s anyway. Or one day they’ll be trying to call a Windows API function that is documented as having an OUT LPTSTR argument and they won’t be able to understand how to call it until they learn about char\*’s, and pointers, and Unicode, and wchar_t’s, and the TCHAR header files, and all that stuff that leaks up.
@@ -255,5 +255,3 @@ function isOdd(n) {
 > 十年前，我们会想象未来能够出现各种新式的编程范型，简化我们的工作。的确，这些年我们创造的各类抽象使得开发复杂的大型软件变得比十五年前要简单得多，就像 GUI 和网络编程。现代的面向对象编程语言让我们的工作变得高效快速。但突然有一天，这种抽象泄漏出一个问题，解决它需要耗费两星期。如果你需要招录一个 VB 程序员，那不是一个好主意，因为当他碰到 VB 语言泄漏的问题时，他会变得寸步难行。
 > The Law of Leaky Abstractions is dragging us down.
 > 抽象泄漏定律正在阻碍我们前进。
-
-注：中文翻译来自[此博客](http://shzhangji.com/cnblogs/2013/12/17/the-law-of-leaky-abstractions/)。
