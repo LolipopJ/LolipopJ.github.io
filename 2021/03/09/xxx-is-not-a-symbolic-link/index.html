@@ -1696,28 +1696,6 @@
         <!-- import experimental options here -->
         <!-- Custom Font -->
 
-    <!-- Check browser compatibility of CSS variables -->
-    <script>
-        if (browserSupportCSSVariables === undefined) {
-            var browserSupportCSSVariables = window.CSS && window.CSS.supports && window.CSS.supports('--a', 0);
-        }
-    </script>
-    <script>
-        if (browserSupportCSSVariables) {
-            var customFontName = 'Noto Sans SC:n3,n4,n5,n7'
-            var customFontUrl = 'https://fonts.googleapis.cnpmjs.org/css2?family=Noto+Sans+SC:wght@300;400;500;700&amp;display=swap'
-            if (!customFontName) {
-                console.log('Custom font name is not set or read failed');
-            }
-            if (!customFontUrl) {
-                console.log('Custom font url is not set or read failed');
-            }
-        } else {
-            console.error('Current browser doesn\'t support custom font.')
-        }
-    </script>
-    <script src="/scripts/customFontLoader.js?v=20211217" defer></script>
-
 
         <!-- main func -->
         <script src="/scripts/main.js?v=20211217"></script>
