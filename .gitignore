@@ -1,10 +1,21 @@
-.DS_Store
+# build files
 Thumbs.db
 db.json
 *.log
-node_modules/
 public/
-.deploy*/
+
+# hidden dirs
+.*/
+!.github/
+!.husky/
+
+# node modules
+node_modules/
 package-lock.json
 yarn.lock
-.vscode/
+
+# hexo-theme-archer
+_config.*.yml
+!_config.archer.yml
+themes/*
+!themes/archer
