@@ -459,6 +459,69 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/10/08/antd-comp-garbled-characters/">
+                
+                <span class="abstract-title-text">遇到 AntD 组件中文乱码问题，可以试试这么解决</span>
+            </a>
+            <div class="abstract-content">
+                <p>项目中使用了 AntD 4.x 的 <code>&lt;DatePicker /&gt;</code> 组件，开发环境显示正常，生产环境显示乱码，如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2023/10/08/antd-comp-garbled-characters/error.png" alt="error"></p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p><code>&lt;DatePicker /&gt;</code> 组件底层的国际化既由 AntD 提供的 <code>&lt;ConfigProvider /&gt;</code> 控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。</p>
+<p>经查询，当我们以 ISO8859-1 方式读取 UTF-8 编码的中文时，会出现如“ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�‘ä¸Š”这样的符号型乱码，正如上图所示。</p>
+<p>因此产生问题的关键在于，<strong>为何浏览器没有正确地以 UTF-8 格式读取 Moment 提供的中文语言包文本。</strong></p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2023/10/08/antd-comp-garbled-characters/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/10/09">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/10/09</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Ant-Design">Ant-Design</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/10/22/umi-plugin-usemodel/">
                 
                 <span class="abstract-title-text">为什么我使用 Umi 的 model 简易数据流管理插件</span>
@@ -918,11 +981,12 @@
                 <span class="abstract-title-text">使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化</span>
             </a>
             <div class="abstract-content">
-                <p>笔者想要给自己翻译的设计模式教程添加<strong>多编程语言</strong>支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。</p>
-<p>部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。</p>
-<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
-<h2 id="编写时-EditorConfig"><a href="#编写时-EditorConfig" class="headerlink" title="编写时 EditorConfig"></a>编写时 EditorConfig</h2><p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a> 有助于为跨各种编辑器或 IDE 而处理同一项目的多个开发人员保持一致的编码风格。</p>
-<p>VSCode 并没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">其插件</a>。</p>
+                <h2 id="编写代码时使用-EditorConfig"><a href="#编写代码时使用-EditorConfig" class="headerlink" title="编写代码时使用 EditorConfig"></a>编写代码时使用 EditorConfig</h2><p>EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。</p>
+<p>VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">插件</a>。</p>
+<p>EditorConfig 会自动读取工作区中的 <code>.editorconfig</code> 文件，更详细的配置说明可以参考<a target="_blank" rel="noopener" href="https://editorconfig-specification.readthedocs.io/">官方介绍</a>。下面是笔者常用的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root = true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line">end_of_line = lf</span><br><span class="line">charset = utf-8</span><br><span class="line">insert_final_newline = true</span><br><span class="line">trim_trailing_whitespace = true</span><br></pre></td></tr></table></figure>
+
+<h2 id="推送仓库前使用-Prettier"><a href="#推送仓库前使用-Prettier" class="headerlink" title="推送仓库前使用 Prettier"></a>推送仓库前使用 Prettier</h2>
             </div>
             <!-- read more -->
             
@@ -935,7 +999,7 @@
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/08">
+                <div class="abstract-date" title="Last updated: 2023/12/14">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/08/07</span>
                 </div>
                 <!-- tags -->
@@ -1023,69 +1087,6 @@
         <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Travis">Travis</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/07/07/browser-behind-visit-url/">
-                
-                <span class="abstract-title-text">在浏览器中输入 URL 到显示网页，背后发生了什么</span>
-            </a>
-            <div class="abstract-content">
-                <p>最近学习前端基础知识的时候，看到了这个问题和<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34873227/answer/518086565">一个回答</a>，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。</p>
-<p>现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入 <code>lolipopj.github.io</code> 这个 URL 然后敲下回车键。</p>
-<p>从敲下回车键到最终顺利在浏览器显示我博客的主页，这个过程的背后发生了什么呢？</p>
-<h2 id="检查-URL-格式"><a href="#检查-URL-格式" class="headerlink" title="检查 URL 格式"></a>检查 URL 格式</h2><p>别急，在正式驶入互联网的快车道之前，浏览器会首先检查输入的 URL 的格式是否正确。</p>
-<p>例如，假如您输入的是 <code>lolipop j.github.io</code>，或是 <code>lolipopj.gith$ub.io</code>，浏览器将会判断它们为非 URL。在这种情况下，浏览器通常会将我们错误输入的 URL 作为搜索引擎的输入关键字，最终跳转到搜索结果界面。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/07/07/browser-behind-visit-url/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/07/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/08</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="学习琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                学习琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="计算机网络">计算机网络</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="网络安全">网络安全</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="密码学">密码学</a>
     
 </div>
 
@@ -1505,7 +1506,32 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1744,7 +1770,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1758,6 +1784,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2023/10/08/antd-comp-garbled-characters/">遇到 AntD 组件中文乱码问题，可以试试这么解决</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -2040,6 +2081,11 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Ant-Design">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ant-Design
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">

@@ -19,15 +19,15 @@
         <meta name="keywords" content="Lolipop,frontend,full-stack,前端,全栈">
     
     <meta name="description" content="">
-    <meta name="description" content="笔者想要给自己翻译的设计模式教程添加多编程语言支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。 部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多">
+    <meta name="description" content="编写代码时使用 EditorConfigEditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。 VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载插件。 EditorConfig 会自动读取工作区中的 .editorconfig 文件，更详细的配置说明可以参考官方介绍。下面是笔者常用的配置： 123456789root &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化">
 <meta property="og:url" content="https://lolipopj.github.io/2021/08/06/editorconfig-prettier/index.html">
 <meta property="og:site_name" content="Lolipop">
-<meta property="og:description" content="笔者想要给自己翻译的设计模式教程添加多编程语言支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。 部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多">
+<meta property="og:description" content="编写代码时使用 EditorConfigEditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。 VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载插件。 EditorConfig 会自动读取工作区中的 .editorconfig 文件，更详细的配置说明可以参考官方介绍。下面是笔者常用的配置： 123456789root &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-13T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
 <meta property="article:tag" content="Node">
 <meta property="article:tag" content="EditorConfig">
@@ -369,7 +369,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">510</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -530,44 +530,27 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>笔者想要给自己翻译的设计模式教程添加<strong>多编程语言</strong>支持。最初，只选择了 JavaScript 作为示例语言，看到 Github 上有大量其它语言的实现，便想要加上这些语言，集成为一个大一统的中文翻译项目。</p>
-<p>部署的网页基于 VuePress，最简单的方式就是将源文档复制几份，然后逐段粘贴为别人的代码即可。偶然发现有 VuePress 本身提供了一个导入代码段的功能，可以引入本地文件中的代码段。几乎没有多想，便决定使用这个功能，这样可以将代码段放入不同的文件中，很大程度上方便了后续的管理和拓展。</p>
-<p>现在，一个项目里出现了多种不同的编程语言的代码，不考虑它们的代码质量问题（如果还考虑代码质量问题，可以参考笔者的<a href="/2021/03/02/nodejs-eslint-prettier/" title="Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式">这一篇博客</a>），只在乎它们的<strong>格式规范</strong>。那么，如何优雅地在 VSCode 上格式化这些代码呢？</p>
-<h2 id="编写时-EditorConfig"><a href="#编写时-EditorConfig" class="headerlink" title="编写时 EditorConfig"></a>编写时 EditorConfig</h2><p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a> 有助于为跨各种编辑器或 IDE 而处理同一项目的多个开发人员保持一致的编码风格。</p>
-<p>VSCode 并没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">其插件</a>。</p>
-<p>EditorConfig 会读取工作区中的 <code>.editorconfig</code> 文件中的设置，然后尝试覆盖当前工作区的配置。因此，我们只需要在工作区新建一个名叫 <code>.editorconfig</code> 的文件，填入我们需要的设置就可以了。</p>
-<p>目前，VSCode 中的 EditorConfig 支持如下设置属性：</p>
-<ul>
-<li><code>root</code>：需要在项目的根目录指定为 <code>true</code>。否则 EditorConfig 将接着向上级目录查找是否有其它 <code>.editorconfig</code> 文件。</li>
-<li><code>indent_style</code>：缩进风格，可选值为 <code>tab</code> 和 <code>space</code>。</li>
-<li><code>indent_size</code>：缩进长度，一般使用 <code>2</code> 和 <code>4</code>。</li>
-<li><code>tab_width</code>：TAB 宽度，默认值为 <code>indent_size</code>，通常无需单独指定。</li>
-<li><code>end_of_line</code> (on save)：行尾序列，可选值为 <code>lf</code>, <code>cr</code> 和 <code>crlf</code>。一般使用 <code>lf</code>，因为现代 IDE 一般都能识别行尾序列并自动转换，而在部署项目时的 Linux 端就没那么“聪明”了。</li>
-<li><code>insert_final_newline</code> (on save)：文尾空行，可选值为 <code>true</code> 和 <code>false</code>。当设置为 <code>true</code> 时，保证文件保存后会在最末尾有空行，反之则没有空行。</li>
-<li><code>trim_trailing_whitespace</code> (on save)：移除行尾空白字符，可选值为 <code>true</code> 和 <code>false</code>。当设置为 <code>true</code> 时，自动移除每一行的换行符前的所有空白字符，反之则不移除。</li>
-</ul>
-<p>另外 <code>charset</code> 字符集属性在 Backlog 阶段，一般使用 <code>utf-8</code> 即可。此外还可以选择 <code>latin1</code>, <code>utf-8-bom</code>, <code>utf-16be</code> 或 <code>utf-16le</code>。</p>
-<p>更详细的配置说明可以参考<a target="_blank" rel="noopener" href="https://editorconfig-specification.readthedocs.io/">此网站</a>。</p>
-<p>于是，我们可以在项目的根目录创建 <code>.editorconfig</code> 文件编写 EditorConfig 配置。下面是一个常用的配置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root = true</span><br><span class="line"></span><br><span class="line"># 通配所有文件</span><br><span class="line">[*]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line">end_of_line = lf</span><br><span class="line">charset = utf-8</span><br><span class="line">insert_final_newline = true</span><br><span class="line">trim_trailing_whitespace = true</span><br></pre></td></tr></table></figure>
+        <h2 id="编写代码时使用-EditorConfig"><a href="#编写代码时使用-EditorConfig" class="headerlink" title="编写代码时使用 EditorConfig"></a>编写代码时使用 EditorConfig</h2><p>EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。</p>
+<p>VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">插件</a>。</p>
+<p>EditorConfig 会自动读取工作区中的 <code>.editorconfig</code> 文件，更详细的配置说明可以参考<a target="_blank" rel="noopener" href="https://editorconfig-specification.readthedocs.io/">官方介绍</a>。下面是笔者常用的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root = true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line">end_of_line = lf</span><br><span class="line">charset = utf-8</span><br><span class="line">insert_final_newline = true</span><br><span class="line">trim_trailing_whitespace = true</span><br></pre></td></tr></table></figure>
 
-<h2 id="上库前-Prettier"><a href="#上库前-Prettier" class="headerlink" title="上库前 Prettier"></a>上库前 Prettier</h2><p>EditorConfig 的功能是在编写时自动规范格式，统一缩进等<strong>简单的</strong>代码和文件风格。为了进一步确保代码风格符合编码规范，还应当在上库前使用 Prettier 修复代码格式。</p>
-<p>首先自然是将 Prettier 安装为项目开发依赖：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev prettier</span><br></pre></td></tr></table></figure>
+<h2 id="推送仓库前使用-Prettier"><a href="#推送仓库前使用-Prettier" class="headerlink" title="推送仓库前使用 Prettier"></a>推送仓库前使用 Prettier</h2><p>为了进一步确保代码风格符合编码规范，可以在上库前使用 Prettier 修复代码格式。</p>
+<p>将 Prettier 安装为项目开发依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D prettier</span><br></pre></td></tr></table></figure>
 
-<p>然后在 <code>package.json</code> 中添加 Prettier 脚本：</p>
+<p>在 <code>package.json</code> 中添加 Prettier 运行脚本：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;prettier --ignore-path .gitignore --write **/* --ignore-unknown&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>现在，执行 <code>yarn prettier</code> 将按照 Prettier 预置的规则自动格式化所有支持的后缀格式的文件了。</p>
-<p>通过在项目根目录创建 <code>.prettierrc.json</code> 文件，可以进一步配置 Prettier 格式化<a target="_blank" rel="noopener" href="https://prettier.io/docs/en/options.html">规则</a>。例如（注意，JSON 文件中不应该添加注释）：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;semi&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 句末是否添加分号</span></span><br><span class="line">  <span class="attr">&quot;singleQuote&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="comment">// 是否使用单引号（而非双引号）</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>现在，执行 <code>yarn prettier</code> 命令，工具将按照 Prettier 预置的规则自动格式化所有支持的后缀格式的文件了。</p>
+<p>在项目根目录创建 <code>.prettierrc.json</code> 文件，可以进一步配置 Prettier 格式化规则，可参考<a target="_blank" rel="noopener" href="https://prettier.io/docs/en/options.html">官方文档</a>。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// JSON 文件中不应添加注释，需去除</span></span><br><span class="line">  <span class="attr">&quot;semi&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 句末是否添加分号</span></span><br><span class="line">  <span class="attr">&quot;singleQuote&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="comment">// 是否使用单引号</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>接下来，考虑到我们的项目中会包含 PHP 以及 Java 等语言的代码，要让 Prettier 处理它们的格式，该怎么做呢？</p>
+<p>假如我们的项目中会包含 PHP 以及 Java 等语言的代码，要让 Prettier 处理它们的格式，该怎么做呢？</p>
 <p>在默认情况下，Prettier 并不支持 PHP 或 Java 代码的格式化，这就需要我们单独添加支持其它编程语言的 <a target="_blank" rel="noopener" href="https://prettier.io/docs/en/plugins.html">Prettier 插件</a>作为项目的依赖。其中，以 <code>@prettier</code> 开头的插件为官方维护插件，例如 <a target="_blank" rel="noopener" href="https://github.com/prettier/plugin-php"><code>@prettier/plugin-php</code></a>；其它命名插件为社区开发插件，例如 <a target="_blank" rel="noopener" href="https://github.com/jhipster/prettier-java"><code>prettier-plugin-java</code></a>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev @prettier/plugin-php prettier-plugin-java</span><br></pre></td></tr></table></figure>
 
 <p>Prettier 将自动加载与它在同一 <code>node_modules</code> 文件夹中的 Prettier 插件，并自动识别新增的代码后缀（如 <code>.php</code> 和 <code>.java</code>）。因此在最后，只需要再执行一遍 <code>yarn prettier</code>，就可以实现格式化项目中的 PHP 及 Java 代码了。</p>
-<p>如果只想修复某些后缀的代码，例如 Java 代码的格式，也可以单独执行 <code>prettier --write &quot;**/*.java&quot;</code>。</p>
 
     </article>
     <!-- license -->
@@ -576,7 +559,7 @@
             <p>原文作者：<a href="https://LolipopJ.github.io">Lolipop</a>
             <p>原文链接：<a href="https://lolipopj.github.io/2021/08/06/editorconfig-prettier/">https://lolipopj.github.io/2021/08/06/editorconfig-prettier/</a>
             <p>发表日期：<a href="https://lolipopj.github.io/2021/08/06/editorconfig-prettier/">August 6th 2021, 4:00:00 pm</a>
-            <p>更新日期：<a href="https://lolipopj.github.io/2021/08/06/editorconfig-prettier/">August 7th 2021, 4:00:00 pm</a>
+            <p>更新日期：<a href="https://lolipopj.github.io/2021/08/06/editorconfig-prettier/">December 13th 2023, 4:00:00 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -772,7 +755,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%97%B6-EditorConfig"><span class="toc-number">1.</span> <span class="toc-text">编写时 EditorConfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E5%BA%93%E5%89%8D-Prettier"><span class="toc-number">2.</span> <span class="toc-text">上库前 Prettier</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%97%B6%E4%BD%BF%E7%94%A8-EditorConfig"><span class="toc-number">1.</span> <span class="toc-text">编写代码时使用 EditorConfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E4%BB%93%E5%BA%93%E5%89%8D%E4%BD%BF%E7%94%A8-Prettier"><span class="toc-number">2.</span> <span class="toc-text">推送仓库前使用 Prettier</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -946,7 +929,32 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1185,7 +1193,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1199,6 +1207,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2023/10/08/antd-comp-garbled-characters/">遇到 AntD 组件中文乱码问题，可以试试这么解决</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -1481,6 +1504,11 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Ant-Design">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ant-Design
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">

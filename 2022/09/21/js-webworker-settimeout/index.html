@@ -544,7 +544,7 @@
 <h2 id="失效原因"><a href="#失效原因" class="headerlink" title="失效原因"></a>失效原因</h2><p>系现代浏览器为了节能与性能优化做的处理。</p>
 <p>若页面处于非激活的状态，那么此页面中通过 <code>setTimeout()</code> 或 <code>setInterval()</code> 创建的定时器可能会<strong>停止工作</strong>或<strong>以较慢的速度工作</strong>。页面的非激活状态包括不限于：切换到其它标签页、最小化窗口和息屏等。在移动端，这样的性能优化尤为常见。</p>
 <p>因此会发生另外一种常见的现象：如果浏览器页面里有一个基于 <code>setInterval()</code> 实现的计时器，当用户切换页面或回到桌面后，计时器将停止计时或计时频率减慢，导致计时功能异常。</p>
-<h2 id="基于-SetTimeout-x2F-SetInterval-的解决方案"><a href="#基于-SetTimeout-x2F-SetInterval-的解决方案" class="headerlink" title="基于 SetTimeout &#x2F; SetInterval 的解决方案"></a>基于 SetTimeout &#x2F; SetInterval 的解决方案</h2><p>定时器失效带来的最直接影响是：JavaScript 代码不再能够正确获取定时器<strong>计划执行的时间</strong>或<strong>已经执行的次数</strong>。</p>
+<h2 id="基于-SetTimeout-SetInterval-的解决方案"><a href="#基于-SetTimeout-SetInterval-的解决方案" class="headerlink" title="基于 SetTimeout &#x2F; SetInterval 的解决方案"></a>基于 SetTimeout &#x2F; SetInterval 的解决方案</h2><p>定时器失效带来的最直接影响是：JavaScript 代码不再能够正确获取定时器<strong>计划执行的时间</strong>或<strong>已经执行的次数</strong>。</p>
 <p>一个很容易想到的解决方案是，当页面切回前台时，重新校准 SetTimeout 定时器时间。</p>
 <h3 id="使用-SetTimeout-监听-visibilitychange-事件"><a href="#使用-SetTimeout-监听-visibilitychange-事件" class="headerlink" title="使用 SetTimeout + 监听 visibilitychange 事件"></a>使用 SetTimeout + 监听 visibilitychange 事件</h3><p>通过监听窗口的 <code>visibilitychange</code> 事件（兼容性<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/visibilitychange_event#browser_compatibility">见于此</a>），可以判断页面是否切换到前台：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;visibilitychange&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (<span class="variable language_">document</span>.<span class="property">visibilityState</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;visible&quot;</span>:</span><br><span class="line">      <span class="comment">// 当前页面被切换到前台（可见或部分可见）</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;hidden&quot;</span>:</span><br><span class="line">      <span class="comment">// 当前页面被切换到后台（不可见）</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;prerender&quot;</span>:</span><br><span class="line">      <span class="comment">// 当前页面被预渲染，且用户不可见</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;unloaded&quot;</span>:</span><br><span class="line">      <span class="comment">// 当前页面被卸载</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -816,7 +816,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">失效原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E-SetTimeout-x2F-SetInterval-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">基于 SetTimeout &#x2F; SetInterval 的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SetTimeout-%E7%9B%91%E5%90%AC-visibilitychange-%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">使用 SetTimeout + 监听 visibilitychange 事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SetInterval-%E8%BD%AE%E8%AE%AD"><span class="toc-number">2.2.</span> <span class="toc-text">使用 SetInterval 轮训</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%BC%E4%B9%8E%E9%83%BD%E4%B8%8D%E5%A4%AA%E4%BC%98%E9%9B%85"><span class="toc-number">2.3.</span> <span class="toc-text">似乎都不太优雅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%AE%9E%E8%B7%B5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%BD%BF%E7%94%A8-Web-Worker"><span class="toc-number">3.</span> <span class="toc-text">生产实践的解决方案：使用 Web Worker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack-%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">Webpack 的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">动态加载的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Umi-%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">Umi 项目的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E5%BA%93%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.4.</span> <span class="toc-text">三方库的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">失效原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E-SetTimeout-SetInterval-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">基于 SetTimeout &#x2F; SetInterval 的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SetTimeout-%E7%9B%91%E5%90%AC-visibilitychange-%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">使用 SetTimeout + 监听 visibilitychange 事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SetInterval-%E8%BD%AE%E8%AE%AD"><span class="toc-number">2.2.</span> <span class="toc-text">使用 SetInterval 轮训</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%BC%E4%B9%8E%E9%83%BD%E4%B8%8D%E5%A4%AA%E4%BC%98%E9%9B%85"><span class="toc-number">2.3.</span> <span class="toc-text">似乎都不太优雅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%AE%9E%E8%B7%B5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%BD%BF%E7%94%A8-Web-Worker"><span class="toc-number">3.</span> <span class="toc-text">生产实践的解决方案：使用 Web Worker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack-%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">Webpack 的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">动态加载的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Umi-%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">Umi 项目的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E5%BA%93%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.4.</span> <span class="toc-text">三方库的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -990,7 +990,32 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1229,7 +1254,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1243,6 +1268,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2023/10/08/antd-comp-garbled-characters/">遇到 AntD 组件中文乱码问题，可以试试这么解决</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -1525,6 +1565,11 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Ant-Design">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ant-Design
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">

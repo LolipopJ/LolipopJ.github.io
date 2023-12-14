@@ -459,6 +459,69 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/07/07/browser-behind-visit-url/">
+                
+                <span class="abstract-title-text">在浏览器中输入 URL 到显示网页，背后发生了什么</span>
+            </a>
+            <div class="abstract-content">
+                <p>最近学习前端基础知识的时候，看到了这个问题和<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34873227/answer/518086565">一个回答</a>，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。</p>
+<p>现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入 <code>lolipopj.github.io</code> 这个 URL 然后敲下回车键。</p>
+<p>从敲下回车键到最终顺利在浏览器显示我博客的主页，这个过程的背后发生了什么呢？</p>
+<h2 id="检查-URL-格式"><a href="#检查-URL-格式" class="headerlink" title="检查 URL 格式"></a>检查 URL 格式</h2><p>别急，在正式驶入互联网的快车道之前，浏览器会首先检查输入的 URL 的格式是否正确。</p>
+<p>例如，假如您输入的是 <code>lolipop j.github.io</code>，或是 <code>lolipopj.gith$ub.io</code>，浏览器将会判断它们为非 URL。在这种情况下，浏览器通常会将我们错误输入的 URL 作为搜索引擎的输入关键字，最终跳转到搜索结果界面。</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/07/07/browser-behind-visit-url/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/07/23">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/08</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="学习琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                学习琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="计算机网络">计算机网络</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="网络安全">网络安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="密码学">密码学</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/06/25/web-font-for-hexo-theme-archer/">
                 
                 <span class="abstract-title-text">为 Archer 主题更换字体</span>
@@ -1023,72 +1086,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/04/21/linux-docker-install-grpc/">
-                
-                <span class="abstract-title-text">Linux 系统编译安装基于 C++ 的 gRPC</span>
-            </a>
-            <div class="abstract-content">
-                <p>本文适用于 C++ 版本 gRPC 的离线编译安装，但对于<a href="#%E4%B8%8B%E8%BD%BD-grpc">下载 gRPC</a> 步骤强烈建议使用 git 进行。</p>
-<p>如果在能直接连接外网的机器上编译，可直接按照 <a target="_blank" rel="noopener" href="https://github.com/grpc/grpc">gRPC 官网文档</a>的指引快速执行编译操作。</p>
-<h2 id="安装基本依赖"><a href="#安装基本依赖" class="headerlink" title="安装基本依赖"></a>安装基本依赖</h2><p>确保机器上包括这些基本依赖：<code>autoconf</code>, <code>libtool</code>, <code>pkg-config</code> 与 C++ 编译环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查是否有 autoconf</span></span><br><span class="line"><span class="built_in">which</span> autoconf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有，则安装</span></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">yum install autoconf</span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">apt-get install autoconf</span><br></pre></td></tr></table></figure>
-
-<p>gRPC 的编译需要 <code>gcc</code> 版本在 <code>4.9</code> 及以上。假如版本低于此，应当在 Docker 容器中安装较新版本的 GCC 再执行编译操作。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/04/21/linux-docker-install-grpc/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/05/11">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/22</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="后端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                后端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1500,7 +1497,32 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1739,7 +1761,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1753,6 +1775,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2023/10/08/antd-comp-garbled-characters/">遇到 AntD 组件中文乱码问题，可以试试这么解决</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -2035,6 +2072,11 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Ant-Design">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ant-Design
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">

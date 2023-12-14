@@ -444,6 +444,69 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/10/08/antd-comp-garbled-characters/">
+                
+                <span class="abstract-title-text">遇到 AntD 组件中文乱码问题，可以试试这么解决</span>
+            </a>
+            <div class="abstract-content">
+                <p>项目中使用了 AntD 4.x 的 <code>&lt;DatePicker /&gt;</code> 组件，开发环境显示正常，生产环境显示乱码，如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2023/10/08/antd-comp-garbled-characters/error.png" alt="error"></p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p><code>&lt;DatePicker /&gt;</code> 组件底层的国际化既由 AntD 提供的 <code>&lt;ConfigProvider /&gt;</code> 控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。</p>
+<p>经查询，当我们以 ISO8859-1 方式读取 UTF-8 编码的中文时，会出现如“ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�‘ä¸Š”这样的符号型乱码，正如上图所示。</p>
+<p>因此产生问题的关键在于，<strong>为何浏览器没有正确地以 UTF-8 格式读取 Moment 提供的中文语言包文本。</strong></p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2023/10/08/antd-comp-garbled-characters/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/10/09">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/10/09</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TypeScript">TypeScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Ant-Design">Ant-Design</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/10/22/umi-plugin-usemodel/">
                 
                 <span class="abstract-title-text">为什么我使用 Umi 的 model 简易数据流管理插件</span>
@@ -1242,7 +1305,32 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1481,7 +1569,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1495,6 +1583,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2023/10/08/antd-comp-garbled-characters/">遇到 AntD 组件中文乱码问题，可以试试这么解决</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -1777,6 +1880,11 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Ant-Design">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ant-Design
             </span>
         
             <span class="sidebar-tag-name" data-tags="计算机网络">
