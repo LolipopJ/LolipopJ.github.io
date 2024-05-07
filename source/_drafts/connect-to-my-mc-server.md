@@ -1,6 +1,10 @@
 # 连接到我的 Minecraft 服务器
 
-## 服务器版本信息
+## 服务器地址
+
+`mc.towind.fun`
+
+## 服务器版本
 
 - **Minecraft** 1.20.4
 - **Fabric** 0.15.10
@@ -33,21 +37,23 @@
 
 ## 派大星都能看懂的操作步骤
 
-访问 `https://www.towind.fun/download/PCL2-2.7.1.zip` 下载 PCL2 启动器，解压到任意目录，打开。
+访问 `https://www.towind.fun/download/PCL2-2.7.1.zip` 或者[这里](https://afdian.net/p/0164034c016c11ebafcb52540025c377)下载 Plain Craft Launcher 2，解压到任意目录，打开。
 
-下载与服务器版本相对应的 MC 客户端，如下图所示：
+下载与[服务器版本](#服务器版本)相对应的 MC 客户端，如下图所示：
 
 ![download-mc-client](./connect-to-my-mc-server/download-mc-client.png)
 
-服务器通过模组 [AutoModpack](https://modrinth.com/mod/automodpack/version/1ZPaL1PB) 自动分发其它的服务器预设模组，您可以下载它并放置在客户端的模组文件夹中，这样的话，在连接服务器时，将自动尝试同步模组内容。当然，这不是必须的步骤，您可以根据自己的喜好自行组合模组。
+服务器通过模组 [AutoModpack](https://modrinth.com/mod/automodpack/version/1ZPaL1PB) 自动分发其它的预设模组，您可以下载它并放置在客户端的模组文件夹中（可以在启动器的“版本设置 - 概览 - Mod 文件夹”处快速打开），这样的话，在连接服务器时，将自动获取最新的模组列表。首次进入服务器时会看到下面的内容，点击“下载”即可：
 
-如果没有购入正版，可以选择以离线的方式启动游戏：
+![download-default-mods](./connect-to-my-mc-server/download-default-mods.png)
+
+当然，这**不是**必须的步骤，您可以根据自己的喜好自行组合模组。
+
+如果没有购入正版，选择以离线的方式启动游戏：
 
 ![start-mc-client](./connect-to-my-mc-server/start-mc-client.png)
 
-选择“多人游戏”，点击“添加服务器”，进入到“编辑服务器信息”页面。
-
-其中“服务器名称”可任意填写，例如 `Lolipop_MC_1.20.4_Fabric`；“服务器地址”填写 `mc.towind.fun`；“服务器资源包”设置为 `启用`。如下图所示：
+选择“多人游戏”，点击“添加服务器”，进入到“编辑服务器信息”页面。其中“服务器名称”可任意填写，例如 `Lolipop_MC_1.20.4_Fabric`；“服务器地址”填写 `mc.towind.fun`；“服务器资源包”设置为 `启用`。如下图所示：
 
 ![set-server-info](./connect-to-my-mc-server/set-server-info.png)
 
