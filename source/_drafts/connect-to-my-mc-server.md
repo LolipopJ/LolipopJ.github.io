@@ -37,7 +37,7 @@
 
 ## 派大星都能看懂的操作步骤
 
-访问 `https://www.towind.fun/download/PCL2-2.7.1.zip` 或者[这里](https://afdian.net/p/0164034c016c11ebafcb52540025c377)下载 Plain Craft Launcher 2，解压到任意目录，打开。
+访问 `https://download.towind.fun/PCL2-2.7.1.zip` 或者[这里](https://afdian.net/p/0164034c016c11ebafcb52540025c377)下载 Plain Craft Launcher 2，解压到任意目录，打开。
 
 下载与[服务器版本](#服务器版本)相对应的 MC 客户端，如下图所示：
 
