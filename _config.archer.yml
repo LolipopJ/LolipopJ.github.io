@@ -8,7 +8,7 @@ signature: Make them happen.
 # SNS (you can custom the order)
 social:
   email: mail@towind.fun
-  github: //github.com/LolipopJ
+  github: https://github.com/LolipopJ
   # wechat should be a path of qr-code image path
   wechat:
   # qq should be a path of qr-code image path
@@ -18,7 +18,7 @@ social:
   zhihu:
   douban:
   facebook:
-  twitter: https://twitter.com/Lolipop_0703
+  twitter:
   instagram:
   stack-overflow:
   segmentFault:
@@ -26,12 +26,13 @@ social:
   v2ex:
   bilibili:
   linkedin:
-  steam:
+  steam: https://steamcommunity.com/id/lolipopj_703
   others:
   rss: /atom.xml
 # friends
 friends:
-  Bill Chen: //billc.io
+  Bill Chen: https://billc.io
+  KeyAI: https://keyai.github.io
 about:
   enable: true
   image: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/intro/about-bg.jpg
@@ -52,8 +53,11 @@ profile_icons:
   search: "fas fa-search"
 # Additional profile links
 profile_links:
+  - name: RESUME
+    url: https://resume.towind.fun
+    icon: "fas fa-user-tie"
   - name: THINKING
-    url: //github.com/LolipopJ/LolipopJ/issues/2
+    url: https://github.com/LolipopJ/LolipopJ/issues/2
     icon: "fas fa-video"
 
 # ========== Site ========== #
