@@ -20,10 +20,10 @@ const BACKUP_FILES = [
 const BACKUP_FILENAME_PREFIX = "backup-mcserver-";
 const BACKUP_MAX_NUM = 7;
 
-const ALIST_ADDRESS = "http://192.168.100.1:5244";
-const ALIST_USERNAME = "admin";
-const ALIST_PASSWORD = "@Sjs20000703";
-const ALIST_BACKUP_DIR = "/OneDrive/备份/mc.towind.fun";
+const ALIST_ADDRESS = ""; // http://192.168.100.1:5244
+const ALIST_USERNAME = "";
+const ALIST_PASSWORD = "";
+const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
 //#endregion
 
 //#region Global utils
