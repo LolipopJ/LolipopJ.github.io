@@ -444,6 +444,75 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/04/25/windows-install-grpc/">
+                
+                <span class="abstract-title-text">Windows 系统编译安装基于 C++ 的 gRPC</span>
+            </a>
+            <div class="abstract-content">
+                <p>本博客基于 CMake 实现编译 <code>gRPC 1.28.1</code> 版本。</p>
+<p>本博客的 Windows 端使用的命令提示符界面为 Powershell。</p>
+<h2 id="安装编译依赖软件"><a href="#安装编译依赖软件" class="headerlink" title="安装编译依赖软件"></a>安装编译依赖软件</h2><p>在 Windows 系统上编译 gRPC 需要首先准备下述软件：</p>
+<ul>
+<li>Visual Studio 2015（或 2017），将使用到 Visual C++ compiler</li>
+<li>Git</li>
+<li>CMake</li>
+<li>nasm</li>
+<li>ninja（可选）</li>
+</ul>
+<h3 id="Visual-Studio-2015-或-2017"><a href="#Visual-Studio-2015-或-2017" class="headerlink" title="Visual Studio 2015 (或 2017)"></a>Visual Studio 2015 (或 2017)</h3>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/04/25/windows-install-grpc/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/04/26">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/26</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="后端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                后端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/04/21/linux-docker-install-grpc/">
                 
                 <span class="abstract-title-text">Linux 系统编译安装基于 C++ 的 gRPC</span>
@@ -1028,69 +1097,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
-                
-                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
-            </a>
-            <div class="abstract-content">
-                <p>这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。</p>
-<p>Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。</p>
-<blockquote>
-<p>大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。<br>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。<br>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。<br>—— <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
-</blockquote>
-<p>不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如<a target="_blank" rel="noopener" href="https://github.com/srcrs/TiebaSignIn">百度贴吧自动签到</a>（注：已失效。Github 官方会对此类利用服务器实现签到功能的仓库进行封禁打击，还是不要使用了吧）等。</p>
-<h2 id="持续集成与部署-Hexo-博客"><a href="#持续集成与部署-Hexo-博客" class="headerlink" title="持续集成与部署 Hexo 博客"></a>持续集成与部署 Hexo 博客</h2><p>在<a href="/2019/12/26/hello-hexo-world/" title="Hello Hexo World">搭建自己的 Hexo 博客</a>那篇文章的最后，我们使用的是 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">hexo-deployer-git 一键部署到仓库</a>的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/02/18/hexo-github-actions-ci-cd/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/02/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1384,7 +1390,18 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1649,7 +1666,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 34
+        Total : 35
         </div>
         <!-- search  -->
         
@@ -1663,6 +1680,21 @@
     
         
             
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span>
+            <a class="archive-post-title" href="/2024/05/10/backup-mc-server/">基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
@@ -1973,6 +2005,26 @@
                 Ant-Design
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Minecraft">
+                <span class="iconfont-archer">&#xe606;</span>
+                Minecraft
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="OpenWRT">
+                <span class="iconfont-archer">&#xe606;</span>
+                OpenWRT
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Alist">
+                <span class="iconfont-archer">&#xe606;</span>
+                Alist
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="计算机网络">
                 <span class="iconfont-archer">&#xe606;</span>
                 计算机网络
@@ -2038,11 +2090,6 @@
                 VSCode
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="MySQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 MySQL
@@ -2103,6 +2150,11 @@
                 ESLint
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Protobuf">
+                <span class="iconfont-archer">&#xe606;</span>
+                Protobuf
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="机器学习">
                 <span class="iconfont-archer">&#xe606;</span>
                 机器学习
@@ -2111,11 +2163,6 @@
             <span class="sidebar-tag-name" data-tags="PyTorch">
                 <span class="iconfont-archer">&#xe606;</span>
                 PyTorch
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Protobuf">
-                <span class="iconfont-archer">&#xe606;</span>
-                Protobuf
             </span>
         
             <span class="sidebar-tag-name" data-tags="Telegram">

@@ -459,6 +459,67 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/07/09/switch-travis-to-github-workflow/">
+                
+                <span class="abstract-title-text">更换持续集成工具，从 Travis 到 Github Actions</span>
+            </a>
+            <div class="abstract-content">
+                <p>我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。</p>
+<p>当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。</p>
+<h2 id="编写新的-workflow-yml"><a href="#编写新的-workflow-yml" class="headerlink" title="编写新的 workflow.yml"></a>编写新的 workflow.yml</h2><p>那么首先，我们就需要将为 Travis 编写的命名为 <code>.travis.yml</code> 的配置文件，翻译成 Github Actions 能识别的 workflow.yml 配置文件。</p>
+<p>以<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/design-patterns-for-humans-zh">献给中文读者的设计模式教程</a>这个项目为例，原有的 <code>.travis.yml</code> 内容如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">lts/*</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cd</span> <span class="string">vuepress</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">yarn</span> <span class="string">install</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">yarn</span> <span class="string">build</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line">  <span class="attr">skip_cleanup:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">local_dir:</span> <span class="string">vuepress/docs/.vuepress/dist</span></span><br><span class="line">  <span class="attr">github_token:</span> <span class="string">$CI_DEPLOY_TOKEN</span></span><br><span class="line">  <span class="attr">keep_history:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">on:</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/07/09/switch-travis-to-github-workflow/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/07/14">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/10</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Travis">Travis</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/07/07/browser-behind-visit-url/">
                 
                 <span class="abstract-title-text">在浏览器中输入 URL 到显示网页，背后发生了什么</span>
@@ -1017,75 +1078,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/04/25/windows-install-grpc/">
-                
-                <span class="abstract-title-text">Windows 系统编译安装基于 C++ 的 gRPC</span>
-            </a>
-            <div class="abstract-content">
-                <p>本博客基于 CMake 实现编译 <code>gRPC 1.28.1</code> 版本。</p>
-<p>本博客的 Windows 端使用的命令提示符界面为 Powershell。</p>
-<h2 id="安装编译依赖软件"><a href="#安装编译依赖软件" class="headerlink" title="安装编译依赖软件"></a>安装编译依赖软件</h2><p>在 Windows 系统上编译 gRPC 需要首先准备下述软件：</p>
-<ul>
-<li>Visual Studio 2015（或 2017），将使用到 Visual C++ compiler</li>
-<li>Git</li>
-<li>CMake</li>
-<li>nasm</li>
-<li>ninja（可选）</li>
-</ul>
-<h3 id="Visual-Studio-2015-或-2017"><a href="#Visual-Studio-2015-或-2017" class="headerlink" title="Visual Studio 2015 (或 2017)"></a>Visual Studio 2015 (或 2017)</h3>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/04/25/windows-install-grpc/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/04/26">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/04/26</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="后端开发"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                后端开发
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Windows">Windows</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CPP">CPP</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="gRPC">gRPC</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1522,7 +1514,18 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1787,7 +1790,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 34
+        Total : 35
         </div>
         <!-- search  -->
         
@@ -1801,6 +1804,21 @@
     
         
             
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span>
+            <a class="archive-post-title" href="/2024/05/10/backup-mc-server/">基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
@@ -2111,6 +2129,26 @@
                 Ant-Design
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Minecraft">
+                <span class="iconfont-archer">&#xe606;</span>
+                Minecraft
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="OpenWRT">
+                <span class="iconfont-archer">&#xe606;</span>
+                OpenWRT
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Alist">
+                <span class="iconfont-archer">&#xe606;</span>
+                Alist
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="计算机网络">
                 <span class="iconfont-archer">&#xe606;</span>
                 计算机网络
@@ -2176,11 +2214,6 @@
                 VSCode
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="MySQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 MySQL
@@ -2241,6 +2274,11 @@
                 ESLint
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Protobuf">
+                <span class="iconfont-archer">&#xe606;</span>
+                Protobuf
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="机器学习">
                 <span class="iconfont-archer">&#xe606;</span>
                 机器学习
@@ -2249,11 +2287,6 @@
             <span class="sidebar-tag-name" data-tags="PyTorch">
                 <span class="iconfont-archer">&#xe606;</span>
                 PyTorch
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Protobuf">
-                <span class="iconfont-archer">&#xe606;</span>
-                Protobuf
             </span>
         
             <span class="sidebar-tag-name" data-tags="Telegram">
