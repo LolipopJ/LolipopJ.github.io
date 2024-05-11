@@ -19,12 +19,12 @@
         <meta name="keywords" content="Lolipop,frontend,full-stack,前端,全栈">
     
     <meta name="description" content="">
-    <meta name="description" content="笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，处于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非喜欢高自由度的定制或者喜欢折腾，不要像笔者这样编写一整个脚本。 完整的脚本可见此。 编写备份脚本前置准备为了脚本编写方便，约定应该在 Minecraft 服务">
+    <meta name="description" content="笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。 完整的脚本可见此。 编写备份脚本前置准备为了脚本编写方便，约定应该在 Minecraft 服务器的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端">
 <meta property="og:url" content="https://lolipopj.github.io/2024/05/10/backup-mc-server/index.html">
 <meta property="og:site_name" content="Lolipop">
-<meta property="og:description" content="笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，处于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非喜欢高自由度的定制或者喜欢折腾，不要像笔者这样编写一整个脚本。 完整的脚本可见此。 编写备份脚本前置准备为了脚本编写方便，约定应该在 Minecraft 服务">
+<meta property="og:description" content="笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。 完整的脚本可见此。 编写备份脚本前置准备为了脚本编写方便，约定应该在 Minecraft 服务器的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/10/backup-mc-server/upload-to-alist.png">
 <meta property="article:published_time" content="2024-05-10T16:00:00.000Z">
@@ -538,8 +538,8 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，处于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。</p>
-<p>在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非喜欢高自由度的定制或者喜欢折腾，不要像笔者这样编写一整个脚本。</p>
+        <p>笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。</p>
+<p>在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。</p>
 <p>完整的脚本<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io/blob/master/static/scripts/backup-mc-server.js">可见此</a>。</p>
 <h2 id="编写备份脚本"><a href="#编写备份脚本" class="headerlink" title="编写备份脚本"></a>编写备份脚本</h2><h3 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h3><p>为了脚本编写方便，约定应该在 Minecraft 服务器的根目录执行脚本。校验当前脚本的执行目录：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cwd = process.<span class="title function_">cwd</span>();</span><br><span class="line"><span class="keyword">if</span> (!fs.<span class="title function_">existsSync</span>(path.<span class="title function_">resolve</span>(cwd, <span class="string">&quot;eula.txt&quot;</span>))) &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(</span><br><span class="line">    <span class="string">&quot;You should execute this script at root dir of MineCraft server where `eula.txt` exists.&quot;</span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
