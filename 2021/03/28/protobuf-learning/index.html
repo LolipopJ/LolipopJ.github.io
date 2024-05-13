@@ -226,7 +226,7 @@
     
     <!-- Google tag (gtag.js) -->
     
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Lolipop" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -545,13 +545,13 @@
 </details>
 
 <h2 id="定义协议格式"><a href="#定义协议格式" class="headerlink" title="定义协议格式"></a>定义协议格式</h2><p>为了创建基于 Protobuf 的应用程序，我们需要首先创建一个 <code>.proto</code> 文件并且给出定义：为需要序列化的每个结构数据添加一条 <strong>message</strong> ，然后为 message 的每个字段指定名称和类型。下面是一个来自官网的基于 C++ 语言的例子，可以让您对 <code>.proto</code> 文件有一个更加直观的了解：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto2&quot;; // 协议版本</span><br><span class="line"></span><br><span class="line">package tutorial; // 程序包声明</span><br><span class="line"></span><br><span class="line">message Person &#123;</span><br><span class="line">  optional string name = 1;</span><br><span class="line">  optional int32 id = 2;</span><br><span class="line">  optional string email = 3;</span><br><span class="line"></span><br><span class="line">  enum PhoneType &#123;</span><br><span class="line">    MOBILE = 0;</span><br><span class="line">    HOME = 1;</span><br><span class="line">    WORK = 2;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  message PhoneNumber &#123;</span><br><span class="line">    optional string number = 1;</span><br><span class="line">    optional PhoneType type = 2 [default = HOME];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  repeated PhoneNumber phones = 4;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message AddressBook &#123;</span><br><span class="line">  repeated Person people = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto2&quot;</span>; <span class="comment">// 协议版本</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> tutorial; <span class="comment">// 程序包声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="keyword">optional</span> <span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">optional</span> <span class="type">int32</span> id = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">optional</span> <span class="type">string</span> email = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">enum </span><span class="title class_">PhoneType</span> &#123;</span><br><span class="line">    MOBILE = <span class="number">0</span>;</span><br><span class="line">    HOME = <span class="number">1</span>;</span><br><span class="line">    WORK = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">message </span><span class="title class_">PhoneNumber</span> &#123;</span><br><span class="line">    <span class="keyword">optional</span> <span class="type">string</span> number = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">optional</span> PhoneType type = <span class="number">2</span> [default = HOME];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">repeated</span> PhoneNumber phones = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">AddressBook</span> &#123;</span><br><span class="line">  <span class="keyword">repeated</span> Person people = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在开头，首先指定了协议的版本，<code>syntax = &quot;proto2&quot;;</code> 表示应使用 proto2 进行编码和解码。同理，如果指定为 <code>syntax = &quot;proto3&quot;;</code> 则表示应使用 proto3 进行编码和解码。如果不指定协议版本，在默认情况下，编译器会使用 proto2 进行编码和解码。</p>
 <p>使用程序包声明 <code>package tutorial;</code> 有助于防止不同项目之间的命名发生冲突。在 C++ 中，生成的类将放置在与程序包名称匹配的命名空间中。</p>
 <p>接下来就是最重要的 message 定义了。message 是包含一组字段类型的总合。我们将基于 <strong>proto3</strong> 版本对 message 语法进行讲解与描述。</p>
 <h2 id="proto3-基础语法"><a href="#proto3-基础语法" class="headerlink" title="proto3 基础语法"></a>proto3 基础语法</h2><h3 id="定义消息类型"><a href="#定义消息类型" class="headerlink" title="定义消息类型"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#simple">定义消息类型</a></h3><p>下面是一个非常简单的 <code>.proto</code> 例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">message SearchRequest &#123;</span><br><span class="line">  string query = 1;</span><br><span class="line">  int32 page_number = 2;</span><br><span class="line">  int32 result_per_page = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中第一行需要指定正在使用 <code>proto3</code> 语法，否则编译器将假定正在使用 <code>proto2</code> 语法。指定语法版本必须在文件的第一个非空、非注释行。</p>
 <p>例子定义了一个名为 <code>SearchRequest</code> 的 message，存储了三个字段，包括字符串类型的 <code>query</code> 和整数类型的 <code>page_number</code> 与 <code>result_per_page</code>. 三个字段均为标量值类型，所有可用的标量值类型可参考<a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">此链接</a>。除了标量值类型，字段还可以使用枚举和其它 message 类型。</p>
@@ -561,7 +561,7 @@
 <li>singular. 一则 message 只能拥有不超过一个该字段。是<strong>默认</strong>的字段规则，不需要特别指定；</li>
 <li><code>repeated</code>. 一则 message 可以拥有任意个该字段。重复值的顺序将被保留。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">message SearchRequest &#123;</span><br><span class="line">  string query = 1;</span><br><span class="line">  int32 page_number = 2;</span><br><span class="line">  int32 result_per_page = 3;</span><br><span class="line">  repeated string query_extras = 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">repeated</span> <span class="type">string</span> query_extras = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例中定义了三个 singular 字段 <code>query</code>, <code>page_number</code> 和 <code>result_per_page</code>，以及一个 <code>repeated</code> 字段 <code>query_extras</code>.</p>
 <details>
@@ -578,30 +578,30 @@
 </details>
 
 <h3 id="保留字段"><a href="#保留字段" class="headerlink" title="保留字段"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#reserved">保留字段</a></h3><p>当更新 message 定义需要完全移除一个字段时，则将来的用户在自己对该类型进行更新时可以重用该字段号。为了保证在读取旧版本的 <code>.proto</code> 时不引发问题，需要将已删除字段的字段编号（或名称）指定为 <code>reserved</code>，这样将来任何用户在更新 message 时尝试使用这些字段号（或名称）时，编译器会报错。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">message Foo &#123;</span><br><span class="line">  reserved 2, 15, 9 to 11;</span><br><span class="line">  reserved &quot;foo&quot;, &quot;bar&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">Foo</span> &#123;</span><br><span class="line">  reserved <span class="number">2</span>, <span class="number">15</span>, <span class="number">9</span> to <span class="number">11</span>;</span><br><span class="line">  reserved <span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上述内容指定了 2, 9, 10, 11, 15 为保留字段号，指定了 foo, bar 为保留字段名。在以后的编写中不应当被使用。</p>
 <p>需要注意的是，不能在一条 <code>reserved</code> 语句中同时使用字段号和字段名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reserved 2, 15, &quot;foo&quot;; // wrong!</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reserved <span class="number">2</span>, <span class="number">15</span>, <span class="string">&quot;foo&quot;</span>; <span class="comment">// wrong!</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="使用枚举类型"><a href="#使用枚举类型" class="headerlink" title="使用枚举类型"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#enum">使用枚举类型</a></h3><p>当只希望某一个字段的取值为预定义值的某一个时，可以使用枚举。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">message SearchRequest &#123;</span><br><span class="line">  string query = 1;</span><br><span class="line">  int32 page_number = 2;</span><br><span class="line">  int32 result_per_page = 3;</span><br><span class="line">  enum Corpus &#123;</span><br><span class="line">    UNIVERSAL = 0;</span><br><span class="line">    WEB = 1;</span><br><span class="line">    IMAGES = 2;</span><br><span class="line">    LOCAL = 3;</span><br><span class="line">    NEWS = 4;</span><br><span class="line">    PRODUCTS = 5;</span><br><span class="line">    VIDEO = 6;</span><br><span class="line">  &#125;</span><br><span class="line">  Corpus corpus = 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">enum </span><span class="title class_">Corpus</span> &#123;</span><br><span class="line">    UNIVERSAL = <span class="number">0</span>;</span><br><span class="line">    WEB = <span class="number">1</span>;</span><br><span class="line">    IMAGES = <span class="number">2</span>;</span><br><span class="line">    LOCAL = <span class="number">3</span>;</span><br><span class="line">    NEWS = <span class="number">4</span>;</span><br><span class="line">    PRODUCTS = <span class="number">5</span>;</span><br><span class="line">    VIDEO = <span class="number">6</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  Corpus corpus = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例中我们定义了名为 <code>Corpus</code> 的枚举，其中包括 7 种可能的取值。接下来，我们就可以添加使用 <code>Corpus</code> 枚举的字段 <code>corpus</code>.</p>
 <p>为了定义枚举常量的别名，我们可以将相同的值分配给不同的枚举常量名。为此，首先需要将 <code>allow_alias</code> 选项设置为 <code>true</code>，否则将会报错。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">message MyMessage &#123;</span><br><span class="line">  enum EnumAllowingAlias &#123;</span><br><span class="line">    option allow_alias = true;</span><br><span class="line">    UNKNOWN = 0;</span><br><span class="line">    STARTED = 1;</span><br><span class="line">    RUNNING = 1; // It works.</span><br><span class="line">  &#125;</span><br><span class="line">  EnumAllowingAlias enum_allowing_alias = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">MyMessage</span> &#123;</span><br><span class="line">  <span class="keyword">enum </span><span class="title class_">EnumAllowingAlias</span> &#123;</span><br><span class="line">    <span class="keyword">option</span> allow_alias = <span class="literal">true</span>;</span><br><span class="line">    UNKNOWN = <span class="number">0</span>;</span><br><span class="line">    STARTED = <span class="number">1</span>;</span><br><span class="line">    RUNNING = <span class="number">1</span>; <span class="comment">// It works.</span></span><br><span class="line">  &#125;</span><br><span class="line">  EnumAllowingAlias enum_allowing_alias = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例中，<code>STARTED</code> 和 <code>RUNNING</code> 为同一枚举常量的不同别名。</p>
 <h3 id="使用-Message-类型"><a href="#使用-Message-类型" class="headerlink" title="使用 Message 类型"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#other">使用 Message 类型</a></h3><p>为了使消息结构更加清晰，我们可以指定其他 message 类型作为字段类型，实现嵌套。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">message SearchResponse &#123;</span><br><span class="line">  repeated Result results = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Result &#123;</span><br><span class="line">  string url = 1;</span><br><span class="line">  string title = 2;</span><br><span class="line">  repeated string snippets = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchResponse</span> &#123;</span><br><span class="line">  <span class="keyword">repeated</span> Result results = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Result</span> &#123;</span><br><span class="line">  <span class="type">string</span> url = <span class="number">1</span>;</span><br><span class="line">  <span class="type">string</span> title = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">repeated</span> <span class="type">string</span> snippets = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例中定义了两种不同的 message 类型，<code>SearchResponse</code> 和 <code>Result</code>. 其中 <code>SearchResponse</code> 拥有一个 <code>results</code> 字段，其字段类型为 message 类型 <code>Result</code>.</p>
 <h3 id="使用嵌套类型"><a href="#使用嵌套类型" class="headerlink" title="使用嵌套类型"></a><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#nested">使用嵌套类型</a></h3><p>也许您不需要复用一些 message 类型，我们也可以将 message 类型放在 message 当中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">message SearchResponse &#123;</span><br><span class="line">  message Result &#123;</span><br><span class="line">    string url = 1;</span><br><span class="line">    string title = 2;</span><br><span class="line">    repeated string snippets = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  repeated Result results = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchResponse</span> &#123;</span><br><span class="line">  <span class="keyword">message </span><span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="type">string</span> url = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> title = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">repeated</span> <span class="type">string</span> snippets = <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">repeated</span> Result results = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例与前一小段的例子有相同的效果。</p>
 <p>嵌套类型不限定层数，可以根据需要进行深层嵌套。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">message Outer &#123; // Level 0</span><br><span class="line">  message MiddleAA &#123; // Level 1</span><br><span class="line">    message Inner &#123; // Level 2</span><br><span class="line">      int64 ival = 1;</span><br><span class="line">      bool  booly = 2;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  message MiddleBB &#123; // Level 1</span><br><span class="line">    message Inner &#123; // Level 2</span><br><span class="line">      int32 ival = 1;</span><br><span class="line">      bool  booly = 2;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">Outer</span> &#123; <span class="comment">// Level 0</span></span><br><span class="line">  <span class="keyword">message </span><span class="title class_">MiddleAA</span> &#123; <span class="comment">// Level 1</span></span><br><span class="line">    <span class="keyword">message </span><span class="title class_">Inner</span> &#123; <span class="comment">// Level 2</span></span><br><span class="line">      <span class="type">int64</span> ival = <span class="number">1</span>;</span><br><span class="line">      <span class="type">bool</span>  booly = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">message </span><span class="title class_">MiddleBB</span> &#123; <span class="comment">// Level 1</span></span><br><span class="line">    <span class="keyword">message </span><span class="title class_">Inner</span> &#123; <span class="comment">// Level 2</span></span><br><span class="line">      <span class="type">int32</span> ival = <span class="number">1</span>;</span><br><span class="line">      <span class="type">bool</span>  booly = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其中，<code>MiddleAA</code> 中的 <code>Inner</code> 与 <code>MiddleBB</code> 中的 <code>Inner</code> 虽然有相同的字段名，但存储的是不同的内容。</p>
 <h3 id="其它字段类型"><a href="#其它字段类型" class="headerlink" title="其它字段类型"></a>其它字段类型</h3><ul>
@@ -610,7 +610,7 @@
 <li><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3#maps">Maps</a>.</li>
 </ul>
 <h2 id="定义为-RPC-服务"><a href="#定义为-RPC-服务" class="headerlink" title="定义为 RPC 服务"></a>定义为 RPC 服务</h2><p>如果想要将 message 类型用于 RPC 系统，可以在 <code>.proto</code> 文件中定义 RPC 服务接口，编译器将根据使用的语言生成 RPC 服务接口并打桩。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service SearchService &#123;</span><br><span class="line">  rpc Search(SearchRequest) returns (SearchResponse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">SearchService</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">rpc</span> Search(SearchRequest) <span class="keyword">returns</span> (SearchResponse)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上例定义了一个名为 <code>SearchService</code> 的 RPC 服务，其中包含了一个 <code>Search</code> 方法，其参数为 <code>SearchRequest</code> 类型的 message，返回值为 <code>SearchResponse</code> 类型的 message.</p>
 <p>能够与 Protobuf 最直接对接的 RPC 系统是 gRPC，同样由 Google 公司开发的语言无关、平台无关的开源 RPC 系统。如果使用 gRPC，只需要使用一个特殊的 <a target="_blank" rel="noopener" href="https://grpc.io/docs/protoc-installation/">gRPC 插件</a>，就可以根据 <code>.proto</code> 文件里的内容自动生成 RPC 代码。</p>
@@ -1613,26 +1613,6 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="博客开发">
-                <span class="iconfont-archer">&#xe606;</span>
-                博客开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Node">
-                <span class="iconfont-archer">&#xe606;</span>
-                Node
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
-                <span class="iconfont-archer">&#xe606;</span>
-                hexo-theme-archer
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
@@ -1641,6 +1621,11 @@
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Node">
+                <span class="iconfont-archer">&#xe606;</span>
+                Node
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1773,6 +1758,16 @@
                 jsDiliver
             </span>
         
+            <span class="sidebar-tag-name" data-tags="博客开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                博客开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="ES6">
                 <span class="iconfont-archer">&#xe606;</span>
                 ES6
@@ -1828,6 +1823,16 @@
                 Protobuf
             </span>
         
+            <span class="sidebar-tag-name" data-tags="机器学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                机器学习
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PyTorch">
+                <span class="iconfont-archer">&#xe606;</span>
+                PyTorch
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Telegram">
                 <span class="iconfont-archer">&#xe606;</span>
                 Telegram
@@ -1843,16 +1848,6 @@
                 Koa
             </span>
         
-            <span class="sidebar-tag-name" data-tags="机器学习">
-                <span class="iconfont-archer">&#xe606;</span>
-                机器学习
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PyTorch">
-                <span class="iconfont-archer">&#xe606;</span>
-                PyTorch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Sequelize">
                 <span class="iconfont-archer">&#xe606;</span>
                 Sequelize
@@ -1866,6 +1861,11 @@
             <span class="sidebar-tag-name" data-tags="MTProto">
                 <span class="iconfont-archer">&#xe606;</span>
                 MTProto
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="hexo-theme-archer">
+                <span class="iconfont-archer">&#xe606;</span>
+                hexo-theme-archer
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
@@ -1884,14 +1884,14 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="前端开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端开发
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习琐事">
             <span class="iconfont-archer">&#xe60a;</span>
             学习琐事
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端开发
         </span>
     
         <span class="sidebar-category-name" data-categories="后端开发">
