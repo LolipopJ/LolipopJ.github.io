@@ -444,6 +444,68 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2024/05/12/nginx-services/">
+                
+                <span class="abstract-title-text">使用 Nginx 治理我的服务器</span>
+            </a>
+            <div class="abstract-content">
+                <p>这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。</p>
+<p>笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。</p>
+<h2 id="提供静态内容服务"><a href="#提供静态内容服务" class="headerlink" title="提供静态内容服务"></a>提供静态内容服务</h2><blockquote>
+<p>Web 服务器的一个重要任务是提供文件（比如图片或者静态 HTML 页面）服务。</p>
+</blockquote>
+<h3 id="静态站点服务"><a href="#静态站点服务" class="headerlink" title="静态站点服务"></a>静态站点服务</h3><h4 id="部署静态站点"><a href="#部署静态站点" class="headerlink" title="部署静态站点"></a>部署静态站点</h4>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2024/05/12/nginx-services/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2024/05/13">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/05/13</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nginx">Nginx</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/08/12/github-jsdelivr-hold-image/">
                 
                 <span class="abstract-title-text">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</span>
@@ -998,69 +1060,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
-                
-                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
-            </a>
-            <div class="abstract-content">
-                <p>这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。</p>
-<p>Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。</p>
-<blockquote>
-<p>大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。<br>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。<br>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。<br>—— <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
-</blockquote>
-<p>不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如<a target="_blank" rel="noopener" href="https://github.com/srcrs/TiebaSignIn">百度贴吧自动签到</a>（注：已失效。Github 官方会对此类利用服务器实现签到功能的仓库进行封禁打击，还是不要使用了吧）等。</p>
-<h2 id="持续集成与部署-Hexo-博客"><a href="#持续集成与部署-Hexo-博客" class="headerlink" title="持续集成与部署 Hexo 博客"></a>持续集成与部署 Hexo 博客</h2><p>在<a href="/2019/12/26/hello-hexo-world/" title="Hello Hexo World">搭建自己的 Hexo 博客</a>那篇文章的最后，我们使用的是 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">hexo-deployer-git 一键部署到仓库</a>的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/02/18/hexo-github-actions-ci-cd/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/02/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1359,7 +1358,20 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1632,7 +1644,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1650,6 +1662,12 @@
             <div class="archive-year"> 2024 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span>
+            <a class="archive-post-title" href="/2024/05/12/nginx-services/">使用 Nginx 治理我的服务器</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/11</span>
@@ -1991,21 +2009,6 @@
                 Alist
             </span>
         
-            <span class="sidebar-tag-name" data-tags="计算机网络">
-                <span class="iconfont-archer">&#xe606;</span>
-                计算机网络
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络安全">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络安全
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="密码学">
-                <span class="iconfont-archer">&#xe606;</span>
-                密码学
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="resume">
                 <span class="iconfont-archer">&#xe606;</span>
                 resume
@@ -2024,6 +2027,21 @@
             <span class="sidebar-tag-name" data-tags="rxjs">
                 <span class="iconfont-archer">&#xe606;</span>
                 rxjs
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
             </span>
         
             <span class="sidebar-tag-name" data-tags="Remote-Desktop">
@@ -2071,6 +2089,11 @@
                 jsDiliver
             </span>
         
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
@@ -2084,11 +2107,6 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
             </span>
         
             <span class="sidebar-tag-name" data-tags="GCC">
@@ -2109,6 +2127,11 @@
             <span class="sidebar-tag-name" data-tags="gRPC">
                 <span class="iconfont-archer">&#xe606;</span>
                 gRPC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Nginx">
+                <span class="iconfont-archer">&#xe606;</span>
+                Nginx
             </span>
         
             <span class="sidebar-tag-name" data-tags="ESLint">
@@ -2159,11 +2182,6 @@
             <span class="sidebar-tag-name" data-tags="MTProto">
                 <span class="iconfont-archer">&#xe606;</span>
                 MTProto
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Nginx">
-                <span class="iconfont-archer">&#xe606;</span>
-                Nginx
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">

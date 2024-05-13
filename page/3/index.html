@@ -459,6 +459,72 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2021/05/07/js-debounce-throttle/">
+                
+                <span class="abstract-title-text">函数防抖和节流，以及在 Vue 中的运用</span>
+            </a>
+            <div class="abstract-content">
+                <p>在前端性能优化中存在一个老生常谈的问题：如何优化<strong>高频率执行</strong>的 JS 代码？例如：</p>
+<ol>
+<li>我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。</li>
+<li>我们为网页添加了搜索功能，当用户输入搜索关键字后，会自动显示出搜索的结果。但是，用户每次更改输入都立即调用后端进行了搜索，彼时用户可能尚未输入完关键字，亦或是关键字输入错误需要修改。这样搜索出来的结果并非用户希望看到的，同时还降低了前端性能，浪费了大量的服务器资源。</li>
+</ol>
+<p>针对上述列举的问题，我们应该怎么做，才能在优化前端性能的同时不至于影响到用户的体验，便是本文探讨的内容。</p>
+<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><p>函数节流（Throttle），指在触发事件后的一定时间内绑定的函数只能执行一次。</p>
+<p>函数节流的实现思路比较简单，例如使用 <code>setTimeout</code> 方法实现：由于 <code>setTimeout</code> 方法的返回值是一个正整数，表示定时器的编号，所以可以利用闭包的方法维护一个定时器编号。每次触发事件时都通过定时器编号判断当前是否有尚未到期的定时器，如果有则结束，如果没有则启用一个定时器。定时器到期后调用绑定的需要节流的函数，并设置定时器编号为空，表示可以启用一个新的定时器。代码如下：</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/05/07/js-debounce-throttle/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/05/08">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/08</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="前端开发"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                前端开发
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue-2">Vue-2</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2021/04/25/windows-install-grpc/">
                 
                 <span class="abstract-title-text">Windows 系统编译安装基于 C++ 的 gRPC</span>
@@ -1047,71 +1113,6 @@
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/02/20/tg-mtproto-one-click/">
-                
-                <span class="abstract-title-text">一键安装并配置 MTProto Proxy 代理 Telegram</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="Telegram-和-MTProto-是什么"><a href="#Telegram-和-MTProto-是什么" class="headerlink" title="Telegram 和 MTProto 是什么"></a>Telegram 和 MTProto 是什么</h2><p>Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：</p>
-<ul>
-<li>私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。</li>
-<li>安全性。端对端加密，不受审查。</li>
-<li>完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告，“钞能力”还是抵不过越来越多涌入的各国用户。</li>
-</ul>
-<p>当然，在被屏蔽的地域需要翻墙使用。</p>
-<p>MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务器的 Api 接口。</p>
-<h2 id="我们要做什么"><a href="#我们要做什么" class="headerlink" title="我们要做什么"></a>我们要做什么</h2>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/02/20/tg-mtproto-one-click/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/02/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MTProto">MTProto</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1553,7 +1554,20 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1826,7 +1840,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1844,6 +1858,12 @@
             <div class="archive-year"> 2024 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span>
+            <a class="archive-post-title" href="/2024/05/12/nginx-services/">使用 Nginx 治理我的服务器</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/11</span>
@@ -2185,21 +2205,6 @@
                 Alist
             </span>
         
-            <span class="sidebar-tag-name" data-tags="计算机网络">
-                <span class="iconfont-archer">&#xe606;</span>
-                计算机网络
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络安全">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络安全
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="密码学">
-                <span class="iconfont-archer">&#xe606;</span>
-                密码学
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="resume">
                 <span class="iconfont-archer">&#xe606;</span>
                 resume
@@ -2218,6 +2223,21 @@
             <span class="sidebar-tag-name" data-tags="rxjs">
                 <span class="iconfont-archer">&#xe606;</span>
                 rxjs
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
             </span>
         
             <span class="sidebar-tag-name" data-tags="Remote-Desktop">
@@ -2265,6 +2285,11 @@
                 jsDiliver
             </span>
         
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
@@ -2278,11 +2303,6 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
             </span>
         
             <span class="sidebar-tag-name" data-tags="GCC">
@@ -2303,6 +2323,11 @@
             <span class="sidebar-tag-name" data-tags="gRPC">
                 <span class="iconfont-archer">&#xe606;</span>
                 gRPC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Nginx">
+                <span class="iconfont-archer">&#xe606;</span>
+                Nginx
             </span>
         
             <span class="sidebar-tag-name" data-tags="ESLint">
@@ -2353,11 +2378,6 @@
             <span class="sidebar-tag-name" data-tags="MTProto">
                 <span class="iconfont-archer">&#xe606;</span>
                 MTProto
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Nginx">
-                <span class="iconfont-archer">&#xe606;</span>
-                Nginx
             </span>
         
             <span class="sidebar-tag-name" data-tags="Markdown">
