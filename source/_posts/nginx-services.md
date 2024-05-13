@@ -13,6 +13,43 @@ tags:
 
 笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。
 
+## 安装最新版本的 Nginx
+
+笔者使用的服务器为 CentOS 7 系统，默认的 yum 源中包含的 Nginx 版本为 `1.20.1`（2021-05-21）。
+
+更新 yum 源，添加 Nginx 的官方源：
+
+```bash
+rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+```
+
+确认 Nginx 官方源拉取成功：
+
+```bash
+$ yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * centos-sclo-rh: mirrors.ustc.edu.cn
+ * centos-sclo-sclo: mirrors.ustc.edu.cn
+nginx                                                                        | 2.9 kB  00:00:00
+nginx/x86_64/primary_db                                                      |  91 kB  00:00:00
+repo id                            repo name                                                  status
+nginx/x86_64                       nginx repo                                                   338
+```
+
+重新安装 Nginx 即可：
+
+```bash
+yum install nginx
+```
+
+查看当前的 Nginx 版本：
+
+```bash
+$ nginx -v
+nginx version: nginx/1.26.0
+```
+
 ## 提供静态内容服务
 
 > Web 服务器的一个重要任务是提供文件（比如图片或者静态 HTML 页面）服务。
@@ -29,7 +66,9 @@ tags:
 # /etc/nginx/nginx.conf
 http {
   server {
-    listen 443 ssl http2;
+    listen 443 ssl;
+    http2 on;
+
     ssl_certificate /etc/letsencrypt/live/towind.fun/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/towind.fun/privkey.pem;
 
@@ -49,7 +88,9 @@ Nginx 配置中存在大量重复的内容，我们可以将这些内容提取�
 
 ```conf
 # /etc/nginx/conf.shared.d/https.conf
-listen 443 ssl http2;
+listen 443 ssl;
+http2 on;
+
 ssl_certificate /etc/letsencrypt/live/towind.fun/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/towind.fun/privkey.pem;
 ```
@@ -127,8 +168,8 @@ http {
 
 对于原来 1151KB 的脚本文件：
 
-```plaintext
-[root@server dir]# ll --block-size=k
+```bash
+$ ll --block-size=k
 ...
 -rw-r--r-- 1 root root 1151K main.js
 ```
