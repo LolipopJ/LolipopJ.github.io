@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/10/backup-mc-server/upload-to-alist.png">
 <meta property="article:published_time" content="2024-05-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-12T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
 <meta property="article:tag" content="Node">
 <meta property="article:tag" content="JavaScript">
@@ -598,7 +598,7 @@
 
 <p>这样在每次执行脚本时，云盘的系统容量健康也得到了保障。</p>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>稍微润色优化一下备份脚本，执行的输出结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWRT:/path/to/mc-server# node /path/to/backup-mc-server.js</span><br><span class="line">Create dir `/path/to/mc-server/backups` successfully.</span><br><span class="line">Creating backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` ...</span><br><span class="line">Create backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` successfully.</span><br><span class="line">Log in alist successfully.</span><br><span class="line">Start upload task successfully: local file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` ==&gt; alist `/path/to/alist/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz`.</span><br><span class="line"></span><br><span class="line">===========================</span><br><span class="line">Backup file is generated: true</span><br><span class="line">Old backup files are removed: true</span><br><span class="line">Task that upload backup file to alist is started: true</span><br><span class="line">Old backup files in alist are removed: true</span><br><span class="line">===========================</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ node /path/to/backup-mc-server.js</span><br><span class="line">Create <span class="built_in">dir</span> `/path/to/mc-server/backups` successfully.</span><br><span class="line">Creating backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` ...</span><br><span class="line">Create backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` successfully.</span><br><span class="line">Log <span class="keyword">in</span> alist successfully.</span><br><span class="line">Start upload task successfully: <span class="built_in">local</span> file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` ==&gt; alist `/path/to/alist/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz`.</span><br><span class="line"></span><br><span class="line">===========================</span><br><span class="line">Backup file is generated: <span class="literal">true</span></span><br><span class="line">Old backup files are removed: <span class="literal">true</span></span><br><span class="line">Task that upload backup file to alist is started: <span class="literal">true</span></span><br><span class="line">Old backup files <span class="keyword">in</span> alist are removed: <span class="literal">true</span></span><br><span class="line">===========================</span><br></pre></td></tr></table></figure>
 
 <p>啊，满满的安心感！收工。</p>
 
@@ -609,7 +609,7 @@
             <p>原文作者：<a href="https://LolipopJ.github.io">Lolipop</a>
             <p>原文链接：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">https://lolipopj.github.io/2024/05/10/backup-mc-server/</a>
             <p>发表日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 10th 2024, 4:00:00 pm</a>
-            <p>更新日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 10th 2024, 4:00:00 pm</a>
+            <p>更新日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 12th 2024, 4:00:00 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     

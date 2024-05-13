@@ -466,10 +466,9 @@
             <div class="abstract-content">
                 <p>这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。</p>
 <p>笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。</p>
-<h2 id="提供静态内容服务"><a href="#提供静态内容服务" class="headerlink" title="提供静态内容服务"></a>提供静态内容服务</h2><blockquote>
-<p>Web 服务器的一个重要任务是提供文件（比如图片或者静态 HTML 页面）服务。</p>
-</blockquote>
-<h3 id="静态站点服务"><a href="#静态站点服务" class="headerlink" title="静态站点服务"></a>静态站点服务</h3><h4 id="部署静态站点"><a href="#部署静态站点" class="headerlink" title="部署静态站点"></a>部署静态站点</h4>
+<h2 id="安装最新版本的-Nginx"><a href="#安装最新版本的-Nginx" class="headerlink" title="安装最新版本的 Nginx"></a>安装最新版本的 Nginx</h2><p>笔者使用的服务器为 CentOS 7 系统，默认的 yum 源中包含的 Nginx 版本为 <code>1.20.1</code>（2021-05-21）。</p>
+<p>更新 yum 源，添加 Nginx 的官方源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure>
             </div>
             <!-- read more -->
             
@@ -542,7 +541,7 @@
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/11">
+                <div class="abstract-date" title="Last updated: 2024/05/13">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/05/11</span>
                 </div>
                 <!-- tags -->

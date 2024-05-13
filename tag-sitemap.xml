@@ -10,6 +10,20 @@
     </url>
 
     <url>
+        <loc>https://lolipopj.github.io/tags/Alist/</loc>
+        <lastmod>2024-05-12T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://lolipopj.github.io/tags/OpenWRT/</loc>
+        <lastmod>2024-05-12T16:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://lolipopj.github.io/tags/Linux/</loc>
         <lastmod>2024-05-12T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,36 +31,22 @@
     </url>
 
     <url>
-        <loc>https://lolipopj.github.io/tags/Alist/</loc>
-        <lastmod>2024-05-10T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://lolipopj.github.io/tags/OpenWRT/</loc>
-        <lastmod>2024-05-10T16:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://lolipopj.github.io/tags/Minecraft/</loc>
-        <lastmod>2024-05-10T16:00:00.000Z</lastmod>
+        <lastmod>2024-05-12T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://lolipopj.github.io/tags/JavaScript/</loc>
-        <lastmod>2024-05-10T16:00:00.000Z</lastmod>
+        <lastmod>2024-05-12T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://lolipopj.github.io/tags/Node/</loc>
-        <lastmod>2024-05-10T16:00:00.000Z</lastmod>
+        <lastmod>2024-05-12T16:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
