@@ -1,7 +1,7 @@
 ---
 title: 基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端
 date: 2024/5/11
-updated: 2024/5/11
+updated: 2024/5/13
 categories:
   - 后端开发
 tags:
@@ -283,8 +283,8 @@ await fetch(`${ALIST_ADDRESS}/api/fs/remove`, requestOptions);
 
 稍微润色优化一下备份脚本，执行的输出结果如下：
 
-```plaintext
-root@OpenWRT:/path/to/mc-server# node /path/to/backup-mc-server.js
+```bash
+$ node /path/to/backup-mc-server.js
 Create dir `/path/to/mc-server/backups` successfully.
 Creating backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` ...
 Create backup file `/path/to/mc-server/backups/backup-mcserver-2024-05-11-11-10-51.tar.gz` successfully.
