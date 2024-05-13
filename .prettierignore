@@ -2,3 +2,5 @@
 
 node_modules/
 themes/
+
+db.json

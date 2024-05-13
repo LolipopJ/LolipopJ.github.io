@@ -6,7 +6,7 @@
 title: Lolipop
 subtitle: ""
 description: ""
-keywords: coder, frontend, fullstack
+keywords: developer, frontend, 程序员, 前端开发
 author: Lolipop
 language: zh-CN
 timezone: Asia/Shanghai
@@ -49,8 +49,8 @@ marked:
   postAsset: true
 relative_link: false
 future: true
+syntax_highlighter: highlight.js
 highlight:
-  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ""
