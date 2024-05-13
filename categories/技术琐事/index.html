@@ -444,74 +444,6 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2024/05/10/backup-mc-server/">
-                
-                <span class="abstract-title-text">基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端</span>
-            </a>
-            <div class="abstract-content">
-                <p>笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。</p>
-<p>在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。</p>
-<p>完整的脚本<a target="_blank" rel="noopener" href="https://github.com/LolipopJ/LolipopJ.github.io/blob/master/static/scripts/backup-mc-server.js">可见此</a>。</p>
-<h2 id="编写备份脚本"><a href="#编写备份脚本" class="headerlink" title="编写备份脚本"></a>编写备份脚本</h2><h3 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h3><p>为了脚本编写方便，约定应该在 Minecraft 服务器的根目录执行脚本。校验当前脚本的执行目录：</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2024/05/10/backup-mc-server/">
-                        <span style="margin-right: 0.2rem;">阅读全文</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/11">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/05/11</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-        
-        
-            
-        
-        
-        <span class="post-category" data-categories="技术琐事"">
-            <i class="fas fa-folder post-category-icon"></i>
-            <span class="post-category-text">
-                技术琐事
-            </span>
-        </span>
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Minecraft">Minecraft</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="OpenWRT">OpenWRT</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Alist">Alist</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
             <a class="abstract-title" href="/2021/08/12/github-jsdelivr-hold-image/">
                 
                 <span class="abstract-title-text">使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</span>
@@ -1009,24 +941,25 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2021/03/02/nodejs-eslint-prettier/">
+            <a class="abstract-title" href="/2021/02/20/tg-mtproto-one-click/">
                 
-                <span class="abstract-title-text">Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</span>
+                <span class="abstract-title-text">一键安装并配置 MTProto Proxy 代理 Telegram</span>
             </a>
             <div class="abstract-content">
-                <p>哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？</p>
-<p>在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码<strong>质量</strong>问题，还是会在编译器里看到红色波浪线，提醒还有些代码<strong>风格</strong>需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。</p>
-<p>本文基于 Nuxt.js + VSCode 阐述如何配置并实现 ESLint + Prettier 检查并规范代码质量与格式。</p>
-<h2 id="ESLint-与-Prettier"><a href="#ESLint-与-Prettier" class="headerlink" title="ESLint 与 Prettier"></a>ESLint 与 Prettier</h2><p>ESLint 是一个开源的 JavaScript 代码检查工具，Prettier 是一款代码格式工具。它们的功能侧重如下所示：</p>
+                <h2 id="Telegram-和-MTProto-是什么"><a href="#Telegram-和-MTProto-是什么" class="headerlink" title="Telegram 和 MTProto 是什么"></a>Telegram 和 MTProto 是什么</h2><p>Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：</p>
 <ul>
-<li>ESLint：主要负责代码<strong>质量</strong>的校验，其次包含代码<strong>风格</strong>的检验。</li>
-<li>Prettier：主要负责代码<strong>风格</strong>的校验。</li>
+<li>私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。</li>
+<li>安全性。端对端加密，不受审查。</li>
+<li>完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告，“钞能力”还是抵不过越来越多涌入的各国用户。</li>
 </ul>
+<p>当然，在被屏蔽的地域需要翻墙使用。</p>
+<p>MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务器的 Api 接口。</p>
+<h2 id="我们要做什么"><a href="#我们要做什么" class="headerlink" title="我们要做什么"></a>我们要做什么</h2>
             </div>
             <!-- read more -->
             
                 <div class="abstract-read-more-button">
-                    <a href="/2021/03/02/nodejs-eslint-prettier/">
+                    <a href="/2021/02/20/tg-mtproto-one-click/">
                         <span style="margin-right: 0.2rem;">阅读全文</span>
                         <i class="fas fa-angle-right"></i>
                     </a>
@@ -1034,8 +967,8 @@
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/08/07">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/03</span>
+                <div class="abstract-date" title="Last updated: 2021/02/23">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
                 </div>
                 <!-- tags -->
                 
@@ -1054,15 +987,72 @@
         </span>
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Node">Node</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Telegram">Telegram</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Nuxt">Nuxt</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="MTProto">MTProto</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Prettier">Prettier</a>
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="VSCode">VSCode</a>
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2021/02/18/hexo-github-actions-ci-cd/">
+                
+                <span class="abstract-title-text">使用 Github Actions 持续集成与部署 Hexo 博客</span>
+            </a>
+            <div class="abstract-content">
+                <p>这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。</p>
+<p>Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。</p>
+<blockquote>
+<p>大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。<br>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。<br>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。<br>—— <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
+</blockquote>
+<p>不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如<a target="_blank" rel="noopener" href="https://github.com/srcrs/TiebaSignIn">百度贴吧自动签到</a>（注：已失效。Github 官方会对此类利用服务器实现签到功能的仓库进行封禁打击，还是不要使用了吧）等。</p>
+<h2 id="持续集成与部署-Hexo-博客"><a href="#持续集成与部署-Hexo-博客" class="headerlink" title="持续集成与部署 Hexo 博客"></a>持续集成与部署 Hexo 博客</h2><p>在<a href="/2019/12/26/hello-hexo-world/" title="Hello Hexo World">搭建自己的 Hexo 博客</a>那篇文章的最后，我们使用的是 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">hexo-deployer-git 一键部署到仓库</a>的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.</p>
+            </div>
+            <!-- read more -->
+            
+                <div class="abstract-read-more-button">
+                    <a href="/2021/02/18/hexo-github-actions-ci-cd/">
+                        <span style="margin-right: 0.2rem;">阅读全文</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2021/02/19">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/19</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="ESLint">ESLint</a>
+        
+        
+            
+        
+        
+        <span class="post-category" data-categories="技术琐事"">
+            <i class="fas fa-folder post-category-icon"></i>
+            <span class="post-category-text">
+                技术琐事
+            </span>
+        </span>
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hexo">Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Github-actions">Github-actions</a>
     
 </div>
 
@@ -1157,7 +1147,7 @@
         <div class="website-approve">
             
                 <span id="icp-approve" class="icp-approve">
-                    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备 2021015698号</a>
+                    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024076241号</a>
                 </span>
             
             
@@ -1370,6 +1360,8 @@
         
         
     
+        
+        
         
         
         
@@ -1939,24 +1931,14 @@
                 hexo-theme-archer
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="React">
-                <span class="iconfont-archer">&#xe606;</span>
-                React
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="TypeScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                TypeScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="软件体系架构设计">
                 <span class="iconfont-archer">&#xe606;</span>
                 软件体系架构设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue-2">
@@ -1972,6 +1954,16 @@
             <span class="sidebar-tag-name" data-tags="Promise">
                 <span class="iconfont-archer">&#xe606;</span>
                 Promise
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="React">
+                <span class="iconfont-archer">&#xe606;</span>
+                React
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="TypeScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                TypeScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="Ant-Design">
@@ -2079,11 +2071,6 @@
                 jsDiliver
             </span>
         
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
@@ -2097,6 +2084,11 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
             </span>
         
             <span class="sidebar-tag-name" data-tags="GCC">
@@ -2200,14 +2192,14 @@
             学习琐事
         </span>
     
-        <span class="sidebar-category-name" data-categories="技术琐事">
-            <span class="iconfont-archer">&#xe60a;</span>
-            技术琐事
-        </span>
-    
         <span class="sidebar-category-name" data-categories="后端开发">
             <span class="iconfont-archer">&#xe60a;</span>
             后端开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="技术琐事">
+            <span class="iconfont-archer">&#xe60a;</span>
+            技术琐事
         </span>
     
     </div>
