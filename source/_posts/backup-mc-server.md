@@ -3,7 +3,7 @@ title: 基于原生 Node 备份软路由上的 Minecraft 服务器存档，并�
 date: 2024/5/11
 updated: 2024/5/11
 categories:
-  - 技术琐事
+  - 后端开发
 tags:
   - Minecraft
   - Linux

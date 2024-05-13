@@ -91,7 +91,7 @@ services:
 
 在默认情况下，执行此文件后，将会读取 `templates`（对应容器中的 `/etc/nginx/templates`）目录下的模板文件，并将结果输出到容器中 `/etc/nginx/conf.d` 目录下。因此，可以在 `/www/LolipopJ.github.io` 目录下创建 `templates` 目录，并编写 `templates/default.conf.template` 文件如下：
 
-```sh
+```conf
 server {
   listen 443 ssl;
   listen [::]:443 ssl;

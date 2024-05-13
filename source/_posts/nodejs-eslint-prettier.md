@@ -3,7 +3,7 @@ title: Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格�
 date: 2021/3/3
 updated: 2021/8/7
 categories:
-  - 技术琐事
+  - 前端开发
 tags:
   - Node
   - Nuxt

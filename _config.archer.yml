@@ -182,7 +182,7 @@ copyright:
 # Website Approve
 website_approve:
   enable: true
-  icp_approve: 蜀ICP备 2021015698号
+  icp_approve: 蜀ICP备2024076241号
   beian_approve: 51010802001109
   beian_img: /assets/beian.png
 # Blog page article timeliness note
