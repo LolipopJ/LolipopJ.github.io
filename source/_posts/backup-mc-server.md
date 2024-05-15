@@ -1,7 +1,7 @@
 ---
 title: 基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端
 date: 2024/5/11
-updated: 2024/5/13
+updated: 2024/5/15
 categories:
   - 后端开发
 tags:
@@ -74,7 +74,7 @@ const resolvedBackupFiles = BACKUP_FILES.filter((file) => {
 });
 ```
 
-原生 Node 并没有提供打包压缩的方法，为了避免引入其它的依赖，考虑使用软路由自带的 `tar` 命令实现。为此，需要使用到 Node 的 `child_process`：
+原生 Node 并没有提供打包压缩的方法，为了避免引入其它的依赖，考虑使用系统自带的 `tar` 命令实现。为此，需要使用到 Node 的 `child_process`：
 
 ```js
 const child_process = require("child_process");
@@ -82,14 +82,14 @@ const util = require("util");
 const exec = util.promisify(child_process.exec);
 ```
 
-现在，可以通过 `exec()` 来执行软路由上的命令了。可编写文件备份方法如下：
+现在，可以通过 `exec()` 来执行系统上的命令了。可编写文件备份方法如下：
 
 ```js
 const backupFilename = genFilename(); // 省略文件名生成方法...
 await exec(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
 ```
 
-到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到软路由本地了。
+到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到系统本地了。
 
 ### 移除历史备份文件
 
@@ -136,13 +136,38 @@ oldBackupFilenames.forEach((filename) => {
 0 4 * * * cd /path/to/mc-server && node /path/to/backup-mc-server.js
 ```
 
-这样，在每天的凌晨 4 点，软路由系统将自动调用备份脚本。如果彼时仍有用户在游玩，脚本可能会运行失败，可以在执行脚本之前关闭 Minecraft 服务器，完成后重新启动。
+笔者发现定时任务实际执行时间是正午 12 点，而非预期的凌晨 4 点，推测系服务器使用的 UTC 时区导致。
+
+尽管配置了 OpenWRT 的时区为 `Asia/Shanghai`，但仍然不生效：
+
+```bash
+$ date -R
+Wed, 15 May 2024 07:00:00 +0000
+```
+
+笔者通过安装 `zoneinfo-asia` 解决了问题：
+
+```bash
+$ opkg update
+$ opkg install zoneinfo-asia
+Installing zoneinfo-asia (2023c-2) to root...
+Downloading https://mirrors.vsean.net/openwrt/releases/23.05.2/packages/x86_64/packages/zoneinfo-asia_2023c-2_x86_64.ipk
+Installing zoneinfo-core (2023c-2) to root...
+Downloading https://mirrors.vsean.net/openwrt/releases/23.05.2/packages/x86_64/packages/zoneinfo-core_2023c-2_x86_64.ipk
+Configuring zoneinfo-core.
+Configuring zoneinfo-asia.
+$ /etc/init.d/system restart
+$ date -R
+Wed, 15 May 2024 15:00:00 +0800
+```
+
+这样，在北京时间凌晨 4 点，系统将自动调用备份脚本。如果彼时仍有用户在游玩，脚本可能会运行失败，可以在执行脚本之前关闭 Minecraft 服务器，完成后重新启动。
 
 ## （可选）通过 Alist 上传到云端
 
 > 为了这盘醋，包了这顿饺子。
 
-万一软路由的硬盘挂了呢？笔者认为保存在软路由本地丝毫没有安全感，于是决定在备份后即时上传到云端。
+万一硬盘挂了呢？笔者认为保存在软路由本地丝毫没有安全感，于是决定在备份后即时上传到云端。
 
 笔者已经在软路由上安装并配置好了 Alist，连接到了自己的 OneDrive。下面将进一步实现上传备份文件到 OneDrive 或任何其他的云盘。
 
