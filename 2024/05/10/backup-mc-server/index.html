@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/10/backup-mc-server/upload-to-alist.png">
 <meta property="article:published_time" content="2024-05-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-14T16:00:00.000Z">
 <meta property="article:author" content="Lolipop">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Node">
@@ -377,7 +377,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -550,13 +550,13 @@
 <h3 id="生成备份文件"><a href="#生成备份文件" class="headerlink" title="生成备份文件"></a>生成备份文件</h3><p>支持指定备份文件的列表，除了最重要的 <code>world/</code> 以外，还可以备份 <code>server.properties</code>、<code>world_nether/</code> 和 <code>world_the_end/</code> 等文件或目录。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">BACKUP_FILES</span> = [</span><br><span class="line">  <span class="string">&quot;banned-ips.json&quot;</span>,</span><br><span class="line">  <span class="string">&quot;banned-players.json&quot;</span>,</span><br><span class="line">  <span class="string">&quot;config&quot;</span>,</span><br><span class="line">  <span class="string">&quot;ops.json&quot;</span>,</span><br><span class="line">  <span class="string">&quot;server.properties&quot;</span>,</span><br><span class="line">  <span class="string">&quot;whitelist.json&quot;</span>,</span><br><span class="line">  <span class="string">&quot;world&quot;</span>,</span><br><span class="line">  <span class="string">&quot;world_nether&quot;</span>,</span><br><span class="line">  <span class="string">&quot;world_the_end&quot;</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resolvedBackupFiles = <span class="variable constant_">BACKUP_FILES</span>.<span class="title function_">filter</span>(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (fs.<span class="title function_">existsSync</span>(path.<span class="title function_">resolve</span>(cwd, file))) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>原生 Node 并没有提供打包压缩的方法，为了避免引入其它的依赖，考虑使用软路由自带的 <code>tar</code> 命令实现。为此，需要使用到 Node 的 <code>child_process</code>：</p>
+<p>原生 Node 并没有提供打包压缩的方法，为了避免引入其它的依赖，考虑使用系统自带的 <code>tar</code> 命令实现。为此，需要使用到 Node 的 <code>child_process</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child_process = <span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">&quot;util&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> exec = util.<span class="title function_">promisify</span>(child_process.<span class="property">exec</span>);</span><br></pre></td></tr></table></figure>
 
-<p>现在，可以通过 <code>exec()</code> 来执行软路由上的命令了。可编写文件备份方法如下：</p>
+<p>现在，可以通过 <code>exec()</code> 来执行系统上的命令了。可编写文件备份方法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> backupFilename = <span class="title function_">genFilename</span>(); <span class="comment">// 省略文件名生成方法...</span></span><br><span class="line"><span class="keyword">await</span> <span class="title function_">exec</span>(<span class="string">`tar -czvf <span class="subst">$&#123;backupFilename&#125;</span> <span class="subst">$&#123;resolvedBackupFiles.join(<span class="string">&quot; &quot;</span>)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
 
-<p>到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到软路由本地了。</p>
+<p>到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到系统本地了。</p>
 <h3 id="移除历史备份文件"><a href="#移除历史备份文件" class="headerlink" title="移除历史备份文件"></a>移除历史备份文件</h3><p>即使每天执行一次备份任务，长久累积也将占用大量的空间，更何况一个备份的大小已然几百 MB 起步。因此需考虑本地保留的备份文件数量，及时移除历史的备份文件。</p>
 <p>首先需要获取备份目录下已有的备份文件信息：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filenames = fs.<span class="title function_">readdirSync</span>(backupDir);</span><br><span class="line"><span class="keyword">const</span> backupFileList = filenames.<span class="title function_">map</span>(<span class="function">(<span class="params">filename</span>) =&gt;</span></span><br><span class="line">  fs.<span class="title function_">statSync</span>(path.<span class="title function_">resolve</span>(backupDir, filename))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
@@ -571,11 +571,18 @@
 <h2 id="设置定时任务"><a href="#设置定时任务" class="headerlink" title="设置定时任务"></a>设置定时任务</h2><p>基于 <code>crontab</code> 实现定时任务调度，使用 <code>crontab -e</code> 命令编写任务列表：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 4 * * * <span class="built_in">cd</span> /path/to/mc-server &amp;&amp; node /path/to/backup-mc-server.js</span><br></pre></td></tr></table></figure>
 
-<p>这样，在每天的凌晨 4 点，软路由系统将自动调用备份脚本。如果彼时仍有用户在游玩，脚本可能会运行失败，可以在执行脚本之前关闭 Minecraft 服务器，完成后重新启动。</p>
+<p>笔者发现定时任务实际执行时间是正午 12 点，而非预期的凌晨 4 点，推测系服务器使用的 UTC 时区导致。</p>
+<p>尽管配置了 OpenWRT 的时区为 <code>Asia/Shanghai</code>，但仍然不生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">date</span> -R</span><br><span class="line">Wed, 15 May 2024 07:00:00 +0000</span><br></pre></td></tr></table></figure>
+
+<p>笔者通过安装 <code>zoneinfo-asia</code> 解决了问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ opkg update</span><br><span class="line">$ opkg install zoneinfo-asia</span><br><span class="line">Installing zoneinfo-asia (2023c-2) to root...</span><br><span class="line">Downloading https://mirrors.vsean.net/openwrt/releases/23.05.2/packages/x86_64/packages/zoneinfo-asia_2023c-2_x86_64.ipk</span><br><span class="line">Installing zoneinfo-core (2023c-2) to root...</span><br><span class="line">Downloading https://mirrors.vsean.net/openwrt/releases/23.05.2/packages/x86_64/packages/zoneinfo-core_2023c-2_x86_64.ipk</span><br><span class="line">Configuring zoneinfo-core.</span><br><span class="line">Configuring zoneinfo-asia.</span><br><span class="line">$ /etc/init.d/system restart</span><br><span class="line">$ <span class="built_in">date</span> -R</span><br><span class="line">Wed, 15 May 2024 15:00:00 +0800</span><br></pre></td></tr></table></figure>
+
+<p>这样，在北京时间凌晨 4 点，系统将自动调用备份脚本。如果彼时仍有用户在游玩，脚本可能会运行失败，可以在执行脚本之前关闭 Minecraft 服务器，完成后重新启动。</p>
 <h2 id="（可选）通过-Alist-上传到云端"><a href="#（可选）通过-Alist-上传到云端" class="headerlink" title="（可选）通过 Alist 上传到云端"></a>（可选）通过 Alist 上传到云端</h2><blockquote>
 <p>为了这盘醋，包了这顿饺子。</p>
 </blockquote>
-<p>万一软路由的硬盘挂了呢？笔者认为保存在软路由本地丝毫没有安全感，于是决定在备份后即时上传到云端。</p>
+<p>万一硬盘挂了呢？笔者认为保存在软路由本地丝毫没有安全感，于是决定在备份后即时上传到云端。</p>
 <p>笔者已经在软路由上安装并配置好了 Alist，连接到了自己的 OneDrive。下面将进一步实现上传备份文件到 OneDrive 或任何其他的云盘。</p>
 <h3 id="获取-Alist-token"><a href="#获取-Alist-token" class="headerlink" title="获取 Alist token"></a>获取 Alist token</h3><p>调用 Alist 接口时需要传入 token，因此首先需要获取 token：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">ALIST_ADDRESS</span> = <span class="string">&quot;YOUR_ALIST_ADDRESS&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ALIST_USERNAME</span> = <span class="string">&quot;YOUR_ALIST_USERNAME&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ALIST_PASSWORD</span> = <span class="string">&quot;YOUR_ALIST_PASSWORD&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> headers = <span class="keyword">new</span> <span class="title class_">Headers</span>();</span><br><span class="line">headers.<span class="title function_">append</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> raw = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">  <span class="attr">username</span>: <span class="variable constant_">ALIST_USERNAME</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="variable constant_">ALIST_PASSWORD</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestOptions = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  headers,</span><br><span class="line">  <span class="attr">body</span>: raw,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&quot;follow&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;ALIST_ADDRESS&#125;</span>/api/auth/login`</span>, requestOptions);</span><br><span class="line"><span class="keyword">const</span> resText = <span class="keyword">await</span> res.<span class="title function_">text</span>();</span><br><span class="line"><span class="keyword">const</span> resObj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(resText);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> alistToken = resObj.<span class="property">data</span>.<span class="property">token</span>;</span><br></pre></td></tr></table></figure>
@@ -609,7 +616,7 @@
             <p>原文作者：<a href="https://LolipopJ.github.io">Lolipop</a>
             <p>原文链接：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">https://lolipopj.github.io/2024/05/10/backup-mc-server/</a>
             <p>发表日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 10th 2024, 4:00:00 pm</a>
-            <p>更新日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 12th 2024, 4:00:00 pm</a>
+            <p>更新日期：<a href="https://lolipopj.github.io/2024/05/10/backup-mc-server/">May 14th 2024, 4:00:00 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -1272,8 +1279,6 @@
         
         
         
-        
-        
     
     
     
@@ -1630,6 +1635,21 @@
                 Alist
             </span>
         
+            <span class="sidebar-tag-name" data-tags="计算机网络">
+                <span class="iconfont-archer">&#xe606;</span>
+                计算机网络
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络安全">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络安全
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="密码学">
+                <span class="iconfont-archer">&#xe606;</span>
+                密码学
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="resume">
                 <span class="iconfont-archer">&#xe606;</span>
                 resume
@@ -1663,21 +1683,6 @@
             <span class="sidebar-tag-name" data-tags="PostgreSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PostgreSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="计算机网络">
-                <span class="iconfont-archer">&#xe606;</span>
-                计算机网络
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络安全">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络安全
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="密码学">
-                <span class="iconfont-archer">&#xe606;</span>
-                密码学
             </span>
         
             <span class="sidebar-tag-name" data-tags="EditorConfig">
