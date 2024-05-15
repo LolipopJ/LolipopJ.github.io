@@ -49,6 +49,10 @@
 
 当然，这**不是**必须的步骤，您可以根据自己的喜好自行组合模组。
 
+通过微软 OAuth 2.0 验证，登录到您的 Minecraft 账号，启动游戏：
+
+![start-mc-client-genuine](./connect-to-my-mc-server/start-mc-client-genuine.png)
+
 如果没有购入正版，选择以离线的方式启动游戏：
 
 ![start-mc-client](./connect-to-my-mc-server/start-mc-client.png)
