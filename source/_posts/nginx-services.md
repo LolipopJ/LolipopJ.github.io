@@ -1,7 +1,7 @@
 ---
 title: 使用 Nginx 治理我的服务器
 date: 2024/5/13
-updated: 2024/5/13
+updated: 2024/5/15
 categories:
   - 技术琐事
 tags:
@@ -37,7 +37,7 @@ repo id                            repo name                                    
 nginx/x86_64                       nginx repo                                                   338
 ```
 
-重新安装 Nginx 即可：
+重新安装 Nginx：
 
 ```bash
 yum install nginx
@@ -119,13 +119,13 @@ return 301 https://$http_host$request_uri;
 
 #### 静态站点持续部署
 
-由于静态站点的源码均托管在 Github 上，当新的代码提交后，希望能够自动更新服务器上的静态资源内容，因此笔者通过 `crontab` 配置了定时任务，例如：
+由于静态站点的源码均托管在 Github 上，当新的代码提交后，希望能够自动更新服务器上的静态资源内容。笔者通过 `crontab` 配置定时任务来实现这个需求：
 
 ```cron
-0 0,12,18 * * * /path/to/update-blog.sh >> /path/to/update-blog.log 2>&1 &
+0 0,12,18 * * * /path/to/update-blog.sh >> /path/to/update-blog.log 2>&1
 ```
 
-上面的配置表示：在每天的 0, 12, 18 点整自动执行更新博客的脚本，执行的标准输出和错误输出重定向到指定日志文件。
+上面的配置表示：在每天的 0, 12, 18 点整自动执行更新博客的脚本 `/path/to/update-blog.sh`，执行的标准输出和错误输出重定向到指定日志文件 `/path/to/update-blog.log`。
 
 至于更新脚本的实现则颇为简单，如果构建后的静态文件已经存放到了 Github 仓库的某个分支，那么只需要到本地的目录执行 `git pull` 命令即可。例如：
 
@@ -141,7 +141,15 @@ git pull
 # /path/to/update-example.sh
 cd /path/to/example
 git pull
-yarn build
+npm run build
+```
+
+考虑到我们不会在服务器上编写代码并推送，可以使用 HTTPS 协议的远程地址，避免走 SSH 验证：
+
+```bash
+cd /path/to/example
+# Change from git@github.com:username/example.git
+git remote set-url origin https://github.com/username/example.git
 ```
 
 ### 静态站点访问性能优化
@@ -169,16 +177,17 @@ http {
 对于原来 1151KB 的脚本文件：
 
 ```bash
-$ ll --block-size=k
-...
+$ ll --block-size=k | grep main.js
 -rw-r--r-- 1 root root 1151K main.js
 ```
 
-压缩后只有 442KB 大小，减少了大约 62% 的体积：
+压缩后发送给客户端只有 442KB 大小，减少了大约 62% 的体积：
 
 ![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/12/nginx-services/assets-gzip.png)
 
-笔者在启用 `gzip` 压缩之前，访问自己的博客到文章内容显示出来，要等待大约 5 秒钟的时间。说实话，若不是自己家的站点，想必已经不耐烦地点叉叉退出了。如今平均只花 2 秒钟的时间，实在是非常巨大的提升，不再有等待的焦虑了。
+在启用 `gzip` 压缩之前，笔者从访问自己的博客到文章内容显示出来，要等待大约 5 秒钟的时间。说实话，若不是自己家的站点，早已不耐烦地 `ctrl + w` 关闭了。如今只需大约 2 秒钟的时间，给访问体验带来了质的提升。
+
+实际观察 Github Pages 的网络响应就会发现，返回给客户端的脚本或样式等文件也都经过了压缩（`br` 编码），可惜笔者到现在才知道去配置，知识积累的重要性不言而喻。
 
 #### Cache-Control 缓存
 
@@ -283,6 +292,8 @@ http {
 - 在共享内存中设置了一块别名为 `defaultcache`，大小为 10MB 的存储区域，用于存储 key 字符串。有助于 Nginx 快速判断请求是否命中本地的缓存。
 - 缓存文件占用的最大空间为 1GB。达到配额时，Nginx 会自动删除掉使用频率最低的缓存文件。
 
-这样可以有效降低内网服务器（源服务器）的负担。一个命中 Proxy 缓存的例子如下：
+这样可以有效降低内网服务器（源服务器）的负担。
+
+一个命中 Proxy 缓存的例子如下：
 
 ![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/12/nginx-services/proxy-cache-hit.png)
