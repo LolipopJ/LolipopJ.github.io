@@ -67,3 +67,11 @@ layout: about
 ### 文章头图
 
 使用了 [unsplush 接口](https://source.unsplash.com/)，会随机获取 unsplush 上一张关键词为 `developer` 的图片作为文章页的头图。
+
+## 开放服务
+
+我对外开设了如下服务，欢迎来看看：
+
+- Minecraft 服务器
+  - 服务器地址：`mc.towind.fun`
+  - 服务器文档：`https://mc.towind.fun/docs`
