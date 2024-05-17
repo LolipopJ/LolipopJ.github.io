@@ -4,6 +4,10 @@
 
 `mc.towind.fun`
 
+## 服务器地图
+
+访问 `https://mc.towind.fun/map` 查看服务器的世界地图。
+
 ## 服务器版本
 
 - **Minecraft** 1.20.4（2023/12/07）
@@ -60,7 +64,7 @@
 
 > 模组需放置在游戏路径的 `mods` 目录下。
 
-服务器预设模组的选择秉承**不增删游戏内容**的基本原则。未来可能添加大型服务器模组以拓展可玩性。
+服务器预设模组的选择主要依据**流行度 & 关注度**指标。未来可能添加大型服务器模组以拓展可玩性。
 
 ![mods-menu](./connect-to-my-mc-server/mods-menu.png)
 
@@ -68,9 +72,18 @@
 
 ### 模组自动分发
 
-当手动添加此模组后，服务器才会自动分发其它预设模组。
+当手动添加此模组后，服务器才会自动分发其它预设的非服务端模组。
 
 - [Auto Modpack](https://modrinth.com/mod/automodpack/version/1ZPaL1PB) 4.0.0-beta1
+
+### 游戏拓展
+
+- [Tectonic](https://modrinth.com/datapack/tectonic/version/PFg0zBtc) 2.3.4，服务端模组，生成更加真实的世界地形
+
+### 游戏改良
+
+- [Double Doors](https://modrinth.com/mod/double-doors/version/1.20.4-5.8-fabric+forge+neo) 5.8，服务端模组
+- [Nether Portal Fix](https://modrinth.com/mod/netherportalfix/version/15.0.1+fabric-1.20.4) 15.0.1，服务端模组
 
 ### 体验增强
 
@@ -103,10 +116,13 @@
 
 ### 其它模组
 
-- [Bad Packets](https://modrinth.com/mod/badpackets/version/fabric-0.6.1) 0.6.1，模组 WTHIT 的必要依赖
+- [Bad Packets](https://modrinth.com/mod/badpackets/version/fabric-0.6.1) 0.6.1，模组 WTHIT 等的必要依赖
+- [Balm](https://modrinth.com/mod/balm/version/9.0.9+fabric-1.20.4) 9.0.9，模组 Nether Portal Fix 等的必要依赖
 - [Better Ping Display](https://modrinth.com/mod/better-ping-display-fabric/version/1.20.4-1.1.1) 1.1.1
 - [Better Statistics Screen](https://modrinth.com/mod/better-stats/version/3.9.7+fabric-1.20.4) 3.9.7
 - [Chat Heads](https://modrinth.com/mod/chat-heads/version/e4XWJ2pL) 0.12.0
+- [Collective](https://cdn.modrinth.com/data/e0M1UDsY/versions/yXljDige/collective-1.20.4-7.57.jar) 7.57，模组 Double Doors 等的必要依赖
+- [Dynmap](https://modrinth.com/plugin/dynmap/version/fOe507oy) 3.7-beta-4，服务端模组，提供浏览器地图功能
 - [Mod Menu](https://modrinth.com/mod/modmenu/version/9.2.0-beta.2) 9.2.0-beta.2
 
 ## 管理员使用的资源包
