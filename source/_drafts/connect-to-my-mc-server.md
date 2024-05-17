@@ -79,35 +79,39 @@
 ### 游戏拓展
 
 - [Tectonic](https://modrinth.com/datapack/tectonic/version/PFg0zBtc) 2.3.4，服务端模组，生成更加真实的世界地形
+- [YUNG's Bridges](https://modrinth.com/mod/yungs-bridges/version/1.20.4-Fabric-4.4.2) 4.4.2，服务端模组，在世界中自动生成桥梁
 
 ### 游戏改良
 
-- [Double Doors](https://modrinth.com/mod/double-doors/version/1.20.4-5.8-fabric+forge+neo) 5.8，服务端模组
-- [Nether Portal Fix](https://modrinth.com/mod/netherportalfix/version/15.0.1+fabric-1.20.4) 15.0.1，服务端模组
+- [Clumps](https://modrinth.com/mod/clumps/version/jdeTwq6v) 15.0.0.2，聚集经验球到一起
+- [Double Doors](https://modrinth.com/mod/double-doors/version/1.20.4-5.8-fabric+forge+neo) 5.8，服务端模组，打开连在一起的门
+- [Nether Portal Fix](https://modrinth.com/mod/netherportalfix/version/15.0.1+fabric-1.20.4) 15.0.1，服务端模组，修复地狱传送门缺陷
 
 ### 体验增强
 
 - [Apple Skin](https://modrinth.com/mod/appleskin/version/2.5.1+mc1.20.3) 2.5.1
+- [Inventory Profiles Next](https://modrinth.com/mod/inventory-profiles-next/version/fabric-1.20.3-1.10.10) 1.10.10
 - [Journey Map](https://modrinth.com/mod/journeymap/version/1.20.4-5.9.25-fabric) 5.9.25
 - [Just Enough Items](https://modrinth.com/mod/jei/version/17.3.0.52) 17.3.0.52
+- [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks/version/1.20-2.26-fabric) 2.26
 - [WTHIT](https://modrinth.com/mod/wthit/version/fabric-10.6.0) 10.6.0
 
 ### 视觉动画
 
 - [3D Skin Layers](https://modrinth.com/mod/3dskinlayers/version/3a5RPvFY) 1.6.4，不兼容 HD Skins 和 Epic Fight Mod
+- [[EMF] Entity Model Features](https://modrinth.com/mod/entity-model-features/version/FTmtYNdf) 2.0.2
+- [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures/version/5a6694zO) 6.0.1，模组 [EMF] Entity Model Features 等的必要依赖
+- [Fabric Tailor](https://modrinth.com/mod/fabrictailor/version/2.3.1) 2.3.1
 - [Iris Shaders](https://modrinth.com/mod/iris/version/1.7.0+1.20.4) 1.7
 - [Not Enough Animations](https://modrinth.com/mod/not-enough-animations/version/OwhUSOUM) 1.7.3
 
-### 声音沉浸
+### 音效沉浸
 
 - [Sound Physics Remastered](https://modrinth.com/mod/sound-physics-remastered/version/fabric-1.20.4-1.3.1) 1.3.1
 
-### 角色皮肤
-
-- [Fabric Tailor](https://modrinth.com/mod/fabrictailor/version/2.3.1) 2.3.1
-
 ### 性能优化
 
+- [Entity Culling](https://modrinth.com/mod/entityculling/version/7JR5qJ8f) 1.6.4
 - [Ferrite Core](https://modrinth.com/mod/ferrite-core/version/6.0.3-fabric) 6.0.3
 - [Lithium](https://modrinth.com/mod/lithium/version/mc1.20.4-0.12.1) 0.12.1
 - [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix/version/v1.1.5) 1.1.5
@@ -121,9 +125,13 @@
 - [Better Ping Display](https://modrinth.com/mod/better-ping-display-fabric/version/1.20.4-1.1.1) 1.1.1
 - [Better Statistics Screen](https://modrinth.com/mod/better-stats/version/3.9.7+fabric-1.20.4) 3.9.7
 - [Chat Heads](https://modrinth.com/mod/chat-heads/version/e4XWJ2pL) 0.12.0
+- [Cloth Config API](https://modrinth.com/mod/cloth-config/version/13.0.121+fabric) 13.0.121，模组 YUNG's Bridges 等的必要依赖
 - [Collective](https://cdn.modrinth.com/data/e0M1UDsY/versions/yXljDige/collective-1.20.4-7.57.jar) 7.57，模组 Double Doors 等的必要依赖
 - [Dynmap](https://modrinth.com/plugin/dynmap/version/fOe507oy) 3.7-beta-4，服务端模组，提供浏览器地图功能
-- [Mod Menu](https://modrinth.com/mod/modmenu/version/9.2.0-beta.2) 9.2.0-beta.2
+- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin/version/1.10.20+kotlin.1.9.24) 1.10.20+kotlin.1.9.24，模组 Inventory Profiles Next 等的必要依赖
+- [libIPN](https://modrinth.com/mod/libipn/version/fabric-1.20.4-4.0.2) 4.0.2，模组 Inventory Profiles Next 等的必要依赖
+- [Mod Menu](https://modrinth.com/mod/modmenu/version/9.2.0-beta.2) 9.2.0-beta.2，模组 Inventory Profiles Next 等的必要依赖
+- [YUNG's API](https://modrinth.com/mod/yungs-api/version/1.20.4-Fabric-4.4.3) 4.4.3，模组 YUNG's Bridges 等的必要依赖
 
 ## 管理员使用的资源包
 
