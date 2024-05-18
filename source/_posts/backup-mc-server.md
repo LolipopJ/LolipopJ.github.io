@@ -272,7 +272,13 @@ const backupDirFileList = resObj.data.content || [];
 const backupFiles = backupDirFileList
   .filter((file) => !file.is_dir)
   .sort((a, b) => {
-    return b.modified - a.modified;
+    if (a.modified > b.modified) {
+      return -1;
+    } else if (a.modified < b.modified) {
+      return 1;
+    } else {
+      return 0;
+    }
   });
 
 // 由于新的备份文件正在上传中，因此应当保留最新的 BACKUP_MAX_NUM - 1 个备份文件
