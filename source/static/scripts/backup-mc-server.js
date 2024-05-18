@@ -9,6 +9,7 @@ const BACKUP_FILES = [
   "banned-ips.json",
   "banned-players.json",
   "config",
+  "dynmap",
   "journeymap",
   "ops.json",
   "server.properties",
@@ -40,6 +41,14 @@ let IS_OLD_BACKUP_FILES_REMOVED_ALIST = false;
 //#endregion
 
 //#region Backup utils
+const sleep = (millisecond) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, millisecond);
+  });
+};
+
 const isMCServerDir = () => {
   if (fs.existsSync(path.resolve(cwd, "eula.txt"))) {
     return true;
@@ -350,10 +359,13 @@ const backupMCServer = async () => {
 
 (async () => {
   try {
+    // await exec("service mc_server stop");
+    // await sleep(10000);
     await backupMCServer();
   } catch (error) {
     console.error(error);
   } finally {
+    // await exec("service mc_server start");
     printExecutionRes();
   }
 })();
