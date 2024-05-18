@@ -261,7 +261,13 @@ const removeAlistOldBackupFiles = async ({
   const backupFiles = backupDirFileList
     .filter((file) => !file.is_dir && file.name.startsWith(prefix))
     .sort((a, b) => {
-      return b.modified - a.modified;
+      if (a.modified > b.modified) {
+        return -1;
+      } else if (a.modified < b.modified) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   const oldBackupFiles = backupFiles.slice(maxNum);
 

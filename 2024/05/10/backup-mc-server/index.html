@@ -598,7 +598,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headers = <span class="keyword">new</span> <span class="title class_">Headers</span>();</span><br><span class="line">headers.<span class="title function_">append</span>(<span class="string">&quot;Authorization&quot;</span>, alistToken);</span><br><span class="line">headers.<span class="title function_">append</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> raw = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="variable constant_">ALIST_BACKUP_DIR</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestOptions = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  <span class="attr">headers</span>: headers,</span><br><span class="line">  <span class="attr">body</span>: raw,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&quot;follow&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;ALIST_ADDRESS&#125;</span>/api/fs/list`</span>, requestOptions);</span><br><span class="line"><span class="keyword">const</span> resText = <span class="keyword">await</span> res.<span class="title function_">text</span>();</span><br><span class="line"><span class="keyword">const</span> resObj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(resText);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> backupDirFileList = resObj.<span class="property">data</span>.<span class="property">content</span> || [];</span><br></pre></td></tr></table></figure>
 
 <p>获取需要移除的备份文件列表：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> backupFiles = backupDirFileList</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function">(<span class="params">file</span>) =&gt;</span> !file.<span class="property">is_dir</span>)</span><br><span class="line">  .<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b.<span class="property">modified</span> - a.<span class="property">modified</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于新的备份文件正在上传中，因此应当保留最新的 BACKUP_MAX_NUM - 1 个备份文件</span></span><br><span class="line"><span class="keyword">const</span> oldBackupFiles = backupFiles.<span class="title function_">slice</span>(<span class="variable constant_">BACKUP_MAX_NUM</span> - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> oldBackupFilenames = oldBackupFiles.<span class="title function_">map</span>(<span class="function">(<span class="params">file</span>) =&gt;</span> file.<span class="property">name</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> backupFiles = backupDirFileList</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function">(<span class="params">file</span>) =&gt;</span> !file.<span class="property">is_dir</span>)</span><br><span class="line">  .<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.<span class="property">modified</span> &gt; b.<span class="property">modified</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a.<span class="property">modified</span> &lt; b.<span class="property">modified</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于新的备份文件正在上传中，因此应当保留最新的 BACKUP_MAX_NUM - 1 个备份文件</span></span><br><span class="line"><span class="keyword">const</span> oldBackupFiles = backupFiles.<span class="title function_">slice</span>(<span class="variable constant_">BACKUP_MAX_NUM</span> - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> oldBackupFilenames = oldBackupFiles.<span class="title function_">map</span>(<span class="function">(<span class="params">file</span>) =&gt;</span> file.<span class="property">name</span>);</span><br></pre></td></tr></table></figure>
 
 <p>最后，移除这些文件即可：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headers = <span class="keyword">new</span> <span class="title class_">Headers</span>();</span><br><span class="line">headers.<span class="title function_">append</span>(<span class="string">&quot;Authorization&quot;</span>, alistToken);</span><br><span class="line">headers.<span class="title function_">append</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> raw = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">  <span class="attr">names</span>: oldBackupFilenames,</span><br><span class="line">  <span class="attr">dir</span>: <span class="variable constant_">ALIST_BACKUP_DIR</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestOptions = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  <span class="attr">headers</span>: headers,</span><br><span class="line">  <span class="attr">body</span>: raw,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&quot;follow&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;ALIST_ADDRESS&#125;</span>/api/fs/remove`</span>, requestOptions);</span><br></pre></td></tr></table></figure>
@@ -1007,6 +1007,8 @@
         
         
     
+        
+        
         
         
         
@@ -1725,21 +1727,6 @@
                 Hexo
             </span>
         
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="GCC">
-                <span class="iconfont-archer">&#xe606;</span>
-                GCC
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
@@ -1753,6 +1740,21 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="GCC">
+                <span class="iconfont-archer">&#xe606;</span>
+                GCC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
             </span>
         
             <span class="sidebar-tag-name" data-tags="CPP">
