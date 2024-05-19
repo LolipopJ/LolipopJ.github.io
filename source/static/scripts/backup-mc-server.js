@@ -28,7 +28,7 @@ const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
 //#endregion
 
 //#region Global utils
-const exec = util.promisify(child_process.exec);
+const spawn = util.promisify(child_process.spawn);
 const cwd = process.cwd();
 //#endregion
 
@@ -82,7 +82,7 @@ const genFilename = ({ baseDir, prefix }) => {
 
   return path.resolve(
     baseDir,
-    `${prefix}${year}-${month}-${date}-${hours}-${mins}-${secs}.tar.gz`
+    `${prefix}${year}-${month}-${date}-${hours}-${mins}-${secs}.tar.gz`,
   );
 };
 
@@ -96,7 +96,7 @@ const genBackup = async ({ filename, backupFiles = [] }) => {
 
   try {
     console.log(`Creating backup file \`${filename}\` ...`);
-    await exec(`tar -czvf ${filename} ${resolvedBackupFiles.join(" ")}`);
+    await spawn(`tar -czvf ${filename} ${resolvedBackupFiles.join(" ")}`);
     console.log(`Create backup file \`${filename}\` successfully.`);
   } catch (error) {
     throw new Error(`Create backup file \`${filename}\` failed:\n` + error);
@@ -133,7 +133,7 @@ const removeOldBackupFiles = ({ dir, prefix, maxNum }) => {
     console.log(
       `Remove old backup files in \`${dir}\` successfully: ${oldBackupFilenames
         .map((filename) => `\`${filename}\``)
-        .join(", ")}.`
+        .join(", ")}.`,
     );
   } catch (error) {
     throw new Error(`Remove old backup files in \`${dir}\` failed:\n` + error);
@@ -145,13 +145,13 @@ const printExecutionRes = () => {
 
   console.log(
     `Backup file is generated: ${IS_BACKUP_FILE_CREATED}
-Old backup files are removed: ${IS_OLD_BACKUP_FILES_REMOVED}`
+Old backup files are removed: ${IS_OLD_BACKUP_FILES_REMOVED}`,
   );
 
   if (ALIST_ADDRESS && ALIST_BACKUP_DIR && ALIST_USERNAME && ALIST_PASSWORD) {
     console.log(
       `Task that upload backup file to alist is started: ${IS_BACKUP_FILE_UPLOAD_ALIST}
-Old backup files in alist are removed: ${IS_OLD_BACKUP_FILES_REMOVED_ALIST}`
+Old backup files in alist are removed: ${IS_OLD_BACKUP_FILES_REMOVED_ALIST}`,
     );
   }
 
@@ -217,7 +217,7 @@ const updateFileToAlist = async ({
   try {
     await fetch(`${address}/api/fs/put`, requestOptions);
     console.log(
-      `Start upload task successfully: local file \`${filePath}\` ==> alist \`${alistFilePath}\`.`
+      `Start upload task successfully: local file \`${filePath}\` ==> alist \`${alistFilePath}\`.`,
     );
   } catch (error) {
     throw new Error(`Upload file to alist \`${dir}\` failed:\n` + error);
@@ -298,11 +298,11 @@ const removeAlistOldBackupFiles = async ({
     console.log(
       `Remove old backup files in alist \`${dir}\` successfully: ${oldBackupFilenames
         .map((filename) => `\`${filename}\``)
-        .join(", ")}.`
+        .join(", ")}.`,
     );
   } catch (error) {
     throw new Error(
-      `Remove old backup files in alist \`${dir}\` failed:\n` + error
+      `Remove old backup files in alist \`${dir}\` failed:\n` + error,
     );
   }
 };
@@ -311,7 +311,7 @@ const removeAlistOldBackupFiles = async ({
 const backupMCServer = async () => {
   if (!isMCServerDir()) {
     throw new Error(
-      "You should execute this script at root dir of MineCraft server where `eula.txt` exists."
+      "You should execute this script at root dir of MineCraft server where `eula.txt` exists.",
     );
   }
 
@@ -365,13 +365,13 @@ const backupMCServer = async () => {
 
 (async () => {
   try {
-    // await exec("service mc_server stop");
+    // await spawn("service mc_server stop");
     // await sleep(10000);
     await backupMCServer();
   } catch (error) {
     console.error(error);
   } finally {
-    // await exec("service mc_server start");
+    // await spawn("service mc_server start");
     printExecutionRes();
   }
 })();

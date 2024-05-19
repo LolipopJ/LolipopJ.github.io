@@ -29,7 +29,7 @@ tags:
 const cwd = process.cwd();
 if (!fs.existsSync(path.resolve(cwd, "eula.txt"))) {
   throw new Error(
-    "You should execute this script at root dir of MineCraft server where `eula.txt` exists."
+    "You should execute this script at root dir of MineCraft server where `eula.txt` exists.",
   );
 }
 ```
@@ -79,14 +79,14 @@ const resolvedBackupFiles = BACKUP_FILES.filter((file) => {
 ```js
 const child_process = require("child_process");
 const util = require("util");
-const exec = util.promisify(child_process.exec);
+const spawn = util.promisify(child_process.spawn);
 ```
 
-现在，可以通过 `exec()` 来执行系统上的命令了。可编写文件备份方法如下：
+现在，可以通过 `spawn()` 来执行系统上的命令了。可编写文件备份方法如下：
 
 ```js
 const backupFilename = genFilename(); // 省略文件名生成方法...
-await exec(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
+await spawn(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
 ```
 
 到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到系统本地了。
@@ -100,7 +100,7 @@ await exec(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
 ```js
 const filenames = fs.readdirSync(backupDir);
 const backupFileList = filenames.map((filename) =>
-  fs.statSync(path.resolve(backupDir, filename))
+  fs.statSync(path.resolve(backupDir, filename)),
 );
 ```
 
