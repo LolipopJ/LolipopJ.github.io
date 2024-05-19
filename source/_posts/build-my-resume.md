@@ -452,7 +452,7 @@ const fetchServeResponse = () => {
   return new Promise((res, rej) => {
     try {
       const req = http.request(`http://localhost:${port}/`, (response) =>
-        res(response.statusCode)
+        res(response.statusCode),
       );
       req.on("error", (err) => rej(err));
       req.end();
@@ -475,7 +475,7 @@ const waitForServerReady = () => {
         return false;
       }
     }),
-    filter((ok) => !!ok)
+    filter((ok) => !!ok),
   );
 };
 ```
@@ -596,7 +596,7 @@ const exportResume = async function ({ autoFitPdf = true }) {
           body.offsetHeight,
           html.clientHeight,
           html.scrollHeight,
-          html.offsetHeight
+          html.offsetHeight,
         );
 
         // 确保容纳下所有的内容，

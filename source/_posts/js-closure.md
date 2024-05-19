@@ -207,7 +207,7 @@ function getArr() {
           // 返回一个函数
           return n; // 调用函数返回的值为传入的 n 的值
         };
-      })(i)
+      })(i),
     ); // 传入当前的 i 值
   }
   return arr;

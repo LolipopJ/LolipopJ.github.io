@@ -114,7 +114,7 @@ export default () => {
     // 初始化时设置离开页面的时间
     sessionStorage.setItem(
       LEAVE_PAGE_TIMESTAMP,
-      String(new Date().getTime() + LEAVE_PAGE_COUNTDOWN)
+      String(new Date().getTime() + LEAVE_PAGE_COUNTDOWN),
     );
 
     return () => {
@@ -378,7 +378,7 @@ const setTimeoutAsync = (timeout: number) => {
   return new Promise<void>((resolve) =>
     setTimeout(() => {
       resolve();
-    }, timeout)
+    }, timeout),
   );
 };
 

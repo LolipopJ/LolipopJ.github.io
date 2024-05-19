@@ -235,7 +235,7 @@ const generateCollectionIndex = async function () {
         picId: picFile.picId,
         picIndex: picFile.picIndex,
       },
-      picFile
+      picFile,
     );
   }
 
@@ -246,7 +246,7 @@ const generateCollectionIndex = async function () {
     },
     {
       where: { serviceName },
-    }
+    },
   );
   ServiceProcess.increment("haveExecTime", { where: { serviceName } });
 };
@@ -276,14 +276,14 @@ const initService = async function () {
     },
     (error) => {
       console.error(error);
-    }
+    },
   );
   const jobGenerateCollectionIndex = new SimpleIntervalJob(
     {
       seconds: config.generateCollectionIndex.duration,
       runImmediately: true,
     },
-    taskGenerateCollectionIndex
+    taskGenerateCollectionIndex,
   );
 
   const scheduler = new ToadScheduler();
@@ -389,7 +389,7 @@ bot.onText(/\/random_pixiv/, async (msg) => {
     // Send placeholder message
     const placeholderMessage = await bot.sendMessage(
       chatId,
-      `Geeeeting a random Pixiv artwork ...`
+      `Geeeeting a random Pixiv artwork ...`,
     );
 
     const data = res.data;
@@ -450,7 +450,7 @@ bot.onText(/\/random_pixiv/, async (msg) => {
   } else {
     bot.sendMessage(
       chatId,
-      "Get random pixiv artwork failed. You may try to call it again later!"
+      "Get random pixiv artwork failed. You may try to call it again later!",
     );
   }
 });

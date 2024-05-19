@@ -92,7 +92,7 @@ geolocation.getLocation(
   (error) => {
     // 获取位置信息失败
     console.log(error);
-  }
+  },
 );
 ```
 

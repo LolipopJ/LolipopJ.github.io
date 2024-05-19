@@ -79,10 +79,26 @@ tags:
 接下来，修改 Archer 主题 `src/scss/_variables.scss` 文件中的 `$base-font-family` 变量：
 
 ```scss
-$base-font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-  Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei",
-  "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC",
-  "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+$base-font-family:
+  "Noto Sans SC",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Helvetica Neue",
+  Arial,
+  "PingFang SC",
+  "Hiragino Sans GB",
+  STHeiti,
+  "Microsoft YaHei",
+  "Microsoft JhengHei",
+  "Source Han Sans SC",
+  "Noto Sans CJK SC",
+  "Source Han Sans CN",
+  "Noto Sans SC",
+  "Source Han Sans TC",
+  "Noto Sans CJK TC",
+  "WenQuanYi Micro Hei",
+  SimSun,
+  sans-serif;
 ```
 
 如上所示，在 `$base-font-family` 最前面加上 `Noto Sans SC`（或 `Glow Sans SC`）就可以更换字体为思源黑体（或未来黑体）了。浏览器按顺序读取并使用字体，如果前面的字体没有，则依次使用后面的字体。
@@ -117,10 +133,11 @@ yarn add -D font-spider
 @font-face {
   font-family: "Glow Sans SC";
   src: url("../font/GlowSansSC-Normal-Book.eot");
-  src: url("../font/GlowSansSC-Normal-Book.eot?#font-spider") format("embedded-opentype"),
+  src:
+    url("../font/GlowSansSC-Normal-Book.eot?#font-spider") format("embedded-opentype"),
     url("../font/GlowSansSC-Normal-Book.woff2") format("woff2"),
-    url("../font/GlowSansSC-Normal-Book.woff") format("woff"), url("../font/GlowSansSC-Normal-Book.ttf")
-      format("truetype"),
+    url("../font/GlowSansSC-Normal-Book.woff") format("woff"),
+    url("../font/GlowSansSC-Normal-Book.ttf") format("truetype"),
     url("../font/GlowSansSC-Normal-Book.svg") format("svg");
 }
 ```

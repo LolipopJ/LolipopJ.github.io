@@ -225,21 +225,21 @@ const options = {
 };
 const sequelize = new Sequelize(
   `postgres://${pgsqlConfig.user}:${pgsqlConfig.password}@${pgsqlConfig.host}:${pgsqlConfig.port}/${pgsqlConfig.database}`,
-  options
+  options,
 );
 
 (async () => {
   try {
     await sequelize.authenticate();
     console.log(
-      `Connection with ${pgsqlConfig.database} has been established successfully.`
+      `Connection with ${pgsqlConfig.database} has been established successfully.`,
     );
     await sequelize.sync({ alter: true });
     console.log("All models were synchronized successfully.");
   } catch (error) {
     console.error(
       `Unable to connect to the database ${pgsqlConfig.database}:`,
-      error
+      error,
     );
   }
 })();
@@ -367,7 +367,7 @@ const forwardGithubIssueComment = async function () {
 
     // 将 lastUpdateCommentAt 加上 1ms 作为下一次查询的起始日期
     const since = new Date(
-      new Date(lastUpdateCommentDate).getTime() + 1
+      new Date(lastUpdateCommentDate).getTime() + 1,
     ).toISOString();
 
     // 调用 Github API 获取指定 issue 的评论信息
@@ -384,7 +384,7 @@ const forwardGithubIssueComment = async function () {
           since,
           per_page: perPage,
           page,
-        }
+        },
       );
       issueComments = issueComments.concat(res.data);
     }
@@ -449,7 +449,7 @@ if (issueComments.length > 0) {
     },
     {
       where: queryConfig,
-    }
+    },
   );
 }
 ```
@@ -481,14 +481,14 @@ const taskForwardGithubIssueComment = new AsyncTask(
   },
   (error) => {
     console.error(error);
-  }
+  },
 );
 const jobForwardGithubIssueComment = new SimpleIntervalJob(
   {
     seconds: config.github.forwardIssueComment.duration,
     runImmediately: true,
   },
-  taskForwardGithubIssueComment
+  taskForwardGithubIssueComment,
 );
 
 scheduler.addSimpleIntervalJob(jobForwardGithubIssueComment);
