@@ -11,6 +11,7 @@ const BACKUP_FILES = [
   "config",
   "dynmap",
   "journeymap",
+  "mods",
   "ops.json",
   "server.properties",
   "whitelist.json",
@@ -28,8 +29,14 @@ const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
 //#endregion
 
 //#region Global utils
-const spawn = util.promisify(child_process.spawn);
 const cwd = process.cwd();
+const exec = util.promisify(child_process.exec);
+const sleep = (millisecond) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, millisecond);
+  });
 //#endregion
 
 //#region Runtime vars
@@ -41,14 +48,6 @@ let IS_OLD_BACKUP_FILES_REMOVED_ALIST = false;
 //#endregion
 
 //#region Backup utils
-const sleep = (millisecond) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, millisecond);
-  });
-};
-
 const isMCServerDir = () => {
   if (fs.existsSync(path.resolve(cwd, "eula.txt"))) {
     return true;
@@ -96,7 +95,9 @@ const genBackup = async ({ filename, backupFiles = [] }) => {
 
   try {
     console.log(`Creating backup file \`${filename}\` ...`);
-    await spawn(`tar -czvf ${filename} ${resolvedBackupFiles.join(" ")}`);
+    await exec(`tar -czvf ${filename} ${resolvedBackupFiles.join(" ")}`, {
+      maxBuffer: 5 * 1024 * 1024, // Max size (KB) of generated backup file.
+    });
     console.log(`Create backup file \`${filename}\` successfully.`);
   } catch (error) {
     throw new Error(`Create backup file \`${filename}\` failed:\n` + error);
@@ -365,13 +366,13 @@ const backupMCServer = async () => {
 
 (async () => {
   try {
-    // await spawn("service mc_server stop");
+    // await exec("service mc_server stop");
     // await sleep(10000);
     await backupMCServer();
   } catch (error) {
     console.error(error);
   } finally {
-    // await spawn("service mc_server start");
+    // await exec("service mc_server start");
     printExecutionRes();
   }
 })();

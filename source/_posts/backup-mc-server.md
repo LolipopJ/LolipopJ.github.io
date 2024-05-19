@@ -58,6 +58,7 @@ const BACKUP_FILES = [
   "banned-ips.json",
   "banned-players.json",
   "config",
+  "mods",
   "ops.json",
   "server.properties",
   "whitelist.json",
@@ -79,14 +80,16 @@ const resolvedBackupFiles = BACKUP_FILES.filter((file) => {
 ```js
 const child_process = require("child_process");
 const util = require("util");
-const spawn = util.promisify(child_process.spawn);
+const exec = util.promisify(child_process.exec);
 ```
 
-现在，可以通过 `spawn()` 来执行系统上的命令了。可编写文件备份方法如下：
+现在，可以通过 `exec()` 来执行系统上的命令了。可编写文件备份方法如下：
 
 ```js
 const backupFilename = genFilename(); // 省略文件名生成方法...
-await spawn(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
+await exec(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`, {
+  maxBuffer: 5 * 1024 * 1024, // 最大可生成 5GB 的备份文件
+});
 ```
 
 到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到系统本地了。
