@@ -557,7 +557,7 @@
 <p>这种方式的优点是：配置方便。</p>
 <p>但缺点也很明显：慢！尤其对于大多数人建立个人博客时，会使用自己的“小水管”服务器，字体文件要加载老半天才能正常显示出来（包括中文的字体文件大约 9 MB 左右，而下载速度大约为 200 KB&#x2F;s）。此外，由于 Archer 主题在开头处就会引入包含字体配置的 CSS 文件，要留待字体加载完成后才渲染后续内容，极大影响首次浏览体验。</p>
 <h2 id="更换博客字体"><a href="#更换博客字体" class="headerlink" title="更换博客字体"></a>更换博客字体</h2><p>接下来，修改 Archer 主题 <code>src/scss/_variables.scss</code> 文件中的 <code>$base-font-family</code> 变量：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-family</span>: <span class="string">&quot;Noto Sans SC&quot;</span>, -apple-system, BlinkMacSystemFont, <span class="string">&quot;Helvetica Neue&quot;</span>,</span><br><span class="line">  Arial, <span class="string">&quot;PingFang SC&quot;</span>, <span class="string">&quot;Hiragino Sans GB&quot;</span>, STHeiti, <span class="string">&quot;Microsoft YaHei&quot;</span>, <span class="string">&quot;Microsoft JhengHei&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Source Han Sans SC&quot;</span>, <span class="string">&quot;Noto Sans CJK SC&quot;</span>, <span class="string">&quot;Source Han Sans CN&quot;</span>, <span class="string">&quot;Noto Sans SC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Source Han Sans TC&quot;</span>, <span class="string">&quot;Noto Sans CJK TC&quot;</span>, <span class="string">&quot;WenQuanYi Micro Hei&quot;</span>, SimSun, sans-serif;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-family</span>:</span><br><span class="line">  <span class="string">&quot;Noto Sans SC&quot;</span>,</span><br><span class="line">  -apple-system,</span><br><span class="line">  BlinkMacSystemFont,</span><br><span class="line">  <span class="string">&quot;Helvetica Neue&quot;</span>,</span><br><span class="line">  Arial,</span><br><span class="line">  <span class="string">&quot;PingFang SC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Hiragino Sans GB&quot;</span>,</span><br><span class="line">  STHeiti,</span><br><span class="line">  <span class="string">&quot;Microsoft YaHei&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Microsoft JhengHei&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Source Han Sans SC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Noto Sans CJK SC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Source Han Sans CN&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Noto Sans SC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Source Han Sans TC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Noto Sans CJK TC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;WenQuanYi Micro Hei&quot;</span>,</span><br><span class="line">  SimSun,</span><br><span class="line">  sans-serif;</span><br></pre></td></tr></table></figure>
 
 <p>如上所示，在 <code>$base-font-family</code> 最前面加上 <code>Noto Sans SC</code>（或 <code>Glow Sans SC</code>）就可以更换字体为思源黑体（或未来黑体）了。浏览器按顺序读取并使用字体，如果前面的字体没有，则依次使用后面的字体。</p>
 <p>特别的，Archer 主题提供了另一个变量 <code>$feature-font-family</code>，渲染为主题中 Profile，Intro，Footer 等地方的字体，如果希望，也可以更换。</p>
@@ -572,7 +572,7 @@
 
 <p>由于 font-spider 需要使用 <code>.ttf</code> 格式的字体进行转换，因此首先需要把之前下载的 <code>.otf</code> 格式转换为 <code>.ttf</code> 格式，这可以借助于这个<a target="_blank" rel="noopener" href="https://convertio.co/zh/otf-ttf/">格式转换网站</a>。将转换完成后的 <code>GlowSansSC-Normal-Book.ttf</code> 字体文件放在主题目录下的 <code>source/font</code> 中。</p>
 <p>编辑主题目录下的 <code>src/scss/_variables.scss</code> 文件，修改刚刚的样式表属性：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Glow Sans SC&quot;</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.eot&quot;</span>);</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.eot?#font-spider&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;embedded-opentype&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff2&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.woff&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff&quot;</span>), <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.ttf&quot;</span>)</span><br><span class="line">      <span class="built_in">format</span>(<span class="string">&quot;truetype&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.svg&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;svg&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Glow Sans SC&quot;</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.eot&quot;</span>);</span><br><span class="line">  <span class="attribute">src</span>:</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.eot?#font-spider&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;embedded-opentype&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff2&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.woff&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.ttf&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;truetype&quot;</span>),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;../font/GlowSansSC-Normal-Book.svg&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;svg&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在主题根目录执行 <code>yarn build</code> 生成打包好的样式表文件。</p>
 <p>回到博客根目录，编辑 <code>package.json</code>，添加脚本：</p>
@@ -991,8 +991,6 @@
         
         
     
-        
-        
         
         
         
@@ -1711,6 +1709,11 @@
                 Hexo
             </span>
         
+            <span class="sidebar-tag-name" data-tags="ES6">
+                <span class="iconfont-archer">&#xe606;</span>
+                ES6
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Web-Worker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web-Worker
@@ -1724,11 +1727,6 @@
             <span class="sidebar-tag-name" data-tags="Webpack">
                 <span class="iconfont-archer">&#xe606;</span>
                 Webpack
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ES6">
-                <span class="iconfont-archer">&#xe606;</span>
-                ES6
             </span>
         
             <span class="sidebar-tag-name" data-tags="GCC">
