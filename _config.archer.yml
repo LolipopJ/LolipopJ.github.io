@@ -42,7 +42,7 @@ search:
   # Seach URL, must be set. For example: 'fi3ework.github.io'
   url: towind.fun
   # Search engine: 'bing' (default), 'google' or 'baidu'
-  engine: google
+  engine: bing
 # Display icons of friends, about and search
 # You can only use free icons started with 'fab' and 'fas' by default
 # https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=brands,solid&m=free
