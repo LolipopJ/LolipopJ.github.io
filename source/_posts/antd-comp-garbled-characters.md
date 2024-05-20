@@ -12,7 +12,7 @@ tags:
 
 项目中使用了 AntD 4.x 的 `<DatePicker />` 组件，开发环境显示正常，生产环境显示乱码，如下图所示：
 
-![error](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2023/10/08/antd-comp-garbled-characters/error.png)
+![error](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20231008/antd-comp-garbled-characters/error.png)
 
 ## 问题原因
 
@@ -24,7 +24,7 @@ tags:
 
 经排查，发现在访问生产环境时，服务端返回的 HTML 文档设置了编码为 ISO8859-1：
 
-![response-content-type](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2023/10/08/antd-comp-garbled-characters/response-content-type.png)
+![response-content-type](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20231008/antd-comp-garbled-characters/response-content-type.png)
 
 一切便水落石出。
 

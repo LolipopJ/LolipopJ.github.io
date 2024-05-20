@@ -18,10 +18,7 @@ tags:
 ```conf
 # - Connection Settings -
 
-listen_addresses = '*'		# what IP address(es) to listen on;
-					# comma-separated list of addresses;
-					# defaults to 'localhost'; use '*' for all
-					# (change requires restart)
+listen_addresses = '*'  # what IP address(es) to listen on
 ```
 
 ## 配置 `pg_hba.conf`
@@ -61,7 +58,7 @@ host    db_name         db_user         210.41.112.112/32       scram-sha-256
 
 在 Windows 端，PostgreSQL 作为一个服务运行。按 Windows 键，搜索 `service`，进入服务应用，找到 `postgresql-x64-*` 服务，右键重新启动即可。
 
-![重启 PostgreSQL 数据库](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2022/02/11/connect-with-pgsql/restart-pgsql.png)
+![重启 PostgreSQL 数据库](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220211/connect-with-pgsql/restart-pgsql.png)
 
 ## 连接到数据库
 

@@ -198,7 +198,7 @@ $ ll --block-size=k | grep main.js
 
 压缩后发送给客户端只有 442KB 大小，减少了大约 62% 的体积：
 
-![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/12/nginx-services/assets-gzip.png)
+![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240512/nginx-services/assets-gzip.png)
 
 在启用 `gzip` 压缩之前，笔者从访问自己的博客到文章内容显示出来，要等待大约 5 秒钟的时间。说实话，若不是自己家的站点，早已不耐烦地 `ctrl + w` 关闭了。如今只需大约 2 秒钟的时间，给访问体验带来了质的提升。
 
@@ -311,4 +311,4 @@ http {
 
 一个命中 Proxy 缓存的例子如下：
 
-![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/2024/05/12/nginx-services/proxy-cache-hit.png)
+![assets-gzip](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240512/nginx-services/proxy-cache-hit.png)
