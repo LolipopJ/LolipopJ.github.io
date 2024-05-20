@@ -635,13 +635,6 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/Nginx/</loc>
-    <lastmod>2024-05-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.towind.fun/tags/ESLint/</loc>
     <lastmod>2024-05-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -713,6 +706,13 @@
   
   <url>
     <loc>https://blog.towind.fun/tags/hexo-theme-archer/</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/Nginx/</loc>
     <lastmod>2024-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
