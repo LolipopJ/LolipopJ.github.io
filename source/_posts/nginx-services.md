@@ -1,7 +1,7 @@
 ---
 title: 使用 Nginx 治理我的服务器
 date: 2024/5/13
-updated: 2024/5/15
+updated: 2024/5/20
 categories:
   - 技术琐事
 tags:
@@ -78,7 +78,22 @@ http {
 }
 ```
 
-笔者将自己博客的静态资源放置在了 `/var/www/towind.fun/blog` 目录，通过上面的 Nginx 配置，当访问 `https://towind.fun` 时，就能看到笔者的博客啦。
+通过上面的配置，笔者只需要将自己博客的静态资源放置在 `/var/www/towind.fun/blog` 目录，就可以通过 `https://towind.fun` 等域名访问到啦。
+
+当然，笔者不希望有这么多个域名显示完全一样的东西，我们可以配置域名跳转，将请求重定向到一个域名上：
+
+```conf
+# /etc/nginx/nginx.conf
+http {
+  server {
+    # ...https configurations
+    server_name towind.fun www.towind.fun;
+    rewrite ^/(.*)$ https://blog.towind.fun/$1 permanent;
+  }
+}
+```
+
+这样，访问 `https://towind.fun` 和 `https://www.towind.fun` 时，浏览器将自动 301 重定向到 `https://blog.towind.fun`。
 
 #### 抽取通用配置
 
@@ -101,8 +116,8 @@ ssl_certificate_key /etc/letsencrypt/live/towind.fun/privkey.pem;
 # /etc/nginx/nginx.conf
 http {
   server {
-    server_name towind.fun www.towind.fun blog.towind.fun;
     include /etc/nginx/conf.shared.d/https.conf;
+    server_name blog.towind.fun;
   }
 }
 ```
@@ -115,7 +130,7 @@ listen 80;
 return 301 https://$http_host$request_uri;
 ```
 
-像这样抽取出重复的配置，能够有效地降低后续维护成本。
+像这样抽取出不同服务里重复的配置，能够有效地降低后续的维护成本。
 
 #### 静态站点持续部署
 
@@ -144,7 +159,7 @@ git pull
 npm run build
 ```
 
-考虑到我们不会在服务器上编写代码并推送，可以使用 HTTPS 协议的远程地址，避免走 SSH 验证：
+考虑到我们不会在服务器上编写代码并推送，可以使用 HTTPS 协议的远程地址，而不用经过 SSH 验证：
 
 ```bash
 cd /path/to/example
