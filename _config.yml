@@ -5,17 +5,17 @@
 # Site
 title: Lolipop
 subtitle: ""
-description: ""
-keywords: developer, frontend, 程序员, 前端开发
+description: "Personal blog of Lolipop, share knowledge about software / frontend development."
+keywords: developer, frontend, 程序员, 前端
 author: Lolipop
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://LolipopJ.github.io
+url: https://blog.towind.fun
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year:month:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -31,7 +31,6 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - README.md
-  - docker-compose.yml
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -114,11 +113,16 @@ deploy:
   branch: master
 
 # Sitemap
-## Docs: https://github.com/ludoviclefevre/hexo-generator-seo-friendly-sitemap
+## Docs: https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
-  path: sitemap.xml
-  tag: true
-  category: false
+  path:
+    - sitemap.xml
+    - sitemap.txt
+  # template: ./sitemap_template.xml
+  # template_txt: ./sitemap_template.txt
+  rel: true
+  tags: true
+  categories: true
 
 # excerpt
 excerpt:
@@ -127,7 +131,7 @@ excerpt:
   more_excludes: []
   hideWholePostExcerpts: true
 
-# Archer主题侧边栏支持
+# Archer 主题侧边栏支持
 jsonContent:
   meta: true
   pages: false

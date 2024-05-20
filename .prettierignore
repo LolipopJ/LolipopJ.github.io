@@ -3,3 +3,5 @@ node_modules/
 themes/
 
 db.json
+
+source/baidu_verify_codeva-*.html

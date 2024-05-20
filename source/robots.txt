@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /avatar/
+Disallow: /css/
+Disallow: /font/
+Disallow: /intro/
+Disallow: /lib/
+Disallow: /scripts/
+Disallow: /static/
