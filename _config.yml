@@ -155,4 +155,4 @@ jsonContent:
 algolia:
   applicationID: V9YD7AWBOS
   apiKey: 5cb206cb0658a9daff865eef79de4bc4
-  indexName: lolipopJ.github.io
+  indexName: blog.towind.fun
