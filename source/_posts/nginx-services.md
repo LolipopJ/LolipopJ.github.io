@@ -1,7 +1,7 @@
 ---
 title: 使用 Nginx 治理我的服务器
 date: 2024/5/13
-updated: 2024/5/20
+updated: 2024/5/22
 categories:
   - 技术琐事
 tags:
@@ -93,7 +93,22 @@ http {
 }
 ```
 
-这样，访问 `https://towind.fun` 和 `https://www.towind.fun` 时，浏览器将自动 301 重定向到 `https://blog.towind.fun`。
+现在，访问 `https://towind.fun` 和 `https://www.towind.fun` 时，浏览器将自动 301 重定向到 `https://blog.towind.fun`。
+
+此外，笔者为了更好的 SEO，缩短了链接的级数，即从 `/YYYY/MM/DD/blog-title` -> `/YYYYMMDD/blog-title`。那么就需要将过去被搜索引擎收录的链接，重定向到新的链接，避免用户访问到 404 页面。可以编写配置如下：
+
+```conf
+# /etc/nginx/nginx.conf
+http {
+  server {
+    # ...https configurations
+    server_name blog.towind.fun;
+    rewrite "^/(\d{4})/(\d{2})/(\d{2})/(.+)$" /$1$2$3/$4 permanent;
+  }
+}
+```
+
+通过简单的正则匹配即可实现链接重定向。
 
 #### 抽取通用配置
 
