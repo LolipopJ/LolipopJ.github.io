@@ -40,7 +40,7 @@ about:
 search:
   enable: true
   # Seach URL, must be set. For example: 'fi3ework.github.io'
-  url: towind.fun
+  url: blog.towind.fun
   # Search engine: 'bing' (default), 'google' or 'baidu'
   engine: bing
 # Display icons of friends, about and search
