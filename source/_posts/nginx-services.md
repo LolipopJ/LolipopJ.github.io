@@ -1,5 +1,5 @@
 ---
-title: 使用 Nginx 治理我的服务器
+title: 使用 Nginx 治理我的服务
 date: 2024/5/13
 updated: 2024/5/22
 categories:
