@@ -73,5 +73,5 @@ layout: about
 我对外开设了如下服务，欢迎来看看：
 
 - Minecraft 服务器
-  - 服务器地址：`mc.towind.fun`
-  - 服务器文档：`https://mc.towind.fun/docs`
+  - 服务器版本：`1.20.4-Fabric`
+  - 服务器地图：`https://mc.towind.fun/map`
