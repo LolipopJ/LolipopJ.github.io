@@ -1,5 +1,7 @@
 # 连接到 Lolipop 的 Minecraft 服务器
 
+<a href="https://api.mcstatus.io/v2/status/java/mc.towind.fun" target="_blank"><img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun"></a>
+
 ## 服务器版本
 
 - **Minecraft** 1.20.4（2023/12/07）

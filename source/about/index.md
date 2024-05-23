@@ -72,6 +72,9 @@ layout: about
 
 我对外开设了如下服务，欢迎来看看：
 
-- Minecraft 服务器
-  - 服务器版本：`1.20.4-Fabric`
-  - 服务器地图：`https://mc.towind.fun/map`
+### Minecraft 服务器
+
+<a href="https://api.mcstatus.io/v2/status/java/mc.towind.fun" target="_blank"><img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun"></a>
+
+- 服务器版本：`1.20.4-Fabric`
+- 服务器地图：`https://mc.towind.fun/map`
