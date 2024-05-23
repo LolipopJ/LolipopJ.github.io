@@ -425,27 +425,6 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2024-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.towind.fun/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2024-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.towind.fun/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
-    <lastmod>2024-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.towind.fun/tags/Minecraft/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -474,14 +453,21 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/Remote-Desktop/</loc>
+    <loc>https://blog.towind.fun/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/Windows/</loc>
+    <loc>https://blog.towind.fun/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2024-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -510,6 +496,20 @@
   
   <url>
     <loc>https://blog.towind.fun/tags/rxjs/</loc>
+    <lastmod>2024-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/Remote-Desktop/</loc>
+    <lastmod>2024-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/Windows/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -551,20 +551,6 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2024-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.towind.fun/tags/Hexo/</loc>
-    <lastmod>2024-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.towind.fun/tags/Github/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -573,6 +559,20 @@
   
   <url>
     <loc>https://blog.towind.fun/tags/jsDiliver/</loc>
+    <lastmod>2024-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2024-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/Hexo/</loc>
     <lastmod>2024-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
