@@ -1,7 +1,7 @@
 ---
 title: 基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端
 date: 2024/5/11
-updated: 2024/5/19
+updated: 2024/5/23
 categories:
   - 后端开发
 tags:
@@ -87,10 +87,10 @@ const exec = util.promisify(child_process.exec);
 
 ```js
 const backupFilename = genFilename(); // 省略文件名生成方法...
-await exec(`tar -czvf ${backupFilename} ${resolvedBackupFiles.join(" ")}`, {
-  maxBuffer: 5 * 1024 * 1024, // 最大可生成 5GB 的备份文件
-});
+await exec(`tar -czf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
 ```
+
+需注意的是，我们在执行 `tar` 命令时，常传入 `-v` 标识，在屏幕上打印压缩或解压的文件列表（很酷）。但是，在使用 `exec()` 时，子进程会将命令的标准输出或错误一并返回，如果文件数量过多，标准输出超过预设大小，会导致报错：`RangeError [ERR_CHILD_PROCESS_STDIO_MAXBUFFER]: stdout maxBuffer length exceeded`。用 `child_process.spawn()` 可以避免这个问题，但考虑到我们并不在乎压缩命令的执行过程，最好的办法就是去掉 `-v` 标识。
 
 到此为止，已经能够将所需的 Minecraft 服务器存档文件打包压缩，备份到系统本地了。
 

@@ -95,9 +95,7 @@ const genBackup = async ({ filename, backupFiles = [] }) => {
 
   try {
     console.log(`Creating backup file \`${filename}\` ...`);
-    await exec(`tar -czvf ${filename} ${resolvedBackupFiles.join(" ")}`, {
-      maxBuffer: 5 * 1024 * 1024, // Max size (KB) of generated backup file.
-    });
+    await exec(`tar -czf ${filename} ${resolvedBackupFiles.join(" ")}`);
     console.log(`Create backup file \`${filename}\` successfully.`);
   } catch (error) {
     throw new Error(`Create backup file \`${filename}\` failed:\n` + error);
