@@ -207,4 +207,4 @@
 
 ## 服务器备份
 
-服务器将在每天的北京时间凌晨 4 点自动进行备份，您可以在[这里](https://1drv.ms/f/s!AmSmGMDAjYJui_5E5oKTM1iPF7OhhQ?e=Sit0PP)找到最近的七个备份文件。
+服务器将在每天的北京时间凌晨 6 点自动进行备份，您可以在[这里](https://1drv.ms/f/s!AmSmGMDAjYJui_5E5oKTM1iPF7OhhQ?e=Sit0PP)找到最近的七个备份文件。
