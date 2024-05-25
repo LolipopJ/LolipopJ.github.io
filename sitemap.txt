@@ -40,14 +40,14 @@ https://blog.towind.fun/20210218/hexo-github-actions-ci-cd/
 https://blog.towind.fun/20200927/pytorch-install-windows-10/
 https://blog.towind.fun/
 https://blog.towind.fun/tags/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/
-https://blog.towind.fun/tags/React/
-https://blog.towind.fun/tags/TypeScript/
-https://blog.towind.fun/tags/Ant-Design/
 https://blog.towind.fun/tags/JavaScript/
 https://blog.towind.fun/tags/Node/
 https://blog.towind.fun/tags/Vue-2/
 https://blog.towind.fun/tags/Nuxt/
 https://blog.towind.fun/tags/Promise/
+https://blog.towind.fun/tags/React/
+https://blog.towind.fun/tags/TypeScript/
+https://blog.towind.fun/tags/Ant-Design/
 https://blog.towind.fun/tags/Minecraft/
 https://blog.towind.fun/tags/Linux/
 https://blog.towind.fun/tags/OpenWRT/
@@ -86,8 +86,8 @@ https://blog.towind.fun/tags/PyTorch/
 https://blog.towind.fun/tags/Telegram/
 https://blog.towind.fun/tags/Bot/
 https://blog.towind.fun/tags/Koa/
-https://blog.towind.fun/tags/Sequelize/
 https://blog.towind.fun/tags/Travis/
+https://blog.towind.fun/tags/Sequelize/
 https://blog.towind.fun/tags/MTProto/
 https://blog.towind.fun/tags/hexo-theme-archer/
 https://blog.towind.fun/tags/Markdown/
