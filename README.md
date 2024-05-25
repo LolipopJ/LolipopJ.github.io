@@ -10,3 +10,4 @@
 相比原生的 Archer 主题，有如下改动：
 
 - 使用 **#61bfad** 作为主题颜色。
+- 由于博客永久链接升级，访问 `/YYYY/MM/DD/blog-title` 时，自动重定向到 `/YYYYMMDD/blog-title`
