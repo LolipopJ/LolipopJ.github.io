@@ -1,6 +1,5 @@
 import Package from '../../package.json'
 
-import redirect from './redirect'
 import init from './init'
 // import initMobile from './mobile'
 import initTheme from './theme'
@@ -8,8 +7,6 @@ import initImage from './image'
 import initScroll from './scroll'
 import initSidebar from './initSidebar'
 import initDonate from './donate'
-
-redirect()
 
 // print console info
 const logStyle =

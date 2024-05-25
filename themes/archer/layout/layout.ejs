@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="<%- config.language %>">
     <%- partial('_partial/base-head') %>
+    <script>
+        var _prevRouteReg = /^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)$/;
+        var _prevRouteRes = _prevRouteReg.exec(window.location.pathname);
+        if (_prevRouteRes) {
+            window.location.replace(
+                "/".concat(_prevRouteRes[1]).concat(_prevRouteRes[2]).concat(_prevRouteRes[3], "/").concat(_prevRouteRes[4])
+            );
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
