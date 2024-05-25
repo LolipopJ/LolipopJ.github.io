@@ -27,16 +27,9 @@ const initMobile = function () {
 
   function mediaChangeHandler(mql) {
     if (mql.matches) {
-      console.log('mobile')
-      // TODO: why
-      mobilePreventScrollBreakdown()
-      // document.body.addEventListener('touchstart', function () {})
-    } else {
-      console.log('desktop')
+      console.log('Initialize optimizations for mobile device')
     }
   }
-
-  function mobilePreventScrollBreakdown() {}
 }
 
-export { initMobile }
+export default initMobile
