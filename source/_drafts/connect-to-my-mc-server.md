@@ -84,6 +84,8 @@
 
 ### 游戏拓展
 
+- [ChoiceTheorem's Overhauled Village](https://modrinth.com/mod/ct-overhaul-village/version/3.4.3) 3.4.3，服务端模组，添加新的村庄和掠夺者前哨变体
+- [Villager Names](https://modrinth.com/mod/villager-names-serilum/version/1.20.4-7.3-fabric+forge+neo) 7.3，服务端模组，为所有村民添加姓名
 - [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples/version/1.20.4-Fabric-3.4.4) 3.4.4，服务端模组，添加新的沙漠神庙变体 & 新的挑战
 - [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons/version/1.20.4-Fabric-4.4.4) 4.4.4，服务端模组，添加新的地下城变体
 - [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples/version/1.20.4-Fabric-2.4.4) 2.4.4，服务端模组，添加新的丛林神庙变体 & 新的挑战
@@ -102,6 +104,7 @@
 - [Chat Heads](https://modrinth.com/mod/chat-heads/version/e4XWJ2pL) 0.12.0，显示发言人头像
 - [Clumps](https://modrinth.com/mod/clumps/version/jdeTwq6v) 15.0.0.2，聚集经验球到一起
 - [Double Doors](https://modrinth.com/mod/double-doors/version/1.20.4-5.8-fabric+forge+neo) 5.8，服务端模组，打开连在一起的门
+- [Klee Slabs](https://modrinth.com/mod/kleeslabs/version/kBG7QKqK) 16.0.1，服务端模组，正确地破坏注视的半砖
 - [Mod Menu](https://modrinth.com/mod/modmenu/version/9.2.0-beta.2) 9.2.0-beta.2，更好的模组菜单，模组 Inventory Profiles Next 等的必要依赖
 - [Nether Portal Fix](https://modrinth.com/mod/netherportalfix/version/15.0.1+fabric-1.20.4) 15.0.1，服务端模组，修复地狱传送门缺陷
 
@@ -127,10 +130,6 @@
 
 - [Sound Physics Remastered](https://modrinth.com/mod/sound-physics-remastered/version/fabric-1.20.4-1.3.1) 1.3.1
 
-### 开放服务
-
-- [Dynmap](https://modrinth.com/plugin/dynmap/version/fOe507oy) 3.7-beta-4，服务端模组，提供服务器地图在线查看功能
-
 ### 性能优化
 
 - [Entity Culling](https://modrinth.com/mod/entityculling/version/7JR5qJ8f) 1.6.4
@@ -139,6 +138,10 @@
 - [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix/version/v1.1.5) 1.1.5
 - [Sodium](https://modrinth.com/mod/sodium/version/mc1.20.4-0.5.8) 0.5.8
 - [Starlight](https://modrinth.com/mod/starlight/version/1.1.3+1.20.4) 1.1.3
+
+### 开放服务
+
+- [Dynmap](https://modrinth.com/plugin/dynmap/version/fOe507oy) 3.7-beta-4，服务端模组，提供服务器地图在线查看功能
 
 ### 其它模组
 
