@@ -13,30 +13,59 @@ const BACKUP_FILES = [
   "journeymap",
   "mods",
   "ops.json",
+  "server-icon.png",
   "server.properties",
   "whitelist.json",
   "world",
-  "world_nether",
-  "world_the_end",
+  // "world_nether",
+  // "world_the_end",
 ];
 const BACKUP_FILENAME_PREFIX = "backup-mcserver-";
-const BACKUP_MAX_NUM = 7;
+const LOCAL_BACKUP_MAX_NUM = 2;
 
 const ALIST_ADDRESS = ""; // http://192.168.100.1:5244
 const ALIST_USERNAME = "";
 const ALIST_PASSWORD = "";
 const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
+const ALIST_BACKUP_MAX_NUM = 7;
+
+const MAX_RETRY_TIMES = 2;
 //#endregion
 
 //#region Global utils
+const IS_ALIST_ENABLED =
+  ALIST_ADDRESS && ALIST_BACKUP_DIR && ALIST_USERNAME && ALIST_PASSWORD;
+
 const cwd = process.cwd();
 const exec = util.promisify(child_process.exec);
+
 const sleep = (millisecond) =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, millisecond);
   });
+
+const execFunctionWithRetry = async (
+  execFunction,
+  { maxRetryTimes = MAX_RETRY_TIMES, functionLabel = "execute function" },
+) => {
+  let retryTimes = 0;
+  while (retryTimes <= maxRetryTimes) {
+    try {
+      console.info(`Try to ${functionLabel}...`);
+      await execFunction();
+      console.info(`${functionLabel} successfully!`);
+      break;
+    } catch (error) {
+      console.error(`${functionLabel} failed:\n${error}`);
+      retryTimes += 1;
+    }
+  }
+  if (retryTimes > maxRetryTimes) {
+    throw new Error(`${functionLabel} failed: retry too many times`);
+  }
+};
 //#endregion
 
 //#region Runtime vars
@@ -140,21 +169,21 @@ const removeOldBackupFiles = ({ dir, prefix, maxNum }) => {
 };
 
 const printExecutionRes = () => {
-  console.log("\n===========================");
+  console.log("\n==================================");
 
   console.log(
     `Backup file is generated: ${IS_BACKUP_FILE_CREATED}
 Old backup files are removed: ${IS_OLD_BACKUP_FILES_REMOVED}`,
   );
 
-  if (ALIST_ADDRESS && ALIST_BACKUP_DIR && ALIST_USERNAME && ALIST_PASSWORD) {
+  if (IS_ALIST_ENABLED) {
     console.log(
       `Task that upload backup file to alist is started: ${IS_BACKUP_FILE_UPLOAD_ALIST}
 Old backup files in alist are removed: ${IS_OLD_BACKUP_FILES_REMOVED_ALIST}`,
     );
   }
 
-  console.log("===========================\n");
+  console.log("==================================\n");
 };
 //#endregion
 
@@ -187,13 +216,7 @@ const getAlistToken = async ({ address, username, password }) => {
   }
 };
 
-const updateFileToAlist = async ({
-  address,
-  token,
-  dir,
-  filePath,
-  asTask = true,
-}) => {
+const updateFileToAlist = async ({ address, token, dir, filePath, asTask }) => {
   const file = fs.statSync(filePath);
   const filename = path.basename(filePath);
   const alistFilePath = path.resolve(dir, filename);
@@ -230,6 +253,7 @@ const getAlistFileList = async ({ address, token, dir }) => {
 
   const raw = JSON.stringify({
     path: dir,
+    refresh: true,
   });
 
   const requestOptions = {
@@ -323,18 +347,23 @@ const backupMCServer = async () => {
     prefix: BACKUP_FILENAME_PREFIX,
   });
   await genBackup({ filename: backupFilename, backupFiles: BACKUP_FILES });
-  IS_BACKUP_FILE_CREATED = true;
+  //#endregion
+
+  return backupFilename;
+};
+
+const removeLocalMCBackups = () => {
+  const backupDir = path.resolve(cwd, BACKUP_DIR);
 
   removeOldBackupFiles({
     dir: backupDir,
     prefix: BACKUP_FILENAME_PREFIX,
-    maxNum: BACKUP_MAX_NUM,
+    maxNum: LOCAL_BACKUP_MAX_NUM,
   });
-  IS_OLD_BACKUP_FILES_REMOVED = true;
-  //#endregion
+};
 
-  //#region Upload backup file to alist if allowed
-  if (ALIST_ADDRESS && ALIST_BACKUP_DIR && ALIST_USERNAME && ALIST_PASSWORD) {
+const uploadMCBackup = async (backupFilename) => {
+  if (IS_ALIST_ENABLED) {
     const alistToken = await getAlistToken({
       address: ALIST_ADDRESS,
       username: ALIST_USERNAME,
@@ -346,31 +375,69 @@ const backupMCServer = async () => {
       token: alistToken,
       dir: ALIST_BACKUP_DIR,
       filePath: backupFilename,
-      asTask: true, // Upload backup file in background
     });
-    IS_BACKUP_FILE_UPLOAD_ALIST = true;
+  }
+};
+
+const removeRemoteMCBackups = async () => {
+  if (IS_ALIST_ENABLED) {
+    const alistToken = await getAlistToken({
+      address: ALIST_ADDRESS,
+      username: ALIST_USERNAME,
+      password: ALIST_PASSWORD,
+    });
 
     await removeAlistOldBackupFiles({
       address: ALIST_ADDRESS,
       token: alistToken,
       dir: ALIST_BACKUP_DIR,
       prefix: BACKUP_FILENAME_PREFIX,
-      maxNum: BACKUP_MAX_NUM - 1, // Latest backup file is uploading, so we just keep previous BACKUP_MAX_NUM - 1 files
+      maxNum: ALIST_BACKUP_MAX_NUM,
     });
-    IS_OLD_BACKUP_FILES_REMOVED_ALIST = true;
   }
-  //#endregion
 };
 
 (async () => {
+  let backupFilename;
+
   try {
     // await exec("service mc_server stop");
-    // await sleep(10000);
-    await backupMCServer();
+    // await sleep(15000);
+
+    backupFilename = await backupMCServer();
+    IS_BACKUP_FILE_CREATED = true;
+
+    removeLocalMCBackups();
+    IS_OLD_BACKUP_FILES_REMOVED = true;
   } catch (error) {
-    console.error(error);
+    console.error(`Backup Minecraft server failed:\n${error}`);
   } finally {
     // await exec("service mc_server start");
-    printExecutionRes();
   }
+
+  if (IS_ALIST_ENABLED && !!backupFilename) {
+    try {
+      await execFunctionWithRetry(
+        async () => {
+          await uploadMCBackup(backupFilename);
+          IS_BACKUP_FILE_UPLOAD_ALIST = true;
+        },
+        { functionLabel: `upload \`${backupFilename}\` to remote` },
+      );
+
+      await execFunctionWithRetry(
+        async () => {
+          await removeRemoteMCBackups();
+          IS_OLD_BACKUP_FILES_REMOVED_ALIST = true;
+        },
+        {
+          functionLabel: "remove old backups in remote",
+        },
+      );
+    } catch (error) {
+      console.error(`Upload Minecraft server backup failed:\n${error}`);
+    }
+  }
+
+  printExecutionRes();
 })();
