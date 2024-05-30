@@ -30,11 +30,18 @@ const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
 const ALIST_BACKUP_MAX_NUM = 7;
 
 const MAX_RETRY_TIMES = 2;
+
+const SEND_MESSAGE_API = ""; // https://example.com/api/send-message
+const SEND_MESSAGE_AUTH = "";
+const SEND_MESSAGE_CHAT_ID = undefined;
+const SERVER_HOST = "";
 //#endregion
 
 //#region Global utils
 const IS_ALIST_ENABLED =
-  ALIST_ADDRESS && ALIST_BACKUP_DIR && ALIST_USERNAME && ALIST_PASSWORD;
+  !!ALIST_ADDRESS && !!ALIST_BACKUP_DIR && !!ALIST_USERNAME && !!ALIST_PASSWORD;
+const IS_SEND_MESSAGE_ENABLED = !!SEND_MESSAGE_API;
+const SEND_MESSAGE_TITLE = `<b>Minecraft backup${SERVER_HOST ? `: ${SERVER_HOST}` : ""}</b>\n\n`;
 
 const cwd = process.cwd();
 const exec = util.promisify(child_process.exec);
@@ -64,6 +71,28 @@ const execFunctionWithRetry = async (
   }
   if (retryTimes > maxRetryTimes) {
     throw new Error(`${functionLabel} failed: retry too many times`);
+  }
+};
+
+const sendMessageToChat = async (content) => {
+  if (!IS_SEND_MESSAGE_ENABLED) return;
+
+  const headers = new Headers();
+  headers.append("Authorization", SEND_MESSAGE_AUTH);
+  headers.append("Content-Type", "application/json");
+  try {
+    const resp = await fetch(SEND_MESSAGE_API, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        content: SEND_MESSAGE_TITLE + content,
+        chatId: SEND_MESSAGE_CHAT_ID,
+      }),
+      redirect: "follow",
+    });
+    console.log(`Send message to chat successfully: ${await resp.text()}`);
+  } catch (error) {
+    console.log(`Send message to chat failed: ${error}`);
   }
 };
 //#endregion
@@ -402,17 +431,24 @@ const removeRemoteMCBackups = async () => {
 
   try {
     // await exec("service mc_server stop");
+    // await sendMessageToChat("Server is stopped.");
     // await sleep(15000);
 
     backupFilename = await backupMCServer();
     IS_BACKUP_FILE_CREATED = true;
+    // await sendMessageToChat(
+    //   `Local backup file <code>${backupFilename}</code> is generated.`,
+    // );
 
     removeLocalMCBackups();
     IS_OLD_BACKUP_FILES_REMOVED = true;
+    // await sendMessageToChat("Legacy local backup files are removed.");
   } catch (error) {
-    console.error(`Backup Minecraft server failed:\n${error}`);
+    console.error(`Resolve backup files in local failed: ${error}`);
+    // await sendMessageToChat(`Resolve backup files in local failed: ${error}`);
   } finally {
     // await exec("service mc_server start");
+    // await sendMessageToChat("Server is started.");
   }
 
   if (IS_ALIST_ENABLED && !!backupFilename) {
@@ -421,21 +457,26 @@ const removeRemoteMCBackups = async () => {
         async () => {
           await uploadMCBackup(backupFilename);
           IS_BACKUP_FILE_UPLOAD_ALIST = true;
+          // await sendMessageToChat(
+          //   `Upload backup file <code>${backupFilename}</code> to AList successfully!`,
+          // );
         },
-        { functionLabel: `upload \`${backupFilename}\` to remote` },
+        { functionLabel: `upload \`${backupFilename}\` to AList` },
       );
 
       await execFunctionWithRetry(
         async () => {
           await removeRemoteMCBackups();
           IS_OLD_BACKUP_FILES_REMOVED_ALIST = true;
+          // await sendMessageToChat("Legacy AList backup files are removed.");
         },
         {
-          functionLabel: "remove old backups in remote",
+          functionLabel: "remove old backups in AList",
         },
       );
     } catch (error) {
-      console.error(`Upload Minecraft server backup failed:\n${error}`);
+      console.error(`Resolve backup files in AList failed: ${error}`);
+      // await sendMessageToChat(`Resolve backup files in AList failed: ${error}`);
     }
   }
 
