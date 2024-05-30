@@ -80,7 +80,7 @@ const sendMessageToChat = async (content) => {
   headers.append("Authorization", SEND_MESSAGE_AUTH);
   headers.append("Content-Type", "application/json");
   try {
-    const resp = await fetch(SEND_MESSAGE_API, {
+    const res = await fetch(SEND_MESSAGE_API, {
       method: "POST",
       headers,
       body: JSON.stringify({
@@ -89,7 +89,9 @@ const sendMessageToChat = async (content) => {
       }),
       redirect: "follow",
     });
-    console.log(`Send message to chat successfully: ${await resp.text()}`);
+    const resText = await res.text();
+    if (res.status !== 200) throw new Error(resText);
+    console.log(`Send message to chat successfully: ${resText}`);
   } catch (error) {
     console.log(`Send message to chat failed: ${error}`);
   }
@@ -235,6 +237,7 @@ const getAlistToken = async ({ address, username, password }) => {
   try {
     const res = await fetch(`${address}/api/auth/login`, requestOptions);
     const resText = await res.text();
+    if (res.status !== 200) throw new Error(resText);
     const resObj = JSON.parse(resText);
 
     console.log("Log in alist successfully.");
@@ -265,7 +268,9 @@ const updateFileToAlist = async ({ address, token, dir, filePath, asTask }) => {
   };
 
   try {
-    await fetch(`${address}/api/fs/put`, requestOptions);
+    const res = await fetch(`${address}/api/fs/put`, requestOptions);
+    const resText = await res.text();
+    if (res.status !== 200) throw new Error(resText);
     console.log(
       `Start upload task successfully: local file \`${filePath}\` ==> alist \`${alistFilePath}\`.`,
     );
@@ -294,6 +299,7 @@ const getAlistFileList = async ({ address, token, dir }) => {
   try {
     const res = await fetch(`${address}/api/fs/list`, requestOptions);
     const resText = await res.text();
+    if (res.status !== 200) throw new Error(resText);
     const resObj = JSON.parse(resText);
     return resObj.data.content || [];
   } catch (error) {
@@ -345,7 +351,9 @@ const removeAlistOldBackupFiles = async ({
   };
 
   try {
-    await fetch(`${address}/api/fs/remove`, requestOptions);
+    const res = await fetch(`${address}/api/fs/remove`, requestOptions);
+    const resText = await res.text();
+    if (res.status !== 200) throw new Error(resText);
     console.log(
       `Remove old backup files in alist \`${dir}\` successfully: ${oldBackupFilenames
         .map((filename) => `\`${filename}\``)
@@ -431,13 +439,13 @@ const removeRemoteMCBackups = async () => {
   try {
     // await exec("service mc_server stop");
     // await sendMessageToChat("Server is stopped.");
-    // await sleep(15000);
+    // await sleep(10000);
 
     backupFilename = await backupMCServer();
     IS_BACKUP_FILE_CREATED = true;
-    await sendMessageToChat(
-      `Local backup file <code>${backupFilename}</code> is generated.`,
-    );
+    // await sendMessageToChat(
+    //   `Local backup file <code>${backupFilename}</code> is generated.`,
+    // );
 
     removeLocalMCBackups();
     IS_OLD_BACKUP_FILES_REMOVED = true;
