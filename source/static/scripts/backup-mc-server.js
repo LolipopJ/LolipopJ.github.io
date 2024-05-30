@@ -4,37 +4,36 @@ const util = require("util");
 const child_process = require("child_process");
 
 //#region Env
-const BACKUP_DIR = "backups";
-const BACKUP_FILES = [
-  "banned-ips.json",
-  "banned-players.json",
-  "config",
-  "dynmap",
-  "journeymap",
-  "mods",
-  "ops.json",
-  "server-icon.png",
-  "server.properties",
-  "whitelist.json",
-  "world",
-  // "world_nether",
-  // "world_the_end",
-];
-const BACKUP_FILENAME_PREFIX = "backup-mcserver-";
-const LOCAL_BACKUP_MAX_NUM = 2;
-
-const ALIST_ADDRESS = ""; // http://192.168.100.1:5244
-const ALIST_USERNAME = "";
-const ALIST_PASSWORD = "";
-const ALIST_BACKUP_DIR = ""; // /path/to/backups-dir
-const ALIST_BACKUP_MAX_NUM = 7;
-
-const MAX_RETRY_TIMES = 2;
-
-const SEND_MESSAGE_API = ""; // https://example.com/api/send-message
-const SEND_MESSAGE_AUTH = "";
-const SEND_MESSAGE_CHAT_ID = undefined;
-const SERVER_HOST = "";
+const {
+  BACKUP_DIR = "backups",
+  BACKUP_FILES = [
+    "banned-ips.json",
+    "banned-players.json",
+    "config",
+    "dynmap",
+    "journeymap",
+    "mods",
+    "ops.json",
+    "server-icon.png",
+    "server.properties",
+    "whitelist.json",
+    "world",
+    // "world_nether",
+    // "world_the_end",
+  ],
+  BACKUP_FILENAME_PREFIX = "backup-mcserver-",
+  LOCAL_BACKUP_MAX_NUM = 2,
+  ALIST_ADDRESS,
+  ALIST_USERNAME,
+  ALIST_PASSWORD,
+  ALIST_BACKUP_DIR,
+  ALIST_BACKUP_MAX_NUM = 7,
+  MAX_RETRY_TIMES = 2,
+  SEND_MESSAGE_API,
+  SEND_MESSAGE_AUTH,
+  SEND_MESSAGE_CHAT_ID,
+  SERVER_HOST,
+} = require("./backup-mc-server.env");
 //#endregion
 
 //#region Global utils
@@ -436,16 +435,16 @@ const removeRemoteMCBackups = async () => {
 
     backupFilename = await backupMCServer();
     IS_BACKUP_FILE_CREATED = true;
-    // await sendMessageToChat(
-    //   `Local backup file <code>${backupFilename}</code> is generated.`,
-    // );
+    await sendMessageToChat(
+      `Local backup file <code>${backupFilename}</code> is generated.`,
+    );
 
     removeLocalMCBackups();
     IS_OLD_BACKUP_FILES_REMOVED = true;
     // await sendMessageToChat("Legacy local backup files are removed.");
   } catch (error) {
     console.error(`Resolve backup files in local failed: ${error}`);
-    // await sendMessageToChat(`Resolve backup files in local failed: ${error}`);
+    await sendMessageToChat(`Resolve backup files in local failed: ${error}`);
   } finally {
     // await exec("service mc_server start");
     // await sendMessageToChat("Server is started.");
@@ -457,9 +456,9 @@ const removeRemoteMCBackups = async () => {
         async () => {
           await uploadMCBackup(backupFilename);
           IS_BACKUP_FILE_UPLOAD_ALIST = true;
-          // await sendMessageToChat(
-          //   `Upload backup file <code>${backupFilename}</code> to AList successfully!`,
-          // );
+          await sendMessageToChat(
+            `Upload backup file <code>${backupFilename}</code> to AList successfully!`,
+          );
         },
         { functionLabel: `upload \`${backupFilename}\` to AList` },
       );
@@ -476,7 +475,7 @@ const removeRemoteMCBackups = async () => {
       );
     } catch (error) {
       console.error(`Resolve backup files in AList failed: ${error}`);
-      // await sendMessageToChat(`Resolve backup files in AList failed: ${error}`);
+      await sendMessageToChat(`Resolve backup files in AList failed: ${error}`);
     }
   }
 
