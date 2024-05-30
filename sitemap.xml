@@ -525,20 +525,6 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/PostgreSQL/</loc>
-    <lastmod>2024-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.towind.fun/tags/MySQL/</loc>
-    <lastmod>2024-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.towind.fun/tags/EditorConfig/</loc>
     <lastmod>2024-05-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -554,6 +540,20 @@
   
   <url>
     <loc>https://blog.towind.fun/tags/VSCode/</loc>
+    <lastmod>2024-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/PostgreSQL/</loc>
+    <lastmod>2024-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/MySQL/</loc>
     <lastmod>2024-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -630,7 +630,14 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/ESLint/</loc>
+    <loc>https://blog.towind.fun/tags/CPP/</loc>
+    <lastmod>2024-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.towind.fun/tags/gRPC/</loc>
     <lastmod>2024-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -644,7 +651,7 @@
   </url>
   
   <url>
-    <loc>https://blog.towind.fun/tags/gRPC/</loc>
+    <loc>https://blog.towind.fun/tags/ESLint/</loc>
     <lastmod>2024-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -708,13 +715,6 @@
   
   <url>
     <loc>https://blog.towind.fun/tags/MTProto/</loc>
-    <lastmod>2024-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.towind.fun/tags/CPP/</loc>
     <lastmod>2024-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
