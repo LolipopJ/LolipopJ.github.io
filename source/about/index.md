@@ -76,7 +76,13 @@ layout: about
 
 ### Minecraft 服务器
 
-<a href="https://api.mcstatus.io/v2/status/java/mc.towind.fun" target="_blank"><img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun"></a>
+<img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun">
 
 - 服务器版本：`1.20.4-Fabric`
-- 服务器地图：`https://mc.towind.fun/map`
+- 服务器地图：<https://mc.towind.fun/map>
+
+### 随机图片
+
+从我的收藏中随机抽取一张图片。
+
+- <https://api.towind.fun/alist/random-img>
