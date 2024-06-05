@@ -33,23 +33,25 @@ layout: about
 主要活跃的游戏平台：
 
 - [Steam](https://steamcommunity.com/id/lolipopj_703)
-- [PSN](https://psnine.com/psnid/knkdaisy)
+- [PlayStation](https://psnine.com/psnid/knkdaisy)
+- Nintendo
+- [Xbox](https://account.xbox.com/profile?gamertag=Lolipop703)
 
 现在尚在游玩的网游和手游有：
 
 - 英雄联盟
 - 最终幻想 14（国际服）
 - 蔚蓝档案（国际服）
-- NIKKE：胜利女神（日服）
 - 元梦之星
 
 曾玩了很久但如今已退坑的网游和手游有：
 
 - 天龙八部
+- NIKKE：胜利女神（日服）
 - 公主连结 Re:Dive（台服）
 - 明日方舟
 
-另外特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，现在看起来予我满满的成就感。
+曾特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，现在予我满满的成就感。
 
 ## 关于博客
 
