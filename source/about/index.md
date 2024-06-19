@@ -28,19 +28,25 @@ layout: about
 
 ### 游戏玩家
 
+<img alt="Exophase Game Card" src="https://card.exophase.com/2/0/264160.png" width="440" style="margin: 0 0 1rem; float: right; clear: both; border-radius: 2px;">
+
+<img alt="PlayStation Trophy Card" src="https://card.psnprofiles.com/1/KNKDaisy.png" width="440" style="margin: 0 0 1rem; float: right; clear: both; border-radius: 2px;">
+
+<img alt="Blue Archive Card" src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/about/blue-archive-card.jpg" width="440" style="margin: 0 0 1rem; float: right; clear: both; border-radius: 2px;">
+
 玩着一个个游戏，度过一天天生活。
 
 主要活跃的游戏平台：
 
 - [Steam](https://steamcommunity.com/id/lolipopj_703)
-- [PlayStation](https://psnine.com/psnid/knkdaisy)
-- Nintendo
-- [Xbox](https://account.xbox.com/profile?gamertag=Lolipop703)
+- [PlayStation](https://www.exophase.com/psn/user/KNKDaisy)
+- [Nintendo](https://www.exophase.com/nintendo/user/ff7e9abe3e49da78)
+- [Xbox](https://www.exophase.com/xbox/user/Lolipop703)
 
 现在尚在游玩的网游和手游有：
 
-- 英雄联盟
-- 最终幻想 14（国际服）
+- 英雄联盟（国服 | [日服](https://www.op.gg/summoners/jp/%E5%A4%A9%E7%AB%A5%E6%84%9B%E9%BA%97%E7%B5%B2-85745)）
+- 最终幻想 XIV（Gaia - Bahamut）
 - 蔚蓝档案（国际服）
 - 元梦之星
 
@@ -51,7 +57,7 @@ layout: about
 - 公主连结 Re:Dive（台服）
 - 明日方舟
 
-曾特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，现在予我满满的成就感。
+特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，予我满满的成就感。
 
 ## 关于博客
 
@@ -76,7 +82,7 @@ layout: about
 
 ### Minecraft 服务器
 
-<img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun">
+<img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun" width="300" style="margin: 0; float: right; clear: both; border-radius: 2px;">
 
 - 服务器版本：`1.20.4-Fabric`
 - 服务器地图：<https://mc.towind.fun/map>
