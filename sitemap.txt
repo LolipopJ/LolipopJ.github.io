@@ -61,6 +61,7 @@ https://blog.towind.fun/tags/Github-actions/
 https://blog.towind.fun/tags/rxjs/
 https://blog.towind.fun/tags/Remote-Desktop/
 https://blog.towind.fun/tags/Windows/
+https://blog.towind.fun/tags/PostgreSQL/
 https://blog.towind.fun/tags/EditorConfig/
 https://blog.towind.fun/tags/Prettier/
 https://blog.towind.fun/tags/VSCode/
@@ -69,7 +70,6 @@ https://blog.towind.fun/tags/Github/
 https://blog.towind.fun/tags/jsDiliver/
 https://blog.towind.fun/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%8F%91/
 https://blog.towind.fun/tags/Hexo/
-https://blog.towind.fun/tags/PostgreSQL/
 https://blog.towind.fun/tags/ES6/
 https://blog.towind.fun/tags/Web-Worker/
 https://blog.towind.fun/tags/Umi/
@@ -81,14 +81,14 @@ https://blog.towind.fun/tags/gRPC/
 https://blog.towind.fun/tags/Nginx/
 https://blog.towind.fun/tags/ESLint/
 https://blog.towind.fun/tags/Protobuf/
+https://blog.towind.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
+https://blog.towind.fun/tags/PyTorch/
 https://blog.towind.fun/tags/Telegram/
 https://blog.towind.fun/tags/Bot/
 https://blog.towind.fun/tags/Koa/
 https://blog.towind.fun/tags/Sequelize/
 https://blog.towind.fun/tags/Travis/
 https://blog.towind.fun/tags/MTProto/
-https://blog.towind.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
-https://blog.towind.fun/tags/PyTorch/
 https://blog.towind.fun/tags/hexo-theme-archer/
 https://blog.towind.fun/tags/Markdown/
 https://blog.towind.fun/categories/%E5%AD%A6%E4%B9%A0%E7%90%90%E4%BA%8B/
