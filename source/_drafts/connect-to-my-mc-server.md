@@ -16,13 +16,13 @@
 
 ## 服务器地图
 
-`https://mc.towind.fun/map`
+<https://mc.towind.fun/map>
 
 ## 派大星都能看懂的加入服务器步骤
 
 ### 安装 Plain Craft Launcher
 
-访问 `https://download.towind.fun/PCL2-2.7.1.zip` 或者[爱发电](https://afdian.net/p/0164034c016c11ebafcb52540025c377)下载 Plain Craft Launcher 2，解压到任意目录，打开。
+访问 <https://download.towind.fun/PCL2-2.7.1.zip> 或者[爱发电](https://afdian.net/p/0164034c016c11ebafcb52540025c377)下载 Plain Craft Launcher 2，解压到任意目录，打开。
 
 下载与[服务器版本](#服务器版本)相对应的 MC 客户端，如下图所示：
 
