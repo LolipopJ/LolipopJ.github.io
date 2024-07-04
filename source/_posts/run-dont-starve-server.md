@@ -143,10 +143,10 @@ mkdir /home/steam/scripts
 
 # 更新饥荒联机版
 cd /home/steam
-./steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +force_install_dir ./steamapps/DST +login anonymous +app_update 343050 validate +quit
+./steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +force_install_dir /home/steam/steamapps/DST +login anonymous +app_update 343050 validate +quit
 
 # 更新已安装的模组
-cd ./steamapps/DST/bin
+cd /home/steam/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -only_update_server_mods
 ```
 
@@ -193,7 +193,7 @@ screen -dmS dst_caves ./dontstarve_dedicated_server_nullrenderer -cluster Custom
 [00:00:05]: to generate server configuration files
 ```
 
-这意味着我们最后还需要配置 Auth Token 等，使得服务器能正确地注册并被联机用户发现。
+这意味着我们最后还需要配置 Auth Token 等信息，使得服务器能正确地注册并被联机用户发现。
 
 ## 正式启动饥荒联机版服务器
 
