@@ -1,7 +1,7 @@
 ---
 title: 基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器
 date: 2024/7/2
-updated: 2024/7/2
+updated: 2024/7/4
 categories:
   - 技术琐事
 tags:
@@ -60,16 +60,16 @@ curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.g
 
 耐心等待更新文件下载、安装完毕……
 
-## 安装饥荒联机版服务器
+## 安装饥荒联机版
 
-安装饥荒联机版服务器运行的必要依赖：
+安装饥荒联机版运行的必要依赖：
 
 ```bash
 yum -y install libcurl.i686
 ln -s /usr/lib/libcurl.so.4 /usr/lib/libcurl-gnutls.so.4
 ```
 
-设置饥荒联机版服务器安装目录：
+设置饥荒联机版安装目录：
 
 ```bash
 Steam> force_install_dir /home/steam/steamapps/DST
@@ -81,15 +81,16 @@ Steam> force_install_dir /home/steam/steamapps/DST
 Steam> login anonymous
 ```
 
-安装饥荒联机版服务器：
+安装饥荒联机版：
 
 ```bash
 Steam> app_update 343050 validate
 ```
 
-测试饥荒联机版服务器的运行：
+测试饥荒联机版的运行：
 
 ```bash
+# 移动到饥荒联机版可执行文件目录
 cd /home/steam/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer
 ```
@@ -119,29 +120,37 @@ $ ./dontstarve_dedicated_server_nullrenderer
 
 ## 添加饥荒联机版服务器管理脚本
 
-`screen` 命令可以用来创建独立的命令行窗口执行进程，方便对进程的管理，例如追踪运行的日志信息。笔者选用它来管理饥荒联机版的服务器进程。
+`screen` 命令可以用来创建独立的命令行窗口执行进程，方便对进程的管理，例如追踪运行的日志信息。笔者选用它来管理饥荒联机版服务器的进程。
 
 ```bash
 yum install -y screen
 ```
 
-创建存放脚本的文件夹：
+首先创建存放脚本的文件夹：
 
 ```bash
 mkdir /home/steam/scripts
 ```
 
-### 添加自动更新脚本
+下面开始编写管理服务器过程中最常用的两个脚本。
 
-创建自动更新饥荒联机版服务器的脚本 `/home/steam/scripts/update_dst.sh`，编写内容如下：
+### 自动更新脚本
+
+创建自动更新饥荒联机版的脚本 `/home/steam/scripts/update_dst.sh`，编写内容如下：
 
 ```sh
 #!/bin/sh
 
-/home/steam/steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +force_install_dir /home/steam/steamapps/DST +login anonymous +app_update 343050 validate +quit
+# 更新饥荒联机版
+cd /home/steam
+./steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +force_install_dir ./steamapps/DST +login anonymous +app_update 343050 validate +quit
 
-/home/steam/steamapps/DST/bin/dontstarve_dedicated_server_nullrenderer -only_update_server_mods
+# 更新已安装的模组
+cd ./steamapps/DST/bin
+./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -only_update_server_mods
 ```
+
+其中 `CustomSaveName` 为您的存档目录名称，可自定义修改。如不配置将默认使用 `Cluster_1`。
 
 添加脚本的执行权限，后略：
 
@@ -149,31 +158,30 @@ mkdir /home/steam/scripts
 chmod +x /home/steam/scripts/update_dst.sh
 ```
 
-### 添加启动（重启）脚本
+### 启动（重启）服务器脚本
 
 创建启动（重启）饥荒联机版服务器的脚本 `/home/steam/scripts/start_dst.sh`，编写内容如下：
 
 ```sh
 #!/bin/sh
 
-# 中止正在运行的服务器进程
-screen -XS dst_master kill
-screen -XS dst_caves kill
+# 保存服务器数据并退出
+screen -S dst_master -X stuff $'c_shutdown()\n'
+screen -S dst_caves -X stuff $'c_shutdown()\n'
 
-# 更新服务器
+# 更新饥荒联机版
 /home/steam/scripts/update_dst.sh
 
-# 移动到服务器可执行文件目录
 cd /home/steam/steamapps/DST/bin
 # 启动地上世界服务器
-screen -S dst_master -d -m ./dontstarve_dedicated_server_nullrenderer -cluster MyDediServer -console -shard Master
+screen -dmS dst_master ./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -console -shard Master
 # 启动洞穴世界服务器
-screen -S dst_caves -d -m ./dontstarve_dedicated_server_nullrenderer -cluster MyDediServer -console -shard Caves
+screen -dmS dst_caves ./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -console -shard Caves
 ```
 
-脚本将自动检查并安装饥荒联机版服务器更新包，完成后启动服务器。
+脚本将自动保存服务器数据（如果不使用 `c_shutdown()` 而直接关闭 Screen 的话，将丢失度过黑夜前未保存的所有数据），检查并安装饥荒联机版更新包，最后重新启动服务器。
 
-服务器启动后，执行命令 `screen -r dst_master` 或 `screen -r dst_caves` 即可查看日志。您会发现打印了如下日志信息：
+服务器启动后，执行命令 `screen -r dst_master` 或 `screen -r dst_caves` 查看日志，您会发现打印有如下内容：
 
 ```plaintext
 [00:00:05]: [200] Account Failed (6): "E_INVALID_TOKEN"
@@ -185,11 +193,11 @@ screen -S dst_caves -d -m ./dontstarve_dedicated_server_nullrenderer -cluster My
 [00:00:05]: to generate server configuration files
 ```
 
-这意味着我们还需要配置 Auth Token 等，使得服务器能真正地跑起来。
+这意味着我们最后还需要配置 Auth Token 等，使得服务器能正确地注册并被联机用户发现。
 
 ## 正式启动饥荒联机版服务器
 
-访问 <https://accounts.klei.com/account/game/servers?game=DontStarveTogether>，创建一个服务器：
+访问 <https://accounts.klei.com/account/game/servers?game=DontStarveTogether>，创建一个饥荒联机版服务器并获取 Auth Token：
 
 ![创建服务器](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240701/run-dont-starve-server/add-new-server.png)
 
@@ -197,17 +205,17 @@ screen -S dst_caves -d -m ./dontstarve_dedicated_server_nullrenderer -cluster My
 
 ![配置服务器](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240701/run-dont-starve-server/configure-server.png)
 
-下载设置并上传到服务器，将解压后的文件放置到存档目录：
+下载设置并上传到主机，将解压后的文件放置到存档目录：
 
 ```bash
 unzip DST_Lolipop.zip
-mv MyDediServer /home/steam/.klei/DoNotStarveTogether/MyDediServer
+mv MyDediServer /home/steam/.klei/DoNotStarveTogether/CustomSaveName
 
 # 如果使用了 root 用户解压，别忘了修改文件夹所有权
-# chown -R steam /home/steam/.klei/DoNotStarveTogether/MyDediServer
+# chown -R steam /home/steam/.klei/DoNotStarveTogether/CustomSaveName
 ```
 
-最后，执行前面编写的启动脚本：
+最后的最后，执行前面编写的启动脚本：
 
 ```bash
 /home/steam/scripts/start_dst.sh
@@ -219,15 +227,56 @@ mv MyDediServer /home/steam/.klei/DoNotStarveTogether/MyDediServer
 
 ## 饥荒联机版服务器运维
 
-### 进一步配置服务器
-
-// todo
-
 ### 添加模组
 
-// todo
+在饥荒联机版服务器添加并启用模组，需配置两部分内容。
 
-### 定时重启（更新）服务器
+第一部分是告诉服务器要下载哪些模组。编辑 `/home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua`，使用指令 `ServerModSetup()` 或 `ServerModCollectionSetup()` 添加需要下载的模组，例如：
+
+```lua
+-- /home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua
+ServerModSetup("345692228")
+ServerModCollectionSetup("379114180")
+```
+
+通过上面的配置，服务器将自动下载 Steam 创意工坊上的模组 [#345692228](https://steamcommunity.com/sharedfiles/filedetails/?id=345692228)，以及模组集合 [#379114180](https://steamcommunity.com/sharedfiles/filedetails/?id=379114180) 中的所有模组。
+
+第二部分是告诉服务器要启用哪些模组。有两种配置方式，选择其一即可：
+
+1. `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Caves/modoverrides.lua` 用于管理洞穴世界模组的启用与配置；`/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/modoverrides.lua` 用于管理地上世界模组的启用与配置。
+2. `/home/steam/steamapps/DST/mods/modsettings.lua` 用于管理模组的启用。需留意的是：1）本方式通常用于模组的开发调试；2）不能对模组进行详细设置，模组将始终使用默认配置；3）使用部分模组时可能会报错，此时请切换为第一种配置方法。
+
+笔者选用第一种配置方法，新建文件 `modoverrides.lua`，编写内容如下：
+
+```lua
+-- modoverrides.lua
+return {
+    ["workshop-345692228"] = { enabled = true },
+    ["workshop-379114180"] = { enabled = true }
+}
+```
+
+添加可执行权限并拷贝到对应目录：
+
+```bash
+chmod +x modoverrides.lua
+cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Caves/
+cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/
+```
+
+重启服务器即可。
+
+![服务器模组](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240701/run-dont-starve-server/server-with-mods.png)
+
+### 进一步配置服务器
+
+之前步骤中下载的基本配置已足够支持正常游玩。如果还想要更深度的定制，可以参考[此文档](https://steamcommunity.com/sharedfiles/filedetails/?id=1616647350)，按需修改以下三个文件：
+
+- `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/cluster.ini`
+- `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Caves/server.ini`
+- `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/server.ini`
+
+### 定时重启并更新服务器
 
 基于 Crontab 实现，编辑计划任务 `crontab -e`：
 
@@ -235,4 +284,4 @@ mv MyDediServer /home/steam/.klei/DoNotStarveTogether/MyDediServer
 0 6 * * * /home/steam/scripts/start_dst.sh
 ```
 
-上面的配置表示，在每天凌晨 6 点整，自动重启（更新）饥荒联机版服务器。
+上面的配置表示，在每天凌晨 6 点整，自动重启并更新饥荒联机版服务器。
