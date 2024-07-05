@@ -2,6 +2,7 @@ https://blog.towind.fun/baidu_verify_codeva-OKPGCP8buD.html
 https://blog.towind.fun/google340ce47478a04c2c.html
 https://blog.towind.fun/about/index.html
 https://blog.towind.fun/404.html
+https://blog.towind.fun/20240704/run-mc-server/
 https://blog.towind.fun/20240701/run-dont-starve-server/
 https://blog.towind.fun/20240510/backup-mc-server/
 https://blog.towind.fun/20240512/nginx-services/
@@ -49,13 +50,13 @@ https://blog.towind.fun/tags/Promise/
 https://blog.towind.fun/tags/React/
 https://blog.towind.fun/tags/TypeScript/
 https://blog.towind.fun/tags/Ant-Design/
+https://blog.towind.fun/tags/Linux/
+https://blog.towind.fun/tags/OpenWRT/
+https://blog.towind.fun/tags/Minecraft/
+https://blog.towind.fun/tags/Alist/
 https://blog.towind.fun/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/
 https://blog.towind.fun/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/
 https://blog.towind.fun/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/
-https://blog.towind.fun/tags/Minecraft/
-https://blog.towind.fun/tags/Linux/
-https://blog.towind.fun/tags/OpenWRT/
-https://blog.towind.fun/tags/Alist/
 https://blog.towind.fun/tags/resume/
 https://blog.towind.fun/tags/CSS/
 https://blog.towind.fun/tags/Github-actions/
