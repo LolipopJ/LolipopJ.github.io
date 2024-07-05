@@ -74,7 +74,7 @@ layout: about
 
 ### 文章头图
 
-使用了 [unsplush 接口](https://source.unsplash.com/)，会随机获取 unsplush 上一张关键词为 `developer` 的图片作为文章页的头图。
+使用了 [bing.img.run](https://bing.img.run) 提供的接口，会随机获取一张 Bing 历史壁纸作为文章页的头图。
 
 ## 开放服务
 
