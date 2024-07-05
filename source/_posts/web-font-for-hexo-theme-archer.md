@@ -134,7 +134,8 @@ yarn add -D font-spider
   font-family: "Glow Sans SC";
   src: url("../font/GlowSansSC-Normal-Book.eot");
   src:
-    url("../font/GlowSansSC-Normal-Book.eot?#font-spider") format("embedded-opentype"),
+    url("../font/GlowSansSC-Normal-Book.eot?#font-spider")
+      format("embedded-opentype"),
     url("../font/GlowSansSC-Normal-Book.woff2") format("woff2"),
     url("../font/GlowSansSC-Normal-Book.woff") format("woff"),
     url("../font/GlowSansSC-Normal-Book.ttf") format("truetype"),

@@ -13,6 +13,8 @@ tags:
 
 本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。
 
+Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。
+
 笔者主要参考了如下两个部署教程：
 
 - [Guides/Don’t Starve Together Dedicated Servers](https://dontstarve.fandom.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers)

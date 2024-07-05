@@ -5,11 +5,11 @@ updated: 2024/5/23
 categories:
   - 后端开发
 tags:
-  - Minecraft
   - Linux
+  - OpenWRT
+  - Minecraft
   - Node
   - JavaScript
-  - OpenWRT
   - Alist
 ---
 
