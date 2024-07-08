@@ -1,7 +1,7 @@
 ---
 title: 部署一个给朋友使用的 Minecraft 模组服务器
 date: 2024/7/5
-updated: 2024/7/5
+updated: 2024/7/8
 categories:
   - 技术琐事
 tags:
@@ -22,7 +22,7 @@ Java 版的 Minecraft 服务器依赖于 Java 启动，因此在一切的最开�
 
 Java 版的 Minecraft 自 1.18 版本开始需要 Java >= 17。参考网上俯拾皆是的教程，通过包管理工具或前往 [Oracle OpenJDK](https://jdk.java.net/) 页面下载并安装合适版本的 Java。
 
-通过 `java -version` 命令查看是否安装成功，在笔者的服务器上打印的结果如下：
+输入 `java -version` 命令查看是否安装成功，在笔者的服务器上打印的结果如下：
 
 ```bash
 $ java -version
@@ -53,7 +53,7 @@ curl -OJ https://meta.fabricmc.net/v2/versions/loader/1.21/0.15.11/1.0.1/server/
 java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-launcher.1.0.1.jar nogui
 ```
 
-将自动在当前目录生成必要的数据文件。首次启动将会以失败告终，此时需要手动编辑目录下的 `eula.txt`，同意 Minecraft 的最终用户许可协议：
+将自动在**当前所在的目录**生成必要的数据文件。首次启动将会以失败告终，此时需要手动编辑目录下的 `eula.txt`，同意 Minecraft 的最终用户许可协议：
 
 ```txt
 eula=true
@@ -71,7 +71,9 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 这样，我们就建立了一个名为 `mc-server` 的 Screen 终端，需要查看运行日志时使用 `screen -r mc-server` 进入。
 
-是的，这就是全部，从零开始搭建一个基于 Fabric 的 Minecraft 服务器就是这么简单。接下来就是发挥创造力的环节了，正如我们在 Minecraft 中一直做的那样。
+![查看 Minecraft 服务端日志](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/server-log.png)
+
+是的，这就是全部。接下来就是发挥创造力的环节了，正如我们在 Minecraft 中一直做的那样。
 
 ## 让朋友们连接到 Minecraft 服务器
 
@@ -97,7 +99,12 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 ### AutoModpack / 自动分发客户端模组
 
-模组按使用环境又划分为了客户端模组、服务端模组、客户端或服务端模组（通常只需安装在服务端，两端同时安装可以增强体验）、客户端和服务端模组（在两端同时安装才有效）。
+按模组的使用环境，可以划分为以下四类：
+
+- 客户端模组：安装在客户端。服务端安装无效。
+- 服务端模组：安装在服务端。客户端安装无效。
+- 客户端或服务端模组：通常安装在服务端，在客户端同时安装可以增强体验。
+- 客户端和服务端模组：在客户端和服务端同时安装才有效。
 
 为了跟朋友们都有相似的游戏体验（也顺便照顾不大懂模组安装的朋友），考虑去实现服务端与客户端的模组同步能力。笔者找到了模组 [AutoModpack](https://modrinth.com/mod/automodpack) 来实现此功能。
 
@@ -105,13 +112,13 @@ AutoModpack 是一个**客户端和服务端模组**，安装了此模组的客�
 
 ![同步客户端模组](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/sync-client-mods.png)
 
-对于不应当被同步到客户端去的**服务端模组**，AutoModpack 也提供了简单的配置方式：重命名为以 `server-` 开头的文件。例如对于服务端模组 [Dynmap](https://modrinth.com/plugin/dynmap)，将模组文件 `mods/Dynmap-3.7-beta-6-fabric-1.21.jar` 重命名为 `mods/server-Dynmap-3.7-beta-6-fabric-1.21.jar` 即可。
+对于不应当被同步到客户端去的模组，AutoModpack 也提供了简单的配置方式：以 `server-` 开头重命名文件。例如对于只需要安装在服务端的模组 [Dynmap](https://modrinth.com/plugin/dynmap)，将模组文件 `mods/Dynmap-3.7-beta-6-fabric-1.21.jar` 重命名为 `mods/server-Dynmap-3.7-beta-6-fabric-1.21.jar` 即可。
 
 ### Dynmap / 服务器地图
 
 ![服务器地图，摄制于 2024.07.05 17:18](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/server-map-202407051718.png)
 
-想要用浏览器在线查看 Minecraft 服务器地图，查看当前在线的玩家的游玩情况，直接向在线的玩家发送消息？这一切仅需要一个**服务端模组** [Dynmap](https://modrinth.com/plugin/dynmap) 就可以实现！
+想要用浏览器在线查看 Minecraft 服务器地图，查看当前在线玩家的游玩情况，直接向在线的玩家发送消息？这一切仅需要一个服务端模组 [Dynmap](https://modrinth.com/plugin/dynmap) 就可以实现！
 
 成功启用 Dynmap 后，Web 服务将默认监听本机的 8123 端口，请确保防火墙放行了该端口的 TCP 类型请求。
 
@@ -121,7 +128,7 @@ AutoModpack 是一个**客户端和服务端模组**，安装了此模组的客�
 
 对于离线服务器，哪怕以正版用户的身份登录，也无法获取到自己上传的皮肤；由于技术问题，部分 Minecraft 启动器也无法修改高版本客户端的玩家皮肤。大家登入服务器发现彼此都是 N-word，实在不能带来愉快的视觉体验。
 
-**服务端模组** [Fabric Tailor](https://modrinth.com/mod/fabrictailor) 可以解决这个问题，它向游戏添加了 `/skin` 命令，玩家可以调用此命令实现自定义换肤。例如：
+服务端模组 [Fabric Tailor](https://modrinth.com/mod/fabrictailor) 可以解决这个问题，它向游戏添加了 `/skin` 命令，玩家可以调用此命令实现自定义换肤。例如：
 
 ```bash
 # 设置为指定 URL 链接对应的皮肤
@@ -150,7 +157,7 @@ AutoModpack 是一个**客户端和服务端模组**，安装了此模组的客�
 
 <img alt="Minecraft 服务器状态" src="https://mcapi.us/server/image?ip=mc.towind.fun">
 
-一些开放服务可以用来查询 Minecraft 服务器状态，并生成上面这样的卡片。访问 [MCApi.us](https://mcapi.us) 了解更多~
+一些开放服务可以用来查询 Minecraft 服务器状态，并生成类似上面这样的卡片。想要生成同样的卡片？访问 [MCApi.us](https://mcapi.us) 了解更多。
 
 ### 通过域名连接到服务器
 
@@ -178,7 +185,7 @@ server {
 
 现在，我们不再需要放行 25565 或 8123 等端口，一切都通过 Nginx 监听的 443 端口转发。
 
-连接服务器时不再需要填写服务器的公网 IP 地址与端口号，使用 `mc.towind.fun` 即可；服务器地图现在也可以通过 <https://mc.towind.fun/map> 访问。
+连接服务器时不再需要填写服务器的公网 IP 地址与端口号，使用简单好记的 `mc.towind.fun` 就行；服务器地图现在也可以通过 <https://mc.towind.fun/map> 访问。
 
 ### 服务器备份
 
