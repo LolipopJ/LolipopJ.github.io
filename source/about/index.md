@@ -13,7 +13,7 @@ layout: about
 
 ## 我是谁
 
-我是一个出生于千禧年的纯正「00 后」，本科就读于电子科技大学，学习软件工程专业，目前是成为一位前端架构师。
+我是一个出生于千禧年的纯正「00 后」，本科就读于电子科技大学，学习软件工程专业，目标是成为一位前端架构师。
 
 ### “K 歌之王”
 
@@ -34,7 +34,7 @@ layout: about
 
 <img alt="Blue Archive Card" src="https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/about/blue-archive-card.jpg" width="440" style="margin: 0 0 1rem; float: right; clear: both; border-radius: 2px;">
 
-玩着一个个游戏，度过一天天生活。
+从 4399 乖乖猪世界的萌芽开始……到 3DM 论坛的刺客信条……再到淘宝第一次购入 Fallout 4 蓝光碟。现在，继续我们伟大的探索吧：从古老猎人梦境的星辰钟楼到艾尼尔·伊利姆的螺旋塔。
 
 主要活跃的游戏平台：
 
@@ -46,7 +46,7 @@ layout: about
 现在尚在游玩的网游和手游有：
 
 - 英雄联盟（国服 | [日服](https://www.op.gg/summoners/jp/%E5%A4%A9%E7%AB%A5%E6%84%9B%E9%BA%97%E7%B5%B2-85745)）
-- 最终幻想 XIV（Gaia - Bahamut）
+- 最终幻想 XIV（国际服 - Gaia - Bahamut - [Gugu Du](https://na.finalfantasyxiv.com/lodestone/character/36150060)）
 - 蔚蓝档案（国际服）
 - 元梦之星
 
@@ -84,11 +84,20 @@ layout: about
 
 <img alt="Service Status" src="https://mcapi.us/server/image?ip=mc.towind.fun" width="300" style="margin: 0; float: right; clear: both; border-radius: 2px;">
 
-- 服务器版本：`1.20.4-Fabric`
+- 服务器地址：`mc.towind.fun`
+- 服务器版本：`1.20.4`（Fabric 模组服务器）
 - 服务器地图：<https://mc.towind.fun/map>
+- 访问限制：白名单
+
+### Don't Starve Together 服务器
+
+- 服务器名称：`DST_Lolipop`（[Status](https://dstserverlist.top/#Name[DST_Lolipop])）
+- 服务器平台：Steam
+- 访问限制：密码
 
 ### 随机图片
 
 从我的收藏中随机抽取一张图片。
 
-- <https://api.towind.fun/alist/random-img>
+- 二次元：<https://api.towind.fun/alist/random-img>
+- 三次元：<https://api.towind.fun/alist/random-photo>
