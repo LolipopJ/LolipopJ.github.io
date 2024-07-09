@@ -1,7 +1,7 @@
 ---
 title: 从零开始使用 Telegram Bot
 date: 2022/1/9
-updated: 2022/1/11
+updated: 2024/7/9
 categories:
   - 后端开发
 tags:
@@ -13,7 +13,9 @@ tags:
   - Sequelize
 ---
 
-本文旨在基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，帮助笔者更好地将爱传递给 Telegram！
+本文基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，支持获取 Github Issues 的评论并转发到 Telegram 频道，帮助笔者更好地将捣玩 Telegram！
+
+> 时间推移至 2024 年，笔者现在更建议使用 [Bun](https://bun.sh) 开发应用服务，开箱即用的高性能服务以及完备的 TypeScript 支持，能大大提升开发体验。下面为撰写于 2022 年初的原文。
 
 本文假设您已对 Node.js 和 Koa 有一定的了解。
 
@@ -168,13 +170,7 @@ router.post(`bot${token}`, (ctx) => {
 
 现在，我们的机器人将不再笨拙地轮询 Telegram 服务器，查看是否有未处理的消息，而是静静等待 Telegram 服务器发送过来的请求。
 
-### Bot 起始脚手架
-
-万事俱备，接下来就是根据自己的需求进行开发的时间了。
-
-[这里](https://github.com/LolipopJ/telly-bot/tree/acbe0b122eb164dd3a44d95ed216877cbb9b0464)是笔者简单配置好的项目代码，可以作为 Start-up 供君参考。
-
-## 获取 Github Issues 的评论并转发给 Telegram 频道
+## 转发 Github Issues 到 Telegram 频道
 
 [Chen 先生](https://billc.io/)自己的 Telegram 频道会定时发送他更新的推文，笔者也想整一个，最简单的实现方式是申请一个 Twitter 开发者账号，定时调用 API 获取最新推文信息即可 —— 但是没能申请到。暂退一步，先把笔者在 Github Issues 上的碎碎念同步给频道吧。
 
@@ -504,7 +500,7 @@ npm run pm2
 
 ![Forward Github Issue's comments to my channel](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220108/start-telegram-bot/forward-to-my-channel.png)
 
-仍然，该服务还有许多可以优化的地方，例如：当评论发生更新时，应编辑已发送的频道消息为最新评论内容，而不是重新发一条新的消息等。不再在此文赘述。
+当然，该服务还有许多可以优化的地方，例如：当评论发生更新时，应编辑已发送的频道消息为最新评论内容，而不是重新发一条新的消息等。不再在此文赘述。
 
 ## 参考文章
 
