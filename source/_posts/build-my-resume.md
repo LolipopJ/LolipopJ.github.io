@@ -608,7 +608,7 @@ const exportResume = async function ({ autoFitPdf = true }) {
 };
 ```
 
-完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/main/scripts/export.js)。
+完整的脚本文件[见于此](https://github.com/LolipopJ/resume/blob/8ae81dcffe2b84c71d3ce4c8f3adb705b4f98b91/scripts/export.js)。
 
 最后，见证劳动的成果吧。执行刚刚我们编写的脚本：
 

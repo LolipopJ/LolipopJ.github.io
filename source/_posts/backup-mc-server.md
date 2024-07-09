@@ -17,7 +17,7 @@ tags:
 
 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。
 
-完整的脚本[可见此](https://github.com/LolipopJ/LolipopJ.github.io/blob/master/static/scripts/backup-mc-server.js)。
+完整的脚本[可见此](https://github.com/LolipopJ/LolipopJ.github.io/blob/cd9d45af2a97f596ec6b3ada4c069f88a9e9bbd7/source/static/scripts/backup-mc-server.js)。
 
 ## 编写备份脚本
 
