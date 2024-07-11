@@ -1,7 +1,7 @@
 ---
 title: 基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器
 date: 2024/7/2
-updated: 2024/7/4
+updated: 2024/7/11
 categories:
   - 技术琐事
 tags:
@@ -280,10 +280,16 @@ cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/
 
 ### 定时重启并更新服务器
 
-基于 Crontab 实现，编辑计划任务 `crontab -e`：
+可以使用 `crontab` 命令实现，但默认情况下，我们新建的 `steam` 用户是没有使用该命令的权限的，需要首先切到管理员用户添加权限：
+
+```bash
+echo steam >> /etc/cron.allow
+```
+
+切回 `steam` 用户，编辑计划任务 `crontab -e`，添加如下内容：
 
 ```plaintext
 0 6 * * * /home/steam/scripts/start_dst.sh
 ```
 
-上面的配置表示，在每天凌晨 6 点整，自动重启并更新饥荒联机版服务器。
+上面的配置表示，在系统时间每天凌晨 6 点整，自动重启并更新饥荒联机版服务器。
