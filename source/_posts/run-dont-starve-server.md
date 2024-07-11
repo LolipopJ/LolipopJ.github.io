@@ -1,7 +1,7 @@
 ---
 title: 基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器
 date: 2024/7/2
-updated: 2024/7/11
+updated: 2024/7/12
 categories:
   - 技术琐事
 tags:
@@ -233,6 +233,8 @@ mv MyDediServer /home/steam/.klei/DoNotStarveTogether/CustomSaveName
 
 在饥荒联机版服务器添加并启用模组，需配置两部分内容。
 
+#### 下载模组
+
 第一部分是告诉服务器要下载哪些模组。编辑 `/home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua`，使用指令 `ServerModSetup()` 或 `ServerModCollectionSetup()` 添加需要下载的模组，例如：
 
 ```lua
@@ -242,6 +244,8 @@ ServerModCollectionSetup("379114180")
 ```
 
 通过上面的配置，服务器将自动下载 Steam 创意工坊上的模组 [#345692228](https://steamcommunity.com/sharedfiles/filedetails/?id=345692228)，以及模组集合 [#379114180](https://steamcommunity.com/sharedfiles/filedetails/?id=379114180) 中的所有模组。
+
+#### 启用模组
 
 第二部分是告诉服务器要启用哪些模组。有两种配置方式，选择其一即可：
 
@@ -254,9 +258,11 @@ ServerModCollectionSetup("379114180")
 -- modoverrides.lua
 return {
     ["workshop-345692228"] = { enabled = true },
-    ["workshop-379114180"] = { enabled = true }
+    ["workshop-xxxxxxxxx"] = { enabled = true }
 }
 ```
+
+需注意的是，`modoverrides.lua` 不支持一键启用某个模组合集的所有模组，还是需要获取这些模组的编号并编写配置。
 
 添加可执行权限并拷贝到对应目录：
 
