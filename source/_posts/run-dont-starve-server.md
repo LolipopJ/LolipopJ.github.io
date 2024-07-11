@@ -89,10 +89,9 @@ Steam> login anonymous
 Steam> app_update 343050 validate
 ```
 
-测试饥荒联机版的运行：
+测试饥荒联机版的运行。特别的，由于相对路径的缘故，执行 `dontstarve_dedicated_server_nullrenderer` 前一定要先移动到它所在的目录：
 
 ```bash
-# 移动到饥荒联机版可执行文件目录
 cd /home/steam/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer
 ```
@@ -152,7 +151,7 @@ cd /home/steam/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -only_update_server_mods
 ```
 
-其中 `CustomSaveName` 为您的存档目录名称，可自定义修改。如不配置将默认使用 `Cluster_1`。
+其中 `CustomSaveName` 为您的存档目录名称，可自定义修改，如不配置将默认使用 `Cluster_1`。
 
 添加脚本的执行权限，后略：
 
@@ -240,10 +239,23 @@ mv MyDediServer /home/steam/.klei/DoNotStarveTogether/CustomSaveName
 ```lua
 -- /home/steam/steamapps/DST/mods/dedicated_server_mods_setup.lua
 ServerModSetup("345692228")
-ServerModCollectionSetup("379114180")
+ServerModCollectionSetup("3286974182")
 ```
 
-通过上面的配置，服务器将自动下载 Steam 创意工坊上的模组 [#345692228](https://steamcommunity.com/sharedfiles/filedetails/?id=345692228)，以及模组集合 [#379114180](https://steamcommunity.com/sharedfiles/filedetails/?id=379114180) 中的所有模组。
+通过上面的配置，服务器将自动下载 Steam 创意工坊上的模组 [#345692228](https://steamcommunity.com/sharedfiles/filedetails/?id=345692228)，以及模组集合 [#3286974182](https://steamcommunity.com/sharedfiles/filedetails/?id=3286974182) 中的所有模组。
+
+由于每次通过 `steamcmd.sh` 命令检查游戏更新后会重置 `dedicated_server_mods_setup.lua`，建议手动备份该文件，这样的话未来增删模组时可以直接复用。例如：
+
+```bash
+cp dedicated_server_mods_setup.lua dedicated_server_mods_setup.temp.lua
+```
+
+直接执行下面的命令下载模组（不要使用脚本 `/home/steam/scripts/update_dst.sh`，不然 `dedicated_server_mods_setup.lua` 就重置为空白了）：
+
+```bash
+cd /home/steam/steamapps/DST/bin
+./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -only_update_server_mods
+```
 
 #### 启用模组
 
@@ -272,7 +284,7 @@ cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Caves/
 cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/
 ```
 
-重启服务器即可。
+执行脚本 `/home/steam/scripts/start_dst.sh` 重启服务器即可。
 
 ![服务器模组](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240701/run-dont-starve-server/server-with-mods.png)
 
