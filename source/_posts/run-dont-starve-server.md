@@ -1,7 +1,7 @@
 ---
 title: 基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器
 date: 2024/7/2
-updated: 2024/7/12
+updated: 2024/7/13
 categories:
   - 技术琐事
 tags:
@@ -287,6 +287,15 @@ cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/
 执行脚本 `/home/steam/scripts/start_dst.sh` 重启服务器即可。
 
 ![服务器模组](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240701/run-dont-starve-server/server-with-mods.png)
+
+### 自定义世界
+
+笔者建议在电脑上手动启动一个自定义好的世界，再将生成的配置文件 `leveldataoverride.lua` 分别粘贴到服务器的对应文件夹里。地上世界和洞穴世界的配置文件有所区别，不要搞混喽：
+
+- `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Caves/leveldataoverride.lua`
+- `/home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/leveldataoverride.lua`
+
+您也可以参考[此文档](https://dontstarve.fandom.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers#Customizing_the_World_Map)修改存档目录下的这两个文件，自定义世界。
 
 ### 进一步配置服务器
 
