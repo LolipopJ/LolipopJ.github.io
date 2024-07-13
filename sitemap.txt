@@ -2,9 +2,9 @@ https://blog.towind.fun/baidu_verify_codeva-OKPGCP8buD.html
 https://blog.towind.fun/google340ce47478a04c2c.html
 https://blog.towind.fun/about/index.html
 https://blog.towind.fun/404.html
+https://blog.towind.fun/20240704/run-mc-server/
 https://blog.towind.fun/20240701/run-dont-starve-server/
 https://blog.towind.fun/20220108/start-telegram-bot/
-https://blog.towind.fun/20240704/run-mc-server/
 https://blog.towind.fun/20240510/backup-mc-server/
 https://blog.towind.fun/20240512/nginx-services/
 https://blog.towind.fun/20201206/connect-remote-desktop/
