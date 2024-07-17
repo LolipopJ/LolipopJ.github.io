@@ -1,7 +1,7 @@
 ---
 title: 使用 Nginx 治理我的服务
 date: 2024/5/13
-updated: 2024/5/22
+updated: 2024/7/17
 categories:
   - 技术琐事
 tags:
@@ -78,7 +78,7 @@ http {
 }
 ```
 
-通过上面的配置，笔者只需要将自己博客的静态资源放置在 `/var/www/towind.fun/blog` 目录，就可以通过 `https://towind.fun` 等域名访问到啦。
+通过上面的配置，笔者只需要将自己博客的静态资源放置在 `/var/www/towind.fun/blog` 目录，就可以通过 <https://towind.fun> 等域名访问到啦。
 
 当然，笔者不希望有这么多个域名显示完全一样的东西，我们可以配置域名跳转，将请求重定向到一个域名上：
 
@@ -93,7 +93,7 @@ http {
 }
 ```
 
-现在，访问 `https://towind.fun` 和 `https://www.towind.fun` 时，浏览器将自动 301 重定向到 `https://blog.towind.fun`。
+现在，访问 <https://towind.fun> 和 <https://www.towind.fun> 时，浏览器将自动 301 重定向到 <https://blog.towind.fun>。
 
 此外，笔者为了更好的 SEO，缩短了链接的级数，即从 `/YYYY/MM/DD/blog-title` -> `/YYYYMMDD/blog-title`。那么就需要将过去被搜索引擎收录的链接，重定向到新的链接，避免用户访问到 404 页面。可以编写配置如下：
 
@@ -271,7 +271,7 @@ server {
 }
 ```
 
-上面的配置表明：笔者将对外提供下载的静态文件放置在服务器的 `/var/www/towind.fun/download` 目录下；当访问 `https://download.towind.fun` 时，就可以看见所有可下载的静态文件。
+上面的配置表明：笔者将对外提供下载的静态文件放置在服务器的 `/var/www/towind.fun/download` 目录下；当访问 <https://download.towind.fun> 时，就可以看见所有可下载的静态文件。
 
 ## 提供代理服务器
 
@@ -294,7 +294,7 @@ server {
 }
 ```
 
-上面的配置表示：当访问 `https://xxx.towind.fun` 时，请求将转发至公网服务器的 `http://127.0.0.1:15244`，再经由 frp 访问到内网服务器上对应的服务。
+上面的配置表示：当通过 `https://xxx.towind.fun` 访问公网服务器时，请求将转发至本地的 15244 端口，再经由 frp 访问到内网服务器上对应的服务。
 
 ### 内网服务访问性能优化
 
