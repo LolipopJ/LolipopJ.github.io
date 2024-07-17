@@ -1,7 +1,7 @@
 ---
 title: 基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器
 date: 2024/7/2
-updated: 2024/7/13
+updated: 2024/7/17
 categories:
   - 技术琐事
 tags:
@@ -244,15 +244,22 @@ ServerModCollectionSetup("3286974182")
 
 通过上面的配置，服务器将自动下载 Steam 创意工坊上的模组 [#345692228](https://steamcommunity.com/sharedfiles/filedetails/?id=345692228)，以及模组集合 [#3286974182](https://steamcommunity.com/sharedfiles/filedetails/?id=3286974182) 中的所有模组。
 
-由于每次通过 `steamcmd.sh` 命令检查游戏更新后会重置 `dedicated_server_mods_setup.lua`，建议手动备份该文件，这样的话未来增删模组时可以直接复用。例如：
+由于每次执行 `steamcmd.sh` 命令检查游戏更新后会重置 `dedicated_server_mods_setup.lua`，建议手动备份该文件，这样的话未来增删模组时可以直接复用。例如：
 
 ```bash
 cp dedicated_server_mods_setup.lua dedicated_server_mods_setup.temp.lua
 ```
 
-直接执行下面的命令下载模组（不要使用脚本 `/home/steam/scripts/update_dst.sh`，不然 `dedicated_server_mods_setup.lua` 就重置为空白了）：
+优化前面我们编写的更新服务器脚本 `/home/steam/scripts/update_dst.sh`，在检查游戏更新之后还原备份文件：
 
 ```bash
+cd /home/steam
+./steamcmd.sh +@ShutdownOnFailedCommand 1 +@NoPromptForPassword 1 +force_install_dir /home/steam/steamapps/DST +login anonymous +app_update 343050 validate +quit
+
+# 还原备份文件
+cd /home/steam/steamapps/DST/mods
+cp dedicated_server_mods_setup.temp.lua dedicated_server_mods_setup.lua
+
 cd /home/steam/steamapps/DST/bin
 ./dontstarve_dedicated_server_nullrenderer -cluster CustomSaveName -only_update_server_mods
 ```
