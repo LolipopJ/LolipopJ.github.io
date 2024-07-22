@@ -71,6 +71,10 @@ layout: about
 
 特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，予我满满的成就感。
 
+### 次元倾向
+
+我不是二次元，不看动画片的。
+
 ## 关于博客
 
 此博客由 [Hexo](https://hexo.io) 驱动，使用了超棒的 [Archer](https://github.com/fi3ework/hexo-theme-archer) 主题。
