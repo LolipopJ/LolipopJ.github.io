@@ -2,6 +2,7 @@ https://blog.towind.fun/baidu_verify_codeva-OKPGCP8buD.html
 https://blog.towind.fun/google340ce47478a04c2c.html
 https://blog.towind.fun/about/index.html
 https://blog.towind.fun/404.html
+https://blog.towind.fun/20210812/github-jsdelivr-hold-image/
 https://blog.towind.fun/20240701/run-dont-starve-server/
 https://blog.towind.fun/20240512/nginx-services/
 https://blog.towind.fun/20240704/run-mc-server/
@@ -16,7 +17,6 @@ https://blog.towind.fun/20220921/js-webworker-settimeout/
 https://blog.towind.fun/20220211/connect-with-pgsql/
 https://blog.towind.fun/20220112/random-get-me-a-picture/
 https://blog.towind.fun/20210818/build-my-resume/
-https://blog.towind.fun/20210812/github-jsdelivr-hold-image/
 https://blog.towind.fun/20210625/web-font-for-hexo-theme-archer/
 https://blog.towind.fun/20210302/nodejs-eslint-prettier/
 https://blog.towind.fun/20210603/euler-install-mysql/
