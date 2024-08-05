@@ -35,16 +35,12 @@
     
     <category term="前端开发" scheme="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
-    <category term="后端开发" scheme="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
     
     <category term="Node" scheme="https://blog.towind.fun/tags/Node/"/>
     
     <category term="React" scheme="https://blog.towind.fun/tags/React/"/>
     
     <category term="Electron" scheme="https://blog.towind.fun/tags/Electron/"/>
-    
-    <category term="Python" scheme="https://blog.towind.fun/tags/Python/"/>
     
   </entry>
   
