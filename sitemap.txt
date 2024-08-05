@@ -2,6 +2,7 @@ https://blog.towind.fun/baidu_verify_codeva-OKPGCP8buD.html
 https://blog.towind.fun/google340ce47478a04c2c.html
 https://blog.towind.fun/about/index.html
 https://blog.towind.fun/404.html
+https://blog.towind.fun/20240804/electron-real-time-print-execution-log/
 https://blog.towind.fun/20210812/github-jsdelivr-hold-image/
 https://blog.towind.fun/20240701/run-dont-starve-server/
 https://blog.towind.fun/20240512/nginx-services/
