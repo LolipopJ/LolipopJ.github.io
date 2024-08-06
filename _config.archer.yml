@@ -1,6 +1,6 @@
 # ========== Profile ========== #
 # avatar
-avatar: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/avatar/avatar.png
+avatar: /static/avatar/avatar.png
 # author name
 author: Lolipop
 # signature
@@ -173,7 +173,7 @@ CNZZ_analytics:
 
 # ========== Others ========== #
 # Favicon
-favicon: https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/static/assets/favicon.ico
+favicon: /static/assets/favicon.ico
 # Post copyright
 copyright:
   enable: true
