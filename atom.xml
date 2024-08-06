@@ -44,11 +44,11 @@
     
     <category term="Node" scheme="https://blog.towind.fun/tags/Node/"/>
     
-    <category term="Electron" scheme="https://blog.towind.fun/tags/Electron/"/>
+    <category term="React" scheme="https://blog.towind.fun/tags/React/"/>
     
     <category term="TypeScript" scheme="https://blog.towind.fun/tags/TypeScript/"/>
     
-    <category term="React" scheme="https://blog.towind.fun/tags/React/"/>
+    <category term="Electron" scheme="https://blog.towind.fun/tags/Electron/"/>
     
   </entry>
   
@@ -196,9 +196,9 @@
     <category term="前端开发" scheme="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
-    <category term="TypeScript" scheme="https://blog.towind.fun/tags/TypeScript/"/>
-    
     <category term="React" scheme="https://blog.towind.fun/tags/React/"/>
+    
+    <category term="TypeScript" scheme="https://blog.towind.fun/tags/TypeScript/"/>
     
     <category term="Ant-Design" scheme="https://blog.towind.fun/tags/Ant-Design/"/>
     
@@ -254,9 +254,9 @@
     <category term="前端开发" scheme="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
-    <category term="TypeScript" scheme="https://blog.towind.fun/tags/TypeScript/"/>
-    
     <category term="React" scheme="https://blog.towind.fun/tags/React/"/>
+    
+    <category term="TypeScript" scheme="https://blog.towind.fun/tags/TypeScript/"/>
     
     <category term="Web-Worker" scheme="https://blog.towind.fun/tags/Web-Worker/"/>
     
