@@ -4,7 +4,7 @@ date: 2021/3/29
 updated: 2021/3/29
 timeliness: true
 categories:
-  - 学习琐事
+  - 技术琐事
 tags:
   - gRPC
   - Protobuf

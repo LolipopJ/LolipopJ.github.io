@@ -3,7 +3,7 @@ title: IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法
 date: 2020/12/29
 updated: 2021/2/19
 categories:
-  - 学习琐事
+  - 技术琐事
 tags:
   - 软件体系架构设计
 ---

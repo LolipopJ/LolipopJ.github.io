@@ -69,28 +69,34 @@ layout: about
 - 公主连结 Re:Dive（台服）
 - 明日方舟
 
-特意整理了玩过的单机游戏以及完成进度，放到了[这里](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)，予我满满的成就感。
+刻下的话语，浮上心头。将玩过的单机游戏，弃置[于此](https://github.com/LolipopJ/LolipopJ/issues/2#issuecomment-1071099334)。
 
-### 次元倾向
+### 阿宅阿宅
 
-我不是二次元，不看动画片的。
+中等偏下傻逼的二次元。
+
+<small>~ あと少しだけの勇気で 変えられた明日はあった ~</small>
 
 ## 关于博客
 
-此博客由 [Hexo](https://hexo.io) 驱动，使用了超棒的 [Archer](https://github.com/fi3ework/hexo-theme-archer) 主题。
+由 Hexo 驱动，使用了超棒的 [Archer](https://github.com/fi3ework/hexo-theme-archer) 主题。
+
+### 博客头像
+
+『境界の彼方』中的角色神原秋人；出自作品 [D A I S Y](https://www.pixiv.net/artworks/74783689)。
+
+### 文章头图
+
+使用了 [bing.img.run](https://bing.img.run) 提供的接口，会随机获取一张 Bing 历史壁纸作为文章页的头图。
 
 ### 文章分类
 
 我将博客文章按 Category 大抵分为了四类：
 
-- **学习琐事**，与技术无关的内容
-- **技术琐事**，与技术相关，但与生产开发无关的内容
+- **生活琐碎**，与技术无关的内容
+- **技术琐事**，与技术相关，但与实际生产开发无关的内容
 - **前端开发**，与前端生产开发相关的内容
 - **后端开发**，与后端生产开发相关的内容
-
-### 文章头图
-
-使用了 [bing.img.run](https://bing.img.run) 提供的接口，会随机获取一张 Bing 历史壁纸作为文章页的头图。
 
 ## 开放服务
 
