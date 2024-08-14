@@ -2,6 +2,7 @@ https://blog.towind.fun/baidu_verify_codeva-OKPGCP8buD.html
 https://blog.towind.fun/google340ce47478a04c2c.html
 https://blog.towind.fun/about/index.html
 https://blog.towind.fun/404.html
+https://blog.towind.fun/20210519/js-use-class/
 https://blog.towind.fun/20240804/electron-real-time-print-execution-log/
 https://blog.towind.fun/20210812/github-jsdelivr-hold-image/
 https://blog.towind.fun/20240701/run-dont-starve-server/
@@ -26,7 +27,6 @@ https://blog.towind.fun/20210709/switch-travis-to-github-workflow/
 https://blog.towind.fun/20210222/write-md-parser/
 https://blog.towind.fun/20210624/website-deployment-docker-nginx/
 https://blog.towind.fun/20210608/linux-project-v/
-https://blog.towind.fun/20210519/js-use-class/
 https://blog.towind.fun/20210517/js-closure/
 https://blog.towind.fun/20210421/linux-docker-install-grpc/
 https://blog.towind.fun/20210507/js-debounce-throttle/
