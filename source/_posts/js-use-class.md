@@ -1,7 +1,7 @@
 ---
 title: 漫谈 JavaScript 类（Class）的使用
 date: 2021/5/20
-updated: 2021/5/20
+updated: 2024/8/14
 categories:
   - 技术琐事
 tags:
@@ -67,8 +67,8 @@ const u = new User();
 
 ```js
 class User {
+  // 构造函数
   constructor(name, gender) {
-    // 构造函数
     this.name = name;
     this.gender = gender;
   }
@@ -83,22 +83,20 @@ console.log(u2.name, u2.gender); // Xiao undefined
 
 对于 `new` 创建实例时的每个参数，将依次赋值给构造函数。多余的参数将被忽略。
 
-特别的，`constructor()` 方法中可以使用 `super` 关键字调用父类的 `constructor()` 方法。
+特别的，ES6 规定，子类的 `constructor()` 中必须使用 `super()` 调用父类的构造函数，否则会报错。一个合法的例子：
 
 ```js
 class User {
   constructor(name, gender) {
-    // User 类的构造函数
     this.name = name;
     this.gender = gender;
   }
 }
 
+// 使用 extends 创建 User 的子类 Admin
 class Admin extends User {
-  // 使用 extends 创建 User 的子类 Admin
   constructor(name, gender, openId) {
-    // Admin 类的构造函数
-    super(name, gender); // 调用父类 User 的构造函数
+    super(name, gender); // 调用父类的构造函数
     this.openId = openId;
   }
 }
@@ -120,25 +118,22 @@ class Rectangle {
     this.height = height;
     this.width = width;
   }
-  // Getter
+  // Getter 获取当前的面积
   get area() {
-    // 获取当前的面积
     return this.calcArea();
   }
-  // Setter
+  // Setter 修改 height 属性时添加日志
   set height(h) {
-    // 修改 height 属性时添加日志
     this._height = h; // 如果为 this.height = h 会循环调用这个 Setter，发生堆栈溢出
     this.log.push(`set height: ${h}`);
   }
+  // Setter 修改 width 属性时添加日志
   set width(w) {
-    // 修改 width 属性时添加日志
     this._width = w;
     this.log.push(`set width: ${w}`);
   }
-  // Method
+  // Method 计算当前的面积
   calcArea() {
-    // 计算当前的面积
     return this._height * this._width;
   }
 }
@@ -168,10 +163,11 @@ class Point {
     this.y = y;
   }
 
-  static className = "Point"; // 定义 Point 类的静态属性
+  // 定义 Point 类的静态属性
+  static className = "Point";
 
+  // 定义 Point 类的静态方法
   static distance(a, b) {
-    // 定义 Point 类的静态方法
     const dx = a.x - b.x;
     const dy = a.y - b.y;
     return Math.hypot(dx, dy); // Math.hypot() 返回所有参数的平方和的平方根，在此处用于求两点之间的距离
@@ -192,7 +188,7 @@ console.log(Point.distance(p1, p2)); // 7.0710678118654755
 
 ## 原型方法和静态方法中的 `this`
 
-当调用静态或原型方法时没有指定 `this` 的值，那么方法内的 `this` 值将被置为 `undefined`。这是因为 `class` 内部的代码总是在**严格模式**下执行。
+当调用静态或原型方法时没有指定 `this` 所属的上下文，那么将返回 `undefined`。这是因为 `class` 内部的代码**总是在严格模式下执行**。
 
 ```js
 class MyClass {
@@ -204,52 +200,54 @@ class MyClass {
   }
 }
 
+const getClassStaticThis = MyClass.getStaticThis;
+console.log(MyClass.getStaticThis()); // MyClass 类
+console.log(getClassStaticThis()); // undefined
+
 const obj = new MyClass();
 const getObjThis = obj.getThis;
-console.log(obj.getThis()); // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
-console.log(getObjThis()); // undefined（没有指定 this 的初值）
-
-const getClassStaticThis = MyClass.getStaticThis;
-console.log(MyClass.getStaticThis()); // MyClass 类（指定了 this 的初值，在这里相当于 console.log(MyClass)）
-console.log(getClassStaticThis()); // undefined（没有指定 this 的初值）
+console.log(obj.getThis()); // obj 实例对象
+console.log(getObjThis()); // undefined
 ```
 
-作为对比，将上面的代码使用传统的基于函数的语法实现，在**非严格模式**下，若 `this` 的初值没有指定，则会被置为全局对象。
+作为对比，将上面的代码使用传统的基于函数的语法实现。在**非严格模式**下，若没有指定 `this` 所属的上下文，那么将指向全局对象。
 
 ```js
 function MyClass() {}
 MyClass.prototype.getThis = function () {
   return this;
 };
+// 模拟 Class 的 static 方法
 MyClass.getStaticThis = function () {
-  // 相当于静态方法
   return this;
 };
 
+const getClassStaticThis = MyClass.getStaticThis;
+console.log(MyClass.getStaticThis()); // MyClass 函数
+console.log(getClassStaticThis()); // global object
+
 const obj = new MyClass();
 const getObjThis = obj.getThis;
-console.log(obj.getThis()); // obj 实例对象（指定了 this 的初值，在这里相当于 console.log(obj)）
-console.log(getObjThis()); // global object（没有指定 this 的初值）
-
-const getClassStaticThis = MyClass.getStaticThis;
-console.log(MyClass.getStaticThis()); // MyClass 函数（指定了 this 的初值，在这里相当于 console.log(MyClass)）
-console.log(getClassStaticThis()); // global object（没有指定 this 的初值）
+console.log(obj.getThis()); // obj 实例对象
+console.log(getObjThis()); // global object
 ```
+
+`this` 一直是 JavaScript 语言最令人困惑的特性之一，您可以阅读与之相关的文章进一步理解。
 
 ## 生成器方法
 
-生成器函数使用 `function*` 语法定义，例如 `function* anyGenerator() {}`。而在类中，使用了更简短的定义语法，应将符号 `*` 放在方法名的前面，例如 `*anyGenerator() {}`。
+生成器是 ES6 新增的高级特性，允许定义一个非连续执行的函数作为迭代算法，是替代迭代器（Iterator）的选择。
+
+生成器函数使用 `function*` 语法定义，例如 `function* anyGenerator() {}`。在类中对应更简短的语法，将符号 `*` 放在方法名前面即可，例如 `*anyGenerator() {}`。
 
 ```js
 class Polygon {
-  // 定义五角形类
   constructor(...sides) {
-    // 将传入的参数变成一个数组并执行构造方法
     this.sides = sides;
   }
-  // Method
+
+  // 定义生成器方法
   *getSides() {
-    // 定义生成器方法
     for (const side of this.sides) {
       yield side;
     }
@@ -264,19 +262,18 @@ console.log([...pentagon.getSides()]); // [1,2,3,4,5]
 
 ## 箭头函数定义方法
 
-类中还有另外一种常见的定义方法的方式：使用**箭头函数**。
+类中还有一种常见的定义方法的方式：使用**箭头函数**。
 
 ```js
 class Rectangle {
-  //
+  // 使用箭头函数定义原型方法
   calcArea = () => {
-    // 使用箭头函数定义原型方法
     return this.height * this.width;
   };
 }
 ```
 
-特别的，箭头函数不会创建自己的 `this`，而是从自己的作用域链的上一层继承 `this`；子类继承父类的箭头函数定义的方法时，会出现属性遮蔽（Property Shadowing）的现象。对于后者，编写代码如下：
+子类继承父类的箭头函数定义的方法时，会出现**属性遮蔽（Property Shadowing）**的现象。编写代码如下：
 
 ```js
 class Father {
@@ -285,28 +282,28 @@ class Father {
   };
 }
 
-class Chird extends Father {
+class Child extends Father {
   sayHello() {
+    console.log("I am a child.");
     super.sayHello();
-    console.log("I am a chird.");
   }
 }
 
-const c = new Chird();
-c.sayHello(); // I am your father.
+const child = new Child();
+child.sayHello(); // I am your father.
 ```
 
-上面的代码并没有像我们预想的那样，依次打印出 `I am your father.` 和 `I am a chird.`，而是只打印出了 `I am your father.`。
+上面的代码并没有像我们预想的那样，依次打印出 `I am a child.` 和 `I am your father.`，而是只打印出了 `I am your father.`。
 
-简单解释原因的话就是，箭头函数会挂到**实例的属性**上，而普通函数则是定义在**原型链**上。在 `Chird` 类中定义的 `sayHello()` 方法放到了原型链上，而从自己的父类 `Father` 继承的 `sayHello()` 方法挂载到了属性上。因此，当我们调用实例上的 `sayHello()` 方法时，优先从实例的属性上查找是否存在该方法（是的，在这里我们已经找到它了），如果存在则直接调用，如果不存在再在原型链上查找。
+简单解释原因的话就是，箭头函数定义的方法将挂载到**实例的属性**上，而普通函数定义的方法挂载到**原型链**上。这样，当我们实例化 `child` 对象时，会将原型 `Child` 从自己的父类 `Father` 继承的 `sayHello()` 方法则挂载到自身的属性上。
+
+回忆一下过去学过的知识，当我们尝试调用实例的方法时，JavaScript 会首先在实例的属性上查找是否存在此方法，如果存在则直接调用，如果不存在再在原型链上查找。因此，当我们调用实例 `child` 的 `sayHello()` 方法时，JavaScript 找到了属性上的 `sayHello()` 方法，遂结束了查找并调用。
 
 详细内容可以参考[这篇博客](https://github.com/dwqs/blog/issues/67#issue-327371697)。
 
-在类中，对于直接使用 `=` 的声明，从本质上而言就是 [Field Declarations](https://github.com/tc39/proposal-class-fields#field-declarations) 的语法，相当于**直接声明了一个实例的属性**。在接下来的[字段声明](#字段声明)小节中，也使用到了这个语法。
+在类中，直接使用 `=` 的声明从本质上而言就是 [Field Declarations](https://github.com/tc39/proposal-class-fields#field-declarations) 的语法，相当于**直接声明了一个实例的属性**。在接下来的[字段声明](#字段声明)小节中，也使用到了这个语法。
 
 ## 字段声明
-
-> 在目前（2021 年 5 月），公共和私有字段声明仍是 JavaScript 标准委员会 TC39 提出的[实验性功能（第 3 阶段）](https://github.com/tc39/proposal-class-fields)。浏览器中的支持是有限的，但是可以通过 Babel 等系统构建后使用此功能。
 
 ### 公有字段声明
 
@@ -389,11 +386,12 @@ console.log(p.#x); // 实例不可在外部访问私有字段，Uncaught SyntaxE
 ```js
 class MyDate extends Date {
   constructor() {
+    // 必须调用父类的构造函数，否则会报错
     super();
   }
 
+  // 定义子类的方法，该方法可以获取格式化后的日期
   getFormattedDate() {
-    // 定义子类的方法，该方法可以获取格式化后的日期
     const months = [
       "Jan",
       "Feb",
@@ -424,16 +422,16 @@ console.log(new MyDate().getFormattedDate()); // 20 - May - 2021
 类不过是一种语法糖，因此我们也可以用 `extends` 来继承传统的基于函数的“类”：
 
 ```js
+// 定义 Animal “类”
 function Animal(name) {
-  // 定义 Animal “类”
   this.name = name;
 }
 Animal.prototype.speak = function () {
   console.log(this.name + " makes a noise.");
 };
 
+// 使用 extends 拓展 Animal “类”
 class Dog extends Animal {
-  // 使用 extends 拓展 Animal “类”
   speak() {
     super.speak();
     console.log(this.name + " barks.");
@@ -449,8 +447,8 @@ d.speak();
 对于**不可构造**的常规对象，要实现继承的话，可以使用 `Object.setPrototypeOf()` 方法，它可以设置一个指定对象的原型到另一个对象：
 
 ```js
+// 定义 Animal 对象
 const Animal = {
-  // 定义 Animal 对象
   speak() {
     console.log(this.name + " makes a noise.");
   },
@@ -503,7 +501,7 @@ l.speak();
 // Li: roars!!!
 ```
 
-假如我们将上面代码中 `Lion` 类里的 `speak()` 方法删去，那么打印的结果是 `Li: meo~~!`。如果认真学到这里的话，原因想必也已经了然于胸：子类继承了父类的属性和方法。那么当子类定义了与父类相同名字的方法时，根据原型链上的调用规则，会调用子类定义的方法。这就是为什么我们需要 `super` 关键字的原因之一，方法名相同的情况下，在子类方法中我们仍可以调用父类的方法。
+假如我们将上面代码中 `Lion` 类里的 `speak()` 方法删去，那么打印的结果是 `Li: meo~~!`。如果认真看到这里的话，原因想必也已经了然于胸：子类继承了父类的属性和方法。那么当子类定义了与父类相同名字的方法时，根据原型链上的调用规则，会调用子类定义的方法。这就是为什么我们需要 `super` 关键字的原因之一，方法名相同的情况下，在子类方法中我们仍可以调用父类的方法。
 
 在**构造函数**中，`super()` 需要在使用 `this` 前调用：
 
@@ -584,8 +582,8 @@ console.log(Square.help()); // I have 4 sides. They are all equal.
 
 ```js
 class MyArray extends Array {
+  // 设置 getter，当获取 MyArray 类的构造函数时，返回 Array 类的构造函数
   static get [Symbol.species]() {
-    // 设置 getter，当获取 MyArray 类的构造函数时，返回 Array 类的构造函数
     return Array;
   }
 }
@@ -629,7 +627,6 @@ let sayHiMixin = {
 };
 
 class User {
-  // Class
   constructor(name) {
     this.name = name;
   }
@@ -691,7 +688,7 @@ class MyMixin extends CatMixin {
 
 ## 参考资料
 
-本博文仅且记录了 JavaScript 中类在语法上的知识和使用，和少量的实现原理。关于底层的具体实现，就放到以后再深入探讨学习吧。
+本博文仅且记录了 JavaScript 中类在语法上的知识和运用，辅以少量的实现原理。关于底层的具体实现，就放到以后再深入探讨学习吧。
 
 ### 技术博文
 
