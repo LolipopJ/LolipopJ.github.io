@@ -19,13 +19,13 @@ tags:
 
 一个转盘抽奖组件主要由三部分组成，写有中奖结果的圆形转盘、指向结果的指针和开始转动的按钮。
 
-如果每个中奖结果的概率相近，我们可以按照真实概率来划分每个奖品所占圆形的扇形比例。但是通常转盘中会设置抽中概率极小的大奖，按照真实比例的话将无法充分展示奖品内容，而且降低用户对转盘抽奖本身的兴趣度。所以本文实现的转盘组件选择**均分的方式**来划分每个奖品所占的扇形比例，符合通用的原则，也从视觉上让用户觉得中奖概率相当。
+如果每个中奖结果的概率相近，我们可以按照真实概率来划分每个奖品所占圆形的扇形比例。但是通常转盘中会设置抽中概率极小的大奖，按照真实比例的话将无法充分展示奖品内容，而且降低用户对转盘抽奖本身的兴趣度。所以本文实现的转盘组件选择 **均分的方式** 来划分每个奖品所占的扇形比例，符合通用的原则，也从视觉上让用户觉得中奖概率相当。
 
-转盘转动可以有两种方式，一种是指针不动转盘动，一种是转盘不动指针动，都能很好地表达转盘抽奖的过程。对比两种方式，前者的视觉体验会更佳，且指针可以放置在任意位置（在中间往上指或在左侧往右指等等都可以）；后者则相对含蓄一些，用户的视觉负担较低，但指针只能放在中间旋转（我设想了一下在转盘外侧做圆周运动，感觉也有点意思）。因此，本文的实现选择**指针不动转盘动**的方式，从前端开发的角度来说，实现了一种方式，另一种方式也可以简单实现了。
+转盘转动可以有两种方式，一种是指针不动转盘动，一种是转盘不动指针动，都能很好地表达转盘抽奖的过程。对比两种方式，前者的视觉体验会更佳，且指针可以放置在任意位置（在中间往上指或在左侧往右指等等都可以）；后者则相对含蓄一些，用户的视觉负担较低，但指针只能放在中间旋转（我设想了一下在转盘外侧做圆周运动，感觉也有点意思）。因此，本文的实现选择 **指针不动转盘动** 的方式，从前端开发的角度来说，实现了一种方式，另一种方式也可以简单实现了。
 
-当我们点击开始转动的按钮时，转盘便会开始转动。现实生活中的转盘通常由人手力驱动，转盘的**转速会从零迅速加到最大，然后逐渐变小直至为零**。我们实现的转盘不受这些物理条件的限制，但对现实的充分模拟可以提升转盘抽奖的可信度，本文也将朝着这个方向实现。
+当我们点击开始转动的按钮时，转盘便会开始转动。现实生活中的转盘通常由人手力驱动，转盘的 **转速会从零迅速加到最大，然后逐渐变小直至为零**。我们实现的转盘不受这些物理条件的限制，但对现实的充分模拟可以提升转盘抽奖的可信度，本文也将朝着这个方向实现。
 
-当点击按钮时，前端即向后端请求了抽奖的结果，后续转盘的转动也不过是预设好的动画罢了。因此我们可以轻松地计算得到转盘应当旋转的角度，让指针恰恰好停留在奖品所在的扇形区域。这也意味着**转盘旋转的角度可以是一个范围**，指针并不一定指向扇形区域的正中间，这也是对现实实际的一个模拟。
+当点击按钮时，前端即向后端请求了抽奖的结果，后续转盘的转动也不过是预设好的动画罢了。因此我们可以轻松地计算得到转盘应当旋转的角度，让指针恰恰好停留在奖品所在的扇形区域。这也意味着 **转盘旋转的角度可以是一个范围**，指针并不一定指向扇形区域的正中间，这也是对现实实际的一个模拟。
 
 ## 怎么做
 
@@ -95,7 +95,7 @@ turntableDom.style.background = `conic-gradient(${turntableConicGradient.join(
 
 ![turntable-base](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-base.png)
 
-现在为每个扇形区域添加具体的奖品名称：
+接着为每个扇形区域添加具体的奖品名称：
 
 ```scss
 .prize-label {
@@ -136,7 +136,7 @@ turntableDom.style.transform = `rotate(${turntableBaseRotate}deg)`;
 // #endregion
 ```
 
-我们手动创建了包含奖品名的节点，通过简单的计算，让它们旋转到自己所属的扇形区域上。我们还为转盘设置了一个初始角度，使得第一个奖品放置在转盘的正上方。效果如下所示：
+我们手动创建了包含奖品名的标签节点，通过简单的计算，让它们旋转到自己所属的扇形区域上。此外，我们还为转盘设置了一个初始角度，使得第一个奖品呈现在转盘的正上方。效果如下所示：
 
 ![turntable-with-prize-labels](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-with-prize-labels.png)
 
@@ -146,7 +146,7 @@ turntableDom.style.transform = `rotate(${turntableBaseRotate}deg)`;
 > <img src="path/to/turntable.png" alt="turntable" id="turntable" class="turntable"></img>
 > ```
 
-接下来添加指针和开始转动的按钮：
+接下来添加指针和抽奖按钮：
 
 ```html
 <div class="container">
@@ -189,30 +189,36 @@ turntableDom.style.transform = `rotate(${turntableBaseRotate}deg)`;
 }
 ```
 
-使用绝对定位将指针和按钮放到合适的位置，渲染得到的转盘如下所示：
+使用绝对定位将指针和按钮放到合适的位置，转盘现在看上去有模有样了：
 
 ![turntable-with-all](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-with-all.png)
 
 最重要的环节到了，实现转盘抽奖的核心需求：转！
+
+首先实现一个支持生成小数位后 `precision` 位精度的随机数的方法，它将被用于模拟抽奖结果（当然这应当由后端完成），以及计算转盘应当旋转的角度：
+
+```ts
+const getRandomNumber = (min: number, max: number, precision: number) => {
+  const factor = Math.pow(10, precision);
+  const random = Math.random() * (max - min) + min;
+  return Math.round(random * factor) / factor;
+};
+```
+
+基于刚刚实现的 `getRandomNumber()` 方法，完成我们的抽奖事件：
 
 ```ts
 const animationDuration = 5000;
 const rotateLapsBase = 10;
 let rotateLaps = 0;
 
-const getRandomNumber = (min: number, max: number, precision: number) => {
-  const factor = Math.pow(10, precision);
-  const random = Math.random() * (max - min) + min;
-  return Math.round(random * factor) / factor;
-};
-
 const lotteryBtnDom = document.getElementById("lottery-btn");
 lotteryBtnDom.onclick = () => {
   lotteryBtnDom.classList.add("lottery-btn--disabled");
 
-  // #region 获取中奖结果，由后端完成
+  // #region 模拟抽奖结果，由后端完成
   let prizeIndex = 0;
-  let resultNum = getRandomNumber(0, 1, 3);
+  let resultNum = getRandomNumber(0, 1, 3); // 本文预设奖品的中奖概率精确到小数点后 3 位，因此这里的 `precision` 设为 3
   while (resultNum > 0) {
     resultNum -= prizes[prizeIndex].probability;
     if (resultNum > 0) {
@@ -260,17 +266,21 @@ lotteryBtnDom.onclick = () => {
 
 ![lucky-draw-base-animation](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/lucky-draw-base-animation.gif)
 
-Ops，竟然是谢谢参与，我直觉有黑幕！但是可喜可贺，我们已经基本实现了转盘抽奖组件所需的全部能力。
+Ops，竟然是谢谢参与，我觉得有黑幕！但是可喜可贺，我们已经基本实现了转盘抽奖组件所需的全部能力。
 
-下面，为了使转盘旋转的效果更贴近现实生活，我们可以为旋转动画设置更符合物理直觉的过渡效果。例如刚刚为 `transform` 设置的动画过渡效果 `transition-timing-function: ease-out;` 相当于 `transition-timing-function: cubic-bezier(0, 0, .58, 1);`，表示动画一开始较快，随着动画的进行逐渐减速。但是转盘从转动减速至停止的过渡时间太短，从视觉上看尤为突兀，要是稍长一些就好了。
+下面，为了使转盘旋转的效果更贴近生活实际，我们可以为旋转动画设置更符合物理直觉的过渡效果。
 
-通过 [cubic-bezier](https://cubic-bezier.com/)，我们可以快速实现如上所述的作为动画的过渡效果的三次贝塞尔曲线，如：`transition-timing-function: cubic-bezier(.3, .9, .38, 1);`，它减速至停止的过渡时间更长，更加符合物理直觉。效果如下：
+刚刚为 `transform` 设置的动画过渡效果 `transition-timing-function: ease-out;` 相当于 `transition-timing-function: cubic-bezier(0, 0, .58, 1);`，表示动画一开始较快，随着动画的进行逐渐减速。
+
+但是转盘从转动减速至停止的过渡时间太短，从视觉上看尤为突兀，要是稍长一些就好了。
+
+通过 [cubic-bezier](https://cubic-bezier.com/)，我们以可视化的方式实现一个满足需要的三次贝塞尔曲线，作为动画的过渡效果。如：`transition-timing-function: cubic-bezier(.3, .9, .38, 1);`，它减速至停止的 **过渡时间更长且更柔和**，效果如下：
 
 ![lucky-draw-better-animation](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/lucky-draw-better-animation.gif)
 
-完整的 Demo 如下：
+完整的 Demo 奉上：
 
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="QWXzwWp" data-pen-title="lucky-draw-demo" data-user="LolipopJ" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+<p class="codepen" data-height="600" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="QWXzwWp" data-pen-title="lucky-draw-demo" data-user="LolipopJ" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/LolipopJ/pen/QWXzwWp">
   lucky-draw-demo</a> by JasonSung (<a href="https://codepen.io/LolipopJ">@LolipopJ</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
