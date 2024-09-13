@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Lolipop</title>
+    <link>https://blog.towind.fun/</link>
+    
+    <image>
+      <url>https://blog.towind.fun/icon.png</url>
+      <title>Lolipop</title>
+      <link>https://blog.towind.fun/</link>
+    </image>
+    
+    <atom:link href="https://blog.towind.fun/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>Personal blog of Lolipop, share knowledge about software / frontend development.</description>
+    <pubDate>Fri, 06 Sep 2024 16:00:00 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>纯前端如何实现一个转盘抽奖组件</title>
+      <link>https://blog.towind.fun/20240905/lucky-draw/</link>
+      <guid>https://blog.towind.fun/20240905/lucky-draw/</guid>
+      <pubDate>Thu, 05 Sep 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;为什么&quot;&gt;&lt;a href=&quot;#为什么&quot; class=&quot;headerlink&quot; title=&quot;为什么&quot;&gt;&lt;/a&gt;为什么&lt;/h2&gt;&lt;p&gt;前阵子面试的时候被问到这个问题，觉得挺有意思，于是决定亲手实现一个转盘抽奖组件试试。&lt;/p&gt;
+&lt;p&gt;翻看别人的实现方案时，发现和自己面试时答得相差很大，悲 😢。但总之，是时候开始弥补自己的 CSS 和动画技能了。&lt;/p&gt;
+&lt;h2 id=&quot;是什么&quot;&gt;&lt;a href=&quot;#是什么&quot; class=&quot;headerlink&quot; title=&quot;是什么&quot;&gt;&lt;/a&gt;是什么&lt;/h2&gt;&lt;p&gt;一个转盘抽奖组件主要由三部分组成，写有中奖结果的圆形转盘、指向结果的指针和开始转动的按钮。&lt;/p&gt;
+&lt;p&gt;如果每个中奖结果的概率相近，我们可以按照真实概率来划分每个奖品所占圆形的扇形比例。但是通常转盘中会设置抽中概率极小的大奖，按照真实比例的话将无法充分展示奖品内容，而且降低用户对转盘抽奖本身的兴趣度。所以本文实现的转盘组件选择 &lt;strong&gt;均分的方式&lt;/strong&gt; 来划分每个奖品所占的扇形比例，符合通用的原则，也从视觉上让用户觉得中奖概率相当。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/TypeScript/">TypeScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/CSS/">CSS</category>
+      
+      
+      <comments>https://blog.towind.fun/20240905/lucky-draw/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Electron 执行后台程序并在渲染器实时打印运行日志</title>
+      <link>https://blog.towind.fun/20240804/electron-real-time-print-execution-log/</link>
+      <guid>https://blog.towind.fun/20240804/electron-real-time-print-execution-log/</guid>
+      <pubDate>Sun, 04 Aug 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？&lt;/p&gt;
+&lt;p&gt;那么需求也就明了了，正如本文的标题所述，我们需要&lt;strong&gt;将后台运行的日志实时推送到渲染器&lt;/strong&gt;，这样用户便能看到索引操作的进度，安下心来。&lt;/p&gt;
+&lt;h2 id=&quot;技术背景&quot;&gt;&lt;a href=&quot;#技术背景&quot; class=&quot;headerlink&quot; title=&quot;技术背景&quot;&gt;&lt;/a&gt;技术背景&lt;/h2&gt;&lt;p&gt;众所周知，一个 Electron 应用分为了 Renderer 渲染器和 Main 主进程两端。渲染器负责对客侧的展示，正如我们访问的所有网页一样，是 HTML、CSS、JavaScript 的集合，无法调用 Node 或是访问宿主机文件等。而主进程则具备有服务端应用的性质，能够调用 Node 或是与宿主机交互等。&lt;/p&gt;
+&lt;p&gt;综上所述，为了实现我们的目标，在背后依次要实现这些事情：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;渲染器接收用户索引操作的请求，将请求发送至主进程。&lt;/li&gt;
+&lt;li&gt;主进程接收到请求，调用可执行文件开始生成图像特征值。&lt;/li&gt;
+&lt;li&gt;主进程将产生的日志信息实时推送给渲染器。&lt;/li&gt;
+&lt;li&gt;渲染器接收到日志信息，并向用户展示。&lt;/li&gt;
+&lt;/ol&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/React/">React</category>
+      
+      <category domain="https://blog.towind.fun/tags/TypeScript/">TypeScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Electron/">Electron</category>
+      
+      
+      <comments>https://blog.towind.fun/20240804/electron-real-time-print-execution-log/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>部署一个给朋友使用的 Minecraft 模组服务器</title>
+      <link>https://blog.towind.fun/20240704/run-mc-server/</link>
+      <guid>https://blog.towind.fun/20240704/run-mc-server/</guid>
+      <pubDate>Thu, 04 Jul 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;笔者在今年五月份部署了一个与朋友同玩共乐的 Minecraft 服务器，稳定运行至今。忽然想记录为一篇博客，分享分享折腾的经历。&lt;/p&gt;
+&lt;p&gt;笔者结合个人喜好（最新版本，模组优先）和大众推荐（Fabric 更适合新版本 Minecraft），决定基于 Fabric 搭建一个可以添加模组的 Minecraft 服务器。此类服务器简称为模组服务器，还有基于 &lt;a href=&quot;https://github.com/PaperMC/Paper&quot;&gt;Paper&lt;/a&gt;, &lt;a href=&quot;https://www.spigotmc.org/&quot;&gt;Spigot&lt;/a&gt; 等搭建的插件服务器，可以综合自身需求，选择最合适的搭建方案。&lt;/p&gt;
+&lt;h2 id=&quot;部署-Minecraft-服务器&quot;&gt;&lt;a href=&quot;#部署-Minecraft-服务器&quot; class=&quot;headerlink&quot; title=&quot;部署 Minecraft 服务器&quot;&gt;&lt;/a&gt;部署 Minecraft 服务器&lt;/h2&gt;&lt;h3 id=&quot;安装-Java-环境&quot;&gt;&lt;a href=&quot;#安装-Java-环境&quot; class=&quot;headerlink&quot; title=&quot;安装 Java 环境&quot;&gt;&lt;/a&gt;安装 Java 环境&lt;/h3&gt;&lt;p&gt;Java 版的 Minecraft 服务器依赖于 Java 启动，因此在一切的最开始，需要在服务器上安装 Java 环境。&lt;/p&gt;
+&lt;p&gt;Java 版的 Minecraft 自 1.18 版本开始需要 Java &amp;gt;&amp;#x3D; 17。参考网上俯拾皆是的教程，通过包管理工具或前往 &lt;a href=&quot;https://jdk.java.net/&quot;&gt;Oracle OpenJDK&lt;/a&gt; 页面下载并安装合适版本的 Java。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/Minecraft/">Minecraft</category>
+      
+      <category domain="https://blog.towind.fun/tags/Game-Server/">Game-Server</category>
+      
+      
+      <comments>https://blog.towind.fun/20240704/run-mc-server/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器</title>
+      <link>https://blog.towind.fun/20240701/run-dont-starve-server/</link>
+      <guid>https://blog.towind.fun/20240701/run-dont-starve-server/</guid>
+      <pubDate>Mon, 01 Jul 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。&lt;/p&gt;
+&lt;p&gt;Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。&lt;/p&gt;
+&lt;p&gt;笔者主要参考了如下两个部署教程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://dontstarve.fandom.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers&quot;&gt;Guides&amp;#x2F;Don’t Starve Together Dedicated Servers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://steamcommunity.com/sharedfiles/filedetails/?id=590565473&quot;&gt;How to setup dedicated server with cave on Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;安装-steamcmd&quot;&gt;&lt;a href=&quot;#安装-steamcmd&quot; class=&quot;headerlink&quot; title=&quot;安装 steamcmd&quot;&gt;&lt;/a&gt;安装 &lt;code&gt;steamcmd&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;安装的步骤可以直接参考 SteamCMD 的&lt;a href=&quot;https://developer.valvesoftware.com/wiki/SteamCMD&quot;&gt;官方文档&lt;/a&gt;（&lt;a href=&quot;https://developer.valvesoftware.com/w/index.php?title=SteamCMD:zh-cn&amp;uselang=zh&quot;&gt;中文版&lt;/a&gt;）。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/SteamCMD/">SteamCMD</category>
+      
+      <category domain="https://blog.towind.fun/tags/Game-Server/">Game-Server</category>
+      
+      <category domain="https://blog.towind.fun/tags/Don-t-Starve/">Don&#39;t-Starve</category>
+      
+      
+      <comments>https://blog.towind.fun/20240701/run-dont-starve-server/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用 Nginx 治理我的服务</title>
+      <link>https://blog.towind.fun/20240512/nginx-services/</link>
+      <guid>https://blog.towind.fun/20240512/nginx-services/</guid>
+      <pubDate>Sun, 12 May 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。&lt;/p&gt;
+&lt;p&gt;笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。&lt;/p&gt;
+&lt;h2 id=&quot;安装最新版本的-Nginx&quot;&gt;&lt;a href=&quot;#安装最新版本的-Nginx&quot; class=&quot;headerlink&quot; title=&quot;安装最新版本的 Nginx&quot;&gt;&lt;/a&gt;安装最新版本的 Nginx&lt;/h2&gt;&lt;p&gt;笔者使用的服务器为 CentOS 7 系统，默认的 yum 源中包含的 Nginx 版本为 &lt;code&gt;1.20.1&lt;/code&gt;（2021-05-21）。&lt;/p&gt;
+&lt;p&gt;更新 yum 源，添加 Nginx 的官方源：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nginx/">Nginx</category>
+      
+      
+      <comments>https://blog.towind.fun/20240512/nginx-services/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端</title>
+      <link>https://blog.towind.fun/20240510/backup-mc-server/</link>
+      <guid>https://blog.towind.fun/20240510/backup-mc-server/</guid>
+      <pubDate>Fri, 10 May 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。&lt;/p&gt;
+&lt;p&gt;在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。&lt;/p&gt;
+&lt;p&gt;完整的脚本&lt;a href=&quot;https://github.com/LolipopJ/LolipopJ.github.io/blob/cd9d45af2a97f596ec6b3ada4c069f88a9e9bbd7/source/static/scripts/backup-mc-server.js&quot;&gt;可见此&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;编写备份脚本&quot;&gt;&lt;a href=&quot;#编写备份脚本&quot; class=&quot;headerlink&quot; title=&quot;编写备份脚本&quot;&gt;&lt;/a&gt;编写备份脚本&lt;/h2&gt;&lt;h3 id=&quot;前置准备&quot;&gt;&lt;a href=&quot;#前置准备&quot; class=&quot;headerlink&quot; title=&quot;前置准备&quot;&gt;&lt;/a&gt;前置准备&lt;/h3&gt;&lt;p&gt;为了脚本编写方便，约定应该在 Minecraft 服务器的根目录执行脚本。校验当前脚本的执行目录：&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/OpenWRT/">OpenWRT</category>
+      
+      <category domain="https://blog.towind.fun/tags/Minecraft/">Minecraft</category>
+      
+      <category domain="https://blog.towind.fun/tags/Alist/">Alist</category>
+      
+      
+      <comments>https://blog.towind.fun/20240510/backup-mc-server/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>遇到 AntD 组件中文乱码问题，可以试试这么解决</title>
+      <link>https://blog.towind.fun/20231008/antd-comp-garbled-characters/</link>
+      <guid>https://blog.towind.fun/20231008/antd-comp-garbled-characters/</guid>
+      <pubDate>Sun, 08 Oct 2023 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;项目中使用了 AntD 4.x 的 &lt;code&gt;&amp;lt;DatePicker /&amp;gt;&lt;/code&gt; 组件，开发环境显示正常，生产环境显示乱码，如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20231008/antd-comp-garbled-characters/error.png&quot; alt=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;问题原因&quot;&gt;&lt;a href=&quot;#问题原因&quot; class=&quot;headerlink&quot; title=&quot;问题原因&quot;&gt;&lt;/a&gt;问题原因&lt;/h2&gt;&lt;p&gt;&lt;code&gt;&amp;lt;DatePicker /&amp;gt;&lt;/code&gt; 组件底层的国际化既由 AntD 提供的 &lt;code&gt;&amp;lt;ConfigProvider /&amp;gt;&lt;/code&gt; 控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。&lt;/p&gt;
+&lt;p&gt;经查询，当我们以 ISO8859-1 方式读取 UTF-8 编码的中文时，会出现如“ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�‘ä¸Š”这样的符号型乱码，正如上图所示。&lt;/p&gt;
+&lt;p&gt;因此产生问题的关键在于，&lt;strong&gt;为何浏览器没有正确地以 UTF-8 格式读取 Moment 提供的中文语言包文本。&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/React/">React</category>
+      
+      <category domain="https://blog.towind.fun/tags/TypeScript/">TypeScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Ant-Design/">Ant-Design</category>
+      
+      
+      <comments>https://blog.towind.fun/20231008/antd-comp-garbled-characters/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>为什么我使用 Umi 的 model 简易数据流管理插件</title>
+      <link>https://blog.towind.fun/20221022/umi-plugin-usemodel/</link>
+      <guid>https://blog.towind.fun/20221022/umi-plugin-usemodel/</guid>
+      <pubDate>Sat, 22 Oct 2022 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;Umi 是一款企业级的 React 前端应用框架，云巧产业数字组件中心推荐使用基于 Umi 的 Koi 框架统一前端应用研发流程，支撑前端项目从研发、联调到上线、发布的全流程。&lt;/p&gt;
+&lt;p&gt;本文假设您正在或计划使用 Umi 或 Koi 作为底层框架支撑前端应用的开发，并且对 Umi 有一定的了解。&lt;/p&gt;
+&lt;h2 id=&quot;数据治理的原则&quot;&gt;&lt;a href=&quot;#数据治理的原则&quot; class=&quot;headerlink&quot; title=&quot;数据治理的原则&quot;&gt;&lt;/a&gt;数据治理的原则&lt;/h2&gt;&lt;p&gt;React 的核心特征是“数据驱动视图”，用公式表达即 &lt;code&gt;UI = render(data)&lt;/code&gt;，通过数据变化来驱动视图变化。React 将组件内部自有的数据称作 state（状态），通过管理 state 来实现对组件的管理。&lt;/p&gt;
+&lt;p&gt;通过 Props 传参，可以在 React 中实现简单的父子、子父和兄弟组件间数据传递。对于跨级组件间的数据传递，React 提供了基于生产者-消费者模式的 Context API 来实现全局通信。&lt;/p&gt;
+&lt;p&gt;随着应用的膨胀，组件内部的状态变得愈加复杂，数据流管理的成本也越来越高。如果说所有代码的末路都是成为一座难以维护的大山的话，在那之前，我们应当好好想想如何尽可能多地延长代码的寿命，去重新思考我们的 React 项目的代码组织逻辑。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/React/">React</category>
+      
+      <category domain="https://blog.towind.fun/tags/Umi/">Umi</category>
+      
+      
+      <comments>https://blog.towind.fun/20221022/umi-plugin-usemodel/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>定时器 SetTimeout 在后台失效？试试 Web Worker 吧</title>
+      <link>https://blog.towind.fun/20220921/js-webworker-settimeout/</link>
+      <guid>https://blog.towind.fun/20220921/js-webworker-settimeout/</guid>
+      <pubDate>Wed, 21 Sep 2022 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。&lt;/p&gt;
+&lt;p&gt;想都没想，直接在 &lt;code&gt;useEffect()&lt;/code&gt; 里用 &lt;code&gt;setTimeout()&lt;/code&gt; 定个时，12 个小时后触发相应跳转事件：&lt;/p&gt;
+&lt;figure class=&quot;highlight tsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;React&lt;/span&gt;, &amp;#123; useEffect &amp;#125; &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot;react&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;variable constant_&quot;&gt;LEAVE_PAGE_COUNTDOWN&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt; * &lt;span class=&quot;number&quot;&gt;60&lt;/span&gt; * &lt;span class=&quot;number&quot;&gt;60&lt;/span&gt; * &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;// 12h&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/** 离开页面的方法 */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;leavePage&lt;/span&gt; = (&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// ...离开当前页面的业务代码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;default&lt;/span&gt; () =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;title function_&quot;&gt;useEffect&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 初始化时设置定时器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; timer = &lt;span class=&quot;built_in&quot;&gt;setTimeout&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;title function_&quot;&gt;leavePage&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;, &lt;span class=&quot;variable constant_&quot;&gt;LEAVE_PAGE_COUNTDOWN&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;// 页面卸载时清除定时器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (timer) &lt;span class=&quot;built_in&quot;&gt;clearTimeout&lt;/span&gt;(timer);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;, []);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;没想到，今天上班来，切换到没有关闭的标签页，发现还在当前页面，掐指一算怎么也有 12 个小时了，这是怎么一回事儿……？&lt;/p&gt;
+&lt;p&gt;昨天晚上走的时候还在和前辈探讨页面卸载（&lt;code&gt;unload&lt;/code&gt;）事件与浏览器后台优化的坑，于是首先就想到了可能是浏览器优化的缘故，导致定时器没有正常执行。以「setTimeout」和「后台失效」为搜索关键词，很快找到了原因和优化解决方案。&lt;/p&gt;
+&lt;h2 id=&quot;失效原因&quot;&gt;&lt;a href=&quot;#失效原因&quot; class=&quot;headerlink&quot; title=&quot;失效原因&quot;&gt;&lt;/a&gt;失效原因&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/React/">React</category>
+      
+      <category domain="https://blog.towind.fun/tags/TypeScript/">TypeScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Web-Worker/">Web-Worker</category>
+      
+      <category domain="https://blog.towind.fun/tags/Umi/">Umi</category>
+      
+      <category domain="https://blog.towind.fun/tags/Webpack/">Webpack</category>
+      
+      
+      <comments>https://blog.towind.fun/20220921/js-webworker-settimeout/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>连接到 Windows 端的 PostgreSQL 数据库</title>
+      <link>https://blog.towind.fun/20220211/connect-with-pgsql/</link>
+      <guid>https://blog.towind.fun/20220211/connect-with-pgsql/</guid>
+      <pubDate>Fri, 11 Feb 2022 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在 &lt;code&gt;C:&#92;Program Files&#92;PostgreSQL&#92;14&lt;/code&gt; 目录下，数据库文件保存在 &lt;code&gt;C:&#92;Program Files&#92;PostgreSQL&#92;14&#92;data&lt;/code&gt; 目录，欲访问的数据库名为 &lt;code&gt;db_name&lt;/code&gt;，访问数据库的用户为 &lt;code&gt;db_user&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;配置-postgresql-conf&quot;&gt;&lt;a href=&quot;#配置-postgresql-conf&quot; class=&quot;headerlink&quot; title=&quot;配置 postgresql.conf&quot;&gt;&lt;/a&gt;配置 &lt;code&gt;postgresql.conf&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;编辑数据库配置文件 &lt;code&gt;C:&#92;Program Files&#92;PostgreSQL&#92;14&#92;data&#92;postgresql.conf&lt;/code&gt;，设置监听的远程连接地址。将 &lt;code&gt;listen_addresses&lt;/code&gt; 项的值设置为 &lt;code&gt;*&lt;/code&gt;，如下所示：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# - Connection Settings -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;listen_addresses = &amp;#x27;*&amp;#x27;  # what IP address(es) to listen on&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;配置-pg-hba-conf&quot;&gt;&lt;a href=&quot;#配置-pg-hba-conf&quot; class=&quot;headerlink&quot; title=&quot;配置 pg_hba.conf&quot;&gt;&lt;/a&gt;配置 &lt;code&gt;pg_hba.conf&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;编辑数据库客户端认证配置文件 &lt;code&gt;C:&#92;Program Files&#92;PostgreSQL&#92;14&#92;data&#92;pg_hba.conf&lt;/code&gt;，设置允许连接到数据库的客户端 IP 地址。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Windows/">Windows</category>
+      
+      <category domain="https://blog.towind.fun/tags/PostgreSQL/">PostgreSQL</category>
+      
+      
+      <comments>https://blog.towind.fun/20220211/connect-with-pgsql/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>这位客官，要来一张我珍藏许久的图片吗</title>
+      <link>https://blog.towind.fun/20220112/random-get-me-a-picture/</link>
+      <guid>https://blog.towind.fun/20220112/random-get-me-a-picture/</guid>
+      <pubDate>Wed, 12 Jan 2022 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。&lt;/p&gt;
+&lt;p&gt;独乐乐不如众乐乐！笔者想做一个 web 页面来随机访问我的收藏，不过在此之前，可以先实现服务端上的内容。再之后做网页时，不过是简单的读取数据库罢了！&lt;/p&gt;
+&lt;p&gt;最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 &lt;a href=&quot;https://pixiv.re/&quot;&gt;Pixiv 图片代理网站&lt;/a&gt; 可以快速下载到图片，大喜，于是开始了这个小工程。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220112/random-get-me-a-picture/pixiv-cat.png&quot; alt=&quot;请求需包含 Referer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;实现此功能分为两个阶段：一，为本地的图片生成数据库索引条目。二，开发 Telegram Bot 接口，随机从数据库索引中获取一张图片转发给聊天。&lt;/p&gt;
+&lt;h2 id=&quot;为本地的-Pixiv-图片建立索引&quot;&gt;&lt;a href=&quot;#为本地的-Pixiv-图片建立索引&quot; class=&quot;headerlink&quot; title=&quot;为本地的 Pixiv 图片建立索引&quot;&gt;&lt;/a&gt;为本地的 Pixiv 图片建立索引&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Telegram/">Telegram</category>
+      
+      <category domain="https://blog.towind.fun/tags/Bot/">Bot</category>
+      
+      <category domain="https://blog.towind.fun/tags/Koa/">Koa</category>
+      
+      
+      <comments>https://blog.towind.fun/20220112/random-get-me-a-picture/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>从零开始使用 Telegram Bot</title>
+      <link>https://blog.towind.fun/20220108/start-telegram-bot/</link>
+      <guid>https://blog.towind.fun/20220108/start-telegram-bot/</guid>
+      <pubDate>Sat, 08 Jan 2022 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，支持获取 Github Issues 的评论并转发到 Telegram 频道，帮助笔者更好地将捣玩 Telegram！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;时间推移至 2024 年，笔者现在更建议使用 &lt;a href=&quot;https://bun.sh/&quot;&gt;Bun&lt;/a&gt; 开发应用服务，开箱即用的高性能服务以及完备的 TypeScript 支持，能大大提升开发体验。下面为撰写于 2022 年初的原文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本文假设您已对 Node.js 和 Koa 有一定的了解。&lt;/p&gt;
+&lt;h2 id=&quot;初始化-Koa-项目&quot;&gt;&lt;a href=&quot;#初始化-Koa-项目&quot; class=&quot;headerlink&quot; title=&quot;初始化 Koa 项目&quot;&gt;&lt;/a&gt;初始化 Koa 项目&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://koajs.com/&quot;&gt;Koa&lt;/a&gt; 是为 Node.js 设计的下一代 Web 框架，其幕后开发者主要来自知名的 Express 团队。&lt;/p&gt;
+&lt;p&gt;尽管使用 &lt;a href=&quot;https://github.com/i5ting/koa-generator&quot;&gt;koa-generator&lt;/a&gt; 来初始化 Koa 项目是一个不错的选择，但笔者还是喜欢从头开始的感觉。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/PostgreSQL/">PostgreSQL</category>
+      
+      <category domain="https://blog.towind.fun/tags/Telegram/">Telegram</category>
+      
+      <category domain="https://blog.towind.fun/tags/Bot/">Bot</category>
+      
+      <category domain="https://blog.towind.fun/tags/Koa/">Koa</category>
+      
+      <category domain="https://blog.towind.fun/tags/Sequelize/">Sequelize</category>
+      
+      
+      <comments>https://blog.towind.fun/20220108/start-telegram-bot/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>把自己的简历做成 Web 页面</title>
+      <link>https://blog.towind.fun/20210818/build-my-resume/</link>
+      <guid>https://blog.towind.fun/20210818/build-my-resume/</guid>
+      <pubDate>Wed, 18 Aug 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 &lt;a href=&quot;https://github.com/salomonelli/best-resume-ever&quot;&gt;best-resume-ever&lt;/a&gt; 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20210818/build-my-resume/my-first-resume.jpg&quot; alt=&quot;my first resume&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写，可以用自己已有的知识对简历做一些改造手术。&lt;/p&gt;
+&lt;h2 id=&quot;改造简历&quot;&gt;&lt;a href=&quot;#改造简历&quot; class=&quot;headerlink&quot; title=&quot;改造简历&quot;&gt;&lt;/a&gt;改造简历&lt;/h2&gt;&lt;p&gt;举四个改造的例子好了。&lt;/p&gt;
+&lt;h3 id=&quot;添加-Chip-纸片&quot;&gt;&lt;a href=&quot;#添加-Chip-纸片&quot; class=&quot;headerlink&quot; title=&quot;添加 Chip 纸片&quot;&gt;&lt;/a&gt;添加 Chip 纸片&lt;/h3&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Vue-2/">Vue-2</category>
+      
+      <category domain="https://blog.towind.fun/tags/resume/">resume</category>
+      
+      <category domain="https://blog.towind.fun/tags/CSS/">CSS</category>
+      
+      <category domain="https://blog.towind.fun/tags/Github-actions/">Github-actions</category>
+      
+      <category domain="https://blog.towind.fun/tags/rxjs/">rxjs</category>
+      
+      
+      <comments>https://blog.towind.fun/20210818/build-my-resume/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用 jsDelivr 加速 Github 仓库搭建自己的图床服务</title>
+      <link>https://blog.towind.fun/20210812/github-jsdelivr-hold-image/</link>
+      <guid>https://blog.towind.fun/20210812/github-jsdelivr-hold-image/</guid>
+      <pubDate>Thu, 12 Aug 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;blockquote&gt;
+&lt;p&gt;使用此类公益服务时应保留敬畏之心，不要滥用服务，消耗他人的善意。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;今天突然想去搞个图床，使用 CDN 加速图片资源。因为博客放在小水管服务器上，直接用这个服务器向用户传输图片资源对带宽有很大影响。&lt;/p&gt;
+&lt;p&gt;遂上网搜索有无免费图床的服务，看到不少将 jsDelivr 用作图床使用的教程，便自己实践一番。&lt;/p&gt;
+&lt;p&gt;在国内，直接使用 Github 链接来加载图片是很慢的，甚至于加载不出来；但访问 jsDelivr 速度较快。通过 jsDelivr 来加速 Github 上的图片资源，即可以实现我们想要的图床服务。&lt;/p&gt;
+&lt;p&gt;使用其它的可以加速 Github 资源的 CDN 服务来替换 jsDelivr 也可以；这应该算是目前对于个人开发者来说，最简单且最经济的方式了。&lt;/p&gt;
+&lt;h2 id=&quot;创建图床仓库&quot;&gt;&lt;a href=&quot;#创建图床仓库&quot; class=&quot;headerlink&quot; title=&quot;创建图床仓库&quot;&gt;&lt;/a&gt;创建图床仓库&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Github/">Github</category>
+      
+      <category domain="https://blog.towind.fun/tags/jsDiliver/">jsDiliver</category>
+      
+      
+      <comments>https://blog.towind.fun/20210812/github-jsdelivr-hold-image/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化</title>
+      <link>https://blog.towind.fun/20210806/editorconfig-prettier/</link>
+      <guid>https://blog.towind.fun/20210806/editorconfig-prettier/</guid>
+      <pubDate>Fri, 06 Aug 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;编写代码时使用-EditorConfig&quot;&gt;&lt;a href=&quot;#编写代码时使用-EditorConfig&quot; class=&quot;headerlink&quot; title=&quot;编写代码时使用 EditorConfig&quot;&gt;&lt;/a&gt;编写代码时使用 EditorConfig&lt;/h2&gt;&lt;p&gt;EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。&lt;/p&gt;
+&lt;p&gt;VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig&quot;&gt;插件&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;EditorConfig 会自动读取工作区中的 &lt;code&gt;.editorconfig&lt;/code&gt; 文件，更详细的配置说明可以参考&lt;a href=&quot;https://editorconfig-specification.readthedocs.io/&quot;&gt;官方介绍&lt;/a&gt;。下面是笔者常用的配置：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;root = true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[*]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;indent_style = space&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;indent_size = 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end_of_line = lf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;charset = utf-8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;insert_final_newline = true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;trim_trailing_whitespace = true&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;推送仓库前使用-Prettier&quot;&gt;&lt;a href=&quot;#推送仓库前使用-Prettier&quot; class=&quot;headerlink&quot; title=&quot;推送仓库前使用 Prettier&quot;&gt;&lt;/a&gt;推送仓库前使用 Prettier&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/EditorConfig/">EditorConfig</category>
+      
+      <category domain="https://blog.towind.fun/tags/Prettier/">Prettier</category>
+      
+      <category domain="https://blog.towind.fun/tags/VSCode/">VSCode</category>
+      
+      
+      <comments>https://blog.towind.fun/20210806/editorconfig-prettier/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>更换持续集成工具，从 Travis 到 Github Actions</title>
+      <link>https://blog.towind.fun/20210709/switch-travis-to-github-workflow/</link>
+      <guid>https://blog.towind.fun/20210709/switch-travis-to-github-workflow/</guid>
+      <pubDate>Fri, 09 Jul 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。&lt;/p&gt;
+&lt;p&gt;当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。&lt;/p&gt;
+&lt;h2 id=&quot;编写新的-workflow-yml&quot;&gt;&lt;a href=&quot;#编写新的-workflow-yml&quot; class=&quot;headerlink&quot; title=&quot;编写新的 workflow.yml&quot;&gt;&lt;/a&gt;编写新的 workflow.yml&lt;/h2&gt;&lt;p&gt;那么首先，我们就需要将为 Travis 编写的命名为 &lt;code&gt;.travis.yml&lt;/code&gt; 的配置文件，翻译成 Github Actions 能识别的 workflow.yml 配置文件。&lt;/p&gt;
+&lt;p&gt;以&lt;a href=&quot;https://github.com/LolipopJ/design-patterns-for-humans-zh&quot;&gt;献给中文读者的设计模式教程&lt;/a&gt;这个项目为例，原有的 &lt;code&gt;.travis.yml&lt;/code&gt; 内容如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight yml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;language:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;node_js&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;node_js:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;lts/*&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;branches:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;only:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;main&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;install:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vuepress&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;install&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;script:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;yarn&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;build&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;deploy:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;provider:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;pages&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;skip_cleanup:&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;local_dir:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vuepress/docs/.vuepress/dist&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;github_token:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;$CI_DEPLOY_TOKEN&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;keep_history:&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;on:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attr&quot;&gt;branch:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;main&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Github-actions/">Github-actions</category>
+      
+      <category domain="https://blog.towind.fun/tags/Travis/">Travis</category>
+      
+      
+      <comments>https://blog.towind.fun/20210709/switch-travis-to-github-workflow/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在浏览器中输入 URL 到显示网页，背后发生了什么</title>
+      <link>https://blog.towind.fun/20210707/browser-behind-visit-url/</link>
+      <guid>https://blog.towind.fun/20210707/browser-behind-visit-url/</guid>
+      <pubDate>Wed, 07 Jul 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;最近学习前端基础知识的时候，看到了这个问题和&lt;a href=&quot;https://www.zhihu.com/question/34873227/answer/518086565&quot;&gt;一个回答&lt;/a&gt;，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。&lt;/p&gt;
+&lt;p&gt;现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入 &lt;code&gt;lolipopj.github.io&lt;/code&gt; 这个 URL 然后敲下回车键。&lt;/p&gt;
+&lt;p&gt;从敲下回车键到最终顺利在浏览器显示我博客的主页，这个过程的背后发生了什么呢？&lt;/p&gt;
+&lt;h2 id=&quot;检查-URL-格式&quot;&gt;&lt;a href=&quot;#检查-URL-格式&quot; class=&quot;headerlink&quot; title=&quot;检查 URL 格式&quot;&gt;&lt;/a&gt;检查 URL 格式&lt;/h2&gt;&lt;p&gt;别急，在正式驶入互联网的快车道之前，浏览器会首先检查输入的 URL 的格式是否正确。&lt;/p&gt;
+&lt;p&gt;例如，假如您输入的是 &lt;code&gt;lolipop j.github.io&lt;/code&gt;，或是 &lt;code&gt;lolipopj.gith$ub.io&lt;/code&gt;，浏览器将会判断它们为非 URL。在这种情况下，浏览器通常会将我们错误输入的 URL 作为搜索引擎的输入关键字，最终跳转到搜索结果界面。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      <category domain="https://blog.towind.fun/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</category>
+      
+      <category domain="https://blog.towind.fun/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</category>
+      
+      
+      <comments>https://blog.towind.fun/20210707/browser-behind-visit-url/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>为 Archer 主题更换字体</title>
+      <link>https://blog.towind.fun/20210625/web-font-for-hexo-theme-archer/</link>
+      <guid>https://blog.towind.fun/20210625/web-font-for-hexo-theme-archer/</guid>
+      <pubDate>Fri, 25 Jun 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 &lt;a href=&quot;https://github.com/fi3ework/hexo-theme-archer&quot;&gt;Hexo-Theme-Archer&lt;/a&gt; 展示如何更换博客的中文字体。&lt;/p&gt;
+&lt;h2 id=&quot;引入字体文件&quot;&gt;&lt;a href=&quot;#引入字体文件&quot; class=&quot;headerlink&quot; title=&quot;引入字体文件&quot;&gt;&lt;/a&gt;引入字体文件&lt;/h2&gt;&lt;p&gt;这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。&lt;/p&gt;
+&lt;h3 id=&quot;引入-CDN-字体文件&quot;&gt;&lt;a href=&quot;#引入-CDN-字体文件&quot; class=&quot;headerlink&quot; title=&quot;引入 CDN 字体文件&quot;&gt;&lt;/a&gt;引入 CDN 字体文件&lt;/h3&gt;&lt;p&gt;以更换字体为思源黑体（Google 字体上叫 &lt;code&gt;Noto Sans&lt;/code&gt;，Adobe 版本叫 &lt;code&gt;Source Han Sans&lt;/code&gt;）为例，考虑到中文站点面向的读者在国内，无法直接下载思源黑体这款 Google 字体，因此考虑通过 CDN 的方式引入它。据笔者测试，目前有这四个 CDN 站点可以提供稳定的服务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;https://fonts.googleapis.cnpmjs.org&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://fonts.font.im&lt;/code&gt;，可参考：&lt;a href=&quot;http://www.googlefonts.cn/old&quot;&gt;http://www.googlefonts.cn/old&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://fonts.proxy.ustclug.org&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://fonts.loli.net&lt;/code&gt;，可参考：&lt;a href=&quot;https://sb.sb/blog/css-cdn&quot;&gt;https://sb.sb/blog/css-cdn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Hexo/">Hexo</category>
+      
+      <category domain="https://blog.towind.fun/tags/hexo-theme-archer/">hexo-theme-archer</category>
+      
+      
+      <comments>https://blog.towind.fun/20210625/web-font-for-hexo-theme-archer/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用基于 Docker 的 Nginx 部署静态网页项目</title>
+      <link>https://blog.towind.fun/20210624/website-deployment-docker-nginx/</link>
+      <guid>https://blog.towind.fun/20210624/website-deployment-docker-nginx/</guid>
+      <pubDate>Thu, 24 Jun 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？&lt;/p&gt;
+&lt;p&gt;本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。&lt;/p&gt;
+&lt;h2 id=&quot;准备静态网页项目&quot;&gt;&lt;a href=&quot;#准备静态网页项目&quot; class=&quot;headerlink&quot; title=&quot;准备静态网页项目&quot;&gt;&lt;/a&gt;准备静态网页项目&lt;/h2&gt;&lt;p&gt;为了更方便管理网页项目，可以在主机根目录下新建一个目录，例如 &lt;code&gt;www&lt;/code&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;sudo&lt;/span&gt; -i &lt;span class=&quot;comment&quot;&gt;# 切换为管理员用户&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;mkdir&lt;/span&gt; www&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;现在，我已经有了一个完整的静态网页项目——我的&lt;a href=&quot;https://github.com/LolipopJ/LolipopJ.github.io&quot;&gt;个人博客&lt;/a&gt;。我的个人博客基于 Hexo，其中代码放在 &lt;code&gt;source&lt;/code&gt; 分支，生成的静态网页文件放在 &lt;code&gt;master&lt;/code&gt; 分支。首先通过 &lt;code&gt;git&lt;/code&gt; 命令将静态网页文件克隆下来：&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/Docker/">Docker</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nginx/">Nginx</category>
+      
+      
+      <comments>https://blog.towind.fun/20210624/website-deployment-docker-nginx/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 Linux 系统下启用 Project-V</title>
+      <link>https://blog.towind.fun/20210608/linux-project-v/</link>
+      <guid>https://blog.towind.fun/20210608/linux-project-v/</guid>
+      <pubDate>Tue, 08 Jun 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;下载-Release&quot;&gt;&lt;a href=&quot;#下载-Release&quot; class=&quot;headerlink&quot; title=&quot;下载 Release&quot;&gt;&lt;/a&gt;下载 Release&lt;/h2&gt;&lt;p&gt;在 Project-V 的 &lt;a href=&quot;https://github.com/v2fly/v2ray-core/releases&quot;&gt;Github Releases&lt;/a&gt; 页面下载最新的二进制包。&lt;/p&gt;
+&lt;p&gt;本文以通用于 x86_64 机器的 &lt;code&gt;v2ray-linux-64.zip&lt;/code&gt; 为例。下载完成后传入 Linux 主机即可。&lt;/p&gt;
+&lt;h2 id=&quot;安装-Project-V&quot;&gt;&lt;a href=&quot;#安装-Project-V&quot; class=&quot;headerlink&quot; title=&quot;安装 Project-V&quot;&gt;&lt;/a&gt;安装 Project-V&lt;/h2&gt;&lt;p&gt;执行 &lt;code&gt;unzip&lt;/code&gt; 命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unzip v2ray-linux-64.zip&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      
+      <comments>https://blog.towind.fun/20210608/linux-project-v/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 Euler 系统上离线安装 MySQL 5.7</title>
+      <link>https://blog.towind.fun/20210603/euler-install-mysql/</link>
+      <guid>https://blog.towind.fun/20210603/euler-install-mysql/</guid>
+      <pubDate>Thu, 03 Jun 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;查看系统-OS-及架构&quot;&gt;&lt;a href=&quot;#查看系统-OS-及架构&quot; class=&quot;headerlink&quot; title=&quot;查看系统 OS 及架构&quot;&gt;&lt;/a&gt;查看系统 OS 及架构&lt;/h2&gt;&lt;p&gt;以 Euler 系统为例，在终端上输入命令查看，可以通过 &lt;code&gt;rpm -qa | grep euleros-release&lt;/code&gt; 命令找到 rpm 包，再通过 &lt;code&gt;rpm -qi $&amp;#123;包名&amp;#125;&lt;/code&gt; 查看系统 OS 及架构信息：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@lolipop ~]# rpm -qa | grep euleros-release&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;euleros-release-2.0SP5-13.eulerosv2r7.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@lolipop ~]# rpm -qi euleros-release-2.0SP5-13.eulerosv2r7.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Name        : euleros-release&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Version     : 2.0SP5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Release     : 13.eulerosv2r7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Architecture: x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;......&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;当然，也可以使用通用的 &lt;code&gt;uname -a&lt;/code&gt; 命令。&lt;/p&gt;
+&lt;p&gt;当前系统为 Euler 2.0 (SP5)，处理器架构为 x86_64。&lt;/p&gt;
+&lt;h2 id=&quot;下载-MySQL&quot;&gt;&lt;a href=&quot;#下载-MySQL&quot; class=&quot;headerlink&quot; title=&quot;下载 MySQL&quot;&gt;&lt;/a&gt;下载 MySQL&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://blog.towind.fun/20210603/euler-install-mysql/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>漫谈 JavaScript 类（Class）的使用</title>
+      <link>https://blog.towind.fun/20210519/js-use-class/</link>
+      <guid>https://blog.towind.fun/20210519/js-use-class/</guid>
+      <pubDate>Wed, 19 May 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的 &lt;code&gt;class&lt;/code&gt; 语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。&lt;/p&gt;
+&lt;p&gt;本博文将探讨 JavaScript 中&lt;strong&gt;如何使用类&lt;/strong&gt;的相关知识，文章组织架构和内容基于 MDN 上关于类的&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes&quot;&gt;章节&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;定义类&quot;&gt;&lt;a href=&quot;#定义类&quot; class=&quot;headerlink&quot; title=&quot;定义类&quot;&gt;&lt;/a&gt;定义类&lt;/h2&gt;&lt;p&gt;类可以被看作一种“特殊的函数”，和函数的定义方法一样，类的定义方法有两种：&lt;strong&gt;类声明&lt;/strong&gt;和&lt;strong&gt;类表达式&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;第一种方法是，直接使用 &lt;code&gt;class&lt;/code&gt; 关键字声明类，即&lt;strong&gt;类声明&lt;/strong&gt;的方法。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;User&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;//&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/ES6/">ES6</category>
+      
+      
+      <comments>https://blog.towind.fun/20210519/js-use-class/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>漫谈 JavaScript 闭包</title>
+      <link>https://blog.towind.fun/20210517/js-closure/</link>
+      <guid>https://blog.towind.fun/20210517/js-closure/</guid>
+      <pubDate>Mon, 17 May 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。&lt;/p&gt;
+&lt;p&gt;为了更好理解闭包的作用，不妨看看我的&lt;a href=&quot;/20210510/js-hoisting/&quot; title=&quot;漫谈 JavaScript 变量提升和函数提升&quot;&gt;这一篇博客&lt;/a&gt;关于 JS 变量提升（Hoisting）和函数提升现象的阐述。&lt;/p&gt;
+&lt;h2 id=&quot;作用域&quot;&gt;&lt;a href=&quot;#作用域&quot; class=&quot;headerlink&quot; title=&quot;作用域&quot;&gt;&lt;/a&gt;作用域&lt;/h2&gt;&lt;p&gt;在 JavaScript 中，&lt;strong&gt;作用域&lt;/strong&gt;（Scope）是当前代码执行的上下文，也即是值和表达式在其中可访问到的上下文。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果一个变量或其它表达式不在当前作用域中，就会沿&lt;strong&gt;作用域链&lt;/strong&gt;（Scope Chain）往父作用域搜索。如果也仍未找到它的话，那么它就是不可用的。&lt;/li&gt;
+&lt;li&gt;最顶级的父作用域是全局对象。&lt;/li&gt;
+&lt;li&gt;父作用域不能引用子作用域中的变量和定义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;目前，作用域有三种：&lt;strong&gt;全局作用域&lt;/strong&gt;和&lt;strong&gt;函数作用域&lt;/strong&gt;，以及 ES6 新增的&lt;strong&gt;块级作用域&lt;/strong&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      
+      <comments>https://blog.towind.fun/20210517/js-closure/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>漫谈 JavaScript 变量提升和函数提升</title>
+      <link>https://blog.towind.fun/20210510/js-hoisting/</link>
+      <guid>https://blog.towind.fun/20210510/js-hoisting/</guid>
+      <pubDate>Mon, 10 May 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;在 ES6 规范出现之前，使用 JavaScript 声明变量只有 &lt;code&gt;var&lt;/code&gt;, &lt;code&gt;function&lt;/code&gt; 以及隐式声明三种方式。&lt;/p&gt;
+&lt;p&gt;按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(a); &lt;span class=&quot;comment&quot;&gt;// 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;但假如反过来，我们“先调用，后声明”，会发生什么呢？&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(a); &lt;span class=&quot;comment&quot;&gt;// undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(a); &lt;span class=&quot;comment&quot;&gt;// 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(b); &lt;span class=&quot;comment&quot;&gt;// Uncaught ReferenceError: b is not defined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;如上所示，在声明变量 &lt;code&gt;a&lt;/code&gt; 之前尝试将它的值打印出来，控制台输出的结果是 &lt;code&gt;undefined&lt;/code&gt;，而不是预期中的报错 &lt;code&gt;Uncaught ReferenceError: a is not defined&lt;/code&gt;。这就是&lt;strong&gt;变量提升&lt;/strong&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      
+      <comments>https://blog.towind.fun/20210510/js-hoisting/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>函数防抖和节流，以及在 Vue 中的运用</title>
+      <link>https://blog.towind.fun/20210507/js-debounce-throttle/</link>
+      <guid>https://blog.towind.fun/20210507/js-debounce-throttle/</guid>
+      <pubDate>Fri, 07 May 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;在前端性能优化中存在一个老生常谈的问题：如何优化&lt;strong&gt;高频率执行&lt;/strong&gt;的 JS 代码？例如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。&lt;/li&gt;
+&lt;li&gt;我们为网页添加了搜索功能，当用户输入搜索关键字后，会自动显示出搜索的结果。但是，用户每次更改输入都立即调用后端进行了搜索，彼时用户可能尚未输入完关键字，亦或是关键字输入错误需要修改。这样搜索出来的结果并非用户希望看到的，同时还降低了前端性能，浪费了大量的服务器资源。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;针对上述列举的问题，我们应该怎么做，才能在优化前端性能的同时不至于影响到用户的体验，便是本文探讨的内容。&lt;/p&gt;
+&lt;h2 id=&quot;函数节流&quot;&gt;&lt;a href=&quot;#函数节流&quot; class=&quot;headerlink&quot; title=&quot;函数节流&quot;&gt;&lt;/a&gt;函数节流&lt;/h2&gt;&lt;p&gt;函数节流（Throttle），指在触发事件后的一定时间内绑定的函数只能执行一次。&lt;/p&gt;
+&lt;p&gt;函数节流的实现思路比较简单，例如使用 &lt;code&gt;setTimeout&lt;/code&gt; 方法实现：由于 &lt;code&gt;setTimeout&lt;/code&gt; 方法的返回值是一个正整数，表示定时器的编号，所以可以利用闭包的方法维护一个定时器编号。每次触发事件时都通过定时器编号判断当前是否有尚未到期的定时器，如果有则结束，如果没有则启用一个定时器。定时器到期后调用绑定的需要节流的函数，并设置定时器编号为空，表示可以启用一个新的定时器。代码如下：&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Vue-2/">Vue-2</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nuxt/">Nuxt</category>
+      
+      
+      <comments>https://blog.towind.fun/20210507/js-debounce-throttle/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Windows 系统编译安装基于 C++ 的 gRPC</title>
+      <link>https://blog.towind.fun/20210425/windows-install-grpc/</link>
+      <guid>https://blog.towind.fun/20210425/windows-install-grpc/</guid>
+      <pubDate>Sun, 25 Apr 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本博客基于 CMake 实现编译 &lt;code&gt;gRPC 1.28.1&lt;/code&gt; 版本。&lt;/p&gt;
+&lt;p&gt;本博客的 Windows 端使用的命令提示符界面为 Powershell。&lt;/p&gt;
+&lt;h2 id=&quot;安装编译依赖软件&quot;&gt;&lt;a href=&quot;#安装编译依赖软件&quot; class=&quot;headerlink&quot; title=&quot;安装编译依赖软件&quot;&gt;&lt;/a&gt;安装编译依赖软件&lt;/h2&gt;&lt;p&gt;在 Windows 系统上编译 gRPC 需要首先准备下述软件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Visual Studio 2015（或 2017），将使用到 Visual C++ compiler&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;CMake&lt;/li&gt;
+&lt;li&gt;nasm&lt;/li&gt;
+&lt;li&gt;ninja（可选）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Visual-Studio-2015-或-2017&quot;&gt;&lt;a href=&quot;#Visual-Studio-2015-或-2017&quot; class=&quot;headerlink&quot; title=&quot;Visual Studio 2015 (或 2017)&quot;&gt;&lt;/a&gt;Visual Studio 2015 (或 2017)&lt;/h3&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Windows/">Windows</category>
+      
+      <category domain="https://blog.towind.fun/tags/CPP/">CPP</category>
+      
+      <category domain="https://blog.towind.fun/tags/gRPC/">gRPC</category>
+      
+      
+      <comments>https://blog.towind.fun/20210425/windows-install-grpc/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Linux 系统编译安装基于 C++ 的 gRPC</title>
+      <link>https://blog.towind.fun/20210421/linux-docker-install-grpc/</link>
+      <guid>https://blog.towind.fun/20210421/linux-docker-install-grpc/</guid>
+      <pubDate>Wed, 21 Apr 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文适用于 C++ 版本 gRPC 的离线编译安装，但对于&lt;a href=&quot;#%E4%B8%8B%E8%BD%BD-grpc&quot;&gt;下载 gRPC&lt;/a&gt; 步骤强烈建议使用 git 进行。&lt;/p&gt;
+&lt;p&gt;如果在能直接连接外网的机器上编译，可直接按照 &lt;a href=&quot;https://github.com/grpc/grpc&quot;&gt;gRPC 官网文档&lt;/a&gt;的指引快速执行编译操作。&lt;/p&gt;
+&lt;h2 id=&quot;安装基本依赖&quot;&gt;&lt;a href=&quot;#安装基本依赖&quot; class=&quot;headerlink&quot; title=&quot;安装基本依赖&quot;&gt;&lt;/a&gt;安装基本依赖&lt;/h2&gt;&lt;p&gt;确保机器上包括这些基本依赖：&lt;code&gt;autoconf&lt;/code&gt;, &lt;code&gt;libtool&lt;/code&gt;, &lt;code&gt;pkg-config&lt;/code&gt; 与 C++ 编译环境。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 检查是否有 autoconf&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;which&lt;/span&gt; autoconf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果没有，则安装&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# CentOS&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install autoconf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Ubuntu&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt-get install autoconf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;gRPC 的编译需要 &lt;code&gt;gcc&lt;/code&gt; 版本在 &lt;code&gt;4.9&lt;/code&gt; 及以上。假如版本低于此，应当在 Docker 容器中安装较新版本的 GCC 再执行编译操作。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/Docker/">Docker</category>
+      
+      <category domain="https://blog.towind.fun/tags/CPP/">CPP</category>
+      
+      <category domain="https://blog.towind.fun/tags/gRPC/">gRPC</category>
+      
+      
+      <comments>https://blog.towind.fun/20210421/linux-docker-install-grpc/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Linux 容器更新或降级 GCC 版本</title>
+      <link>https://blog.towind.fun/20210419/linux-docker-gcc-update/</link>
+      <guid>https://blog.towind.fun/20210419/linux-docker-gcc-update/</guid>
+      <pubDate>Mon, 19 Apr 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install gcc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install gcc-c++&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 或是一键安装开发工具软件包，包括 gcc, g++ 等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum groupinstall &lt;span class=&quot;string&quot;&gt;&amp;quot;Development Tools&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;本文适用于系统中&lt;strong&gt;包含有&lt;/strong&gt;其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。&lt;/p&gt;
+&lt;p&gt;NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能否兼容新版本的 GCC，建议在 &lt;strong&gt;Docker 容器环境&lt;/strong&gt;中执行编译和安装操作，并在容器中使用 GCC 编译器进行编译源码。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看当前系统中 GCC 的版本&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gcc -v&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;下载-GCC-并解压&quot;&gt;&lt;a href=&quot;#下载-GCC-并解压&quot; class=&quot;headerlink&quot; title=&quot;下载 GCC 并解压&quot;&gt;&lt;/a&gt;下载 GCC 并解压&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      <category domain="https://blog.towind.fun/tags/GCC/">GCC</category>
+      
+      <category domain="https://blog.towind.fun/tags/Docker/">Docker</category>
+      
+      
+      <comments>https://blog.towind.fun/20210419/linux-docker-gcc-update/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Protobuf 学习笔记</title>
+      <link>https://blog.towind.fun/20210328/protobuf-learning/</link>
+      <guid>https://blog.towind.fun/20210328/protobuf-learning/</guid>
+      <pubDate>Sun, 28 Mar 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。&lt;/p&gt;
+&lt;h2 id=&quot;什么是-Protobuf&quot;&gt;&lt;a href=&quot;#什么是-Protobuf&quot; class=&quot;headerlink&quot; title=&quot;什么是 Protobuf&quot;&gt;&lt;/a&gt;什么是 Protobuf&lt;/h2&gt;&lt;p&gt;Protobuf 是 Google 公司研发的一种用于序列化结构数据的机制，全称为 Protocol Buffers，具有语言无关、平台无关以及可拓展的特性。&lt;/p&gt;
+&lt;p&gt;我们常常把 Protobuf 与 XML (Extensible Markup Language) 相比较，它们二者都被设计来传输和存储结构化数据。相比于 XML，Protobuf 有如下优势与缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Protobuf 占用的空间更小&lt;/strong&gt;。Protobuf 采用二进制格式存储数据，适合网络传输和高性能场景；而 XML 采用文本格式存储数据，数据冗余度较高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Protobuf 编码和解码更快&lt;/strong&gt;。测试 Protobuf 库和 tinyxml2 库执行序列化和反序列化操作（&lt;a href=&quot;https://zhuanlan.zhihu.com/p/91313277&quot;&gt;相关链接&lt;/a&gt;），Protobuf 序列化速度大约是 XML 的 5 - 9 倍，反序列化速度大约是 XML 的 9 - 12 倍，更加适合高性能场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Protobuf 不具有可读性&lt;/strong&gt;。Protobuf 传输的值为二进制数据，需要专用工具生成和解析；而 XML 自身的标签和文本内容具有一定的可读性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;details&gt;
+&lt;summary&gt;使用 Protobuf，只需要编写 &lt;code&gt;.proto&lt;/code&gt; 文件来描述需要传输和存储的结构数据，随后编译器会为之创建一个类，实现结构数据的自动编码和解码。&lt;/summary&gt;
+
+&lt;p&gt;With protocol buffers, you write a .proto description of the data structure you wish to store. From that, the protocol buffer compiler creates a class that implements automatic encoding and parsing of the protocol buffer data with an efficient binary format. The generated class provides getters and setters for the fields that make up a protocol buffer and takes care of the details of reading and writing the protocol buffer as a unit.&lt;/p&gt;
+&lt;/details&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/gRPC/">gRPC</category>
+      
+      <category domain="https://blog.towind.fun/tags/Protobuf/">Protobuf</category>
+      
+      
+      <comments>https://blog.towind.fun/20210328/protobuf-learning/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 Nuxt.js 中引入高德地图并实现定位及逆地理编码</title>
+      <link>https://blog.towind.fun/20210316/amap-import-vue/</link>
+      <guid>https://blog.towind.fun/20210316/amap-import-vue/</guid>
+      <pubDate>Tue, 16 Mar 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！&lt;/p&gt;
+&lt;h2 id=&quot;高德地图与腾讯地图定位功能区别&quot;&gt;&lt;a href=&quot;#高德地图与腾讯地图定位功能区别&quot; class=&quot;headerlink&quot; title=&quot;高德地图与腾讯地图定位功能区别&quot;&gt;&lt;/a&gt;高德地图与腾讯地图定位功能区别&lt;/h2&gt;&lt;p&gt;高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。&lt;/p&gt;
+&lt;p&gt;这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。&lt;/p&gt;
+&lt;p&gt;此外，高德地图的逆地理编码无法解析中国以外的地理坐标，只能解析中国境内省市区等地理坐标。&lt;/p&gt;
+&lt;h2 id=&quot;引入高德地图-JS-API-库&quot;&gt;&lt;a href=&quot;#引入高德地图-JS-API-库&quot; class=&quot;headerlink&quot; title=&quot;引入高德地图 JS API 库&quot;&gt;&lt;/a&gt;引入高德地图 JS API 库&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Vue-2/">Vue-2</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nuxt/">Nuxt</category>
+      
+      <category domain="https://blog.towind.fun/tags/Promise/">Promise</category>
+      
+      
+      <comments>https://blog.towind.fun/20210316/amap-import-vue/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用腾讯位置服务进行 Web 前端定位</title>
+      <link>https://blog.towind.fun/20210315/tencent-map-api-get-current-location/</link>
+      <guid>https://blog.towind.fun/20210315/tencent-map-api-get-current-location/</guid>
+      <pubDate>Mon, 15 Mar 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的&lt;a href=&quot;https://lbs.qq.com/location/#anchor&quot;&gt;定位解决方案&lt;/a&gt;里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。&lt;/p&gt;
+&lt;p&gt;终于在不起眼的地方找到了&lt;a href=&quot;https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation&quot;&gt;前端定位组件&lt;/a&gt;，适用于浏览器进行定位操作。&lt;/p&gt;
+&lt;p&gt;本文基于 Nuxt.js 实现前端定位功能。&lt;/p&gt;
+&lt;h2 id=&quot;它能做什么&quot;&gt;&lt;a href=&quot;#它能做什么&quot; class=&quot;headerlink&quot; title=&quot;它能做什么&quot;&gt;&lt;/a&gt;它能做什么&lt;/h2&gt;&lt;p&gt;组件旨在优化纯 &lt;a href=&quot;https://w3c.github.io/geolocation-api&quot;&gt;HTML5 Geolocation&lt;/a&gt; 定位能力弱，定位成功率不高的问题，提供简单、易用的接口帮助业务层获取用户当前的位置信息（需用户授权），以降低开发成本，提升定位精准度。&lt;/p&gt;
+&lt;p&gt;除了常规的经纬度坐标以外，它返回的结果里还包含了 &lt;code&gt;city&lt;/code&gt; 和 &lt;code&gt;district&lt;/code&gt; 项，非常方面。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Vue-2/">Vue-2</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nuxt/">Nuxt</category>
+      
+      
+      <comments>https://blog.towind.fun/20210315/tencent-map-api-get-current-location/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>提示 *** is not a symbolic link 解决方案</title>
+      <link>https://blog.towind.fun/20210309/xxx-is-not-a-symbolic-link/</link>
+      <guid>https://blog.towind.fun/20210309/xxx-is-not-a-symbolic-link/</guid>
+      <pubDate>Tue, 09 Mar 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;在 CentOS 环境下执行 &lt;code&gt;yum update&lt;/code&gt; 和 &lt;code&gt;ldconfig&lt;/code&gt; 命令时都出现提示警告，节选内容如下所示：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ldconfig: /OSM/lib/librdmacm.so.1 is not a symbolic &lt;span class=&quot;built_in&quot;&gt;link&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ldconfig: /OSM/lib/libgrpc++_reflection.so.1 is not a symbolic &lt;span class=&quot;built_in&quot;&gt;link&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ldconfig: /OSM/lib/libupb.so.9 is not a symbolic &lt;span class=&quot;built_in&quot;&gt;link&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;错误分析&quot;&gt;&lt;a href=&quot;#错误分析&quot; class=&quot;headerlink&quot; title=&quot;错误分析&quot;&gt;&lt;/a&gt;错误分析&lt;/h2&gt;&lt;p&gt;进入到对应目录下查找可以发现，这里的 &lt;code&gt;librdmacm.so.1&lt;/code&gt; 与 &lt;code&gt;librdmacm.so.1.1.17.4&lt;/code&gt; 实际上是相同的动态库文件，而非我们期望的符号链接和动态库文件。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@xxx ~]# &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; /OSM/lib&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@xxx lib]# find librdmacm.so.1* | xargs &lt;span class=&quot;built_in&quot;&gt;ls&lt;/span&gt; -l&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-rwx------. 1 root root 442208 Mar  9 16:13 librdmacm.so.1.1.17.4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Linux/">Linux</category>
+      
+      
+      <comments>https://blog.towind.fun/20210309/xxx-is-not-a-symbolic-link/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式</title>
+      <link>https://blog.towind.fun/20210302/nodejs-eslint-prettier/</link>
+      <guid>https://blog.towind.fun/20210302/nodejs-eslint-prettier/</guid>
+      <pubDate>Tue, 02 Mar 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？&lt;/p&gt;
+&lt;p&gt;在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码&lt;strong&gt;质量&lt;/strong&gt;问题，还是会在编译器里看到红色波浪线，提醒还有些代码&lt;strong&gt;风格&lt;/strong&gt;需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。&lt;/p&gt;
+&lt;p&gt;本文基于 Nuxt.js + VSCode 阐述如何配置并实现 ESLint + Prettier 检查并规范代码质量与格式。&lt;/p&gt;
+&lt;h2 id=&quot;ESLint-与-Prettier&quot;&gt;&lt;a href=&quot;#ESLint-与-Prettier&quot; class=&quot;headerlink&quot; title=&quot;ESLint 与 Prettier&quot;&gt;&lt;/a&gt;ESLint 与 Prettier&lt;/h2&gt;&lt;p&gt;ESLint 是一个开源的 JavaScript 代码检查工具，Prettier 是一款代码格式工具。它们的功能侧重如下所示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ESLint：主要负责代码&lt;strong&gt;质量&lt;/strong&gt;的校验，其次包含代码&lt;strong&gt;风格&lt;/strong&gt;的检验。&lt;/li&gt;
+&lt;li&gt;Prettier：主要负责代码&lt;strong&gt;风格&lt;/strong&gt;的校验。&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Nuxt/">Nuxt</category>
+      
+      <category domain="https://blog.towind.fun/tags/Prettier/">Prettier</category>
+      
+      <category domain="https://blog.towind.fun/tags/VSCode/">VSCode</category>
+      
+      <category domain="https://blog.towind.fun/tags/ESLint/">ESLint</category>
+      
+      
+      <comments>https://blog.towind.fun/20210302/nodejs-eslint-prettier/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Webpack 读取本地 Markdown 文件并进行预处理</title>
+      <link>https://blog.towind.fun/20210222/write-md-parser/</link>
+      <guid>https://blog.towind.fun/20210222/write-md-parser/</guid>
+      <pubDate>Mon, 22 Feb 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。&lt;/p&gt;
+&lt;p&gt;与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。&lt;/p&gt;
+&lt;p&gt;这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！&lt;/p&gt;
+&lt;h2 id=&quot;自动导入本地的-md-文件&quot;&gt;&lt;a href=&quot;#自动导入本地的-md-文件&quot; class=&quot;headerlink&quot; title=&quot;自动导入本地的 .md 文件&quot;&gt;&lt;/a&gt;自动导入本地的 .md 文件&lt;/h2&gt;&lt;p&gt;当然，首先要读取某个目录下已经撰写好的 .md 文件，才能对内容进行预处理。&lt;/p&gt;
+&lt;p&gt;但如果每撰写好一个新的新闻或博客文件，就得在代码中 &lt;code&gt;require&lt;/code&gt; 出来，太过于麻烦且不现实，因此就需要&lt;strong&gt;自动导入&lt;/strong&gt;的方法。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/JavaScript/">JavaScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/Webpack/">Webpack</category>
+      
+      <category domain="https://blog.towind.fun/tags/Markdown/">Markdown</category>
+      
+      
+      <comments>https://blog.towind.fun/20210222/write-md-parser/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>一键安装并配置 MTProto Proxy 代理 Telegram</title>
+      <link>https://blog.towind.fun/20210220/tg-mtproto-one-click/</link>
+      <guid>https://blog.towind.fun/20210220/tg-mtproto-one-click/</guid>
+      <pubDate>Sat, 20 Feb 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;Telegram-和-MTProto-是什么&quot;&gt;&lt;a href=&quot;#Telegram-和-MTProto-是什么&quot; class=&quot;headerlink&quot; title=&quot;Telegram 和 MTProto 是什么&quot;&gt;&lt;/a&gt;Telegram 和 MTProto 是什么&lt;/h2&gt;&lt;p&gt;Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。&lt;/li&gt;
+&lt;li&gt;安全性。端对端加密，不受审查。&lt;/li&gt;
+&lt;li&gt;完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告，“钞能力”还是抵不过越来越多涌入的各国用户。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然，在被屏蔽的地域需要翻墙使用。&lt;/p&gt;
+&lt;p&gt;MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务器的 Api 接口。&lt;/p&gt;
+&lt;h2 id=&quot;我们要做什么&quot;&gt;&lt;a href=&quot;#我们要做什么&quot; class=&quot;headerlink&quot; title=&quot;我们要做什么&quot;&gt;&lt;/a&gt;我们要做什么&lt;/h2&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Telegram/">Telegram</category>
+      
+      <category domain="https://blog.towind.fun/tags/MTProto/">MTProto</category>
+      
+      
+      <comments>https://blog.towind.fun/20210220/tg-mtproto-one-click/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用 Github Actions 持续集成与部署 Hexo 博客</title>
+      <link>https://blog.towind.fun/20210218/hexo-github-actions-ci-cd/</link>
+      <guid>https://blog.towind.fun/20210218/hexo-github-actions-ci-cd/</guid>
+      <pubDate>Thu, 18 Feb 2021 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。&lt;/p&gt;
+&lt;p&gt;Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。&lt;br&gt;很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。&lt;br&gt;如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。&lt;br&gt;—— &lt;a href=&quot;http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html&quot;&gt;GitHub Actions 入门教程&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不过在 Github Actions 的发展的过程中，它早已不局限于 CI 等功能，还可以用于各种自动化操作，例如&lt;a href=&quot;https://github.com/srcrs/TiebaSignIn&quot;&gt;百度贴吧自动签到&lt;/a&gt;（注：已失效。Github 官方会对此类利用服务器实现签到功能的仓库进行封禁打击，还是不要使用了吧）等。&lt;/p&gt;
+&lt;h2 id=&quot;持续集成与部署-Hexo-博客&quot;&gt;&lt;a href=&quot;#持续集成与部署-Hexo-博客&quot; class=&quot;headerlink&quot; title=&quot;持续集成与部署 Hexo 博客&quot;&gt;&lt;/a&gt;持续集成与部署 Hexo 博客&lt;/h2&gt;&lt;p&gt;在&lt;a href=&quot;/20191226/hello-hexo-world/&quot; title=&quot;Hello Hexo World&quot;&gt;搭建自己的 Hexo 博客&lt;/a&gt;那篇文章的最后，我们使用的是 &lt;a href=&quot;https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository&quot;&gt;hexo-deployer-git 一键部署到仓库&lt;/a&gt;的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Github-actions/">Github-actions</category>
+      
+      <category domain="https://blog.towind.fun/tags/Hexo/">Hexo</category>
+      
+      
+      <comments>https://blog.towind.fun/20210218/hexo-github-actions-ci-cd/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法</title>
+      <link>https://blog.towind.fun/20201228/ISO-IEC-IEEE-42010-des/</link>
+      <guid>https://blog.towind.fun/20201228/ISO-IEC-IEEE-42010-des/</guid>
+      <pubDate>Mon, 28 Dec 2020 16:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;关于&quot;&gt;&lt;a href=&quot;#关于&quot; class=&quot;headerlink&quot; title=&quot;关于&quot;&gt;&lt;/a&gt;关于&lt;/h2&gt;&lt;p&gt;本文对软件体系架构的描述方法的研究基于 ISO&amp;#x2F;IEC&amp;#x2F;IEEE 42010.</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">软件体系架构设计</category>
+      
+      
+      <comments>https://blog.towind.fun/20201228/ISO-IEC-IEEE-42010-des/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Windows 远程桌面连接指南</title>
+      <link>https://blog.towind.fun/20201206/connect-remote-desktop/</link>
+      <guid>https://blog.towind.fun/20201206/connect-remote-desktop/</guid>
+      <pubDate>Sun, 06 Dec 2020 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;p&gt;本文以电子科技大学（沙河校区）的校园网为例。家用场合可能需要拨打网络运营商开公网 IP，或通过 FRP 等技术实现。&lt;/p&gt;
+&lt;p&gt;演示的系统如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;接受连接的主机：&lt;/strong&gt; Windows 10 专业版&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进行连接的主机：&lt;/strong&gt; Windows 10 任意版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;配置远程桌面&quot;&gt;&lt;a href=&quot;#配置远程桌面&quot; class=&quot;headerlink&quot; title=&quot;配置远程桌面&quot;&gt;&lt;/a&gt;配置远程桌面&lt;/h2&gt;&lt;h3 id=&quot;配置接受连接的主机&quot;&gt;&lt;a href=&quot;#配置接受连接的主机&quot; class=&quot;headerlink&quot; title=&quot;配置接受连接的主机&quot;&gt;&lt;/a&gt;配置接受连接的主机&lt;/h3&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Remote-Desktop/">Remote-Desktop</category>
+      
+      <category domain="https://blog.towind.fun/tags/Windows/">Windows</category>
+      
+      
+      <comments>https://blog.towind.fun/20201206/connect-remote-desktop/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PyTorch 在 Windows 10 系统下的环境配置及安装</title>
+      <link>https://blog.towind.fun/20200927/pytorch-install-windows-10/</link>
+      <guid>https://blog.towind.fun/20200927/pytorch-install-windows-10/</guid>
+      <pubDate>Sun, 27 Sep 2020 16:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;关于&quot;&gt;&lt;a href=&quot;#关于&quot; class=&quot;headerlink&quot; title=&quot;关于&quot;&gt;&lt;/a&gt;关于&lt;/h2&gt;&lt;p&gt;PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。&lt;/p&gt;
+&lt;p&gt;本文基于</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</category>
+      
+      <category domain="https://blog.towind.fun/tags/PyTorch/">PyTorch</category>
+      
+      
+      <comments>https://blog.towind.fun/20200927/pytorch-install-windows-10/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hello Hexo World</title>
+      <link>https://blog.towind.fun/20191226/hello-hexo-world/</link>
+      <guid>https://blog.towind.fun/20191226/hello-hexo-world/</guid>
+      <pubDate>Thu, 26 Dec 2019 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！&lt;/p&gt;
+&lt;p&gt;正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。&lt;/p&gt;
+&lt;h2 id=&quot;开始前&quot;&gt;&lt;a href=&quot;#开始前&quot; class=&quot;headerlink&quot; title=&quot;开始前&quot;&gt;&lt;/a&gt;开始前&lt;/h2&gt;&lt;p&gt;假设你已了解何为 Github Pages，并充分认识到它对于一个渴望搭建博客的中国人的难以替代性（是的，我不愿意备案）。在开始之前，我们首先要选择博客框架，并下载与之对应的依赖软件。&lt;/p&gt;
+&lt;h3 id=&quot;Hello-Hexo&quot;&gt;&lt;a href=&quot;#Hello-Hexo&quot; class=&quot;headerlink&quot; title=&quot;Hello, Hexo&quot;&gt;&lt;/a&gt;Hello, Hexo&lt;/h3&gt;&lt;p&gt;Hexo 基于 Node.js，是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E6%8A%80%E6%9C%AF%E7%90%90%E4%BA%8B/">技术琐事</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%8F%91/">博客开发</category>
+      
+      <category domain="https://blog.towind.fun/tags/Hexo/">Hexo</category>
+      
+      
+      <comments>https://blog.towind.fun/20191226/hello-hexo-world/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
