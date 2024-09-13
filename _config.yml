@@ -124,6 +124,26 @@ sitemap:
   tags: false
   categories: false
 
+# Feed
+## Docs: https://github.com/hexojs/hexo-generator-feed
+feed:
+  enable: true
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
+  limit: 0
+  hub:
+  content: false
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
+
 # excerpt
 excerpt:
   depth: 6
