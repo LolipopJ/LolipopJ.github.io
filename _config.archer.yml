@@ -56,9 +56,9 @@ profile_links:
   - name: RESUME
     url: https://resume.towind.fun
     icon: "fas fa-user-tie"
-  - name: THINKING
-    url: https://github.com/LolipopJ/LolipopJ/issues/2
-    icon: "fas fa-video"
+  - name: TIMELINE
+    url: https://timeline.towind.fun
+    icon: "fas fa-cookie-bite"
 
 # ========== Site ========== #
 # title of the site (good for SEO)
