@@ -24,13 +24,13 @@
 https://media.st.dl.eccdnx.com/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4
 ```
 
-由于 Steam Design 站点无法跨域访问 Steam CDN 上的文件，需替换链接地址为 [Backgrounds Gallery](https://backgrounds.gallery/) 的地址，即替换地址中的 `media.st.dl.eccdnx.com` 为 `steamcdn-a.akamaihd.net`。替换后的 URL 形如：
+由于 Steam Design 站点无法跨域访问 Steam CDN 上的文件，需替换链接地址为 [Backgrounds Gallery](https://backgrounds.gallery/) 的地址，即替换地址中的域名 `media.st.dl.eccdnx.com` 为 `steamcdn-a.akamaihd.net`。替换后的 URL 形如：
 
 ```plaintext
 https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/2855140/e2a8428a48f49312a3fe5c45206b998af76910e8.mp4
 ```
 
-浏览器访问 [Steam Design](https://steam.design/)，将替换后的 URL 粘贴到左侧：
+浏览器访问 [Steam Design](https://steam.design/)，将替换后的 URL 粘贴到左侧输入框：
 
 ![download-pre-cut-artworks](./beautify-steam-personal-page/download-pre-cut-artworks.png)
 
@@ -45,8 +45,7 @@ https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/2855140/e2a84
 给艺术作品取一个名字。可以使用特殊字符来隐藏显示，例如复制下面的内容：
 
 ```plaintext
-󠀡
-
+󠀡󠀡
 ```
 
 选择刚刚的艺术作品。
