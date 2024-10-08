@@ -53,6 +53,9 @@ profile_icons:
   search: "fas fa-search"
 # Additional profile links
 profile_links:
+  - name: RUNNING
+    url: https://run.towind.fun
+    icon: "fas fa-running"
   - name: RESUME
     url: https://resume.towind.fun
     icon: "fas fa-user-tie"
