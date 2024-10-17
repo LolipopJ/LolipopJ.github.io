@@ -168,6 +168,57 @@ const convertVideoToM3u8 = (videoFilePath: string, outputFilePath: string) => {
 
 ![m3u8-results](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20241016/sync-qzone-talks/m3u8-results.png)
 
+特别的，如果机器的运行内存不足够批量处理多个视频文件，建议封装一个串行执行 Promise 任务的方法（最近一次面试遇到的题目，居然即刻在自己的项目里用上👍🏼），依次执行转换任务，避免内存溢出导致的程序异常跳出。可参考笔者的实现：
+
+```ts
+const createPromiseQueue = () => {
+  const queue: (() => Promise<void>)[] = [];
+  let isProcessing = false;
+
+  const processQueue = async () => {
+    if (isProcessing) return;
+    isProcessing = true;
+
+    while (queue.length > 0) {
+      const task = queue.shift();
+      try {
+        await task?.(); // 执行任务
+      } catch (error) {
+        console.error("Queue task failed:", error);
+      }
+    }
+
+    isProcessing = false; // 处理完成
+  };
+
+  return (promiseFunction: () => Promise<void>) => {
+    queue.push(promiseFunction);
+    processQueue();
+  };
+};
+
+const addToConvertQueue = createPromiseQueue();
+
+const convertVideoToM3u8 = (videoFilePath: string, outputFilePath: string) => {
+  addToConvertQueue(
+    () =>
+      new Promise((resolve, reject) => {
+        Ffmpeg(videoFilePath)
+          .outputFormat("hls")
+          .outputOptions(["-hls_list_size 0", "-hls_allow_cache 1"])
+          .output(outputFilePath)
+          .on("end", () => {
+            resolve();
+          })
+          .on("error", (error) => {
+            reject(error);
+          })
+          .run();
+      }),
+  );
+};
+```
+
 ### 客户端播放 `.m3u8` 格式视频支持
 
 浏览器自带的 `<video>` 标签并不原生支持播放 `.m3u8` 格式的视频，这里笔者引入了 [`video.js`](https://videojs.com/) 库实现播放功能。基于官方提供的[代码片段](https://videojs.com/guides/react/)，改巴改巴实现为自己的：
