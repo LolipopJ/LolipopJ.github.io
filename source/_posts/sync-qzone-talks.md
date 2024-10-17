@@ -3,8 +3,7 @@ title: 从同步 QQ 空间说说到前端呈现，我都做了些啥
 date: 2024/10/17
 updated: 2024/10/17
 categories:
-  - 前端开发
-  - 后端开
+  - 全栈开发
 tags:
   - React
   - TypeScript
