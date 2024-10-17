@@ -15,8 +15,40 @@
     <atom:link href="https://blog.towind.fun/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Personal blog of Lolipop, share knowledge about software / frontend development.</description>
-    <pubDate>Fri, 06 Sep 2024 16:00:00 GMT</pubDate>
+    <pubDate>Wed, 16 Oct 2024 16:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>从同步 QQ 空间说说到前端呈现，我都做了些啥</title>
+      <link>https://blog.towind.fun/20241016/sync-qzone-talks/</link>
+      <guid>https://blog.towind.fun/20241016/sync-qzone-talks/</guid>
+      <pubDate>Wed, 16 Oct 2024 16:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。&lt;/p&gt;
+&lt;p&gt;过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。&lt;/p&gt;
+&lt;p&gt;言归正传，在项目开发的过程中，我遇到的一个相对复杂的场景即 QQ 空间说说的同步。本文事无巨细地记录下我在处理 QQ 空间说说同步的过程中，做了哪些工作，希望为有相应需求的厚米们带来一些灵感。&lt;/p&gt;
+&lt;h2 id=&quot;同步-QQ-空间说说&quot;&gt;&lt;a href=&quot;#同步-QQ-空间说说&quot; class=&quot;headerlink&quot; title=&quot;同步 QQ 空间说说&quot;&gt;&lt;/a&gt;同步 QQ 空间说说&lt;/h2&gt;&lt;h3 id=&quot;同步方案的探索与确定&quot;&gt;&lt;a href=&quot;#同步方案的探索与确定&quot; class=&quot;headerlink&quot; title=&quot;同步方案的探索与确定&quot;&gt;&lt;/a&gt;同步方案的探索与确定&lt;/h3&gt;&lt;p&gt;非常自然而然的，笔者设想使用 Puppeteer 模拟用户操作，打开 QQ 空间网页端，输入账号和密码，进入到个人主页，根据 DOM 结构爬取得到说说的信息。同样非常自然而然的，在切换登录模式（从二维码登录到账号密码登录）步骤就卡着了，模拟点击切换登录模式按钮无效。笔者并非爬虫专家，没有此类问题的对抗经验，在搜索无果后无奈放弃。再想到后续可能还要处理登录安全验证，或处理别的防爬手段，判断 Puppeteer 的方案其实并不合适 QQ 空间说说的同步。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</category>
+      
+      <category domain="https://blog.towind.fun/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF%E5%BC%80/">后端开</category>
+      
+      
+      <category domain="https://blog.towind.fun/tags/Node/">Node</category>
+      
+      <category domain="https://blog.towind.fun/tags/React/">React</category>
+      
+      <category domain="https://blog.towind.fun/tags/TypeScript/">TypeScript</category>
+      
+      <category domain="https://blog.towind.fun/tags/ffmpeg/">ffmpeg</category>
+      
+      
+      <comments>https://blog.towind.fun/20241016/sync-qzone-talks/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>纯前端如何实现一个转盘抽奖组件</title>
@@ -1227,9 +1259,9 @@
       
       <category domain="https://blog.towind.fun/tags/Node/">Node</category>
       
-      <category domain="https://blog.towind.fun/tags/Hexo/">Hexo</category>
-      
       <category domain="https://blog.towind.fun/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%8F%91/">博客开发</category>
+      
+      <category domain="https://blog.towind.fun/tags/Hexo/">Hexo</category>
       
       
       <comments>https://blog.towind.fun/20191226/hello-hexo-world/#disqus_thread</comments>
