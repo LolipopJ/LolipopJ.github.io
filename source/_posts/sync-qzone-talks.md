@@ -129,9 +129,39 @@ tags:
 
 求助于搜索引擎，得知 `.mp4` 格式的视频文件本来是可以边下载边播放的。如果不能边下载边播放，则说明描述它的**视频格式信息元数据**被放置到了视频文件的中间或末尾。一个简单且常用的处理方案是使用 [`qt-faststart`](https://github.com/danielgtaylor/qtfaststart) 工具，将这些元数据移动到视频文件的头部。
 
-笔者在导出说说后，发现同时包含有 `.mp4` 和 `.m3u8`（播放列表文件，需要把里面包含的视频片段文件下载到本地，不然无法正常播放）两种格式的文件。经过复杂且折腾的思想斗争后，笔者决定使用 [`ffmpeg`](https://ffmpeg.org) 工具，将所有 `.mp4` 格式的视频文件转换为 `.m3u8` 格式，完成格式上的统一与边下载边播放的需求。
+笔者在导出说说后，发现同时包含有 `.mp4` 和 `.m3u8` 两种格式的文件。其中 `.m3u8` 是播放列表文件，还需要把里面包含的视频片段文件下载到本地，不然无法正常播放。下面的代码片段供君参考：
+
+```ts
+if (videoFilename.endsWith(".m3u8")) {
+  const videoSliceFilenameMatches = String(responseData).matchAll(
+    new RegExp(`^${videoFilename.split(".")[0]}.+$`, "gm"),
+  );
+  const videoBaseUrl = path.dirname(videoUrl);
+
+  Array.from(videoSliceFilenameMatches).forEach((videoSliceFilenameMatch) => {
+    const sliceFilename = videoSliceFilenameMatch[0];
+    const sliceDownloadUrl = `${videoBaseUrl}/${sliceFilename}`;
+    const sliceSavePath = path.resolve(
+      videoSaveDir,
+      sliceFilename.split("?")[0],
+    );
+
+    axios
+      .get(sliceDownloadUrl, {
+        responseType: "arraybuffer",
+        maxContentLength: Infinity, // 避免文件过大异常跳出；在下载原始视频时也应当配置此项
+        maxBodyLength: Infinity, // 同上
+      })
+      .then((getSliceResponse) => {
+        fs.writeFileSync(sliceSavePath, getSliceResponse.data);
+      });
+  });
+}
+```
 
 > 与传统的视频格式不同，M3U8 视频格式将整个视频分成**多个小片段**进行传输，这些小片段可以根据网络情况自动调节其质量和大小。这种方式使得 M3U8 视频格式非常适合在网络环境不稳定或带宽不足的情况下播放视频。
+
+经过复杂且折腾的思想斗争后，笔者决定使用 [`ffmpeg`](https://ffmpeg.org) 工具，将所有 `.mp4` 格式的视频文件转换为 `.m3u8` 格式，完成格式上的统一与边下载边播放的需求。
 
 ### 服务端转换视频文件为 `.m3u8` 格式
 
@@ -221,7 +251,7 @@ const convertVideoToM3u8 = (videoFilePath: string, outputFilePath: string) => {
 
 ### 客户端播放 `.m3u8` 格式视频支持
 
-浏览器自带的 `<video>` 标签并不原生支持播放 `.m3u8` 格式的视频，这里笔者引入了 [`video.js`](https://videojs.com/) 库实现播放功能。基于官方提供的[代码片段](https://videojs.com/guides/react/)，改巴改巴实现为自己的：
+浏览器自带的 `<video>` 标签并不原生支持播放 `.m3u8` 格式的视频，这里笔者引入了 [`video.js`](https://videojs.com/) 库实现播放功能。基于官方提供的[组件实现](https://videojs.com/guides/react/)，改巴改巴实现为自己的：
 
 ```tsx
 import { useEffect, useRef } from "react";
