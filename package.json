@@ -2,7 +2,7 @@
   "name": "lolipop-studio",
   "private": true,
   "engines": {
-    "node": ">=14.13.1"
+    "node": "^16.14.0 || >=18.0.0"
   },
   "scripts": {
     "build": "hexo generate",
