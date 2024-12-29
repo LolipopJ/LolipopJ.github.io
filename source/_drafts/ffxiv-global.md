@@ -6,6 +6,7 @@
 
 ## 主要修订版本
 
+- 2024.12.30（1.2），推荐使用 FFXIVChnTextPatch-Souma 进行游戏汉化。
 - 2024.12.07（1.1），补充遗漏的小点。
 - 2024.11.08（1.0），撰写完成文档。
 
@@ -96,21 +97,15 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 > We put a lot of effort into ensuring that XIVLauncher is safe to use for everyone.
 > Please read through our FAQ entry on this matter if you want to know more.
 
-FFXIVQuickLauncher 内置了插件加载器，未来如果需要，可以添加插件以提升游戏体验。存在一定的风险，请勿跳脸。
+FFXIVQuickLauncher 内置了 Dalamud 卫月插件加载器，未来如果需要，可以添加插件以提升游戏体验。存在一定的风险，请勿跳脸。
 
 ## 汉化游戏
 
-使用开源的 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP) 工具来汉化游戏客户端。[在这里](https://github.com/GpointChen/FFXIVChnTextPatch-GP/releases)下载它：
+如果您想要更**最佳的游戏汉化体验**，推荐使用开源的 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma) 模组来汉化游戏客户端。在此基础上，如果您选择通过 Dalamud 的插件 Penumbra 热加载汉化模组，还可以引入 [Simplified Chinese UI Replacement](https://www.nexusmods.com/finalfantasy14/mods/2048) 模组，实现对 UI 界面的完整汉化。
 
-![chn-patch](./ffxiv-global/chn-patch.png)
+![chn-ui](./ffxiv-global/chn-ui.png)
 
-参考里面的教程完成对客户端的汉化即可。建议使用汉化器的方式进行汉化。
-
-每次更新游戏客户端版本前建议使用此工具还原汉化，待客户端完成更新后再重新汉化，避免游戏客户端文件损坏。如果客户端文件损坏，也可以下载备份的文件替换本地文件：
-
-![chn-patch-backup](./ffxiv-global/chn-patch-backup.png)
-
-汉化包也时常更新，每次游戏客户端版本更新时，可以回到这个页面下载最新的汉化文件（如果有）。
+> 如果您想要传统的游戏汉化方案，那么可以使用开源的 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP) 工具来汉化游戏客户端，一个比较大的缺点是[物品搜索](#物品搜索)等地方还是需要用原文。
 
 ## 加速器
 
@@ -163,7 +158,7 @@ FFXIVQuickLauncher 内置了插件加载器，未来如果需要，可以添加�
 
 ### 物品搜索
 
-虽然游戏客户端完成了汉化，但是诸如市场交易板等地方还是需要使用**日文关键字**进行搜索，此时就要使用到 Wiki 或其它工具来查询对应的道具名了，这一点着实在体验上增加了负担。
+如果使用 FFXIVChnTextPatch-GP 对游戏客户端进行汉化，在诸如市场交易板等地方还是需要使用**日文关键字**进行搜索，此时就要使用到 Wiki 或其它工具来查询对应的道具名了，这一点着实在体验上增加了负担。
 
 例如要搜索装备 _完满木魔导弓_，可以访问 Wiki 页面 <https://ff14.huijiwiki.com/wiki/物品:完满木魔导弓>：
 
@@ -181,17 +176,17 @@ FFXIVQuickLauncher 内置了插件加载器，未来如果需要，可以添加�
 
 ### 队伍交流
 
-在国际服不可避免匹配到外国友人，理解队友在说什么有时候很重要（更多时候不重要）。笔者使用了开源的 [TataruHelper](https://github.com/NightlyRevenger/TataruHelper) 来实时翻译队友的发言：
+在国际服不可避免匹配到外国友人，理解队友在说什么有时候很重要（更多时候不重要）。笔者使用了开源的 [TataruAssistant](https://github.com/winw1010/tataru-assistant) 来实时翻译并记录剧情文本：
+
+![tataru assistant overlay](./ffxiv-global/tataru-assistant-overlay.png)
+
+或者也可以选用传统的 [TataruHelper](https://github.com/NightlyRevenger/TataruHelper)，功能上可以更加便利地设置多窗口，但其它方面上相比 TataruAssistant 稍有逊色。
 
 ![tataru helper config](./ffxiv-global/tataru-helper-config.png)
 
 简单配置以后即可显示：
 
 ![tataru helper overlay](./ffxiv-global/tataru-helper-overlay.png)
-
-或者也可以选用更现代的 [TataruAssistant](https://github.com/winw1010/tataru-assistant)，功能上除了无法设置多窗口外，其它方面相比 TataruHelper 都有所改进。
-
-![tataru assistant overlay](./ffxiv-global/tataru-assistant-overlay.png)
 
 交流时优先使用定型文，其次使用日语和英语。笔者发现大多数日本玩家都是英语苦手，遇到他们看不懂的情况时，不妨通过翻译软件转换成日文再发送吧。
 
