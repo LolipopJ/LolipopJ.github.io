@@ -43,7 +43,7 @@ FF14 作为一款 MMORPG 拥有如下令笔者喜爱的地方：
 
 游戏的**前期相当枯燥乏味**，技能循环像是小学生算数，副本难度像小学生考试。等到 60 级以后随着技能的解锁，怪物机制的堆砌，战斗体验就开始迈入佳境了，看到过一个相当贴切的描述：弹钢琴。
 
-游戏的可玩性与主线进度关联紧密，每个版本的新玩法和支线（或高难）副本几乎都在对应主线完成后解锁。而更新了十年的游戏内容也非一朝一夕能够打完的 —— 苦行僧般地推主线吧，未来的你一定会感谢现在努力的自己的 XD。粗略统计，从创建角色到完成 7.0 主线剧情，大约需要花费 200 小时的时间。
+游戏的可玩性**与主线进度关联紧密**，每个版本的新玩法和支线（或高难）副本几乎都在对应主线完成后解锁。而更新了十年的游戏内容也非一朝一夕能够打完的 —— 苦行僧般地推主线吧，未来的你一定会感谢现在努力的自己的 XD。粗略统计，从创建角色到完成 7.0 主线剧情，大约需要花费 200 小时的时间。
 
 每次开启新版本之前不妨先看看版本 PV，时至今日，笔者偶尔会翻出 5.0 的 PV 看上一看，光听歌都称得上享受：
 
@@ -101,17 +101,31 @@ FFXIVQuickLauncher 内置了 Dalamud 卫月插件加载器，未来如果需要�
 
 ## 汉化游戏
 
-如果您想要更**最佳的游戏汉化体验**，推荐使用开源的 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma) 模组来汉化游戏客户端。在此基础上，如果您选择通过 Dalamud 的插件 Penumbra 热加载汉化模组，还可以引入 [Simplified Chinese UI Replacement](https://www.nexusmods.com/finalfantasy14/mods/2048) 模组，实现对 UI 界面的完整汉化。
+如果您想要更**最佳的游戏汉化体验**，推荐使用开源的 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma) 模组来汉化游戏客户端。
 
-![chn-ui](./ffxiv-global/chn-ui.png)
+傻瓜式的汉化方案是：下载最新版本的[汉化后游戏文件](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/releases)（命名形如 `7.15.v3.zip`），将解压后得到的文件覆盖到 `FINAL FANTASY XIV - A Realm Reborn\game\sqpack\ffxiv` 目录。
 
-> 如果您想要传统的游戏汉化方案，那么可以使用开源的 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP) 工具来汉化游戏客户端，一个比较大的缺点是[物品搜索](#物品搜索)等地方还是需要用原文。
+拓展性更好的汉化方案是：
+
+1. 在 Dalamud 的设置页面添加 Penumbra 仓库地址 `https://raw.githubusercontent.com/xivdev/Penumbra/master/repo.json`，然后搜索并安装 Penumbra。如下图所示：
+
+   ![dalamud-custom-penumbra-repo](./ffxiv-global/dalamud-custom-penumbra-repo.png)
+
+2. 下载必要的[字体模组](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/releases/download/v2.4.4/HarmonyOS.Sans.pmp)和最新版本的[汉化模组文件](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/releases)（命名形如 `7.15.v3.Mod.zip`），解压后通过 Penumbra 导入，完成对游戏客户端的汉化。如下图所示：
+
+   ![penumbra-chn-patch](./ffxiv-global/penumbra-chn-patch.png)
+
+3. 在此基础上，还可以引入 [Simplified Chinese UI Replacement](https://www.nexusmods.com/finalfantasy14/mods/2048) 模组，实现对 UI 界面的完整汉化。汉化后的 UI 界面如下图所示：
+
+   ![chn-ui](./ffxiv-global/chn-ui.png)
+
+过去笔者用过的汉化方案是：基于开源的 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP) 工具来汉化游戏客户端，详细步骤请参考其文档。一个比较大的缺陷是[物品搜索](#物品搜索)等地方还是需要用原文。
 
 ## 加速器
 
 游玩国际服需搭配任意游戏加速器，裸连延迟非常高且容易丢包。
 
-笔者使用 UU 加速器加速国际服日本节点，延迟平均为 300ms，对挑战副本几乎没有影响。
+笔者使用 UU 加速器加速国际服日本节点，延迟平均为 200ms，对挑战副本几乎没有影响。
 
 到此为止所有的准备都已完成，双击 FFXIVQuickLauncher，输入账号和密码，正式启动游戏吧！
 
@@ -121,7 +135,12 @@ FFXIVQuickLauncher 内置了 Dalamud 卫月插件加载器，未来如果需要�
 
 ![servers](./ffxiv-global/servers.png)
 
-当然，服务器不同带来的限制并没有想象中那么大：在同一个数据中心里，您可以在三大主城里随时**跨域传送**到其它服务器，这时在您名称的右侧会有**放浪神加护**的标识；在不同数据中心里，您也可以在角色选择页面**超域传送**到想去的数据中心，这时在您名称的右侧会有**超域旅者**的标识。平时排本时，会与当前数据中心下所有服务器的玩家（包括超域旅者）一起匹配，协同作战。不过，由于部队、房屋等不可跨服系统的存在，能在同一个原始服务器游玩自然是最好的。
+当然，服务器不同带来的限制并没有想象中那么大：
+
+1. 在**同一个大区**里，您可以在三大主城里随时**跨域传送**到其它服务器，这时在您名称的右侧会有 <放浪神加护> 的标识，例如您可以从 Gaia - Bahamut 跨域传送到 Gaia - Ifrit 服务器。
+2. 在**同一数据中心**里，您也可以在角色选择页面**超域传送**到想去的其它大区下的服务器，这时在您名称的右侧会有 <超域旅者> 的标识，例如您可以从 Gaia - Bahamut 超域传送到 Elemental - Aegis 服务器。特别的，日本数据中心可以和大洋洲数据中心相互进行超域传送。
+
+平时排本时，会与当前大区下所有服务器的玩家（包括 <超域旅者> 们）一起匹配，协同作战。不过，由于部队、房屋等不可跨服系统的存在，能在同一个原始服务器游玩总是最好的。
 
 就笔者的了解而言，所属日本的数据中心里，除了占比最大的日本人外：
 
