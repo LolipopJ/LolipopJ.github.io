@@ -236,7 +236,7 @@ await fetch(`${ALIST_ADDRESS}/api/fs/put`, requestOptions);
 
 通过 `headers.append("As-Task", "true");` 将文件上传设为任务，避免阻塞其它命令的执行。在 Alist 管理后台可以看到上传的进度：
 
-![upload-to-alist](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240510/backup-mc-server/upload-to-alist.png)
+![upload-to-alist](./backup-mc-server/upload-to-alist.png)
 
 到这一步，执行备份脚本时，将自动把新生成的备份文件上传到云盘。
 

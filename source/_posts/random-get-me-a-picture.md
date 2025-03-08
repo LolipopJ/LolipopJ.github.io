@@ -17,7 +17,7 @@ tags:
 
 最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 [Pixiv 图片代理网站](https://pixiv.re/) 可以快速下载到图片，大喜，于是开始了这个小工程。
 
-![请求需包含 Referer](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220112/random-get-me-a-picture/pixiv-cat.png)
+![请求需包含 Referer](./random-get-me-a-picture/pixiv-cat.png)
 
 实现此功能分为两个阶段：一，为本地的图片生成数据库索引条目。二，开发 Telegram Bot 接口，随机从数据库索引中获取一张图片转发给聊天。
 
@@ -460,7 +460,7 @@ bot.onText(/\/random_pixiv/, async (msg) => {
 
 与 Telegram 上的机器人对话，发送命令 `\random_pixiv`，结果如下：
 
-![Bot service](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220112/random-get-me-a-picture/bot-service.png)
+![Bot service](./random-get-me-a-picture/bot-service.png)
 
 #### 思路：获取 Pixiv 图片并转发
 
@@ -468,7 +468,7 @@ bot.onText(/\/random_pixiv/, async (msg) => {
 
 我们无法直接在 `bot.sendPhoto()` 方法中使用 Pixiv 源站图片的获取链接，这是因为 Pixiv 设置了反爬虫机制，只接收请求头的 Referer 包含 `https://www.pixiv.net/` 的请求。
 
-![请求需包含 Referer](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220112/random-get-me-a-picture/pixiv-request-referer.png)
+![请求需包含 Referer](./random-get-me-a-picture/pixiv-request-referer.png)
 
 因此，我们需要在自己的服务器上构造 Axios 请求，设置 Referer 请求头，然后发送请求向 Pixiv 服务器获取图片，再将图片转为 `multipart/form-data` 格式发送给 Telegram 会话。
 

@@ -93,7 +93,7 @@ turntableDom.style.background = `conic-gradient(${turntableConicGradient.join(
 
 利用 CSS 函数 `conic-gradient()` 创建颜色渐变，巧妙地实现转盘扇形区域的均分。得到的转盘如下所示：
 
-![turntable-base](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-base.png)
+![turntable-base](./lucky-draw/turntable-base.png)
 
 接着为每个扇形区域添加具体的奖品名称：
 
@@ -138,7 +138,7 @@ turntableDom.style.transform = `rotate(${turntableBaseRotate}deg)`;
 
 我们手动创建了包含奖品名的标签节点，通过简单的计算，让它们旋转到自己所属的扇形区域上。此外，我们还为转盘设置了一个初始角度，使得第一个奖品呈现在转盘的正上方。效果如下所示：
 
-![turntable-with-prize-labels](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-with-prize-labels.png)
+![turntable-with-prize-labels](./lucky-draw/turntable-with-prize-labels.png)
 
 > 更精致、美观的转盘设计还是建议直接使用做好的转盘图片；纯前端实现的话一方面耗时耗力，另一方面如果请求过多的装饰图片反而会降低访问性能。
 >
@@ -191,7 +191,7 @@ turntableDom.style.transform = `rotate(${turntableBaseRotate}deg)`;
 
 使用绝对定位将指针和按钮放到合适的位置，转盘现在看上去有模有样了：
 
-![turntable-with-all](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/turntable-with-all.png)
+![turntable-with-all](./lucky-draw/turntable-with-all.png)
 
 最重要的环节到了，实现转盘抽奖的核心需求：转！
 
@@ -264,7 +264,7 @@ lotteryBtnDom.onclick = () => {
 
 点击抽奖按钮，看看现在的效果吧：
 
-![lucky-draw-base-animation](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/lucky-draw-base-animation.gif)
+![lucky-draw-base-animation](./lucky-draw/lucky-draw-base-animation.gif)
 
 Ops，竟然是谢谢参与，我觉得有黑幕！但是可喜可贺，我们已经基本实现了转盘抽奖组件所需的全部能力。
 
@@ -276,7 +276,7 @@ Ops，竟然是谢谢参与，我觉得有黑幕！但是可喜可贺，我们�
 
 通过 [cubic-bezier](https://cubic-bezier.com/)，我们以可视化的方式实现一个满足需要的三次贝塞尔曲线，作为动画的过渡效果。如：`transition-timing-function: cubic-bezier(.3, .9, .38, 1);`，它减速至停止的 **过渡时间更长且更柔和**，效果如下：
 
-![lucky-draw-better-animation](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240905/lucky-draw/lucky-draw-better-animation.gif)
+![lucky-draw-better-animation](./lucky-draw/lucky-draw-better-animation.gif)
 
 完整的 Demo 奉上：
 

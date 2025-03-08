@@ -107,4 +107,4 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f design-patterns-for-h
 
 最后，移除 Github 仓库中用于 Travis 的删除原有部署密钥，例如 `CI_DEPLOY_TOKEN`，删除项目中的 `.travis.yml` 文件，提交代码到 Github 即可。
 
-![CI 部署成功](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20210709/switch-travis-to-github-workflow/deploy-finished.png)
+![CI 部署成功](./switch-travis-to-github-workflow/deploy-finished.png)

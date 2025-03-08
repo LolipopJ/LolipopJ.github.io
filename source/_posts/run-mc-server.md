@@ -35,7 +35,7 @@ OpenJDK 64-Bit Server VM (build 21.0.2+13-alpine-r0, mixed mode, sharing)
 
 前往 Fabric 提供的[下载 Minecraft 服务器启动器页面](https://fabricmc.net/use/server)，选择欲部署的 Minecraft 服务器版本，Fabric 加载器和 Fabric 模组版本：
 
-![下载 Minecraft 服务器启动器](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/download-fabric-mc-server-launcher.png)
+![下载 Minecraft 服务器启动器](./run-mc-server/download-fabric-mc-server-launcher.png)
 
 在服务器上通过 `curl` 命令下载。如上图所示，可以执行命令：
 
@@ -71,7 +71,7 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 这样，我们就建立了一个名为 `mc-server` 的 Screen 终端，需要查看运行日志时使用 `screen -r mc-server` 进入。
 
-![查看 Minecraft 服务端日志](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/server-log.png)
+![查看 Minecraft 服务端日志](./run-mc-server/server-log.png)
 
 是的，这就是全部。接下来就是发挥创造力的环节了，正如我们在 Minecraft 中一直做的那样。
 
@@ -81,11 +81,11 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 下载时需选择与服务端相同的 Fabric Loader 和 Fabric API 版本：
 
-![通过 PCL 下载 Minecraft 客户端](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/download-mc-client.png)
+![通过 PCL 下载 Minecraft 客户端](./run-mc-server/download-mc-client.png)
 
 使用正版账号或离线账号启动客户端：
 
-![通过 PCL 启动 Minecraft 客户端](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/start-mc-client.png)
+![通过 PCL 启动 Minecraft 客户端](./run-mc-server/start-mc-client.png)
 
 ## 添加与管理模组
 
@@ -110,13 +110,13 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 AutoModpack 是一个**客户端和服务端模组**，安装了此模组的客户端会自动同步服务端上托管的模组到本地，保证不同客户端体验的一致性。因此对于一起玩的朋友，只需要让他们在客户端的 `mods/` 目录下放入此模组，并在首次进入服务器时确认同步客户端模组就可以了。
 
-![同步客户端模组](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/sync-client-mods.png)
+![同步客户端模组](./run-mc-server/sync-client-mods.png)
 
 对于不应当被同步到客户端去的模组，AutoModpack 也提供了简单的配置方式：以 `server-` 开头重命名文件。例如对于只需要安装在服务端的模组 [Dynmap](https://modrinth.com/plugin/dynmap)，将模组文件 `mods/Dynmap-3.7-beta-6-fabric-1.21.jar` 重命名为 `mods/server-Dynmap-3.7-beta-6-fabric-1.21.jar` 即可。
 
 ### Dynmap / 服务器地图
 
-![服务器地图，摄制于 2024.07.05 17:18](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20240704/run-mc-server/server-map-202407051718.png)
+![服务器地图，摄制于 2024.07.05 17:18](./run-mc-server/server-map-202407051718.png)
 
 想要用浏览器在线查看 Minecraft 服务器地图，查看当前在线玩家的游玩情况，直接向在线的玩家发送消息？这一切仅需要一个服务端模组 [Dynmap](https://modrinth.com/plugin/dynmap) 就可以实现！
 

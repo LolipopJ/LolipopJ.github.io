@@ -1,19 +1,22 @@
-name: Hexo Blog CI & CD
+name: Hexo CI & CD
 
 on:
   push:
     branches:
-      - source
+      - legacy-hexo-source
 
 jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -21,18 +24,22 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
+
+      - name: Install dependencies
         run: npm install
+
       - name: Get algolia objects
         run: npm run algolia
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+
       - name: Build
         run: npm run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           deploy_key: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./public
-          publish_branch: master # deploying branch
+          publish_branch: legacy-hexo-deployment

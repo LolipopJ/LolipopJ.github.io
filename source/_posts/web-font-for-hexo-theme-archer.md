@@ -172,11 +172,11 @@ yarn font-spider
 
 Github 开源版本：
 
-![Github 开源版本思源黑体](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20210625/web-font-for-hexo-theme-archer/Github-Open-Source-Version.png)
+![Github 开源版本思源黑体](./web-font-for-hexo-theme-archer/Github-Open-Source-Version.png)
 
 Google 字体版本：
 
-![Google 字体版本思源黑体](https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20210625/web-font-for-hexo-theme-archer/Google-Fonts-Version.png)
+![Google 字体版本思源黑体](./web-font-for-hexo-theme-archer/Google-Fonts-Version.png)
 
 前者字形更高，颜色更淡雅一些。可能需要额外的配置？考虑到页面加载速度，暂且选用 CDN 加速版本。
 
