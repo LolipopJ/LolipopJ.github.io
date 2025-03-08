@@ -226,7 +226,7 @@
     
     
     <summary type="html">&lt;p&gt;项目中使用了 AntD 4.x 的 &lt;code&gt;&amp;lt;DatePicker /&amp;gt;&lt;/code&gt; 组件，开发环境显示正常，生产环境显示乱码，如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20231008/antd-comp-garbled-characters/error.png&quot; alt=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/./antd-comp-garbled-characters/error.png&quot; alt=&quot;error&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;问题原因&quot;&gt;&lt;a href=&quot;#问题原因&quot; class=&quot;headerlink&quot; title=&quot;问题原因&quot;&gt;&lt;/a&gt;问题原因&lt;/h2&gt;&lt;p&gt;&lt;code&gt;&amp;lt;DatePicker /&amp;gt;&lt;/code&gt; 组件底层的国际化既由 AntD 提供的 &lt;code&gt;&amp;lt;ConfigProvider /&amp;gt;&lt;/code&gt; 控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。&lt;/p&gt;
 &lt;p&gt;经查询，当我们以 ISO8859-1 方式读取 UTF-8 编码的中文时，会出现如“ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�‘ä¸Š”这样的符号型乱码，正如上图所示。&lt;/p&gt;
 &lt;p&gt;因此产生问题的关键在于，&lt;strong&gt;为何浏览器没有正确地以 UTF-8 格式读取 Moment 提供的中文语言包文本。&lt;/strong&gt;&lt;/p&gt;</summary>
@@ -338,7 +338,7 @@
     <summary type="html">&lt;p&gt;笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。&lt;/p&gt;
 &lt;p&gt;独乐乐不如众乐乐！笔者想做一个 web 页面来随机访问我的收藏，不过在此之前，可以先实现服务端上的内容。再之后做网页时，不过是简单的读取数据库罢了！&lt;/p&gt;
 &lt;p&gt;最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 &lt;a href=&quot;https://pixiv.re/&quot;&gt;Pixiv 图片代理网站&lt;/a&gt; 可以快速下载到图片，大喜，于是开始了这个小工程。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20220112/random-get-me-a-picture/pixiv-cat.png&quot; alt=&quot;请求需包含 Referer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/./random-get-me-a-picture/pixiv-cat.png&quot; alt=&quot;请求需包含 Referer&quot;&gt;&lt;/p&gt;
 &lt;p&gt;实现此功能分为两个阶段：一，为本地的图片生成数据库索引条目。二，开发 Telegram Bot 接口，随机从数据库索引中获取一张图片转发给聊天。&lt;/p&gt;
 &lt;h2 id=&quot;为本地的-Pixiv-图片建立索引&quot;&gt;&lt;a href=&quot;#为本地的-Pixiv-图片建立索引&quot; class=&quot;headerlink&quot; title=&quot;为本地的 Pixiv 图片建立索引&quot;&gt;&lt;/a&gt;为本地的 Pixiv 图片建立索引&lt;/h2&gt;</summary>
     
@@ -401,7 +401,7 @@
     
     
     <summary type="html">&lt;p&gt;去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 &lt;a href=&quot;https://github.com/salomonelli/best-resume-ever&quot;&gt;best-resume-ever&lt;/a&gt; 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/lolipopj/LolipopJ.github.io/20210818/build-my-resume/my-first-resume.jpg&quot; alt=&quot;my first resume&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/./build-my-resume/my-first-resume.jpg&quot; alt=&quot;my first resume&quot;&gt;&lt;/p&gt;
 &lt;p&gt;然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写，可以用自己已有的知识对简历做一些改造手术。&lt;/p&gt;
 &lt;h2 id=&quot;改造简历&quot;&gt;&lt;a href=&quot;#改造简历&quot; class=&quot;headerlink&quot; title=&quot;改造简历&quot;&gt;&lt;/a&gt;改造简历&lt;/h2&gt;&lt;p&gt;举四个改造的例子好了。&lt;/p&gt;
 &lt;h3 id=&quot;添加-Chip-纸片&quot;&gt;&lt;a href=&quot;#添加-Chip-纸片&quot; class=&quot;headerlink&quot; title=&quot;添加 Chip 纸片&quot;&gt;&lt;/a&gt;添加 Chip 纸片&lt;/h3&gt;</summary>

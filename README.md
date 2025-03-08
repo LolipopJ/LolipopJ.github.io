@@ -3,6 +3,12 @@
 - [Github pages](https://lolipopj.github.io)
 - [国内站点](https://blog.towind.fun)
 
+## 已归档
+
+笔者已将博客从 Hexo 迁移到自己开发的[博客系统](https://github.com/LolipopJ/homepage)里，此分支不再维护更新。此分支包含的博客内容和[部署产物](https://github.com/LolipopJ/LolipopJ.github.io/tree/legacy-hexo-deployment)亦于 2025 年 03 月 08 日开始不再更新。
+
+请访问[主分支](https://github.com/LolipopJ/LolipopJ.github.io/tree/main)查看最新的部署产物。
+
 ## 关于博客
 
 使用 [Hexo](https://hexo.io) 静态网站生成框架以及 [Archer](https://github.com/fi3ework/hexo-theme-archer) 主题强力驱动。
