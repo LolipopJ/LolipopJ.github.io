@@ -24,7 +24,7 @@
     <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="<%- config.root %>site.webmanifest" />
     <link rel="icon" href="<%- url_for(theme.favicon) %>">
     <%_ if (theme.feed != undefined) { _%>
         <link rel="alternate" href="<%= url_for(theme.feed.path) %>" title="<%= theme.main_title %>" type="application/atom+xml">

@@ -16,5 +16,5 @@
 相比原生的 Archer 主题，有如下改动：
 
 - 使用 **#61bfad** 作为主题颜色。
-- 在 `<head>` 中添加 Web 应用清单文件：`<link rel="manifest" href="/site.webmanifest" />`。
+- 在 `<head>` 中添加 Web 应用清单文件：`<link rel="manifest" href="<%- config.root %>site.webmanifest" />`。
 - 由于博客永久链接升级，访问 `/YYYY/MM/DD/blog-title` 时，自动重定向到 `/YYYYMMDD/blog-title`。
