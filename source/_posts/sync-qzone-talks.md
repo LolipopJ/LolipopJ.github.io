@@ -196,7 +196,7 @@ const convertVideoToM3u8 = (videoFilePath: string, outputFilePath: string) => {
 
 转换后的结果如下图所示：
 
-![m3u8-results](./sync-qzone-talks/m3u8-results.png)
+![m3u8-results](m3u8-results.png)
 
 特别的，如果机器的运行内存不足够批量处理多个视频文件，建议封装一个串行执行 Promise 任务的方法（最近一次面试遇到的题目，居然即刻在自己的项目里用上👍🏼），依次执行转换任务，避免内存溢出导致的程序异常跳出。可参考笔者的实现：
 

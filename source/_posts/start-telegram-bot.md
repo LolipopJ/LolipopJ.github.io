@@ -75,7 +75,7 @@ npm install node-telegram-bot-api
 
 首先，通过在 Telegram 上与 [BotFather](https://core.telegram.org/bots#6-botfather) 交互，创建一个新的 Telegram Bot。
 
-![create a new bot](./start-telegram-bot/create-bot.png)
+![create a new bot](create-bot.png)
 
 记录下当中的 **HTTP API** 的值即 Telegram Bot Token，作为项目的环境变量保存，切勿上传到远程代码仓库中。
 
@@ -141,7 +141,7 @@ Telegram Bot 可以通过轮询（polling）和网络钩子（webhook）两种�
 
 为了接收用户对 Telegram Bot 发送的消息，在网络钩子的方式中，我们需要一个 **HTTPS 协议的公网地址**，除了直接使用自己的服务器，还可以怎么办呢？别急，有 [ngrok](https://ngrok.com/) 为我们排忧解难：它是一款反向代理工具，可以将本地的地址映射到公网上去。
 
-![ngrok](./start-telegram-bot/ngrok.png)
+![ngrok](ngrok.png)
 
 如上图所示，当 ngrok 运行时，Telegram Bot 发向 `https://a75b-182-141-75-13.ngrok.io` 的请求，将转发给运行在本地 `http://localhost:4000` 上的程序。
 
@@ -498,7 +498,7 @@ npm run pm2
 
 笔者的频道顺利收到了来自 Github Issue 中的评论信息！
 
-![Forward Github Issue's comments to my channel](./start-telegram-bot/forward-to-my-channel.png)
+![Forward Github Issue's comments to my channel](forward-to-my-channel.png)
 
 当然，该服务还有许多可以优化的地方，例如：当评论发生更新时，应编辑已发送的频道消息为最新评论内容，而不是重新发一条新的消息等。不再在此文赘述。
 

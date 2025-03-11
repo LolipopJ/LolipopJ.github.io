@@ -39,7 +39,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           deploy_key: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./public
-          publish_branch: legacy-hexo-deployment
+          external_repository: LolipopJ/hexo-blog
+          publish_branch: main

@@ -264,4 +264,4 @@ ipcMain.on(Events.UPDATE_INDEX, (_, args) => {
 
 现在，所有的链路都已经打通，查收编写代码努力的结晶吧！
 
-![实时展示日志信息](./electron-real-time-print-execution-log/real-time-execution-log.gif)
+![实时展示日志信息](real-time-execution-log.gif)

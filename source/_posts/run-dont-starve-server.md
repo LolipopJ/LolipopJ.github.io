@@ -200,11 +200,11 @@ screen -dmS dst_caves ./dontstarve_dedicated_server_nullrenderer -cluster Custom
 
 访问 <https://accounts.klei.com/account/game/servers?game=DontStarveTogether>，创建一个饥荒联机版服务器并获取 Auth Token：
 
-![创建服务器](./run-dont-starve-server/add-new-server.png)
+![创建服务器](add-new-server.png)
 
 填写基本的配置信息：
 
-![配置服务器](./run-dont-starve-server/configure-server.png)
+![配置服务器](configure-server.png)
 
 下载设置并上传到主机，将解压后的文件放置到存档目录：
 
@@ -224,7 +224,7 @@ mv MyDediServer /home/steam/.klei/DoNotStarveTogether/CustomSaveName
 
 在游戏大厅里搜索服务器，开始愉快地玩耍吧！
 
-![搜索服务器](./run-dont-starve-server/search-server.png)
+![搜索服务器](search-server.png)
 
 ## 饥荒联机版服务器运维
 
@@ -293,7 +293,7 @@ cp modoverrides.lua /home/steam/.klei/DoNotStarveTogether/CustomSaveName/Master/
 
 执行脚本 `/home/steam/scripts/start_dst.sh` 重启服务器即可。
 
-![服务器模组](./run-dont-starve-server/server-with-mods.png)
+![服务器模组](server-with-mods.png)
 
 ### 自定义世界
 

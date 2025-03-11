@@ -14,7 +14,7 @@ tags:
 
 去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 [best-resume-ever](https://github.com/salomonelli/best-resume-ever) 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
 
-![my first resume](./build-my-resume/my-first-resume.jpg)
+![my first resume](my-first-resume.jpg)
 
 然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写，可以用自己已有的知识对简历做一些改造手术。
 
@@ -60,7 +60,7 @@ tags:
 
 显示的结果如下：
 
-![resume chips](./build-my-resume/resume-chips.png)
+![resume chips](resume-chips.png)
 
 ### 修改页面布局
 
@@ -119,7 +119,7 @@ tags:
 
 现在我的简历看上去就显得很大气了：
 
-![resume preview](./build-my-resume/resume-preview.png)
+![resume preview](resume-preview.png)
 
 但是，使用 Flex 布局把 `right-column` 分成的两栏，如果两边刚好高度差不多，那便没有什么问题；但如果某一栏比另一栏高很多，页面就会显得参差不齐。手动把一些元素挪到另一栏似乎能够解决这个问题，但在实现上非常不优雅。
 
@@ -182,7 +182,7 @@ tags:
 
 Easy as a cake. 当页面宽度小于 960px 时，将把原有的三栏纵向依次排列出来。效果如下：
 
-![resume mobile preview](./build-my-resume/resume-mobile.png)
+![resume mobile preview](resume-mobile.png)
 
 如果网页为 Flex 布局，右栏为 Multiple-column 布局，修改网页的 `flex-direction` 和右栏的 `column-count` 即可：
 
@@ -639,4 +639,4 @@ Done in 42.14s.
 
 顺利地导出了我的简历，此外还有截图和英文版本：
 
-![resume export](./build-my-resume/resume-export.png)
+![resume export](resume-export.png)
