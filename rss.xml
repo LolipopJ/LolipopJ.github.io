@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 17 Mar 2025 08:06:15 GMT</lastBuildDate><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 17 Mar 2025 08:56:54 GMT</lastBuildDate><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
@@ -375,7 +375,7 @@ MDX 渲染得到的 `&lt;img&gt;` 组件将自动被替换为 `&lt;FancyBoxImage
 
 ### 静态资源的访问与优化
 
-使用插件 `gatsby-remark-images`，Gatsby 将自动压缩博客中使用到的本地图片，减少流量压力，同时生成占位图片，避免博客高度突然变化，提升阅读体验。处理后的图片资源将自动生成到 `public` 的对应目录下，确保能被正确地访问。在 Gatsby 的最佳实践中，应当始终使用类似 `gatsby-remark-images` 插件的方案来优化图片类型的静态资源。
+插件 `gatsby-remark-images` 将自动压缩博客中使用到的本地图片的体积，减少流量压力；同时生成占位图片，避免博客高度突然变化，提升阅读体验。在 Gatsby 的最佳实践中，应当始终使用类似 `gatsby-remark-images` 这样的插件来优化图片类型的静态资源。
 
 结合插件 `gatsby-plugin-mdx` 使用，可以配置如下：
 
@@ -403,9 +403,9 @@ const config: GatsbyConfig = {
 
 其中，`gatsby-plugin-sharp` 是插件 `gatsby-remark-images` 的必要依赖，需要添加到插件列表中。
 
-需要留意的是：插件 `gatsby-remark-images` 仅支持压缩、处理部分的图片格式如 `.jpeg`。其它的格式如 `.gif` 则需要插件 `gatsby-remark-copy-linked-files` 帮助，原封不动地移动到 `public` 里的对应目录。协同使用这两个插件即可达成最好的静态资源访问效果。
+需要留意的是，插件 `gatsby-remark-images` 仅支持压缩、处理部分的图片格式如 `.jpeg`。其它的格式如 `.gif` 则需要插件 `gatsby-remark-copy-linked-files` 帮助，原封不动地移动到对应的目录里。协同使用这两个插件即可达成最好的静态资源访问效果。
 
-由于 `gatsby-remark-images` 会相应地封装 MDX 渲染结果里的 `&lt;img&gt;` 标签，为了兼容 FancyBox 能力，可以编写 `useEffect()` 钩子方法如下：
+除此之外，由于 `gatsby-remark-images` 会相应地封装 MDX 渲染结果里的 `&lt;img&gt;` 标签，为了兼容 FancyBox 能力，可以更新 `useEffect()` 钩子方法如下：
 
 ```tsx
 const PostTemplate = ({ children }) =&gt; {
@@ -573,6 +573,8 @@ export default AlgoliaSearch;
 
 ![algolia search item](./build-my-gatsby-blog/algolia-search-item.png)
 
+更多的功能例如自动生成 RSS 订阅也可以参考上面的处理方案，搜索合适的插件配置实现。
+
 ## 路由切换体验优化
 
 有的时候切换路由可能需要几秒钟时间处理，用户看不到页面切换的结果可能会非常焦虑。为了缓解这种焦虑，在库 `nprogress` 的帮助下，笔者添加了可视化的进度条。
@@ -644,7 +646,7 @@ jobs:
           external_repository: LolipopJ/LolipopJ.github.io
           publish_branch: main
 ```
-</content:original-text><content:updated-at>2025-03-14T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
+</content:original-text><content:updated-at>2025-03-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
 
 言归正传，在项目开发的过程中…]]></description><link>https://blog.towind.fun/posts/sync-qzone-talks</link><guid isPermaLink="false">sync-qzone-talks</guid><category><![CDATA[全栈开发]]></category><pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate><content:original-text>
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
