@@ -1,4 +1,254 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 17 Mar 2025 08:56:54 GMT</lastBuildDate><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 17 Mar 2025 12:15:57 GMT</lastBuildDate><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
+
+出于爱好，笔者去脚本仓库翻阅了一下源码，觉得有一些可以改进的地方…]]></description><link>https://blog.towind.fun/posts/pixiv-previewer</link><guid isPermaLink="false">pixiv-previewer</guid><category><![CDATA[前端开发]]></category><pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
+笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作：
+
+1. **作品预览**：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。
+2. **作品排序**：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
+
+出于爱好，笔者去[脚本仓库](https://github.com/Ocrosoft/PixivPreviewer)翻阅了一下源码，觉得有一些可以改进的地方，遂 Fork 之，进行二次开发。
+
+## 工程化改造
+
+首当其冲的自然是前端项目工程化改造。大多数油猴脚本仓库都是孤零零的一个 JavaScript 文件，Pixiv Previewer 也不例外。直接手搓 JavaScript 虽然很便利，但在项目长期的维护开发中多半会掩埋掉许多未曾留意的 Bug，同时由于缺少关联提示，开发效率也会大打折扣。作为前端工程师，这样可怕的事情自然是不能接受的。
+
+### 通过 tsup 构建项目
+
+初始化 `package.json` 等过程跳过不表，添加 TypeScript 支持自然是对项目进行二次开发的前置步骤。由于我们最后构建的产物将作为油猴脚本运行，即打包为库，因此笔者选择了开箱即用的 [tsup](https://github.com/egoist/tsup)：
+
+```bash
+yarn add -D tsup
+```
+
+添加 tsup 的配置文件 `tsup.config.ts`：
+
+```ts
+import { defineConfig } from &quot;tsup&quot;;
+
+import packageJson from &quot;./package.json&quot;;
+
+export default defineConfig({
+  entry: [&quot;src/index.ts&quot;],
+  target: [&quot;chrome107&quot;],
+  splitting: false,
+  clean: true,
+  env: {
+    VERSION: packageJson.version,
+  },
+  banner: {
+    js: `// ==UserScript==
+// @name                PixivPreviewerL
+// @namespace           ${packageJson.homepage}
+// @version             ${packageJson.version}-${new Date().toLocaleDateString()}
+// @description         ${packageJson.description}
+// @author              ${packageJson.author}
+// @match               *://www.pixiv.net/*
+// @grant               unsafeWindow
+// @grant               GM.xmlHttpRequest
+// @grant               GM_xmlhttpRequest
+// @license             ${packageJson.license}
+// @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
+// @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
+// @require             https://raw.githubusercontent.com/Tampermonkey/utils/refs/heads/main/requires/gh_2215_make_GM_xhr_more_parallel_again.js
+// ==/UserScript==`,
+  },
+});
+```
+
+上面的配置表示，tsup 将打包构建源文件 `src/index.ts` 至默认产物文件 `dist/index.js`，保证兼容 `Chrome &gt;= 107`。其中，笔者复用了 `package.json` 里定义的若干字段，用于添加项目环境变量（脚本通过版本号判断是否显示更新日志框），以及生成油猴脚本顶部的配置项。
+
+这样，当执行 `tsup` 命令时，构建的产物形如：
+
+```js
+// ==UserScript==
+// @name                PixivPreviewerL
+// @namespace           https://github.com/LolipopJ/PixivPreviewer
+// @version             0.1.3-2025/3/17
+// @description         Original project: https://github.com/Ocrosoft/PixivPreviewer.
+// @author              Ocrosoft, LolipopJ
+// @match               *://www.pixiv.net/*
+// @grant               unsafeWindow
+// @grant               GM.xmlHttpRequest
+// @grant               GM_xmlhttpRequest
+// @license             GPL-3.0
+// @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
+// @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
+// @require             https://raw.githubusercontent.com/Tampermonkey/utils/refs/heads/main/requires/gh_2215_make_GM_xhr_more_parallel_again.js
+// ==/UserScript==
+
+// ... 脚本构建后的代码
+```
+
+### 代码质量检查与格式化工具
+
+TypeScript 自身已包含类型检查等能力，但还可以引入更多质量检查的通用规范，提升项目的健壮性。对于 TypeScript 项目，目前来看最好的选择应当是 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint)，参考官方文档添加依赖并配置 `eslint.config.mjs`：
+
+```bash
+yarn add --dev eslint @eslint/js typescript typescript-eslint
+```
+
+```js
+// @ts-check
+
+import eslint from &quot;@eslint/js&quot;;
+import tseslint from &quot;typescript-eslint&quot;;
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+);
+```
+
+现在执行 `eslint src --fix` 即可查找并尝试修复 `src/` 目录下所有文件的质量问题。
+
+接着为项目添加自动格式化能力，Prettier 是笔者最推荐的选项。此外，笔者喜欢将 Prettier 与 ESLint 结合起来一起使用，即在执行 `eslint src --fix` 修复质量问题的同时，自动格式化代码。ESLint 的插件 [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier) 可以实现如上能力，添加此插件作为依赖并进一步配置 `eslint.config.mjs`：
+
+```bash
+yarn add -D prettier eslint-plugin-prettier eslint-config-prettier
+```
+
+```js
+// @ts-check
+
+import eslint from &quot;@eslint/js&quot;;
+import tseslint from &quot;typescript-eslint&quot;;
+import eslintPluginPrettierRecommended from &quot;eslint-plugin-prettier/recommended&quot;;
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
+);
+```
+
+此外，Pixiv Previewer 项目依赖于 JQuery 来执行查找与修改 DOM 的操作，笔者添加了相应的类型提示：
+
+```bash
+yarn add -D @types/jquery globals
+```
+
+```js
+// @ts-check
+
+import eslint from &quot;@eslint/js&quot;;
+import tseslint from &quot;typescript-eslint&quot;;
+import eslintPluginPrettierRecommended from &quot;eslint-plugin-prettier/recommended&quot;;
+import globals from &quot;globals&quot;;
+
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.jquery,
+      },
+    },
+  },
+  eslintPluginPrettierRecommended,
+);
+```
+
+至此，基本的项目工程化改造告一段落。项目可以基于 TypeScript 开发，并且拥有了质量检查和格式化能力。将原来的 JavaScript 代码放到 `src/index.ts` 文件里，开始正式的二次开发吧！
+
+## 预览功能优化
+
+笔者在阅读 Pixiv Previewer 源码时发现，原作者根据当前页面的不同，实现了不同的通过 DOM 节点寻找可预览作品的 `&lt;img&gt;` 标签的方法，并为它添加监听事件，当鼠标悬浮在上面的时候显示预览。为了应对作品动态加载的情况，脚本设置了循环定时器，每隔一小段时间重新执行上述方法。
+
+这种力大砖飞的实现方案存在一个不可忽视的缺陷：要考虑到每个页面里不同的作品 `&lt;img&gt;` 标签的排布情况，为之实现绑定事件的方法。对于没有考虑到的作品 `&lt;img&gt;` 标签，自然无法显示预览。例如，在当前的 `Pixiv Previewer@3.7.32` 版本，主页“插画约稿作品”处的作品就无法显示预览：
+
+![“插画约稿作品”暂未实现预览功能](./pixiv-previewer/unimplemented-preview.png)
+
+另外，如果 Pixiv 前端页面某一天迭代更新，寻找作品 `&lt;img&gt;` 标签的方法也可能需要大刀阔斧地修改。
+
+笔者想到的改进方案是：把找作品 `&lt;img&gt;` 标签的工作，从脚本手中移交到用户手中。即监听鼠标移动事件，当悬浮到可预览作品上时，显示预览。
+
+```ts
+const onMouseMove = (mouseMoveEvent: JQuery.MouseMoveEvent) =&gt; {
+  onMouseOverIllust(mouseMoveEvent.target);
+};
+
+$(document).on(&quot;mousemove&quot;, onMouseMove);
+```
+
+在上面的代码里，笔者为 Document 全局绑定了 `mousemove` 监听事件，当鼠标移动时，调用 `onMouseOverIllust(target)` 方法，其中 `target` 是当前鼠标所悬浮的元素。如果监听的是 `mouseover` 事件，脚本可以有更好的性能表现，但是笔者在测试过程中，发现 `mouseover` 事件回调对象里的 `ctrlKey` 等值有时不能正确反映实际状态，所以这里选择了监听 `mousemove` 事件。
+
+接着，需要判断鼠标当前悬浮的元素是否为可预览的作品，如果是则显示预览。观察 DOM 节点：
+
+![作品 DOM 节点](./pixiv-previewer/hovered-illust.png)
+
+如果当前鼠标悬浮在可预览的作品 `&lt;img&gt;` 元素上，则本身包含了访问链接的 `src` 属性，通过简单的正则表达式处理即可获取作品的 Pixiv ID 和大图链接。同时，外层还包裹着一层 `&lt;a&gt;` 元素，包含跳转链接。
+
+考虑到部分 `&lt;img&gt;` 元素虽然包含作品缩略图的 `src` 属性，但跳转的页面并不一定是作品页（`https://www.pixiv.net/artworks/artwork-id`），而是别的页面，鼠标悬浮在这些 `&lt;img&gt;` 元素上时不应当显示预览。因此笔者实现的判断方法，统一取当前悬浮元素的第一个父 `&lt;a&gt;` 节点，当其 `href` 值满足 `/\/artworks\/(\d+)/` 时，显示预览：
+
+```ts
+const getIllustMetadata = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
+  let imgLink = target;
+  while (!imgLink.is(&quot;A&quot;)) {
+    imgLink = imgLink.parent();
+
+    if (!imgLink.length) {
+      return null;
+    }
+  }
+
+  const illustHref = imgLink.attr(&quot;href&quot;);
+  const illustHrefMatch = illustHref?.match(/\/artworks\/(\d+)/);
+  if (!illustHrefMatch) {
+    return null;
+  }
+  const illustId = illustHrefMatch[1];
+
+  const ugoiraSvg = imgLink.children(&quot;div:first&quot;).find(&quot;svg:first&quot;);
+  const illustType =
+    ugoiraSvg.length || imgLink.hasClass(&quot;ugoku-illust&quot;)
+      ? IllustType.UGOIRA // 动图作品
+      : IllustType.ILLUST; // 插画或漫画作品
+
+  return {
+    /** 作品 ID */
+    illustId,
+    /** 作品类型 */
+    illustType,
+  };
+};
+
+const onMouseOverIllust = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
+  if (!(target.is(&quot;IMG&quot;) || target.is(&quot;A&quot;))) {
+    // 当前当前鼠标悬浮元素不是作品或作品链接，跳过
+    return;
+  }
+
+  const { illustId, illustType } = getIllustMetadata(target) || {};
+  if (illustId === undefined || illustType === undefined) {
+    // 获取当前鼠标悬浮元素的元数据失败，跳过
+    return;
+  }
+
+  previewIllust({ target, illustId, illustType });
+};
+```
+
+插画或漫画作品可能存在多页，处理时可以始终调用 Pixiv 官方的接口 `/ajax/illust/${artwork-id}/pages`，获取指定作品包含的所有链接。
+
+再修修补补，为事件加上节流函数，响应鼠标滚动切换页数等，实现了和原版并无二异的预览能力：
+
+![Pixiv 预览](./pixiv-previewer/previewer.png)
+
+可喜可贺，可喜可贺！
+
+## 排序功能优化
+
+原脚本的预览功能已经能够非常好地实现笔者需要的能力了，笔者想要在此基础上加入一些额外的能力或做一些优化，如：
+
+- Feature：支持按照发布日期排序（相当于过滤掉收藏量小于指定值的作品）。
+- Feature：支持在用户作品页进行排序。
+- Feature：排序结果高亮显示“优质作品”，即收藏量增长速率高的作品。需要定义并实现增长速率函数。
+- Performance：排序结果滑动到底部时加载更多，避免一次性渲染全部导致内存占用过大。
+
+但是目前仍处于咕咕咕状态，敬请期待 XD
+</content:original-text><content:updated-at>2025-03-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
