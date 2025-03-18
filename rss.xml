@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 17 Mar 2025 12:22:01 GMT</lastBuildDate><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 18 Mar 2025 08:11:08 GMT</lastBuildDate><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
 
 出于爱好，笔者去脚本仓库翻阅了一下源码，觉得有一些可以改进的地方…]]></description><link>https://blog.towind.fun/posts/pixiv-previewer</link><guid isPermaLink="false">pixiv-previewer</guid><category><![CDATA[前端开发]]></category><pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作：
@@ -30,8 +30,10 @@ import packageJson from &quot;./package.json&quot;;
 export default defineConfig({
   entry: [&quot;src/index.ts&quot;],
   target: [&quot;chrome107&quot;],
+  minify: false,
   splitting: false,
   clean: true,
+  platform: &quot;browser&quot;,
   env: {
     VERSION: packageJson.version,
   },
@@ -77,6 +79,24 @@ export default defineConfig({
 // ==/UserScript==
 
 // ... 脚本构建后的代码
+```
+
+在默认情况下，tsup 会使用预设的 `tsconfig.json`。但笔者在开发过程中，发现 VSCode 有时会遗漏某些类型的定义，于是手动添加了 `tsconfig.json` 在根目录：
+
+```json
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2022&quot;,
+    &quot;module&quot;: &quot;esnext&quot;,
+    &quot;esModuleInterop&quot;: true,
+    &quot;moduleResolution&quot;: &quot;bundler&quot;,
+    &quot;skipLibCheck&quot;: true,
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;]
+  },
+  &quot;include&quot;: [&quot;src/&quot;],
+  &quot;exclude&quot;: [&quot;node_modules/&quot;, &quot;dist/&quot;]
+}
 ```
 
 ### 代码质量检查与格式化工具
@@ -156,11 +176,13 @@ export default tseslint.config(
 
 笔者在阅读 Pixiv Previewer 源码时发现，原作者根据当前页面的不同，实现了不同的通过 DOM 节点寻找可预览作品的 `&lt;img&gt;` 标签的方法，并为它添加监听事件，当鼠标悬浮在上面的时候显示预览。为了应对作品动态加载的情况，脚本设置了循环定时器，每隔一小段时间重新执行上述方法。
 
-这种力大砖飞的实现方案存在一个不可忽视的缺陷：要考虑到每个页面里不同的作品 `&lt;img&gt;` 标签的排布情况，为之实现绑定事件的方法。对于没有考虑到的作品 `&lt;img&gt;` 标签，自然无法显示预览。例如，在当前的 `Pixiv Previewer@3.7.32` 版本，主页“插画约稿作品”处的作品就无法显示预览：
+这种力大砖飞的实现方案存在一个不可忽视的缺陷：要考虑到每个页面里不同的作品 `&lt;img&gt;` 标签的排布情况，为之实现绑定事件的方法。对于没有考虑到的作品 `&lt;img&gt;` 标签，自然无法显示预览。例如，在当前的 `Pixiv Previewer@3.7.32` 版本，艺术家弹窗里最近的作品就无法显示预览：
 
-![“插画约稿作品”暂未实现预览功能](./pixiv-previewer/unimplemented-preview.png)
+![艺术家最近作品暂未实现预览功能](./pixiv-previewer/unimplemented-preview.png)
 
 另外，如果 Pixiv 前端页面某一天迭代更新，寻找作品 `&lt;img&gt;` 标签的方法也可能需要大刀阔斧地修改。
+
+&gt; 发布这篇博客的第二天，2025 年 03 月 18 日，Pixiv 就上线了新的首页，“推荐作品”模块的下面变成了无限滚动的推文模式。由于推文存在高度上限，因此部分尺寸的图片还是会出现显示不全的情况，可以添加预览功能。
 
 笔者想到的改进方案是：把找作品 `&lt;img&gt;` 标签的工作，从脚本手中移交到用户手中。即监听鼠标移动事件，当悬浮到可预览作品上时，显示预览。
 
@@ -180,7 +202,7 @@ $(document).on(&quot;mousemove&quot;, onMouseMove);
 
 如果当前鼠标悬浮在可预览的作品 `&lt;img&gt;` 元素上，则本身包含了访问链接的 `src` 属性，通过简单的正则表达式处理即可获取作品的 Pixiv ID 和大图链接。同时，外层还包裹着一层 `&lt;a&gt;` 元素，包含跳转链接。
 
-考虑到部分 `&lt;img&gt;` 元素虽然包含作品缩略图的 `src` 属性，但跳转的页面并不一定是作品页（`https://www.pixiv.net/artworks/artwork-id`），而是别的页面，鼠标悬浮在这些 `&lt;img&gt;` 元素上时不应当显示预览。因此笔者实现的判断方法，统一取当前悬浮元素的第一个父 `&lt;a&gt;` 节点，当其 `href` 值满足 `/\/artworks\/(\d+)/` 时，显示预览：
+考虑到部分 `&lt;img&gt;` 元素虽然包含作品缩略图的 `src` 属性，但跳转的页面并不一定是作品页本身（`https://www.pixiv.net/artworks/artwork-id`），即可能只是作为封面打开别的页面，鼠标悬浮在这些 `&lt;img&gt;` 元素上时不应当显示预览。因此笔者实现的判断方法是：统一取当前悬浮元素的第一个父 `&lt;a&gt;` 节点，当其 `href` 值满足 `/\/artworks\/(\d+)/` 时，显示预览：
 
 ```ts
 const getIllustMetadata = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
@@ -215,17 +237,7 @@ const getIllustMetadata = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
 };
 
 const onMouseOverIllust = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
-  if (!(target.is(&quot;IMG&quot;) || target.is(&quot;A&quot;))) {
-    // 当前当前鼠标悬浮元素不是作品或作品链接，跳过
-    return;
-  }
-
   const { illustId, illustType } = getIllustMetadata(target) || {};
-  if (illustId === undefined || illustType === undefined) {
-    // 获取当前鼠标悬浮元素的元数据失败，跳过
-    return;
-  }
-
   previewIllust({ target, illustId, illustType });
 };
 ```
@@ -248,7 +260,7 @@ const onMouseOverIllust = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
 - Performance：排序结果滑动到底部时加载更多，避免一次性渲染全部导致内存占用过大。
 
 但是目前仍处于咕咕咕状态，敬请期待 XD
-</content:original-text><content:updated-at>2025-03-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+</content:original-text><content:updated-at>2025-03-18T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
