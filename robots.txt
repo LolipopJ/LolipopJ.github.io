@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /icons/
 Disallow: /images/
 Disallow: /static/
+Sitemap: https://blog.towind.fun/sitemap-index.xml
+Sitemap: https://lolipopj.github.io/sitemap-index.xml
