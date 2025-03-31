@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 31 Mar 2025 12:46:48 GMT</lastBuildDate><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.fun/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 31 Mar 2025 13:05:39 GMT</lastBuildDate><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.fun/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
 去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。
 
 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的，即使并不需要，但是笔者可以拿它为自己的灵魂制造全新的刺激来充实生活。
@@ -66,9 +66,15 @@ cat path/to/rustdesk/data/id_ed25519.pub
 
 ![连接到 Mac Mini 远程桌面](./mac-mini-server/connect-to-mac-mini.png)
 
-最后，在 OpenWRT 的控制面板里将 `192.168.100.239` 绑定为分配给 Mac Mini 的固定 IPv4 地址，以后就无需在主控端重新配置中继服务器的相关内容啦。这里，笔者同时将 Mac Mini 无线网卡的 MAC 地址和以太网卡的 MAC 地址绑定给 `192.168.100.239`，为之后断开 WiFi 使用网线做好了铺垫：
+在默认情况下，远程桌面将使用不可变更的 1920 \* 1080 分辨率，可以使用 Better Dummy 软件为 Mac Mini 虚拟一个显示屏，就可以自定义分辨率与启用 HiDPI 功能了。
+
+![使用 Better Dummy 虚拟显示屏](./mac-mini-server/with-better-dummy.png)
+
+最后，在 OpenWRT 的控制面板里将 `192.168.100.239` 绑定为分配给 Mac Mini 的固定 IPv4 地址，以后就无需在主控端重新配置中继服务器的相关内容啦。
 
 ![为 Mac Mini 绑定静态 IPv4 地址](./mac-mini-server/dhcp-static-ipv4.png)
+
+如上图所示，笔者同时将 Mac Mini 无线网卡的 MAC 地址和以太网卡的 MAC 地址绑定给 `192.168.100.239`，为之后断开 WiFi 使用网线做好了铺垫。
 
 ## 迁移 Docker 里的容器
 
@@ -157,6 +163,16 @@ docker run --name mc-server-fabric --restart unless-stopped -v /path/to/mc-serve
 ![初始化 Minecraft 服务器](./mac-mini-server/docker-minecraft-initialize.png)
 
 从刀耕火种的 `screen` 后台应用，到如今的 Docker 容器服务，也算是一次小型的 Minecraft 服务端架构升级吧\~
+
+## 开始漫长的工作
+
+最初对 Mac Mini 的配置与调教依赖于 WiFi 和显示屏，在远程桌面就绪后，就可以将它移动到无线 AP 旁边，作为一台沉默的服务器开始漫长的工作啦！
+
+关闭 Mac Mini 的 WiFi 功能，关闭主机，将主机移动到无线 AP 旁边，使用网线将两者连接。
+
+启动 Mac Mini，主路由服务器的 DHCP 服务将会自动为 Mac Mini 分配前面笔者固定好的 IPv4 地址。
+
+通过主控端 Rust Desk 访问 Mac Mini，顺利连接到远程桌面，一切搞定！
 
 ## 写在最后
 
