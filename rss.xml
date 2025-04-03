@@ -1,4 +1,128 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 31 Mar 2025 13:05:39 GMT</lastBuildDate><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.fun/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 03 Apr 2025 10:07:49 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[笔者今天在使用 Next Chat 聊天时，突然想到聊天数据应该是可以备份的，在设置里面发现它仅支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 服务并实现数据备份。 Docker 部署 WebDAV 服务
+
+一旦使用上了 Docker，就再也不想回去那种将服务运行在机器本体上的时代了。笔者首选使用…]]></description><link>https://blog.towind.fun/posts/private-webdav</link><guid isPermaLink="false">private-webdav</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
+笔者今天在使用 Next Chat 聊天时，突然想到聊天数据应该是可以备份的，在设置里面发现它仅支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 服务并实现数据备份。
+
+## Docker 部署 WebDAV 服务
+
+一旦使用上了 Docker，就再也不想回去那种将服务运行在机器本体上的时代了。笔者首选使用 Docker 部署 WebDAV 服务，在 Docker Hub 以 `webdav` 为关键词搜索，有如下结果：
+
+![WebDAV 镜像列表](./private-webdav/docker-hub-webdav.png)
+
+笔者尝试了下载量和收藏数最高的 `bytemark/webdav`，但发现设置了挂载目录后无法正常上传文件，仔细阅读说明文档才看到，必须要将宿主机的挂载目录设置为写死的 `/srv/dav`，意味着如果想要用其它目录来存放 WebDAV 里的文件的话，还需要额外添加一个软链接。这样的限制感觉笨笨的，很不优雅，于是找了找它的 [Github 仓库](https://github.com/BytemarkHosting/docker-webdav)，发现作者在写完这个镜像，发了一篇[部署文档](https://docs.bytemark.co.uk/article/run-your-own-webdav-server-with-docker/)后就再没有更新了，代码也就停留在了 2018 年。也许 WebDAV 协议已经相当稳定了，但是笔者还是不想使用这样不活跃仓库的镜像服务。
+
+接着，笔者尝试了 Github 上以 `webdav` 为关键词搜索，关联度和星标均为最高，并且活跃更新的 [`hacdias/webdav`](https://github.com/hacdias/webdav)。它的权限管理能力非常强，笔者很喜欢。问题是将本地的 `local/path/to/data` 目录关联给容器的 `/data` 目录后，同步的数据仍然被放置在了容器的根目录里，导致无法持久化备份文件。这也许是当前版本的 Bug，也许是笔者自己没配置对的原因，总之笔者又着眼于找下一个 WebDAV 镜像去了。
+
+最后，笔者尝试了 Docker Hub 上目前下载量和收藏数均为第二的 `ugeek/webdav`，满足了笔者的需要。首先拉取它的镜像，笔者在 MacOS 系统上部署 WebDAV 服务，因此要拉取它的 `arm64` 版本：
+
+```bash
+docker pull ugeek/webdav:arm64
+```
+
+运行 WebDAV 容器：
+
+```bash
+docker run --name webdav \
+  --restart=unless-stopped \
+  -p 3180:80 \
+  -v $HOME/WebDAV/data:/media \
+  -e USERNAME=YOUR_USERNAME \
+  -e PASSWORD=YOUR_PASSWORD \
+  -e TZ=Asia/Shanghai  \
+  -e UDI=1000 \
+  -e GID=1000 \
+  -d  ugeek/webdav:arm64
+```
+
+笔者将 WebDAV 服务暴露在宿主机的 3180 端口，将数据持久化存储在 `$HOME/WebDAV/data` 目录下。访问 `127.0.0.1:3180`，输入用户名和密码，即可看见当前 WebDAV 服务中包含的文件列表（当然此时为空）。
+
+通过 frp 将内网的服务暴露给公网服务器上，再通过配置公网服务器的 Nginx 配置，现在笔者的 WebDAV 服务就可以通过域名 `https://webdav.towind.fun` 访问了！
+
+## 图形界面管理 WebDAV
+
+用 Postman 来对 WebDAV 里的文件做 CRUD 显然不符合实际需要。在这一章节，笔者将分别通过 Windows 和 AList 来连接 WebDAV 服务，方便以后实际的管理与使用。
+
+### Windows 挂载 WebDAV
+
+笔者的 WebDAV 服务由 SSL 加密，因此需要首先配置 Windows Web Client 的身份验证级别，即在“运行”里输入 `regedit` 打开注册表编辑器，找到 `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters`，修改其中键 `BasicAuthLevel` 的值为 `2`。
+
+![修改 Windows Web Client 身份验证级别](./private-webdav/windows-webdav-auth-level.png)
+
+笔者翻阅有关 Windows 系统连接 WebDAV 服务的[官方文档](https://learn.microsoft.com/zh-cn/iis/publish/using-webdav/using-the-webdav-redirector#webdav-redirector-registry-settings)发现，`BasicAuthLevel` 默认值为 `1` 的时候就已经对 SSL 加密的连接启用身份验证了，但笔者仅在其值为 `2` 的时候能顺利连接上。暂且蒙在鼓里。
+
+右键“我的电脑”，选择“选择映射网络驱动器”，输入 WebDAV 的地址，再输入用户名和密码即可连接到服务：
+
+![Windows 连接到 WebDAV 服务](./private-webdav/windows-webdav-connect.png)
+
+这样，就可以在 Windows 系统上，像管理其它本地文件一样管理 WebDAV 里的文件了！
+
+### AList 挂载 WebDAV
+
+笔者之前在 Docker 上部署了 AList 服务，它也支持连接并管理 WebDAV 服务。这一切尤为简单，只需要在“管理 - 存储”页面添加 WebDAV 驱动，输入账号和密码即可连接：
+
+![AList 连接到 WebDAV 服务](./private-webdav/alist-webdav-connect.png)
+
+回到主页，WebDAV 服务就顺利地挂载到了指定的路由上。这样，就可以随时随地通过浏览器访问 AList，管理 WebDAV 里的文件了！
+
+## 备份应用数据到 WebDAV
+
+### 备份 Obsidian 笔记到 WebDAV
+
+笔者使用 Obsidian 同步多端的笔记，过去使用 OneDrive 来同步笔记的数据，现在就可以迁移到 WebDAV 上了。只需要安装插件市场里的三方插件 Remotely Save，配置 WebDAV 即可：
+
+![配置 Obsidian 插件 Remotely Save](./private-webdav/webdav-sync-obsidian.png)
+
+点击同步按钮，笔记数据就光速保存到 WebDAV 上啦！相比 OneDrive，使用 WebDAV 同步的速度要显著更快，源于少走了不少鉴权和请求接口罢。
+
+### 备份 Next Chat 数据到 WebDAV
+
+笔者使用 Next Chat 的桌面端应用来跟上 AI 的浪潮，撰写此文时使用的版本为 `v2.15.8`，在设置中它提供了同步配置和聊天记录到 WebDAV 的能力，但无论怎么配置也无法成功同步数据，翻看好多 Issues 和相关的帖子才终于理出来要如何使用。
+
+Next Chat 设计为 Web 端使用，部署时需要配置环境变量 `WHITE_WEBDAV_ENDPOINTS` 以添加 WebDAV 服务白名单。官方构建版本仅对一些常见 WebDAV 服务域名开了白名单，像笔者这样的自建 WebDAV 服务自然是不在名单中。因此就需要手动部署一个属于自己的 Next Chat 的 Web 版本，在环境变量中为 WebDAV 服务开放白名单。同步数据时，使用自建站点的域名作为代理服务器就可以了。
+
+参考部署 Next Chat 到 Vercel 的[官方文档](https://github.com/ChatGPTNextWeb/NextChat/blob/48469bd8ca4b29d40db0ade61b57f9be6f601e01/docs/vercel-cn.md)，部署自己的 Next Chat 站点，将 `WHITE_WEBDAV_ENDPOINTS=https://webdav.towind.fun` 作为构建环境变量：
+
+![构建 Next Chat 环境变量](./private-webdav/next-chat-vercel-env.png)
+
+现在，笔者自建的 Next Chat 站点便允许被作为请求 `https://webdav.towind.fun` 的代理服务器了。
+
+配置云同步，检查可用性，成功在 WebDAV 的根目录下创建了文件夹 `chatgpt-next-chat`：
+
+![Next Chat 云同步检查 WebDAV 可用性](./private-webdav/next-chat-check-connection.png)
+
+尝试初次同步 Next Chat 的数据：首先发出请求检查 WebDAV 里是否包含云端数据，响应值为 404 Not Found，符合预期；接着将备份的数据上传到 WebDAV，服务端响应 502 Bad Gateway：
+
+![Next Chat 同步失败 502 Error](./private-webdav/webdav-sync-next-chat-failed.png)
+
+查看 Nginx 错误日志：
+
+```bash
+tail -n 10 /var/log/nginx/error.log
+...
+[error] 2107#2107: *36701359 client intended to send too large body: 1663429 bytes, client: xxx.xx.xxx.xxx, server: webdav.towind.fun, request: &quot;PUT /chatgpt-next-web/backup.json HTTP/2.0&quot;, host: &quot;webdav.towind.fun&quot;
+```
+
+可知 Nginx 拒绝了包含超过设定大小数据的请求，那么只需要将设定的大小放开一点就好。编辑对应的 Nginx 配置：
+
+```nginx
+server {
+  server_name webdav.towind.fun;
+  client_max_body_size 50M;
+}
+```
+
+再次尝试同步 Next Chat 的数据，成功上传到 WebDAV：
+
+![Next Chat 同步成功](./private-webdav/webdav-backup-next-chat.png)
+
+未来在新的客户端使用 Next Chat 时，也可以同步配置数据和聊天记录了！
+
+## 参考文章
+
+在“Windows 挂载 WebDAV”章节里，笔者主要参考了[《Windows 挂载 WebDAV》](https://www.expoli.tech/articles/2020/12/30/1609327097930#00ecc29c1a7b4cb783cfa61ba925073e)这篇博客，解决了挂载异常的问题。
+
+在“备份应用数据到 WebDAV”章节里，笔者主要参考了[《终于拿下了NextChat的WebDAV云同步，我感觉我又行了》](https://linux.do/t/topic/373723)和[《【拉跨，但能用了】NextChat 的 WebDAV 云同步。。》](https://linux.do/t/topic/328163)这两篇帖子。
+</content:original-text><content:updated-at>2025-04-03T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.fun/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
 去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。
 
 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的，即使并不需要，但是笔者可以拿它为自己的灵魂制造全新的刺激来充实生活。
