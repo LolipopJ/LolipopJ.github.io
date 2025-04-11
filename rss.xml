@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 05 Apr 2025 04:47:41 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 11 Apr 2025 13:22:44 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
 
 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV…]]></description><link>https://blog.towind.fun/posts/private-webdav</link><guid isPermaLink="false">private-webdav</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
 今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。
 
 ## Docker 部署 WebDAV 服务
 
-&gt; 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV 协议的文件服务器镜像，例如 [`drakkan
-sftpgo`](https://github.com/drakkan/sftpgo) 以及 [`sigoden/dufs`](https://github.com/sigoden/dufs) 等等。
+&gt; 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV 协议的文件服务器镜像，例如 [`drakkan/sftpgo`](https://github.com/drakkan/sftpgo) 以及 [`sigoden/dufs`](https://github.com/sigoden/dufs) 等等。
 
 一旦使用上了 Docker，就再也不想回去那种将服务运行在机器本体上的时代了。笔者首选使用 Docker 部署 WebDAV 服务，在 Docker Hub 以 `webdav` 为关键词搜索，有如下结果：
 
@@ -77,7 +76,9 @@ docker run --name webdav \
 
 ![配置 Obsidian 插件 Remotely Save](./private-webdav/webdav-sync-obsidian.png)
 
-点击同步按钮，笔记数据就光速保存到 WebDAV 上啦！相比 OneDrive，使用 WebDAV 同步的速度要显著更快，源于少走了不少鉴权和请求接口罢。
+点击同步按钮，笔记数据就光速保存到 WebDAV 上啦！相比 OneDrive，使用 WebDAV 同步的速度要显著更快，但是也失去了 OneDrive 提供的历史版本管理能力，得失兼而有之。
+
+尽管 OneDrive 的能力更加强大，但笔者还是倾心于玩弄自己的小玩具，暂且不与 OneDrive 同步了 XD。
 
 ### 备份 Next Chat 数据到 WebDAV
 
@@ -175,6 +176,8 @@ Docker 是管理本地服务的无二之选，首先在 Mac Mini 上下载并安
 不保证上述镜像仓库始终可用，如失效，可以在网上找到最新有效的地址。
 
 拉取 Rust Desk 的服务端镜像 `rustdesk/rustdesk-server`，运行 hbbs 和 hbbr 容器服务：
+
+&gt; 官方文档使用“Host”网络模式来免除一个一个手动设置端口号的麻烦，但是 MacOS 系统并不支持这种网络模式。
 
 ```bash
 # RustDesk 的中介服务器，用于管理和协调客户端连接
@@ -5632,18 +5635,18 @@ https://cdn.jsdelivr.net/gh/user/repo@version/file
 看到一些博客提到可以使用 [PicGo](https://github.com/Molunerfinn/PicGo) 来管理自己的图床资源，电脑和手机端都可以使用，甚至还提供了 VSCode 插件。Cool，对于使用图片较多的用户可能非常有帮助。
 </content:original-text><content:updated-at>2024-07-25T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化]]></title><description><![CDATA[编写代码时使用 EditorConfig EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。
 
-VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载插件。
+VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动搜索并安装插件。
 
 EditorConfig 会自动读取工作区中的  文件，更详细的配置说明可以参考官方介绍。下面是笔者常用的配置：
 
 推送仓库前使用 Prettier
 
-为了进一步确保代码…]]></description><link>https://blog.towind.fun/posts/editorconfig-prettier</link><guid isPermaLink="false">editorconfig-prettier</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 07 Aug 2021 00:00:00 GMT</pubDate><content:original-text>
+为了进一步确…]]></description><link>https://blog.towind.fun/posts/editorconfig-prettier</link><guid isPermaLink="false">editorconfig-prettier</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 07 Aug 2021 00:00:00 GMT</pubDate><content:original-text>
 ## 编写代码时使用 EditorConfig
 
 EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。
 
-VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动下载[插件](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)。
+VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动搜索并安装[插件](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)。
 
 EditorConfig 会自动读取工作区中的 `.editorconfig` 文件，更详细的配置说明可以参考[官方介绍](https://editorconfig-specification.readthedocs.io/)。下面是笔者常用的配置：
 
@@ -5674,7 +5677,7 @@ yarn add -D prettier
 ```json
 {
   &quot;scripts&quot;: {
-    &quot;prettier&quot;: &quot;prettier --ignore-path .gitignore --write **/* --ignore-unknown&quot;
+    &quot;prettier&quot;: &quot;prettier --write **/* --ignore-unknown&quot;
   }
 }
 ```
@@ -9895,20 +9898,20 @@ ldconfig 2&gt; dupNote ; cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xar
 
 - [/usr/lib/\*\*\* is not a symbolic link 问题解决 - CSDN](https://blog.csdn.net/qq_34213260/article/details/107399507)
 - [Linux ln 命令 - 菜鸟教程](https://www.runoob.com/linux/linux-comm-ln.html)
-</content:original-text><content:updated-at>2021-03-10T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[Nuxt 项目配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？ 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
+</content:original-text><content:updated-at>2021-03-10T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[前端工程配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？ 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
 
 本…]]></description><link>https://blog.towind.fun/posts/nodejs-eslint-prettier</link><guid isPermaLink="false">nodejs-eslint-prettier</guid><category><![CDATA[前端开发]]></category><pubDate>Wed, 03 Mar 2021 00:00:00 GMT</pubDate><content:original-text>
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
 
 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码**质量**问题，还是会在编译器里看到红色波浪线，提醒还有些代码**风格**需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
 
-本文基于 Nuxt.js + VSCode 阐述如何配置并实现 ESLint + Prettier 检查并规范代码质量与格式。
+本文将阐述笔者如何配置 ESLint + Prettier，实现前端项目检查并修复代码质量与格式问题的能力。
 
-## ESLint 与 Prettier
+## 介绍 ESLint 与 Prettier
 
 ESLint 是一个开源的 JavaScript 代码检查工具，Prettier 是一款代码格式工具。它们的功能侧重如下所示：
 
-- ESLint：主要负责代码**质量**的校验，其次包含代码**风格**的检验。
+- ESLint：主要负责代码**质量**的校验，其次包含部分的**风格**检验。
 - Prettier：主要负责代码**风格**的校验。
 
 ESLint 认为代码风格并没有那么重要，因此并未完全解决代码风格问题。
@@ -9919,9 +9922,9 @@ ESLint 认为代码风格并没有那么重要，因此并未完全解决代码�
 
 &gt; An opinionated code formatter.
 
-尚且不论二者孰是孰非，作为开发者，一句“我全都要”就可以解决这个争论，同时让自己项目的代码享受美妙的质量校验与风格修复体验。
+目前公认的一个最佳实践是结合二者的强项：让 Prettier 专注处理代码格式问题，让 ESLint 专注处理代码质量问题。
 
-## 安装依赖和编译器插件
+## 引入 ESLint 与 Prettier
 
 首先，自然是安装 ESLint 和 Prettier 作为项目依赖。
 
@@ -9929,55 +9932,51 @@ ESLint 认为代码风格并没有那么重要，因此并未完全解决代码�
 yarn add --dev eslint prettier
 ```
 
-在 VSCode 扩展商店查找并安装：
+接着，让 ESLint 一并接管 Prettier 的工作，这可以通过以下两个库实现：
 
-- ESLint
-- Prettier
+- [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier)：ESLint 插件，包括了 ESLint 需要检查的一些额外代码格式规则。在幕后，它使用到了 Prettier，相当于将 Prettier 作为 ESLint 的一部分运行。
+- [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier)：ESLint 配置，可以关闭 ESLint 里所有不必要或者可能与 Prettier 产生冲突的代码格式规则。
 
-在过去，我们可能会使用 `prettier-eslint` 作为项目依赖，通过它依次执行 `prettier` 然后是 `eslint --fix`，实现修复代码格式和质量问题。但是：
-
-&gt; It&apos;s the recommended practice to let Prettier handle formatting and ESLint for non-formatting issues, `prettier-eslint` is not in the same direction as that practice, hence `prettier-eslint` is not recommended anymore. You can use `eslint-plugin-prettier` and `eslint-config-prettier` together.
-
-最佳实践是让 Prettier 处理代码格式问题，让 ESLint 处理代码质量问题。
-
-这可以通过以下两个库实现：
-
-- [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)：ESLint 插件，包括了 ESLint 需要检查的一些额外代码格式规则。在幕后，它使用到了 Prettier，相当于将 Prettier 作为 ESLint 的一部分运行。
-- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)：ESLint 配置，可以关闭所有不必要或者可能与 Prettier 产生冲突的代码格式规则。
-
-二者相辅相成，eslint-config-prettier 可以关闭 ESLint 中与 Prettier 相冲突的代码格式规则，这样我们就将代码格式化的问题全都交给我们的 Prettier 处理。
+在项目里安装它们：
 
 ```bash
 yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```
 
-修改 `.eslintrc.js` 中配置，将 `plugin:prettier/recommended` 和 `prettier` 放到拓展的最后两项，如下所示：
+将 `eslint-plugin-prettier` 的推荐配置 `plugin:prettier/recommended` 放到 ESLint 配置里 `extends` 的最后一项即可，它将自动配置并启用 `eslint-config-prettier`。如下所示：
 
 ```js
 // .eslintrc.js
 module.exports = {
   extends: [
-    &quot;您使用的其它 ESLint 拓展&quot;,
+    // ... 您使用的其它 ESLint 拓展
     &quot;plugin:prettier/recommended&quot;,
-    &quot;prettier&quot;,
   ],
 };
 ```
 
-## 配置 Prettier
+对于新版本的 ESLint 配置文件 `eslint.config.js`，可以像下面这样配置：
 
-参考 Prettier 的官方[配置文档](https://prettier.io/docs/en/options.html)，自由地配置项目代码的风格吧！
+```js
+const eslintPluginPrettierRecommended = require(&quot;eslint-plugin-prettier/recommended&quot;);
 
-只需要在项目目录创建 `.prettierrc.json` 文件，填写配置即可。例如（注意，JSON 文件中不应该添加注释）：
+module.exports = [
+  // ... 您使用的其它 ESLint 拓展
+  eslintPluginPrettierRecommended,
+];
+```
+
+参考 Prettier 的官方[配置文档](https://prettier.io/docs/options.html)，您可以自由地配置项目代码的风格。在项目目录创建 `.prettierrc.json` 文件，添加风格配置项如：
 
 ```json
 {
+  // 注释只是便于理解，您应当删除 JSON 文件里的注释
   &quot;semi&quot;: false, // 句末是否添加分号
   &quot;singleQuote&quot;: true // 是否使用单引号（而非双引号）
 }
 ```
 
-由于 Prettier 是以插件的形式添加到 ESLint 中，因此您需要在修改后重新启动 VSCode 工作区。
+当然，笔者通常保持 Prettier 的默认风格，不单独引入配置文件。
 
 ## 现在就格式化代码吧
 
@@ -9987,25 +9986,24 @@ module.exports = {
 // package.json
 {
   &quot;scripts&quot;: {
-    &quot;lint&quot;: &quot;eslint --ignore-path .gitignore --ext .ts,.js,.vue .&quot;,
-    &quot;lint:fix&quot;: &quot;yarn lint --fix&quot;,
-    &quot;lint:prettier&quot;: &quot;prettier --ignore-path .gitignore --write **/* --ignore-unknown&quot;
+    &quot;lint&quot;: &quot;eslint .&quot;
   }
 }
 ```
 
-这里笔者使用了比较偷懒的方法，调用了 Prettier 一键修复**所有可修复**的代码风格问题，而不限于我们指定的 `.ts` 文件等。既然在前面我们已经配置好了 ESLint 和 Prettier 之间的关系，所以在这里单独通过 Prettier 修复后，VSCode 中并不会显示可恶的红色波浪线。
-
 根据上面的配置，可以在项目根目录下执行如下脚本：
 
 ```bash
-# 只检查 .ts, .js, .vue 文件的代码质量问题
+# 检查代码质量问题
 yarn lint
-# 检查并修复 .ts, .js, .vue 文件的代码质量问题
-yarn lint:fix
-# 修复所有可修复的代码风格问题
-yarn lint:prettier
+
+# 检查并修复代码质量问题
+yarn lint --fix
 ```
+
+由于我们将 Prettier 作为了 ESLint 的插件运行，所以无需手动执行 Prettier 的格式化命令了。
+
+在 VSCode 里，也应当将 ESLint 作为默认的格式化工具。如果正确地安装并启用了 VSCode 的 ESLint 拓展，编辑器就能正确的高亮 ESLint 与 Prettier 检查出来的问题了。
 
 此外，VSCode 还可以设置**保存时自动修复代码问题**，如下所示。这样执行 `Ctrl + S` 保存时会自动格式化代码文件。
 
@@ -10022,7 +10020,7 @@ yarn lint:prettier
 - [Error: &apos;basePath&apos; should be an absolute path](https://github.com/prettier/prettier-eslint-cli/issues/208#issuecomment-673631308) - mathiaswillburger - 2020.08.14
 - [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300) - 乃乎 - 2019.08.31
 - [ESLint+Prettier 代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie 维 - 2019.06.04
-</content:original-text><content:updated-at>2021-08-07T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[Webpack 读取本地 Markdown 文件并进行预处理]]></title><description><![CDATA[在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
+</content:original-text><content:updated-at>2025-04-11T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[Webpack 读取本地 Markdown 文件并进行预处理]]></title><description><![CDATA[在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
 
 这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！
 
