@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 18 Apr 2025 11:56:18 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 26 Apr 2025 11:09:55 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
 
 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV…]]></description><link>https://blog.towind.fun/posts/private-webdav</link><guid isPermaLink="false">private-webdav</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
 今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。
@@ -344,6 +344,7 @@ yarn add -D tsup
 添加 tsup 的配置文件 `tsup.config.ts`：
 
 ```ts
+import svg from &quot;esbuild-plugin-svg&quot;;
 import { defineConfig } from &quot;tsup&quot;;
 
 import packageJson from &quot;./package.json&quot;;
@@ -355,24 +356,30 @@ export default defineConfig({
   splitting: false,
   clean: true,
   platform: &quot;browser&quot;,
+  esbuildPlugins: [svg()], // 为了正确处理项目中用到的 SVG 文件，添加了此插件
   env: {
     VERSION: packageJson.version,
   },
   banner: {
     js: `// ==UserScript==
-// @name                PixivPreviewerL
+// @name                Pixiv Previewer L
 // @namespace           ${packageJson.homepage}
 // @version             ${packageJson.version}-${new Date().toLocaleDateString()}
 // @description         ${packageJson.description}
 // @author              ${packageJson.author}
-// @match               *://www.pixiv.net/*
-// @grant               unsafeWindow
-// @grant               GM.xmlHttpRequest
-// @grant               GM_xmlhttpRequest
 // @license             ${packageJson.license}
+// @supportURL          ${packageJson.homepage}
+// @match               *://www.pixiv.net/*
+// @grant               GM_getValue
+// @grant               GM_setValue
+// @grant               GM_registerMenuCommand
+// @grant               GM_unregisterMenuCommand
+// @grant               GM.xmlHttpRequest
 // @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
 // @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
-// @require             https://raw.githubusercontent.com/Tampermonkey/utils/refs/heads/main/requires/gh_2215_make_GM_xhr_more_parallel_again.js
+// @require             https://update.greasyfork.org/scripts/515994/1478507/gh_2215_make_GM_xhr_more_parallel_again.js
+// @require             http://code.jquery.com/jquery-3.7.1.min.js
+// @run-at              document-end
 // ==/UserScript==`,
   },
 });
@@ -384,19 +391,24 @@ export default defineConfig({
 
 ```js
 // ==UserScript==
-// @name                PixivPreviewerL
+// @name                Pixiv Previewer L
 // @namespace           https://github.com/LolipopJ/PixivPreviewer
-// @version             0.1.3-2025/3/17
+// @version             1.1.1-2025/4/25
 // @description         Original project: https://github.com/Ocrosoft/PixivPreviewer.
 // @author              Ocrosoft, LolipopJ
-// @match               *://www.pixiv.net/*
-// @grant               unsafeWindow
-// @grant               GM.xmlHttpRequest
-// @grant               GM_xmlhttpRequest
 // @license             GPL-3.0
+// @supportURL          https://github.com/LolipopJ/PixivPreviewer
+// @match               *://www.pixiv.net/*
+// @grant               GM_getValue
+// @grant               GM_setValue
+// @grant               GM_registerMenuCommand
+// @grant               GM_unregisterMenuCommand
+// @grant               GM.xmlHttpRequest
 // @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
 // @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
-// @require             https://raw.githubusercontent.com/Tampermonkey/utils/refs/heads/main/requires/gh_2215_make_GM_xhr_more_parallel_again.js
+// @require             https://update.greasyfork.org/scripts/515994/1478507/gh_2215_make_GM_xhr_more_parallel_again.js
+// @require             http://code.jquery.com/jquery-3.7.1.min.js
+// @run-at              document-end
 // ==/UserScript==
 
 // ... 脚本构建后的代码
@@ -571,17 +583,470 @@ const onMouseOverIllust = (target: JQuery&lt;HTMLElement&gt;) =&gt; {
 
 可喜可贺，可喜可贺！
 
-## 排序功能优化
+## 排序功能重构与优化
 
-原脚本的预览功能已经能够非常好地实现笔者需要的能力了，笔者想要在此基础上加入一些额外的能力或做一些优化，如：
+原脚本的预览功能已经能够非常好地实现笔者需要的能力了，笔者想要在此基础上加入一些额外的能力或做一些优化。
 
-- Feature：支持按照发布日期排序（相当于过滤掉收藏量小于指定值的作品）。
-- Feature：支持在用户作品页进行排序。
-- Feature：排序结果高亮显示“优质作品”，即收藏量增长速率高的作品。需要定义并实现增长速率函数。
-- Performance：排序结果滑动到底部时加载更多，避免一次性渲染全部导致内存占用过大。
+其实最开始的原动力来自于原脚本在某次更新以后，排序功能突然变得很慢，过去笔者一次性喜欢排序 20 页作品再挑选喜欢的，现在却要先等个二十分钟，还可能“中道崩殂”。后面看公告才了解到，Pixiv 从某天开始对来自于同 IP 的请求进行了限制，如果短时间内超过了请求的上限，则会暂时屏蔽请求。这点对于 Pixiv 来说无可厚非，能大大缓解像笔者这样的服务器蛀虫的“攻击”。
 
-但是目前仍处于咕咕咕状态，敬请期待 XD
-</content:original-text><content:updated-at>2025-03-18T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+于是便开始了本以为无限期的咕咕咕，但最近代码写得手感火热，想到了这个坑，就花了几天填一填。同时也多接触接触原生 DOM 操作等小知识，百利无一害。
+
+### 请求作品分页
+
+排序功能的本质就是同时请求多个分页，再获取每个作品的详细信息，最后在前端显示出来。下面以标签搜索结果的页面为例，实现排序功能。
+
+对于不同的可排序页面，需要获取的要素有三：
+
+- 请求分页的接口。
+- 请求分页的参数。
+- 作品的列表 DOM 节点。
+
+使用观察法，在网络请求里找到分页的接口与默认的搜索参数：
+
+```ts
+function getSortOptionsFromPathname(pathname: string) {
+  let type: IllustSortType;
+  let api: string;
+  let defaultSearchParams: string;
+
+  let match: RegExpMatchArray;
+  if (
+    (match = pathname.match(/\/tags\/(.+)\/(artworks|illustrations|manga)$/))
+  ) {
+    const tagName = match[1];
+    const filterType = match[2];
+
+    switch (filterType) {
+      case &quot;artworks&quot;:
+        type = IllustSortType.TAG_ARTWORK;
+        api = `/ajax/search/artworks/${tagName}`;
+        defaultSearchParams = `word=${tagName}&amp;order=date_d&amp;mode=all&amp;p=1&amp;csw=0&amp;s_mode=s_tag_full&amp;type=all&amp;lang=zh`;
+        break;
+      case &quot;illustrations&quot;:
+        type = IllustSortType.TAG_ILLUST;
+        api = `/ajax/search/illustrations/${tagName}`;
+        defaultSearchParams = `word=${tagName}&amp;order=date_d&amp;mode=all&amp;p=1&amp;csw=0&amp;s_mode=s_tag_full&amp;type=illust_and_ugoira&amp;lang=zh`;
+        break;
+      case &quot;manga&quot;:
+        type = IllustSortType.TAG_MANGA;
+        api = `/ajax/search/manga/${tagName}`;
+        defaultSearchParams = `word=${tagName}&amp;order=date_d&amp;mode=all&amp;p=1&amp;csw=0&amp;s_mode=s_tag_full&amp;type=manga&amp;lang=zh`;
+        break;
+    }
+  }
+
+  return {
+    type,
+    api,
+    searchParams: new URLSearchParams(defaultSearchParams),
+  };
+}
+```
+
+当用户在前端设置搜索条件的时候，搜索条件会自动追加到当前的 Search Params 上。脚本在处理的时候，也应该读取 Search Params，再与方法 `getSortOptionsFromPathname()` 得到的默认 `searchParams` 进行合并，让接口请求符合用户预期：
+
+```ts
+const url = new URL(location.href);
+const { pathname, searchParams } = url;
+
+const {
+  type,
+  api,
+  searchParams: defaultSearchParams,
+} = getSortOptionsFromPathname(pathname);
+
+const mergedSearchParams = new URLSearchParams(defaultSearchParams);
+searchParams.forEach((value, key) =&gt; {
+  // 相同参数覆盖，不同参数追加
+  mergedSearchParams.set(key, value);
+});
+```
+
+接着，获取陈列作品的列表 DOM 节点：
+
+```ts
+function getIllustrationsListDom(type: IllustSortType) {
+  let dom: JQuery&lt;HTMLUListElement&gt;;
+  if (
+    [
+      IllustSortType.TAG_ARTWORK,
+      IllustSortType.TAG_ILLUST,
+      IllustSortType.TAG_MANGA,
+    ].includes(type)
+  ) {
+    dom = $(&quot;ul.sc-ad8346e6-1.iwHaa-d&quot;);
+  }
+
+  if (dom) {
+    return dom;
+  } else {
+    throw new Error(`Illustrations list DOM not found.`);
+  }
+}
+```
+
+Pixiv 的前端使用了 CSS Module 技术来生成样式名，能够有效避免同名样式冲突的问题。但是对于脚本开发者来说会增加一定的维护成本 —— 每次 Pixiv 的样式改变而重新构建样式文件时，需要手动更新脚本里对应的样式名，以正确找到目标节点。
+
+因此在实现里，当脚本寻找节点失败时，会抛出一个错误，阻止脚本的继续运行。作为开发者，在碰到这样的问题时，就得赶紧更新脚本，或者想一想有没有更好的方式能定位此节点（例如搜索包含 60 个子元素的 `ul` 节点 🤔）。
+
+### 获取作品详细信息
+
+为了获取作品的收藏数据以排序，需要通过另外的接口获取作品的详细信息（如果请求分页的时候，响应值就把作品的收藏数带上就好了……）。
+
+这里直接沿用了原作者使用的接口 `/touch/ajax/illust/details?illust_id=${id}`：
+
+```ts
+async function getIllustrationDetailsWithCache(id: string) {
+  let illustDetails: IllustrationDetails =
+    await getCachedIllustrationDetails(id);
+
+  if (illustDetails) {
+    iLog.d(`Use cached details for illustration ${id}`, illustDetails);
+  } else {
+    const requestUrl = `/touch/ajax/illust/details?illust_id=${id}`;
+    const getIllustDetailsRes = await requestWithRetry({
+      url: requestUrl,
+      onRetry: (response, retryTimes) =&gt; {
+        iLog.w(
+          `Get illustration details through \`${requestUrl}\` failed:`,
+          response,
+          `${retryTimes} times retrying...`,
+        );
+      },
+    });
+    illustDetails = (
+      getIllustDetailsRes.response as PixivStandardResponse&lt;{
+        illust_details: IllustrationDetails;
+      }&gt;
+    ).body.illust_details;
+  }
+
+  cacheIllustrationDetails(illustDetails);
+
+  return illustDetails;
+}
+```
+
+在此基础上做了两个额外的工作。其一是缓存作品详细信息：对于发布时间超过 6 小时的作品，我们认为作品的收藏数变化率会趋于平稳，则将作品的详细信息缓存 12 小时。12 小时内再获取此作品的详细信息时，直接从 Indexed DB 里拿。省略 Indexed DB 初始化和错误处理等逻辑，核心实现如下：
+
+```ts
+/** 缓存数据表名称 */
+const ILLUSTRATION_DETAILS_CACHE_TABLE_KEY = &quot;illustrationDetailsCache&quot;;
+/** 缓存过期时间 */
+const ILLUSTRATION_DETAILS_CACHE_TIME = 1000 * 60 * 60 * 12; // 12 小时
+/** 不添加缓存的新作品发布时间 */
+const NEW_ILLUSTRATION_NOT_CACHE_TIME = 1000 * 60 * 60 * 6; // 6 小时
+
+/** 缓存作品详细信息 */
+const cacheIllustrationDetails = (
+  illustration: IllustrationDetails,
+  now: Date = new Date(),
+) =&gt; {
+  return new Promise&lt;void&gt;(() =&gt; {
+    const cachedIllustrationDetailsObjectStore = db
+      .transaction(ILLUSTRATION_DETAILS_CACHE_TABLE_KEY, &quot;readwrite&quot;)
+      .objectStore(ILLUSTRATION_DETAILS_CACHE_TABLE_KEY);
+
+    const createDate = new Date(illustration.createDate);
+
+    if (
+      now.getTime() - createDate.getTime() &gt;
+      NEW_ILLUSTRATION_NOT_CACHE_TIME
+    ) {
+      // 作品发布超过一定时间，添加缓存
+      const illustrationDetails: IllustrationDetailsCache = {
+        ...illustration,
+        cacheDate: now,
+      };
+      // 这里简单处理，如果数据库里已经包含缓存数据，则重新设置缓存过期时间为 12 小时
+      // 当然，更合理的方式是存在时跳过，不重新设置缓存过期时间
+      const addCachedIllustrationDetailsRequest =
+        cachedIllustrationDetailsObjectStore.put(illustrationDetails);
+    }
+  });
+};
+
+/** 获取作品详细信息缓存 */
+const getCachedIllustrationDetails = (id: string, now: Date = new Date()) =&gt; {
+  return new Promise&lt;IllustrationDetailsCache | undefined&gt;((resolve) =&gt; {
+    const cachedIllustrationDetailsObjectStore = db
+      .transaction(ILLUSTRATION_DETAILS_CACHE_TABLE_KEY, &quot;readwrite&quot;)
+      .objectStore(ILLUSTRATION_DETAILS_CACHE_TABLE_KEY);
+
+    const getCachedIllustrationDetailsRequest =
+      cachedIllustrationDetailsObjectStore.get(id);
+
+    getCachedIllustrationDetailsRequest.onsuccess = (event) =&gt; {
+      const illustrationDetails = (
+        event.target as IDBRequest&lt;IllustrationDetailsCache | undefined&gt;
+      ).result;
+      if (illustrationDetails) {
+        const { cacheDate } = illustrationDetails;
+        if (
+          now.getTime() - cacheDate.getTime() &lt;=
+          ILLUSTRATION_DETAILS_CACHE_TIME
+        ) {
+          // 缓存未过期，返回缓存结果
+          resolve(illustrationDetails);
+        }
+      }
+      resolve(undefined);
+    };
+  });
+};
+```
+
+设置缓存的主要目的是减少被 Pixiv 限制请求的可能性，也便于开发测试。
+
+第二个额外的工作是：为获取作品详细信息的请求添加错误重试机制，避免因 Pixiv 限制引起的排序功能失效。这一点通过封装请求方法实现：
+
+```ts
+const xmlHttpRequest = window.GM.xmlHttpRequest;
+
+/** 标准的请求方法 */
+export const request = &lt;TContext = unknown&gt;(
+  options: Tampermonkey.Request&lt;TContext&gt;,
+) =&gt; {
+  const { headers, ...restOptions } = options;
+  return xmlHttpRequest&lt;TContext&gt;({
+    responseType: &quot;json&quot;,
+    ...restOptions,
+    headers: {
+      referer: &quot;https://www.pixiv.net/&quot;,
+      ...headers,
+    },
+  });
+};
+
+/** 封装了错误重试机制的请求方法 */
+export const requestWithRetry = async &lt;TContext = unknown&gt;(
+  options: Tampermonkey.Request&lt;TContext&gt; &amp; {
+    /** 重试间隔时间（ms） */
+    retryDelay?: number;
+    /** 最大重试次数 */
+    maxRetryTimes?: number;
+    /** 重试回调 */
+    onRetry?: (
+      response: Tampermonkey.Response&lt;TContext&gt;,
+      retryTimes: number,
+    ) =&gt; void;
+  },
+) =&gt; {
+  const {
+    retryDelay = 10000,
+    maxRetryTimes = Infinity,
+    onRetry,
+    ...restOptions
+  } = options;
+
+  let response: Tampermonkey.Response&lt;TContext&gt;;
+  let retryTimes = 0;
+  while (retryTimes &lt; maxRetryTimes) {
+    response = await request&lt;TContext&gt;(restOptions);
+
+    if (response.status === 200) {
+      const responseData = response.response as PixivStandardResponse&lt;unknown&gt;;
+      if (!responseData.error) {
+        return response;
+      }
+    }
+
+    retryTimes += 1;
+    onRetry?.(response, retryTimes);
+    await pause(retryDelay);
+  }
+  throw new Error(
+    `Request for ${restOptions.url} failed: ${response.responseText}`,
+  );
+};
+```
+
+在默认情况下，如果请求失败，那么会间隔 10s 重新发起相同请求，重试的次数无上限。直到请求获得成功响应值时，返回响应的结果。
+
+最后，实现并发请求的能力：
+
+```ts
+export const execLimitConcurrentPromises = async &lt;T&gt;(
+  promises: (() =&gt; Promise&lt;T&gt;)[],
+  limit = 48,
+) =&gt; {
+  const results: T[] = [];
+  let index = 0;
+
+  const executeNext = async () =&gt; {
+    if (index &gt;= promises.length) return Promise.resolve();
+
+    const currentIndex = index++;
+    const result = await promises[currentIndex]();
+    results[currentIndex] = result;
+    return await executeNext();
+  };
+
+  const initialPromises = Array.from(
+    { length: Math.min(limit, promises.length) },
+    () =&gt; executeNext(),
+  );
+
+  await Promise.all(initialPromises);
+  return results;
+};
+
+const getDetailedIllustrationPromises: (() =&gt; Promise&lt;IllustrationDetails&gt;)[] =
+  [];
+for (let i = 0; i &lt; illustrations.length; i += 1) {
+  getDetailedIllustrationPromises.push(async () =&gt; {
+    const illustration = illustrations[i];
+    const illustrationId = illustration.id;
+    const illustrationDetails =
+      await getIllustrationDetailsWithCache(illustrationId);
+    return {
+      ...illustration,
+      bookmark_user_total: illustrationDetails.bookmark_user_total,
+    } as IllustrationDetails;
+  });
+}
+const detailedIllustrations = await execLimitConcurrentPromises(
+  getDetailedIllustrationPromises,
+);
+```
+
+在默认情况下，脚本会发起至多 48 个获取作品详细信息的并发请求，提升排序功能的处理效率。而且经测试，并发能在一定程度上“绕过”风控机制，至少在首次完成排序时，不会被限制请求。只是结束后，Pixiv 的服务器“反应过来”了，就会被关几分钟小黑屋了 😿。
+
+关于并发请求功能，值得补充的一点是，由于 [Chrome MV3 issue](https://github.com/w3c/webextensions/issues/694)，笔者参考原作者的处理，引入了修复脚本 `https://update.greasyfork.org/scripts/515994/1478507/gh_2215_make_GM_xhr_more_parallel_again.js` 使得并行请求功能生效。
+
+### 前端展示作品
+
+根据条件过滤作品和排序作品的过程跳过不表，直接来到最后展示作品的环节！
+
+```ts
+class IllustrationsSorter {
+  type: IllustSortType;
+  illustrations: IllustrationDetails[];
+  listElement: JQuery&lt;HTMLUListElement&gt;;
+
+  constructor() {
+    // ...
+    this.showIllustrations();
+  }
+
+  showIllustrations() {
+    const fragment = document.createDocumentFragment();
+    for (const {
+      aiType,
+      alt,
+      bookmarkData,
+      bookmark_user_total,
+      id,
+      illustType,
+      pageCount,
+      profileImageUrl,
+      tags,
+      title,
+      url,
+      userId,
+      userName,
+    } of this.illustrations) {
+      const isUgoira = illustType === IllustType.UGOIRA;
+
+      const listItem = document.createElement(&quot;li&quot;);
+
+      const container = document.createElement(&quot;div&quot;);
+      container.style = &quot;width: 184px;&quot;;
+
+      const illustrationAnchor = document.createElement(&quot;a&quot;);
+      illustrationAnchor.setAttribute(&quot;data-gtm-value&quot;, id);
+      illustrationAnchor.setAttribute(&quot;data-gtm-user-id&quot;, userId);
+      illustrationAnchor.href = `/artworks/${id}`;
+      illustrationAnchor.target = &quot;_blank&quot;;
+      illustrationAnchor.rel = &quot;external&quot;;
+      illustrationAnchor.style =
+        &quot;display: block; position: relative; width: 184px;&quot;;
+
+      const illustrationImageWrapper = document.createElement(&quot;div&quot;);
+      illustrationImageWrapper.style =
+        &quot;position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;&quot;;
+
+      const illustrationImage = document.createElement(&quot;img&quot;);
+      illustrationImage.src = url;
+      illustrationImage.alt = alt;
+      illustrationImage.style =
+        &quot;object-fit: cover; object-position: center center; width: 100%; height: 100%; border-radius: 4px; background-color: rgb(31, 31, 31);&quot;;
+
+      const ugoriaSvg = document.createElement(&quot;div&quot;);
+      ugoriaSvg.style = &quot;position: absolute;&quot;;
+      ugoriaSvg.innerHTML = playIcon;
+
+      const illustrationMeta = document.createElement(&quot;div&quot;);
+      illustrationMeta.style =
+        &quot;position: absolute; top: 0px; left: 0px; right: 0px; display: flex; align-items: flex-start; padding: 4px 4px 0; pointer-events: none; font-size: 10px;&quot;;
+      illustrationMeta.innerHTML = `
+          ${
+            pageCount &gt; 1
+              ? `
+                &lt;div style=&quot;margin-left: auto;&quot;&gt;
+                  &lt;div style=&quot;display: flex; justify-content: center; align-items: center; height: 20px; min-width: 20px; color: rgb(245, 245, 245); font-weight: bold; padding: 0px 6px; background: rgba(0, 0, 0, 0.32); border-radius: 10px; line-height: 10px;&quot;&gt;
+                    ${pageIcon}
+                    &lt;span&gt;${pageCount}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;`
+              : &quot;&quot;
+          }
+        `;
+
+      const illustrationToolbar = document.createElement(&quot;div&quot;);
+      illustrationToolbar.style =
+        &quot;position: absolute; top: 154px; left: 0px; right: 0px; display: flex; align-items: center; padding: 0 4px 4px; pointer-events: none; font-size: 12px;&quot;;
+      // Mock: 暂未实现点击爱心收藏 / 取消收藏的功能
+      illustrationToolbar.innerHTML = `
+          &lt;div style=&quot;padding: 0px 4px; border-radius: 4px; color: rgb(245, 245, 245); background: ${bookmark_user_total &gt; 50000 ? &quot;#9f1239&quot; : bookmark_user_total &gt; 10000 ? &quot;#dc2626&quot; : bookmark_user_total &gt; 5000 ? &quot;#1d4ed8&quot; : bookmark_user_total &gt; 1000 ? &quot;#15803d&quot; : &quot;#475569&quot;}; font-weight: bold; line-height: 16px; user-select: none;&quot;&gt;❤ ${bookmark_user_total}&lt;/div&gt;
+          &lt;div style=&quot;margin-left: auto;&quot;&gt;${bookmarkData ? heartFilledIcon : heartIcon}&lt;/div&gt;
+        `;
+
+      const illustrationTitle = document.createElement(&quot;div&quot;);
+      illustrationTitle.innerHTML = title;
+      illustrationTitle.style =
+        &quot;margin-top: 4px; max-width: 100%; overflow: hidden; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; line-height: 22px; font-size: 14px; font-weight: bold; color: rgb(245, 245, 245); transition: color 0.2s;&quot;;
+
+      const illustrationAuthor = document.createElement(&quot;a&quot;);
+      illustrationAuthor.setAttribute(&quot;data-gtm-value&quot;, userId);
+      illustrationAuthor.href = `/users/${userId}`;
+      illustrationAuthor.target = &quot;_blank&quot;;
+      illustrationAuthor.rel = &quot;external&quot;;
+      illustrationAuthor.style =
+        &quot;display: flex; align-items: center; margin-top: 4px;&quot;;
+      illustrationAuthor.innerHTML = `
+          &lt;img src=&quot;${profileImageUrl}&quot; alt=&quot;${userName}&quot; style=&quot;object-fit: cover; object-position: center top; width: 24px; height: 24px; border-radius: 50%; margin-right: 4px;&quot;&gt;
+          &lt;span style=&quot;min-width: 0px; line-height: 22px; font-size: 14px; color: rgb(214, 214, 214); text-decoration: none; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;&quot;&gt;${userName}&lt;/span&gt;
+        `;
+
+      illustrationImageWrapper.appendChild(illustrationImage);
+      if (isUgoira) illustrationImageWrapper.appendChild(ugoriaSvg);
+      illustrationAnchor.appendChild(illustrationImageWrapper);
+      illustrationAnchor.appendChild(illustrationMeta);
+      illustrationAnchor.appendChild(illustrationToolbar);
+      illustrationAnchor.appendChild(illustrationTitle);
+      container.appendChild(illustrationAnchor);
+      container.appendChild(illustrationAuthor);
+      listItem.appendChild(container);
+      fragment.appendChild(listItem);
+    }
+
+    this.listElement.find(&quot;li&quot;).remove();
+    this.listElement.append(fragment);
+  }
+}
+```
+
+在上面的代码里，笔者参考 Pixiv 作品节点的 DOM，手动构造了大抵一致的作品节点，尽管部分功能缺失，但能够满足排序作品的需要。笔者也考虑过克隆原生节点再修改 DOM 节点里的属性会否更好，但是忧心前端版本更新导致 DOM 节点结构更新，以及担心不同页面的 DOM 节点结构不同，所以还是人工捏出来了通用节点。
+
+最后，在想要排序的页面点击按钮，看看大家都爱什么作品吧！
+
+![排序包含“天童爱丽丝”标签的作品](./pixiv-previewer/sorting-result.png)
+
+## 最后
+
+附上 [Github 仓库地址](https://github.com/LolipopJ/PixivPreviewerL)与 [Tampermonkey 脚本地址](https://greasyfork.org/zh-CN/scripts/533844)，希望对有类似需求的人带来一些帮助。
+</content:original-text><content:updated-at>2025-04-26T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
