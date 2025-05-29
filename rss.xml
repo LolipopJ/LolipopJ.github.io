@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 13 May 2025 13:20:38 GMT</lastBuildDate><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 29 May 2025 08:20:54 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！因此今天，笔者打算部署日志管理服务，统一存储各个地方的日志信息，方便管理，也方便快速发现并定位问题。 部署 Loki 和 Grafana 容器
+
+在 Github 上以  为关键词，按星标数排序…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
+新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！因此今天，笔者打算部署日志管理服务，统一存储各个地方的日志信息，方便管理，也方便快速发现并定位问题。
+
+## 部署 Loki 和 Grafana 容器
+
+在 Github 上以 `log` 为关键词，按星标数排序，目前排名第一的开源软件是 [`grafana/grafana`](https://github.com/grafana/grafana)，浏览使用文档后觉得它远远满足笔者的需要，就该用大炮打蚊子，遂决定在 Docker 上部署之。
+
+## 重定向日志信息到 Loki
+
+### 重定向定时脚本日志信息
+
+### 重定向 Docker 容器日志信息
+
+忘记当时 `docker run` 后面的一串参数怎么办？用 `docker inspect` 去找灵感也太麻烦了！这烦恼了笔者一阵，幸运的是以前有人遇到这样的烦恼后，开发了 [`runlike`](https://github.com/lavie/runlike) 工具，它可以帮助打印出运行指定容器时可能使用到的参数。
+
+拉取 `assaflavie/runlike` 镜像：
+
+```bash
+docker pull assaflavie/runlike
+```
+
+编辑 `~/.bashrc` 或 `~/.zshrc`，添加命令别名 `runlike`：
+
+```bash
+alias runlike=&quot;docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike&quot;
+```
+
+重启终端，只需要执行 `runlike &lt;container-name&gt;` 即可查看可以用于启动容器的命令了。
+
+以笔者部署的 AList 容器为例，查看它的启动命令：
+
+```bash
+# 添加 -p 以多行显示
+% runlike -p alist
+docker run --name=alist \
+        --hostname=xxxxxx \
+        --mac-address=xx:xx:xx:xx:xx:xx \
+        --volume /local/path/to/AList/data:/opt/alist/data \
+        --network=bridge \
+        --workdir=/opt/alist/ \
+        -p 5244:5244 \
+        --expose=5245 \
+        --restart=unless-stopped \
+        --runtime=runc \
+        --detach=true \
+        xhofe/alist \
+        /entrypoint.sh
+```
+
+摘取其中笔者确实使用到的参数，简洁的启动命令就是：`docker run --name=alist --volume /local/path/to/AList/data:/opt/alist/data -p 5244:5244 --restart=unless-stopped xhofe/alist`。
+
+随着服务容器化和自动化的发展，`docker run` 也该被扫进历史的垃圾堆，彻底使用 `docker-compose` 命令来替代了。趁着这次机会，笔者也将所有容器的启动替换为 `docker-compose` 的方式，以后再遇到修改参数或镜像更新等情况，就可以省心地一键启动新容器了。
+
+对于笔者的 AList 服务，可以编写 `docker-compose.yaml` 文件如下：
+
+```yml
+services:
+  alist:
+    image: xhofe/alist
+    container_name: alist-server
+    volumes:
+      - /local/path/to/AList/data:/opt/alist/data
+    ports:
+      - 5244:5244
+    restart: unless-stopped
+```
+
+重定向容器日志信息到 Loki，完整的 `docker-compose.yaml` 文件如下：
+
+```yml
+services:
+  alist:
+    image: xhofe/alist
+    container_name: alist-server
+    volumes:
+      - /local/path/to/AList/data:/opt/alist/data
+    ports:
+      - 5244:5244
+    restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: http://192.168.100.239:3100/loki/api/v1/push
+```
+
+执行命令启动容器：`docker-compose up -d`。
+
+## ？
+
+请看 VRC：[《2999,入手 16+256G 内存的 macmini4，如何通过部署 50 个服务实现最大价值化》](https://www.v2ex.com/t/1123367)。还有高手……！
+</content:original-text><content:updated-at>2025-04-06T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
 
 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV…]]></description><link>https://blog.towind.fun/posts/private-webdav</link><guid isPermaLink="false">private-webdav</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
 今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。
