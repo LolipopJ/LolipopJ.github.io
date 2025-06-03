@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 03 Jun 2025 14:10:56 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此今天，笔者打算部署统一的日志管理服务，用于存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 03 Jun 2025 14:15:24 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此今天，笔者打算部署统一的日志管理服务，用于存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
 在 Github 上以  为关键词，按星标数排序，目前排名第一的开源软件是…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:original-text>
 新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
@@ -105,7 +105,7 @@ services:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true # 允许匿名访问
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin # 匿名访问用户角色为 Admin，即可以使用所有功能；如果控制台可以通过公网访问，应当对权限进行相应控制
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin # 匿名访问用户角色为 Admin，可以使用所有功能；如果控制台可以通过公网访问，应当对权限进行相应控制
     depends_on:
       - gateway
     entrypoint:
@@ -225,7 +225,7 @@ services:
       - loki
 ```
 
-在上面的配置里，Grafana 采用了租户控制，您需要手动替换 `YOUR_TENANT_ID` 为您想要的租户名。如果想要添加其他租户，按照格式添加新的 `datasources` 数组项即可。
+在上面的配置里，Grafana 采用了租户控制，您需要手动替换 `YOUR_TENANT_ID` 为您想要的租户名。如果想要添加其他租户，请按照格式添加新的 `datasources` 数组项。
 
 启动 Loki 容器时还用到了对应的配置文件，直接使用示例里给出的 [`loki-config.yaml` 文件](https://github.com/grafana/loki/blob/main/examples/getting-started/loki-config.yaml)即可：
 
@@ -296,7 +296,7 @@ compactor:
  ✔ Container grafana-grafana-1  Started                                                                                                                    0.9s
 ```
 
-访问 Grafana 在本机映射的端口（配置文件里默认为 `3000`），即可看到 Grafana 控制台页面：
+验证 Grafana 服务是否启动成功，可以访问 Grafana 在本机映射的端口（配置文件里默认为 `3000`），是否能正常显示如下的控制台页面：
 
 ![grafana-panel](./grafana-log-system/grafana-panel.png)
 
@@ -400,7 +400,7 @@ Jun 03 21:43:30 iZ2vc17uca9zl48iicx7ojZ alloy[25555]: ts=2025-06-03T13:43:30.862
 
 ### 使用 Docker 插件重定向容器日志信息
 
-为了重定向 Docker 容器里的日志到 Loki 上，只需要添加 Loki 的 Docker 插件并添加相应配置即可。
+为了重定向 Docker 容器里的日志到 Loki 上，只需要安装 Loki 的 Docker 插件并添加相应的 `logging` 配置。
 
 但在开始前，假如您忘记了最初启动容器时 `docker run` 后面的一串参数怎么办？用 `docker inspect` 去找灵感也太麻烦了！这个问题也困扰了笔者一阵，幸运的是以前有人遇到这样的烦恼后，开发了 [`runlike`](https://github.com/lavie/runlike) 工具，它可以帮助打印出运行指定容器时可能使用到的参数。
 
@@ -416,7 +416,7 @@ docker pull assaflavie/runlike
 alias runlike=&quot;docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike&quot;
 ```
 
-重启终端，现在，只需要执行 `runlike &lt;container-name&gt;` 即可查看可以用于启动容器 `&lt;container-name&gt;` 可能使用到的命令了。
+重启终端，现在，执行 `runlike &lt;container-name&gt;` 就可以查看启动容器 `&lt;container-name&gt;` 时可能使用到的命令了。
 
 以笔者部署的 AList 容器为例，查看它的启动命令：
 
