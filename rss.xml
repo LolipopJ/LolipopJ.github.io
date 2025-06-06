@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 04 Jun 2025 09:55:23 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此今天，笔者打算部署统一的日志管理服务，用于存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 06 Jun 2025 09:26:10 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
-在 Github 上以  为关键词，按星标数排序，目前排名第一的开源软件是…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:original-text>
-新买了服务器果然能为自己创造一个又一个接连不断的需求。例如今天，想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
+在 Github 上以  为关键词，按星标数排序…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:original-text>
+新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
 
-因此今天，笔者打算部署统一的日志管理服务，用于存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
 在 Github 上以 `log` 为关键词，按星标数排序，目前排名第一的开源软件是 [`grafana/grafana`](https://github.com/grafana/grafana)。浏览使用文档后觉得它远远超出笔者的需要，但就笔者就爱用大炮打蚊子，遂决定在 Docker 上部署之，作为笔者的日志管理服务。
 
@@ -296,7 +296,7 @@ compactor:
  ✔ Container grafana-grafana-1  Started                                                                                                                    0.9s
 ```
 
-验证 Grafana 服务是否启动成功，可以访问 Grafana 容器映射在机器上的端口（配置文件里默认为 `3000`）。如果成功的话，将正常显示控制台页面如下：
+验证 Grafana 容器是否启动成功，可以访问 Grafana 容器映射在机器上的端口（配置文件里默认为 `3000`）。如果成功的话，将正常显示控制台页面如下：
 
 ![grafana-panel](./grafana-log-system/grafana-panel.png)
 
@@ -404,9 +404,15 @@ Jun 03 21:43:30 iZ2vc17uca9zl48iicx7ojZ alloy[25555]: ts=2025-06-03T13:43:30.862
 
 ### 使用 Docker 插件重定向容器日志信息
 
-为了重定向 Docker 容器里的日志到 Loki 上，只需要安装 Loki 的 Docker 插件并添加相应的 `logging` 配置。
+为了重定向 Docker 容器里的日志到 Loki 上，只需要安装 Loki 的 Docker 插件并为容器添加相应的 `logging` 配置。
 
-但在开始前，假如您忘记了最初启动容器时 `docker run` 后面的一串参数怎么办？用 `docker inspect` 去找灵感也太麻烦了！这个问题也困扰了笔者一阵，幸运的是以前有人遇到这样的烦恼后，开发了 [`runlike`](https://github.com/lavie/runlike) 工具，它可以帮助打印出运行指定容器时可能使用到的参数。
+笔者的 Docker 服务部署在使用 ARM64 架构的机器上，因此执行如下命令安装 [Loki 的 Docker 插件](https://hub.docker.com/r/grafana/loki-docker-driver/tags)：
+
+```bash
+docker plugin install grafana/loki-docker-driver:3.5.1-arm64 --alias loki --grant-all-permissions
+```
+
+在配置容器前，假如您忘记了最初用 `docker run` 命令启动容器时后面的一串参数怎么办？用 `docker inspect` 去找灵感也太麻烦了！这个问题也困扰了笔者一阵，幸运的是以前有人遇到这样的烦恼后，开发了 [`runlike`](https://github.com/lavie/runlike) 工具，它可以帮助打印出运行指定容器时可能使用到的参数。
 
 拉取 `assaflavie/runlike` 镜像：
 
@@ -430,7 +436,7 @@ alias runlike=&quot;docker run --rm -v /var/run/docker.sock:/var/run/docker.sock
 docker run --name=alist \
         --hostname=xxxxxx \
         --mac-address=xx:xx:xx:xx:xx:xx \
-        --volume /path/to/AList/data:/opt/alist/data \
+        --volume /path/to/data:/opt/alist/data \
         --network=bridge \
         --workdir=/opt/alist/ \
         -p 5244:5244 \
@@ -442,11 +448,11 @@ docker run --name=alist \
         /entrypoint.sh
 ```
 
-摘取其中笔者确实使用到的参数，简洁的启动命令就是：`docker run --name=alist --volume /path/to/AList/data:/opt/alist/data -p 5244:5244 --restart=unless-stopped xhofe/alist`。
+摘取其中笔者确实使用到的参数，简洁的启动命令就是：`docker run --name=alist --volume /path/to/data:/opt/alist/data -p 5244:5244 --restart=unless-stopped xhofe/alist`。
 
-随着服务容器化和自动化的发展，`docker run` 也该被扫进历史的垃圾堆，总是使用 `docker-compose` 命令来替代了。趁着这次机会，笔者也将所有容器的启动方式替换为了 `docker-compose`，以后再遇到需要修改参数或更新镜像等的情况，就可以省时省力一键启动更新后的容器了。
+随着容器化和自动化技术的发展，`docker run` 也该被扫进历史的垃圾堆，用 `docker-compose` 来替代了。趁着这次机会，笔者也将服务器上所有容器的启动方式替换为了 `docker-compose`，以后再遇到需要修改参数或更新镜像等的情况，就可以省时省力地一键启动新容器了。
 
-以笔者的 AList 服务为例，可以编写 `docker-compose.yaml` 文件如下：
+对于笔者的 AList 容器，可以编写 `docker-compose.yaml` 文件如下：
 
 ```yml
 services:
@@ -454,19 +460,15 @@ services:
     image: xhofe/alist
     container_name: alist-server
     volumes:
-      - /path/to/AList/data:/opt/alist/data
+      - /path/to/data:/opt/alist/data
     ports:
       - 5244:5244
     restart: unless-stopped
 ```
 
-笔者的 Docker 服务部署在使用 ARM64 架构的机器上，因此执行如下命令安装 [Loki 的 Docker 插件](https://hub.docker.com/r/grafana/loki-docker-driver/tags)：
+&gt; 更进一步，您还可以选用 [Dockge](https://github.com/louislam/dockge) 等服务来统一管理系统上的所有 `docker-compose.yaml` 文件，不再在此博客里赘述。
 
-```bash
-docker plugin install grafana/loki-docker-driver:3.5.1-arm64 --alias loki --grant-all-permissions
-```
-
-重定向容器的日志信息到 Loki，完整的 `docker-compose.yaml` 配置文件如下：
+重定向 AList 容器的日志信息到 Loki，完整的 `docker-compose.yaml` 配置文件如下：
 
 ```yml
 services:
@@ -498,7 +500,7 @@ services:
 ## ？
 
 还有高手……！请看 VCR：[《2999,入手 16+256G 内存的 macmini4，如何通过部署 50 个服务实现最大价值化》](https://www.v2ex.com/t/1123367)。
-</content:original-text><content:updated-at>2025-06-04T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
+</content:original-text><content:updated-at>2025-06-06T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
 
 此章节里笔者选用了纯净的 WebDAV 服务镜像。如果想要更友好的交互体验，可以选用支持 WebDAV…]]></description><link>https://blog.towind.fun/posts/private-webdav</link><guid isPermaLink="false">private-webdav</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate><content:original-text>
 今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。
