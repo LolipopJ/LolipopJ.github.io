@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 14 Jun 2025 06:20:03 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 16 Jun 2025 09:51:39 GMT</lastBuildDate><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
 在 Github 上以  为关键词，按星标数排序…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:original-text>
 新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
@@ -1925,9 +1925,9 @@ MDX 渲染得到的 `&lt;img&gt;` 组件将自动被替换为 `&lt;FancyBoxImage
 
 ### 静态资源的访问与优化
 
-插件 `gatsby-remark-images` 将自动压缩博客中使用到的本地图片的体积，减少流量压力；同时生成占位图片，避免博客高度突然变化，提升阅读体验。在 Gatsby 的最佳实践中，应当始终使用类似 `gatsby-remark-images` 这样的插件来优化图片类型的静态资源。
+插件 `gatsby-remark-images` 将自动压缩 MDX 文件中使用到的本地图片，减少流量压力；同时生成占位图片，避免博客高度突然变化，提升阅读体验。在 Gatsby 的最佳实践中，应当始终使用类似 `gatsby-remark-images` 这样的插件来优化图片类型的静态资源。
 
-结合插件 `gatsby-plugin-mdx` 使用，可以配置如下：
+结合插件 `gatsby-plugin-mdx` 使用，配置如下：
 
 ```ts
 const config: GatsbyConfig = {
@@ -1936,6 +1936,7 @@ const config: GatsbyConfig = {
     {
       resolve: &quot;gatsby-plugin-mdx&quot;,
       options: {
+        extensions: [&quot;.mdx&quot;, &quot;.md&quot;],
         gatsbyRemarkPlugins: [
           {
             resolve: &quot;gatsby-remark-images&quot;,
@@ -1951,11 +1952,11 @@ const config: GatsbyConfig = {
 };
 ```
 
-其中，`gatsby-plugin-sharp` 是插件 `gatsby-remark-images` 的必要依赖，需要添加到插件列表中。
+其中，插件 `gatsby-plugin-sharp` 是实现图片压缩功能的核心，也是插件 `gatsby-remark-images` 的必要依赖，需要添加到插件列表中。
 
-需要留意的是，插件 `gatsby-remark-images` 仅支持压缩、处理部分的图片格式如 `.jpeg`。其它的格式如 `.gif` 则需要插件 `gatsby-remark-copy-linked-files` 帮助，原封不动地移动到对应的目录里。协同使用这两个插件即可达成最好的静态资源访问效果。
+需要留意的是，插件 `gatsby-plugin-sharp` 仅支持压缩、处理部分的图片格式如 `.jpeg`。其它的格式如 `.gif` 则需要插件 `gatsby-remark-copy-linked-files` 帮助，原封不动地移动到对应的目录里。协同使用这两个插件即可达成最好的静态资源访问效果。
 
-除此之外，由于 `gatsby-remark-images` 会相应地封装 MDX 渲染结果里的 `&lt;img&gt;` 标签，为了兼容 FancyBox 能力，可以更新 `useEffect()` 钩子方法如下：
+除此之外，由于插件 `gatsby-remark-images` 会相应地封装 MDX 渲染结果里的 `&lt;img&gt;` 标签，为了兼容 FancyBox 能力，可以更新 `useEffect()` 钩子方法如下：
 
 ```tsx
 const PostTemplate = ({ children }) =&gt; {
@@ -1980,6 +1981,78 @@ const PostTemplate = ({ children }) =&gt; {
     &lt;article ref={articleRef}&gt;
       &lt;MDXProvider components={components}&gt;{children}&lt;/MDXProvider&gt;
     &lt;/article&gt;
+  );
+};
+```
+
+这样，MDX 正文包含的图片资源的体积得到了压缩优化。
+
+更进一步，假如我想要为每个博客指定一张封面图，要如何正确引入并压缩这张封面图文件呢？
+
+```md
+---
+title: 基于 Gatsby 打造我的个人博客系统
+banner: path/to/banner.jpg
+---
+
+...正文
+```
+
+读取源文件的 Frontmatter 信息，转换为前端可用的数据源，自然也是 Gatsby 插件的工作。新的插件列表配置如下：
+
+```ts
+const config: GatsbyConfig = {
+  plugins: [
+    &quot;gatsby-plugin-image&quot;,
+    &quot;gatsby-plugin-sharp&quot;,
+    &quot;gatsby-transformer-sharp&quot;,
+    {
+      resolve: &quot;gatsby-plugin-mdx&quot;,
+      options: {
+        // ...
+      },
+    },
+  ],
+};
+```
+
+当插件 `gatsby-transformer-sharp` 在 Frontmatter 发现图片文件路径的属性时，就会尝试调用 `gatsby-plugin-sharp` 对它进行压缩，并转换为 GraphQL 可查询的节点。例如：
+
+```graphql
+query {
+  allMdx() {
+    nodes {
+      body
+      frontmatter {
+        banner {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        title
+      }
+    }
+  }
+}
+```
+
+在前端，调用插件 `gatsby-plugin-image` 提供的方法与组件，即可展示指定的图片：
+
+```tsx
+import { GatsbyImage, getImage } from &quot;gatsby-plugin-image&quot;;
+
+const PostTemplate = ({ post }) =&gt; {
+  const {
+    title,
+    frontmatter: { banner = null },
+  } = post;
+  const bannerImage = getImage(banner);
+
+  return (
+    &lt;div&gt;
+      &lt;GatsbyImage image={bannerImage} /&gt;
+      {/* ... */}
+    &lt;/div&gt;
   );
 };
 ```
@@ -2196,7 +2269,7 @@ jobs:
           external_repository: LolipopJ/LolipopJ.github.io
           publish_branch: main
 ```
-</content:original-text><content:updated-at>2025-03-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
+</content:original-text><content:updated-at>2025-06-16T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
 
 言归正传，在项目开发的过程中…]]></description><link>https://blog.towind.fun/posts/sync-qzone-talks</link><guid isPermaLink="false">sync-qzone-talks</guid><category><![CDATA[全栈开发]]></category><pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate><content:original-text>
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
