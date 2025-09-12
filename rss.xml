@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Sep 2025 06:38:13 GMT</lastBuildDate><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而是先将密钥对称加密后传回给前端，前端再基于约定好的算法解密得到真正的密钥。 但正如资深的程序员所说的那样：
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 12 Sep 2025 01:50:09 GMT</lastBuildDate><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。 但正如资深的程序员所说的那样：
 
 任何客户端的加解密都是不安全的。我们都应该认为，任何在客户端进行的加解密操作都可能被逆向工程或破解。
 
 如果你能够在浏览器中播放视频文件，那么你就应该能够下载它到本地。
 
-本文仅供学习和研究使用…]]></description><link>https://blog.towind.fun/posts/download-encrypted-m3u8</link><guid isPermaLink="false">download-encrypted-m3u8</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Sep 2025 00:00:00 GMT</pubDate><content:original-text>
-请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而是先将密钥对称加密后传回给前端，前端再基于约定好的算法解密得到真正的密钥。
+本文仅供学习和研究使用，使用请遵守相关法律法规和网站服务条款…]]></description><link>https://blog.towind.fun/posts/download-encrypted-m3u8</link><guid isPermaLink="false">download-encrypted-m3u8</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Sep 2025 00:00:00 GMT</pubDate><content:original-text>
+请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。
 
 但正如资深的程序员所说的那样：
 
@@ -101,7 +101,7 @@ CMD 没有简易的读取文件并拼接命令的语法，但 PowerShell 和其�
 }
 ```
 
-接着用某种算法生成的参数 `sign`，将它和刚刚得到的参数 `nonce` 一齐调用获取密钥的接口 `https://path/to/key/${uid}?nonce=${nonce}&amp;sign=${sign}`，响应值是另一个 JSON 对象，包含您可能以为的真正密钥：
+接着用某种算法生成的参数 `sign`，将它和刚刚得到的参数 `nonce` 一齐调用获取密钥的接口 `https://path/to/key/${uid}?nonce=${nonce}&amp;sign=${sign}`，响应值是另一个 JSON 对象，包含您可能以为的视频密钥：
 
 ```json
 {
@@ -141,25 +141,25 @@ return a.default.wrap(
               .MD5(w + T) // 拼接 w 和 T 后进行 MD5 哈希
               .toString()
               .substring(0, 16)), // 截取前 16 个字符
-            (E = h.default.enc.Utf8.parse(C)), // 将字符串 C 按 UTF-8 编码转换为二进制数据，作为后续解密使用的密钥
+            (E = h.default.enc.Utf8.parse(C)), // 将字符串 C 按 UTF-8 编码转换为二进制数据，作为后续 AES 加解密使用的对称密钥
             (x = _ + &quot;?nonce=&quot; + w + &quot;&amp;sign=&quot; + C),
             (e.next = 43),
-            c.default.get(x)
+            c.default.get(x) // 将前端生成的密钥发送给后端，后端对视频密钥进行加密
           );
         case 43:
           (A = e.sent),
-            (P = A.data),
-            (O = P.key), // 这里的 P.key 就是刚刚 Base64 解码失败的 key
-            // 调用 AES 模块的解密方法，对 P.key 进行解密
+            (P = A.data), // 后端返回加密后的视频密钥
+            (O = P.key), // O 就是经过加密后的视频密钥
+            // 调用 AES 模块的解密方法，对视频密钥进行解密
             (L = h.default.AES.decrypt(
-              O, // 待解密的数据
-              E, // 密钥，从前面的代码计算得到
+              O, // 待解密的视频密钥
+              E, // 前面的代码里前端生成的密钥
               {
                 mode: h.default.mode.ECB, // 指定加密模式为 ECB（电子密码本模式）
                 padding: h.default.pad.Pkcs7, // 指定填充方式为 PKCS#7 填充
               },
             )),
-            (j = L.toString(h.default.enc.Utf8)), // j 即为我们解密视频分片所需要的真正密钥
+            (j = L.toString(h.default.enc.Utf8)), // j 即为我们解密视频分片所需要的视频密钥
             n(i(j));
         case 49:
         case &quot;end&quot;:
@@ -171,17 +171,17 @@ return a.default.wrap(
 );
 ```
 
-从上面的代码可知，第二次请求时携带的参数 `sign` 其实就是用于加密真正密钥所使用的另一个 AES 密钥。而整个过程就是站点为了不让真正密钥直接暴露在网络请求里而设计的一个“动态加密”方案。
+从上面的代码可知，第二次请求时携带的参数 `sign` 其实就是用于加密视频密钥所使用的另一个 AES 密钥。而整个过程就是站点为了不让视频密钥直接暴露在网络请求里而设计的一个“动态加密”方案。
 
-那末，获取代码片段里 `j` 变量的值，就是笔者想要的真正密钥了！终极的自动化方案肯定是编写脚本来实现从发送请求到拼接字符串最后解密的全过程，但笔者懒得折腾，就直接在源代码里打断点完成了：
+那末，获取代码片段里 `j` 变量的值，就是笔者想要的视频密钥了！终极的自动化方案肯定是编写脚本来实现从发送请求到拼接字符串最后解密的全过程，但笔者懒得折腾，就直接在源代码里打断点完成了：
 
-![获取真正密钥](./download-encrypted-m3u8/breakpoint.png)
+![获取视频密钥](./download-encrypted-m3u8/breakpoint.png)
 
-可知，解密视频分片文件所需的真正密钥为 `a1c18f6619b84605`。
+可知，解密视频分片文件所需的视频密钥为 `a1c18f6619b84605`。
 
 ## 下载并拼装视频文件
 
-剩下的工作就非常简单了，将真正密钥保存为本地的文件 `key.bin`，对应修改 `playlist.m3u8` 里 `#EXT-X-KEY` 行的 `URI` 字段为本地文件路径：
+剩下的工作就非常简单了，将视频密钥保存为本地的文件 `key.bin`，对应修改 `playlist.m3u8` 里 `#EXT-X-KEY` 行的 `URI` 字段为本地文件路径：
 
 ```m3u8
 #EXT-X-KEY:METHOD=AES-128,URI=&quot;key.bin&quot;,IV=0x00000000000000000000000000000000
@@ -208,7 +208,7 @@ ffmpeg -protocol_whitelist &quot;file,crypto,data,http,https,tcp,tls&quot; -allo
 其中，ffmpeg 默认只支持从安全的协议（包括 `file,crypto,data`）获取视频分片文件，不支持 `https` 等其它协议，因此设置了命令行参数 `-protocol_whitelist &quot;file,crypto,data,http,https,tcp,tls&quot;`；同理，ffmpeg 默认只支持读取 `.ts` 和 `.m3u8` 等常见扩展名的文件，因此设置了命令行参数 `-allowed_extensions ALL` 来允许读取秘钥文件 `key.bin`。
 
 执行完成后，当前目录下就会生成合并后的 `output.mp4` 文件。可喜可贺，可喜可贺！
-</content:original-text><content:updated-at>2025-09-05T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+</content:original-text><content:updated-at>2025-09-12T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
 在 Github 上以  为关键词，按星标数排序…]]></description><link>https://blog.towind.fun/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:original-text>
 新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
