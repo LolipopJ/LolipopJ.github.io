@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Nov 2025 05:26:27 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不介意所谓隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就考虑实现一个小软件，自动读取电脑上运转的程序，能够将当前活跃的程序名称上传到网站上进行展示。但是并没有好的设计思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
-笔者性格使然，并不介意所谓隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就考虑实现一个小软件，自动读取电脑上运转的程序，能够将当前活跃的程序名称上传到网站上进行展示。但是并没有好的设计思路，最终只是新建了 Repo 就搁置了这个想法。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Nov 2025 05:44:55 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
-如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在想要做的软件就简单不少了，只需要实现读取自己的 Discord 状态，开放接口给网站前端调用即可。
+如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
 
-但是，笔者发现 Discord 并未提供开放接口读取用户的状态信息，毕竟 Discord 需要考虑到每个用户的隐私。经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。
+经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。**当然，直接轮询调用 Discord 官方提供的 API 已然可以实现笔者的需求，只是笔者太闲了想在外面包一层 Self-Bot**……😎万一以后用得上呢？
 
-&gt; Discord 官方文档中明确表示不支持 Self-Bot 的使用，违反使用条款可能会导致账号封禁。因此，笔者仅将本文内容作为技术分享，若您决心实现类似功能，请承担账号封禁的风险。
+&gt; Discord 官方文档中明确表示**不支持 Self-Bot 的使用**，违反使用条款可能导致账号被封禁。因此，笔者仅将本文内容作为技术分享，若您决心实现类似功能，请承担账号封禁的风险。
 
-简单来说就是：创建一个 Bot 小号，添加笔者主账号好友，让 Bot 轮询笔者主账号的状态信息，将其提供给前端访问。即使真的触到霉头被官方封禁的话，去世的也只是笔者的小号……吧。
+整个步骤简单来说就是：创建一个 Bot 子账号，添加笔者主账号好友，让 Bot 轮询笔者主账号的状态信息，将其提供给前端访问。即使真的触到霉头被官方封禁的话，去世的也只是笔者的子账号……吧。
 
 ## 实现读取自己 Discord 状态的 Self-Bot
 
@@ -121,11 +121,11 @@ app = FastAPI(lifespan=lifespan)
 
 if __name__ == &quot;__main__&quot;:
     uvicorn.run(
-        &quot;main:app&quot;, host=&quot;127.0.0.1&quot;, port=28800, reload=True
+        &quot;main:app&quot;, host=&quot;0.0.0.0&quot;, port=28800, reload=True
     )
 ```
 
-从环境变量里获取的 `DISCORD_TOKEN` 是笔者小号的 `authorization` 字段值，可以通过浏览器开发者工具找到网络请求头获取。
+从环境变量里获取的 `DISCORD_TOKEN` 是 Bot 子账号的 `authorization` 字段值，可以通过浏览器开发者工具，从网络请求头中获取。
 
 使用 `python main.py` 命令运行上述代码，如果控制台打印出 `✅ Discord Bot Logged in as &lt;username&gt;`，说明成功连接到 Discord。
 
@@ -183,7 +183,7 @@ class MyClient(discord.Client):
             print(f&quot;❌ No relationship found for user {self.recipient}.&quot;)
 ```
 
-笔者翻阅 `discord.py-self` 的文档良久，终于找到了 `get_relationship(user_id)` 方法，可以获取当前登录用户（Bot）与指定用户（主账号）的好友关系，返回值里囊括了指定用户的状态信息。上述代码中，服务每五秒执行此方法并得到最新的状态信息；环境变量 `DISCORD_CHANNEL_ID` 是 Bot 与笔者主账号的私聊频道 ID，同样可以通过浏览器开发者工具找到网络请求找到。
+笔者翻阅 `discord.py-self` 的文档良久，终于找到了 `get_relationship(user_id)` 方法，可以获取当前登录用户（子账号）与指定用户（主账号）的好友关系。好友关系如何并不重要，重要的是这个接口的返回值里囊括了指定用户的状态信息。在上面的代码中，笔者让服务每五秒执行此方法并得到最新的状态信息；环境变量 `DISCORD_CHANNEL_ID` 是 Bot 与笔者主账号的私聊频道 ID，同样可以通过浏览器开发者工具找到网络请求找到。
 
 Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，笔者在这里设置为了每 5 秒请求 1 次，应该算 Bot 服务界的良心吧，请不要封禁我的账号！
 
@@ -203,7 +203,7 @@ def status():
     return client.queried_activities
 ```
 
-启动应用，访问本地接口地址如 `127.0.0.1:28800/status`，就能看到指定 Discord 账号的状态信息了！
+启动应用，访问本地接口地址如 `localhost:28800/status`，就能看到指定 Discord 账号的状态信息了！
 
 接下来？还不快把应用部署到自己能访问到 Discord 的服务器上，然后去搓前端代码！
 
