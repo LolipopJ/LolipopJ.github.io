@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 20 Nov 2025 00:54:58 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 20 Nov 2025 05:08:56 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
@@ -8,12 +8,6 @@
 &gt; Discord 官方文档中明确表示**不支持 Self-Bot 的使用**，违反使用条款可能导致账号被封禁。因此，笔者仅将本文内容作为技术分享，若您决心实现类似功能，请承担账号封禁的风险。
 
 整个步骤简单来说就是：创建一个 Bot 子账号，添加主账号好友，让 Bot 轮询主账号的状态信息，将其提供给前端访问。即使真的触到霉头被官方封禁的话，去世的也只是子账号……吧。
-
-……然后在 Self-Bot 服务持续运转三天后，Discord 封禁了笔者可怜的子账号：
-
-![nooooo](./display-my-discord-status/nooooo.png)
-
-还好开发的时候多想了想，没有用主账号跑服务，侥幸侥幸。
 
 ## 实现读取自己 Discord 状态的 Self-Bot
 
@@ -27,9 +21,9 @@
 
 ```bash
 # 安装指定的 Python 版本
-pyenv install 3.12.10
+pyenv install 3.12
 # 设置全局 Python 版本
-pyenv global 3.12.10
+pyenv global 3.12
 # 验证 Python 环境
 python -c &quot;import sys; print(sys.executable)&quot;
 ```
@@ -44,6 +38,8 @@ pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/si
 # 全局安装 pipenv
 pip install pipenv
 ```
+
+因为 `pyenv` 和 `pipenv` 长得很像，所以很容易弄混。简单来说，`pyenv` 是用来管理 Python 版本的，而 `pipenv` 是用来管理项目依赖的。除了一开始设置全局 Python 版本时会用到 `pyenv`，后续项目开发时对虚拟环境和依赖的管理都只需要使用 `pipenv`。
 
 如果最早学习前端时，笔者就知道从框架开始构建项目，想必能节省很多时间。当然笔者并不后悔，毕竟框架省略的部分也是构成前端技术栈的重要一支，绕弯路学习它们何尝不是一种增进技术的捷径。不过对于 Python 而言，自觉现在不愿付出那么多心血去精进，因此即刻选择从框架入手，快速搭建起项目的雏形。适合构建轻量级 Web 服务的 Python 框架有很多，以 Github 星标数为导向，这里选择了 [FastAPI](https://github.com/fastapi/fastapi) 作为开发框架。
 
@@ -60,13 +56,15 @@ pipenv install fastapi &quot;uvicorn[standard]&quot;
 pipenv install --dev ruff
 ```
 
-另外配合 VSCode 插件 Ruff 和 Python 拓展 `pre-commit`，可以实现完备的代码质量检查和格式化功能，不再赘述。
+另外配合 [VSCode 插件 Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) 和 Python 库 [`pre-commit`](https://pre-commit.com/)，可以实现完备的代码质量检查和格式化功能，不再赘述。
 
 最后，进入 `pipenv` 创建好的虚拟环境：
 
 ```bash
 pipenv shell
 ```
+
+如果 VSCode 提示“无法解析导入模块”，可以按 `Ctrl+Shift+P`，输入并选择 `Python: Select Interpreter`，然后手动选择 `pipenv` 创建的虚拟环境路径作为解释器。
 
 这样，开发应用要用到的 Python 环境就算搭建完毕了。未来切换不同的机器开发时，也不用为 Python 版本和依赖包而烦恼。
 
@@ -152,68 +150,100 @@ class MyClient(discord.Client):
         self.task_query_activities.start()
 
     @tasks.loop(seconds=5)
-    async def task_query_activities(self):
-        print(&quot;🛠️ Running background task...&quot;)
-
+    def task_query_activities(self):
         if self.recipient is None:
             channelId = int(os.getenv(&quot;DISCORD_CHANNEL_ID&quot;))
             channel = self.get_channel(channelId)
-            if channel is not None:
-                self.recipient = channel.recipient
-                print(f&quot;✅ Set recipient to {self.recipient}.&quot;)
-            else:
-                print(f&quot;❌ No Discord channel found for channel ID {channelId}.&quot;)
-                return
+            self.recipient = channel.recipient
+            print(f&quot;✅ Set recipient to {self.recipient}.&quot;)
 
-        await self.update_queried_activities()
+        relation = self.get_relationship(self.recipient.id)
+        self.queried_activities = [
+            activity.to_dict() for activity in relation.activities
+        ]
+        print(
+            f&quot;✅ Updated activities for user {self.recipient}: {self.queried_activities}&quot;
+        )
 
     @task_query_activities.before_loop
     async def before_task_query_activities(self):
         await self.wait_until_ready()
-
-    async def update_queried_activities(self):
-        recipientId = self.recipient.id
-        if recipientId is None:
-            print(&quot;❌ No recipient ID found.&quot;)
-            return
-
-        relation = self.get_relationship(recipientId)
-        if relation is not None:
-            self.queried_activities = [
-                activity.to_dict() for activity in relation.activities
-            ]
-            print(
-                f&quot;✅ Updated activities for user {self.recipient}: {self.queried_activities}&quot;
-            )
-        else:
-            print(f&quot;❌ No relationship found for user {self.recipient}.&quot;)
 ```
 
 笔者翻阅 `discord.py-self` 的文档良久，终于找到了 `get_relationship(user_id)` 方法，可以获取当前登录用户（子账号）与指定用户（主账号）的好友关系。好友关系如何并不重要，重要的是这个接口的返回值里囊括了指定用户的状态信息。在上面的代码中，笔者让服务每五秒执行此方法并得到最新的状态信息；环境变量 `DISCORD_CHANNEL_ID` 是 Bot 与主账号的私聊频道 ID，同样可以通过浏览器开发者工具找到网络请求找到。
 
-Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，笔者在这里设置为了每 5 秒请求 1 次，应该算 Bot 服务界的良心吧，请不要封禁我的账号！（后记：还是被封了，大抵是请求单一接口而且太有规律了吧）
+Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，笔者在这里设置为了每 5 秒请求 1 次，应该算 Bot 服务界的良心吧，请不要封禁我的账号！
 
 运行应用，顺利打印笔者 Discord 主账号的状态信息如下：
 
 ```plaintext
-✅ Updated activities for user username#0: [{&apos;state&apos;: &apos;Workspace: discord-status-sender&apos;, &apos;details&apos;: &apos;Editing main.py&apos;, &apos;timestamps&apos;: {&apos;start&apos;: 1763218441894}, &apos;assets&apos;: {&apos;small_text&apos;: &apos;Visual Studio Code&apos;, &apos;small_image&apos;: &apos;1359299466493956258&apos;, &apos;large_text&apos;: &apos;Editing a PYTHON file&apos;, &apos;large_image&apos;: &apos;1359299282380918886&apos;}, &apos;flags&apos;: 0, &apos;session_id&apos;: &apos;some_session_id&apos;, &apos;type&apos;: 0, &apos;name&apos;: &apos;Visual Studio Code&apos;, &apos;application_id&apos;: 383226320970055681, &apos;buttons&apos;: [&apos;View Repository&apos;]}, {&apos;state&apos;: &apos;🎤 陈奕迅\u200b&apos;, &apos;details&apos;: &apos;▶️ 热带雨林\u200b&apos;, &apos;timestamps&apos;: {&apos;staart&apos;: 1763223056699, &apos;end&apos;: 1763223314779}, &apos;assets&apos;: {&apos;small_text&apos;: &apos;Tencent QQMusic&apos;, &apos;small_image&apos;: &apos;1431733810025988256&apos;, &apos;large_text&apos;: &apos;💿 The Easy Ride\u200b&apos;, &apos;large_image&apos;: &apos;mp:external/KZjIWMaOSvXCbL1zzLTbVk50JQ-usSu1AUFI8q1e-P8/%3Fmax_age%3D2592000/https/y.gtimg.cn/music/photo_new/T002R500x500M000002rHV981wx55S_3.jpg&apos;}, &apos;flags&apos;: 0, &apos;session_id&apos;: &apos;some_session_id&apos;, &apos;type&apos;: 2, &apos;name&apos;: &apos;Tencent QQ Music&apos;, &apos;application_id&apos;: 1431607752945434655, &apos;buttons&apos;: [&apos;🎧 Listen&apos;, &apos;🔍 View App on GitHub&apos;]}]
+✅ Updated activities for user username#0: [{&apos;state&apos;: &apos;Workspace: discord-activity-sender&apos;, &apos;details&apos;: &apos;Editing main.py&apos;, &apos;timestamps&apos;: {&apos;start&apos;: 1763218441894}, &apos;assets&apos;: {&apos;small_text&apos;: &apos;Visual Studio Code&apos;, &apos;small_image&apos;: &apos;1359299466493956258&apos;, &apos;large_text&apos;: &apos;Editing a PYTHON file&apos;, &apos;large_image&apos;: &apos;1359299282380918886&apos;}, &apos;flags&apos;: 0, &apos;session_id&apos;: &apos;some_session_id&apos;, &apos;type&apos;: 0, &apos;name&apos;: &apos;Visual Studio Code&apos;, &apos;application_id&apos;: 383226320970055681, &apos;buttons&apos;: [&apos;View Repository&apos;]}, {&apos;state&apos;: &apos;🎤 陈奕迅\u200b&apos;, &apos;details&apos;: &apos;▶️ 热带雨林\u200b&apos;, &apos;timestamps&apos;: {&apos;staart&apos;: 1763223056699, &apos;end&apos;: 1763223314779}, &apos;assets&apos;: {&apos;small_text&apos;: &apos;Tencent QQMusic&apos;, &apos;small_image&apos;: &apos;1431733810025988256&apos;, &apos;large_text&apos;: &apos;💿 The Easy Ride\u200b&apos;, &apos;large_image&apos;: &apos;mp:external/KZjIWMaOSvXCbL1zzLTbVk50JQ-usSu1AUFI8q1e-P8/%3Fmax_age%3D2592000/https/y.gtimg.cn/music/photo_new/T002R500x500M000002rHV981wx55S_3.jpg&apos;}, &apos;flags&apos;: 0, &apos;session_id&apos;: &apos;some_session_id&apos;, &apos;type&apos;: 2, &apos;name&apos;: &apos;Tencent QQ Music&apos;, &apos;application_id&apos;: 1431607752945434655, &apos;buttons&apos;: [&apos;🎧 Listen&apos;, &apos;🔍 View App on GitHub&apos;]}]
 ```
+
+……然后在 Self-Bot 服务持续运转三天后，Discord 封禁了笔者可怜的子账号：
+
+![nooooo](./display-my-discord-status/nooooo.png)
+
+还好开发的时候多想了想，没有用主账号跑服务，侥幸侥幸。
+
+咳咳，那么总之，运行轮询任务来获取指定账号的状态信息会被 Discord 风控并封禁，就应该考虑更健康，更合作的方式来实现同样的功能。
+
+实际上，在后台并不需要时时刻刻读取并存档一份用户的状态信息，只需要在接口请求时，返回缓存的状态信息即可。如果缓存过期，才调用 Discord 接口读取。这样一来，相比明目张胆每五秒请求一次接口，被识别风控的风险会大大降低。
+
+新实现的代码如下：
+
+```python
+import time
+
+class MyClient(discord.Client):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._recipient = None
+        self._queried_activities = []
+        self._last_query_time = float(0)
+        self._activity_cache_duration = float(30)
+
+    @property
+    def queried_activities(self):
+        # 如果缓存未过期，直接返回缓存的状态信息
+        if time.time() - self._last_query_time &lt; self._activity_cache_duration:
+            print(
+                f&quot;ℹ️ Return cached activities for user {self._recipient}: {self._queried_activities}&quot;
+            )
+            return self._queried_activities
+
+        # ...省略获取 self._recipient 的代码
+
+        relation = self.get_relationship(self._recipient.id)
+        self._queried_activities = [
+            activity.to_dict() for activity in relation.activities
+        ]
+        # 设置新的缓存时间
+        self._last_query_time = time.time()
+        print(
+            f&quot;✅ Update activities for user {self._recipient}: {self._queried_activities}&quot;
+        )
+
+        return self._queried_activities
+```
+
+另外，笔者发现 Discord 官方提供的 [Gateway](https://discord.com/developers/docs/events/gateway#tracking-state) 方案可以追踪用户的状态更新事件，从而实时获取状态信息，是官方认可的解决方案。但是它的实现细节颇多，不符合笔者花小时间办大事情的初衷，因而留待日后，如果基于缓存的 Self Bot 还是被封禁的话，就选择官方的 Gateway 方案和平统一吧。
 
 ### 开放 API 服务
 
-最末，基于 FastAPI 开放接口 `GET /status` 供前端调用：
+最末，基于 FastAPI 开放接口 `GET /activity` 供前端调用：
 
 ```python
-@app.get(&quot;/status&quot;)
-def status():
+@app.get(&quot;/activity&quot;)
+def activity():
     return client.queried_activities
 ```
 
-启动应用，访问本地接口地址如 `localhost:28800/status`，就能看到指定 Discord 账号的状态信息了！
+启动应用，访问本地接口地址如 `localhost:28800/activity`，就能看到指定 Discord 账号的状态信息了！
 
 接下来？还不快把应用部署到自己能访问到 Discord 的服务器上，然后去搓前端代码！
 
-您可以在仓库 [`LolipopJ/discord-status-sender`](https://github.com/LolipopJ/discord-status-sender) 找到完整的项目代码。
+您可以在仓库 [`LolipopJ/discord-activity-sender`](https://github.com/LolipopJ/discord-activity-sender) 找到完整的项目代码。
 
 ## 丰富自己的 Discord 状态
 
