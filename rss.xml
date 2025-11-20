@@ -1,13 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Nov 2025 05:44:55 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 20 Nov 2025 00:54:58 GMT</lastBuildDate><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
 
-经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。**当然，直接轮询调用 Discord 官方提供的 API 已然可以实现笔者的需求，只是笔者太闲了想在外面包一层 Self-Bot**……😎万一以后用得上呢？
+经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。**当然，直接轮询调用 Discord 官方提供的 API 已然可以实现需求，只是笔者太闲了想在外面包一层 Self-Bot**……😎万一以后用得上呢？
 
 &gt; Discord 官方文档中明确表示**不支持 Self-Bot 的使用**，违反使用条款可能导致账号被封禁。因此，笔者仅将本文内容作为技术分享，若您决心实现类似功能，请承担账号封禁的风险。
 
-整个步骤简单来说就是：创建一个 Bot 子账号，添加笔者主账号好友，让 Bot 轮询笔者主账号的状态信息，将其提供给前端访问。即使真的触到霉头被官方封禁的话，去世的也只是笔者的子账号……吧。
+整个步骤简单来说就是：创建一个 Bot 子账号，添加主账号好友，让 Bot 轮询主账号的状态信息，将其提供给前端访问。即使真的触到霉头被官方封禁的话，去世的也只是子账号……吧。
+
+……然后在 Self-Bot 服务持续运转三天后，Discord 封禁了笔者可怜的子账号：
+
+![nooooo](./display-my-discord-status/nooooo.png)
+
+还好开发的时候多想了想，没有用主账号跑服务，侥幸侥幸。
 
 ## 实现读取自己 Discord 状态的 Self-Bot
 
@@ -39,7 +45,7 @@ pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/si
 pip install pipenv
 ```
 
-如果最早学习前端时，笔者就知道从框架开始构建项目，想必能节省很多时间。当然笔者并不后悔，毕竟框架省略的部分也是构成前端技术栈的重要一支，绕弯路学习它们何尝不是一种增进技术的捷径。不过对于 Python 而言，笔者自觉现在不愿付出那么多心血去精进，因此即刻选择从框架入手，快速搭建起项目的雏形。适合构建轻量级 Web 服务的 Python 框架有很多，以 Github 星标数为导向，笔者选择了 [FastAPI](https://github.com/fastapi/fastapi) 作为开发框架。
+如果最早学习前端时，笔者就知道从框架开始构建项目，想必能节省很多时间。当然笔者并不后悔，毕竟框架省略的部分也是构成前端技术栈的重要一支，绕弯路学习它们何尝不是一种增进技术的捷径。不过对于 Python 而言，自觉现在不愿付出那么多心血去精进，因此即刻选择从框架入手，快速搭建起项目的雏形。适合构建轻量级 Web 服务的 Python 框架有很多，以 Github 星标数为导向，这里选择了 [FastAPI](https://github.com/fastapi/fastapi) 作为开发框架。
 
 参考 FastAPI 文档，安装依赖库：
 
@@ -183,9 +189,9 @@ class MyClient(discord.Client):
             print(f&quot;❌ No relationship found for user {self.recipient}.&quot;)
 ```
 
-笔者翻阅 `discord.py-self` 的文档良久，终于找到了 `get_relationship(user_id)` 方法，可以获取当前登录用户（子账号）与指定用户（主账号）的好友关系。好友关系如何并不重要，重要的是这个接口的返回值里囊括了指定用户的状态信息。在上面的代码中，笔者让服务每五秒执行此方法并得到最新的状态信息；环境变量 `DISCORD_CHANNEL_ID` 是 Bot 与笔者主账号的私聊频道 ID，同样可以通过浏览器开发者工具找到网络请求找到。
+笔者翻阅 `discord.py-self` 的文档良久，终于找到了 `get_relationship(user_id)` 方法，可以获取当前登录用户（子账号）与指定用户（主账号）的好友关系。好友关系如何并不重要，重要的是这个接口的返回值里囊括了指定用户的状态信息。在上面的代码中，笔者让服务每五秒执行此方法并得到最新的状态信息；环境变量 `DISCORD_CHANNEL_ID` 是 Bot 与主账号的私聊频道 ID，同样可以通过浏览器开发者工具找到网络请求找到。
 
-Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，笔者在这里设置为了每 5 秒请求 1 次，应该算 Bot 服务界的良心吧，请不要封禁我的账号！
+Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，笔者在这里设置为了每 5 秒请求 1 次，应该算 Bot 服务界的良心吧，请不要封禁我的账号！（后记：还是被封了，大抵是请求单一接口而且太有规律了吧）
 
 运行应用，顺利打印笔者 Discord 主账号的状态信息如下：
 
@@ -215,7 +221,7 @@ def status():
 
 ### 共享 QQ 音乐播放状态
 
-Discord 原生支持读取 Spotify 等国外流行音乐软件的播放状态，但不支持读取笔者常用的 QQ 音乐的播放状态。开源软件 [NetEase-Cloud-Music-DiscordRPC](https://github.com/Kxnrl/NetEase-Cloud-Music-DiscordRPC) 解决了这个问题，设置它开机自动启动，即可将 QQ 音乐的播放状态同步到 Discord 上。
+Discord 原生支持读取 Spotify 等国外流行音乐软件的播放状态，但不支持读取笔者常用的 QQ 音乐的播放状态。开源软件 [NetEase-Cloud-Music-DiscordRPC](https://github.com/Kxnrl/NetEase-Cloud-Music-DiscordRPC) 解决了这个问题，设置它开机自动启动，即可将 QQ 音乐的播放状态同步到 Discord 上。当然，这款软件本身是为读取网易云播放状态所设计开发的，如果您使用网易云音乐，自然也可以用它来同步播放状态。
 
 ![qq music status](./display-my-discord-status/qq-music-status.png)
 
@@ -226,7 +232,7 @@ Discord 原生支持读取 Spotify 等国外流行音乐软件的播放状态，
 VSCode 何尝不是一款面向程序员的益智游戏，插件 [Discord Presence](https://marketplace.visualstudio.com/items?itemName=icrawl.discord-vscode) 可以实现将当前编辑文件信息与编辑时长同步到 Discord 上的功能。
 
 ![vscode status](./display-my-discord-status/vscode-status.png)
-</content:original-text><content:updated-at>2025-11-16T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。 但正如资深的程序员所说的那样：
+</content:original-text><content:updated-at>2025-11-20T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。 但正如资深的程序员所说的那样：
 
 任何客户端的加解密都是不安全的。我们都应该认为，任何在客户端进行的加解密操作都可能被逆向工程或破解。
 
