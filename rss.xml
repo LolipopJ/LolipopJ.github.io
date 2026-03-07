@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2026 10:13:22 GMT</lastBuildDate><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，只能含泪收藏到自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2026 11:47:23 GMT</lastBuildDate><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，只能含泪收藏到自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，只能含泪收藏到自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
 
 过去曾有人写文安慰大家，不必盯着 AI 的新闻看，更不必每天都追最新的 AI 技术，只会让你感到迷茫与眼花缭乱。我于是慢下脚步，搬来板凳等着某一天，AI 技术宣告成熟可用了，再去好好学习。而如今，经历三年多的高速发展，我认为目前的 AI 技术已经逐步进入到了一个相对可用的阶段，是时候加入浩浩汤汤的采用者大军，除开早就开始使用的 Copilot 之类的编码助手外，从更多方面使用 AI 来进化自己的能力栈。
@@ -59,7 +59,7 @@ openclaw doctor
 openclaw gateway start
 ```
 
-笔者选择对接飞书作为 OpenClaw 代理（Agent）的消息接收渠道。按照官方文档的[指引](https://docs.openclaw.ai/zh-CN/channels/feishu)，创建好机器人后，发送任意消息即可进入配对流程：
+笔者选择对接飞书作为 OpenClaw 助理的消息接收渠道。按照官方文档的[指引](https://docs.openclaw.ai/zh-CN/channels/feishu)，创建好机器人后，发送任意消息即可进入配对流程：
 
 ![与 OpenClaw 配对](./join-the-openclaw/feishu-pairing.png)
 
@@ -69,9 +69,12 @@ openclaw gateway start
 openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 ```
 
-一切就绪，现在可以通过飞书机器人发送指令，与 OpenClaw 代理进行对话了：
+一切就绪，现在可以通过飞书机器人发送指令，与 OpenClaw 助理进行对话了：
 
 ![与 OpenClaw 对话](./join-the-openclaw/feishu-first-chat.png)
+
+&gt; 2026 年 3 月 7 日，[QQ 开放平台](https://q.qq.com/qqbot/openclaw/)竟然开放了对接 OpenClaw 的能力，对于一直高压管理 QQ 机器人的腾讯来说，简直是太阳打西边出来的转变。无论如何，我第一时间申请了一个 QQ 机器人，完成了 OpenClaw 的接入，流程顺滑无比，给产品经理点赞。
+&gt; ![搭建 AI 私人 QQ 助理](./join-the-openclaw/qq-bot-connection.png)
 
 ## 模型选择
 
@@ -89,12 +92,12 @@ openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 
 与聊天机器人最大的差异在于，OpenClaw 希冀达成的目标是，控制你的电脑完成你想要它做的事情。经过配置以后，它甚至能够使用你系统上所有的应用，打开终端执行命令，更遑论访问网络，调用各种服务接口。你仍然可以把它当作一个普通的聊天机器人，但操作宿主机的能力使得它确实成为了一个 24 小时只为你服务的私人助理。
 
-从安全的角度来说，无论如何，你都应该保证能与 OpenClaw 代理进行消息传递的渠道是安全的，如非必要，不要将它们暴露在公网上，更不要允许陌生人与之进行对话。不过当然，在默认情况下，它的文件操作权限仅限于自己的工作区（默认为 `~\.openclaw\workspace`），其它敏感行为也受到限制，当且仅当你知道自己在做什么的时候，可以在配置里开放更多的权限给它。但这也并不是万无一失了，例如，当它在工作的过程中因为上下文被压缩丢失而执行了错误指令，或者使用的技能本身就包含恶意提示词，都有可能造成损失。对这位登堂入室的私人助理始终夹带着的不信任感，从来都是与隐患始终保持着的安全距离。
+从安全的角度来说，无论如何，你都应该保证能与 OpenClaw 助理进行消息传递的渠道是安全的，如非必要，不要将它们暴露在公网上，更不要允许陌生人与之进行对话。不过当然，在默认情况下，它的文件操作权限仅限于自己的工作区（默认为 `~\.openclaw\workspace`），其它敏感行为也受到限制，当且仅当你知道自己在做什么的时候，可以在配置里开放更多的权限给它。但这也并不是万无一失了，例如，当它在工作的过程中因为上下文被压缩丢失而执行了错误指令，或者使用的技能本身就包含恶意提示词，都有可能造成损失。对这位登堂入室的私人助理始终夹带着的不信任感，从来都是与隐患始终保持着的安全距离。
 
 知道了这些，为了用好 OpenClaw，接下来是值得花时间认真考虑的事情 —— 我能为它提供哪些工具，我希望它知晓哪些技能？
 
-- 工具（Tools），是一份提前写好的提示词，告诉 OpenClaw 代理在你系统上有哪些可以调用的命令或可调度的软硬件。工具与宿主机环境、软硬件密切相关，是不可分享的，可以看作私有的环境变量。除了内置的工具（如 `exec`、`cron` 命令）外，写入到 `~/.openclaw/&lt;workspace&gt;/TOOLS.md` 里的内容，都被视作可用的工具。
-- 技能（Skills），和工具一样是一份提示词，告诉 OpenClaw 代理在接收到特定指令时，应该如何去完成它。技能是可分享的，可以看作公开的环境变量。除了内置的技能外，存放在 `~/.openclaw/skills` 或 `~/.openclaw/&lt;workspace&gt;/skills` 目录中每个二级文件夹里的 `SKILL.md` 文档，都被视作一个技能。
+- 工具（Tools），是一份提前写好的提示词，告诉 OpenClaw 助理在你系统上有哪些可以调用的命令或可调度的软硬件。工具与宿主机环境、软硬件密切相关，是不可分享的，可以看作私有的环境变量。除了内置的工具（如 `exec`、`cron` 命令）外，写入到 `~/.openclaw/&lt;workspace&gt;/TOOLS.md` 里的内容，都被视作可用的工具。
+- 技能（Skills），和工具一样是一份提示词，告诉 OpenClaw 助理在接收到特定指令时，应该如何去完成它。技能是可分享的，可以看作公开的环境变量。除了内置的技能外，存放在 `~/.openclaw/skills` 或 `~/.openclaw/&lt;workspace&gt;/skills` 目录中每个二级文件夹里的 `SKILL.md` 文档，都被视作一个技能。
 
 目前有两个主流的技能分享站点，可以在里面发现并为自己养的“螃蟹”助理点出想要的技能点：
 
@@ -112,7 +115,7 @@ clawhub login # 登录 ClawHub 账号，避免配额限制
 
 ### 点出技能点
 
-在开始自己的折腾之前，自然少不了先看看有哪些脍炙人口的技能，总之先给我的代理安装上。按照星标和下载量排序，参考社区推荐，我首先点出了如下技能：
+在开始自己的折腾之前，自然少不了先看看有哪些脍炙人口的技能，总之先给我的助理安装上。按照星标和下载量排序，参考社区推荐，我首先点出了如下技能：
 
 - [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent)：让 AI 持续学习，分析错误，不断地改进。
 - [Humanizer](https://clawhub.ai/biostartechnology/humanizer)：让 AI 产出的文本更像是人类写的，减少机械感。
@@ -122,11 +125,11 @@ clawhub login # 登录 ClawHub 账号，避免配额限制
 
 普通的 AI 聊天机器人并不支持设置定时提醒任务，毕竟你们之间的交互是一去一回的问答，它无法自己运行一个倒计时，也无法主动向你推送消息。而 OpenClaw 可以打破这个桎梏，你可以使唤它在宿主机启动一个定时任务，并在时间到达时，主动向你发送消息提醒。
 
-但是，OpenClaw 代理背后使用的大语言模型还不知道要如何启动一个定时任务：
+但是，OpenClaw 助理背后使用的大语言模型还不知道要如何启动一个定时任务：
 
 ![启动定时任务失败](./join-the-openclaw/schedule-task-failed.png)
 
-因此，需要我们添加一个技能，告诉代理可以去调用宿主机为它提供的工具，设置定时提醒。我找到了社区分享的技能 [Cron Mastery](https://clawhub.ai/i-mw/cron-mastery)，仅依赖了 `cron`，符合我的需要。使用 `clawhub install cron-mastery` 命令安装此技能：
+因此，需要我们添加一个技能，告诉助理可以去调用宿主机为它提供的工具，设置定时提醒。我找到了社区分享的技能 [Cron Mastery](https://clawhub.ai/i-mw/cron-mastery)，仅依赖了 `cron`，符合我的需要。使用 `clawhub install cron-mastery` 命令安装此技能：
 
 ```bash
 $ clawhub install cron-mastery
@@ -146,9 +149,9 @@ Ok to proceed? (y) y
 ✔ OK. Installed cron-mastery -&gt; ~/.openclaw/workspace/skills/cron-mastery
 ```
 
-奥，新来的代理可能还没有使用工具指令如 `cron` 等的权限，所以还需要为它开放权限。
+奥，新来的助理可能还没有使用工具指令如 `cron` 等的权限，所以还需要为它开放权限。
 
-当我尝试通过 Web UI 为代理启用 `cron` 权限时，屎山代码发力了，2026.3.2 版本里的保存按钮无法点击（[#32812](https://github.com/openclaw/openclaw/issues/32812)）。查看这个 Issue 关联的 PR 记录，发现 OpenClaw 整个仓库其实也是一块巨大的 AI 编程试验田，先种下种子，随后维护者采用长成的作物。至于 PR 的质量如何，会否引入新的问题，在人手不足的情况下无法一一校验测试，只能在下次，用户提交 Issue 后，再迭代新一轮的 AI 种子。
+当我尝试通过 Web UI 为助理启用 `cron` 权限时，屎山代码发力了，2026.3.2 版本里的保存按钮无法点击（[#32812](https://github.com/openclaw/openclaw/issues/32812)）。查看这个 Issue 关联的 PR 记录，发现 OpenClaw 整个仓库其实也是一块巨大的 AI 编程试验田，先种下种子，随后维护者采用长成的作物。至于 PR 的质量如何，会否引入新的问题，在人手不足的情况下无法一一校验测试，只能在下次，用户提交 Issue 后，再迭代新一轮的 AI 种子。
 
 这就是几乎完全由 AI 驱动的敏捷开发，好处是真的很快，一个功能点从原型到实现可能就半小时的事情，坏处是很容易引入新的问题，并且会为了修复一个小问题嵌套一堆代码，继而可能又会诱发新的小问题。不过多人协作的人工编码在很多情况下也容易变得如此混乱，只能期待未来在优化仓库代码的时候，能有核心开发者，或是足够厉害的 AI 站出来主导工程重构吧。从我这次的探索体验来看，目前的 OpenClaw 距离正式的 1.0 版本尚有很长一段距离。
 
@@ -163,7 +166,7 @@ Ok to proceed? (y) y
 }
 ```
 
-上面的配置表示，除了预设的 `messaging` 模式会使用到的工具以外，额外启用使用 `cron` 的使用权限。如果你足够信任你的代理且已经确保访问渠道足够安全，也可以直接配置 `&quot;profile&quot;: &quot;full&quot;`，允许代理使用所有的工具：
+上面的配置表示，除了预设的 `messaging` 模式会使用到的工具以外，额外启用使用 `cron` 的使用权限。如果你足够信任你的助理且已经确保访问渠道足够安全，也可以直接配置 `&quot;profile&quot;: &quot;full&quot;`，允许助理使用所有的工具：
 
 ```json
 {
@@ -173,11 +176,11 @@ Ok to proceed? (y) y
 }
 ```
 
-在测试时，代理似乎并没有在 `/new` 一个新的会话时自动读取自己的技能列表，让它帮我设置提醒没能成功设置定时任务。所以我特地询问它了一下都学会了哪些技能：
+在测试时，助理似乎并没有在 `/new` 一个新的会话时自动读取自己的技能列表，让它帮我设置提醒没能成功设置定时任务。所以我特地询问它了一下都学会了哪些技能：
 
 ![你学会了哪些技能](./join-the-openclaw/learned-skills.png)
 
-现在，代理吸收了 Cron Mastery 技能的知识，并成功运用 `cron` 命令来设置定时任务。但对于飞书消息渠道，它并不能正确地设置 `delivery.to` 收件人为聊天的 ID，导致定时提醒无法正确地投递到与我的飞书聊天中。为此，我指出了问题，让代理修正自己的指令，最终才成功收到了提醒（虽然从一分钟后变成了两分钟后……）：
+现在，助理吸收了 Cron Mastery 技能的知识，并成功运用 `cron` 命令来设置定时任务。但对于飞书消息渠道，它并不能正确地设置 `delivery.to` 收件人为聊天的 ID，导致定时提醒无法正确地投递到与我的飞书聊天中。为此，我指出了问题，让助理修正自己的指令，最终才成功收到了提醒（虽然从一分钟后变成了两分钟后……）：
 
 ![一分钟（？）后提醒我喝水](./join-the-openclaw/schedule-task-successfully.png)
 
@@ -203,39 +206,39 @@ Parameters:
 ......
 ````
 
-随后，我删除了历史聊天记录和会话数据，重启了网关，再 `/new` 了一个新的会话，让代理重新学习了技能，尝试设置定时提醒，终于一切顺利了，可喜可贺可喜可贺。
+随后，我删除了历史聊天记录和会话数据，重启了网关，再 `/new` 了一个新的会话，让助理重新学习了技能，尝试设置定时提醒，终于一切顺利了，可喜可贺可喜可贺。
 
 ### 使用浏览器访问网页
 
-OpenClaw 内置了 `browser` 工具，能够让代理直接在宿主机上启动与个人浏览器隔离的专用浏览器来访问网页。自然，首先要赋予代理使用 `browser` 工具的权限。
+OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动与个人浏览器隔离的专用浏览器来访问网页。自然，首先要赋予助理使用 `browser` 工具的权限。
 
-确认授予权限后，我向代理发出指令：「打开浏览器，访问通义千问，问问它“2026 年这本轻小说真厉害”榜单上有哪些小说，把结果告诉我」，嗬嗬嗬，这何尝不是一种多代理模式。我录制了它运行的全过程：
+确认授予权限后，我向助理发出指令：「打开浏览器，访问通义千问，问问它“2026 年这本轻小说真厉害”榜单上有哪些小说，把结果告诉我」，嗬嗬嗬，这何尝不是一种多代理模式。我录制了它运行的全过程：
 
 &lt;video src=&quot;/videos/join-the-openclaw_use-qwen-to-search.mp4&quot; controls&gt;&lt;/video&gt;
 
-这次 OpenClaw 代理的表现超 Nice：它打开了 Chrome 浏览器，访问了通义千问的官网，进入到对话界面，随后在聊天框里输入并提交了问题，得到回复后，将答案总结发回给了我。正如我构想的那样！如果不考虑运行一次这样的流程差不多要花费 4 毛钱令牌费用的话，从体验来说已经足够可用了。
+这次 OpenClaw 助理的表现超 Nice：它打开了 Chrome 浏览器，访问了通义千问的官网，进入到对话界面，随后在聊天框里输入并提交了问题，得到回复后，将答案总结发回给了我。正如我构想的那样！如果不考虑运行一次这样的流程差不多要花费 4 毛钱令牌费用的话，从体验来说已经足够可用了。
 
-进一步，为了让代理更好地协助我们完成事务，自然需要提供不同站点的登录状态。从技术角度来说，可以直接把浏览器的 Cookie 等文件粘贴到代理专用浏览器的相应数据目录中，实现登录状态的同步。但我还是希冀分开两者，只在需要的时候手动操控浏览器登录，降低安全风险。
+进一步，为了让助理更好地协助我们完成事务，自然需要提供不同站点的登录状态。从技术角度来说，可以直接把浏览器的 Cookie 等文件粘贴到助理专用浏览器的相应数据目录中，实现登录状态的同步。但我还是希冀分开两者，只在需要的时候手动操控浏览器登录，降低安全风险。
 
-现在，我希望代理能否访问 Pixiv，看看系统都给我推送了哪些插画作品。于是我发出指令：「使用浏览器访问 Pixiv，看看今天都给我推荐了哪些插画作品？」。看看代理的表现：
+现在，我希望助理能否访问 Pixiv，看看系统都给我推送了哪些插画作品。于是我发出指令：「使用浏览器访问 Pixiv，看看今天都给我推荐了哪些插画作品？」。看看助理的表现：
 
 ![账号未登录，获取 Pixiv 排行榜推荐作品](./join-the-openclaw/pixiv-recommendation-nonlogin.png)
 
-代理打开了浏览器，先访问了 Pixiv 官网链接 `https://www.pixiv.net`，由于没有登录，只能获取到登录页面的背景图片。但它没有泄气，随后它直接访问了每日排行榜页面 `https://www.pixiv.net/ranking.php`，这里它获取到了一些排行榜上的插画作品，整理好并发回给了我。
+助理打开了浏览器，先访问了 Pixiv 官网链接 `https://www.pixiv.net`，由于没有登录，只能获取到登录页面的背景图片。但它没有泄气，随后它直接访问了每日排行榜页面 `https://www.pixiv.net/ranking.php`，这里它获取到了一些排行榜上的插画作品，整理好并发回给了我。
 
-接下来，我操作代理打开的专用浏览器登录了我的 Pixiv 账号，发出新的指令：「我登录了我的账号，看看给我推荐了哪些插画作品？」。看看它的表现：
+接下来，我在助理专用浏览器里登录了我的 Pixiv 账号，发出新的指令：「我登录了我的账号，看看给我推荐了哪些插画作品？」。看看它的表现：
 
 ![账号已登录，获取 Pixiv 个性化推荐作品](./join-the-openclaw/pixiv-recommendation.png)
 
-代理访问了 Pixiv 的发现页面 `https://www.pixiv.net/discovery`，在这里，它成功获取了推送给我账号的个性化插画作品，而且还分门别类发回给了我。
+助理访问了 Pixiv 的发现页面 `https://www.pixiv.net/discovery`，在这里，它成功获取了推送给我账号的个性化插画作品，而且还分门别类发回给了我。
 
-可以发现，使唤 OpenClaw 代理使用浏览器进行指定操作，体验已经相当不错了。好感度 UP！
+可以发现，使唤 OpenClaw 助理使用浏览器进行指定操作，体验已经相当不错了。好感度 UP！
 
 ## 数据备份
 
 定期备份 OpenClaw 的数据是一个好习惯，避免哪天它自己玩坏了自己，至少还可以拿过去的资料修修补补。
 
-笔者简单地把工作区进行了备份，这里包含了我为代理配置的人设等信息，还包含了我添加的技能与工具等等。OpenClaw 在安装的同时也完成了这里的 git 初始化，那就承蒙好意，配置好远程源，上传到自己的私有仓库里：
+笔者简单地把工作区进行了备份，这里包含了我为助理配置的人设等信息，还包含了我添加的技能与工具等等。OpenClaw 在安装的同时也完成了这里的 git 初始化，那就承蒙好意，配置好远程源，上传到自己的私有仓库里：
 
 ```bash
 cd ~/.openclaw/workspace
@@ -250,7 +253,7 @@ git push
 这次摸爬滚打的 OpenClaw 采用体验，一边怨声载道骂骂咧咧，在教程资源尤其少（大部分还是 AI 编撰）的当下，不知道怎么做才是对；另一边觉得实在是太有意思了，它已经打通了我作为开发者需要的底层能力（尽管不稳定），接下来的想象空间可以说是无限大。
 
 总结来看，现在的我拥有了一位会犯错的**实习**助理，到它成为可靠私人 AI 助理还需要培训一些时日。不过我并不担心它未来的成长，每次新模型的发布都可能产生用途用法上的质变。且让我在未来的使用过程中，慢慢 Get 到使唤它的诀窍，帮助自己提升效率，甚至实现创造力的飞跃吧。
-</content:original-text><content:updated-at>2026-03-06T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-03-07T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
