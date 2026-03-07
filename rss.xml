@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2026 11:47:23 GMT</lastBuildDate><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，只能含泪收藏到自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
-自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，只能含泪收藏到自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2026 14:59:38 GMT</lastBuildDate><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
 
 过去曾有人写文安慰大家，不必盯着 AI 的新闻看，更不必每天都追最新的 AI 技术，只会让你感到迷茫与眼花缭乱。我于是慢下脚步，搬来板凳等着某一天，AI 技术宣告成熟可用了，再去好好学习。而如今，经历三年多的高速发展，我认为目前的 AI 技术已经逐步进入到了一个相对可用的阶段，是时候加入浩浩汤汤的采用者大军，除开早就开始使用的 Copilot 之类的编码助手外，从更多方面使用 AI 来进化自己的能力栈。
 
@@ -84,7 +84,7 @@ openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 
 基于此，在 AI 创作的过程中，我们选用的模型本身，就成为了至关重要的因变量。选用更优质的模型，自然会带来平均水平更高的随机产出，但通常也意味着更高的令牌价格，如何在权衡性价比后选择最适合自己的模型，俨然成为了 AI 采用者尤其是个人用户的必修课。
 
-话是这么说，但笔者也还不是吃 AI 大模型这口饭的，没有意愿去一个个尝试哪个模型最好，这里就选择了社区推荐的 Kimi 模型，因为它在任务规划上有着优异的表现。OpenClaw 支持配置多模型多代理的模式，作为进阶选项，可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型设为子代理模型，利用其优势区间专门完成特定的任务，在得到更优结果的同时，也能平衡令牌使用成本。
+话是这么说，但笔者目前不是吃 AI 大模型这口饭的，没有意愿去一个个尝试哪个模型最好，这里就选择了社区推荐的 Kimi 模型，据说它在任务规划上有着优异的表现。OpenClaw 支持配置多模型多代理的模式，作为进阶选项，未来可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型则设为子代理模型，利用其优势区间负责特定类型的任务，在得到更优结果的同时，也能提升运行效率，平衡令牌使用成本。
 
 ## 添加技能
 
@@ -99,7 +99,7 @@ openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 - 工具（Tools），是一份提前写好的提示词，告诉 OpenClaw 助理在你系统上有哪些可以调用的命令或可调度的软硬件。工具与宿主机环境、软硬件密切相关，是不可分享的，可以看作私有的环境变量。除了内置的工具（如 `exec`、`cron` 命令）外，写入到 `~/.openclaw/&lt;workspace&gt;/TOOLS.md` 里的内容，都被视作可用的工具。
 - 技能（Skills），和工具一样是一份提示词，告诉 OpenClaw 助理在接收到特定指令时，应该如何去完成它。技能是可分享的，可以看作公开的环境变量。除了内置的技能外，存放在 `~/.openclaw/skills` 或 `~/.openclaw/&lt;workspace&gt;/skills` 目录中每个二级文件夹里的 `SKILL.md` 文档，都被视作一个技能。
 
-目前有两个主流的技能分享站点，可以在里面发现并为自己养的“螃蟹”助理点出想要的技能点：
+目前有两个主流的技能分享站点，可以在里面发现并为自己养的“龙虾”助理点出想要的技能点：
 
 - [ClawHub](https://clawhub.ai/)：目前最大的技能分享站点，涵盖最全面的技能列表。交互友好，能够按规则排序，提升技能发现效率。
 - [Awesome OpenClaw Skills](https://github.com/VoltAgent/awesome-openclaw-skills)：从 ClawHub 精选并分类的技能，加上一些独立的技能，整合而成的仓库，包含的技能**理论上**更加安全可靠。但是没有独立的搜索界面，需要通过文本的形式发现技能。
@@ -115,7 +115,7 @@ clawhub login # 登录 ClawHub 账号，避免配额限制
 
 ### 点出技能点
 
-在开始自己的折腾之前，自然少不了先看看有哪些脍炙人口的技能，总之先给我的助理安装上。按照星标和下载量排序，参考社区推荐，我首先点出了如下技能：
+在开始自己的折腾之前，自然先去看了看有哪些广受好评的技能，先把它们给我的助理安装上。按照星标和下载量排序，参考社区推荐，我首先点出了如下技能：
 
 - [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent)：让 AI 持续学习，分析错误，不断地改进。
 - [Humanizer](https://clawhub.ai/biostartechnology/humanizer)：让 AI 产出的文本更像是人类写的，减少机械感。
@@ -206,7 +206,7 @@ Parameters:
 ......
 ````
 
-随后，我删除了历史聊天记录和会话数据，重启了网关，再 `/new` 了一个新的会话，让助理重新学习了技能，尝试设置定时提醒，终于一切顺利了，可喜可贺可喜可贺。
+为了验证助理的消息投递能力，我删除了历史聊天记录和会话数据，重启网关，执行命令 `/new` 开启了一个新的会话，尝试设置定时提醒，终于一次跑通，可喜可贺可喜可贺。
 
 ### 使用浏览器访问网页
 
@@ -226,13 +226,13 @@ OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动
 
 助理打开了浏览器，先访问了 Pixiv 官网链接 `https://www.pixiv.net`，由于没有登录，只能获取到登录页面的背景图片。但它没有泄气，随后它直接访问了每日排行榜页面 `https://www.pixiv.net/ranking.php`，这里它获取到了一些排行榜上的插画作品，整理好并发回给了我。
 
-接下来，我在助理专用浏览器里登录了我的 Pixiv 账号，发出新的指令：「我登录了我的账号，看看给我推荐了哪些插画作品？」。看看它的表现：
+接下来，我在助理打开的专用浏览器里登录了我的 Pixiv 账号，又发出新的指令：「我登录了我的账号，看看给我推荐了哪些插画作品？」。看看它的表现：
 
 ![账号已登录，获取 Pixiv 个性化推荐作品](./join-the-openclaw/pixiv-recommendation.png)
 
-助理访问了 Pixiv 的发现页面 `https://www.pixiv.net/discovery`，在这里，它成功获取了推送给我账号的个性化插画作品，而且还分门别类发回给了我。
+助理访问了 Pixiv 的发现页面 `https://www.pixiv.net/discovery`，在这里，它成功获取了推送给我账号的个性化插画作品，并且将整理后的结果发回给了我。
 
-可以发现，使唤 OpenClaw 助理使用浏览器进行指定操作，体验已经相当不错了。好感度 UP！
+通过上面的例子，我感觉使唤 OpenClaw 助理访问浏览器进行指定操作的体验已经相当不错了。好感度 UP++！
 
 ## 数据备份
 
@@ -241,7 +241,7 @@ OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动
 笔者简单地把工作区进行了备份，这里包含了我为助理配置的人设等信息，还包含了我添加的技能与工具等等。OpenClaw 在安装的同时也完成了这里的 git 初始化，那就承蒙好意，配置好远程源，上传到自己的私有仓库里：
 
 ```bash
-cd ~/.openclaw/workspace
+cd ~/.openclaw/&lt;workspace&gt;
 git remote add origin https://github.com/&lt;USER&gt;/&lt;REPO&gt;.git
 git push
 ```
