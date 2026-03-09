@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 09 Mar 2026 11:51:45 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 09 Mar 2026 12:10:22 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
 
 首先，认清自己的需求，我并不需要多么强大的模型来跑什么复杂任务，因此选择排行榜上佼佼的顶级模型是极不划算的，每天定时任务抓取一次网页就烧几块钱这谁顶得住？其次，直接使用模型官方 API 往往意味着更高的成本，而选用三方 API…]]></description><link>https://blog.towind.fun/posts/openclaw-multiple-agents</link><guid isPermaLink="false">openclaw-multiple-agents</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！
@@ -709,6 +709,8 @@ Lolipop老师觉得呢？💙
 老师也觉得是这样！💙
 
 ## 结束语
+
+气笑了，在生成封面图的时候，发现负责指挥的龙虾连钳子手都进化成人手了，负责干活的龙虾为何拿着奇怪的东西在研磨纸张，背后的电脑起了什么作用？！
 
 折腾爽了，下次见。
 </content:original-text><content:updated-at>2026-03-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
