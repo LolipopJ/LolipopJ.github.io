@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 10 Mar 2026 03:51:45 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 10 Mar 2026 10:21:06 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
 
 首先，认清自己的需求，我并不需要多么强大的模型来跑什么复杂任务，因此选择排行榜上佼佼的顶级模型是极不划算的，每天定时任务抓取一次网页就烧几块钱这谁顶得住？其次，直接使用模型官方 API 往往意味着更高的成本，而选用三方 API…]]></description><link>https://blog.towind.fun/posts/openclaw-multiple-agents</link><guid isPermaLink="false">openclaw-multiple-agents</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！
@@ -1421,10 +1421,10 @@ return a.default.wrap(
             (E = h.default.enc.Utf8.parse(C)), // 将字符串 C 按 UTF-8 编码转换为二进制数据，作为后续 AES 加解密使用的对称密钥
             (x = _ + &quot;?nonce=&quot; + w + &quot;&amp;sign=&quot; + C),
             (e.next = 43),
-            c.default.get(x) // 将前端生成的密钥发送给后端，后端对视频密钥进行加密
-          );
+            c.default.get(x)
+          ); // 将前端生成的密钥发送给后端，后端对视频密钥进行加密
         case 43:
-          (A = e.sent),
+          ((A = e.sent),
             (P = A.data), // 后端返回加密后的视频密钥
             (O = P.key), // O 就是经过加密后的视频密钥
             // 调用 AES 模块的解密方法，对视频密钥进行解密
@@ -1437,7 +1437,7 @@ return a.default.wrap(
               },
             )),
             (j = L.toString(h.default.enc.Utf8)), // j 即为我们解密视频分片所需要的视频密钥
-            n(i(j));
+            n(i(j)));
         case 49:
         case &quot;end&quot;:
           return e.stop();
@@ -3156,7 +3156,7 @@ export const onCreateNode = ({ node, actions }: CreateNodeArgs) =&gt; {
 title: 从同步 QQ 空间说说到前端呈现，我都做了些啥
 date: 2024-10-17
 updated: 2024-10-17
-timeliness: false
+timeliness: -1
 categories:
   - 全栈开发
 tags:
