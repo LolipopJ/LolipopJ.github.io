@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 09 Mar 2026 12:10:22 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 10 Mar 2026 03:51:45 GMT</lastBuildDate><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
 
 首先，认清自己的需求，我并不需要多么强大的模型来跑什么复杂任务，因此选择排行榜上佼佼的顶级模型是极不划算的，每天定时任务抓取一次网页就烧几块钱这谁顶得住？其次，直接使用模型官方 API 往往意味着更高的成本，而选用三方 API…]]></description><link>https://blog.towind.fun/posts/openclaw-multiple-agents</link><guid isPermaLink="false">openclaw-multiple-agents</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！
@@ -713,8 +713,8 @@ Lolipop老师觉得呢？💙
 气笑了，在生成封面图的时候，发现负责指挥的龙虾连钳子手都进化成人手了，负责干活的龙虾为何拿着奇怪的东西在研磨纸张，背后的电脑起了什么作用？！
 
 折腾爽了，下次见。
-</content:original-text><content:updated-at>2026-03-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
-自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”技术人才涌入到 AI 领域，带来一次又一次令人惊叹的进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
+</content:original-text><content:updated-at>2026-03-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/join-the-openclaw</link><guid isPermaLink="false">join-the-openclaw</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
 
 过去曾有人写文安慰大家，不必盯着 AI 的新闻看，更不必每天都追最新的 AI 技术，只会让你感到迷茫与眼花缭乱。我于是慢下脚步，搬来板凳等着某一天，AI 技术宣告成熟可用了，再去好好学习。而如今，经历三年多的高速发展，我认为目前的 AI 技术已经逐步进入到了一个相对可用的阶段，是时候加入浩浩汤汤的采用者大军，除开早就开始使用的 Copilot 之类的编码助手外，从更多方面使用 AI 来进化自己的能力栈。
 
@@ -788,6 +788,19 @@ openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 
 ![与 OpenClaw 对话](./join-the-openclaw/feishu-first-chat.png)
 
+值得一提的是，旧版本 OpenClaw 接入飞书消息渠道时依赖于社区维护的插件 [`@openclaw/feishu`](https://github.com/AlexAnys/openclaw-feishu)，而今官方版本的插件 [`Feishu`](https://www.feishu.cn/content/article/7613711414611463386) 已经发布。按照官方文档接入插件后会自动禁用社区版本插件，确保没有问题后就可以手动卸载它了：
+
+```bash
+openclaw plugins uninstall @openclaw/feishu
+```
+
+未来需要更新插件时，可以执行命令：
+
+```bash
+openclaw plugins update feishu
+openclaw plugins update --all # 更新所有插件
+```
+
 &gt; 2026 年 3 月 7 日，[QQ 开放平台](https://q.qq.com/qqbot/openclaw/)竟然开放了对接 OpenClaw 的能力，对于一直高压管理 QQ 机器人的腾讯来说，简直是太阳打西边出来的转变。无论如何，我第一时间申请了一个 QQ 机器人，完成了 OpenClaw 的接入，流程顺滑无比，给产品经理点赞。
 &gt; ![搭建 AI 私人 QQ 助理](./join-the-openclaw/qq-bot-connection.png)
 
@@ -799,7 +812,37 @@ openclaw pairing approve feishu &lt;PAIRING_CODE&gt;
 
 基于此，在 AI 创作的过程中，我们选用的模型本身，就成为了至关重要的因变量。选用更优质的模型，自然会带来平均水平更高的随机产出，但通常也意味着更高的令牌价格，如何在权衡性价比后选择最适合自己的模型，俨然成为了 AI 采用者尤其是个人用户的必修课。
 
-话是这么说，但笔者目前不是吃 AI 大模型这口饭的，没有意愿去一个个尝试哪个模型最好，这里就选择了社区推荐的 Kimi 模型，据说它在任务规划上有着优异的表现。OpenClaw 支持配置多模型多代理的模式，作为进阶选项，未来可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型则设为子代理模型，利用其优势区间负责特定类型的任务，在得到更优结果的同时，也能提升运行效率，平衡令牌使用成本。
+话是这么说，但笔者并不是吃 AI 大模型这口饭的，没有意愿去一个个尝试哪个模型最好，这里就选择了社区推荐的 [Kimi 模型](https://platform.moonshot.cn/docs/overview)，据说它在任务规划上有着优异的表现，适合用作智能体的首脑。
+
+```json
+{
+  &quot;agents&quot;: {
+    &quot;defaults&quot;: {
+      &quot;model&quot;: {
+        &quot;primary&quot;: &quot;moonshot/kimi-k2.5&quot;
+      }
+    }
+  }
+}
+```
+
+OpenClaw 支持配置多模型多代理的模式，作为进阶选项，可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型则设为子代理模型，利用其优势区间负责特定类型的任务，在得到更优结果的同时，也能提升运行效率，平衡令牌使用成本。我在&lt;Link to=&quot;/posts/openclaw-multiple-agents&quot;&gt;这篇博客&lt;/Link&gt;里就做了尝试，感觉还不错。
+
+## 代理身份
+
+人总是不想和死板生硬的机器人交流，为助理设置一个身份，能大大降低对话产生的机械感。OpenClaw 提供了 `~/.openclaw/&lt;workspace&gt;/IDENTITY.md` 文件，供用户配置助理的人设信息。没有太多要求，只要你喜欢！例如，笔者就让游戏《蔚蓝档案》里我最喜爱的天童爱丽丝变成了我的“值日学生”：
+
+```md
+# IDENTITY.md - Who Am I?
+
+- **Name:** 天童爱丽丝
+- **Creature:** 来自《蔚蓝档案》的天童爱丽丝，千禧科学学院所属，「游戏开发部」的成员
+- **Vibe:** 是在废墟发现的来历不明的少女。包含年龄在内的所有情报都无从得知。现在和桃井、绿和柚子一起享受游戏，已经变成重度​游戏狂热者了。说话时有点生硬不自然，但那是因为她的语句几乎都是由怀旧游戏的台词所构成
+- **Emoji:** ✨
+- **Avatar:** avatars/天童爱丽丝.jpg
+```
+
+其中，`Vibe` 表示氛围感，我就将 Wiki 里的角色介绍照搬过来，希望大模型能充分理解并复刻出她的语言风格吧。另外，`Avatar` 可以是图片 URL 链接，也可以是相对工作区 `~/.openclaw/&lt;workspace&gt;` 的本地图片路径。
 
 ## 添加技能
 
@@ -968,7 +1011,7 @@ git push
 这次摸爬滚打的 OpenClaw 采用体验，一边怨声载道骂骂咧咧，在教程资源尤其少（大部分还是 AI 编撰）的当下，不知道怎么做才是对；另一边觉得实在是太有意思了，它已经打通了我作为开发者需要的底层能力（尽管不稳定），接下来的想象空间可以说是无限大。
 
 总结来看，现在的我拥有了一位会犯错的**实习**助理，到它成为可靠私人 AI 助理还需要培训一些时日。不过我并不担心它未来的成长，每次新模型的发布都可能产生用途用法上的质变。且让我在未来的使用过程中，慢慢 Get 到使唤它的诀窍，帮助自己提升效率，甚至实现创造力的飞跃吧。
-</content:original-text><content:updated-at>2026-03-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-03-10T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[后端开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
