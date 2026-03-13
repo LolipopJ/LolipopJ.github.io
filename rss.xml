@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 13 Mar 2026 08:52:40 GMT</lastBuildDate><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 13 Mar 2026 11:06:30 GMT</lastBuildDate><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用 Dalamud 插件（即卫月插件）的技巧。
 
 自力更生搓爆发药和食物并没有问题，但当你需要搓几百组的时候，对注意力的消耗就成了巨大的负担：执行完宏 1 后，要去执行宏 2，搓完后再继续下一轮制作。期间每隔几十秒就要切回窗口点击一下，实在是令人焦虑。越是长大越是觉得时间宝贵，注意力可贵，对于此类重复度高的机械化工作，占用屏幕时间显得尤为浪费。因此，我学习并使用了一些能够简化上述生产等过程的插件，耐不住想要分享的性子，遂整理成文，也许对你有所帮助。当然，我也并没有把这些插件的功能钻研透彻，下面也只会讲述我实际使用到的功能。
@@ -101,14 +101,15 @@
 
 ![切换汉化界面](./ffxiv-man-on-the-moon/auto-hook-global-settings.png)
 
-查询[鱼糕](https://fish.ffmomola.com/#/wiki/fishing/spot/325/fish/46188)可知，“黄金鳗”喜食“红蛆”，咬“重钩”。
+查询[鱼糕](https://fish.ffmomola.com/#/wiki/fishing/spot/325/fish/46188)可知，“黄金鳗”喜食“红蛆”，咬“重钩”，咬钩时间为 9\~17 秒（“撒饵”时为 5\~10 秒）。
 
-点击插件设置面板左侧的“钓鱼预设”，回到钓鱼配置页面。点击右上方的“添加新预设”按钮，创建一个名为“黄金鳗”的预设档，右键单击预设档，选择“设置为启用”。
+点击插件设置面板左侧的“钓鱼预设”，回到钓鱼配置页面。点击右上方的“添加新预设”按钮，创建一个名为“黄金鳗”的预设档，右键单击预设档，选择“设置为启用”。左键点击“黄金鳗”预设档，对此预设进行详细配置。
 
-左键点击“黄金鳗”预设档，对此预设进行详细配置。进入“提钩” - “鱼饵”标签页，添加“红蛆”作为鱼饵，对该鱼饵进行配置，例如我勾选了如下配置：
+进入“提钩” - “鱼饵”标签页，添加“红蛆”作为鱼饵，对该鱼饵进行配置，例如我勾选了如下配置：
 
 - “双重提钩 - 使用双重提钩 &amp; 提钩重杆（!!）”：当且仅当鱼咬重杆时，使用“双重提钩”技能。
 - “三重提钩 - 使用三重提钩 &amp; 提钩重杆（!!）”：当且仅当鱼咬重杆时，使用“三重提钩”技能（GP 充足时，Auto Hook 会优先使用“三重提钩”技能）。
+- “超时 - 17.0 时间上限 &amp; 10.0 撒饵时间上限”：当抛竿等待时间超过 17 秒，或当使用“撒饵”技能后等待时间超过 10 秒时，收杆重抛，提升钓“黄金鳗”的效率。
 - “使用鱼饵 - 雄心之饵 &amp; 最大使用次数 2”：每次下杆使用最多 2 次“雄心之饵”，提升鱼咬重杆的概率。
   - “专一垂钓选项 - 不在专一垂钓激活时使用拟饵技能”：“专一垂钓”状态激活时，不使用“雄心之饵”技能，避免浪费 GP。
 
@@ -149,7 +150,7 @@
 即使背负红玩之名，我也会继续用下去这些插件！
 
 但君子有所为有所不为，我还是很分得清哪些插件对我来说是可以按需采用的，哪些插件又是应该弃之如敝履的。比如，作为一个会品味休闲玩法的玩家，完全自动化采集资源是可怕的黑洞，偶尔骑上坐骑奔波于采集点，其实也蛮舒适，实在懒得跑大不了从交易板上购买原材料就好；作为一个会挑战硬核内容的玩家，我绝对不会接触战斗辅助类的插件，一方面没有遇到什么机制难到我大脑拒绝处理，或者说源于我作为魂系游戏玩家的矜持让我总能想方设法克服复杂的机制，另一方面就像社区里调侃《原神》玩家的那样：“你记住，只要你玩了《原神》，你成为了旅行者，你这辈子就都是旅行者了，你洗不掉的” —— 一旦用上了任何辅助战斗的插件，此前一切为技术精进作出的努力，重复挑战副本获取的 Logs，都即刻**没有任何含金量**了，我绝不能容忍这样的烙印刻在我身上。
-</content:original-text><content:updated-at>2026-03-12T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
+</content:original-text><content:updated-at>2026-03-13T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[配置启动 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
 
 首先，认清自己的需求，我并不需要多么强大的模型来跑什么复杂任务，因此选择排行榜上佼佼的顶级模型是极不划算的，每天定时任务抓取一次网页就烧几块钱这谁顶得住？其次，直接使用模型官方 API 往往意味着更高的成本，而选用三方 API…]]></description><link>https://blog.towind.fun/posts/openclaw-multiple-agents</link><guid isPermaLink="false">openclaw-multiple-agents</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！
