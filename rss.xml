@@ -1,4 +1,323 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 17 Mar 2026 03:00:13 GMT</lastBuildDate><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 19 Mar 2026 03:56:32 GMT</lastBuildDate><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
+
+全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。…]]></description><link>https://blog.towind.fun/posts/wplace-painter-automatic</link><guid isPermaLink="false">wplace-painter-automatic</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+[Wplace](https://wplace.live/) 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。
+
+在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
+
+全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。
+
+## 方案探索
+
+最初的设想自然是基于 Blue Marble 插件开发，看看能否在计算好坐标的基础上，模拟鼠标点击等事件来自动化放置像素点。在看代码之前就很疑惑，它是怎么实现的在 Open Street Map 上生成待绘制像素点的？难不成它获取了创建的 OSM 地图实例？如果是的话，那模拟点击事件应该也能够实现了吧。
+
+遗憾是 Wplace 开发人员并没有笨到暴露出地图实例，AI 分析代码库之后告诉我，Blue Marble 实际上劫持了 `window.fetch()` 方法，当响应值为当前区块的图片时，对图片进行重绘，添加待绘制像素点，最后交还给 Wplace 的代码继续处理。优雅，完全不会产生兼容性问题！当然也从另一个方面提醒开发者们，一定要慎重引入安全性未知的代码，通过劫持常用方法，攻击者真的是可以为所欲为。
+
+迷茫之际找到了这个仓库 [`Wplace-Click-Assistant`](https://github.com/Beibeisheep/Wplace-Click-Assistant)，它获取当前浏览器窗口显示的内容，通过计算机视觉技术识别出待点击的区域，并模拟鼠标移动和点击事件来完成像素点放置。即使偶尔会出现精度问题，但从理论上讲已是很完备的方案了，内置的模拟人类操作代码应该也足以应对官方的自动化检测了。稍微遗憾是脚本运行的过程中会持续占用鼠标，这也无可厚非。我并没有试用过此脚本，但放在这里给一个大大的肯定🙆‍♂️。
+
+终于的终于，我还是决定通过**调用接口**的方式来实现自动化放置像素点。经验告诉我，Wplace 肯定在请求里塞了加密 Token，防止大家无脑调用接口，下面就来具体分析看看。
+
+## 分析 Wplace 源码
+
+从网络请求中，可以找到点击 Paint 按钮后调用的接口：`POST https://backend.wplace.live/s${SEASON}/pixel/${TILE_X}/${TILE_Y}`。观察请求，发现其中有两个开发者自定义的请求头：
+
+- `x-pawtect-token`：请求合法性校验 Token。
+- `x-pawtect-variant`：请求合法性校验算法标识，目前固定为 `koala`。
+
+请求载荷中也有一个名为 `fp` 的参数字段。
+
+使用 [Save All Resources](https://chromewebstore.google.com/detail/save-all-resources/abpdnfjocnmdomablahdcfnoggeeiedb) 插件将 Wplace 的前端资源下载到本地，交给 AI 分析 `x-pawtect-token` 与 `fp` 的生成逻辑：
+
+- `x-pawtect-token`：将请求载荷转为 JSON 字符串，作为参数传入另一个 WebAssembly 模块中定义的算法，计算得到的加密 Token。根据载荷的不同，生成的 Token 也会不同。
+- `fp`：将收集到的浏览器指纹信息进行处理，生成的 Token。如果浏览器环境不发生改变，该值也不会发生改变。
+
+可知，知道 `x-pawtect-token` 的生成逻辑是实现接口调用的关键，但我并没有反编译 WebAssembly 模块的经验，AI 也似乎分析不出来加密算法的具体实现细节。
+
+于是我决定退一步，不再尝试复刻具体实现，而是像之前爱做的那样，使用 Chrome 开发者工具来劫持传入的载荷，其余的逻辑交还给 Wplace 的代码继续处理。既不用花时间反编译加密模块，也不用写自动化代码，无需兼容未来版本的算法更新，还能在用户真实浏览器环境调用接口，降低被风控的风险。
+
+那么，现在需要做的就是：构造正确的请求载荷。
+
+在开发者工具里为对应的代码打上断点，然后正常放置像素点，点击 Paint 按钮，观察传入方法的参数：
+
+![获取传入方法的参数](./wplace-painter-automatic/get-function-params.png)
+
+可知参数类型为：
+
+```ts
+type t = {
+  // 颜色值
+  color: { r: number; g: number; b: number; a: number };
+  // 颜色索引
+  colorIdx: number;
+  // 像素点坐标
+  pixel: [number, number];
+  // 地图赛季
+  season: number;
+  // 区块坐标
+  tile: [number, number];
+}[];
+```
+
+于是，从 Blue Marble 获取到待绘制像素点的坐标和颜色信息后，就可以构造出正确的载荷了。为此，我们需要改造一下 Blue Marble 插件。
+
+## 改造 Blue Marble
+
+先通过 AI 简单了解 Blue Marble 的具体实现后，我能想到的就是，基于输入图片的像素点坐标和颜色信息，比对目前已绘制的像素点坐标和颜色信息，得到待绘制的像素点坐标和颜色信息列表。
+
+话虽如此，但实际编写代码还要阅读已有的函数逻辑，考虑区块坐标等，实在伤脑筋。于是我直接把需求提给了 AI，竟然一遍就写出了正确的代码，自己只稍微修改了几处细节就跑通了：
+
+```js
+export default class TemplateManager {
+  constructor(name, version) {
+    //...
+
+    this.shouldFilterColor = new Map(); // Will contain all color ID&apos;s to filter @type {Map&lt;number, boolean&gt;}
+    this.templateMissingAndUnfilteredPixels = new Map(); // A Map where the keys are tile coordinates, and the values are arrays of missing pixels for that tile, taking into unfiltered colors.
+  }
+
+  async drawTemplateOnTile(tileBlob, tileCoords) {
+    // ...
+
+    const originalTileCoords = Array.isArray(tileCoords)
+      ? [Number(tileCoords[0]), Number(tileCoords[1])]
+      : null;
+
+    // Compute real missing pixels by comparing templates to the server tile
+    try {
+      if (originalTileCoords) {
+        const tileCoordsKey = originalTileCoords.join(&quot;,&quot;);
+        const missingPixels = this.getMissingPixelsForTileArray(
+          tileBeforeTemplates32,
+          originalTileCoords,
+        );
+        const missingAndUnfilteredPixels = missingPixels.filter(
+          (pixel) =&gt; !this.shouldFilterColor.has(pixel.colorIdx),
+        );
+        this.templateMissingAndUnfilteredPixels.set(
+          tileCoordsKey,
+          missingAndUnfilteredPixels,
+        );
+        console.log(
+          `Missing pixels for tile ${tileCoordsKey} with unfiltered color:`,
+          missingAndUnfilteredPixels,
+        );
+      }
+    } catch (err) {
+      consoleWarn(&quot;Failed to compute missing pixels for tile:&quot;, err);
+    }
+
+    //...
+  }
+
+  /**
+   * Compares all template pixels for a tile against the provided tile Uint32Array
+   * and returns pixels that are not yet drawn on the server tile.
+   * @param {Uint32Array} tile32 - The server tile as a Uint32Array of size (tileSize*drawMult)^2
+   * @param {Array&lt;number&gt;} tileCoordsArray - [tileX, tileY]
+   * @returns {Array&lt;{tile:[number, number],pixel:[number, number],colorIdx:number}&gt;}
+   */
+  getMissingPixelsForTileArray(tile32, tileCoordsArray) {
+    const results = [];
+    const drawMult = this.drawMult;
+    const tileSize = this.tileSize;
+    const drawSize = tileSize * drawMult;
+    const centerOffset = Math.floor(drawMult / 2);
+    const lookup = this.paletteBM?.LUT || new Map();
+
+    const tileXKey = tileCoordsArray[0].toString().padStart(4, &quot;0&quot;);
+    const tileYKey = tileCoordsArray[1].toString().padStart(4, &quot;0&quot;);
+    const tileKeyPrefix = `${tileXKey},${tileYKey}`;
+
+    for (const template of this.templatesArray) {
+      const matchingKeys = Object.keys(template.chunked32 || {}).filter((k) =&gt;
+        k.startsWith(tileKeyPrefix),
+      );
+      if (matchingKeys.length === 0) continue;
+
+      for (const key of matchingKeys) {
+        const buffer32 = template.chunked32[key];
+        if (!buffer32) continue;
+
+        const bitmap = template.chunked?.[key];
+        const width = bitmap
+          ? bitmap.width
+          : Math.round(Math.sqrt(buffer32.length));
+        const height = bitmap
+          ? bitmap.height
+          : Math.round(Math.sqrt(buffer32.length));
+
+        const [tileX, tileY, startPx, startPy] = key.split(&quot;,&quot;).map(Number);
+
+        const cols = Math.floor(width / drawMult);
+        const rows = Math.floor(height / drawMult);
+
+        for (let r = 0; r &lt; rows; r++) {
+          for (let c = 0; c &lt; cols; c++) {
+            const cx = c * drawMult + centerOffset;
+            const cy = r * drawMult + centerOffset;
+            const idx = cy * width + cx;
+            const packedTemplate = buffer32[idx];
+            const alpha = (packedTemplate &gt;&gt;&gt; 24) &amp; 0xff;
+            if (alpha === 0) continue; // transparent
+
+            const templateColorID = lookup.get(packedTemplate) ?? -2;
+
+            const pixelX = startPx + c;
+            const pixelY = startPy + r;
+
+            const tileCenterX = pixelX * drawMult + centerOffset;
+            const tileCenterY = pixelY * drawMult + centerOffset;
+            const tileIdx = tileCenterY * drawSize + tileCenterX;
+            const packedTile = tile32[tileIdx];
+            const tileColorID = lookup.get(packedTile) ?? -2;
+
+            if (tileColorID !== templateColorID) {
+              results.push({
+                colorIdx: templateColorID,
+                pixel: [pixelX, pixelY],
+                season: 0, // Assuming season is 0 for now, adjust as needed
+                tile: [tileX, tileY],
+              });
+            }
+          }
+        }
+      }
+    }
+
+    return results;
+  }
+}
+```
+
+上面代码中的 `this.templateMissingAndUnfilteredPixels` 变量就是我们最终需要的待绘制像素点列表了。
+
+踏马的我没招了，AI 太强力了，尤其对于还根本不熟悉代码库就要开发的情况，简直是降维打击。古法编程的程序员过去奉为圭皋的“代码阅读能力”，现在看来虽然仍然有用但再也不会是立身之根本了。
+
+![如图所示](./wplace-painter-automatic/bye-world.jpg)
+
+咳咳，回到主题。放到实际场景看一看，顺利在控制台里打印出可直接用于载荷的数组：
+
+![待绘制像素点列表](./wplace-painter-automatic/get-missing-pixels.png)
+
+那么现在，完整的流程就可以跑通了：
+
+1. 上传待绘制图片，由 Blue Marble 计算出待绘制像素点列表，从控制台复制数组对象。
+2. 在开发者工具的“源代码”标签页，找到 Wplace 源码中的 `sendPaintRequests()` 方法，在方法的入口打上断点。
+3. 随便点一个像素点，点击 Paint 按钮触发断点，修改传入方法的对应参数数组为复制的待绘制像素点数组，继续执行代码，绘制就自动完成了！
+
+每次都要去控制台复制对象其实有点麻烦，所以接下来将能力接入到 Blue Marble 插件提供的 UI 里。
+
+当可用绘画次数小于指定颜色像素点的待绘制数量时，应当截取数组前面的部分，避免触发异常请求。这里我将逻辑写在了 Blue Marble 插件的过滤器里的按钮点击事件中：
+
+```js
+export default class WindowFilter extends Overlay {
+  buildWindowed() {
+    // ...
+    this.addButton({ textContent: &quot;Refresh&amp;Copy&quot; }, (instance, button) =&gt; {
+      button.onclick = () =&gt; {
+        button.disabled = true;
+        this.updateColorList();
+        this.#copyMissingPixelsWithUnfilteredColorToClipboard();
+        button.disabled = false;
+      };
+    });
+  }
+
+  /**
+   * Copies the missing pixels with unfiltered colors to the clipboard,
+   * up to the user&apos;s charge count.
+   */
+  #copyMissingPixelsWithUnfilteredColorToClipboard() {
+    const missingAndUnfilteredPixels = Array.from(
+      this.templateManager.templateMissingAndUnfilteredPixels.values(),
+    ).flat();
+    const chargeCount = Math.floor(
+      this.templateManager.userChargeData[&quot;count&quot;],
+    );
+    const copiedPixels = missingAndUnfilteredPixels.slice(0, chargeCount);
+    GM_setClipboard(JSON.stringify(copiedPixels));
+    console.log(`Copy pixels to clipboard:`, copiedPixels);
+    alert(
+      `Copied ${copiedPixels.length} missing pixels with unfiltered colors to clipboard!`,
+    );
+  }
+}
+```
+
+这样，当点击 Refresh&amp;Copy 按钮时，就可以将直接用于请求载荷的数组复制到剪贴板了：
+
+![点击 Refresh&amp;Copy 按钮复制截取后的待绘制像素点数组](./wplace-painter-automatic/copy-missing-pixels.png)
+
+特别的，尽管已经按颜色排序构造了用于请求的像素点列表，但默认情况下从左到右、自上而下的顺序其实并不能反映人真实的手点绘画逻辑。因此我额外做了一次排序，按照像素点之间的距离构造列表，简单模拟真人的绘画习惯：
+
+```js
+export default class WindowFilter extends Overlay {
+  #copyMissingPixelsWithUnfilteredColorToClipboard() {
+    // 1) Get all missing pixels with unfiltered colors of all tiles from the template manager
+    const missingAndUnfilteredPixels = Array.from(
+      this.templateManager.templateMissingAndUnfilteredPixels.values(),
+    ).flat();
+
+    // 2) Group the pixels by color ID, and sort the groups by color ID in ascending order
+    const groups = new Map();
+    for (const p of missingAndUnfilteredPixels) {
+      const k = Number(p.colorIdx);
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(p);
+    }
+    const groupEntries = Array.from(groups.entries());
+
+    // 3) For each group, sort the pixels by distance from the first pixel in the group (which is arbitrary but deterministic), and then push the sorted pixels to a new array
+    const sortedPixels = [];
+    for (const [, group] of groupEntries) {
+      if (group.length === 0) continue;
+      const ref = group[0].pixel || [0, 0];
+      group.sort((A, B) =&gt; {
+        const dxA = A.pixel[0] - ref[0],
+          dyA = A.pixel[1] - ref[1];
+        const dxB = B.pixel[0] - ref[0],
+          dyB = B.pixel[1] - ref[1];
+        const dA = dxA * dxA + dyA * dyA;
+        const dB = dxB * dxB + dyB * dyB;
+        return dA - dB;
+      });
+      sortedPixels.push(...group);
+    }
+
+    // 4) Copy the pixels to the clipboard, up to the user&apos;s charge count
+    // ...
+  }
+}
+```
+
+您可能也注意到了，排序时我没有使用 `tile` 相关的数值去计算两个像素点的绝对距离，而是仅使用 `pixel` 计算了他们在区块的投影距离。这样做的结果是：像素点处于相同区块时，一切正常，按照绝对距离排序；像素点处于不同区块时，即使绝对距离很近，但可能会排列到相距甚远的位置。也算从一定程度上提升了反检测能力吧。
+
+完整的代码请见仓库 [LolipopJ/Wplace-BlueMarble](https://github.com/LolipopJ/Wplace-BlueMarble)，编译后直接可用的油猴脚本请见文件 [`BlueMarble-For-GreasyFork.user.js`](https://github.com/LolipopJ/Wplace-BlueMarble/blob/main/dist/BlueMarble-For-GreasyFork.user.js)。
+
+## 使用方法
+
+我录制了一次完整的绘画流程：
+
+&lt;video controls src=&quot;/videos/wplace-painter-automatic_use-guide.mp4&quot;&gt;&lt;/video&gt;
+
+因为 Blue Marble 劫持了 Wplace 刷新地图的请求以计算待绘制像素点列表，所以在取消过滤颜色后，需要等待下一次地图刷新 Blue Marble 才能正确获取到像素点列表，而后点击 Refresh&amp;Copy 按钮获取的才是有效的像素点列表。换句话说，所见即所得，当地图上出现待绘制像素点后，就可以点击 Refresh&amp;Copy 按钮了。
+
+值得一提的是，应避免快速发起多次绘画请求，尤其是在每次绘制像素点数量较多的情况下，避免触发 Wplace 的风控导致账号封禁。可以自己简单做个乘除法，例如每分钟我大概能点 100 个像素点，那么应该几分钟后发起下次请求呢。
+
+## 尾声
+
+对不起……
+
+![颠火太阳说是](./wplace-painter-automatic/ds-sun.jpg)
+
+不能继续做小画家了……
+
+![射杀恋人之日说是](./wplace-painter-automatic/ds-bow.gif)
+
+再也回不去了……
+
+![濡湿小镰刀说是](./wplace-painter-automatic/ds-fun.gif)
+</content:original-text><content:updated-at>2026-03-19T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用 Dalamud 插件（即卫月插件）的技巧。
 
 自力更生搓爆发药和食物并没有问题，但当你需要搓几百组的时候，对注意力的消耗就成了巨大的负担：执行完宏 1 后，要去执行宏 2，搓完后再继续下一轮制作。期间每隔几十秒就要切回窗口点击一下，实在是令人焦虑。越是长大越是觉得时间宝贵，注意力可贵，对于此类重复度高的机械化工作，占用屏幕时间显得尤为浪费。因此，我学习并使用了一些能够简化上述生产等过程的插件，耐不住想要分享的性子，遂整理成文，也许对你有所帮助。当然，我也并没有把这些插件的功能钻研透彻，下面也只会讲述我实际使用到的功能。
