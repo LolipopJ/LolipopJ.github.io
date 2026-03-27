@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 Mar 2026 01:57:24 GMT</lastBuildDate><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 27 Mar 2026 02:43:01 GMT</lastBuildDate><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
 
 全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。…]]></description><link>https://blog.towind.fun/posts/wplace-painter-automatic</link><guid isPermaLink="false">wplace-painter-automatic</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 [Wplace](https://wplace.live/) 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。
@@ -290,7 +290,9 @@ export default class WindowFilter extends Overlay {
 }
 ```
 
-您可能也注意到了，排序时我没有使用 `tile` 相关的数值去计算两个像素点的绝对距离，而是仅使用 `pixel` 计算了他们在区块的投影距离。这样做的结果是：像素点处于相同区块时，一切正常，按照绝对距离排序；像素点处于不同区块时，即使绝对距离很近，但可能会排列到相距甚远的位置。也算从一定程度上提升了反检测能力吧。
+之所以是“简单模拟”，是因为这样的排序后，将会从起始点呈圆形绘制像素点。对于未启用颜色抖动的绘画模板，绘制的结果将会是一个个圆形区域，还是能看得出机器感的。如果想要更加拟真的话，考虑的一个可能算法是：先把相邻像素分组，再在组内横向或纵向排序，最后合并成一个列表。
+
+另外您可能也注意到了，排序时我没有使用 `tile` 相关的数值去计算两个像素点的绝对距离，而是仅使用 `pixel` 计算了他们在区块的投影距离。这样做的结果是：像素点处于相同区块时，一切正常，按照绝对距离排序；像素点处于不同区块时，即使绝对距离很近，但可能会排列到相距甚远的位置。虽然模板位于不同区块的概率很小，但也算从一定程度上提升了反检测能力吧。
 
 完整的代码请见仓库 [LolipopJ/Wplace-BlueMarble](https://github.com/LolipopJ/Wplace-BlueMarble)，编译后直接可用的油猴脚本请见文件 [`BlueMarble-For-GreasyFork.user.js`](https://github.com/LolipopJ/Wplace-BlueMarble/blob/main/dist/BlueMarble-For-GreasyFork.user.js)。
 
@@ -317,7 +319,7 @@ export default class WindowFilter extends Overlay {
 再也回不去了……
 
 ![濡湿小镰刀说是](./wplace-painter-automatic/ds-fun.gif)
-</content:original-text><content:updated-at>2026-03-19T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-03-27T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.fun/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用 Dalamud 插件（即卫月插件）的技巧。
 
 自力更生搓爆发药和食物并没有问题，但当你需要搓几百组的时候，对注意力的消耗就成了巨大的负担：执行完宏 1 后，要去执行宏 2，搓完后再继续下一轮制作。期间每隔几十秒就要切回窗口点击一下，实在是令人焦虑。越是长大越是觉得时间宝贵，注意力可贵，对于此类重复度高的机械化工作，占用屏幕时间显得尤为浪费。因此，我学习并使用了一些能够简化上述生产等过程的插件，耐不住想要分享的性子，遂整理成文，也许对你有所帮助。当然，我也并没有把这些插件的功能钻研透彻，下面也只会讲述我实际使用到的功能。
