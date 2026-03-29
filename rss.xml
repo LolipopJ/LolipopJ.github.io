@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 28 Mar 2026 10:30:12 GMT</lastBuildDate><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 29 Mar 2026 06:47:50 GMT</lastBuildDate><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
 
 全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。…]]></description><link>https://blog.towind.fun/posts/wplace-painter-automatic</link><guid isPermaLink="false">wplace-painter-automatic</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 [Wplace](https://wplace.live/) 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。
@@ -567,15 +567,6 @@ bailian/qwen3-coder-next                   text       256k     no    yes   confi
 
 通过百炼接入的 AI 模型是付费 API 的形式，当新人赠送额度用完后，就需要储值使用了。
 
-另外，OpenClaw 官方提供了 `qwen-portal-auth` 插件用于接入 Qwen Coder 和 Qwen Vision 模型，目前这两款模型有每天免费的使用额度，可以当羊毛薅来用一用：
-
-```bash
-# 启用插件
-openclaw plugins enable qwen-portal-auth
-# 认证登录
-openclaw models auth login --provider qwen-portal
-```
-
 ### Kimi
 
 据社区里的用户推荐，月之暗面的 Kimi 模型有着较好的任务规划能力，适合拿来做 OpenClaw 多智能体聚落的“主脑”。当然，国内的大模型一般也会有比较好的本土化调教，理论上对中文输入的理解能力更强。
@@ -643,19 +634,17 @@ moonshot/kimi-k2-thinking-turbo            text       250k     no    yes   confi
 ```bash
 $ openclaw models list --provider github-copilot
 
-🦞 OpenClaw 2026.3.7 (42a1394) — If it works, it&apos;s automation; if it breaks, it&apos;s a &quot;learning opportunity.&quot;
+🦞 OpenClaw 2026.3.28 (f9b1079)
 
 Model                                      Input      Ctx      Local Auth  Tags
-github-copilot/gpt-5-mini                  text+image 125k     no    yes   configured,alias:Copilot GPT 5 Mini
-github-copilot/claude-opus-4.6             text+image 125k     no    yes   configured,alias:Copilot Claude Opus 4.6
-github-copilot/claude-sonnet-4.6           text+image 125k     no    yes   configured,alias:Copilot Claude Sonnet 4.6
+github-copilot/claude-opus-4.6             text+image 977k     no    yes   configured,alias:Copilot Claude Opus 4.6
+github-copilot/claude-sonnet-4.6           text+image 977k     no    yes   configured,alias:Copilot Claude Sonnet 4.6
 github-copilot/gemini-3.1-pro-preview      text+image 125k     no    yes   configured,alias:Copilot Gemini 3.1 Pro (Preview)
-github-copilot/gpt-5.4                     -          -        -     -     configured,missing
-github-copilot/gpt-5.3-codex               text+image 266k     no    yes   configured,alias:Copilot GPT 5.3 Codex
-github-copilot/gpt-4.1                     text+image 63k      no    yes   configured,alias:Copilot GPT 4.1
+github-copilot/gpt-5.4                     text+image 391k     no    yes   configured,alias:Copilot GPT 5.4
+github-copilot/gpt-5.3-codex               text+image 391k     no    yes   configured,alias:Copilot GPT 5.3 Codex
+github-copilot/gpt-5-mini                  text+image 258k     no    yes   configured,alias:Copilot GPT 5 Mini
+github-copilot/gpt-4.1                     text+image 125k     no    yes   configured,alias:Copilot GPT 4.1
 ```
-
-现在，除了 GPT 5.4 模型暂时无法使用外（在之前的 OpenClaw 2026.3.2 版本，Claude Opus 4.6 和 GPT 5.3 Codex 等新模型都不可用，撰写此文时插件已更新支持了），其它配置好的模型都能正常调用了。
 
 超出每月限额后，再调用高级模型会按 0.04 美元每个请求的价格收费，请确保自己的[预算配置](https://github.com/settings/billing/budgets)合理，避免烧走不必要的资金。
 
@@ -663,7 +652,7 @@ github-copilot/gpt-4.1                     text+image 63k      no    yes   confi
 
 在前面的章节里，我根据自己的实际需要，为 OpenClaw 接入了三个大模型提供商，开放了若干款 AI 模型的调用权限。
 
-接下来，根据最新的 [LMSYS LLM 竞技场](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard)排行榜，整理我引入模型的排名结果如下表：
+接下来，根据今天的 [LMSYS LLM 竞技场](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard)排行榜，整理我引入模型的排名结果如下表：
 
 &lt;div style={{ overflow: &quot;auto&quot; }}&gt;
   &lt;table style={{ width: &quot;max-content&quot;, margin: 0 }}&gt;
@@ -839,7 +828,7 @@ github-copilot/gpt-4.1                     text+image 63k      no    yes   confi
   &lt;/table&gt;
 &lt;/div&gt;
 
-综合考虑性价比（比如包含思考过程的 `*-thinking` 模型会消耗更多的令牌），我大手一挥，作出了如下部署：
+综合考虑性价比（比如包含思考过程的 `*-thinking` 模型会消耗更多的令牌；又如虽然 gpt-4.1 排名高于 gpt-5-mini，但 gpt-5-mini 在本人实际使用中表现更优），我大手一挥，作出了如下部署：
 
 &lt;div style={{ overflow: &quot;auto&quot; }}&gt;
   &lt;table style={{ width: &quot;max-content&quot;, margin: 0 }}&gt;
@@ -868,7 +857,7 @@ github-copilot/gpt-4.1                     text+image 63k      no    yes   confi
         &lt;/td&gt;
         &lt;td&gt;常时日常会话&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;github-copilot/gpt-4.1&lt;/code&gt;
+          &lt;code class=&quot;language-text&quot;&gt;github-copilot/gpt-5-mini&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;同时也作为默认模型使用&lt;/td&gt;
       &lt;/tr&gt;
@@ -932,7 +921,7 @@ github-copilot/gpt-4.1                     text+image 63k      no    yes   confi
 对应执行命令：
 
 ```bash
-openclaw agents add daily --workspace ~/.openclaw/workspace-daily --model github-copilot/gpt-4.1
+openclaw agents add daily --workspace ~/.openclaw/workspace-daily --model github-copilot/gpt-5-mini
 openclaw agents add daily-cn --workspace ~/.openclaw/workspace-daily-cn --model bailian/qwen3.5-plus
 openclaw agents add coder --workspace ~/.openclaw/workspace-coder --model bailian/qwen3-coder-next
 openclaw agents add coder-pro --workspace ~/.openclaw/workspace-coder-pro --model github-copilot/gpt-5.3-codex
@@ -1253,7 +1242,7 @@ Lolipop老师觉得呢？💙
 气笑了，在生成封面图的时候，发现负责指挥的龙虾连钳子手都进化成人手了，负责干活的龙虾为何拿着奇怪的东西在研磨纸张，背后的电脑起了什么作用？！
 
 折腾爽了，下次见。
-</content:original-text><content:updated-at>2026-03-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/openclaw-setup</link><guid isPermaLink="false">openclaw-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-03-29T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.fun/posts/openclaw-setup</link><guid isPermaLink="false">openclaw-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:original-text>
 自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
 
 过去曾有人写文安慰大家，不必盯着 AI 的新闻看，更不必每天都追最新的 AI 技术，只会让你感到迷茫与眼花缭乱。我于是慢下脚步，搬来板凳等着某一天，AI 技术宣告成熟可用了，再去好好学习。而如今，经历三年多的高速发展，我认为目前的 AI 技术已经逐步进入到了一个相对可用的阶段，是时候加入浩浩汤汤的采用者大军，除开早就开始使用的 Copilot 之类的编码助手外，从更多方面使用 AI 来进化自己的能力栈。
