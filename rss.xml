@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Apr 2026 17:59:38 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Apr 2026 18:03:54 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
@@ -2161,7 +2161,7 @@ __pycache__/
 
 # 由于 LaunchAgent 服务运行在独立环境中，在这里指定了 SSH 命令使用的秘钥，
 # 确保服务总能使用正确的密钥进行身份验证，完成 Git 操作
-export GIT_SSH_COMMAND=&apos;ssh -i /Users/&lt;YOUR_USERNAME&gt;/.ssh/id_ed25519 -o IdentitiesOnly=yes&apos;
+export GIT_SSH_COMMAND=&apos;ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes&apos;
 
 # 进入项目目录
 cd ~/.openclaw || exit 1
@@ -2201,7 +2201,7 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
     &lt;key&gt;ProgramArguments&lt;/key&gt;
     &lt;array&gt;
         &lt;string&gt;/bin/bash&lt;/string&gt;
-        &lt;string&gt;/Users/&lt;YOUR_USERNAME&gt;/.openclaw/scripts/backup-workspace.sh&lt;/string&gt;
+        &lt;string&gt;/Users/$YOUR_USERNAME/.openclaw/scripts/backup-workspace.sh&lt;/string&gt;
     &lt;/array&gt;
 
     &lt;!-- 每天本地时间 24:00 执行 --&gt;
@@ -2215,9 +2215,9 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
 
     &lt;!-- 标准输出和错误日志 --&gt;
     &lt;key&gt;StandardOutPath&lt;/key&gt;
-    &lt;string&gt;/Users/&lt;YOUR_USERNAME&gt;/.openclaw/logs/backup-workspace.stdout.log&lt;/string&gt;
+    &lt;string&gt;/Users/$YOUR_USERNAME/.openclaw/logs/backup-workspace.stdout.log&lt;/string&gt;
     &lt;key&gt;StandardErrorPath&lt;/key&gt;
-    &lt;string&gt;/Users/&lt;YOUR_USERNAME&gt;/.openclaw/logs/backup-workspace.stderr.log&lt;/string&gt;
+    &lt;string&gt;/Users/$YOUR_USERNAME/.openclaw/logs/backup-workspace.stderr.log&lt;/string&gt;
 
     &lt;!-- 运行周期为每天 --&gt;
     &lt;key&gt;RunAtLoad&lt;/key&gt;
