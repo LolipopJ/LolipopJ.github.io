@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Apr 2026 15:13:29 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Apr 2026 17:59:38 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
@@ -2086,14 +2086,28 @@ OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动
 
 默认情况下 OpenClaw 会在 `~/.openclaw/workspace` 目录下自动初始化 Git 仓库，但是我不满足于此，懒狗精神发作，希望把整个仓库的重要内容都备份上传到自己的 Github 私有仓库里。
 
-所以我在 `~/.openclaw` 目录下直接初始化了新的 Git 仓库：
+确保能通过 SSH 访问到自己的 Github 账号，顺手把这些老生常谈的命令写在这里：
+
+```bash
+# 生成 SSH 密钥对，添加到 SSH 代理中
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C &quot;&lt;YOUR_EMAIL&gt;@example.com&quot;
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519 # 如果报错请先执行 eval &quot;$(ssh-agent -s)&quot; 命令启动 SSH Agent
+# 复制公钥到剪贴板，添加到 Github 账号的 SSH Keys 中
+pbcopy &lt; ~/.ssh/id_ed25519.pub
+# 测试 SSH 连接是否成功
+ssh -T git@github.com
+# 如果成功会看到类似这样的消息：
+# Hi &lt;USERNAME&gt;! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
+```
+
+在 `~/.openclaw` 目录下初始化新的 Git 仓库：
 
 ```bash
 cd ~/.openclaw
 git init
-git remote add origin &lt;GITHUB_REPO_URL&gt;
+git remote add origin git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git
 
-rm -rf ~/.openclaw/workspace/.git # 删除 OpenClaw 自动初始化的 Git 仓库，避免冲突
+rm -rf ~/.openclaw/workspace/.git # 删除 OpenClaw 自动为工作区初始化的 Git 仓库，避免冲突
 ```
 
 添加 `.gitignore` 文件，忽略掉不需要备份的内容，下面是我的配置供你参考：
@@ -2138,12 +2152,16 @@ __pycache__/
 
 在实际应用过程中，可能还会有新的路径需要添加到 `.gitignore` 里，可以在与 AI 交互的过程中慢慢发现并更新。
 
-手动操作自然不赖，但是把备份能力自动化更保安心。于是让 AI 帮我编写了一款小脚本 `~/.openclaw/scripts/backup-workspace.sh`：
+手动操作固然不赖，自动化备份的能力更保安心。于是我让 AI 帮忙编写了一个小脚本 `~/.openclaw/scripts/backup-workspace.sh`：
 
 ```bash
 #!/bin/bash
 
 # OpenClaw Git 备份脚本
+
+# 由于 LaunchAgent 服务运行在独立环境中，在这里指定了 SSH 命令使用的秘钥，
+# 确保服务总能使用正确的密钥进行身份验证，完成 Git 操作
+export GIT_SSH_COMMAND=&apos;ssh -i /Users/&lt;YOUR_USERNAME&gt;/.ssh/id_ed25519 -o IdentitiesOnly=yes&apos;
 
 # 进入项目目录
 cd ~/.openclaw || exit 1
@@ -2163,14 +2181,14 @@ echo &quot;[$(date &apos;+%Y-%m-%d %H:%M:%S&apos;)] Backup completed&quot; &gt;&
 exit 0
 ```
 
-测试脚本，看看是否正常运行：
+测试脚本，看看是否能正常运行：
 
 ```bash
 chmod +x ~/.openclaw/scripts/backup-workspace.sh
 ~/.openclaw/scripts/backup-workspace.sh
 ```
 
-对于 MacOS 系统，可以把这个脚本设置为自启服务，每天定时执行。编写系统服务文件 `~/Library/LaunchAgents/ai.openclaw.backup.plist`：
+新建 LaunchAgent 服务，遂电脑启动，每天定时执行脚本。可编写系统服务文件 `~/Library/LaunchAgents/ai.openclaw.backup.plist` 内容如下：
 
 ```xml
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -2186,12 +2204,11 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
         &lt;string&gt;/Users/&lt;YOUR_USERNAME&gt;/.openclaw/scripts/backup-workspace.sh&lt;/string&gt;
     &lt;/array&gt;
 
-    &lt;!-- 每天北京时间 24:00 执行 --&gt;
-    &lt;!-- macOS 使用 UTC，北京时间 24:00 = UTC 16:00 --&gt;
+    &lt;!-- 每天本地时间 24:00 执行 --&gt;
     &lt;key&gt;StartCalendarInterval&lt;/key&gt;
     &lt;dict&gt;
         &lt;key&gt;Hour&lt;/key&gt;
-        &lt;integer&gt;16&lt;/integer&gt;
+        &lt;integer&gt;24&lt;/integer&gt;
         &lt;key&gt;Minute&lt;/key&gt;
         &lt;integer&gt;0&lt;/integer&gt;
     &lt;/dict&gt;
@@ -2216,18 +2233,22 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
 加载 LaunchAgent，验证加载状态：
 
 ```bash
-launchctl load ~/Library/LaunchAgents/ai.openclaw.backup.plist
+# 加载服务时会自动执行一次脚本
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.backup.plist
 launchctl list | grep openclaw
+
+# 如果需要卸载服务，可以执行命令
+launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.backup.plist
 ```
 
-现在系统就会自动在每天北京时间晚上十二点，备份 OpenClaw 工作区中我需要的数据与配置文件啦。
+现在系统就会自动在每天晚上十二点，备份 OpenClaw 工作区中我需要的数据与配置文件啦。
 
 ## 尾声
 
 这次摸爬滚打的 OpenClaw 采用体验，一边怨声载道骂骂咧咧，在教程资源尤其少（大部分还是 AI 编撰）的当下，不知道怎么做才是对；另一边觉得实在是太有意思了，它已经打通了我作为开发者需要的底层能力（尽管不稳定），接下来的想象空间可以说是无限大。
 
 总结来看，现在的我拥有了一位会犯错的**实习**助理，到它成为可靠私人 AI 助理还需要培训一些时日。不过我并不担心它未来的成长，每次新模型的发布都可能产生用途用法上的质变。且让我在未来的使用过程中，慢慢 Get 到使唤它的诀窍，帮助自己提升效率，甚至实现创造力的飞跃吧。
-</content:original-text><content:updated-at>2026-04-09T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-04-10T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.fun/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
