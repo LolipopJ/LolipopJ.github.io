@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2026 02:27:37 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2026 03:59:10 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
@@ -1772,8 +1772,6 @@ OpenClaw 原生对 MacOS 系统支持最为完善，如果你恰好拥有像 Mac
 npm install -g openclaw@latest
 ```
 
-OpenClaw 发展迅速，每隔几天都会有新的版本发布，如果想更新版本，执行上面的同款命令即可。
-
 安装服务到系统：
 
 ```bash
@@ -1804,6 +1802,13 @@ openclaw doctor
 
 ```bash
 openclaw gateway start
+```
+
+OpenClaw 发展迅速，开发阶段每隔几天都会有新的版本发布，如果想更新版本，可以执行命令：
+
+```bash
+# 更新 CLI 与 Gateway 守护进程等核心组件
+openclaw update
 ```
 
 我选择对接飞书作为 OpenClaw 助理的消息接收渠道。按照官方文档的[指引](https://docs.openclaw.ai/zh-CN/channels/feishu)，创建好机器人后，发送任意消息即可进入配对流程：
@@ -2084,7 +2089,7 @@ OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动
 
 定期备份 OpenClaw 的数据是一个好习惯，假设哪天它自己玩坏了自己，至少还可以拿过去的资料修修补补。
 
-默认情况下 OpenClaw 会在 `~/.openclaw/workspace` 目录下自动初始化 Git 仓库，但是我不满足于此，懒狗精神发作，希望把整个仓库的重要内容都备份上传到自己的 Github 私有仓库里。
+默认情况下 OpenClaw 会在 `~/.openclaw/workspace` 目录下自动初始化 Git 仓库，但是我不满足于此，懒狗精神发作，希望把整个仓库的重要内容都备份上传到自己的 Github 私有仓库里。尽管这里面包括了**我的密钥等敏感信息**，但上传到私有仓库应该还好吧……还好吧？不会被拿去训练 Copilot 然后某天被闲得没事儿干的用户套出来了吧……
 
 确保能通过 SSH 访问到自己的 Github 账号，顺手把这些老生常谈的命令写在这里：
 
