@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2026 07:11:23 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2026 07:29:30 GMT</lastBuildDate><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
@@ -4612,7 +4612,7 @@ tags:
   - React
   - TypeScript
   - Node
-  - ffmpeg
+  - FFmpeg
 ---
 
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
@@ -7297,7 +7297,7 @@ http {
 一个命中 Proxy 缓存的例子如下：
 
 ![assets-gzip](./nginx-services/proxy-cache-hit.png)
-</content:original-text><content:updated-at>2024-07-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 Alist 上传到云端]]></title><description><![CDATA[笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。
+</content:original-text><content:updated-at>2024-07-17T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 AList 上传到云端]]></title><description><![CDATA[笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。
 
 完整的脚本可见此。
 
@@ -7458,7 +7458,7 @@ Wed, 15 May 2024 15:00:00 +0800
 
 这样，在北京时间凌晨 4 点，系统将自动调用备份脚本。如果彼时仍有用户在游玩，脚本可能会运行失败，可以在执行脚本之前关闭 Minecraft 服务器，完成后重新启动。
 
-## （可选）通过 Alist 上传到云端
+## （可选）通过 AList 上传到云端
 
 &gt; 为了这盘醋，包了这顿饺子。
 
@@ -7466,9 +7466,9 @@ Wed, 15 May 2024 15:00:00 +0800
 
 笔者已经在软路由上安装并配置好了 Alist，连接到了自己的 OneDrive。下面将进一步实现上传备份文件到 OneDrive 或任何其他的云盘。
 
-### 获取 Alist token
+### 获取 AList token
 
-调用 Alist 接口时需要传入 token，因此首先需要获取 token：
+调用 AList 接口时需要传入 token，因此首先需要获取 token：
 
 ```js
 const ALIST_ADDRESS = &quot;YOUR_ALIST_ADDRESS&quot;;
@@ -7499,7 +7499,7 @@ const alistToken = resObj.data.token;
 
 ### 上传备份文件到云盘
 
-现在，编写 Alist 上传文件的方法：
+现在，编写 AList 上传文件的方法：
 
 ```js
 const ALIST_BACKUP_DIR = &quot;/path/to/mc-backups&quot;;
@@ -7526,7 +7526,7 @@ const requestOptions = {
 await fetch(`${ALIST_ADDRESS}/api/fs/put`, requestOptions);
 ```
 
-通过 `headers.append(&quot;As-Task&quot;, &quot;true&quot;);` 将文件上传设为任务，避免阻塞其它命令的执行。在 Alist 管理后台可以看到上传的进度：
+通过 `headers.append(&quot;As-Task&quot;, &quot;true&quot;);` 将文件上传设为任务，避免阻塞其它命令的执行。在 AList 管理后台可以看到上传的进度：
 
 ![upload-to-alist](./backup-mc-server/upload-to-alist.png)
 
