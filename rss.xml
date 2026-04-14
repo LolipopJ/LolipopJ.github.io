@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 14 Apr 2026 11:30:18 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 14 Apr 2026 11:52:33 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -187,8 +187,6 @@ You optimize for truth, clarity, and usefulness over politeness theater.
 ```plaintext
 ────────────────────────────────────────
 ● 我常住在中国成都，请你帮我查询未来一周的天气，看看哪些天适合出门散步
-
-Initializing agent...
 ────────────────────────────────────────
 
 ╭─ ⚕ Hermes ─────────────────────────────────────────────────────╮
@@ -356,11 +354,9 @@ CAMOFOX_URL=http://localhost:9377
 ```plaintext
 ────────────────────────────────────────
 ● 访问财联社电报https://www.cls.cn/telegraph，读取最新的五条电报信息告诉我
-
 ────────────────────────────────────────
 
   ┊ 🌐 navigate  www.cls.cn  1.7s
-
 ╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────╮
 已收到页面数据！任务完成 (｀・ω・´)
 
@@ -701,6 +697,197 @@ V2EX 的签到通常在登录后首页右侧会显示「领取今日的登录奖
 ```
 
 它做到了！Camofox Browser 成功绕过了 V2EX 的自动化检测机制，让助理顺利完成了签到任务！太棒了！
+
+不过每次要在流程前手动导入 Cookies 数据实在不够优雅，于是我让 AI 把流程总结为了一个 SKILL：
+
+````plaintext
+────────────────────────────────────────
+● 以后遇到类似的需要用户身份信息的任务，请首先调用 node ~/.hermes/scripts/get-cookies.js
+~/.camofox/cookies/${DOMAIN}_cookies.txt，获取解析后的 Cookies 数据数组。接着，调用 curl -X POST
+http://localhost:9377/sessions/hermes_${YOUR_ID}/cookies \-H &apos;Content-Type: application/json&apos; \-H
+&apos;Authorization: Bearer $CAMOFOX_API_KEY&apos; \ -d &apos;Cookies 数据数组&apos;。请把这个过程归纳为技能。
+────────────────────────────────────────
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────╮
+明白了老师！这是一个很重要的流程，我来把它归纳成技能保存起来 ⚔️
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📝 preparing skill_manage…
+  ┊ ⚡ skill_man camofox-auth-session  0.0s
+  ┊ review diff
+a/skills/browser/camofox-auth-session/SKILL.md → b/skills/browser/camofox-auth-session/SKILL.md
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────╮
+✨ **技能创建成功！** (ノ◕ヮ◕)ノ*:・゚✧
+
+老师，我已经把 Camofox 浏览器身份认证流程归纳成技能保存好了！
+
+**技能名称**: `camofox-auth-session`
+**位置**: `~/.hermes/skills/browser/camofox-auth-session/SKILL.md`
+
+---
+
+**核心流程总结:**
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  1. 提取 Cookies                                        │
+│     node ~/.hermes/scripts/get-cookies.js               │
+│     ~/.camofox/cookies/${DOMAIN}_cookies.txt            │
+├─────────────────────────────────────────────────────────┤
+│  2. 注入到浏览器会话                                     │
+│     curl -X POST http://localhost:9377/sessions/...     │
+│     -H &quot;Authorization: Bearer $CAMOFOX_API_KEY&quot;         │
+│     -d &apos;${COOKIES_JSON}&apos;                                │
+├─────────────────────────────────────────────────────────┤
+│  3. 验证登录状态                                        │
+│     browser_navigate() 检查用户信息显示                  │
+└─────────────────────────────────────────────────────────┘
+```
+
+以后遇到需要登录态的浏览器任务，我会先加载这个技能，然后按照流程注入身份凭证后再执行任务！
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
+````
+
+看看 Kimi k2.5 模型写出的 SKILL 长啥样吧：
+
+````md
+---
+name: camofox-auth-session
+title: Camofox Browser Authentication Session Management
+description: |
+  When performing browser tasks that require user identity (logged-in state), use this skill 
+  to extract identity credentials from Camofox&apos;s cookie files and inject them into the current 
+  browser session, ensuring subsequent operations execute with the correct user identity.
+triggers:
+  - Browser tasks requiring login state
+  - Accessing web pages that require authentication
+  - Sign-in, fetch personal data, and other operations
+  - Any automation tasks requiring cookies
+steps:
+  1. Determine target domain:
+    - Extract domain from target URL (e.g., v2ex.com, github.com)
+    - Confirm cookie file name format: ${DOMAIN}_cookies.txt
+
+  2. Read and parse Cookies:
+    - Run: node ~/.hermes/scripts/get-cookies.js ~/.camofox/cookies/${DOMAIN}_cookies.txt
+    - This script outputs JSON format cookies data array
+    - Example output:
+        [{ &quot;name&quot;: &quot;session_id&quot;, &quot;value&quot;: &quot;xxx&quot;, &quot;domain&quot;: &quot;.v2ex.com&quot;, ... }]
+
+  3. Inject Cookies into browser session:
+    - Construct curl command with headers:
+        Content-Type: application/json
+        Authorization: Bearer $CAMOFOX_API_KEY
+    - POST to: http://localhost:9377/sessions/${SESSION_ID}/cookies
+    - Body: Cookies JSON array from step 2
+
+  4. Verify login status:
+    - Visit a page requiring login to verify identity is active
+    - Check if page displays user info (username, avatar, etc.)
+
+examples:
+  - description: V2EX sign-in task
+    code: |
+      # 1. Get v2ex.com cookies
+      DOMAIN=&quot;v2ex.com&quot;
+      COOKIES=$(node ~/.hermes/scripts/get-cookies.js ~/.camofox/cookies/${DOMAIN}_cookies.txt)
+
+      # 2. Inject into current session
+      curl -X POST http://localhost:9377/sessions/${SESSION_ID}/cookies \
+        -H &apos;Content-Type: application/json&apos; \
+        -H &quot;Authorization: Bearer ${CAMOFOX_API_KEY}&quot; \
+        -d &quot;$COOKIES&quot;
+
+      # 3. Now can access authenticated pages
+      browser_navigate(&quot;https://www.v2ex.com/mission/daily&quot;)
+
+  - description: GitHub operations requiring authentication
+    code: |
+      COOKIES=$(node ~/.hermes/scripts/get-cookies.js ~/.camofox/cookies/github.com_cookies.txt)
+      curl -X POST http://localhost:9377/sessions/${SESSION_ID}/cookies \
+        -H &apos;Content-Type: application/json&apos; \
+        -H &quot;Authorization: Bearer ${CAMOFOX_API_KEY}&quot; \
+        -d &quot;$COOKIES&quot;
+
+environment_variables:
+  - CAMOFOX_API_KEY: Camofox service API authentication key
+  - SESSION_ID: Current Hermes browser session identifier
+
+notes: |
+  - Cookie files are typically located in ~/.camofox/cookies/ directory
+  - get-cookies.js script automatically parses Netscape format cookie files to JSON
+  - If cookies are expired, need to re-login to target website in browser first
+  - Some sites may have additional CSRF token validation requiring extra handling
+
+author: Lolipop703
+---
+
+# Camofox 浏览器身份认证会话管理
+
+本技能用于在需要用户身份信息的浏览器任务中，正确地将已保存的 Cookies 注入到 Camofox 浏览器会话中。
+
+## 完整流程
+
+### 第一步：获取 Cookies
+
+使用 get-cookies.js 脚本从 Camofox 保存的 cookies 文件中解析出 JSON 格式的 cookies 数据：
+
+```bash
+node ~/.hermes/scripts/get-cookies.js ~/.camofox/cookies/${DOMAIN}_cookies.txt
+```
+
+输出示例：
+
+```json
+[
+  {
+    &quot;name&quot;: &quot;session_id&quot;,
+    &quot;value&quot;: &quot;abc123&quot;,
+    &quot;domain&quot;: &quot;.v2ex.com&quot;,
+    &quot;path&quot;: &quot;/&quot;
+  },
+  {
+    &quot;name&quot;: &quot;user_token&quot;,
+    &quot;value&quot;: &quot;xyz789&quot;,
+    &quot;domain&quot;: &quot;.v2ex.com&quot;,
+    &quot;path&quot;: &quot;/&quot;
+  }
+]
+```
+
+### 第二步：注入 Cookies 到会话
+
+使用 curl 将 cookies 数据发送到 Camofox 的会话 API：
+
+```bash
+curl -X POST http://localhost:9377/sessions/${SESSION_ID}/cookies \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &quot;Authorization: Bearer ${CAMOFOX_API_KEY}&quot; \
+  -d &apos;${COOKIES_JSON}&apos;
+```
+
+### 第三步：验证登录状态
+
+访问需要登录的页面，确认身份认证已正确应用：
+
+```python
+browser_navigate(&quot;https://www.v2ex.com/mission/daily&quot;)
+# 检查页面是否显示用户信息
+```
+
+## 常见用途
+
+- 网站自动签到
+- 获取个人专属数据
+- 自动化登录后操作
+- 多账号切换
+
+## 注意事项
+
+1. Cookies 文件通常位于 `~/.camofox/cookies/`
+2. 如枚 cookies 过期，需要先在浏览器中重新登录
+3. 某些网站可能需要额外的 CSRF token 处理
+````
 
 接下来，只要不会遇到 Cloudflare 之类的拦截，想必什么事情都能让 Hermes Agent 代劳了吧！
 
