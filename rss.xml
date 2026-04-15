@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 15 Apr 2026 00:13:56 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 15 Apr 2026 00:20:47 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -446,15 +446,7 @@ CAMOFOX_URL=http://localhost:9377
 
    在默认情况下，Camofox Browser 服务会拒绝导入 Cookies 的请求，除非设置了该环境变量。设置以后，服务在接收到导入 Cookies 的请求时，会检查请求头是否包含合法的 `Authorization: Bearer CAMOFOX_API_KEY`。
 
-4. 第四步，将密钥也添加到 Hermes Agent 的环境变量中：
-
-   ```bash
-   CAMOFOX_API_KEY=&quot;your-generated-key&quot;
-   ```
-
-   未来如果要让助理代劳导入 Cookies 数据，它就可以在请求头里添加这个密钥了。
-
-5. 第五步，在工作电脑的浏览器上安装可以导出站点 Cookies 为 Netscape 格式文件的拓展程序，如 Chrome 浏览器的拓展程序 [Get cookies.txt LOCALLY](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)。
+4. 第四步，在工作电脑的浏览器上安装可以导出站点 Cookies 为 Netscape 格式文件的拓展程序，如 Chrome 浏览器的拓展程序 [Get cookies.txt LOCALLY](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)。
 
    ![导出 Cookies 文件](./hermes-agent-setup/export-cookies.png)
 
@@ -462,7 +454,7 @@ CAMOFOX_URL=http://localhost:9377
 
    这里，我导出了 V2EX 站的 Cookies 数据，将得到的文件传输给服务器。
 
-6. 第六步，让 Hermes Agent 帮我把 Cookies 数据导入到 Camofox Browser 服务中。
+5. 最后一步，让 Hermes Agent 帮我把 Cookies 数据导入到 Camofox Browser 服务中。
 
    不过且慢，Camofox Browser 最初设计是给 OpenClaw 使用的插件，目前在 Hermes Agent 的技能市场中还没有谁提供导入 Cookies 到 Camofox Browser 的技能，没法像文档里写的那样直接告诉助手“Import my LinkedIn cookies from cookies.txt”让它代劳。
 
@@ -902,7 +894,14 @@ browser_navigate(&quot;https://www.v2ex.com/mission/daily&quot;)
 3. 某些网站可能需要额外的 CSRF token 处理
 ````
 
-在 Hermes Agent 的环境变量里设置好 `CAMOFOX_HERMES_SESSION_ID` 与 `CAMOFOX_API_KEY`，SKILL 就能正常运转了。当然，也可以让助理每次都跑一遍生成 `userId` 的逻辑，但是考虑到会占用不必要的上下文，所以更推荐第一次拿到 `userId` 后就直接像上面那样设置为环境变量，方便后续使用。
+在 Hermes Agent 的环境变量里设置好 `CAMOFOX_HERMES_SESSION_ID` 与 `CAMOFOX_API_KEY`，SKILL 就能正常运转了：
+
+```bash
+CAMOFOX_HERMES_SESSION_ID=hermes_xxxxxxxxxx
+CAMOFOX_API_KEY=your-generated-key
+```
+
+当然，也可以让助理每次都跑一遍生成 `userId` 的逻辑，但是考虑到会占用不必要的上下文，所以更推荐第一次拿到 `userId` 后就直接像上面那样设置为环境变量，方便后续使用。
 
 接下来？也许你会考虑把这个流程设置为定时任务，每天触发。但我自己有用浏览器拓展程序 [V2EX Polish](https://github.com/coolpace/V2EX_Polish)，只要还每天会打开 Chrome，它就会帮我自动签到了。
 
