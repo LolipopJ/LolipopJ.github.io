@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 16 Apr 2026 11:39:18 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 17 Apr 2026 02:29:28 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -1748,10 +1748,12 @@ export default class WindowFilter extends Overlay {
 
 ![为 paint() 方法打上断点](./wplace-painter-automatic/add-breakpoint.png)
 
+在 Blue Marble 插件里过滤掉不需要的颜色，只保留想要绘制的颜色，等待地图上**待绘制像素点刷新后**，点击插件里的 Refresh&amp;Copy 按钮复制请求载荷。
+
 &gt; [!TIP]
 &gt; 因为 Blue Marble 劫持了 Wplace 刷新地图的请求以计算待绘制像素点列表，所以在过滤颜色后，需要等待**下一次地图刷新**才能正确获取到待绘制像素点列表。简单可以理解为“所见即所得”，当你看到地图上的待绘制像素点刷新后，就可以点击 Refresh&amp;Copy 按钮了。
 
-在 Blue Marble 插件里过滤掉不需要的颜色，只保留想要绘制的颜色，等待地图上**待绘制像素点刷新后**，点击插件里的 Refresh&amp;Copy 按钮复制请求载荷：
+如果成功的话，浏览器将弹出对话框提示，可以看到本次复制的像素点数量：
 
 ![复制请求载荷](./wplace-painter-automatic/copy-missing-pixels.png)
 
