@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 17 Apr 2026 02:29:28 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 17 Apr 2026 02:33:44 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -1390,7 +1390,7 @@ Wplace…]]></description><link>https://blog.towind.fun/posts/wplace-painter-aut
 &gt;
 &gt; ……换句话说：怂别用，用别怂！
 
-全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。如果对实现的细节不敢兴趣，可以直接跳到最后的[使用方法](#使用方法)部分，按照步骤操作即可。
+全流程用到了一些前端调试的知识，对非技术的小白用户并不友好，请见谅。如果对实现的细节不感兴趣，可以直接跳到最后的[使用方法](#使用方法)部分，按照步骤操作即可。
 
 ## 方案探索与实现
 
@@ -1741,7 +1741,7 @@ export default class WindowFilter extends Overlay {
 
 在 Tampermonkey 中添加脚本，任选其一：
 
-- 生产环境脚本 [`BlueMarble.user.js`](https://github.com/LolipopJ/Wplace-BlueMarble/blob/main/dist/BlueMarble.user.js)，一般使用此版本即可。
+- 生产环境脚本 [`BlueMarble.user.js`](https://github.com/LolipopJ/Wplace-BlueMarble/blob/main/dist/BlueMarble.user.js)，一般使用此版本就好。
 - 开发环境脚本 [`BlueMarble-For-GreasyFork.user.js`](https://github.com/LolipopJ/Wplace-BlueMarble/blob/main/dist/BlueMarble-For-GreasyFork.user.js)，与前者的区别在于未混淆压缩，控制台会打印调试信息。
 
 打开开发者控制台，切换到“源代码”标签页，找到 Wplace 的前端资源中的 `paint()` 方法，在方法入口打上断点。可以通过在开发者工具里搜索接口 `/paint` 来快速定位此方法：
