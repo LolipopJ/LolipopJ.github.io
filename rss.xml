@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 17 Apr 2026 02:33:44 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 19 Apr 2026 04:34:13 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -464,6 +464,9 @@ CAMOFOX_URL=http://localhost:9377
 
 5. 最后一步，让 Hermes Agent 帮我把 Cookies 数据导入到 Camofox Browser 服务中。
 
+   &gt; [!TIP]
+   &gt; Camofox Browser 自 v1.6.0 版本开始内置了对启动时注入会话 Cookies 的支持，根据官方文档启用对应插件即可。
+
    不过且慢，Camofox Browser 最初设计是给 OpenClaw 使用的插件，目前在 Hermes Agent 的技能市场中还没有谁提供导入 Cookies 到 Camofox Browser 的技能，没法像文档里写的那样直接告诉助手“Import my LinkedIn cookies from cookies.txt”让它代劳。
 
    那么答案只有只有一个了 —— 我自己来！
@@ -711,6 +714,9 @@ V2EX 的签到通常在登录后首页右侧会显示「领取今日的登录奖
 
 它做到了！Camofox Browser 成功绕过了 V2EX 的自动化检测机制，让助理完成了签到任务！太棒了！
 
+&gt; [!TIP]
+&gt; Camofox Browser 自 v1.6.0 版本开始内置了对启动时注入会话 Cookies 的支持，不用再像我这样手动导入 Cookies 数据了。
+
 不过每次要在流程前手动导入 Cookies 数据实在不够优雅，于是我让 AI 把流程总结为了一个 SKILL：
 
 ````plaintext
@@ -951,7 +957,7 @@ CAMOFOX_API_KEY=your-generated-key
 但如今，Hermes Agent 带给了我足够出色的用户体验。让我陪伴你到下一个智能体框架发光之前吧！
 
 啊，如梦似幻的信息技术世界。
-</content:original-text><content:updated-at>2026-04-15T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-04-19T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.fun/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
