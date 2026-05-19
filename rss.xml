@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 19 May 2026 03:33:59 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 19 May 2026 04:34:38 GMT</lastBuildDate><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -2272,72 +2272,72 @@ github-copilot/gpt-4.1                     text+image 125k     no    yes   confi
     &lt;tbody&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;main&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;main&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;任务规划、决策首脑&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;moonshot/kimi-k2.5&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;moonshot/kimi-k2.5&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;daily&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;daily&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;常时日常会话&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;github-copilot/gpt-5-mini&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;github-copilot/gpt-5-mini&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;同时也作为默认模型使用&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;daily-cn&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;daily-cn&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;中文语境下的日常会话&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;bailian/qwen3.5-plus&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;bailian/qwen3.5-plus&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;专注中文输入下的对话聊天&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;coder&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;coder&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;代码编程助手&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;bailian/qwen3-coder-next&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;bailian/qwen3-coder-next&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;coder-pro&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;coder-pro&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;高级代码编程助手&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;github-copilot/gpt-5.3-codex&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;github-copilot/gpt-5.3-codex&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;涉及大型项目开发，复杂问题定位时使用&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;creativity&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;creativity&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;提供创意点子&lt;/td&gt;
         &lt;td&gt;
           {/* prettier-ignore */}
-          &lt;code class=&quot;language-text&quot;&gt;github-copilot/gemini-3.1-pro-preview&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;github-copilot/gemini-3.1-pro-preview&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;expert&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;expert&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;解答专业领域问题&lt;/td&gt;
         &lt;td&gt;
-          &lt;code class=&quot;language-text&quot;&gt;github-copilot/claude-opus-4.6&lt;/code&gt;
+          &lt;code className=&quot;language-text&quot;&gt;github-copilot/claude-opus-4.6&lt;/code&gt;
         &lt;/td&gt;
         &lt;td&gt;
           我很少触及诸如金融等专业领域问题，所以遇到的话直接选用表现最好的模型全力解决
