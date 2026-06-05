@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 04 Jun 2026 19:56:23 GMT</lastBuildDate><item><title><![CDATA[最终幻想 14 国际服客户端汉化学习笔记]]></title><description><![CDATA[Caution 此博客仅供学习交流，严禁用于商业用途。使用汉化补丁属于修改客户端行为，使用者需自愿承担风险。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 05 Jun 2026 11:46:54 GMT</lastBuildDate><item><title><![CDATA[最终幻想 14 国际服客户端汉化学习笔记]]></title><description><![CDATA[Caution 此博客仅供学习交流，严禁用于商业用途。使用汉化补丁属于修改客户端行为，使用者需自愿承担风险。
 
-我是常驻最终幻想 14 国际服的玩家，为了获得本土级的游玩体验，对客户端进行汉化是必要的。社区上最早开源了一款汉化工具 FFXIVChnTextPatch，但早已停止维护，不过开发者 Gpoint Chen 在它的基础上开发了版本 FFXIVChnTextPatch-GP，但也于去年底…]]></description><link>https://blog.towind.fun/posts/ffxiv-chn-text-patch-note</link><guid isPermaLink="false">ffxiv-chn-text-patch-note</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate><content:original-text>
+我是常驻最终幻想 14 国际服的玩家，为了获得本土级的游玩体验，对客户端进行汉化是必要的。
+
+社区上最早开源了一款汉化工具 FFXIVChnTextPatch，但早已停止维护，不过开发者 Gpoint Chen 在它的基础上开发了版本 FFXIVChnTextPatch-GP，但也于去年…]]></description><link>https://blog.towind.fun/posts/ffxiv-chn-text-patch-note</link><guid isPermaLink="false">ffxiv-chn-text-patch-note</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate><content:original-text>
 &gt; [!CAUTION]
 &gt; 此博客仅供学习交流，严禁用于商业用途。使用汉化补丁属于修改客户端行为，使用者需自愿承担风险。
 
-我是常驻最终幻想 14 国际服的玩家，为了获得本土级的游玩体验，对客户端进行汉化是必要的。社区上最早开源了一款汉化工具 [FFXIVChnTextPatch](https://github.com/reusu/FFXIVChnTextPatch)，但早已停止维护，不过开发者 Gpoint Chen 在它的基础上开发了版本 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP)，但也于去年底暂停了更新。目前我正使用的是开发者 Souma Sumire 继续开发的版本 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma)，正在活跃维护中。
+我是常驻最终幻想 14 国际服的玩家，为了获得本土级的游玩体验，对客户端进行汉化是必要的。
+
+社区上最早开源了一款汉化工具 [FFXIVChnTextPatch](https://github.com/reusu/FFXIVChnTextPatch)，但早已停止维护，不过开发者 Gpoint Chen 在它的基础上开发了版本 [FFXIVChnTextPatch-GP](https://github.com/GpointChen/FFXIVChnTextPatch-GP)，但也于去年底暂停了更新。目前我正使用的是开发者 Souma Sumire 继续开发的版本 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma)，正在活跃维护中。
 
 自 7.4 版本开始，国服与国际服开始了版本同步更新，对于我这样的玩家来说是巨大的福音：新版本更新的时候再也不用手动翻译剧情内容了，新追加的要素也能立即 Get 到含义了。对于汉化工具的维护者来说，也会降低版本差异带来的维护成本，减少游戏崩溃现象的发生。
 
@@ -33,8 +37,11 @@
 
 ## 提取国服客户端文本资源
 
-&gt; [!WARNING]
-&gt; Souma 提到工具 SaintCoinach 已不再活跃维护，Gpoint 的改版也有一段时间没有更新了，可能存在潜在的兼容性问题。
+&gt; [!IMPORTANT]
+&gt; Souma 基于最终幻想 14 的解包工具 [Lumina](https://github.com/NotAdam/Lumina) 制作了提取文本 EXD 资源的工具 [XivExdUnpacker](https://github.com/Souma-Sumire/XivExdUnpacker)，并且将提取到的文本资源上传到了仓库 [ffxiv-datamining-hexcode-mixed](https://github.com/Souma-Sumire/ffxiv-datamining-hexcode-mixed) 里，供大家下载使用。如果你想跳过手动提取文本资源的步骤，可以直接下载这个仓库里的 CSV 文件来进行后续的学习研究了。
+
+&gt; [!CAUTION]
+&gt; Souma 提到工具 SaintCoinach 已不再活跃维护，Gpoint 的改版也有很长时间没有拉取上游更新了，可能会有潜在的兼容性问题。在 SaintCoinach 恢复活跃更新前，可以使用 Souma 开发的 XivExdUnpacker 工具。下面的内容记载于知晓这一事实之前，权作参考吧。
 
 可以使用工具 [SaintCoinach](https://github.com/xivapi/SaintCoinach) 来提取最终幻想 14 客户端中的资源和文本数据，汉化工具 FFXIVChnTextPatch-GP 的维护者 Gpoint 为它定制了一个[版本](https://github.com/GpointChen/SaintCoinach/tree/hexcode)，导出的数据可以更方便地用于汉化器，[在这里](https://github.com/xivapi/SaintCoinach/releases)下载该版本的构建后程序。
 
@@ -89,17 +96,17 @@ Export of QuestDefineClient failed: Unable to read beyond the end of the stream.
 
 ## 想要解决的问题
 
+&gt; [!NOTE]
+&gt; 虽然有着美好的初衷，但 Souma 本人也是一名经验丰富的程序员，我想到的他自然也早就想到了。后来在群里他提到这些 CSV 文件是自动生成的，意即他也应该用到了什么脚本来实现后文中与我相似的处理，只是我没有找到或是他没有开源而已。
+
 你可能就会问了：那么，直接使用现成仓库 FFXIVChnTextPatch-Souma 不就好了吗？是的，作者 Souma 也会在游戏客户端更新后的当天爆肝，更新仓库里的 CSV 文件内容。
 
 只是存在效率上的问题，用改版的 SaintCoinach 提取出来的 CSV 文件与汉化器目前使用的 CSV 文件内容还是有一定区别的：
 
 - 前者包含更多的表格列，后者只包含了自增主键的表格列和字符串类型的表格列。只保留需要汉化的表格列是有意义的，既能控制 CSV 资源大小，还能更直观编辑翻译文本内容，更能避免不同客户端之间存在的些许值差异引发游戏的异常。
-- 前者的类型定义使用使用小写缩写格式，如 `int32` 和 `str`，后者则大驼峰完整格式，如 `Int32` 和 `String`。虽然 CSV 解析器大抵能理解不同的写法表示相同的意义，但为了避免潜在的问题，还是保留汉化器目前使用的格式更好一些。
+- 前者的类型定义使用使用小写缩写格式，如 `int32` 和 `str`，后者则使用大驼峰完整格式，如 `Int32` 和 `String`。后者是 Souma 开发的工具 XivExdUnpacker 在导出时采用的命名格式，如果使用此工具导出，或是使用了仓库里现成的文本资源，则无需做此处的替换。
 
 本着能自动化的事情就应该让计算机来代劳的想法，可不能让辛勤耕耘的维护者们累坏了（FFXIVChnTextPatch-GP 的作者在去年底就累到弃坑了），我开始了这次探索之旅 —— 要怎样使用 SaintCoinach 提取出来的 CSV 文件来汉化国际服客户端，而尽可能地减少“能工智人”参与处理的时间呢？
-
-&gt; [!NOTE]
-&gt; 虽然有着美好的初衷，但 Souma 本人也不是傻的，后来在群里他提到这些 CSV 文件是自动生成的，意即他也应该用到了什么脚本来实现后文中与我相似的处理，只是我没有找到或是他没有开源而已。
 
 我想到的实现方案有以下三种：
 
@@ -117,9 +124,9 @@ Export of QuestDefineClient failed: Unable to read beyond the end of the stream.
 
 ![探索笔记的未翻译内容](./ffxiv-chn-text-patch-note/探索笔记的未翻译内容.png)
 
-这是由于对应的 [`Adventure.csv`](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/blob/996bcf6f2047be5aacfcfd4adc5f1511c4876498/resource/rawexd/Adventure.csv) 文件里没有“风景印象”所对应的第 14 列表格字段。Souma 提到可能是某个版本新加了属性，导致索引偏移了，所以没能正确导出文本内容。
+这是由于对应的 [`Adventure.csv`](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/blob/996bcf6f2047be5aacfcfd4adc5f1511c4876498/resource/rawexd/Adventure.csv) 文件里没有“风景印象”所对应的第 14 列表格字段。
 
-自动化脚本在处理后应该正确包含这些表格列：
+自动化脚本在处理后会正确包含所有的字符串类型表格列：
 
 ```py
 keep_indices = [0]
@@ -132,6 +139,8 @@ for i in range(1, len(types_row)):
         keep_indices.append(i)
 ```
 
+当然，这并非维护者的疏忽，反而是辛勤劳动的体现。Souma 提到，在版本不同步的时候，国际服某些 CSV 文件里的索引与国服的索引不一致，需要针对文件手动维护一份索引数组，如果某个版本开发者修改了索引，对应的汉化就可能出现问题。不过现如今版本同步了，索引应该也保持一致了，以后应该就不存在必须手动维护索引数组的问题了。
+
 除了补全缺失的，还要做到过滤无用的 CSV 文件。某些 CSV 文件仅起到资源索引或是参数控制的作用，不包含可用于汉化的文本内容，那么应该将它们排除在外，无需拷贝到汉化器的 `resource/rawexd` 目录下。例如 `BGM.csv`，应当被过滤掉：
 
 ```csv
@@ -141,9 +150,6 @@ int32,str,byte,bit&amp;01,bit&amp;02,bit&amp;04,single,byte
 0,&quot;&quot;,0,False,False,True,90,0
 1,&quot;music/ffxiv/BGM_Null.scd&quot;,0,False,False,True,90,0
 2,&quot;music/ffxiv/BGM_System_Title.scd&quot;,1,False,False,True,90,0
-3,&quot;music/ffxiv/BGM_System_Launcher.scd&quot;,1,False,False,True,90,0
-4,&quot;music/ffxiv/BGM_System_Chara.scd&quot;,1,False,False,True,90,0
-5,&quot;music/ffxiv/BGM_Town_Rest_01.scd&quot;,1,False,False,True,90,0
 ```
 
 简单实现过滤功能的话，可以让脚本先扫描 CSV 文件内容，看看是否包含中文字符：
@@ -236,6 +242,8 @@ CSV 文件处理完成！
 
 - [《FF14 漢化筆記》by Gpoint](https://hackmd.io/@GpointChen/SJi_gv-ad)
 - [《如何製作漢化工具》系列文章 by Q拔](https://home.gamer.com.tw/profile/index_creation.php?owner=ddcci5656)
+
+还要感谢现任 FFXIVChnTextPatch-Souma 繁中版汉化负责人 LongSaint 的帮助，提供了汉化器项目的现状信息。
 
 可以说自己完全是站在前人的肩膀上了，那就且让我以此文为这份有益的事业加把小小的柴薪吧。
 
