@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 11 Jun 2026 11:08:56 GMT</lastBuildDate><item><title><![CDATA[关于我使用大模型技术本地实时广东话转文字这件事]]></title><description><![CDATA[起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。 好消息是因为《怪物猎人：荒野》的缘故…]]></description><link>https://blog.towind.fun/posts/realtime-stt-cantonese-to-ch</link><guid isPermaLink="false">realtime-stt-cantonese-to-ch</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate><content:original-text>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.fun</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 28 Jul 2026 10:06:42 GMT</lastBuildDate><item><title><![CDATA[关于我使用大模型技术本地实时广东话转文字这件事]]></title><description><![CDATA[起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。 好消息是因为《怪物猎人：荒野》的缘故…]]></description><link>https://blog.towind.fun/posts/realtime-stt-cantonese-to-ch</link><guid isPermaLink="false">realtime-stt-cantonese-to-ch</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate><content:original-text>
 起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。
 
 好消息是因为《怪物猎人：荒野》的缘故，早在电脑配件价格暴涨前购买了 RTX 4070 SUPER 显卡，拥有 12GB 大小的显存，给了我本地跑大模型的算力支撑。于是，今回就计划在本地跑实时语音转文字服务，帮助自己能更好理解队友都在讲些啥。
@@ -631,6 +631,16 @@ CSV 文件处理完成！
 
 最后，将处理得到的 CSV 文件按需拷贝到汉化器仓库的 `resource/rawexd` 目录下，替换掉原有的文件，就可以执行汉化操作了！
 
+## 汉化器功能优化
+
+已知“替换字体”和“替换文本”功能实际会将字体和文本资源追加到对应数据文件的末尾，游戏更新时通常不会覆写与字体相关的数据文件，所以考虑将两个功能解耦开，不再通过设置里的选项来决定汉化时是否执行替换字体资源的这一耗时操作。
+
+在 Souma 维护的基础上，我修改了相关的逻辑代码，让“替换字体”和“还原字体”作为主界面的功能呈现：
+
+![汉化器主界面](./ffxiv-chn-text-patch-note/汉化器主界面.png)
+
+可以在[此仓库](https://github.com/LolipopJ/FFXIVChnTextPatch-GP)下载编译好的 [`FFXIVChnTextPatchGP.exe`](https://github.com/LolipopJ/FFXIVChnTextPatch-GP/raw/refs/heads/master/FFXIVChnTextPatchGP.exe) 汉化器文件，拖入到 FFXIVChnTextPatch-Souma 根目录（即 `FFXIVChnTextPatch-SM.exe` 同级目录）下使用。
+
 ## 特别鸣谢
 
 除了正文中提到的开源仓库与相关的开发者外，整个探索与实现过程还参考了以下博文：
@@ -645,7 +655,7 @@ CSV 文件处理完成！
 ## 尾声
 
 妄想……什么时候国际服客户端会添加官方中文的支持呢……？
-</content:original-text><content:updated-at>2026-06-05T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
+</content:original-text><content:updated-at>2026-07-28T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.fun/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:original-text>
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
