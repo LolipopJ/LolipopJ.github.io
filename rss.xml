@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 13 Oct 2026 08:54:26 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 13 Oct 2026 11:53:08 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:original-text>
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -67,9 +67,9 @@ Date            Cmds      Input     Output      Saved   Save%     Time
 2026-10-10        25      65.9K        182      65.7K   99.7%     1m0s
 2026-10-11        59      43.3K        555      42.8K   98.7%    40.1s
 2026-10-12         2          0          0          0    0.0%     1.2s
-2026-10-13        32     811.0K      44.0K     767.0K   94.6%     9.2s
+2026-10-13        83     879.4K      49.6K     829.8K   94.4%    10.9s
 ──────────────────────────────────────────────────────────────────────────
-TOTAL            151       1.1M      56.6K       1.1M   95.0%    28.3s
+TOTAL            202       1.2M      62.2K       1.1M   94.8%    24.2s
 ```
 
 ## Context Mode - 会话层摘要大数据
@@ -84,54 +84,63 @@ TOTAL            151       1.1M      56.6K       1.1M   95.0%    28.3s
 
 ![启用 Context Mode 钩子](./codex-reduce-tokens/enable-context-mode-hooks.png)
 
-在工作任务结束后，不妨向智能体发送命令查看 Context Mode 的表现情况：
+接下来执行任务时，就大概率能看到 Context Mode 的身影了：
+
+![Context Mode 参与读写任务](./codex-reduce-tokens/run-context-mode-tasks.png)
+
+在一天的工作任务结束后，不妨抽空向智能体发送命令，看看 Context Mode 的表现如何：
 
 ```plaintext
 &gt; ctx stats
 
-Across 1 day you ran 8 conversations in Codex CLI.
+Across 1 day you ran 12 conversations in Codex CLI.
 
-698.3K tokens saved  ·  99.1% reduction  ·  1h 38m  ·  ~$3.49 saved (Opus)
+4.6M tokens saved  ·  99.4% reduction  ·  2h 46m  ·  ~$23.08 saved (Opus)
 
-Without context-mode  |████████████████████████████████████████| 2.7 MB
-With context-mode     |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 24.0 KB
+Without context-mode  |████████████████████████████████████████| 17.7 MB
+With context-mode     |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 108 KB
 
-2.7 MB kept out of your conversation — 115× longer sessions before compact.
+17.6 MB kept out of your conversation — 168× longer sessions before compact.
 
-13 calls
+24 calls
 
-  ctx_execute               10 calls    1.9 MB saved
-  ctx_search                 1 calls    636 KB saved
-  ctx_execute_file           2 calls    114 KB saved
+  ctx_execute               18 calls    8.8 MB saved
+  ctx_batch_execute          4 calls    6.4 MB saved
+  ctx_search                 2 calls    2.4 MB saved
 
-  All your work  ·  330 events captured across 6 projects  ·  8 conversations
+  All your work  ·  745 events captured across 6 projects  ·  12 conversations
 
-  Errors caught                 64   ██████████████████████████████
-  External docs indexed         63   ██████████████████████████████
-  Files tracked                 46   ██████████████████████░░░░░░░░
-  Constraints you set           37   █████████████████░░░░░░░░░░░░░
-  MCP tools called              30   ██████████████░░░░░░░░░░░░░░░░
-  mcp_tool_call                 30   ██████████████░░░░░░░░░░░░░░░░
-  sandbox                       13   ██████░░░░░░░░░░░░░░░░░░░░░░░░
-  Project rules (CLAUDE.md)     12   ██████░░░░░░░░░░░░░░░░░░░░░░░░
-  Git operations                12   ██████░░░░░░░░░░░░░░░░░░░░░░░░
-  Your messages remembered       9   ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-  Session intent                 8   ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-  session                        4   ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  External docs indexed        118   ██████████████████████████████
+  MCP tools called             118   ██████████████████████████████
+  mcp_tool_call                118   ██████████████████████████████
+  Errors caught                 94   ████████████████████████░░░░░░
+  Constraints you set           86   ██████████████████████░░░░░░░░
+  Files tracked                 79   ████████████████████░░░░░░░░░░
+  sandbox                       51   █████████████░░░░░░░░░░░░░░░░░
+  Project rules (CLAUDE.md)     24   ██████░░░░░░░░░░░░░░░░░░░░░░░░
+  Git operations                19   █████░░░░░░░░░░░░░░░░░░░░░░░░░
+  Your messages remembered      13   ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  Session intent                 9   ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  session                        8   ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
   Data references                2   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  cost                           2   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  Your decisions                 2   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  Environment setup              2   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 Where it came from (tools you actually used — fixtures + probes filtered):
 
   Tool              Captures   Indexed  Total kept out
-  Codex CLI              330    478 KB          478 KB
+  Codex CLI              745    1.3 MB          1.3 MB
 
 ─────────────────────────────────────────────────────────────────
 Your AI talks less, remembers more, costs less.
-$3.49 this session  ·  $3.91 lifetime
+$23.08 this session  ·  $24.04 lifetime
 ─────────────────────────────────────────────────────────────────
 
 v1.0.169
 ```
+
+不得不说，光是看到都觉得赏心悦目的数值。
 
 ## Headroom - 通用上下文内容压缩
 
@@ -141,7 +150,7 @@ Headroom 采用「规则与结构化算法优先，机器学习模型按需参�
 
 ### 使用 Docker 部署 Headroom 在远程服务器上
 
-出于种种考虑，我决定将 Headroom 部署在远程服务器上，而不是本地。优点在于拥有了在任何国内网络环境访问 ChatGPT 服务的能力，缺点是速度受公网服务器带宽影响。
+出于种种考虑，我决定将 Headroom 部署在远程服务器上，而不是本地。优点在于拥有了在任何国内网络环境访问 ChatGPT 服务的能力，缺点是速度受公网服务器带宽影响，部署流程也更加折腾。
 
 添加 Docker compose 配置文件 `path/to/headroom-docker/docker-compose.yaml`：
 
@@ -290,7 +299,7 @@ Savings by client:
 
 [Caveman](https://github.com/juliusbrussee/caveman) 让 LLM 用最直白、最直接、最不绕弯子的方式进行回复，而且的确不在自己的回复塞形如“我会用最直白、最直接、最不绕弯子的方式直接告诉你答案”的废话。
 
-直接将 Caveman 技能全局安装：
+直接将 Caveman 技能安装到全局：
 
 ```bash
 npx skills add JuliusBrussee/caveman -g
@@ -340,13 +349,13 @@ graphify install --platform codex
 &gt; /graphify .
 ```
 
-运行后在项目根路径下生成知识图谱目录，其中的 `graphify-out/graph.json` 是供智能体查阅关系树的元数据文件。
-
-一次执行的结果如下：
+执行的结果形如：
 
 ![生成 Graphify 知识图谱](./codex-reduce-tokens/generate-graphify.png)
 
-它生成的知识图谱页面：
+运行后在项目根路径下生成知识图谱目录 `graphify-out/`，其中 `graphify-out/graph.json` 是供智能体查阅关系树的元数据文件。
+
+打开 `graphify-out/graph.html` 可以看到可视化的有向图：
 
 ![Graphify 知识图谱](./codex-reduce-tokens/graphify-result.png)
 
@@ -370,6 +379,8 @@ Serena 是一个基于 LSP（Language Server Protocol，语言服务器协议）
 ## 尾声
 
 实际上，社区已经有项目打包了涵盖本文提到的在内，一系列用于减少词元消耗的插件与服务，使用这些项目理论上能更快实现相似甚至更好的词元节省效果。不过作为一个从旧时代走过来的程序员，天生会对此类封装抱持怀疑，会否会如过去很多开发框架一样因过度封装反而容易遇到一些难题无法解决？在真正出现经受验证、缺你不可的工具之前，就让我保持对这些基础设施的可支配感吧。
+
+最后，你可能也注意到了，此类上下文压缩工具或服务的实现都或多或少基于有损的“信息提炼与过滤”，我们预期它们总是保留对 LLM 来说最有用的“核心信号”，但从理性的角度来讲这又是不可能的。因此，启用的工具并不是越多就越好的，一方面要衡量时间和效率的性价比，另一方面也要避免“过拟合”导致信息失真。嚯嚯，这恐怕也是此类工具的门道所在吧。
 </content:original-text><content:updated-at>2026-10-13T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[关于我使用大模型技术本地实时广东话转文字这件事]]></title><description><![CDATA[起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。 好消息是因为《怪物猎人：荒野》的缘故…]]></description><link>https://blog.towind.cn/posts/realtime-stt-cantonese-to-ch</link><guid isPermaLink="false">realtime-stt-cantonese-to-ch</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate><content:original-text>
 起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。
 
