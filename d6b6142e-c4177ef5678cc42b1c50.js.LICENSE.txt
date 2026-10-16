@@ -1,0 +1,19 @@
+/* v8 ignore else -- @preserve -- Bug with vitest coverage where it sees an else branch that doesn't exist */
+
+/* v8 ignore end -- @preserve */
+
+/* v8 ignore if -- @preserve */
+
+/* v8 ignore next - permissions are optional per OpenAPI spec, but we think that is incorrect -- @preserve */
+
+/* v8 ignore next - repositorySelection are optional per OpenAPI spec, but we think that is incorrect -- @preserve */
+
+/* v8 ignore next -- @preserve */
+
+/* v8 ignore next 2 -- @preserve */
+
+/* v8 ignore next no need to test internals of the throttle plugin -- @preserve */
+
+/* v8 ignore next: we always pass a custom request in tests -- @preserve */
+
+/* v8 ignore start - due to skipped tests, see https://github.com/octokit/auth-app.js/pull/580 -- @preserve */
