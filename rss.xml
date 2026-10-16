@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 16 Oct 2026 03:56:34 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 16 Oct 2026 08:19:00 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:original-text>
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -28,7 +28,7 @@ rtk init -g --codex
 可以在 Git 仓库里亲身感受一下 RTK 的能力：
 
 ```bash
-$ git log -n 3 
+$ git log -n 3
 commit d61cc85d725d4c349513f2e04424bc5541abb2d5 (HEAD -&gt; main, origin/main, origin/HEAD)
 Author: Lolipop &lt;42314340+LolipopJ@users.noreply.github.com&gt;
 Date:   Tue Oct 13 09:01:55 2026 +0800
@@ -158,7 +158,7 @@ Headroom 采用「规则与结构化算法优先，机器学习模型按需参�
 services:
   cli:
     image: ${HEADROOM_IMAGE:-ghcr.io/headroomlabs-ai/headroom:latest}
-    entrypoint: [&apos;headroom&apos;]
+    entrypoint: [&quot;headroom&quot;]
     working_dir: /workspace
     stdin_open: true
     tty: true
@@ -172,29 +172,29 @@ services:
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.claude:/tmp/headroom-home/.claude
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.codex:/tmp/headroom-home/.codex
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.gemini:/tmp/headroom-home/.gemini
-    command: [&apos;--help&apos;]
+    command: [&quot;--help&quot;]
 
   proxy:
     image: ${HEADROOM_IMAGE:-ghcr.io/headroomlabs-ai/headroom:latest}
-    entrypoint: [&apos;headroom&apos;, &apos;proxy&apos;]
+    entrypoint: [&quot;headroom&quot;, &quot;proxy&quot;]
     working_dir: /workspace
     restart: unless-stopped
     environment:
       HOME: /tmp/headroom-home
       HEADROOM_HOST: 0.0.0.0
       HEADROOM_PROXY_TOKEN: ${HEADROOM_PROXY_TOKEN:-}
-      HEADROOM_ALLOW_UNAUTHENTICATED_BIND: &apos;1&apos;
+      HEADROOM_ALLOW_UNAUTHENTICATED_BIND: &quot;1&quot;
       HEADROOM_WORKSPACE_DIR: /tmp/headroom-home/.headroom
       HEADROOM_CONFIG_DIR: /tmp/headroom-home/.headroom/config
     ports:
-      - &apos;${HEADROOM_PORT:-8787}:${HEADROOM_PORT:-8787}&apos;
+      - &quot;${HEADROOM_PORT:-8787}:${HEADROOM_PORT:-8787}&quot;
     volumes:
       - ${HEADROOM_WORKSPACE:-.}:/workspace
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.headroom:/tmp/headroom-home/.headroom
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.claude:/tmp/headroom-home/.claude
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.codex:/tmp/headroom-home/.codex
       - ${HEADROOM_HOST_HOME:?set HEADROOM_HOST_HOME}/.gemini:/tmp/headroom-home/.gemini
-    command: [&apos;--host&apos;, &apos;0.0.0.0&apos;, &apos;--port&apos;, &apos;${HEADROOM_PORT:-8787}&apos;]
+    command: [&quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;${HEADROOM_PORT:-8787}&quot;]
 ```
 
 这里，我按照官方文档的介绍，直接用了项目仓库里的 [`docker/docker-compose.native.yml`](https://github.com/headroomlabs-ai/headroom/blob/0126fba63f5af3c8022085d0d033dce56fe5db65/docker/docker-compose.native.yml)。唯一作了变更的位置是 `proxy` 服务的 `ports` 配置，官方文件的 `- &quot;127.0.0.1:${HEADROOM_PORT:-8787}:${HEADROOM_PORT:-8787}&quot;` 仅限本机访问，而为了让其他服务器访问，我把它修改为了 `- &quot;${HEADROOM_PORT:-8787}:${HEADROOM_PORT:-8787}&quot;`。
@@ -8263,23 +8263,27 @@ Ops，竟然是谢谢参与，我觉得有黑幕！但是可喜可贺，我们�
 
 ![lucky-draw-better-animation](./lucky-draw/lucky-draw-better-animation.gif)
 
-完整的 Demo 奉上：
+完整的 [Demo](https://codepen.io/editor/LolipopJ/pen/0191c330-f6b2-7883-9c3a-a87be4c744d9) 奉上：
 
-&lt;iframe
-  height=&quot;600&quot;
-  scrolling=&quot;no&quot;
-  title=&quot;lucky-draw-demo&quot;
-  src=&quot;https://codepen.io/LolipopJ/embed/QWXzwWp?default-tab=html%2Cresult&quot;
-  frameBorder=&quot;no&quot;
-  loading=&quot;lazy&quot;
-  allowtransparency=&quot;true&quot;
-  allowFullScreen={true}
-&gt;
-  See the Pen{&quot; &quot;}
-  &lt;a href=&quot;https://codepen.io/LolipopJ/pen/QWXzwWp&quot;&gt;lucky-draw-demo&lt;/a&gt; by
-  JasonSung (&lt;a href=&quot;https://codepen.io/LolipopJ&quot;&gt;@LolipopJ&lt;/a&gt;) on{&quot; &quot;}
-  &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.
-&lt;/iframe&gt;
+&lt;div
+  dangerouslySetInnerHTML={{
+    __html: `&lt;iframe
+    height=&quot;600&quot;
+    scrolling=&quot;no&quot;
+    style=&quot;width: 100%;&quot;
+    title=&quot;lucky-draw-demo&quot;
+    src=&quot;https://codepen.io/editor/LolipopJ/embed/0191c330-f6b2-7883-9c3a-a87be4c744d9?default-tab=html%2Cresult&quot;
+    frameborder=&quot;no&quot;
+    loading=&quot;lazy&quot;
+    allowtransparency=&quot;true&quot;
+    allowfullscreen=&quot;true&quot;
+  &gt;
+    See the Pen &lt;a href=&quot;https://codepen.io/editor/LolipopJ/pen/0191c330-f6b2-7883-9c3a-a87be4c744d9&quot;&gt;
+    lucky-draw-demo&lt;/a&gt; by JasonSung (&lt;a href=&quot;https://codepen.io/LolipopJ&quot;&gt;@LolipopJ&lt;/a&gt;)
+    on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.
+  &lt;/iframe&gt;`,
+  }}
+/&gt;
 </content:original-text><content:updated-at>2024-09-07T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[Electron 执行后台程序并在渲染器实时打印运行日志]]></title><description><![CDATA[开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？ 那么需求也就明了了…]]></description><link>https://blog.towind.cn/posts/electron-real-time-print-execution-log</link><guid isPermaLink="false">electron-real-time-print-execution-log</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate><content:original-text>
 开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？
 
