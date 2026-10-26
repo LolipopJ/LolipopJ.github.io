@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 22 Oct 2026 02:41:56 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Oct 2026 05:54:22 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:original-text>
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -5815,50 +5815,67 @@ docker run --name mc-server-fabric --restart unless-stopped -v /path/to/mc-serve
 现在在笔者的家里，就由 N100 主路由服务器与 Mac Mini 4 轻量级应用服务器相辅相成，共同承载笔者捣腾的心理需要。
 </content:original-text><content:updated-at>2025-03-31T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
 
-出于爱好，笔者去脚本仓库翻阅了一下源码，觉得有一些可以改进的地方…]]></description><link>https://blog.towind.cn/posts/pixiv-previewer</link><guid isPermaLink="false">pixiv-previewer</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
+出于爱好，笔者去脚本仓库翻阅了一下源码，想自己再折腾折腾，遂…]]></description><link>https://blog.towind.cn/posts/pixiv-previewer</link><guid isPermaLink="false">pixiv-previewer</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate><content:original-text>
 笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作：
 
 1. **作品预览**：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。
 2. **作品排序**：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
 
-出于爱好，笔者去[脚本仓库](https://github.com/Ocrosoft/PixivPreviewer)翻阅了一下源码，觉得有一些可以改进的地方，遂 Fork 之，进行二次开发。
+出于爱好，笔者去[脚本仓库](https://github.com/Ocrosoft/PixivPreviewer)翻阅了一下源码，想自己再折腾折腾，遂 Fork 之，进行二次开发。至于为什么不是提交 PR 共创，让项目变得更好？这是出自我的私心，因为有很多想做的东西都是自己喜欢的，但不确定作者是否需要的，最终多少会变得束手束脚。而转变心态，只要完全自己烹饪提供给自己享用，就可以最大化满足自己的愿望。
+
+实际的维护过程中，笔者也偶尔会看看上游最新的提交，如果有可以迁移的功能就顺便迁移过来。例如功能[「支持在当前页面记忆多图的预览进度」](https://github.com/Ocrosoft/PixivPreviewer/commit/b62ae741af7416fbe41ee59e4e4db7fb3485846a)很不错，我会把它[合并](https://github.com/LolipopJ/PixivPreviewerL/commit/4e85feba68e1d7424b9230a501116b4ed172b4cd)到自己的代码里。
+
+我流的 [Github 仓库地址](https://github.com/LolipopJ/PixivPreviewerL)。
 
 ## 工程化改造
 
 首当其冲的自然是前端项目工程化改造。大多数油猴脚本仓库都是孤零零的一个 JavaScript 文件，Pixiv Previewer 也不例外。直接手搓 JavaScript 虽然很便利，但在项目长期的维护开发中多半会掩埋掉许多未曾留意的 Bug，同时由于缺少关联提示，开发效率也会大打折扣。作为前端工程师，这样可怕的事情自然是不能接受的。
 
-### 通过 tsup 构建项目
+### 通过 tsdown 构建项目
 
-初始化 `package.json` 等过程跳过不表，添加 TypeScript 支持自然是对项目进行二次开发的前置步骤。由于我们最后构建的产物将作为油猴脚本运行，即打包为库，因此笔者选择了开箱即用的 [tsup](https://github.com/egoist/tsup)：
+&gt; [!NOTE]
+&gt; 在早期版本笔者选用了 tsup 作为打包器，但自 2025 年 8 月中旬起，tsup 宣布已不再活跃维护。
+&gt; 现在，按照说明文档里的迁移介绍，笔者已切换项目的打包器为一脉相承的 tsdown。
+
+初始化 `package.json` 等过程跳过不表，添加 TypeScript 支持自然是对项目进行二次开发的前置步骤。由于我们最后构建的产物将作为油猴脚本运行，需要将 TypeScript 代码转换为浏览器可以运行的 JavaScript 代码，因此笔者选择了开箱即用的 [tsdown](https://github.com/rolldown/tsdown/)：
 
 ```bash
-yarn add -D tsup
+pnpm add -D tsdown
 ```
 
-添加 tsup 的配置文件 `tsup.config.ts`：
+添加 tsdown 的配置文件 `tsdown.config.ts`：
 
 ```ts
-import svg from &quot;esbuild-plugin-svg&quot;;
-import { defineConfig } from &quot;tsup&quot;;
+import svg from &quot;rollup-plugin-svg&quot;;
+import { defineConfig } from &quot;tsdown&quot;;
 
-import packageJson from &quot;./package.json&quot;;
+import packageJson from &quot;./package.json&quot; with { type: &quot;json&quot; };
 
 export default defineConfig({
   entry: [&quot;src/index.ts&quot;],
+  outputOptions: {
+    entryFileNames: &quot;pixiv-previewer-l.user.js&quot;,
+  },
   target: [&quot;chrome107&quot;],
   minify: false,
-  splitting: false,
   clean: true,
   platform: &quot;browser&quot;,
-  esbuildPlugins: [svg()], // 为了正确处理项目中用到的 SVG 文件，添加了此插件
+  plugins: [svg()],
   env: {
     VERSION: packageJson.version,
+    BUG_REPORT_PAGE: packageJson.bugs.url,
   },
   banner: {
     js: `// ==UserScript==
 // @name                Pixiv Previewer L
 // @namespace           ${packageJson.homepage}
-// @version             ${packageJson.version}-${new Date().toLocaleDateString()}
+// @version             ${packageJson.version}-${new Date()
+      .toLocaleDateString(undefined, {
+        year: &quot;numeric&quot;,
+        month: &quot;2-digit&quot;,
+        day: &quot;2-digit&quot;,
+      })
+      .replace(/\//g, &quot;&quot;)}
 // @description         ${packageJson.description}
 // @author              ${packageJson.author}
 // @license             ${packageJson.license}
@@ -5866,60 +5883,79 @@ export default defineConfig({
 // @match               *://www.pixiv.net/*
 // @grant               GM_getValue
 // @grant               GM_setValue
+// @grant               GM_addValueChangeListener
+// @grant               window.onurlchange
 // @grant               GM_registerMenuCommand
 // @grant               GM_unregisterMenuCommand
 // @grant               GM.xmlHttpRequest
+// @grant               GM_download
+// @grant               unsafeWindow
 // @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
 // @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
 // @require             https://update.greasyfork.org/scripts/515994/1478507/gh_2215_make_GM_xhr_more_parallel_again.js
-// @require             http://code.jquery.com/jquery-3.7.1.min.js
-// @run-at              document-end
+// @require             https://code.jquery.com/jquery-4.0.0.min.js
+// @require             https://code.jquery.com/jquery-migrate-4.0.2.min.js
+// @run-at              document-start
 // ==/UserScript==`,
   },
+  format: &quot;cjs&quot;,
+  dts: false,
 });
 ```
 
-上面的配置表示，tsup 将打包构建源文件 `src/index.ts` 至默认产物文件 `dist/index.js`，保证兼容 `Chrome &gt;= 107`。其中，笔者复用了 `package.json` 里定义的若干字段，用于添加项目环境变量（脚本通过版本号判断是否显示更新日志框），以及生成油猴脚本顶部的配置项。
+上面的配置表示，tsdown 将打包构建源文件 `src/index.ts` 至默认产物文件 `dist/pixiv-previewer-l.user.js`，保证兼容 `Chrome &gt;= 107`。其中，笔者复用了 `package.json` 里定义的若干字段，用于添加项目环境变量（脚本通过版本号判断是否显示更新日志框），以及生成油猴脚本顶部的配置项。
 
-这样，当执行 `tsup` 命令时，构建的产物形如：
+这样，当执行 `tsdown` 命令时，构建的产物形如：
 
 ```js
 // ==UserScript==
 // @name                Pixiv Previewer L
 // @namespace           https://github.com/LolipopJ/PixivPreviewer
-// @version             1.1.1-2025/4/25
+// @version             1.7.2-20261026
 // @description         Original project: https://github.com/Ocrosoft/PixivPreviewer.
 // @author              Ocrosoft, LolipopJ
-// @license             GPL-3.0
+// @license             GPL-3.0-only
 // @supportURL          https://github.com/LolipopJ/PixivPreviewer
 // @match               *://www.pixiv.net/*
 // @grant               GM_getValue
 // @grant               GM_setValue
+// @grant               GM_addValueChangeListener
+// @grant               window.onurlchange
 // @grant               GM_registerMenuCommand
 // @grant               GM_unregisterMenuCommand
 // @grant               GM.xmlHttpRequest
+// @grant               GM_download
+// @grant               unsafeWindow
 // @icon                https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=32&amp;url=https://www.pixiv.net
 // @icon64              https://t0.gstatic.com/faviconV2?client=SOCIAL&amp;type=FAVICON&amp;fallback_opts=TYPE,SIZE,URL&amp;size=64&amp;url=https://www.pixiv.net
 // @require             https://update.greasyfork.org/scripts/515994/1478507/gh_2215_make_GM_xhr_more_parallel_again.js
-// @require             http://code.jquery.com/jquery-3.7.1.min.js
-// @run-at              document-end
+// @require             https://code.jquery.com/jquery-4.0.0.min.js
+// @require             https://code.jquery.com/jquery-migrate-4.0.2.min.js
+// @run-at              document-start
 // ==/UserScript==
 
 // ... 脚本构建后的代码
 ```
 
-在默认情况下，tsup 会使用预设的 `tsconfig.json`。但笔者在开发过程中，发现 VSCode 有时会遗漏某些类型的定义，于是手动添加了 `tsconfig.json` 在根目录：
+在默认情况下，tsdown 会使用预设的 `tsconfig.json`。但笔者在开发过程中，发现 VSCode 有时会遗漏某些类型的定义，于是手动添加了 `tsconfig.json` 在根目录：
 
 ```json
 {
   &quot;compilerOptions&quot;: {
-    &quot;target&quot;: &quot;ES2022&quot;,
-    &quot;module&quot;: &quot;esnext&quot;,
-    &quot;esModuleInterop&quot;: true,
+    &quot;target&quot;: &quot;esnext&quot;,
+    &quot;lib&quot;: [&quot;es2023&quot;, &quot;dom&quot;],
+    &quot;moduleDetection&quot;: &quot;force&quot;,
+    &quot;module&quot;: &quot;preserve&quot;,
     &quot;moduleResolution&quot;: &quot;bundler&quot;,
-    &quot;skipLibCheck&quot;: true,
-    &quot;forceConsistentCasingInFileNames&quot;: true,
-    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;]
+    &quot;resolveJsonModule&quot;: true,
+    &quot;types&quot;: [&quot;jquery&quot;, &quot;node&quot;, &quot;tampermonkey&quot;],
+    &quot;strict&quot;: true,
+    &quot;noUnusedLocals&quot;: true,
+    &quot;declaration&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;isolatedModules&quot;: true,
+    &quot;verbatimModuleSyntax&quot;: true,
+    &quot;skipLibCheck&quot;: true
   },
   &quot;include&quot;: [&quot;src/&quot;],
   &quot;exclude&quot;: [&quot;node_modules/&quot;, &quot;dist/&quot;]
@@ -5928,64 +5964,57 @@ export default defineConfig({
 
 ### 代码质量检查与格式化工具
 
-TypeScript 自身已包含类型检查等能力，但还可以引入更多质量检查的通用规范，提升项目的健壮性。对于 TypeScript 项目，目前来看最好的选择应当是 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint)，参考官方文档添加依赖并配置 `eslint.config.mjs`：
+TypeScript 自身已包含类型检查等能力，但还可以引入更多质量检查的通用规范，提升项目的健壮性。对于 TypeScript 项目可以选择 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint)，参考官方文档添加依赖：
 
 ```bash
-yarn add --dev eslint @eslint/js typescript typescript-eslint
+pnpm add -D eslint @eslint/js typescript typescript-eslint
 ```
+
+笔者喜欢将 Prettier 与 ESLint 结合起来一起使用，即在执行 `eslint src --fix` 修复质量问题的同时，自动格式化代码，对应 ESLint 的插件 [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier)：
+
+```bash
+pnpm add -D prettier eslint-plugin-prettier eslint-config-prettier
+```
+
+笔者的些许强迫症，甚至希望 `import` 的库也能按照约定的规则自动排序好，对应 ESLint 的插件 [`eslint-plugin-simple-import-sort`](https://github.com/lydell/eslint-plugin-simple-import-sort)：
+
+```bash
+pnpm add -D eslint-plugin-simple-import-sort
+```
+
+此外，项目依赖于 JQuery 来执行查找与修改 DOM 的操作，笔者添加了相应的类型提示：
+
+```bash
+pnpm add -D globals @types/jquery
+```
+
+最终版本的 `eslint.config.mjs` 配置如下：
 
 ```js
 // @ts-check
 
 import eslint from &quot;@eslint/js&quot;;
-import tseslint from &quot;typescript-eslint&quot;;
-
-export default tseslint.config(
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
-);
-```
-
-现在执行 `eslint src --fix` 即可查找并尝试修复 `src/` 目录下所有文件的质量问题。
-
-接着为项目添加自动格式化能力，Prettier 是笔者最推荐的选项。此外，笔者喜欢将 Prettier 与 ESLint 结合起来一起使用，即在执行 `eslint src --fix` 修复质量问题的同时，自动格式化代码。ESLint 的插件 [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier) 可以实现如上能力，添加此插件作为依赖并进一步配置 `eslint.config.mjs`：
-
-```bash
-yarn add -D prettier eslint-plugin-prettier eslint-config-prettier
-```
-
-```js
-// @ts-check
-
-import eslint from &quot;@eslint/js&quot;;
-import tseslint from &quot;typescript-eslint&quot;;
+import { defineConfig, globalIgnores } from &quot;eslint/config&quot;;
 import eslintPluginPrettierRecommended from &quot;eslint-plugin-prettier/recommended&quot;;
-
-export default tseslint.config(
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
-  eslintPluginPrettierRecommended,
-);
-```
-
-此外，Pixiv Previewer 项目依赖于 JQuery 来执行查找与修改 DOM 的操作，笔者添加了相应的类型提示：
-
-```bash
-yarn add -D @types/jquery globals
-```
-
-```js
-// @ts-check
-
-import eslint from &quot;@eslint/js&quot;;
-import tseslint from &quot;typescript-eslint&quot;;
-import eslintPluginPrettierRecommended from &quot;eslint-plugin-prettier/recommended&quot;;
+import simpleImportSort from &quot;eslint-plugin-simple-import-sort&quot;;
 import globals from &quot;globals&quot;;
+import tseslint from &quot;typescript-eslint&quot;;
 
-export default tseslint.config(
+export default defineConfig(
+  globalIgnores([&quot;dist/&quot;, &quot;node_modules/&quot;]),
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
+    plugins: {
+      &quot;simple-import-sort&quot;: simpleImportSort,
+    },
+    rules: {
+      &quot;no-unused-vars&quot;: &quot;off&quot;,
+      &quot;@typescript-eslint/no-unused-vars&quot;: &quot;warn&quot;,
+      &quot;no-undef&quot;: &quot;off&quot;,
+      &quot;simple-import-sort/imports&quot;: &quot;error&quot;,
+      &quot;simple-import-sort/exports&quot;: &quot;error&quot;,
+    },
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -5996,6 +6025,8 @@ export default tseslint.config(
   eslintPluginPrettierRecommended,
 );
 ```
+
+现在执行 `eslint src --fix` 即可查找并尝试修复 `src/` 目录下所有文件的质量问题。
 
 至此，基本的项目工程化改造告一段落。项目可以基于 TypeScript 开发，并且拥有了质量检查和格式化能力。将原来的 JavaScript 代码放到 `src/index.ts` 文件里，开始正式的二次开发吧！
 
@@ -6413,137 +6444,58 @@ const detailedIllustrations = await execLimitConcurrentPromises(
 
 ### 前端展示作品
 
-根据条件过滤作品和排序作品的过程跳过不表，直接来到最后展示作品的环节！
-
-```ts
-class IllustrationsSorter {
-  type: IllustSortType;
-  illustrations: IllustrationDetails[];
-  listElement: JQuery&lt;HTMLUListElement&gt;;
-
-  constructor() {
-    // ...
-    this.showIllustrations();
-  }
-
-  showIllustrations() {
-    const fragment = document.createDocumentFragment();
-    for (const {
-      aiType,
-      alt,
-      bookmarkData,
-      bookmark_user_total,
-      id,
-      illustType,
-      pageCount,
-      profileImageUrl,
-      tags,
-      title,
-      url,
-      userId,
-      userName,
-    } of this.illustrations) {
-      const isUgoira = illustType === IllustType.UGOIRA;
-
-      const listItem = document.createElement(&quot;li&quot;);
-
-      const container = document.createElement(&quot;div&quot;);
-      container.style = &quot;width: 184px;&quot;;
-
-      const illustrationAnchor = document.createElement(&quot;a&quot;);
-      illustrationAnchor.setAttribute(&quot;data-gtm-value&quot;, id);
-      illustrationAnchor.setAttribute(&quot;data-gtm-user-id&quot;, userId);
-      illustrationAnchor.href = `/artworks/${id}`;
-      illustrationAnchor.target = &quot;_blank&quot;;
-      illustrationAnchor.rel = &quot;external&quot;;
-      illustrationAnchor.style =
-        &quot;display: block; position: relative; width: 184px;&quot;;
-
-      const illustrationImageWrapper = document.createElement(&quot;div&quot;);
-      illustrationImageWrapper.style =
-        &quot;position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;&quot;;
-
-      const illustrationImage = document.createElement(&quot;img&quot;);
-      illustrationImage.src = url;
-      illustrationImage.alt = alt;
-      illustrationImage.style =
-        &quot;object-fit: cover; object-position: center center; width: 100%; height: 100%; border-radius: 4px; background-color: rgb(31, 31, 31);&quot;;
-
-      const ugoriaSvg = document.createElement(&quot;div&quot;);
-      ugoriaSvg.style = &quot;position: absolute;&quot;;
-      ugoriaSvg.innerHTML = playIcon;
-
-      const illustrationMeta = document.createElement(&quot;div&quot;);
-      illustrationMeta.style =
-        &quot;position: absolute; top: 0px; left: 0px; right: 0px; display: flex; align-items: flex-start; padding: 4px 4px 0; pointer-events: none; font-size: 10px;&quot;;
-      illustrationMeta.innerHTML = `
-          ${
-            pageCount &gt; 1
-              ? `
-                &lt;div style=&quot;margin-left: auto;&quot;&gt;
-                  &lt;div style=&quot;display: flex; justify-content: center; align-items: center; height: 20px; min-width: 20px; color: rgb(245, 245, 245); font-weight: bold; padding: 0px 6px; background: rgba(0, 0, 0, 0.32); border-radius: 10px; line-height: 10px;&quot;&gt;
-                    ${pageIcon}
-                    &lt;span&gt;${pageCount}&lt;/span&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;`
-              : &quot;&quot;
-          }
-        `;
-
-      const illustrationToolbar = document.createElement(&quot;div&quot;);
-      illustrationToolbar.style =
-        &quot;position: absolute; top: 154px; left: 0px; right: 0px; display: flex; align-items: center; padding: 0 4px 4px; pointer-events: none; font-size: 12px;&quot;;
-      // Mock: 暂未实现点击爱心收藏 / 取消收藏的功能
-      illustrationToolbar.innerHTML = `
-          &lt;div style=&quot;padding: 0px 4px; border-radius: 4px; color: rgb(245, 245, 245); background: ${bookmark_user_total &gt; 50000 ? &quot;#9f1239&quot; : bookmark_user_total &gt; 10000 ? &quot;#dc2626&quot; : bookmark_user_total &gt; 5000 ? &quot;#1d4ed8&quot; : bookmark_user_total &gt; 1000 ? &quot;#15803d&quot; : &quot;#475569&quot;}; font-weight: bold; line-height: 16px; user-select: none;&quot;&gt;❤ ${bookmark_user_total}&lt;/div&gt;
-          &lt;div style=&quot;margin-left: auto;&quot;&gt;${bookmarkData ? heartFilledIcon : heartIcon}&lt;/div&gt;
-        `;
-
-      const illustrationTitle = document.createElement(&quot;div&quot;);
-      illustrationTitle.innerHTML = title;
-      illustrationTitle.style =
-        &quot;margin-top: 4px; max-width: 100%; overflow: hidden; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; line-height: 22px; font-size: 14px; font-weight: bold; color: rgb(245, 245, 245); transition: color 0.2s;&quot;;
-
-      const illustrationAuthor = document.createElement(&quot;a&quot;);
-      illustrationAuthor.setAttribute(&quot;data-gtm-value&quot;, userId);
-      illustrationAuthor.href = `/users/${userId}`;
-      illustrationAuthor.target = &quot;_blank&quot;;
-      illustrationAuthor.rel = &quot;external&quot;;
-      illustrationAuthor.style =
-        &quot;display: flex; align-items: center; margin-top: 4px;&quot;;
-      illustrationAuthor.innerHTML = `
-          &lt;img src=&quot;${profileImageUrl}&quot; alt=&quot;${userName}&quot; style=&quot;object-fit: cover; object-position: center top; width: 24px; height: 24px; border-radius: 50%; margin-right: 4px;&quot;&gt;
-          &lt;span style=&quot;min-width: 0px; line-height: 22px; font-size: 14px; color: rgb(214, 214, 214); text-decoration: none; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;&quot;&gt;${userName}&lt;/span&gt;
-        `;
-
-      illustrationImageWrapper.appendChild(illustrationImage);
-      if (isUgoira) illustrationImageWrapper.appendChild(ugoriaSvg);
-      illustrationAnchor.appendChild(illustrationImageWrapper);
-      illustrationAnchor.appendChild(illustrationMeta);
-      illustrationAnchor.appendChild(illustrationToolbar);
-      illustrationAnchor.appendChild(illustrationTitle);
-      container.appendChild(illustrationAnchor);
-      container.appendChild(illustrationAuthor);
-      listItem.appendChild(container);
-      fragment.appendChild(listItem);
-    }
-
-    this.listElement.find(&quot;li&quot;).remove();
-    this.listElement.append(fragment);
-  }
-}
-```
-
-在上面的代码里，笔者参考 Pixiv 作品节点的 DOM，手动构造了大抵一致的作品节点，尽管部分功能缺失，但能够满足排序作品的需要。笔者也考虑过克隆原生节点再修改 DOM 节点里的属性会否更好，但是忧心前端版本更新导致 DOM 节点结构更新，以及担心不同页面的 DOM 节点结构不同，所以还是人工捏出来了通用节点。
+笔者参考 Pixiv 作品节点的 DOM，手动构造了大抵一致的作品节点。笔者也考虑过克隆原生节点再修改 DOM 节点里的属性会否更好，但是忧心前端版本更新导致 DOM 节点结构更新，以及担心不同页面的 DOM 节点结构不同，所以还是人工捏出来了通用节点。
 
 最后，在想要排序的页面点击按钮，看看大家都爱什么作品吧！
 
 ![排序包含“天童爱丽丝”标签的作品](./pixiv-previewer/sorting-result.png)
 
+## 添加自己想要的功能
+
+完成上面对已有功能的优化改造之后，是时候添加自己想要的功能了。
+
+### 在作品预览窗口显示元数据信息
+
+可以从接口里拉取到分页信息，自然也可以请求接口拉取作品的元数据信息。将元数据信息展示在预览窗口上，多是一件美事儿啊。
+
+![包含元数据的预览窗口](./pixiv-previewer/illust-meta.png)
+
+### 作品预览添加单手模式
+
+冬天手冷，只想一只手放在外面预览和存图时，这个功能就很有用了。通过长按鼠标左键进入单手模式，可以实现单手操作切换预览的图片页面，以及点击下载原图按钮。
+
+![进入单手预览模式](./pixiv-previewer/one-hand-mode.gif)
+
+### 新增列表管理原图下载
+
+网络状况不总是一帆风顺，有时点击了下载原图，但还没等下载完成保存到本地就关闭了标签页，恐怕一生都会痛失这张插画作品了。于是笔者加入了下载列表功能，避免此类悲剧的发生。
+
+![查看下载记录](./pixiv-previewer/downloads-list.png)
+
+### 下载不同分级原图到对应子目录
+
+笔者将不同分级的作品放到了不同文件夹中存储，井水不犯河水。添加此功能旨在提升分类的效率，当下载了一堆插画作品到本地后，能更快地将它们安置到对应目录下。
+
+为了正常使用该功能，需要手动配置启动 Tampermonkey 的「浏览器 API」下载模式，在设置页面将配置模式改为「高级」，就可以找到下载选项了：
+
+![使用浏览器 API 下载模式](./pixiv-previewer/download-with-browser-api.png)
+
+### 过滤当前页面已收藏的作品
+
+虽然在找图过程中重新遇见曾收藏过的作品很美好，但贪婪的屯屯鼠更想收集前所未见的新插画作品！点击按钮，一键过滤当前页面所有标记了爱心的作品，只留下还未被视网膜欣赏的野花。
+
+![过滤当前页面已收藏的作品](./pixiv-previewer/hide-favorite.gif)
+
+### 本地标签管理
+
+老老实实遵循 Pixiv 普通用户只能保存十个标签的限制很枯燥吧？现在可以记录无限个标签，不丢失任何美好世界的入口。通过 Tampermonkey 的存储机制，还能够同步本地标签信息到别的设备上。
+
+![本地标签管理](./pixiv-previewer/manage-tags.png)
+
 ## 最后
 
-附上 [Github 仓库地址](https://github.com/LolipopJ/PixivPreviewerL)与 [Tampermonkey 脚本地址](https://greasyfork.org/zh-CN/scripts/533844)，希望对有类似需求的人带来一些帮助。
-</content:original-text><content:updated-at>2025-04-26T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+附上 [Tampermonkey 脚本地址](https://greasyfork.org/zh-CN/scripts/533844)，如果你的口味与我相近，不妨来试试这款独立出来的脚本。
+</content:original-text><content:updated-at>2026-10-26T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
