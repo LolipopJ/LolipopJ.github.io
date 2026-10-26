@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Oct 2026 07:54:59 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Oct 2026 11:51:01 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:original-text>
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -7286,9 +7286,9 @@ FF14 的**前期相当枯燥乏味**，由于等级上限不断提高，所有�
 
 游戏的可玩性**与主线进度关联紧密**，每个大版本的新玩法和支线（或高难）副本几乎都在对应主线完成后解锁。而更新了十年的游戏内容也非一朝一夕能够打完的 —— 苦行僧般地推主线吧，未来的你一定会感谢现在努力的自己的 XD。有人粗略统计，从创建角色到完成 7.0 主线剧情，大约需要花费 200 小时的时间；如果在中途穿插一些其它的玩法比如制作发光武器或特殊区域探索，那么时间将倍翻。
 
-![游戏资料片一览](./ffxiv-global/expansion-packs.jpg)
+![游戏资料片一览](./ffxiv-global/expansion-packs.png)
 
-&gt; [!NOTE]
+&gt; [!SUCCESS]
 &gt; 身边统计学显示，认真走完 5.0 暗影之逆焰剧情的光之战士，都深深沉迷在了这款庞大的幻想游戏世界里……即使 AFK 也会偶尔想念起 FF14 的好。
 
 每次开启新版本之前不妨先看看版本 PV。时至今日，我偶尔会翻出 5.0 的 PV 看上一看，光听歌都称得上享受。
@@ -7360,7 +7360,7 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 
 打开后将自动下载并安装国际版客户端到指定目录。完毕后，输入账号密码即可启动游戏。
 
-请注意，如果您是未购买游戏的试用账户，需要打开启动器的设置页面，找到“游戏设置”，勾选“使用试用账户”。否则在登录时可能会报错“请检查用户名或密码”。
+请注意，如果你是未购买游戏的试用账户，需要打开启动器的设置页面，找到“游戏设置”，勾选“使用试用账户”。否则在登录时可能会报错“请检查用户名或密码”。
 
 ![配置“试用账户”模式启动游戏](./ffxiv-global/launcher-setting-trail.png)
 
@@ -7562,6 +7562,13 @@ FFXIVQuickLauncher 就可以直接配置随游戏启动的软件列表，在这�
 
 当然，我并没有角色摄影的爱好，所以没有深入学习与调整滤镜。作为参考，我使用了 NGA 上一位大佬分享的[预设滤镜](https://nga.178.com/read.php?tid=37397620&amp;rand=681)（[Github Repo](https://github.com/MapleRecall/reshade-FFXIV-EnhancedGamePlay)），相比其它强调个性的摄影用滤镜，这个滤镜更适合游戏常驻使用。
 
+## 私藏珍品
+
+- [【FF14】发点狒狒玩家看了会笑的图·第一期](https://www.bilibili.com/opus/784722011592065090)
+- [【FF14】发点狒狒玩家看了会笑的图·第二期](https://www.bilibili.com/opus/793257357148684307)
+- [【FF14】发点狒狒玩家看了会笑的图·第三期](https://www.bilibili.com/opus/802148158294458387)
+- [【FF14】发点狒狒玩家看了会笑的图·第四期](https://www.bilibili.com/opus/809866343635484712)
+
 ## 小尾巴
 
 ### 记于 2026.10.18
@@ -7603,7 +7610,7 @@ FF14 提供了招募板功能，让大家能方便地加入并练习自己想打
 - **解禁跨职业装备幻化。** 也就是说白魔法师可以一只手持短杖，另一只手持盾牌来 cos 牧师了！咳咳，主要是服饰装扮不再局限于本职业可用的装备了，这大大提升了时尚搭配的自由度，对于以人物美型为重要卖点的 FF14 来说，堪称史诗级更新。未来要是把幻化柜升级成手游版本的图鉴模式就完美了，800 个格子对于光之收藏家们来说还是太少了。
 
 我仍然对 FF14 的未来保持乐观，期待 8.0 的大版本更新能重振荣光，带来更多有趣的内容吧。
-</content:original-text><content:updated-at>2026-10-18T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
+</content:original-text><content:updated-at>2026-10-26T00:00:00.000Z</content:updated-at></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
 
 言归正传，在项目开发的过程中…]]></description><link>https://blog.towind.cn/posts/sync-qzone-talks</link><guid isPermaLink="false">sync-qzone-talks</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate><content:original-text>
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
