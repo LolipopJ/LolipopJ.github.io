@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 08 Nov 2026 08:16:25 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 08 Nov 2026 12:15:35 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -7232,8 +7232,8 @@ FF14 作为一款 MMORPG 拥有如下令我喜爱的地方：
 - **世界观构筑和剧情展开令人沉浸。** 以单机游戏的规格制作的主线剧情，以及一些精彩有趣的特殊支线剧情（非正统调查员、光之邮递员等等），造就了一套独特的游戏文化，构筑了一个充满活力的世界观，令人沉浸其中，对于游戏来说亦是长久发展的生命线。
 - **茫茫多的副本与挑战内容。** 副本分为四人本、八人本和二十四人本。主线剧情里的歼灭战难度面向普通玩家，能保证大家顺利过本，推动剧情；主线之外还有难度面向进阶玩家设计的歼殛战，面向核心玩家设计的诛灭战、零式和绝境战，充满挑战和丰厚的奖励（比如坐骑）。副本会同步装备品级，意味着无论新老玩家，在副本里都是性能平衡的，要依靠手法和努力完成攻略。
 - **杰出的视觉清晰度设计。** 高难挑战里你完全可以通过自身的 DEBUFF，BOSS 的动作和场地的变化等判断出自己该如何处理机制，不需要其它任何科技手段的辅助。与 WOW 的高难设计形成鲜明对比，后者因为较差的视觉清晰度设计，导致挑战高难时大家都默认你正在使用插件，继而使得关卡设计师会在默认玩家们都使用插件的基础上，设计更难、更难的机制，最终导致玩家们不使用插件就几乎无法正常通关。
-- **超高规格的音乐制作。** 在本身高质量音乐的基础上，通过乐器与鼓点的变奏表达战斗的高潮，某些副本里人声的加入更是将情绪推至巅峰。请务必打开音响游玩。
-- **超多玩法的堆砌。** 七十级主线完成后开放的禁地优雷卡探索，八十级的南方博兹雅战线，九十级的开拓无人岛，一百级的新月岛，另外还有深层迷宫、变换迷宫、挖宝、地图 BOSS 狩猎、光（肝）武制作、金蝶游乐场、生产采集和潜水艇探索等各种玩法，每个玩法自成一套体系，完成的奖励反映在武器、称号、坐骑等方面，为爆肝带来满足感和成就感。
+- **超高规格的音乐制作。** 系列一脉相承的超高规格音乐原声带制作，通过乐器与鼓点的变奏表达战斗的高潮，某些关键副本里众多混音的加入更是将情绪推至巅峰。对音乐产生的共鸣，远胜千言万语。
+- **大量玩法的堆砌。** 七十级主线完成后开放的禁地优雷卡探索，八十级的南方博兹雅战线，九十级的开拓无人岛，一百级的新月岛，另外还有深层迷宫、变换迷宫、挖宝、地图 BOSS 狩猎、光（肝）武制作、金蝶游乐场、生产采集和潜水艇探索等各种玩法，每个玩法自成一套体系，完成的奖励反映在武器、称号、坐骑等方面，为爆肝带来满足感和成就感。当然，也有滥竽充数的玩法，就见仁见智花时间游玩罢。
 
 媒体评价方面，FF14 获得了 TGA 如下提名与奖项：
 
