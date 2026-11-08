@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 08 Nov 2026 08:04:55 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share knowledge about software / frontend development.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 08 Nov 2026 08:16:25 GMT</lastBuildDate><item><title><![CDATA[为了减少 Codex 的词元消耗，提升上下文的使用效率，我都折腾了些啥]]></title><description><![CDATA[作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。 受 Tibo 隔三差五就 Reset 一次套餐用量的性感人格吸引，我也终于成为了一名 ChatGPT Plus 订阅用户。本文就用来介绍，我是如何通过社区里的开源工具与服务减少 Codex 词元消耗，提升上下文利用效率的。正可谓，一次折腾，“终身”受益。
 
 RTK - 命令层压缩 CLI…]]></description><link>https://blog.towind.cn/posts/codex-reduce-tokens</link><guid isPermaLink="false">codex-reduce-tokens</guid><category><![CDATA[人工智能]]></category><pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 作为 AI 大模型时代里的一位普通开发者，控制好与智能体的聊天上下文无疑是涵盖省钱和提效于一体的重要技能。
@@ -381,7 +381,7 @@ Serena 是一个基于 LSP（Language Server Protocol，语言服务器协议）
 实际上，社区已经有项目打包了涵盖本文提到的在内，一系列用于减少词元消耗的插件与服务，使用这些项目理论上能更快实现相似甚至更好的词元节省效果。不过作为一个从旧时代走过来的程序员，天生会对此类封装抱持怀疑，会否会如过去很多开发框架一样因过度封装反而容易遇到一些难题无法解决？在真正出现经受验证、缺你不可的工具之前，就让我保持对这些基础设施的可支配感吧。
 
 最后，你可能也注意到了，此类上下文压缩工具或服务的实现都或多或少基于有损的“信息提炼与过滤”，我们预期它们总是保留对 LLM 来说最有用的“核心信号”，但从理性的角度来讲这又是不可能的。因此，启用的工具并不是越多就越好的，一方面要衡量时间和效率的性价比，另一方面也要避免“过拟合”导致信息失真。嚯嚯，这恐怕也是此类工具的门道所在吧。
-]]></content:encoded><atom:updated>2026-10-13T00:00:00.000Z</atom:updated></item><item><title><![CDATA[关于我使用大模型技术本地实时广东话转文字这件事]]></title><description><![CDATA[起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。 好消息是因为《怪物猎人：荒野》的缘故…]]></description><link>https://blog.towind.cn/posts/realtime-stt-cantonese-to-ch</link><guid isPermaLink="false">realtime-stt-cantonese-to-ch</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Tue, 13 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[关于我使用大模型技术本地实时广东话转文字这件事]]></title><description><![CDATA[起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。 好消息是因为《怪物猎人：荒野》的缘故…]]></description><link>https://blog.towind.cn/posts/realtime-stt-cantonese-to-ch</link><guid isPermaLink="false">realtime-stt-cantonese-to-ch</guid><category><![CDATA[技术琐事]]></category><pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 起因是自己违背了自己永远不加入固定队的誓言，受邀加入到了《最终幻想 XIV》里以通关绝龙诗为目标的固定队去。然而，因为队长是香港人，队伍招募时是在“全港最大FF14讨论区”里发的贴，所以除我之外的七个人都讲的是广东话！虽然自己粤语歌听很多，但也是配合着歌词才逐渐明白一些读音对印的字，于是交流变成了单向的，他们能听懂我讲的普通话，但是我完全听不懂他们讲的广东话。
 
 好消息是因为《怪物猎人：荒野》的缘故，早在电脑配件价格暴涨前购买了 RTX 4070 SUPER 显卡，拥有 12GB 大小的显存，给了我本地跑大模型的算力支撑。于是，今回就计划在本地跑实时语音转文字服务，帮助自己能更好理解队友都在讲些啥。
@@ -776,7 +776,7 @@ RealTimeSTT: realtimestt - WARNING - Audio queue size exceeds latency limit. Cur
 然而朋友们，新的问题出现了，即使实时转文字能力已经能做到 90% 的正确性了，但是广东话里的文字和俚语本身有很多是我不认识的！虽然确确实实是象形文字，但我的大脑中枢却拒绝了对它们的理解，自己仿佛一个日本人在阅读中文文学作品。
 
 难道下一个课题就是把得到的广东话文本再实时翻译为普通话？！唔姆唔姆，敬请期待？？
-]]></content:encoded><atom:updated>2026-06-11T00:00:00.000Z</atom:updated></item><item><title><![CDATA[最终幻想 14 国际服客户端汉化学习笔记]]></title><description><![CDATA[Caution 此博客仅供学习交流，严禁用于商业用途。使用汉化补丁属于修改客户端行为，使用者需自愿承担风险。
+]]></content:encoded><atom:updated>Thu, 11 Jun 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[最终幻想 14 国际服客户端汉化学习笔记]]></title><description><![CDATA[Caution 此博客仅供学习交流，严禁用于商业用途。使用汉化补丁属于修改客户端行为，使用者需自愿承担风险。
 
 我是常驻最终幻想 14 国际服的玩家，为了获得本土级的游玩体验，对客户端进行汉化是必要的。
 
@@ -1038,7 +1038,7 @@ CSV 文件处理完成！
 ## 尾声
 
 妄想……什么时候国际服客户端会添加官方中文的支持呢……？
-]]></content:encoded><atom:updated>2026-07-28T00:00:00.000Z</atom:updated></item><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.cn/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Tue, 28 Jul 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[最近 Hermes Agent 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[OpenAI 在二月发布的《工程技术：在智能体优先的世界中利用 Codex》一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章《JSSE: A JavaScript Engine Built by an Agent》中介绍了他用智能体构建一个能够 100% 通过 test262 测试的…]]></description><link>https://blog.towind.cn/posts/hermes-agent-setup</link><guid isPermaLink="false">hermes-agent-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 OpenAI 在二月发布的[《工程技术：在智能体优先的世界中利用 Codex》](https://openai.com/zh-Hans-CN/index/harness-engineering/)一文，展示了研究者们在一个空仓库里从零开始构建一个完整项目的过程，与之伴生的是一个能够不断迭代与学习的智能体。另一边，开发者 Paulo Matos 在文章[《JSSE: A JavaScript Engine Built by an Agent》](https://p.ocmatos.com/blog/jsse-a-javascript-engine-built-by-an-agent.html)中介绍了他用智能体构建一个能够 100% 通过 test262 测试的 JavaScript 引擎的经历。
 
 自进化的智能体，以及自动从仓库长出来的完备代码，在当前模型能力的加持下已然不再只是科幻概念。尽管在中间的某些环节还是会需要人类的干预，但整体来说我们在其中起到的作用只是引导和监督罢了。
@@ -1997,7 +1997,7 @@ CAMOFOX_API_KEY=your-generated-key
 但如今，Hermes Agent 带给了我足够出色的用户体验。让我陪伴你到下一个智能体框架发光之前吧！
 
 啊，如梦似幻的信息技术世界。
-]]></content:encoded><atom:updated>2026-04-19T00:00:00.000Z</atom:updated></item><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.cn/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Sun, 19 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[AI 时代的 RSS 订阅：基于 OpenClaw 的 FreshRSS 实战]]></title><description><![CDATA[LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响…]]></description><link>https://blog.towind.cn/posts/openclaw-with-rss</link><guid isPermaLink="false">openclaw-with-rss</guid><category><![CDATA[人工智能]]></category><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 LLM 与 AI 的热潮激活了我对新鲜资讯的渴望，遂重新回想起来了 RSS 阅读器的存在。最开始想要让浏览器包办一切，因为自己总会切换不同的设备，而 Chrome 能同步安装的浏览器拓展，于是试用了知名度最高的 RSS Feed Reader。然而它并不是免费做慈善的，最大的限制是只能保存每个订阅源最新的 50 条内容，超出的部分就啪地一声不见了。对于更新较慢的博客来说，这个限制没有什么影响，想读的话肯定会在被删掉前读完；但对于更新频繁的新闻媒体来说，这个限制就很容易干掉可能有价值的未读讯息。
 
 最后，我放弃了简单易懂的解决方案，选择了属于程序员的艰难苦行：自己部署一个 RSS 订阅源生成器。但止步于此实在简陋无趣，于是我打算自己为自己创造需求，把生成器接入 OpenClaw，让大模型帮我筛选高价值内容。
@@ -2426,7 +2426,7 @@ openclaw cron run 3704fb52-2f1f-4694-ba59-f026d6c5dfeb
 哎……毕竟是免费模型，权当增加自己的调试经验与提示词能力了。
 
 总之，今天也算搭好了一个新玩具，至于它具体能否真的为我带来帮助，尚且需要一段时间来验证了。
-]]></content:encoded><atom:updated>2026-04-21T00:00:00.000Z</atom:updated></item><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
+]]></content:encoded><atom:updated>Tue, 21 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[不再是小画家了……自动化 Wplace 绘画清日常]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 在鼠标按下一个一个像素点很久以后，我自觉没有那么多精力与耐心继续点下去了，便开始寻求自动化的方案。虽然这一定会损失掉绘画本身的乐趣，但自身的兴趣已经不在这里，又想要继续赛博涂鸦自己的家乡，于是便有了此文。
 
 Caution
 
@@ -2840,7 +2840,7 @@ export default class WindowFilter extends Overlay {
 再也回不去了……
 
 ![濡湿小镰刀说是](./wplace-painter-automatic/ds-fun.gif)
-]]></content:encoded><atom:updated>2026-08-06T00:00:00.000Z</atom:updated></item><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.cn/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Thu, 06 Aug 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[月球上的最终幻想 14 玩家，用插件改善劳动生活]]></title><description><![CDATA[撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用…]]></description><link>https://blog.towind.cn/posts/ffxiv-man-on-the-moon</link><guid isPermaLink="false">ffxiv-man-on-the-moon</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 撰写此文时，我的角色已经在最终幻想 14 的游戏世界里守护艾欧泽亚 135 天 15 小时了，从一条只玩休闲内容的咸鱼，到现在成为了已经可以轻松征服零式副本挑战的狼群成员，自认为游戏理解提高了许多。至于代表制作人对玩家最高级别调教的绝境战，阻碍我完成的也只有还不想花那么多时间专注在一块内容上练习罢了，哼哼哼……啊，炫耀自己的游戏技术并非本文的主旨，言归正传，我将这篇博客里分享在游戏中运用 Dalamud 插件（即卫月插件）的技巧。
 
 自力更生搓爆发药和食物并没有问题，但当你需要搓几百组的时候，对注意力的消耗就成了巨大的负担：执行完宏 1 后，要去执行宏 2，搓完后再继续下一轮制作。期间每隔几十秒就要切回窗口点击一下，实在是令人焦虑。越是长大越是觉得时间宝贵，注意力可贵，对于此类重复度高的机械化工作，占用屏幕时间显得尤为浪费。因此，我学习并使用了一些能够简化上述生产等过程的插件，耐不住想要分享的性子，遂整理成文，也许对你有所帮助。当然，我也并没有把这些插件的功能钻研透彻，下面也只会讲述我实际使用到的功能。
@@ -3009,7 +3009,7 @@ ICE 的功能和配置很丰富，但意外地好上手。我使用它来帮助�
 作为一个会挑战硬核内容的玩家，我绝对不会接触战斗辅助类的插件，一方面没有遇到什么机制难到我大脑拒绝处理，或者说源于我作为魂系游戏玩家的矜持让我总能想方设法克服复杂的机制，另一方面就像社区里调侃《原神》玩家的那样：“你记住，只要你玩了《原神》，你成为了旅行者，你这辈子就都是旅行者了，你洗不掉的” —— 一旦用上了任何辅助战斗的插件，此前一切为技术精进作出的努力，重复挑战副本获取的 Logs，都即刻**没有任何含金量**了，我绝不能容忍这样的烙印刻在我身上。
 
 历经封号的我将吸取教训，不再跑自动化生产 & 采集插件了，珍惜账号！
-]]></content:encoded><atom:updated>2026-04-14T00:00:00.000Z</atom:updated></item><item><title><![CDATA[初窥 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
+]]></content:encoded><atom:updated>Tue, 14 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[初窥 OpenClaw 多代理模式，把工作交给最合适的龙虾]]></title><description><![CDATA[本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！ 对接多款 AI 大模型
 
 首先，认清自己的需求，我并不需要多么强大的模型来跑什么复杂任务，因此选择排行榜上佼佼的顶级模型是极不划算的，每天定时任务抓取一次网页就烧几块钱这谁顶得住？其次，直接使用模型官方 API 往往意味着更高的成本，而选用三方 API…]]></description><link>https://blog.towind.cn/posts/openclaw-multiple-agents</link><guid isPermaLink="false">openclaw-multiple-agents</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 本博客，我将尝试在 OpenClaw 接入多款 AI 大模型，对接到多个 AI 代理，让大家各司其职，在自己擅长的领域里发光发热，为我打工！
@@ -3784,7 +3784,7 @@ Lolipop老师觉得呢？💙
 题外话，在生成封面图的时候把自己气笑了，发现负责指挥的龙虾连钳子手都进化成人手了，负责干活的龙虾为何拿着奇怪的东西在研磨纸张，背后的电脑起了什么作用？！
 
 哼嗯哼嗯，折腾爽了，下次见。
-]]></content:encoded><atom:updated>2026-04-09T00:00:00.000Z</atom:updated></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.cn/posts/openclaw-setup</link><guid isPermaLink="false">openclaw-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Thu, 09 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[最近 OpenClaw 也太火爆了，让我看看怎么个事儿]]></title><description><![CDATA[自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条…]]></description><link>https://blog.towind.cn/posts/openclaw-setup</link><guid isPermaLink="false">openclaw-setup</guid><category><![CDATA[人工智能]]></category><pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 自 2022 年底 ChatGPT 发布引爆的全球 AI 热潮以来，一批又一批的高精尖“炼丹”人才涌入到 AI 领域，带来一次又一次令人惊叹的技术进步。会话领域，从知识库反刍，到联网搜索和显然比 CSDN 好用万倍的编码助手，边笑着写代码边哭着说离前端被淘汰又近了几步；图片领域，从“六指琴魔”，到以假乱真的震撼美味照片，不舍看过就失去，决定仍搬进自己的图库；视频领域，从威尔史密斯招笑吃面条，到配音和画风都十分还原的饭制鸣潮二创动画，看得津津有味。
 
 过去曾有人写文安慰大家，不必盯着 AI 的新闻看，更不必每天都追最新的 AI 技术，只会让你感到迷茫与眼花缭乱。我于是慢下脚步，搬来板凳等着某一天，AI 技术宣告成熟可用了，再去好好学习。而如今，经历三年多的高速发展，我认为目前的 AI 技术已经逐步进入到了一个相对可用的阶段，是时候加入浩浩汤汤的采用者大军，除开早就开始使用的 Copilot 之类的编码助手外，从更多方面使用 AI 来进化自己的能力栈。
@@ -4294,7 +4294,7 @@ launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.backup.plist
 这次摸爬滚打的 OpenClaw 采用体验，一边怨声载道骂骂咧咧，在教程资源尤其少（大部分还是 AI 编撰）的当下，不知道怎么做才是对；另一边觉得实在是太有意思了，它已经打通了我作为开发者需要的底层能力（尽管不稳定），接下来的想象空间可以说是无限大。
 
 总结来看，现在的我拥有了一位会犯错的**实习**助理，到它成为可靠私人 AI 助理还需要培训一些时日。不过我并不担心它未来的成长，每次新模型的发布都可能产生用途用法上的质变。且让我在未来的使用过程中，慢慢 Get 到使唤它的诀窍，帮助自己提升效率，甚至实现创造力的飞跃吧。
-]]></content:encoded><atom:updated>2026-04-10T00:00:00.000Z</atom:updated></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.cn/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Fri, 10 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[实时读取自己的 Discord 状态，供前端应用展示]]></title><description><![CDATA[笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目…]]></description><link>https://blog.towind.cn/posts/display-my-discord-status</link><guid isPermaLink="false">display-my-discord-status</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 笔者性格使然，并不太介意个人隐私，愿意把自己的各种进行时的状态信息公开展示在个人网站上。很早以前，笔者就想要实现一个小软件，它能自动读取在电脑上运转的程序，将当前活跃的程序名称上传到网站上进行展示。但是遗憾没有好的实现思路，最终只是新建了 Repo 就搁置了这个想法。
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
@@ -4559,7 +4559,7 @@ Discord 原生支持读取 Spotify 等国外流行音乐软件的播放状态，
 VSCode 何尝不是一款面向程序员的益智游戏，插件 [Discord Presence](https://marketplace.visualstudio.com/items?itemName=icrawl.discord-vscode) 可以实现将当前编辑文件信息与编辑时长同步到 Discord 上的功能。
 
 ![vscode status](./display-my-discord-status/vscode-status.png)
-]]></content:encoded><atom:updated>2025-11-20T00:00:00.000Z</atom:updated></item><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。 但正如资深的程序员所说的那样：
+]]></content:encoded><atom:updated>Thu, 20 Nov 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[下载动态加密的 m3u8 视频文件到本地]]></title><description><![CDATA[请注意，本文讨论的“动态加密”是指后端不直接返回视频文件的密钥，而非后端动态生成新的密钥与播放列表的分片文件。 但正如资深的程序员所说的那样：
 
 任何客户端的加解密都是不安全的。我们都应该认为，任何在客户端进行的加解密操作都可能被逆向工程或破解。
 
@@ -4769,7 +4769,7 @@ ffmpeg -protocol_whitelist "file,crypto,data,http,https,tcp,tls" -allowed_extens
 其中，ffmpeg 默认只支持从安全的协议（包括 `file,crypto,data`）获取视频分片文件，不支持 `https` 等其它协议，因此设置了命令行参数 `-protocol_whitelist "file,crypto,data,http,https,tcp,tls"`；同理，ffmpeg 默认只支持读取 `.ts` 和 `.m3u8` 等常见扩展名的文件，因此设置了命令行参数 `-allowed_extensions ALL` 来允许读取秘钥文件 `key.bin`。
 
 执行完成后，当前目录下就会生成合并后的 `output.mp4` 文件。可喜可贺，可喜可贺！
-]]></content:encoded><atom:updated>2025-09-12T00:00:00.000Z</atom:updated></item><item><title><![CDATA[我要成为 Wplace 小画家]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 但是你妈的，怎么成都的涂鸦全是 KR Dog？必须要正本溯源，添加一些我喜爱的要素了！
+]]></content:encoded><atom:updated>Fri, 12 Sep 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[我要成为 Wplace 小画家]]></title><description><![CDATA[Wplace 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。 但是你妈的，怎么成都的涂鸦全是 KR Dog？必须要正本溯源，添加一些我喜爱的要素了！
 
 这篇文章将介绍 Tampermonkey 插件 Blue Marble，并使用它在 Wplace 进行创作。由于 Wplace 本身需要代理软件才能访问…]]></description><link>https://blog.towind.cn/posts/wplace-painter</link><guid isPermaLink="false">wplace-painter</guid><category><![CDATA[生活闲暇]]></category><pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 [Wplace](https://wplace.live/) 是一个所有人都可以往世界地图上任意添加像素点的涂鸦平台，看见大家创造的各种图案，我也深受吸引并成为创作的一员。
@@ -4986,7 +4986,7 @@ Blue Marble 的[官方文档](https://wplace-pixel.com/zh/blue-marble)提供了�
 ![杏山和纱 in Wplace](./wplace-painter/kazusa-kyoyama-wplace.png)
 
 ![杏山和纱](./wplace-painter/kazusa-kyoyama.jpg)
-]]></content:encoded><atom:updated>2026-04-12T00:00:00.000Z</atom:updated></item><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
+]]></content:encoded><atom:updated>Sun, 12 Apr 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[通过 Grafana 管理日志信息]]></title><description><![CDATA[新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！ 因此在本篇博客里，笔者计划部署统一的日志管理服务，存储来自各个地方的日志信息，既方便管理，也方便快速发现并修复问题。
 
 在 Github 上以  为关键词，按星标数排序…]]></description><link>https://blog.towind.cn/posts/grafana-log-system</link><guid isPermaLink="false">grafana-log-system</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 新买了服务器果然能为自己创造一个又一个接连不断的需求。例如，笔者想到公网服务器上跑的定时脚本会把日志重定向到指定的文件里，但是并不会自动清理，意味着它们会在几十年后占满笔者的硬盘空间，这是不可接受不可妥协的！
@@ -5491,7 +5491,7 @@ services:
 ## ？
 
 还有高手……！请看 VCR：[《2999,入手 16+256G 内存的 macmini4，如何通过部署 50 个服务实现最大价值化》](https://www.v2ex.com/t/1123367)。
-]]></content:encoded><atom:updated>2025-06-12T00:00:00.000Z</atom:updated></item><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
+]]></content:encoded><atom:updated>Thu, 12 Jun 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[部署自己的 WebDAV 服务，同步应用数据与软件配置]]></title><description><![CDATA[今天在使用 Next Chat 时，突然想到聊天数据应该是可以备份的，在设置里面发现它支持 WebDAV 和没听说过的 UpStash 两种文件协议，而笔者使用的其它软件又广泛支持前者进行备份同步。于是今天便来捣腾 WebDAV 并实现数据备份。 Docker 部署 WebDAV 服务
 
 Tip
 
@@ -5626,7 +5626,7 @@ server {
 在“Windows 挂载 WebDAV”章节里，主要参考了[《Windows 挂载 WebDAV》](https://www.expoli.tech/articles/2020/12/30/1609327097930#00ecc29c1a7b4cb783cfa61ba925073e)这篇博客，解决了挂载异常的问题。
 
 在“备份应用数据到 WebDAV”章节里，主要参考了[《终于拿下了NextChat的WebDAV云同步，我感觉我又行了》](https://linux.do/t/topic/373723)和[《【拉跨，但能用了】NextChat 的 WebDAV 云同步。。》](https://linux.do/t/topic/328163)这两篇帖子。
-]]></content:encoded><atom:updated>2025-04-05T00:00:00.000Z</atom:updated></item><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.cn/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Sat, 05 Apr 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[拿刚买的 Mac Mini 做我的应用服务器]]></title><description><![CDATA[去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的…]]></description><link>https://blog.towind.cn/posts/mac-mini-server</link><guid isPermaLink="false">mac-mini-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 30 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 去年笔者拿 N100 小型主机安装 OpenWRT 系统作主路由服务器，又塞进去一些笔者自己部署的应用服务。后来 Mac Mini 4 发售了，评测得到的功耗与性能令人惊叹，最重要的是定价很不苹果，让我这个苹果小黑子也想要入手一台玩玩。
 
 当然，笔者在逛 V2EX 的时候也看了大量劝退购入 Mac Mini 4 的帖子，尤其是像笔者这样只是拿来做轻量级应用服务器的用途 —— 大炮打蚊子。但是你知道的，即使并不需要，但是笔者可以拿它为自己的灵魂制造全新的刺激来充实生活。
@@ -5813,7 +5813,7 @@ docker run --name mc-server-fabric --restart unless-stopped -v /path/to/mc-serve
 其实笔者购买 Mac Mini 4 的另一个初衷是拿它做旁路由，替换目前的 OpenWRT 主路由，但是又觉得过于繁琐（源于过去心血的积累），最终搁浅了这个计划。
 
 现在在笔者的家里，就由 N100 主路由服务器与 Mac Mini 4 轻量级应用服务器相辅相成，共同承载笔者捣腾的心理需要。
-]]></content:encoded><atom:updated>2025-03-31T00:00:00.000Z</atom:updated></item><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
+]]></content:encoded><atom:updated>Mon, 31 Mar 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[对油猴脚本 Pixiv Previewer 进行二次开发]]></title><description><![CDATA[笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作： 作品预览：鼠标悬浮在作品缩略图上时自动在当前页面显示大图，快速决定要不要点进作品页。 作品排序：作品搜索页可以按“排序”按钮，自动获取若干页的作品并按照收藏数排序，快速筛选优质作品。
 
 出于爱好，笔者去脚本仓库翻阅了一下源码，想自己再折腾折腾，遂…]]></description><link>https://blog.towind.cn/posts/pixiv-previewer</link><guid isPermaLink="false">pixiv-previewer</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 笔者的业余爱好之一就是逛 Pixiv，收藏好看的插画等作品并下载到本地。油猴脚本 Pixiv Previewer 做了两个笔者很喜欢的便利性工作：
@@ -6495,7 +6495,7 @@ const detailedIllustrations = await execLimitConcurrentPromises(
 ## 最后
 
 附上 [Tampermonkey 脚本地址](https://greasyfork.org/zh-CN/scripts/533844)，如果你的口味与我相近，不妨来试试这款独立出来的脚本。
-]]></content:encoded><atom:updated>2026-10-26T00:00:00.000Z</atom:updated></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+]]></content:encoded><atom:updated>Mon, 26 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
@@ -7216,7 +7216,7 @@ jobs:
           external_repository: LolipopJ/LolipopJ.github.io
           publish_branch: main
 ```
-]]></content:encoded><atom:updated>2025-06-16T00:00:00.000Z</atom:updated></item><item><title><![CDATA[最终幻想 14 / Final Fantasy XIV 国际服入坑指北]]></title><description><![CDATA[本文档旨在帮助日文零基础或英语险胜四六级的好厚米们入坑 FF14 国际服，主要叙述账号注册、客户端下载、游戏汉化等内容，不涉及对游戏具体玩法或机制的解说，希望对你有所帮助。 为什么玩 Final Fantasy XIV
+]]></content:encoded><atom:updated>Mon, 16 Jun 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[最终幻想 14 / Final Fantasy XIV 国际服入坑指北]]></title><description><![CDATA[本文档旨在帮助日文零基础或英语险胜四六级的好厚米们入坑 FF14 国际服，主要叙述账号注册、客户端下载、游戏汉化等内容，不涉及对游戏具体玩法或机制的解说，希望对你有所帮助。 为什么玩 Final Fantasy XIV
 
 FF14 作为一款 MMORPG 拥有如下令我喜爱的地方：
 
@@ -7610,7 +7610,7 @@ FF14 提供了招募板功能，让大家能方便地加入并练习自己想打
 - **解禁跨职业装备幻化。** 也就是说白魔法师可以一只手持短杖，另一只手持盾牌来 cos 牧师了！咳咳，主要是服饰装扮不再局限于本职业可用的装备了，这大大提升了时尚搭配的自由度，对于以人物美型为重要卖点的 FF14 来说，堪称史诗级更新。未来要是把幻化柜升级成手游版本的图鉴模式就完美了，800 个格子对于光之收藏家们来说还是太少了。
 
 我仍然对 FF14 的未来保持乐观，期待 8.0 的大版本更新能重振荣光，带来更多有趣的内容吧。
-]]></content:encoded><atom:updated>2026-10-31T00:00:00.000Z</atom:updated></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
+]]></content:encoded><atom:updated>Sat, 31 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
 
 言归正传，在项目开发的过程中…]]></description><link>https://blog.towind.cn/posts/sync-qzone-talks</link><guid isPermaLink="false">sync-qzone-talks</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
@@ -7973,7 +7973,7 @@ Route (app)                              Size     First Load JS
   ├ chunks/618f8807-5ab9f851e4f8eeba.js  53.6 kB
   └ other shared chunks (total)          2.06 kB
 ```
-]]></content:encoded><atom:updated>2024-10-17T00:00:00.000Z</atom:updated></item><item><title><![CDATA[纯前端如何实现一个转盘抽奖组件]]></title><description><![CDATA[为什么 前阵子面试的时候被问到这个问题，觉得挺有意思，于是决定亲手实现一个转盘抽奖组件试试。
+]]></content:encoded><atom:updated>Thu, 17 Oct 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[纯前端如何实现一个转盘抽奖组件]]></title><description><![CDATA[为什么 前阵子面试的时候被问到这个问题，觉得挺有意思，于是决定亲手实现一个转盘抽奖组件试试。
 
 翻看别人的实现方案时，发现和自己面试时答得相差很大，悲 😢。但总之，是时候开始弥补自己的 CSS 和动画技能了。
 
@@ -8269,7 +8269,7 @@ Ops，竟然是谢谢参与，我觉得有黑幕！但是可喜可贺，我们�
   </iframe>`,
   }}
 />
-]]></content:encoded><atom:updated>2024-09-07T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Electron 执行后台程序并在渲染器实时打印运行日志]]></title><description><![CDATA[开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？ 那么需求也就明了了…]]></description><link>https://blog.towind.cn/posts/electron-real-time-print-execution-log</link><guid isPermaLink="false">electron-real-time-print-execution-log</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Sat, 07 Sep 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Electron 执行后台程序并在渲染器实时打印运行日志]]></title><description><![CDATA[开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？ 那么需求也就明了了…]]></description><link>https://blog.towind.cn/posts/electron-real-time-print-execution-log</link><guid isPermaLink="false">electron-real-time-print-execution-log</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 开发图像查重工具时遇到了这样一个问题：在查重之前，用户需要先对图像文件进行索引操作，后台将调用可执行文件并为每张图像生成特征值。索引操作所需的时间与图像的数量及大小呈正相关，笔者为大约 50000 张图片（约 170GB）生成特征值，需要花费将近 90 分钟的时间。在这种情况下，如果渲染器什么也不展示，卡在那里，用户难免会非常焦虑 —— 后台是否还在运行，我是不是卡死了？
 
 那么需求也就明了了，正如本文的标题所述，我们需要**将后台运行的日志实时推送到渲染器**，这样用户便能看到索引操作的进度，安下心来。
@@ -8524,7 +8524,7 @@ ipcMain.on(Events.UPDATE_INDEX, (_, args) => {
 现在，所有的链路都已经打通，查收编写代码努力的结晶吧！
 
 ![实时展示日志信息](./electron-real-time-print-execution-log/real-time-execution-log.gif)
-]]></content:encoded><atom:updated>2024-08-05T00:00:00.000Z</atom:updated></item><item><title><![CDATA[部署一个给朋友使用的 Minecraft 模组服务器]]></title><description><![CDATA[笔者在今年五月份部署了一个与朋友同玩共乐的 Minecraft 服务器，稳定运行至今。忽然想记录为一篇博客，分享分享折腾的经历。 笔者结合个人喜好（最新版本，模组优先）和大众推荐（Fabric 更适合新版本 Minecraft），决定基于 Fabric 搭建一个可以添加模组的 Minecraft 服务器。此类服务器简称为模组服务器，还有基于 Paper, Spigot 等搭建的插件服务器…]]></description><link>https://blog.towind.cn/posts/run-mc-server</link><guid isPermaLink="false">run-mc-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Mon, 05 Aug 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[部署一个给朋友使用的 Minecraft 模组服务器]]></title><description><![CDATA[笔者在今年五月份部署了一个与朋友同玩共乐的 Minecraft 服务器，稳定运行至今。忽然想记录为一篇博客，分享分享折腾的经历。 笔者结合个人喜好（最新版本，模组优先）和大众推荐（Fabric 更适合新版本 Minecraft），决定基于 Fabric 搭建一个可以添加模组的 Minecraft 服务器。此类服务器简称为模组服务器，还有基于 Paper, Spigot 等搭建的插件服务器…]]></description><link>https://blog.towind.cn/posts/run-mc-server</link><guid isPermaLink="false">run-mc-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 笔者在今年五月份部署了一个与朋友同玩共乐的 Minecraft 服务器，稳定运行至今。忽然想记录为一篇博客，分享分享折腾的经历。
 
 笔者结合个人喜好（最新版本，模组优先）和大众推荐（Fabric 更适合新版本 Minecraft），决定基于 Fabric 搭建一个可以添加模组的 Minecraft 服务器。此类服务器简称为模组服务器，还有基于 [Paper](https://github.com/PaperMC/Paper), [Spigot](https://www.spigotmc.org) 等搭建的插件服务器，可以综合自身需求，选择最合适的搭建方案。
@@ -8705,7 +8705,7 @@ server {
 ### 服务器备份
 
 时常 Minecraft 备份服务器数据并上传到云盘是一个非常好的习惯，笔者在<Link to="/posts/backup-mc-server">另一篇博客</Link>里实现了数据的定时备份与上传，供君参考。
-]]></content:encoded><atom:updated>2024-07-13T00:00:00.000Z</atom:updated></item><item><title><![CDATA[基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器]]></title><description><![CDATA[本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。 Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。
+]]></content:encoded><atom:updated>Sat, 13 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器]]></title><description><![CDATA[本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。 Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。
 
 笔者主要参考了如下两个部署教程：
 
@@ -9028,7 +9028,7 @@ echo steam >> /etc/cron.allow
 ```
 
 上面的配置表示，在系统时间每天凌晨 6 点整，自动重启并更新饥荒联机版服务器。
-]]></content:encoded><atom:updated>2024-07-18T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用 Nginx 治理我的服务]]></title><description><![CDATA[这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。 笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。
+]]></content:encoded><atom:updated>Thu, 18 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 Nginx 治理我的服务]]></title><description><![CDATA[这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。 笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。
 
 安装最新版本的 Nginx
 
@@ -9362,7 +9362,7 @@ http {
 一个命中 Proxy 缓存的例子如下：
 
 ![assets-gzip](./nginx-services/proxy-cache-hit.png)
-]]></content:encoded><atom:updated>2026-09-04T00:00:00.000Z</atom:updated></item><item><title><![CDATA[基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 AList 上传到云端]]></title><description><![CDATA[笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。
+]]></content:encoded><atom:updated>Fri, 04 Sep 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于原生 Node 备份软路由上的 Minecraft 服务器存档，并通过 AList 上传到云端]]></title><description><![CDATA[笔者最近在 OpenWRT 软路由上部署了一个 Minecraft 服务器，出于对数据安全的焦虑，于是折腾了一下存档备份的相关事宜，记录为此文。 在 CurseForge 等模组站上已有方便好用的 Minecraft 服务器存档备份插件，除非您喜欢折腾或高自由度的定制，不用像笔者这样编写一整个脚本。
 
 完整的脚本可见此。
 
@@ -9691,7 +9691,7 @@ Old backup files in alist are removed: true
 ```
 
 啊，满满的安心感！收工。
-]]></content:encoded><atom:updated>2024-05-23T00:00:00.000Z</atom:updated></item><item><title><![CDATA[遇到 AntD 组件中文乱码问题，可以试试这么解决]]></title><description><![CDATA[项目中使用了 AntD 4.x 的  组件，开发环境显示正常，生产环境显示乱码，如下图所示： 问题原因
+]]></content:encoded><atom:updated>Thu, 23 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[遇到 AntD 组件中文乱码问题，可以试试这么解决]]></title><description><![CDATA[项目中使用了 AntD 4.x 的  组件，开发环境显示正常，生产环境显示乱码，如下图所示： 问题原因
 
  组件底层的国际化既由 AntD 提供的  控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。
 
@@ -9726,7 +9726,7 @@ Old backup files in alist are removed: true
   charset="utf-8"
 ></script>
 ```
-]]></content:encoded><atom:updated>2023-10-09T00:00:00.000Z</atom:updated></item><item><title><![CDATA[为什么我使用 Umi 的 model 简易数据流管理插件]]></title><description><![CDATA[Umi 是一款企业级的 React 前端应用框架，云巧产业数字组件中心推荐使用基于 Umi 的 Koi 框架统一前端应用研发流程，支撑前端项目从研发、联调到上线、发布的全流程。 本文假设您正在或计划使用 Umi 或 Koi 作为底层框架支撑前端应用的开发，并且对 Umi 有一定的了解。
+]]></content:encoded><atom:updated>Mon, 09 Oct 2023 00:00:00 GMT</atom:updated></item><item><title><![CDATA[为什么我使用 Umi 的 model 简易数据流管理插件]]></title><description><![CDATA[Umi 是一款企业级的 React 前端应用框架，云巧产业数字组件中心推荐使用基于 Umi 的 Koi 框架统一前端应用研发流程，支撑前端项目从研发、联调到上线、发布的全流程。 本文假设您正在或计划使用 Umi 或 Koi 作为底层框架支撑前端应用的开发，并且对 Umi 有一定的了解。
 
 数据治理的原则
 
@@ -9854,7 +9854,7 @@ export default pageElement;
 当您使用 Umi 或 Koi 开发**小微型前端应用**遇到全局状态共享或数据流管理需求时，model 简易数据流插件具有**便利**、**低心智负担**的优势，不妨好好利用它来管理页面数据。
 
 针对更复杂的数据流管理需求（例如数据可预知甚至可回溯等），model 简易数据流插件显得有些捉襟见肘了：它只负责将数据全局化。别担心，开源社区提供了大量专注于做好数据流管理这件事的方案，例如 [Redux](https://github.com/reduxjs/redux) 和 [MobX](https://github.com/mobxjs/mobx) 等；Umi 官方目前也提供了对接 [dva](https://github.com/dvajs/dva) 和 [Valtio](https://github.com/pmndrs/valtio) 数据流管理库的插件，开箱即用。
-]]></content:encoded><atom:updated>2022-10-23T00:00:00.000Z</atom:updated></item><item><title><![CDATA[定时器 SetTimeout 在后台失效？试试 Web Worker 吧]]></title><description><![CDATA[业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。 想都没想，直接在  里用  定个时，12 个小时后触发相应跳转事件：
+]]></content:encoded><atom:updated>Sun, 23 Oct 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[定时器 SetTimeout 在后台失效？试试 Web Worker 吧]]></title><description><![CDATA[业务上有这样一个需求：「若用户不活跃超过 12 个小时，自动退出当前页面，并切换路由到首页」。 想都没想，直接在  里用  定个时，12 个小时后触发相应跳转事件：
 
 没想到，今天上班来，切换到没有关闭的标签页，发现还在当前页面，掐指一算怎么也有 12 个小时了，这是怎么一回事儿……？
 
@@ -10254,7 +10254,7 @@ export default () => {
 - [记一次定时器问题的优雅解决](https://juejin.cn/post/6855583384375132174)
 - [web worker onmessage - Uncaught SyntaxError: Unexpected token \<](https://stackoverflow.com/questions/49171791/web-worker-onmessage-uncaught-syntaxerror-unexpected-token)
 - [Combination of async function + await + setTimeout](https://stackoverflow.com/questions/33289726/combination-of-async-function-await-settimeout)
-]]></content:encoded><atom:updated>2022-09-22T00:00:00.000Z</atom:updated></item><item><title><![CDATA[连接到 Windows 端的 PostgreSQL 数据库]]></title><description><![CDATA[假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在  目录下，数据库文件保存在  目录，欲访问的数据库名为 ，访问数据库的用户为 。 配置 
+]]></content:encoded><atom:updated>Thu, 22 Sep 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[连接到 Windows 端的 PostgreSQL 数据库]]></title><description><![CDATA[假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在  目录下，数据库文件保存在  目录，欲访问的数据库名为 ，访问数据库的用户为 。 配置 
 
 编辑数据库配置文件 ，设置监听的远程连接地址。将  项的值设置为 ，如下所示：
 
@@ -10351,7 +10351,7 @@ host    db_name         db_user         ::/0                    scram-sha-256
 重新启动数据库服务。
 
 例如，路由器的公网 IP 地址为 `210.41.111.111`，服务器的内网 IP 地址为 `192.168.1.104`，虚拟服务器外部端口为 `22212`，数据库监听端口为 `5432`。那么，当我们通过客户端连接远程数据库时，主机名应填写 `210.41.111.111`，端口应填写 `22212`，这样，我们就能顺利访问到服务器上的数据库了。
-]]></content:encoded><atom:updated>2022-02-12T00:00:00.000Z</atom:updated></item><item><title><![CDATA[这位客官，要来一张我珍藏许久的图片吗]]></title><description><![CDATA[笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。 独乐乐不如众乐乐！笔者想做一个 web 页面来随机访问我的收藏，不过在此之前，可以先实现服务端上的内容。再之后做网页时，不过是简单的读取数据库罢了！
+]]></content:encoded><atom:updated>Sat, 12 Feb 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[这位客官，要来一张我珍藏许久的图片吗]]></title><description><![CDATA[笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。 独乐乐不如众乐乐！笔者想做一个 web 页面来随机访问我的收藏，不过在此之前，可以先实现服务端上的内容。再之后做网页时，不过是简单的读取数据库罢了！
 
 最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 Pixiv 图片代理网站 可以快速下载…]]></description><link>https://blog.towind.cn/posts/random-get-me-a-picture</link><guid isPermaLink="false">random-get-me-a-picture</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 13 Jan 2022 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 笔者自高中到现在，游走于 Pixiv 若干载，不慎收藏了许多名家雅作。
@@ -10843,7 +10843,7 @@ module.exports = router;
 ## 参考文章
 
 - [爬取 pixiv 每日推荐](https://blog.csdn.net/weixin_45826022/article/details/109406389)
-]]></content:encoded><atom:updated>2022-01-15T00:00:00.000Z</atom:updated></item><item><title><![CDATA[从零开始使用 Telegram Bot]]></title><description><![CDATA[本文基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，支持获取 Github Issues 的评论并转发到 Telegram 频道，帮助笔者更好地将捣玩 Telegram！ Important
+]]></content:encoded><atom:updated>Sat, 15 Jan 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[从零开始使用 Telegram Bot]]></title><description><![CDATA[本文基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，支持获取 Github Issues 的评论并转发到 Telegram 频道，帮助笔者更好地将捣玩 Telegram！ Important
 
 时间推移至 2024 年，笔者现在更建议使用 Bun 开发应用服务，开箱即用的高性能服务以及完备的 TypeScript 支持，能大大提升开发体验。下面为撰写于 2022…]]></description><link>https://blog.towind.cn/posts/start-telegram-bot</link><guid isPermaLink="false">start-telegram-bot</guid><category><![CDATA[软件开发]]></category><pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 本文基于 Koa 从零开始搭建一个简单的 Telegram Bot 应用服务，支持获取 Github Issues 的评论并转发到 Telegram 频道，帮助笔者更好地将捣玩 Telegram！
@@ -11341,7 +11341,7 @@ npm run pm2
 - [开发一个 Telegram Bot](https://www.wandouip.com/t5i13823/)
 - [node-telegram-bot-api usage](https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md)
 - [How to set webhooks using express local server and NGROK](https://github.com/leobloise/node-telegram-bot-api-wb-tutorial)
-]]></content:encoded><atom:updated>2024-07-09T00:00:00.000Z</atom:updated></item><item><title><![CDATA[把自己的简历做成 Web 页面]]></title><description><![CDATA[去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 best-resume-ever 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历： 然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写…]]></description><link>https://blog.towind.cn/posts/build-my-resume</link><guid isPermaLink="false">build-my-resume</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Tue, 09 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[把自己的简历做成 Web 页面]]></title><description><![CDATA[去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 best-resume-ever 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历： 然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写…]]></description><link>https://blog.towind.cn/posts/build-my-resume</link><guid isPermaLink="false">build-my-resume</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 [best-resume-ever](https://github.com/salomonelli/best-resume-ever) 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
 
 ![my first resume](./build-my-resume/my-first-resume.jpg)
@@ -11970,7 +11970,7 @@ Done in 42.14s.
 顺利地导出了我的简历，此外还有截图和英文版本：
 
 ![resume export](./build-my-resume/resume-export.png)
-]]></content:encoded><atom:updated>2021-08-20T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用 jsDelivr 加速 Github 仓库搭建自己的图床服务]]></title><description><![CDATA[Important 使用此类公益服务时应保留敬畏之心，不要滥用服务。
+]]></content:encoded><atom:updated>Fri, 20 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 jsDelivr 加速 Github 仓库搭建自己的图床服务]]></title><description><![CDATA[Important 使用此类公益服务时应保留敬畏之心，不要滥用服务。
 
 今天突然想去搞个图床，使用 CDN 加速图片资源。因为博客放在小水管服务器上，直接用这个服务器向用户传输图片资源对带宽有很大影响。
 
@@ -12030,7 +12030,7 @@ https://cdn.jsdelivr.net/gh/user/repo@version/file
 值得注意的是，由于 jsDelivr 本身的缓存机制，刚刚上传到 Github 仓库上的图片资源可能无法成功获取。系正常现象，等待一段时间便可。
 
 看到一些博客提到可以使用 [PicGo](https://github.com/Molunerfinn/PicGo) 来管理自己的图床资源，电脑和手机端都可以使用，甚至还提供了 VSCode 插件。Cool，对于使用图片较多的用户可能非常有帮助。
-]]></content:encoded><atom:updated>2024-07-25T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化]]></title><description><![CDATA[编写代码时使用 EditorConfig EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。
+]]></content:encoded><atom:updated>Thu, 25 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 EditorConfig 和 Prettier 优雅地配置 VSCode 代码格式化]]></title><description><![CDATA[编写代码时使用 EditorConfig EditorConfig 能够帮助跨各种 IDE 开发同一项目的不同开发人员保持一致的编码风格。
 
 VSCode 没有内置对 EditorConfig 的支持，需要在插件市场中手动搜索并安装插件。
 
@@ -12100,7 +12100,7 @@ yarn add --dev @prettier/plugin-php prettier-plugin-java
 ```
 
 Prettier 将自动加载与它在同一 `node_modules` 文件夹中的 Prettier 插件，并自动识别新增的代码后缀（如 `.php` 和 `.java`）。因此在最后，只需要再执行一遍 `yarn prettier`，就可以实现格式化项目中的 PHP 及 Java 代码了。
-]]></content:encoded><atom:updated>2023-12-14T00:00:00.000Z</atom:updated></item><item><title><![CDATA[更换持续集成工具，从 Travis 到 Github Actions]]></title><description><![CDATA[我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间…]]></description><link>https://blog.towind.cn/posts/switch-travis-to-github-workflow</link><guid isPermaLink="false">switch-travis-to-github-workflow</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 10 Jul 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Thu, 14 Dec 2023 00:00:00 GMT</atom:updated></item><item><title><![CDATA[更换持续集成工具，从 Travis 到 Github Actions]]></title><description><![CDATA[我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间…]]></description><link>https://blog.towind.cn/posts/switch-travis-to-github-workflow</link><guid isPermaLink="false">switch-travis-to-github-workflow</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 10 Jul 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。
 
 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。
@@ -12200,7 +12200,7 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f design-patterns-for-h
 最后，移除 Github 仓库中用于 Travis 的删除原有部署密钥，例如 `CI_DEPLOY_TOKEN`，删除项目中的 `.travis.yml` 文件，提交代码到 Github 即可。
 
 ![CI 部署成功](./switch-travis-to-github-workflow/deploy-finished.png)
-]]></content:encoded><atom:updated>2021-07-14T00:00:00.000Z</atom:updated></item><item><title><![CDATA[在浏览器中输入 URL 到显示网页，背后发生了什么]]></title><description><![CDATA[最近学习前端基础知识的时候，看到了这个问题和一个回答，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。 现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入  这个 URL 然后敲下回车键。
+]]></content:encoded><atom:updated>Wed, 14 Jul 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在浏览器中输入 URL 到显示网页，背后发生了什么]]></title><description><![CDATA[最近学习前端基础知识的时候，看到了这个问题和一个回答，非常生动有趣。遂抱着梳理的想法，将整个过程描述出来。 现在，假设您打开了浏览器，想要访问我的个人博客，您会在地址栏输入  这个 URL 然后敲下回车键。
 
 从敲下回车键到最终顺利在浏览器显示我博客的主页，这个过程的背后发生了什么呢？
 
@@ -12599,7 +12599,7 @@ Oh, Welcome to visit my blog！
 - [「图解 HTTP」](https://www.ituring.com.cn/book/1229)，\[日\]上野宣 著，于均良 译
 - [「详解 TCP 三次握手以及 TLS/SSL 握手」](https://ocdman.github.io/2018/11/02/%E8%AF%A6%E8%A7%A3TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8ATLS-SSL%E6%8F%A1%E6%89%8B/)，2018-11-02
 - [「HTTPS 详解二：SSL / TLS 工作原理和详细握手过程」](https://segmentfault.com/a/1190000021559557)，2020-01-19
-]]></content:encoded><atom:updated>2021-07-23T00:00:00.000Z</atom:updated></item><item><title><![CDATA[为 Archer 主题更换字体]]></title><description><![CDATA[看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。 引入字体文件
+]]></content:encoded><atom:updated>Fri, 23 Jul 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[为 Archer 主题更换字体]]></title><description><![CDATA[看腻了原先的字体，亦或是想满足独树一帜的设计欲望？不妨更换一下博客的字体吧！本文将基于 Hexo 和主题 Hexo-Theme-Archer 展示如何更换博客的中文字体。 引入字体文件
 
 这里提供两种引入的思路，一种是 CDN 引入，一种是本地引入。建议通过 CDN 的方式引入，可以大大提高加载效率。
 
@@ -12779,7 +12779,7 @@ Google 字体版本：
 ## 参考文章
 
 - [網頁是否安裝思源黑體、中文字型的考量﹍影響載入速度的因素及作法分析](https://www.wfublog.com/2019/01/noto-sans-serif-traditional-chinese-web-font_11.html)
-]]></content:encoded><atom:updated>2021-08-10T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用基于 Docker 的 Nginx 部署静态网页项目]]></title><description><![CDATA[现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？ 本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。
+]]></content:encoded><atom:updated>Tue, 10 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用基于 Docker 的 Nginx 部署静态网页项目]]></title><description><![CDATA[现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？ 本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。
 
 准备静态网页项目
 
@@ -12918,7 +12918,7 @@ docker-compose up -d
 ## 参考文档
 
 - [How To Use the Official NGINX Docker Image](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
-]]></content:encoded><atom:updated>2021-06-25T00:00:00.000Z</atom:updated></item><item><title><![CDATA[在 Linux 系统下启用 Project-V]]></title><description><![CDATA[下载 Release 在 Project-V 的 Github Releases 页面下载最新的二进制包。
+]]></content:encoded><atom:updated>Fri, 25 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Linux 系统下启用 Project-V]]></title><description><![CDATA[下载 Release 在 Project-V 的 Github Releases 页面下载最新的二进制包。
 
 本文以通用于 x86_64 机器的  为例。下载完成后传入 Linux 主机即可。
 
@@ -13055,7 +13055,7 @@ git config --global https.proxy socks5://127.0.0.1:1080
 ```
 
 现在，使用 `git clone` 命令享受飞一般的速度吧。
-]]></content:encoded><atom:updated>2021-06-09T00:00:00.000Z</atom:updated></item><item><title><![CDATA[在 Euler 系统上离线安装 MySQL 5.7]]></title><description><![CDATA[查看系统 OS 及架构 以 Euler 系统为例，在终端上输入命令查看，可以通过  命令找到 rpm 包，再通过  查看系统 OS 及架构信息：
+]]></content:encoded><atom:updated>Wed, 09 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Euler 系统上离线安装 MySQL 5.7]]></title><description><![CDATA[查看系统 OS 及架构 以 Euler 系统为例，在终端上输入命令查看，可以通过  命令找到 rpm 包，再通过  查看系统 OS 及架构信息：
 
 当然，也可以使用通用的  命令。
 
@@ -13202,7 +13202,7 @@ mysql> GRANT all privileges ON *.* TO 'root'@'%' IDENTIFIED BY '${您的密码}'
 ```
 
 现在便可以使用其它设备远程连接 MySQL 数据库了。
-]]></content:encoded><atom:updated>2021-07-29T00:00:00.000Z</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 类（Class）的使用]]></title><description><![CDATA[类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的  语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。 本博文将探讨 JavaScript 中如何使用类的相关知识，文章组织架构和内容基于 MDN 上关于类的章节。
+]]></content:encoded><atom:updated>Thu, 29 Jul 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 类（Class）的使用]]></title><description><![CDATA[类（Class）是用于创建对象的模板，他们用代码封装数据以处理该数据，是面向对象编程方法的重要特性之一。JavaScript 中的  语法在 ES6 中引入，其底层实现基于原型（Prototype），系原型继承的语法糖（Syntactic Sugar）。 本博文将探讨 JavaScript 中如何使用类的相关知识，文章组织架构和内容基于 MDN 上关于类的章节。
 
 定义类
 
@@ -13900,7 +13900,7 @@ class MyMixin extends CatMixin {
 主要参考了 MDN 上关于类和相关内容的[描述](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)。
 
 - [Mixins - JAVASCRIPT.INFO](https://javascript.info/mixins)
-]]></content:encoded><atom:updated>2024-08-14T00:00:00.000Z</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 闭包]]></title><description><![CDATA[JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。 为了更好理解闭包的作用，不妨看看我的关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
+]]></content:encoded><atom:updated>Wed, 14 Aug 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 闭包]]></title><description><![CDATA[JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。 为了更好理解闭包的作用，不妨看看我的关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
 
 作用域
 
@@ -14338,7 +14338,7 @@ console.log(square.height); // 10
 - [闭包 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)
 - [类 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)
 - [You Don't Know Javascript](https://github.com/getify/You-Dont-Know-JS)
-]]></content:encoded><atom:updated>2021-05-18T00:00:00.000Z</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 变量提升和函数提升]]></title><description><![CDATA[在 ES6 规范出现之前，使用 JavaScript 声明变量只有 ,  以及隐式声明三种方式。 按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：
+]]></content:encoded><atom:updated>Tue, 18 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 变量提升和函数提升]]></title><description><![CDATA[在 ES6 规范出现之前，使用 JavaScript 声明变量只有 ,  以及隐式声明三种方式。 按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：
 
 但假如反过来，我们“先调用，后声明”，会发生什么呢？
 
@@ -14593,7 +14593,7 @@ function isOdd(n) {
 > 十年前，我们会想象未来能够出现各种新式的编程范型，简化我们的工作。的确，这些年我们创造的各类抽象使得开发复杂的大型软件变得比十五年前要简单得多，就像 GUI 和网络编程。现代的面向对象编程语言让我们的工作变得高效快速。但突然有一天，这种抽象泄漏出一个问题，解决它需要耗费两星期。如果你需要招录一个 VB 程序员，那不是一个好主意，因为当他碰到 VB 语言泄漏的问题时，他会变得寸步难行。
 > The Law of Leaky Abstractions is dragging us down.
 > 抽象泄漏定律正在阻碍我们前进。
-]]></content:encoded><atom:updated>2022-10-21T00:00:00.000Z</atom:updated></item><item><title><![CDATA[函数防抖和节流，以及在 Vue 中的运用]]></title><description><![CDATA[在前端性能优化中存在一个老生常谈的问题：如何优化高频率执行的 JS 代码？例如： 我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。 我们为网页添加了搜索功能…]]></description><link>https://blog.towind.cn/posts/js-debounce-throttle</link><guid isPermaLink="false">js-debounce-throttle</guid><category><![CDATA[软件开发]]></category><pubDate>Sat, 08 May 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Fri, 21 Oct 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[函数防抖和节流，以及在 Vue 中的运用]]></title><description><![CDATA[在前端性能优化中存在一个老生常谈的问题：如何优化高频率执行的 JS 代码？例如： 我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。 我们为网页添加了搜索功能…]]></description><link>https://blog.towind.cn/posts/js-debounce-throttle</link><guid isPermaLink="false">js-debounce-throttle</guid><category><![CDATA[软件开发]]></category><pubDate>Sat, 08 May 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 在前端性能优化中存在一个老生常谈的问题：如何优化**高频率执行**的 JS 代码？例如：
 
 1. 我们为浏览器滚动 scroll 绑定了监听事件，当滚动到某位置之下后，会在浏览器右下方显示一个点击后能快速回到页面顶部的浮动按钮；而滚动回该位置之上时，浮动按钮消失。现在我们发现，用户每次使用滚轮滑动页面，都会触发很多次该事件，判断当前在该位置之上还是之下，这在一定程度上降低了前端的性能。
@@ -14894,7 +14894,7 @@ export default {
 - [彻底弄懂函数防抖和函数节流](https://segmentfault.com/a/1190000018445196), 2019-03-09
 - [什么是防抖和节流？有什么区别？如何实现](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5), 2019-01-23
 - [浅析函数防抖与函数节流](https://www.jianshu.com/p/f9f6b637fd6c), 2018-08-12
-]]></content:encoded><atom:updated>2021-05-08T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Windows 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本博客基于 CMake 实现编译  版本。 本博客的 Windows 端使用的命令提示符界面为 Powershell。
+]]></content:encoded><atom:updated>Sat, 08 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Windows 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本博客基于 CMake 实现编译  版本。 本博客的 Windows 端使用的命令提示符界面为 Powershell。
 
 安装编译依赖软件
 
@@ -15077,7 +15077,7 @@ Hello, gRPC world!
 ## 参考资料
 
 - [编译 gRPC(windows)和测试 demo](https://blog.csdn.net/xiaoyafang123/article/details/76529917) - 2017.08.01 - 注：博主填的转载，暂未找到原文链接
-]]></content:encoded><atom:updated>2021-04-26T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Linux 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。
+]]></content:encoded><atom:updated>Mon, 26 Apr 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。
 
 安装基本依赖
 
@@ -15300,7 +15300,7 @@ error: no matching function for call to ‘StrFormat(const char [22], const char
 提示报错没有找到 `StrFormat` 函数，请确保 `gcc` 版本在 `4.9` 及以上，可以执行 `gcc -v` 命令查看当前版本。
 
 建议[更新](http://3ms.huawei.com/km/blogs/details/10193429)到 `gcc 4.9.4` 版本，笔者在该版本下顺利编译 gRPC。
-]]></content:encoded><atom:updated>2021-05-11T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Linux 容器更新或降级 GCC 版本]]></title><description><![CDATA[如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如： 本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
+]]></content:encoded><atom:updated>Tue, 11 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 容器更新或降级 GCC 版本]]></title><description><![CDATA[如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如： 本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
 
 NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能否兼容新版本的 GCC，建议在 Docker…]]></description><link>https://blog.towind.cn/posts/linux-docker-gcc-update</link><guid isPermaLink="false">linux-docker-gcc-update</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 20 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
@@ -15444,7 +15444,7 @@ gcc version 10.3.0 (GCC)
 ## 参考文档
 
 - [GCC 编译器下载和安装教程（针对 Linux 发行版）](http://c.biancheng.net/view/7933.html)
-]]></content:encoded><atom:updated>2021-04-20T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Protobuf 学习笔记]]></title><description><![CDATA[实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。 什么是 Protobuf
+]]></content:encoded><atom:updated>Tue, 20 Apr 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Protobuf 学习笔记]]></title><description><![CDATA[实习中学习一下 Protobuf 的功能和语法等，整理为此笔记。主要为翻译官方文档而来。 什么是 Protobuf
 
 Protobuf 是 Google 公司研发的一种用于序列化结构数据的机制，全称为 Protocol Buffers，具有语言无关、平台无关以及可拓展的特性。
 
@@ -15833,7 +15833,7 @@ void ListPeople(const tutorial::AddressBook& address_book) {
   }
 }
 ```
-]]></content:encoded><atom:updated>2021-03-29T00:00:00.000Z</atom:updated></item><item><title><![CDATA[在 Nuxt.js 中引入高德地图并实现定位及逆地理编码]]></title><description><![CDATA[迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！ 高德地图与腾讯地图定位功能区别
+]]></content:encoded><atom:updated>Mon, 29 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Nuxt.js 中引入高德地图并实现定位及逆地理编码]]></title><description><![CDATA[迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！ 高德地图与腾讯地图定位功能区别
 
 高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。
 
@@ -16106,7 +16106,7 @@ this.$Geolocation
 - <Link to="/posts/tencent-map-api-get-current-location">
     使用腾讯位置服务进行 Web 前端定位
   </Link>
-]]></content:encoded><atom:updated>2021-03-18T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用腾讯位置服务进行 Web 前端定位]]></title><description><![CDATA[正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。 终于在不起眼的地方找到了前端定位组件，适用于浏览器进行定位操作。
+]]></content:encoded><atom:updated>Thu, 18 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用腾讯位置服务进行 Web 前端定位]]></title><description><![CDATA[正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。 终于在不起眼的地方找到了前端定位组件，适用于浏览器进行定位操作。
 
 本文基于 Nuxt.js 实现前端定位功能。
 
@@ -16218,7 +16218,7 @@ geolocation.getLocation(
 定位成功精确到当前我所处的区和地址，满足项目开发要求。
 
 其它相关方法和说明敬请参考[官方文档](https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation)的“暗示”。
-]]></content:encoded><atom:updated>2021-03-16T00:00:00.000Z</atom:updated></item><item><title><![CDATA[提示 *** is not a symbolic link 解决方案]]></title><description><![CDATA[问题描述 在 CentOS 环境下执行  和  命令时都出现提示警告，节选内容如下所示：
+]]></content:encoded><atom:updated>Tue, 16 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[提示 *** is not a symbolic link 解决方案]]></title><description><![CDATA[问题描述 在 CentOS 环境下执行  和  命令时都出现提示警告，节选内容如下所示：
 
 错误分析
 
@@ -16298,7 +16298,7 @@ ldconfig 2> dupNote ; cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs 
 
 - [/usr/lib/\*\*\* is not a symbolic link 问题解决 - CSDN](https://blog.csdn.net/qq_34213260/article/details/107399507)
 - [Linux ln 命令 - 菜鸟教程](https://www.runoob.com/linux/linux-comm-ln.html)
-]]></content:encoded><atom:updated>2021-03-10T00:00:00.000Z</atom:updated></item><item><title><![CDATA[前端工程配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？ 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
+]]></content:encoded><atom:updated>Wed, 10 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[前端工程配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？ 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
 
 本…]]></description><link>https://blog.towind.cn/posts/nodejs-eslint-prettier</link><guid isPermaLink="false">nodejs-eslint-prettier</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 03 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
@@ -16420,7 +16420,7 @@ yarn lint --fix
 - [Error: 'basePath' should be an absolute path](https://github.com/prettier/prettier-eslint-cli/issues/208#issuecomment-673631308) - mathiaswillburger - 2020.08.14
 - [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300) - 乃乎 - 2019.08.31
 - [ESLint+Prettier 代码规范实践](https://www.jianshu.com/p/dd07cca0a48e) - Bernie 维 - 2019.06.04
-]]></content:encoded><atom:updated>2025-04-11T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Webpack 读取本地 Markdown 文件并进行预处理]]></title><description><![CDATA[在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
+]]></content:encoded><atom:updated>Fri, 11 Apr 2025 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Webpack 读取本地 Markdown 文件并进行预处理]]></title><description><![CDATA[在开发 NetUnion 的官网页面时，有这样一个需求：读取本地目录下的新闻和博客文件，并在前端渲染，其中文件均为 Markdown 格式。 与全栈开发直接调用后端数据库不同的是，没有数据表字段来记录文件的不同属性，例如文件的题目、作者、撰写日期等，因此这些属性需要记录在 .md 文件当中。
 
 这样的撰写方式是不是很熟悉？没错，不就是我正在写的 Hexo 博客中 .md 文件的编写格式嘛！
 
@@ -16550,7 +16550,7 @@ const htmlContent = md.render(result.content);
 ```
 
 完整的解析文件[在这里](https://github.com/uestclug/nu-official/blob/frontend/src/utils/mdParser.js)。
-]]></content:encoded><atom:updated>2021-06-26T00:00:00.000Z</atom:updated></item><item><title><![CDATA[一键安装并配置 MTProto Proxy 代理 Telegram]]></title><description><![CDATA[Telegram 和 MTProto 是什么 Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
+]]></content:encoded><atom:updated>Sat, 26 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[一键安装并配置 MTProto Proxy 代理 Telegram]]></title><description><![CDATA[Telegram 和 MTProto 是什么 Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
 
 私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。 安全性。端对端加密，不受审查。 完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告…]]></description><link>https://blog.towind.cn/posts/tg-mtproto-one-click</link><guid isPermaLink="false">tg-mtproto-one-click</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 ## Telegram 和 MTProto 是什么
@@ -16722,7 +16722,7 @@ Feb 21 15:17:25 ******** python3.8[39940]: Got cert from the MASK_HOST www.cloud
 ```bash
 systemctl stop mtprotoproxy # 暂停代理服务
 ```
-]]></content:encoded><atom:updated>2021-02-23T00:00:00.000Z</atom:updated></item><item><title><![CDATA[使用 Github Actions 持续集成与部署 Hexo 博客]]></title><description><![CDATA[这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
+]]></content:encoded><atom:updated>Tue, 23 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 Github Actions 持续集成与部署 Hexo 博客]]></title><description><![CDATA[这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
 
 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions…]]></description><link>https://blog.towind.cn/posts/hexo-github-actions-ci-cd</link><guid isPermaLink="false">hexo-github-actions-ci-cd</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 19 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
@@ -16866,7 +16866,7 @@ jobs:
 当然，您也可以生成 Github personal access token，本文不再赘述。
 
 最后，提交您的修改，一切都工作得如此完美。
-]]></content:encoded><atom:updated>2021-02-19T00:00:00.000Z</atom:updated></item><item><title><![CDATA[IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法]]></title><description><![CDATA[关于 本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法]]></title><description><![CDATA[关于 本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
 
 本文绝大多数内容通过 DeepL 翻译 ISO/IEC/IEEE 42010 原文得来。
 
@@ -16880,7 +16880,7 @@ jobs:
 本文系软件体系架构与设计模式课程中一项作业。
 
 访问[我的 CSDN 博客](https://blog.csdn.net/qq_43374102/article/details/111935815)以查看此文章。
-]]></content:encoded><atom:updated>2021-02-19T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Windows 远程桌面连接指南]]></title><description><![CDATA[环境 本文以电子科技大学（沙河校区）的校园网为例。家用场合可能需要拨打网络运营商开公网 IP，或通过 FRP 等技术实现。
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Windows 远程桌面连接指南]]></title><description><![CDATA[环境 本文以电子科技大学（沙河校区）的校园网为例。家用场合可能需要拨打网络运营商开公网 IP，或通过 FRP 等技术实现。
 
 演示的系统如下：
 
@@ -16967,7 +16967,7 @@ jobs:
 现在您可以使用任意连接互联网的设备通过远程桌面服务访问目的主机！如下图搜索 `210.41.103.31:3390` 所对应的远程桌面服务。
 
 ![连接远程桌面](./connect-remote-desktop/连接远程桌面.png)
-]]></content:encoded><atom:updated>2024-05-10T00:00:00.000Z</atom:updated></item><item><title><![CDATA[PyTorch 在 Windows 10 系统下的环境配置及安装]]></title><description><![CDATA[关于 PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
+]]></content:encoded><atom:updated>Fri, 10 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[PyTorch 在 Windows 10 系统下的环境配置及安装]]></title><description><![CDATA[关于 PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
 
 本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
 
@@ -16979,7 +16979,7 @@ PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然�
 本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
 
 访问[我的 CSDN 博客](https://blog.csdn.net/qq_43374102/article/details/108857215)以查看此文章。
-]]></content:encoded><atom:updated>2021-02-19T00:00:00.000Z</atom:updated></item><item><title><![CDATA[Hello Hexo World]]></title><description><![CDATA[搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！ 正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Hello Hexo World]]></title><description><![CDATA[搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！ 正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。
 
 开始前
 
@@ -17079,4 +17079,4 @@ hexo clean && hexo deploy
 上述步骤由 [Hexo 官方文档](https://hexo.io/docs/)简化而来。
 
 您可以随时访问官方文档获取最新的搭建博客方法和更多重要的使用方法。
-]]></content:encoded><atom:updated>2021-02-19T00:00:00.000Z</atom:updated></item></channel></rss>
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item></channel></rss>
