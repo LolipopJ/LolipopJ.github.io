@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 10 Nov 2026 08:03:28 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 13 Nov 2026 15:50:18 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。
 
 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH 的配置和使用略显复杂，我记录下这篇博客，也许对你有所帮助。
@@ -379,6 +379,9 @@ HEADROOM_PROXY_TOKEN=YOUR-HEADROOM-SECRET-TOKEN # Headroom 访问密匙，避免
 docker-compose up -d proxy
 ```
 
+> [!WARNING]
+> `docker-compose`（v1 独立命令）已停止维护，现代 Docker 环境请使用 `docker compose up -d proxy`。
+
 检验 Headroom 容器服务是否正确启动：
 
 ```bash
@@ -627,7 +630,7 @@ def test_cuda_training():
     if not torch.cuda.is_available():
         return
 
-    print("/n🚀 开始 CUDA 训练循环测试...")
+    print("\n🚀 开始 CUDA 训练循环测试...")
     device = torch.device("cuda")
     model = torch.nn.Sequential(
         torch.nn.Linear(100, 50), torch.nn.ReLU(), torch.nn.Linear(50, 1)
@@ -647,7 +650,7 @@ def test_cuda_training():
         optimizer.step()
         print(f"Epoch {epoch + 1}, Loss: {loss.item():.6f}")
 
-    print("/n🎉 CUDA 完整训练循环测试通过！您的环境已完全就绪。")
+    print("\n🎉 CUDA 完整训练循环测试通过！您的环境已完全就绪。")
 
 
 test_cuda_training()
@@ -1540,6 +1543,9 @@ services:
 
 重启 Camofox Browser 服务：
 
+> [!WARNING]
+> `docker-compose`（v1）已停止维护，现代 Docker 环境建议使用 `docker compose up -d`。
+
 ```bash
 # 终止运行中的容器
 docker stop camofox-browser && docker rm camofox-browser
@@ -1851,7 +1857,7 @@ V2EX 的签到通常在登录后首页右侧会显示「领取今日的登录奖
 
 喔对了，因为目前版本的 Camofox Browser 还不支持持久化 Cookies 等数据（官方文档里写的环境变量 `CAMOFOX_PROFILE_DIR` 还没有实现，可能是 AI 生成的幻觉；另外让 AI 分析 Camofox Browser 源码，也未发现相关实现），每次通过 `curl` 请求导入的数据有效期为当前会话，而会话过期的时间默认为 10 分钟。如果会话过期了，Cookies 数据也就清空了，于是出现上面未登录的提示信息。
 
-那么，再执行一遍 `curl -X POST http://localhost:9377/sessions/agent1/cookies` 请求生成一轮新的会话，再让助理重新尝试吧：
+那么，再执行一遍 `curl -X POST http://localhost:9377/sessions/hermes_${YOUR_ID}/cookies` 请求生成一轮新的会话，再让助理重新尝试吧：
 
 ```plaintext
 ╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────╮
@@ -1929,8 +1935,8 @@ V2EX 的签到通常在登录后首页右侧会显示「领取今日的登录奖
 ────────────────────────────────────────
 ● 以后遇到类似的需要用户身份信息的任务，请首先调用 node ~/.hermes/scripts/get-cookies.js
 ~/.camofox/cookies/${DOMAIN}_cookies.txt，获取解析后的 Cookies 数据数组。接着，调用 curl -X POST
-http://localhost:9377/sessions/hermes_${YOUR_ID}/cookies \-H 'Content-Type: application/json' \-H
-'Authorization: Bearer $CAMOFOX_API_KEY' \ -d 'Cookies 数据数组'。请把这个过程归纳为技能。
+http://localhost:9377/sessions/hermes_${YOUR_ID}/cookies -H 'Content-Type: application/json' -H
+"Authorization: Bearer $CAMOFOX_API_KEY" -d 'Cookies 数据数组'。请把这个过程归纳为技能。
 ────────────────────────────────────────
 
 ╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────╮
@@ -2088,7 +2094,7 @@ node ~/.hermes/scripts/get-cookies.js ~/.camofox/cookies/${DOMAIN}_cookies.txt
 curl -X POST http://localhost:9377/sessions/${CAMOFOX_HERMES_SESSION_ID}/cookies \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer ${CAMOFOX_API_KEY}" \
-  -d '${COOKIES_JSON}'
+  -d "${COOKIES_JSON}"
 ```
 
 ### 第三步：验证登录状态
@@ -2200,6 +2206,9 @@ services:
       interval: 75s
       retries: 3
 ```
+
+> [!WARNING]
+> 独立的 `docker-compose`（Compose V1）命令已停止维护，现代 Docker 环境请使用内置的 Compose V2 命令 `docker compose up -d`。
 
 执行 `docker-compose up -d` 后，访问 `http://localhost:8080` 就能看到 FreshRSS 的初始化界面了，在这里可以配置管理员账号和数据库信息等。配置完毕后，首页便是内置的 FreshRSS 订阅源的版本更新通知：
 
@@ -3234,7 +3243,7 @@ moonshot/kimi-k2-thinking-turbo            text       250k     no    yes   confi
 特别的，需要手动修改 OpenClaw 的配置文件，添加想要使用的模型列表。例如，笔者配置的模型列表如下：
 
 ```json
-// ~/.openclaw/config.json
+// ~/.openclaw/openclaw.json
 {
   "agents": {
     "defaults": {
@@ -3290,6 +3299,9 @@ github-copilot/gpt-4.1                     text+image 125k     no    yes   confi
 在前面的章节里，我根据自己的实际需要，为 OpenClaw 接入了三个大模型提供商，开放了若干款 AI 模型的调用权限。
 
 接下来，根据今天的 [LMSYS LLM 竞技场](https://huggingface.co/spaces/lmarena-ai/arena-leaderboard)排行榜，整理我引入模型的排名结果如下表：
+
+> [!WARNING]
+> 下表引用的 LMSYS Arena 排行榜与模型列表为 2026 年 4 月快照，具体排名、模型版本与定价策略可能已发生变化。
 
 <div style={{ overflow: "auto" }}>
   <table style={{ width: "max-content", margin: 0 }}>
@@ -4127,7 +4139,7 @@ clawhub login # 登录 ClawHub 账号，避免配额限制
 
 1. 将 Skill 提供的模板复制到助理的学习目录中：
    ```bash
-   cp -r ~/.openclaw/workspace/skills/self-improving-agent/.learning ~/.openclaw/workspace/.learning
+   cp -r ~/.openclaw/workspace/skills/self-improving-agent/.learnings ~/.openclaw/workspace/.learnings
    ```
 2. 启动技能钩子，在助理遇到报错等情况时，自动触发学习流程：
    ```bash
@@ -4210,6 +4222,9 @@ Ok to proceed? (y) y
 奥，新来的助理可能还没有使用工具指令如 `cron` 等的权限，所以还需要为它开放权限。
 
 当我尝试通过 Web UI 为助理启用 `cron` 权限时，屎山代码发力了，2026.3.2 版本里的保存按钮无法点击（[#32812](https://github.com/openclaw/openclaw/issues/32812)）。查看这个 Issue 关联的 PR 记录，发现 OpenClaw 整个仓库其实也是一块巨大的 AI 编程试验田，先种下种子，随后维护者采用长成的作物。至于 PR 的质量如何，会否引入新的问题，在人手不足的情况下无法一一校验测试，只能在下次，用户提交 Issue 后，再迭代新一轮的 AI 种子。
+
+> [!WARNING]
+> 上述 `2026.3.2` 版本的 Web UI 保存按钮 Bug 为早期版本问题，后续版本中通常已修复。
 
 这就是几乎完全由 AI 驱动的敏捷开发，好处是真的很快，一个功能点从原型到实现可能就半小时的事情，坏处是很容易引入新的问题，并且会为了修复一个小问题嵌套一堆代码，继而可能又会诱发新的小问题。不过多人协作的人工编码在很多情况下也容易变得如此混乱，只能期待未来在优化仓库代码的时候，能有核心开发者，或是足够厉害的 AI 站出来主导工程重构吧。从我这次的探索体验来看，目前的 OpenClaw 距离正式的 1.0 版本尚有很长一段距离。
 
@@ -4298,7 +4313,10 @@ OpenClaw 内置了 `browser` 工具，能够让助理直接在宿主机上启动
 
 默认情况下 OpenClaw 会在 `~/.openclaw/workspace` 目录下自动初始化 Git 仓库，但是我不满足于此，懒狗精神发作，希望把整个仓库的重要内容都备份上传到自己的 Github 私有仓库里。尽管这里面包括了**我的密钥等敏感信息**，但上传到私有仓库应该还好吧……还好吧？不会被拿去训练 Copilot 然后某天被闲得没事儿干的用户套出来了吧……
 
-确保能通过 SSH 访问到自己的 Github 账号，顺手把这些老生常谈的命令写在这里：
+确保能通过 SSH 访问到自己的 Github 账号，下面以 **macOS 环境**为例，顺手把这些老生常谈的命令写在这里（前文初次体验是在 Windows 环境下）：
+
+> [!WARNING]
+> 在较新的 macOS 版本中，`ssh-add --apple-use-keychain` 参数已过时，建议在 `~/.ssh/config` 中配置 `UseKeychain yes` 与 `AddKeysToAgent yes` 来自动管理钥匙串中的 SSH 密钥。
 
 ```bash
 # 生成 SSH 密钥对，添加到 SSH 代理中
@@ -4400,7 +4418,7 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
 ~/.openclaw/scripts/backup-workspace.sh
 ```
 
-新建 LaunchAgent 服务，遂电脑启动，每天定时执行脚本。可编写系统服务文件 `~/Library/LaunchAgents/ai.openclaw.backup.plist` 内容如下：
+在 **macOS 环境**下，可以新建 `launchd` LaunchAgent 后台服务，随电脑启动并每天定时执行脚本。可编写系统服务文件 `~/Library/LaunchAgents/ai.openclaw.backup.plist` 内容如下（**注意：`.plist` XML 文件不会展开环境变量，请务必将下方的 `<YOUR_USERNAME>` 手动替换为真实的 macOS 用户名**）：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -4413,7 +4431,7 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/$YOUR_USERNAME/.openclaw/scripts/backup-workspace.sh</string>
+        <string>/Users/<YOUR_USERNAME>/.openclaw/scripts/backup-workspace.sh</string>
     </array>
 
     <!-- 每天 00:00 执行脚本 -->
@@ -4427,9 +4445,9 @@ chmod +x ~/.openclaw/scripts/backup-workspace.sh
 
     <!-- 标准输出和错误日志 -->
     <key>StandardOutPath</key>
-    <string>/Users/$YOUR_USERNAME/.openclaw/logs/backup-workspace.stdout.log</string>
+    <string>/Users/<YOUR_USERNAME>/.openclaw/logs/backup-workspace.stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/$YOUR_USERNAME/.openclaw/logs/backup-workspace.stderr.log</string>
+    <string>/Users/<YOUR_USERNAME>/.openclaw/logs/backup-workspace.stderr.log</string>
 </dict>
 </plist>
 ```
@@ -4465,7 +4483,7 @@ launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.backup.plist
 
 如今，随着全局代理成为家中网络标配，Discord 成为挂驻后台的常用软件，看着自己信息页的“正在玩”项目，心想这不就是笔者一直想要的读取自己在做什么的功能吗？那么，现在再去做这个软件就简单不少了：只需要实现读取自己的 Discord 状态，开放接口供前端调用就好了。
 
-经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。**当然，直接轮询调用 Discord 官方提供的 API 已然可以实现需求，只是笔者太闲了想在外面包一层 Self-Bot**……😎万一以后用得上呢？
+经过调研，笔者找到了 [`discord.py-self`](https://github.com/dolfies/discord.py-self) 库，考虑通过 Discord Self-Bot 来实现相关功能。**需要注意的是，Discord 官方 REST API 并不提供直接轮询用户在线状态与活动（Presence/Activities）的接口；若走官方规范，需要通过 Gateway WebSocket 监听 `PRESENCE_UPDATE` 事件。**
 
 > [!CAUTION]
 > Discord 官方文档中明确表示**不支持 Self-Bot 的使用**，违反使用条款可能导致账号被封禁。因此，笔者仅将本文内容作为技术分享，若您决心实现类似功能，请承担账号封禁的风险。
@@ -4613,7 +4631,7 @@ class MyClient(discord.Client):
         self.task_query_activities.start()
 
     @tasks.loop(seconds=5)
-    def task_query_activities(self):
+    async def task_query_activities(self):
         if self.recipient is None:
             channelId = int(os.getenv("DISCORD_CHANNEL_ID"))
             channel = self.get_channel(channelId)
@@ -4651,7 +4669,7 @@ Discord 官方文档里好像有提到 API 请求限制是每分钟 120 次，�
 
 咳咳，那么总之，运行轮询任务来获取指定账号的状态信息会被 Discord 风控并封禁，就应该考虑更健康，更合作的方式来实现同样的功能。
 
-实际上，在后台并不需要时时刻刻读取并存档一份用户的状态信息，只需要在接口请求时，返回缓存的状态信息即可。如果缓存过期，才调用 Discord 接口读取。这样一来，相比明目张胆每五秒请求一次接口，被识别风控的风险会大大降低。
+实际上，`self.get_relationship(...)` 查询的是 `discord.py-self` 的本地内存缓存（由后台 Gateway WebSocket 实时更新），并不会向 Discord 发送 REST API 请求；不过在接口层加上本地缓存，依然可以减少对前端请求的重复计算，并降低状态信息对外暴露的频率。
 
 新实现的代码如下：
 
@@ -4677,6 +4695,7 @@ class MyClient(discord.Client):
 
         # ...省略获取 self._recipient 的代码
 
+        # 从本地 Gateway 缓存读取好友关系与活动状态（不发起 REST 请求）
         relation = self.get_relationship(self._recipient.id)
         self._queried_activities = [
             activity.to_dict() for activity in relation.activities
@@ -4836,7 +4855,7 @@ CMD 没有简易的读取文件并拼接命令的语法，但 PowerShell 和其�
 }
 ```
 
-笔者也很高兴，看到 `key` 字段的值很像是 Base64 编码后的字符串，解码后肯定正好是需要的 128 位的 AES 密钥。但拿去解密却报错说字符串并非 Base64 编码，说明它使用了另一种加密方案。
+笔者也很高兴，看到 `key` 字段的值是标准的 Base64 编码字符串，本以为解码后正好就是需要的 128 位（16 字节）AES 密钥。但实际解码后发现长度为 32 字节（即 16 字节密钥经加密后的密文），无法直接作为 AES-128 密钥使用，说明它还经过了一层额外的加密方案。
 
 这样，笔者就不得不去翻找前端代码了。在前面的过程里，笔者知道与视频播放相关的代码调用了 `/sign` 接口，所以就从这个关键字入手，搜索打包混淆后的 JavaScript 代码，找到了如下代码片段：
 
@@ -5170,6 +5189,9 @@ Blue Marble 的[官方文档](https://wplace-pixel.com/zh/blue-marble)提供了�
 
 参考 Loki 官方快速开始文档，精简示例里的 [`docker-compose.yaml` 文件](https://github.com/grafana/loki/blob/main/examples/getting-started/docker-compose.yaml)，只保留用于启动 Grafana 和 Loki 这两个服务和其他一些必要服务的容器的配置。简化后的 `docker-compose.yaml` 配置文件如下：
 
+> [!WARNING]
+> MinIO 已于 2025 年移除了社区版 Web 控制台的大量管理功能，并停止维护免费社区版 `minio/minio` Docker 镜像。截至 2026 年底，生产环境新部署建议评估 RustFS、SeaweedFS 或 Garage 等替代对象存储方案。
+
 ```yaml
 ---
 networks:
@@ -5436,6 +5458,9 @@ compactor:
 
 对于笔者的实际使用需求来说，上面每个配置的具体含义并不需要清楚了解，让我们直接启动 Grafana 和 Loki 容器吧！
 
+> [!WARNING]
+> `docker-compose`（v1）已停止维护（EOL），现代 Docker 环境请使用内置插件命令 `docker compose`（如 `docker compose up -d`）。
+
 ```bash
 % docker-compose up -d
 [+] Running 18/18
@@ -5468,6 +5493,9 @@ compactor:
 > [!NOTE]
 > 笔者在撰写本文时，使用的 Alloy 的版本为 `1.8`。
 
+> [!WARNING]
+> CentOS 7 与 CentOS Stream 8 均已停止维护（EOL）；现代 RHEL 系发行版（如 RHEL 8/9、Rocky Linux、AlmaLinux 等）已转向使用 `dnf` 包管理器。
+
 对于笔者的 CentOS 服务器，依次执行下面的命令来安装 Alloy：
 
 ```bash
@@ -5475,7 +5503,7 @@ wget -q -O gpg.key https://rpm.grafana.com/gpg.key
 sudo rpm --import gpg.key
 echo -e '[grafana]\nname=grafana\nbaseurl=https://rpm.grafana.com\nrepo_gpgcheck=1\nenabled=1\ngpgcheck=1\ngpgkey=https://rpm.grafana.com/gpg.key\nsslverify=1\nsslcacert=/etc/pki/tls/certs/ca-bundle.crt' | sudo tee /etc/yum.repos.d/grafana.repo
 
-yum update
+sudo yum update
 
 sudo yum install alloy
 ```
@@ -5646,7 +5674,7 @@ services:
 
 同样，您需要替换配置里的 `YOUR_TENANT_ID` 为您指定的租户 ID。
 
-最后，删除旧的使用 `docker run` 命令启动的容器，执行命令启动新容器：`docker-compose up -d`。
+最后，删除旧的使用 `docker run` 命令启动的容器，执行命令启动新容器：`docker-compose up -d`（现代环境请使用 `docker compose up -d`）。
 
 在 Grafana 查看收集到的日志信息：
 
@@ -5693,7 +5721,7 @@ docker run --name webdav \
   -e USERNAME=YOUR_USERNAME \
   -e PASSWORD=YOUR_PASSWORD \
   -e TZ=Asia/Shanghai  \
-  -e UDI=1000 \
+  -e UID=1000 \
   -e GID=1000 \
   -d  ugeek/webdav:arm64
 ```
@@ -5803,7 +5831,7 @@ server {
 
 ## 首次启动 Mac Mini
 
-这是笔者第一次购买 Mac Mini，在首次启动主机的时候，会需要连接鼠标与键盘。由于 Mac Mini 4 上只有 Type-C 接口，所以可以提前准备拓展坞或者 Type-C 连接线。
+这是笔者第一次购买 Mac Mini，在首次启动主机的时候，会需要连接鼠标与键盘。由于 Mac Mini 4 上没有 USB-A 接口（机身背面除 Thunderbolt / Type-C 接口外还配有 HDMI、以太网口和 3.5mm 耳机孔），如果手头是传统的 USB-A 外设，可以提前准备拓展坞或者 Type-C 连接线。
 
 如果有蓝牙鼠标和蓝牙键盘，就不需要用到这些硬件了：只需要把蓝牙鼠标和蓝牙键盘置于配对模式下，Mac Mini 就会自动配对并连接。
 
@@ -5835,6 +5863,9 @@ Docker 是管理本地服务的无二之选，首先在 Mac Mini 上下载并安
 }
 ```
 
+> [!WARNING]
+> 国内 Docker 公共镜像加速域名的时效性极短且多数已失效，实际配置时请自行检索当前可用的镜像源或使用代理。
+
 不保证上述镜像仓库始终可用，如失效，可以在网上找到最新有效的地址。
 
 拉取 Rust Desk 的服务端镜像 `rustdesk/rustdesk-server`，运行 hbbs 和 hbbr 容器服务：
@@ -5861,6 +5892,9 @@ cat path/to/rustdesk/data/id_ed25519.pub
 ![连接到 Mac Mini 远程桌面](./mac-mini-server/connect-to-mac-mini.png)
 
 在默认情况下，远程桌面将使用不可变更的 1920 \* 1080 分辨率，可以使用 Better Dummy 软件为 Mac Mini 虚拟一个显示屏，就可以自定义分辨率与启用 HiDPI 功能了。
+
+> [!WARNING]
+> `Better Dummy` 现已更名为 **BetterDisplay**，新版本可前往其官网或 GitHub 仓库获取。
 
 ![使用 Better Dummy 虚拟显示屏](./mac-mini-server/with-better-dummy.png)
 
@@ -5900,6 +5934,9 @@ scp /local/path/to/all_databases.sql username@192.168.100.239:/Users/username/Po
 ```
 
 在 Mac Mini 上拉取最新版本的 `postgres` 镜像，启动新的 PostgreSQL 容器：
+
+> [!WARNING]
+> 自 PostgreSQL 18 起，官方 `postgres:latest` 镜像已将数据挂载点调整为 `/var/lib/postgresql`。直接挂载 `/var/lib/postgresql/data` 在 `postgres:latest` 上已不再兼容，建议固定版本标签（如 `postgres:17`）或按照新路径进行挂载。
 
 ```bash
 docker run --name postgres --restart unless-stopped -e POSTGRES_PASSWORD=SECRET_PASSWORD -v /Users/username/PostgreSQL/data:/var/lib/postgresql/data -d -p 5432:5432 postgres:latest
@@ -6076,12 +6113,12 @@ export default defineConfig({
 ```js
 // ==UserScript==
 // @name                Pixiv Previewer L
-// @namespace           https://github.com/LolipopJ/PixivPreviewer
+// @namespace           https://github.com/LolipopJ/PixivPreviewerL
 // @version             1.7.2-20261026
 // @description         Original project: https://github.com/Ocrosoft/PixivPreviewer.
 // @author              Ocrosoft, LolipopJ
 // @license             GPL-3.0-only
-// @supportURL          https://github.com/LolipopJ/PixivPreviewer
+// @supportURL          https://github.com/LolipopJ/PixivPreviewerL
 // @match               *://www.pixiv.net/*
 // @grant               GM_getValue
 // @grant               GM_setValue
@@ -6661,11 +6698,16 @@ const detailedIllustrations = await execLimitConcurrentPromises(
 ## 最后
 
 附上 [Tampermonkey 脚本地址](https://greasyfork.org/zh-CN/scripts/533844)，如果你的口味与我相近，不妨来试试这款独立出来的脚本。
-]]></content:encoded><atom:updated>Mon, 26 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[碎碎念 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+]]></content:encoded><atom:updated>Mon, 26 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 Gatsby 打造我的个人博客系统]]></title><description><![CDATA[Warning 本仓库后续已持续迭代，部分实现与本文撰写时有所不同（例如已升级至  与 、公开的 Algolia 配置已迁至 、入口使用 、CI/CD 已迁移至 Node.js 24 + pnpm 12 等）。
 
-回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
+碎碎念
 
-从零开始实现博客系统的计划虽然搁浅…]]></description><link>https://blog.towind.cn/posts/build-my-gatsby-blog</link><guid isPermaLink="false">build-my-gatsby-blog</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 12 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
+
+回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github…]]></description><link>https://blog.towind.cn/posts/build-my-gatsby-blog</link><guid isPermaLink="false">build-my-gatsby-blog</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 12 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本仓库后续已持续迭代，部分实现与本文撰写时有所不同（例如已升级至 `gatsby-plugin-mdx@^5.16.0` 与 `remark-gfm@^3.0.1`、公开的 Algolia 配置已迁至 `src/constants/algolia.ts`、入口使用 `gatsby-browser.js`、CI/CD 已迁移至 Node.js 24 + pnpm 12 等）。
+
 ## 碎碎念
 
 搭建一个自己的博客是无数跻身于 IT 行业开发者的心中最质朴的愿望！
@@ -6858,7 +6900,7 @@ export const useAllMdx = () => {
 export default useAllMdx;
 ```
 
-一个 React 组件里最多只能有 `useStaticQuery()` 方法，如果您想要查询多条不同数据，要么把查询代码写到一起，要么就新建一个钩子方法（推荐）。对于全局都会使用到的数据，可以分门别类放到不同的钩子方法里，例如网站的 Metadata，就可以把查询代码放在 `src/hooks/useSiteMetadata.ts` 里。
+一个 React 组件里最多只能有**一个** `useStaticQuery()` 调用，如果您想要查询多条不同数据，要么把查询代码写到一起，要么就新建一个钩子方法（推荐）。对于全局都会使用到的数据，可以分门别类放到不同的钩子方法里，例如网站的 Metadata，就可以把查询代码放在 `src/hooks/useSiteMetadata.ts` 里。
 
 现在，笔者需要根据博客的文件路径，自动生成访问路由，例如对于博客文件 `path/to/this-is-a-blog.mdx`，可以通过路由 `/posts/this-is-a-blog` 访问到，该怎么实现呢？官方提供了多种方案，这里笔者选择了更符合自己喜好的，在 `gatsby-node.ts` 文件里导出 `createPages()` 方法的方案，它能够以编程的方式自定义生成路由，拥有相当大的自由度：
 
@@ -7077,7 +7119,7 @@ const PostTemplate = ({ children }) => {
 
   React.useEffect(() => {
     const optimizedImageLinks =
-      articleRef.current?.querySelectorAll<HTMLLinkElement>(
+      articleRef.current?.querySelectorAll<HTMLAnchorElement>(
         "a.gatsby-resp-image-link",
       );
     optimizedImageLinks?.forEach((link) => {
@@ -7163,7 +7205,7 @@ const PostTemplate = ({ post }) => {
 
   return (
     <div>
-      <GatsbyImage image={bannerImage} />
+      {bannerImage && <GatsbyImage image={bannerImage} alt={title} />}
       {/* ... */}
     </div>
   );
@@ -7256,7 +7298,7 @@ const config: GatsbyConfig = {
 };
 ```
 
-插件 `gatsby-plugin-algolia` 需要一个包含博客元数据的数组以执行上传操作，而 GraphQL 查询的结果是一个形如 `{ addMdx: { nodes: MdxNode[] }}` 的对象，因此要使用插件提供的 `transformer()` 方法，返回里面的 `nodes` 数组。
+插件 `gatsby-plugin-algolia` 需要一个包含博客元数据的数组以执行上传操作，而 GraphQL 查询的结果是一个形如 `{ allMdx: { nodes: MdxNode[] } }` 的对象，因此要使用插件提供的 `transformer()` 方法，返回里面的 `nodes` 数组。
 
 为了确保博客在索引里的唯一性，并确保索引里的数据始终最新，在 GraphQL 查询的时候必须提供 `id` 和 `internal.contentDigest`。
 
@@ -7662,7 +7704,7 @@ ACT 即 Advanced Combat Tracker，是一款针对 MMOPRG 网游的通用战斗�
 
 [FFLogs](https://www.fflogs.com) 是一个专为 FF14 提供战斗记录分析的网站，你可以上传战斗记录到这里，对其进行实时分析。如果你想上传 ACT 记录的战斗数据到 FFLogs，首先需要注册 FFLogs 账号并绑定你的游戏角色，并使用配套的软件 [Archon App](https://www.archon.gg/download)。
 
-![在 Anchor 上传 logs](./ffxiv-global/upload-logs.png)
+![在 Archon 上传 logs](./ffxiv-global/upload-logs.png)
 
 如上图所示：实时上传功能需要选中 ACT 写入战斗数据的目录，默认路径为 `C:\Users\${YourUsername}\AppData\Roaming\Advanced Combat Tracker\FFXIVLogs`；使用非简体中文语言的 Archon App 客户端才能将战斗数据上传到 JP 等区域。
 
@@ -7928,11 +7970,14 @@ if (videoFilename.endsWith(".m3u8")) {
 ```
 
 > [!NOTE]
-> 与传统的视频格式不同，M3U8 视频格式将整个视频分成**多个小片段**进行传输，这些小片段可以根据网络情况自动调节其质量和大小。这种方式使得 M3U8 视频格式非常适合在网络环境不稳定或带宽不足的情况下播放视频。
+> M3U8 并非视频编码格式，而是 HLS（HTTP Live Streaming）协议使用的播放列表清单文件，它将整个视频切分为**多个小片段**（如 `.ts` 或 `.m4s`）进行传输。需要注意的是，仅生成单一码率的 `.m3u8` 播放列表并不会自动调节清晰度；只有包含多个不同码率变体流的主播放列表（Master Playlist），才能让客户端根据网络状况实现自适应码率（ABR）切换。不过即便只有单一码率，HLS 的分片传输依然非常适合边下载边播放的场景。
 
 经过复杂且折腾的思想斗争后，笔者决定使用 [`ffmpeg`](https://ffmpeg.org) 工具，将所有 `.mp4` 格式的视频文件转换为 `.m3u8` 格式，完成格式上的统一与边下载边播放的需求。
 
 ### 服务端转换视频文件为 `.m3u8` 格式
+
+> [!WARNING]
+> `fluent-ffmpeg` 官方仓库已于 2025 年 5 月正式归档并停止维护。新项目建议直接通过 Node.js 的 `child_process` 调用 `ffmpeg` CLI，或选用其他仍在维护的封装库。
 
 服务端安装使用 `ffmpeg` 所需的依赖：
 
@@ -8020,7 +8065,7 @@ const convertVideoToM3u8 = (videoFilePath: string, outputFilePath: string) => {
 
 ### 客户端播放 `.m3u8` 格式视频支持
 
-浏览器自带的 `<video>` 标签并不原生支持播放 `.m3u8` 格式的视频，这里笔者引入了 [`video.js`](https://videojs.com/) 库实现播放功能。基于官方提供的[组件实现](https://videojs.com/guides/react/)，改巴改巴实现为自己的：
+主流桌面端浏览器（如 Chrome、Firefox、Edge）自带的 `<video>` 标签并不原生支持播放 `.m3u8` 格式的视频（Safari 除外），这里笔者引入了 [`video.js`](https://videojs.com/) 库实现播放功能。基于官方提供的[组件实现](https://videojs.com/guides/react/)，改巴改巴实现为自己的：
 
 ```tsx
 import { useEffect, useRef } from "react";
@@ -8588,14 +8633,14 @@ ipcMain.on(Events.UPDATE_INDEX, (_, args) => {
      process.stdout.on("data", (data) => {
        browserWindow.webContents.send(
          SpawnEvents.SPAWN_STDOUT,
-         iconv.decode(Buffer.from(data, "binary"), iconvDecoding),
+         iconv.decode(data, iconvDecoding),
        );
      });
 
      process.stderr.on("data", (data) => {
        browserWindow.webContents.send(
          SpawnEvents.SPAWN_STDERR,
-         iconv.decode(Buffer.from(data, "binary"), iconvDecoding),
+         iconv.decode(data, iconvDecoding),
        );
      });
 
@@ -8614,9 +8659,9 @@ ipcMain.on(Events.UPDATE_INDEX, (_, args) => {
    import { type IpcRendererEvent } from "electron";
 
    const ipc = {
-     on: (channel: string, func: (...args: unknown[]) => void) => {
+     on: <T extends unknown[]>(channel: string, func: (...args: T) => void) => {
        const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
-         func(...args);
+         func(...(args as T));
        ipcRenderer.on(channel, subscription);
 
        return () => {
@@ -8701,7 +8746,7 @@ ipcMain.on(Events.UPDATE_INDEX, (_, args) => {
 
 Java 版的 Minecraft 服务器依赖于 Java 启动，因此在一切的最开始，需要在服务器上安装 Java 环境。
 
-Java 版的 Minecraft 自 1.18 版本开始需要 Java >= 17。参考网上俯拾皆是的教程，通过包管理工具或前往 [Oracle OpenJDK](https://jdk.java.net/) 页面下载并安装合适版本的 Java。
+Java 版的 Minecraft 在 1.18–1.20.4 版本需要 Java >= 17，而自 1.20.5+（含本文部署的 1.21）起强制要求 **Java 21+**（2026 年的更高版本已要求 Java 25）。参考网上俯拾皆是的教程，通过包管理工具或前往 [Oracle OpenJDK](https://jdk.java.net/) 页面下载并安装合适版本的 Java。
 
 输入 `java -version` 命令查看是否安装成功，在笔者的服务器上打印的结果如下：
 
@@ -8761,6 +8806,9 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 笔者推荐使用开源作者[龙腾猫跃](https://github.com/LTCatt)开发的 [Plain Craft Launcher](https://github.com/Hex-Dragon/PCL2)（[爱发电](https://afdian.net/p/0164034c016c11ebafcb52540025c377)）来下载与启动 Minecraft 客户端。
 
+> [!WARNING]
+> 爱发电域名已由 `afdian.net` 变更为 `afdian.com`，访问旧链接时请注意核对域名。
+
 下载时需选择与服务端相同的 Fabric Loader 和 Fabric API 版本：
 
 ![通过 PCL 下载 Minecraft 客户端](./run-mc-server/download-mc-client.png)
@@ -8773,7 +8821,7 @@ screen -dmS mc-server java -Xmx2G -jar fabric-server-mc.1.21-loader.0.15.11-laun
 
 我们可以向 Minecraft 服务器添加各种各样的 Fabric 模组。
 
-模组存放于服务器根目录的 `mods/` 目录下，服务器初始化后会默认包含一个 Fabric 依赖的必要模组 `mods/fabric-api-1.0.1+1.21.jar`。我们也只需要像这样，把 `.jar` 格式的模组文件放置到 `mods/` 目录下，就算成功添加模组了。
+模组存放于服务器根目录的 `mods/` 目录下。需要注意的是，Fabric 服务端初始化后不会自动包含 `fabric-api`（前文中的 `1.0.1` 实际上是 Fabric Server Launcher 的版本号），如果所安装的模组依赖它，需手动前往 Modrinth 或 CurseForge 下载对应 1.21 版本的 `fabric-api` 并放入 `mods/` 目录。其余模组也只需要像这样，把 `.jar` 格式的模组文件放置到 `mods/` 目录下，就算成功添加模组了。
 
 您可以在 [Modrinth](https://modrinth.com/mods) 和 [CurseForge](https://www.curseforge.com/minecraft/search?class=mc-mods) 探索和下载想要使用的模组。
 
@@ -8827,6 +8875,9 @@ AutoModpack 是一个**客户端和服务端模组**，安装了此模组的客�
 
 参考[此文档](https://minecraft.fandom.com/wiki/Server.properties)按需修改服务器根目录下的 `server.properties` 配置文件。
 
+> [!WARNING]
+> Minecraft Wiki 已迁离 Fandom，现代官方社区文档请访问 [`https://minecraft.wiki/w/Server.properties`](https://minecraft.wiki/w/Server.properties)。
+
 其中值得一提的有：
 
 - `motd`：服务器描述信息，在服务器列表展示。可以通过这个[小工具](https://minecraft.tools/en/motd.php?motd)生成与预览。
@@ -8871,11 +8922,14 @@ server {
 ### 服务器备份
 
 时常 Minecraft 备份服务器数据并上传到云盘是一个非常好的习惯，笔者在<Link to="/posts/backup-mc-server">另一篇博客</Link>里实现了数据的定时备份与上传，供君参考。
-]]></content:encoded><atom:updated>Sat, 13 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器]]></title><description><![CDATA[本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。 Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。
+]]></content:encoded><atom:updated>Sat, 13 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器]]></title><description><![CDATA[Warning CentOS 7 已于 2024 年 6 月 30 日正式停止维护（EOL），官方  软件源已下线，直接运行文中的  命令将会失败。建议改用 Rocky Linux、AlmaLinux 或 Ubuntu 等仍在维护的 Linux 发行版。
 
-笔者主要参考了如下两个部署教程：
+本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。
 
-Guides/Don’t Starve Together Dedicated Servers How to setup dedicated server with cave on…]]></description><link>https://blog.towind.cn/posts/run-dont-starve-server</link><guid isPermaLink="false">run-dont-starve-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+Steam 版的饥荒联机版与…]]></description><link>https://blog.towind.cn/posts/run-dont-starve-server</link><guid isPermaLink="false">run-dont-starve-server</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> CentOS 7 已于 2024 年 6 月 30 日正式停止维护（EOL），官方 `mirrorlist` 软件源已下线，直接运行文中的 `yum` 命令将会失败。建议改用 Rocky Linux、AlmaLinux 或 Ubuntu 等仍在维护的 Linux 发行版。
+
 本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。
 
 Steam 版的饥荒联机版与 Wegame 版数据不互通，也无法相互联机。
@@ -9198,14 +9252,17 @@ echo steam >> /etc/cron.allow
 
 安装最新版本的 Nginx
 
-笔者使用的服务器为 CentOS 7 系统，默认的 yum 源中包含的 Nginx 版本为 （2021-05-21）。
+Warning
 
-更新 yum 源，添加 Nginx 的官方源：…]]></description><link>https://blog.towind.cn/posts/nginx-services</link><guid isPermaLink="false">nginx-services</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 13 May 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+CentOS 7 已于 2024-06-30 停止维护（EOL），下方示例中的 Nginx  亦为早期版本，实际部署时请根据当前系统发行版与最新…]]></description><link>https://blog.towind.cn/posts/nginx-services</link><guid isPermaLink="false">nginx-services</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 13 May 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 这些天在阿里云的 ECS 服务器上捣鼓自己的东西，通过 Nginx 转发请求，允许以域名的方式访问到笔者开设的不同站点、服务。
 
 笔者撰写本篇文章，晒晒在服务器上都做了哪些工作，也希望能为您提供一些启发。
 
 ## 安装最新版本的 Nginx
+
+> [!WARNING]
+> CentOS 7 已于 2024-06-30 停止维护（EOL），下方示例中的 Nginx `1.26.0` 亦为早期版本，实际部署时请根据当前系统发行版与最新 Nginx 官方源进行安装。
 
 笔者使用的服务器为 CentOS 7 系统，默认的 yum 源中包含的 Nginx 版本为 `1.20.1`（2021-05-21）。
 
@@ -9358,7 +9415,7 @@ cd /var/www/towind.cn/blog
 git pull
 ```
 
-如果没有存放构建后的静态文件，或构建后的静态文件无法直接使用（例如 `bashPath` 不同），那么额外执行一次构建命令即可。例如：
+如果没有存放构建后的静态文件，或构建后的静态文件无法直接使用（例如 `basePath` 不同），那么额外执行一次构建命令即可。例如：
 
 ```bash
 # /path/to/update-example.sh
@@ -9489,7 +9546,7 @@ server {
 server {
   include /etc/nginx/conf.shared.d/https.conf;
   server_name xxx.towind.cn;
-  location = / {
+  location / {
     proxy_pass http://127.0.0.1:15244;
   }
 }
@@ -9625,9 +9682,10 @@ await exec(`tar -czf ${backupFilename} ${resolvedBackupFiles.join(" ")}`);
 
 ```js
 const filenames = fs.readdirSync(backupDir);
-const backupFileList = filenames.map((filename) =>
-  fs.statSync(path.resolve(backupDir, filename)),
-);
+const backupFileList = filenames.map((filename) => ({
+  name: filename,
+  stat: fs.statSync(path.resolve(backupDir, filename)),
+}));
 ```
 
 支持指定保存的备份文件数量，得到需要移除的文件列表：
@@ -9636,9 +9694,9 @@ const backupFileList = filenames.map((filename) =>
 const BACKUP_MAX_NUM = 7; // 保留最新的 N 个备份文件，此处为 7 个
 
 const backupFiles = backupFileList
-  .filter((file) => file.isFile())
+  .filter((file) => file.stat.isFile())
   .sort((a, b) => {
-    return b.mtimeMs - a.mtimeMs;
+    return b.stat.mtimeMs - a.stat.mtimeMs;
   });
 const oldBackupFiles = backupFiles.slice(BACKUP_MAX_NUM);
 ```
@@ -9672,6 +9730,9 @@ Wed, 15 May 2024 07:00:00 +0000
 ```
 
 笔者通过安装 `zoneinfo-asia` 解决了问题：
+
+> [!WARNING]
+> OpenWRT 24.10 及之后版本已逐步使用 `apk` 替代 `opkg` 作为包管理器（例如 `apk update && apk add zoneinfo-asia`）。
 
 ```bash
 $ opkg update
@@ -9857,12 +9918,19 @@ Old backup files in alist are removed: true
 ```
 
 啊，满满的安心感！收工。
-]]></content:encoded><atom:updated>Thu, 23 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[遇到 AntD 组件中文乱码问题，可以试试这么解决]]></title><description><![CDATA[项目中使用了 AntD 4.x 的  组件，开发环境显示正常，生产环境显示乱码，如下图所示： 问题原因
+]]></content:encoded><atom:updated>Thu, 23 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[遇到 AntD 组件中文乱码问题，可以试试这么解决]]></title><description><![CDATA[项目中使用了 AntD 4.x 的  组件，开发环境显示正常，生产环境显示乱码，如下图所示： Warning
+
+Ant Design 5.x 起已全面使用  替代 ，本文仅适用于 AntD 4.x 场景。
+
+问题原因
 
  组件底层的国际化既由 AntD 提供的  控制（如上图的“年”，显示正常），又由 Moment 控制（如上图的“月”，显示乱码）。
 
-经查询，当我们以 ISO8859-1 方式读取 UTF-8 编码的中文时，会出现如“ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�‘ä¸Š…]]></description><link>https://blog.towind.cn/posts/antd-comp-garbled-characters</link><guid isPermaLink="false">antd-comp-garbled-characters</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+经查询，当我们以 ISO8859-1 方式读取…]]></description><link>https://blog.towind.cn/posts/antd-comp-garbled-characters</link><guid isPermaLink="false">antd-comp-garbled-characters</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 项目中使用了 AntD 4.x 的 `<DatePicker />` 组件，开发环境显示正常，生产环境显示乱码，如下图所示：
+
+> [!WARNING]
+> Ant Design 5.x 起已全面使用 `dayjs` 替代 `moment.js`，本文仅适用于 AntD 4.x 场景。
 
 ![error](./antd-comp-garbled-characters/error.png)
 
@@ -9874,7 +9942,7 @@ Old backup files in alist are removed: true
 
 因此产生问题的关键在于，**为何浏览器没有正确地以 UTF-8 格式读取 Moment 提供的中文语言包文本。**
 
-经排查，发现在访问生产环境时，服务端返回的 HTML 文档设置了编码为 ISO8859-1：
+经排查，发现在访问生产环境时，服务端返回的 HTML 文档设置了编码为 ISO8859-1（而外链 `<script>` 的编码首先由 JS 文件自身的 HTTP 响应头 `Content-Type` 中的 `charset` 决定，仅当 JS 响应头未指定编码时，浏览器才会回退到宿主 HTML 文档的编码或 `<script>` 标签上的 `charset` 属性）：
 
 ![response-content-type](./antd-comp-garbled-characters/response-content-type.png)
 
@@ -9882,7 +9950,7 @@ Old backup files in alist are removed: true
 
 ## 如何解决
 
-最好的解决方案是联系服务端同学，修改 `Content-Type=text/html;charset=UTF-8`。
+最好的解决方案是联系服务端同学，为 HTML 文档（以及静态 JS 资源）正确设置 `Content-Type: text/html; charset=UTF-8`（或对应的 JS `charset=utf-8`）。
 
 在这个项目中，使用了 CDN 的方式引入 Moment，因此可以采用的一个临时解决方案为强制指定编码，例如：
 
@@ -9924,8 +9992,16 @@ Umi 的 model 简易数据流插件就是基于 Context 的封装，使得数据
 ```tsx
 // src/contexts/userContext.tsx
 import React, { createContext, useState } from "react";
-export const UserContext = createContext();
-export const UserContextProvider = (props) => {
+
+interface UserContextValue {
+  username: string;
+}
+
+export const UserContext = createContext<UserContextValue>({
+  username: "",
+});
+
+export const UserContextProvider = (props: { children: React.ReactNode }) => {
   const [username, setUsername] = useState<string>("");
   return (
     <UserContext.Provider value={{ username }}>
@@ -10076,6 +10152,9 @@ export default () => {
 
 通过监听窗口的 `visibilitychange` 事件（兼容性[见于此](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/visibilitychange_event#browser_compatibility)），可以判断页面是否切换到前台：
 
+> [!WARNING]
+> 现代浏览器与 TypeScript 类型定义中，`Document.visibilityState` 仅包含 `"visible"` 与 `"hidden"` 两种状态；早期规范中的 `"prerender"` 与 `"unloaded"` 已被废弃并从标准及 TS 类型中移除。
+
 ```ts
 window.addEventListener("visibilitychange", () => {
   switch (document.visibilityState) {
@@ -10084,12 +10163,6 @@ window.addEventListener("visibilitychange", () => {
       break;
     case "hidden":
       // 当前页面被切换到后台（不可见）
-      break;
-    case "prerender":
-      // 当前页面被预渲染，且用户不可见
-      break;
-    case "unloaded":
-      // 当前页面被卸载
       break;
   }
 });
@@ -10118,8 +10191,8 @@ const getLeavePageCountdown = (): number => {
 };
 
 /** 获得离开页面定时器 */
-const getLeavePageTimeout = (): NodeJS.Timeout => {
-  return setTimeout(() => leavePage(), getLeavePageCountdown());
+const getLeavePageTimeout = (): ReturnType<typeof setTimeout> => {
+  return window.setTimeout(() => leavePage(), getLeavePageCountdown());
 };
 
 export default () => {
@@ -10261,7 +10334,7 @@ const leavePage = () => {
 export default () => {
   useEffect(() => {
     // 新建 Worker 线程
-    // const worker = new Worker("path/to/leavePage.worker.js");
+    const worker = new Worker("path/to/leavePage.worker.js");
 
     // 向 Worker 线程发出消息，设定 12h 后返回消息
     worker.postMessage(12 * 60 * 60 * 1000);
@@ -10307,7 +10380,7 @@ export default leavePageWorker;
 import LeavePageWorker from "path/to/leavePage.worker.js";
 
 const loadWebWorker = (code: string): Worker => {
-  const blob = new Blob(["(" + code + ")()"]);
+  const blob = new Blob([code], { type: "application/javascript" });
   return new Worker(URL.createObjectURL(blob));
 };
 
@@ -10319,6 +10392,9 @@ const leavePageWorker = loadWebWorker(LeavePageWorker);
 由于浏览器的 Content Security Policy (CSP) 策略，通过此方法创建 Worker 可能会失败，可以参考[此介绍](https://stackoverflow.com/questions/30280370/how-does-content-security-policy-csp-work)进行解决。
 
 ### Umi 项目的方式
+
+> [!WARNING]
+> Umi 3 与 Webpack `worker-loader` 均已废弃（Umi 4+ / Vite / Webpack 5 已原生支持 `new Worker(new URL('./xxx.worker.ts', import.meta.url))` 语法）。下文仅作历史参考。
 
 根据 [Umi 文档](https://v3.umijs.org/config#workerloader)，对于 Umi 3.4.1+ 的项目，可以进行如下配置启用对 Web Worker 的支持：
 
@@ -10374,6 +10450,9 @@ Umi 4.x 内置 Webpack 5.x 作为默认 Bundler，因此[查阅文档](https://w
 
 ### 三方库的方式
 
+> [!WARNING]
+> 本小节推荐的 `alewin/useWorker`（`@koale/useworker`）与 `developit/greenlet` 均已长期停止维护或归档，新项目建议优先使用原生 Web Worker 或现代构建工具内置的 Worker 方案（如 Comlink）。
+
 如果不介意 Web Worker 编写是否原生（笔者从不介意！），更推荐选用封装了 Web Worker 能力的三方库，例如 [`alewin/useWorker`](https://github.com/alewin/useWorker) 和 [`developit/greenlet`](https://github.com/developit/greenlet/) 等。
 
 它们降低了使用 Web Worker 的心智成本，使得调用 Web Worker 就像编写普通的 `async` 异步函数一样；重要的是，不必再担心引入 Web Worker 时带来的各种各样的奇怪问题（CDN 部署时，可能发生同源问题）。
@@ -10420,15 +10499,16 @@ export default () => {
 - [记一次定时器问题的优雅解决](https://juejin.cn/post/6855583384375132174)
 - [web worker onmessage - Uncaught SyntaxError: Unexpected token \<](https://stackoverflow.com/questions/49171791/web-worker-onmessage-uncaught-syntaxerror-unexpected-token)
 - [Combination of async function + await + setTimeout](https://stackoverflow.com/questions/33289726/combination-of-async-function-await-settimeout)
-]]></content:encoded><atom:updated>Thu, 22 Sep 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[连接到 Windows 端的 PostgreSQL 数据库]]></title><description><![CDATA[假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在  目录下，数据库文件保存在  目录，欲访问的数据库名为 ，访问数据库的用户为 。 配置 
+]]></content:encoded><atom:updated>Thu, 22 Sep 2022 00:00:00 GMT</atom:updated></item><item><title><![CDATA[连接到 Windows 端的 PostgreSQL 数据库]]></title><description><![CDATA[Warning 本文使用的 PostgreSQL 14 已于 2026-11-12 达到生命周期终点（EOL）。
 
-编辑数据库配置文件 ，设置监听的远程连接地址。将  项的值设置为 ，如下所示：
+假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在  目录下，数据库文件保存在  目录，欲访问的数据库名为 ，访问数据库的用户为 。
 
 配置 
 
-编辑数据库客户端认证配置文件 ，设置允许连接到数据库的客户端 IP 地址。
+编辑数据库配置文件 ，设置监听的远程连接地址。将…]]></description><link>https://blog.towind.cn/posts/connect-with-pgsql</link><guid isPermaLink="false">connect-with-pgsql</guid><category><![CDATA[软件开发]]></category><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文使用的 PostgreSQL 14 已于 2026-11-12 达到生命周期终点（EOL）。
 
-该…]]></description><link>https://blog.towind.cn/posts/connect-with-pgsql</link><guid isPermaLink="false">connect-with-pgsql</guid><category><![CDATA[软件开发]]></category><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 假设，您身边有两台电脑，一台打算用来做 PostgreSQL 数据库服务器，一台用来做客户端。服务器上的 PostgreSQL 14 安装在 `C:\Program Files\PostgreSQL\14` 目录下，数据库文件保存在 `C:\Program Files\PostgreSQL\14\data` 目录，欲访问的数据库名为 `db_name`，访问数据库的用户为 `db_user`。
 
 ## 配置 `postgresql.conf`
@@ -10527,6 +10607,9 @@ host    db_name         db_user         ::/0                    scram-sha-256
 最初，笔者以为得将我的库存全部放到服务器上项目中去，然后随机访问其中的图片实现功能，但这样做很难得同步，遂搁置。不过，笔者在最近发现有一个 [Pixiv 图片代理网站](https://pixiv.re/) 可以快速下载到图片，大喜，于是开始了这个小工程。
 
 ![请求需包含 Referer](./random-get-me-a-picture/pixiv-cat.png)
+
+> [!WARNING]
+> `pixiv.cat` 等第三方 Pixiv 图片反代域名的稳定性与可用性已大幅下降（曾多次变更域名或触发限流），文中硬编码的代理链接在实际运行时可能已失效。
 
 实现此功能分为两个阶段：一，为本地的图片生成数据库索引条目。二，开发 Telegram Bot 接口，随机从数据库索引中获取一张图片转发给聊天。
 
@@ -10633,7 +10716,7 @@ sequelize.define("ServiceProcess", serviceProcessModel);
 ```js
 module.exports = {
   pixiv: {
-    randomGetFromCollection: {
+    generateCollectionIndex: {
       duration: 3600,
       path: ["C:\\path\\to\\collection"],
     },
@@ -10967,7 +11050,7 @@ bot.onText(/\/random_pixiv/, async (msg) => {
 
 在上面这段代码中，当以 `bot.sendPhoto()` 的方法尝试发送 5 MB 以下的图片失败时，首先重新构建请求 URL 为 `https://pixiv.cat/${data.picId}-1.${data.picType}`，再次进行发送。如果还是失败（可能图片被作者删除），则发送简单的链接文本。由此，解决了前面提到的无法判断作品是否为漫画作品的问题。
 
-与 Telegram 上的机器人对话，发送命令 `\random_pixiv`，结果如下：
+与 Telegram 上的机器人对话，发送命令 `/random_pixiv`，结果如下：
 
 ![Bot service](./random-get-me-a-picture/bot-service.png)
 
@@ -11087,11 +11170,14 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 
 我们的项目可能无法直接访问到 Telegram 的服务器，可以使用 [**SOCKS5 代理**](https://github.com/mattcg/socks5-https-client)解决这个问题：
 
+> [!WARNING]
+> `socks5-https-client` 与 `node-telegram-bot-api` 底层依赖的 `request` 库均已停止维护并废弃；现代 Node.js Telegram Bot 开发建议使用 `grammY` 或 `telegraf` 等更活跃的框架。
+
 ```js
 const TelegramBot = require("node-telegram-bot-api");
 const proxySocks5Agent = require("socks5-https-client/lib/Agent");
 
-requestOptions = {
+const requestOptions = {
   agentClass: proxySocks5Agent,
   agentOptions: {
     socksHost: process.env.PROXY_SOCKS5_HOST,
@@ -11112,7 +11198,7 @@ const bot = new TelegramBot(token, {
 ```js
 const TelegramBot = require("node-telegram-bot-api");
 
-requestOptions = {
+const requestOptions = {
   proxy: process.env.PROXY_HTTP,
 };
 
@@ -11145,6 +11231,9 @@ Telegram Bot 可以通过轮询（polling）和网络钩子（webhook）两种�
 
 如上图所示，当 ngrok 运行时，Telegram Bot 发向 `https://a75b-182-141-75-13.ngrok.io` 的请求，将转发给运行在本地 `http://localhost:4000` 上的程序。
 
+> [!WARNING]
+> ngrok 免费域名已迁移至 `*.ngrok-free.app`，且现行版本需注册账号并配置 `authtoken` 后方可使用。
+
 这样，只需要同时运行我们的项目和 ngrok，我们就可以正常地接收到信息并进行处理了。修改连接 Bot 的代码如下：
 
 ```js
@@ -11160,7 +11249,7 @@ globalThis.bot = bot;
 现在，Telegram 上机器人收到的消息会立即发送给我们的服务器。最后，在服务器需要处理接收到的 POST 类型请求 `/bot${TELEGRAM_BOT_TOKEN}`，告知 Telegram 我们已经收到新的消息了。可以在 `routes/index.js` 中添加代码如下：
 
 ```js
-router.post(`bot${token}`, (ctx) => {
+router.post(`/bot${token}`, (ctx) => {
   globalThis.bot.processUpdate(ctx.request.body);
   ctx.status = 200;
 });
@@ -11507,7 +11596,14 @@ npm run pm2
 - [开发一个 Telegram Bot](https://www.wandouip.com/t5i13823/)
 - [node-telegram-bot-api usage](https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md)
 - [How to set webhooks using express local server and NGROK](https://github.com/leobloise/node-telegram-bot-api-wb-tutorial)
-]]></content:encoded><atom:updated>Tue, 09 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[把自己的简历做成 Web 页面]]></title><description><![CDATA[去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 best-resume-ever 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历： 然后到了现在，到了秋招真正找工作走向社会的季节了，又该制作自己的简历了。一年的时光给自己的人生又增添了几分色彩，原先简历模板已然不够用了。正巧，这个仓库由 Vue 编写…]]></description><link>https://blog.towind.cn/posts/build-my-resume</link><guid isPermaLink="false">build-my-resume</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+]]></content:encoded><atom:updated>Tue, 09 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[把自己的简历做成 Web 页面]]></title><description><![CDATA[Warning 本文基于已停止维护的 Vue 2、Vue CLI 4、Node.js 14.x、旧版  及旧版 GitHub Actions（//），仅作历史实现参考。
+
+去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 best-resume-ever 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
+
+然后到了现在…]]></description><link>https://blog.towind.cn/posts/build-my-resume</link><guid isPermaLink="false">build-my-resume</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文基于已停止维护的 Vue 2、Vue CLI 4、Node.js 14.x、旧版 `puppeteer@10.2.0` 及旧版 GitHub Actions（`@v1`/`@v2`/`@v3`），仅作历史实现参考。
+
 去年投简历的时候，在 Github 上找了个开源的，星星很多的仓库 [best-resume-ever](https://github.com/salomonelli/best-resume-ever) 来制作自己的简历。其中的 Creative 模板我觉得很喜欢，就用它制作了我人生中的第一份找工作用的简历：
 
 ![my first resume](./build-my-resume/my-first-resume.jpg)
@@ -11822,7 +11918,7 @@ Run yarn install to install new versions.
 PS C:\Users\Lolipop\Github\resume> yarn install
 ```
 
-启动项目服务端渲染，确保能正常运行：
+启动项目本地开发服务器，确保能正常运行：
 
 ```bash
 PS C:\Users\Lolipop\Github\resume> yarn serve
@@ -11830,7 +11926,7 @@ PS C:\Users\Lolipop\Github\resume> yarn serve
 
 将原有的 Vue 文件移动过来，处理发生错误的依赖关系，再根据需要安装必要的其它依赖。
 
-别忘了配置 `vue.config.js` 中的 `publicPath` 项。我们的项目将部署在域名的根路径，例如 `https://lolipopj.github.io/resume`，因此需要配置如下：
+别忘了配置 `vue.config.js` 中的 `publicPath` 项。我们的项目将部署在域名的子路径（例如 `https://lolipopj.github.io/resume/`），因此需要配置如下：
 
 ```js
 // vue.config.js
@@ -11932,7 +12028,7 @@ concurrently 可以在一个终端中同时运行多个命令，一旦某个命�
 }
 ```
 
-我们将依次执行 `npm run serve` 和 `node scripts/export.js`。当第一条命令成功时返回 0，失败时返回 1。任意一条命令结束或失败时中止此脚本。
+我们将同时执行 `npm run serve` 和 `node scripts/export.js`。`--success first` 表示以最先结束的进程（即第二条命令 `node scripts/export.js`）的退出状态作为最终结果（成功时返回 0，失败时返回 1），并配合 `--kill-others` 在任意一条命令结束或失败时中止其余进程。
 
 rxjs 是一个用于编写异步、事件驱动的程序的库，我们可以使用它来监听页面是否就绪，避免在尚未加载完成的情况下就打印简历 PDF 文档：
 
@@ -12075,7 +12171,7 @@ const convert = async function () {
 
 然后又到了爷最喜欢的**约定大于配置**环节，在上面的代码里，假设每个翻译版本的简历有不同的 URL 值，对应不同的 `code`。例如 `http://localhost:8088/#/cn` 为简历的中文版本，对应的 `code` 值为 `cn`。这样，最终导出文件为 `export/resume-cn.jpeg` 和 `export/resume-cn.pdf`。
 
-如果需要配置不同翻译版本的简历的 PDF 文档（或截图）的大小，可以在 `config.json` 中配置。例如需要配置中文版本简历 PDF 文档的高度，设置 `"EXPORT_PDF_HEIGHT_CN": 850` 即可，其中 `_CN` 为 `code` 的大写值前面加上短横线。
+如果需要配置不同翻译版本的简历的 PDF 文档（或截图）的大小，可以在 `config.json` 中配置。例如需要配置中文版本简历 PDF 文档的高度，设置 `"EXPORT_PDF_HEIGHT_CN": 850` 即可，其中 `_CN` 为 `code` 的大写值前面加上下划线（`_`）。
 
 不过，手动配置打印 PDF 高度在实现上并不优雅，仔细想想，既然 puppeteer 能够模仿浏览器中的所有行为，那么：在固定页面宽度的情况下，获取当前页面的高度也是理所应当能够做到的吧。[`page.evaluate()`](https://pptr.dev/#?product=Puppeteer&version=v10.2.0&show=api-pageevaluatepagefunction-args) 方法可以实现这个需求：
 
@@ -12136,13 +12232,18 @@ Done in 42.14s.
 顺利地导出了我的简历，此外还有截图和英文版本：
 
 ![resume export](./build-my-resume/resume-export.png)
-]]></content:encoded><atom:updated>Fri, 20 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 jsDelivr 加速 Github 仓库搭建自己的图床服务]]></title><description><![CDATA[Important 使用此类公益服务时应保留敬畏之心，不要滥用服务。
+]]></content:encoded><atom:updated>Fri, 20 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 jsDelivr 加速 Github 仓库搭建自己的图床服务]]></title><description><![CDATA[Warning 自 2021 年底起，jsDelivr 失去中国大陆 ICP 备案并丧失国内 CDN 节点， 在国内长期处于不稳定或不可用状态，已不再适合作为可靠的国内图床加速方案。
+
+Important
+
+使用此类公益服务时应保留敬畏之心，不要滥用服务。
 
 今天突然想去搞个图床，使用 CDN 加速图片资源。因为博客放在小水管服务器上，直接用这个服务器向用户传输图片资源对带宽有很大影响。
 
-遂上网搜索有无免费图床的服务，看到不少将 jsDelivr 用作图床使用的教程，便自己实践一番。
+遂上网…]]></description><link>https://blog.towind.cn/posts/github-jsdelivr-hold-image</link><guid isPermaLink="false">github-jsdelivr-hold-image</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 自 2021 年底起，jsDelivr 失去中国大陆 ICP 备案并丧失国内 CDN 节点，`cdn.jsdelivr.net` 在国内长期处于不稳定或不可用状态，已不再适合作为可靠的国内图床加速方案。
 
-在国内，直接使用 Github 链接来加载图片是很慢的，甚至于加载不出来；但访问…]]></description><link>https://blog.towind.cn/posts/github-jsdelivr-hold-image</link><guid isPermaLink="false">github-jsdelivr-hold-image</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 > [!IMPORTANT]
 > 使用此类公益服务时应保留敬畏之心，不要滥用服务。
 
@@ -12164,7 +12265,7 @@ Done in 42.14s.
 
 ## 使用 jsDelivr 加速
 
-使用也非常简单，jsDiliver 提供了这个例子：
+使用也非常简单，jsDelivr 提供了这个例子：
 
 ```plaintext
 // load any GitHub release, commit, or branch
@@ -12240,7 +12341,7 @@ yarn add -D prettier
 ```json
 {
   "scripts": {
-    "prettier": "prettier --write **/* --ignore-unknown"
+    "prettier": "prettier --write . --ignore-unknown"
   }
 }
 ```
@@ -12266,7 +12367,15 @@ yarn add --dev @prettier/plugin-php prettier-plugin-java
 ```
 
 Prettier 将自动加载与它在同一 `node_modules` 文件夹中的 Prettier 插件，并自动识别新增的代码后缀（如 `.php` 和 `.java`）。因此在最后，只需要再执行一遍 `yarn prettier`，就可以实现格式化项目中的 PHP 及 Java 代码了。
-]]></content:encoded><atom:updated>Thu, 14 Dec 2023 00:00:00 GMT</atom:updated></item><item><title><![CDATA[更换持续集成工具，从 Travis 到 Github Actions]]></title><description><![CDATA[我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间…]]></description><link>https://blog.towind.cn/posts/switch-travis-to-github-workflow</link><guid isPermaLink="false">switch-travis-to-github-workflow</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 10 Jul 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+
+> [!WARNING]
+> 自 Prettier 3.0（2023-07 发布）起，Prettier 已移除插件自动加载机制。在现代版本中，需要在 `.prettierrc` 的 `plugins` 数组或命令行 `--plugin` 参数中显式声明所需插件。
+]]></content:encoded><atom:updated>Thu, 14 Dec 2023 00:00:00 GMT</atom:updated></item><item><title><![CDATA[更换持续集成工具，从 Travis 到 Github Actions]]></title><description><![CDATA[Warning 本文编写于 2021 年，文中工作流所使用的 Node.js 14.x（已停止维护）以及 、、、 等 Action 版本均已过时或废弃。如需在现行项目中使用，请升级至受支持的 Node.js LTS 版本及对应的最新版 Action。
+
+我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策…]]></description><link>https://blog.towind.cn/posts/switch-travis-to-github-workflow</link><guid isPermaLink="false">switch-travis-to-github-workflow</guid><category><![CDATA[技术琐事]]></category><pubDate>Sat, 10 Jul 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文编写于 2021 年，文中工作流所使用的 Node.js 14.x（已停止维护）以及 `actions/checkout@v2`、`actions/setup-node@v1`、`actions/cache@v2`、`peaceiris/actions-gh-pages@v3` 等 Action 版本均已过时或废弃。如需在现行项目中使用，请升级至受支持的 Node.js LTS 版本及对应的最新版 Action。
+
 我真傻，真的，单单受文档的推荐就选择了 Travis 作为部分项目的持续集成工具，没有料到它早已于 2020 年 12 月更换了免费政策，不再为开源项目提供免费的用于持续集成使用的 Credits 了。当赠送的 10000 个点数用完，就需要付费才能进行构建了。
 
 当然，作为经济驱动的公司，近些天来又受 Github Actions 等其它持续集成工具打压了盈利空间，抛弃开源用户选择转型做起了商人事业也并非不可理解。感谢它曾为开发者提供的便利，不过作为一个佛系开发者，终于还是需要转投到别的免费工具上去了——Gihub Actions。
@@ -12338,17 +12447,18 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # github_token 与 deploy_key 二选一即可，不能同时配置
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.ACCESS_TOKEN }}
+          # deploy_key: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: vuepress/docs/.vuepress/dist
           publish_branch: gh-pages
 ```
 
 ## 创建 SSH Deploy Key
 
-这一步是为了给 Github Actions 远程服务器访问我的 Github 账号提供凭证。如果没有设置 Github 账户双重验证或其它安全验证，可以移除上面脚本中的 `deploy_key` 属性然后跳过这一步。但是假如以后设置了安全验证，回来改又会很麻烦，不如一步到位了吧 🤗。
+这一步是为了给 Github Actions 远程服务器访问我的 Github 账号提供凭证。如果您只想将构建产物推送到当前仓库的 `gh-pages` 分支，直接使用上面配置中的 `github_token: ${{ secrets.GITHUB_TOKEN }}` 即可（它由 GitHub Actions 自动生成，与账号是否开启双重验证无关），无需额外配置 `deploy_key`；但如果您需要将产物推送到其他仓库，或有更细粒度的权限需求，可以改用 `deploy_key`（注意移除或注释掉 `github_token`，两者互斥）来提供凭证。
 
-您也可以生成 Personal access token 作为替代，不过前面的脚本中的 `deploy_key` 应该修改为 `personal_token`。
+您也可以生成 Personal access token 作为替代，不过前面的脚本中应将 `deploy_key` 替换为 `personal_token`。
 
 启动命令行工具，创建 SSH 部署密钥：
 
@@ -12434,6 +12544,9 @@ URI 具体包括如下部分：
 
 随着 HSTS 的推广使用，现代浏览器中还内置了一个列表 [Preload List](#hsts-的-preload-list-机制)，记录常用网站所使用的协议。对于这些网站，输入的 URL 将自动在前面补上记录的协议，再由浏览器发送请求。因此在实际情况中，第一次访问时，我们输入的 URL 就会被补齐为 `https://lolipopj.github.io`。
 
+> [!NOTE]
+> 现代主流浏览器已默认启用 HTTPS-First（HTTPS 优先）模式，当用户在地址栏输入未指定协议的域名时，浏览器会优先尝试 `https://` 而非 `http://`。
+
 ### HTTP 严格传输安全 HSTS
 
 以下内容主要参考此文章：
@@ -12499,7 +12612,7 @@ TCP/IP 是能够在多个不同网络间实现信息传输的**协议簇**，它
 
 浏览器会随机选用一个 1024 - 65535 之间的端口号，作为当前页面通讯使用的端口，以及传输层的 TCP 协议头的 Source Port 部分，这很容易实现。
 
-但问题是，运输层的 IP 协议需要**目标网站的 IP 地址**才能工作，而现在浏览器只有 `https://lolipopj.github.io` 这个 URL 链接，它完全无法理解。
+但问题是，网络层的 IP 协议需要**目标网站的 IP 地址**才能工作，而现在浏览器只有 `https://lolipopj.github.io` 这个 URL 链接，它完全无法理解。
 
 因此，浏览器将首先联系**域名系统 DNS**（Domain Name System），一个将域名和 IP 地址相互映射的分布式数据库。我们可以通过 DNS 来查询一串 URL 链接所对应的 IP 地址。
 
@@ -12532,9 +12645,9 @@ DNS 由客户端和服务端两部分组成，其中，客户端发起查询请�
 
 由于早期的 DNS 查询结果是一个 512 字节的 UDP 数据包，这个包最多容纳 13 个服务器的地址，因此规定全世界有 13 台根域名服务器，编号从 `a.root-servers.net` 到 `m.root-servers.net`。
 
-为了保证根域名服务器的可用性，每台服务器又有多个节点。根据[此网站](https://root-servers.org/)的统计，截止 2021 年 07 月 12 日，全球一共有 1403 台根域名服务器实例。
+为了保证根域名服务器的可用性，每台服务器又有多个节点。根据[此网站](https://root-servers.org/)的统计，截止 2026 年，全球一共有超过 1900 台根域名服务器实例。
 
-当需要通过根域名服务器查询顶级域名服务器时，进行请求的 DNS 服务器会向这 13 台服务器**同时**发出请求，哪一个返回的信息先到达，则使用哪一个查询得到的结果。
+当需要通过根域名服务器查询顶级域名服务器时，递归解析器并不会同时向这 13 台服务器群发请求，而是根据往返时延（RTT）或随机策略选择其中一台（配合 Anycast 任播技术路由至就近节点）发起查询，仅在超时或失败时才切换至其他根服务器重试。
 
 ### 顶级域名服务器
 
@@ -12585,7 +12698,7 @@ DNS 由客户端和服务端两部分组成，其中，客户端发起查询请�
 
 大多数情况下，我们需要与不在同一个局域网的主机通信，但由于每个网段都是独立的广播域，没法直接向互联网上的其它主机发送广播报文，该怎么办？网关设备就在这里大显身手了。
 
-当主机**已设置网关**时，主机设置的网关设备将接收到 ARP 请求报文，以路由器为例：路由器发现 ARP 请求报文中的 IP 地址不属于当前局域网，就把自己的 MAC 地址响应给请求主机。后续请求主机直接使用这个 MAC 地址，将数据包传输给路由器。而数据包通过路由器的**路由转发**功能，最终顺利抵达互联网上对应 IP 地址的主机。
+当主机**已设置网关**时，如果目标 IP 不在当前局域网，主机不会直接对目标外网 IP 发送 ARP 请求，而是直接查询**默认网关 IP** 的 MAC 地址（即 ARP 请求报文中的目标 IP 为网关路由器自身的接口 IP）。网关路由器收到请求后发现目标 IP 是自己，就会把自己的 MAC 地址响应给请求主机。后续请求主机直接使用这个 MAC 地址，将数据包传输给路由器，再由路由器通过**路由转发**功能将数据包送往互联网上的目标主机。
 
 当主机**未设置网关**时，可以使用 **代理 ARP**（ARP Proxy）机制。局域网内的所有网关设备将接收到 ARP 请求报文，还是以路由器为例：路由器发现 ARP 请求报文中的 IP 地址不属于当前局域网，而是属于自己**已知的**另一个网段上的某台主机，就将自己作为代理，把自己的 MAC 地址响应给请求主机。后续请求主机直接使用这个 MAC 地址，通过路由器代理，就可以访问到局域网外的目标主机了。与 ARP 相比，代理 ARP 有如下局限：
 
@@ -12622,7 +12735,7 @@ IARP 即逆向 ARP（Inverse ARP），在帧中继网络（广域网）中实现
 
 ## 使用 TLS 与服务器建立安全的 TCP 连接
 
-在发送包含 HTTP 报文的数据包之前，客户端还要先通过三次握手与服务器建立 TCP 连接，这是为了保证数据传输的**可靠性**。在前面，我们已经得到了服务器的 MAC 地址，因此包含建立 TCP 连接请求报文的数据包可以顺利发送到服务器。
+在发送包含 HTTP 报文的数据包之前，客户端还要先通过三次握手与服务器建立 TCP 连接，这是为了保证数据传输的**可靠性**。在前面，我们已经得到了本地默认网关的 MAC 地址（跨网段通信不需要也无法通过 ARP 获取远端服务器的 MAC 地址），因此包含建立 TCP 连接请求报文的数据包可以顺利通过网关路由转发到服务器。
 
 1. TCP 第一次握手，客户端主动向服务器发送 TCP 请求报文。设置其首部：`SYN = 1, seq = x`。其中，x 和下面步骤中的 y 为随机值。
 2. TCP 第二次握手，服务器监听请求，当接收到客户端的请求报文时，若同意连接请求，则发回确认报文。设置其首部：`SYN = 1, ACK = 1, ack = x + 1, seq = y`。
@@ -12630,7 +12743,7 @@ IARP 即逆向 ARP（Inverse ARP），在帧中继网络（广域网）中实现
 
 由于前面我们提到的 HSTS 机制，我们的 HTTP 请求将基于 HTTPS 协议。严格来说，HTTPS 并非应用层的一种新协议，它只是将 HTTP 协议的**通信接口**部分使用**传输层安全性协议 TLS**（Transport Layer Security）代替罢了。通常，HTTP 直接与 TCP 通信。当使用 TLS 时，HTTP 先与 TLS 通信，再由 TLS 与 TCP 通信。
 
-在这种情况下，为了保证数据传输的**安全性**，客户端还要与服务器协商 TLS 协议参数，这个过程通常称为 TLS 握手。在 TLS 1.0, 1.1 及 1.2 版本中，握手有四次；而在 TLS 1.3 版本中，握手只需要三次。TLS 握手是在 TCP 连接建立之后进行的。
+在这种情况下，为了保证数据传输的**安全性**，客户端还要与服务器协商 TLS 协议参数，这个过程通常称为 TLS 握手。以网络往返时间（RTT）衡量，TLS 1.2 的完整握手通常需要 2-RTT；而在 TLS 1.3 版本中，完整握手只需要 1-RTT（配合 PSK 预共享密钥甚至可达 0-RTT）。TLS 握手是在 TCP 连接建立之后进行的。
 
 以 [TLS 1.3 协议](https://datatracker.ietf.org/doc/html/rfc8446)为例，握手过程如下所示：
 
@@ -12742,7 +12855,7 @@ TLS 1.3 使用这样一个更简单的密钥协商模式和一组更少的密钥
 
 简单来说，在**对称密钥加密**中，对数据的加密和解密都使用同一个密钥。相较于非对称密钥加密，它的速度更快；但是由于密钥在传输过程中容易被获取，因此其安全性较低。
 
-在**非对称密钥加密**（或公开密钥加密）中，使用一对密钥进行加密和解密，分别为公开密钥和私有密钥。公开密钥所有人都可以获得，客户端使用公开密钥对数据进行加密，服务器使用私有密钥对数据进行解密。同样，服务器对响应的数据使用私有密钥加密，客户端则可以通过公开密钥进行解密。相较于对称密钥加密，只要保管好私有密钥，就能保证客户端传输的消息不被破解，因此它的安全性更高；由于算法和过程更为繁琐，因此其速度较慢。
+在**非对称密钥加密**（或公开密钥加密）中，使用一对密钥，分别为公开密钥和私有密钥。公开密钥所有人都可以获得：客户端使用公开密钥对数据进行加密，服务器使用私有密钥进行解密；而服务器使用私有密钥对数据签名后，客户端可以使用公开密钥进行验签（私钥并不用于加密业务响应数据给公钥解密）。在实际的 HTTPS 通信中，业务请求与响应数据在握手完成后均使用协商好的**对称密钥**进行加密传输。相较于对称密钥加密，非对称密钥加密由于算法和过程更为繁琐，速度较慢，因此通常只用于密钥交换和身份认证阶段。
 
 HTTPS 采用的是**混合加密**机制——在 TLS 1.3 以前，客户端首先使用服务器提供的公钥，加密一个随机值，然后将它传输给服务器。服务器使用私钥解密，获得随机值，然后使用与客户端相同的密钥生成算法，基于这个随机值和之前握手中创建的另外两个随机值，生成与客户端相同的密钥，之后客户端和服务器就可以使用这把对称密钥进行通信了。在 TLS 1.3 中，基于 DH 密钥协议，不再赘述。这样，客户端和服务器之间的通信就兼顾了对称密钥加密的高效性和非对称密钥加密的安全性。
 
@@ -12787,6 +12900,9 @@ Oh, Welcome to visit my blog！
 - `https://fonts.proxy.ustclug.org`
 - `https://fonts.loli.net`，可参考：https://sb.sb/blog/css-cdn
 
+> [!WARNING]
+> 本文编写于 2021 年，当时测试可用的 `fonts.googleapis.cnpmjs.org`、`fonts.proxy.ustclug.org` 等镜像站现均已下线或停止服务。如果您需要使用 Google Fonts，建议考虑本地托管字体文件或寻找其他仍可稳定访问的 CDN 方案。
+
 使用方法非常简单，在 Google 字体上选择[思源黑体简体中文版本](https://fonts.google.com/specimen/Noto+Sans+SC?subset=chinese-simplified#standard-styles)，再选择需要的字重如 `Regular 400`，如果使用 `<link>` 的方式引入，则代码如下所示：
 
 ```html
@@ -12825,6 +12941,7 @@ Oh, Welcome to visit my blog！
 @font-face {
   font-family: "Glow Sans SC";
   src: url("../font/GlowSansSC-Normal-Book.otf");
+  font-display: swap;
 }
 ```
 
@@ -12834,7 +12951,7 @@ Oh, Welcome to visit my blog！
 
 这种方式的优点是：配置方便。
 
-但缺点也很明显：慢！尤其对于大多数人建立个人博客时，会使用自己的“小水管”服务器，字体文件要加载老半天才能正常显示出来（包括中文的字体文件大约 9 MB 左右，而下载速度大约为 200 KB/s）。此外，由于 Archer 主题在开头处就会引入包含字体配置的 CSS 文件，要留待字体加载完成后才渲染后续内容，极大影响首次浏览体验。
+但缺点也很明显：慢！尤其对于大多数人建立个人博客时，会使用自己的“小水管”服务器，字体文件要加载老半天才能正常显示出来（包括中文的字体文件大约 9 MB 左右，而下载速度大约为 200 KB/s）。此外，如果在 `@font-face` 中未设置 `font-display: swap`，浏览器默认会采用 FOIT（Flash of Invisible Text，文字不可见期）策略，在字体加载完成前将对应文字隐藏（而非阻塞后续 DOM 渲染），同样会极大影响首次浏览体验。
 
 ## 更换博客字体
 
@@ -12879,6 +12996,9 @@ $base-font-family:
 
 一款国人开源的智能 WebFont 压缩工具 [font-spider](https://github.com/aui/font-spider) 能够满足我们的需求。
 
+> [!WARNING]
+> `font-spider` 已多年未维护，且其底层依赖早已停止维护的 `phantomjs`（在现代 Node.js 与操作系统环境下极易安装失败或报错）。现代中文字体子集化推荐使用 [`cn-font-split`](https://github.com/KonghaYao/cn-font-split) 或 Python 的 [`fonttools`](https://github.com/fonttools/fonttools) 等工具。
+
 这款工具能够获取网页中使用到的中文文字，然后从源字体文件中提取出来这些文字，生成一个只包含这些文字的字体文件。而我们只需要引入这个生成的字体文件，就可以实现压缩中文字体了！
 
 为了能使用 Github Actions 自动集成部署博客，这里我在博客根目录引入了 font-spider 作为项目的开发依赖。
@@ -12911,7 +13031,7 @@ yarn add -D font-spider
 
 ```json
 "scripts": {
-  "font-spider": "font-spider public/*.html"
+  "font-spider": "font-spider \"public/**/*.html\""
 }
 ```
 
@@ -12945,11 +13065,12 @@ Google 字体版本：
 ## 参考文章
 
 - [網頁是否安裝思源黑體、中文字型的考量﹍影響載入速度的因素及作法分析](https://www.wfublog.com/2019/01/noto-sans-serif-traditional-chinese-web-font_11.html)
-]]></content:encoded><atom:updated>Tue, 10 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用基于 Docker 的 Nginx 部署静态网页项目]]></title><description><![CDATA[现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？ 本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。
+]]></content:encoded><atom:updated>Tue, 10 Aug 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用基于 Docker 的 Nginx 部署静态网页项目]]></title><description><![CDATA[Warning 本文编写于 2021 年，作者的个人博客现已迁移至 Gatsby 5，部署分支也已改为 ；此外，文中所使用的  v1 与  均已停止维护。现行环境建议使用 Docker Compose V2（ 命令）及受支持的 Nginx 版本。
 
-准备静态网页项目
+现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪…]]></description><link>https://blog.towind.cn/posts/website-deployment-docker-nginx</link><guid isPermaLink="false">website-deployment-docker-nginx</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 25 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文编写于 2021 年，作者的个人博客现已迁移至 Gatsby 5，部署分支也已改为 `main`；此外，文中所使用的 `docker-compose` v1 与 `nginx:1.21.0` 均已停止维护。现行环境建议使用 Docker Compose V2（`docker compose` 命令）及受支持的 Nginx 版本。
 
-为了更方便管理网页项目…]]></description><link>https://blog.towind.cn/posts/website-deployment-docker-nginx</link><guid isPermaLink="false">website-deployment-docker-nginx</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 25 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 现在，我已经安装了 Docker，并拉取了 Nginx 的镜像。除此之外，我也购买了域名，完成了备案，并且为域名配置了 SSL。一切准备就绪，那么我该怎么将我的静态网页项目在 Linux 主机上通过 Nginx 部署，最终实现域名访问呢？
 
 本文以部署我的个人博客页面为例，介绍如何使用基于 Docker 的 Nginx 部署静态网页项目。
@@ -12993,6 +13114,9 @@ cp blog.towind.cn/Nginx/* /www/cert
 
 ## 创建 Nginx 容器
 
+> [!WARNING]
+> 独立二进制版本的 `docker-compose` v1 已停止维护。现代 Docker 环境已内置 Docker Compose V2，直接使用 `docker compose` 命令即可，且在 Compose V2 规范中已废弃顶层的 `version` 字段。
+
 从 Nginx 1.19 版本开始，允许在配置中自定义环境变量，只需要编写一个 `docker-compose.yml` 文件。`docker-compose` 是用来将 Docker 自动化的命令，如果还没有，需要先安装它：
 
 ```bash
@@ -13008,7 +13132,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 在 `/www/LolipopJ.github.io` 目录下创建 `docker-compose.yml`，编辑如下：
 
 ```yml
-version: "1.0"
+# Compose V2 已废弃 version 字段；若使用旧版 Compose v1 请设为 "3"（原 "1.0" 为无效版本）
 services:
   blog:
     image: nginx:1.21.0
@@ -13027,7 +13151,7 @@ services:
       - NGINX_HOST_SSL_KEY=cert/2_blog.towind.cn.key
 ```
 
-由于 `nginx.conf` 读取文件时，默认以 `/etc/nginx` 为起始目录，因此当把 `/www/cert` 目录挂载到 `/etc/nginx/cert` 目录时，应当设置环境变量 `NGINX_HOST_SSL_CRT` 为 `cert/1_www.example.com_bundle.crt`。
+由于 `nginx.conf` 读取文件时，默认以 `/etc/nginx` 为起始目录，因此当把 `/www/cert` 目录挂载到 `/etc/nginx/cert` 目录时，应当设置环境变量 `NGINX_HOST_SSL_CRT` 为 `cert/1_blog.towind.cn_bundle.crt`。
 
 在默认情况下，执行此文件后，将会读取 `templates`（对应容器中的 `/etc/nginx/templates`）目录下的模板文件，并将结果输出到容器中 `/etc/nginx/conf.d` 目录下。因此，可以在 `/www/LolipopJ.github.io` 目录下创建 `templates` 目录，并编写 `templates/default.conf.template` 文件如下：
 
@@ -13084,25 +13208,18 @@ docker-compose up -d
 ## 参考文档
 
 - [How To Use the Official NGINX Docker Image](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
-]]></content:encoded><atom:updated>Fri, 25 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Linux 系统下启用 Project-V]]></title><description><![CDATA[下载 Release 在 Project-V 的 Github Releases 页面下载最新的二进制包。
+]]></content:encoded><atom:updated>Fri, 25 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Linux 系统下启用 Project-V]]></title><description><![CDATA[Warning 自  v5 起，启动命令已变更为 （不再直接运行 ）；此外，VMess 协议中非零的 （旧版 MD5 认证）已被弃用，现行配置应统一将  设为  以启用更安全的 AEAD 认证。
+
+下载 Release
+
+在 Project-V 的 Github Releases 页面下载最新的二进制包。
 
 本文以通用于 x86_64 机器的  为例。下载完成后传入 Linux 主机即可。
 
-安装 Project-V
+安装…]]></description><link>https://blog.towind.cn/posts/linux-project-v</link><guid isPermaLink="false">linux-project-v</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 09 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 自 `v2ray-core` v5 起，启动命令已变更为 `v2ray run`（不再直接运行 `v2ray &`）；此外，VMess 协议中非零的 `alterId`（旧版 MD5 认证）已被弃用，现行配置应统一将 `alterId` 设为 `0` 以启用更安全的 AEAD 认证。
 
-执行  命令：
-
-文件将全部解压到当前目录。
-
-创建软链接
-
-执行  命令：
-
-这里的  是压缩包里已编译好的二进制可执行文件。
-
-配置 Project-V
-
-编辑与  相同目录下的  文件…]]></description><link>https://blog.towind.cn/posts/linux-project-v</link><guid isPermaLink="false">linux-project-v</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 09 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 ## 下载 Release
 
 在 Project-V 的 [Github Releases](https://github.com/v2fly/v2ray-core/releases) 页面下载最新的二进制包。
@@ -13181,13 +13298,11 @@ ln -s /path/to/v2ray /usr/local/bin
             "users": [
               {
                 "id": "V2RAY_UUID", // 代理服务器的 UUID
-                "alterId": 64 // 代理服务器的 Alter Id，应为不加双引号的数字
+                "alterId": 0 // 现代配置建议设为 0 以启用 AEAD 认证（旧版为 64）
               }
             ]
-          },
-          {
-            // 添加更多的 VMESS 协议代理服务器
           }
+          // 如需配置多个 VMess 代理服务器，可在此处继续追加对象
         ]
       },
 
@@ -13221,15 +13336,14 @@ git config --global https.proxy socks5://127.0.0.1:1080
 ```
 
 现在，使用 `git clone` 命令享受飞一般的速度吧。
-]]></content:encoded><atom:updated>Wed, 09 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Euler 系统上离线安装 MySQL 5.7]]></title><description><![CDATA[查看系统 OS 及架构 以 Euler 系统为例，在终端上输入命令查看，可以通过  命令找到 rpm 包，再通过  查看系统 OS 及架构信息：
+]]></content:encoded><atom:updated>Wed, 09 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Euler 系统上离线安装 MySQL 5.7]]></title><description><![CDATA[Warning 本文使用的 EulerOS 2.0 SP5（基于 CentOS 7）与 MySQL 5.7（已于 2023-10 达到 EOL）均已停止官方支持，内容仅供历史参考。此外，下文授权远程连接使用的  隐式建用户语法在 MySQL 8.0+ 中已被移除（需先执行  再 ）。
 
-当然，也可以使用通用的  命令。
+查看系统 OS 及架构
 
-当前系统为 Euler 2.0 (SP5)，处理器架构为 x86_64。
+以 Euler 系统为例，在终端上输入命令查看，可以通过  命令找到 rpm 包…]]></description><link>https://blog.towind.cn/posts/euler-install-mysql</link><guid isPermaLink="false">euler-install-mysql</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 04 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文使用的 EulerOS 2.0 SP5（基于 CentOS 7）与 MySQL 5.7（已于 2023-10 达到 EOL）均已停止官方支持，内容仅供历史参考。此外，下文授权远程连接使用的 `GRANT ... IDENTIFIED BY` 隐式建用户语法在 MySQL 8.0+ 中已被移除（需先执行 `CREATE USER` 再 `GRANT`）。
 
-下载 MySQL
-
-Euler 2.0 系统基于 CentOS 7 开发，而 CentOS 7 由 Red Hat Enterprise…]]></description><link>https://blog.towind.cn/posts/euler-install-mysql</link><guid isPermaLink="false">euler-install-mysql</guid><category><![CDATA[软件开发]]></category><pubDate>Fri, 04 Jun 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 ## 查看系统 OS 及架构
 
 以 Euler 系统为例，在终端上输入命令查看，可以通过 `rpm -qa | grep euleros-release` 命令找到 rpm 包，再通过 `rpm -qi ${包名}` 查看系统 OS 及架构信息：
@@ -13279,7 +13393,7 @@ rpm -ivh mysql-community-server-5.7.33-1.el7.x86_64.rpm
 初始化 MySQL 数据库：
 
 ```bash
-mysqld -I
+mysqld --initialize
 ```
 
 该命令会初始化默认数据库并创建一个有随机密码的超级用户，密码会打印到 MySQL 的日志中。
@@ -13287,10 +13401,10 @@ mysqld -I
 如果初始化时出现 `Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!` 报错，可以强制使用 root 权限执行：
 
 ```bash
-mysqld -I --user=root
+mysqld --initialize --user=root
 ```
 
-接下来，为目录移除可读权限，这是因为 MySQL 为了安全考虑，会忽略到权限过高的文件：
+接下来，将数据目录的所有者和所属组修改为 `mysql:mysql`，以便 MySQL 服务进程能够正常读写该目录：
 
 ```bash
 chown -R mysql:mysql /var/lib/mysql
@@ -13409,10 +13523,10 @@ let User = class {
 console.log(User.name); // User
 
 // 命名类
-let User = class Admin {
+let Admin = class Admin {
   //
 };
-console.log(User.name); // Admin
+console.log(Admin.name); // Admin
 ```
 
 同样，使用类表达式的方式也**不会提升**。
@@ -13666,6 +13780,9 @@ child.sayHello(); // I am your father.
 详细内容可以参考[这篇博客](https://github.com/dwqs/blog/issues/67#issue-327371697)。
 
 在类中，直接使用 `=` 的声明从本质上而言就是 [Field Declarations](https://github.com/tc39/proposal-class-fields#field-declarations) 的语法，相当于**直接声明了一个实例的属性**。在接下来的[字段声明](#字段声明)小节中，也使用到了这个语法。
+
+> [!WARNING]
+> Class Fields（类字段声明，包括公有字段与 `#` 私有字段）提案已于 ES2022 正式纳入 ECMAScript 标准，如今主流浏览器与 Node.js 环境均已原生支持。
 
 ## 字段声明
 
@@ -13934,7 +14051,7 @@ console.log(Square.help()); // I have 4 sides. They are all equal.
 
 在本章节的例子中，似乎子类方法中的 `super` 都调用了父类中与之同名的方法，但实际上并没有这个限制，在编写的时候可以根据实际的需求自行调整命名或调用其它父类方法。
 
-在[箭头函数的使用](#箭头函数定义方法)章节的例子中，既然箭头函数定义的方法挂载到了实例的属性上，那么还能用 `super` 来调用吗？答案是否定的。JavaScript 没能在父对象的原型链上找到这个方法，于是什么也没有发生。
+在[箭头函数的使用](#箭头函数定义方法)章节的例子中，既然箭头函数定义的方法挂载到了实例的属性上，那么还能用 `super` 来调用吗？答案是否定的。JavaScript 没能在父对象的原型链上找到这个方法，`super.sayHello` 的值为 `undefined`，因此调用 `super.sayHello()` 时会直接抛出 `TypeError`（`... is not a function`）。
 
 更多补充可以查阅 MDN 上[关于 `super` 的介绍](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)。
 
@@ -14017,18 +14134,24 @@ const Mixin2 = class {
 其中，第二种方式，或者说使用类表达式声明类的方式，允许我们**动态生成自定义的类**。根据这个特性，我们就可以编写 Mixin 代码来实现多重继承了：
 
 ```js
-class Animal { // 共同工具类
-    //
+class Animal {
+  // 共同工具类
+  //
 }
-class CatMixin = (superClass) => class extends superClass { // 猫猫工具类
+const CatMixin = (superClass) =>
+  class extends superClass {
+    // 猫猫工具类
     //
-}
-class DogMixin = (superClass) => class extends superClass { // 狗狗工具类
+  };
+const DogMixin = (superClass) =>
+  class extends superClass {
+    // 狗狗工具类
     //
-}
+  };
 
-class MyMixin extends CatMixin(DogMixin(Animal)) { // 实现多重继承
-    //
+class MyMixin extends CatMixin(DogMixin(Animal)) {
+  // 实现多重继承
+  //
 }
 ```
 
@@ -14089,18 +14212,16 @@ JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适�
 
 ### 作用域与执行上下文
 
-作用域与**执行上下文**（Context）是两个不同的概念。JavaScript 系解释型语言，执行分为解释阶段和执行阶段两个阶段，两个阶段所完成的行为大抵如下：
+作用域与**执行上下文**（Context）是两个不同的概念。现代 JavaScript 引擎（如 V8）普遍采用即时编译（JIT）而非纯解释执行；从引擎处理与 ECMAScript 规范的视角来看，代码的解析与执行主要涉及两个层面：
 
-- 解释阶段：
-  1. 词法分析；
-  2. 语法分析；
-  3. **确定作用域规则**。
-- 执行阶段：
-  1. **创建执行上下文**；
-  2. 执行函数代码；
-  3. 垃圾回收。
+- 解析与编译阶段（引擎侧）：
+  1. 词法分析与语法分析，生成抽象语法树（AST）；
+  2. 根据语法结构**确定词法作用域规则**，随后生成字节码并按需 JIT 编译为机器码。
+- 运行时执行阶段（ECMAScript 执行上下文）：
+  1. 进入执行上下文时完成**创建阶段**（建立词法环境、绑定 `this`、处理声明提升等）；
+  2. 执行代码（变量赋值、函数调用等）并在不再引用时进行垃圾回收。
 
-可以看见，在解释阶段就已经确定了作用域规则，而在执行阶段才创建了执行上下文。因而作用域在定义时就确定，不会发生改变；执行上下文在运行时确定，可以发生改变。
+可以看见，作用域规则在代码解析阶段就已经确定，而执行上下文是在运行时才创建并进入的。因而作用域在定义时就确定，不会发生改变；执行上下文在运行时确定，可以发生改变。
 
 ### 全局作用域和函数作用域
 
@@ -14136,7 +14257,7 @@ console.log(globalInVar); // globalInVar
 console.log(invar); // Uncaught ReferenceError: invar is not defined
 ```
 
-我们在 `outFunc()` 方法中未使用 `var` 声明而直接给 `globalInVar` 变量进行赋值，它将声明为全局变量，并能在最外层直接打印出来。应当避免此类声明的存在，在 `ESLint` 等代码质量检查工具中，会标注此类错误。
+我们在 `outFunc()` 方法中未使用 `var` 声明而直接给 `globalInVar` 变量进行赋值，在**非严格模式**下它会自动成为全局变量，并能在最外层直接打印出来；而在**严格模式**（`"use strict"`）及 **ES Module** 中，未声明直接赋值会抛出 `ReferenceError`。应当避免此类写法，在 `ESLint` 等代码质量检查工具中，也会标注此类错误。
 
 接下来看一段非常经典的代码案例：
 
@@ -14159,15 +14280,18 @@ console.log(testArr[2]()); // 5
 这是由于在 `for` 循环中我们使用 `var` 声明的变量 `i` 会发生变量提升，其作用域为 `getArr()` 这个函数作用域。在调用数组中存储的函数时，我们已经完成了循环，此时 `i` 的值变成了 `5`，则无论调用数组的哪个函数都会打印出现在的值 `5`。上面的代码使用简化的方式编写，相当于：
 
 ```js
-var arr = [];
-var i; // 变量提升，我们在 for 循环中声明的变量在全局可访问
-for (i = 0; i < 5; i++) {
-  arr.push(function () {
-    return i;
-  });
+function getArr() {
+  var arr = [];
+  var i; // 变量提升至 getArr 函数作用域（而非全局作用域）
+  for (i = 0; i < 5; i++) {
+    arr.push(function () {
+      return i;
+    });
+  }
+  return arr;
 }
-console.log(arr[2]()); // 5
-// console.log(i) // 5
+var testArr = getArr();
+console.log(testArr[2]()); // 5
 ```
 
 那么，现在的问题是，要如何在函数内部保存（或记住）一个从外部传入的值，在调用的时候能正确打印出我们想要的结果呢？
@@ -14504,16 +14628,12 @@ console.log(square.height); // 10
 - [闭包 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)
 - [类 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)
 - [You Don't Know Javascript](https://github.com/getify/You-Dont-Know-JS)
-]]></content:encoded><atom:updated>Tue, 18 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 变量提升和函数提升]]></title><description><![CDATA[在 ES6 规范出现之前，使用 JavaScript 声明变量只有 ,  以及隐式声明三种方式。 按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：
+]]></content:encoded><atom:updated>Tue, 18 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 变量提升和函数提升]]></title><description><![CDATA[在 ES6 规范出现之前，使用 JavaScript 声明变量主要有 、 两种方式，此外在非严格模式下还存在未声明直接赋值的“隐式全局变量赋值”（在严格模式及 ES Module 中该写法会直接抛出 ）。 按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：
 
 但假如反过来，我们“先调用，后声明”，会发生什么呢？
 
-如上所示，在声明变量  之前尝试将它的值打印出来，控制台输出的结果是 ，而不是预期中的报错 。这就是变量提升。
-
-而对于函数的声明与使用，也出现了相似的情况：
-
-在声明函数…]]></description><link>https://blog.towind.cn/posts/js-hoisting</link><guid isPermaLink="false">js-hoisting</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 11 May 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
-在 ES6 规范出现之前，使用 JavaScript 声明变量只有 `var`, `function` 以及隐式声明三种方式。
+如上所示，在声明变量  之前尝试将它的值打印出来…]]></description><link>https://blog.towind.cn/posts/js-hoisting</link><guid isPermaLink="false">js-hoisting</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 11 May 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+在 ES6 规范出现之前，使用 JavaScript 声明变量主要有 `var`、`function` 两种方式，此外在非严格模式下还存在未声明直接赋值的“隐式全局变量赋值”（在严格模式及 ES Module 中该写法会直接抛出 `ReferenceError`）。
 
 按照一般编程的思维，我们会通过“先声明，后调用”的方式去使用变量，例如：
 
@@ -14564,14 +14684,12 @@ console.log(a); // 3
 
 ## 发生了什么
 
-以现在最主流的 `V8` 引擎为例，其解释执行 JavaScript 代码的过程大致分为生成抽象语法树（AST），生成字节码和生成机器码三个阶段。
+以现在最主流的 `V8` 引擎为例，JavaScript 代码会先经过解析与编译阶段（包括词法分析将源码拆分为 Token、语法分析生成抽象语法树 AST，以及生成字节码并按需通过 JIT 编译为机器码），再进入运行时的执行阶段。
 
-在生成抽象语法树阶段，又分为了词法分析和语法分析两个阶段。其中，在词法分析阶段，JavaScript 会检测到当前**作用域**使用到的所有变量和函数声明，并将这些变量和函数声明添加到一个名为**词法环境**（Lexical Environment）的内存空间当中。
+变量提升与函数提升的本质源于 ECMAScript 规范中的**执行上下文创建阶段**：在运行时进入某个执行上下文时，引擎会创建对应的**词法环境**（Lexical Environment）等数据结构，并先行处理当前作用域内的声明：
 
-在词法分析阶段，对于变量声明和函数声明，词法环境的处理是不一样的：
-
-- 对于变量声明如 `var a = 3`，会为变量分配内存并初始化为 `undefined`，赋值语句在生成机器码阶段真正执行代码的时候才进行。
-- 对于函数声明如 `function sayHello() { console.log('Hello there!') }`，会在内存里创建函数对象，并且直接初始化为该函数对象。
+- 对于变量声明如 `var a = 3`，会在进入上下文时创建绑定并初始化为 `undefined`，而赋值操作则留到运行时**执行阶段**真正执行到赋值语句时才进行。
+- 对于函数声明如 `function sayHello() { console.log('Hello there!') }`，会在进入上下文时就在内存中创建函数对象，并将标识符直接初始化为该函数对象。
 
 因此，对于变量声明，在真正执行到赋值语句之前，我们就已经可以使用此变量，但是初值为 `undefined`；而对于函数声明，在执行到函数声明之前，函数对象就已经存在在内存当中，并可以直接调用了。
 
@@ -14634,7 +14752,7 @@ console.log(foo);
 
 `hoist()` 方法中执行的 `console.log(foo)` 优先从当前作用域中寻找变量 `foo`，如果找不到才在父级作用域寻找。
 
-## 匿名函数声明
+## 匿名函数表达式
 
 如果将函数赋值给一个变量会怎样：
 
@@ -14647,7 +14765,7 @@ var sayHi = function () {
 sayHi(); // Hi there!
 ```
 
-使用匿名函数声明时，`sayHi` 发生变量提升，但赋值为 `undefined`，因此执行 `sayHi()` 时会报错 `Uncaught TypeError: sayHi is not a function`。随后执行完赋值语句后，才成为一个可以执行的函数变量。
+使用匿名函数表达式时，`sayHi` 发生变量提升，但赋值为 `undefined`，因此执行 `sayHi()` 时会报错 `Uncaught TypeError: sayHi is not a function`。随后执行完赋值语句后，才成为一个可以执行的函数变量。
 
 ## 防止变量提升
 
@@ -14656,7 +14774,7 @@ sayHi(); // Hi there!
 使用 `var`, `let` 和 `const` 声明的变量都会被“提升”，不同的是：
 
 - `var` 命令在变量的定义被执行之前就初始化变量，并拥有一个默认的 `undefined` 值。
-- `let` 与 `const` 命令会形成**暂时性死区**，在变量的定义被执行之前都**不会初始化变量**，避免在声明语句之前的不正确调用。如果定义时没有给定值的话，`let` 声明的变量会赋值为 `undefined`，而 `const` 声明的变量会报错。
+- `let` 与 `const` 命令会形成**暂时性死区**，在变量的定义被执行之前都**不会初始化变量**，避免在声明语句之前的不正确调用。如果定义时没有给定值的话，`let` 声明的变量会赋值为 `undefined`，而 `const` 声明如果不赋初值，在代码**解析阶段**就会直接抛出 `SyntaxError`。
 
 关于暂时性死区的概念，援引阮一峰老师在 [ES6 入门书](https://es6.ruanyifeng.com/#docs/let)中的话：
 
@@ -14806,7 +14924,7 @@ function throttle1(func, wait) {
 
 此外，如果不使用 `apply()` 方法而是直接调用函数的话，节流执行函数内的 `this` 对象仍指向的是全局的 `window` 对象，而非我们期望的绑定此节流函数的对象，因此应使用 `apply()` 传入 `this` 上下文对象。
 
-对于实现传入上下文对象，`call()` 方法的作用和 `apply()` 相同，只是前者需要将传入的参数列举出来，而后者需要将传入的参数放在一个数组中。由于我们使用 `const args = arguments` 获取了函数传入的参数，而 `args` 为一个数组，因此选择使用 `apply()` 的方法。
+对于实现传入上下文对象，`call()` 方法的作用和 `apply()` 相同，只是前者需要将传入的参数列举出来，而后者需要将传入的参数放在一个数组或类数组对象中。由于我们使用 `const args = arguments` 获取了函数传入的参数，而 `arguments` 是一个**类数组对象**（`apply()` 同时支持数组与类数组对象），因此选择使用 `apply()` 的方法。
 
 假如不使用箭头函数，应该在 `setTimeout` 方法前获取 `this` 上下文对象，再调用 `apply()` 方法，如：
 
@@ -14942,6 +15060,9 @@ function debounce(func, wait, immediate = false) {
 
 ## 在 Nuxt.js 中引入函数节流和防抖
 
+> [!WARNING]
+> 本节及下文示例基于 Vue 2 与 Nuxt 2。Vue 2 已于 2023 年 12 月 31 日停止维护（EOL），Nuxt 2 也已于 2024 年 6 月 30 日停止维护（EOL），现代项目建议使用 Vue 3 与 Nuxt 3+。
+
 在项目的 `plugins` 目录下创建一个新的文件，例如 `main.js`。将函数节流和防抖添加为 Vue 的实例方法。如：
 
 ```js
@@ -14977,7 +15098,7 @@ export default {
 };
 ```
 
-就可以在组件中通过 `this.$Main.throttle()` 调用函数了。其中 `this` 指向了全局的 Vue 对象。
+就可以在组件中通过 `this.$Main.throttle()` 调用函数了。其中 `this` 指向当前 Vue 组件实例。
 
 ## 简单的使用示例
 
@@ -15018,9 +15139,13 @@ export default {
     }),
     mounted() {
       // 每 500 毫秒获取当前的 scrollVal 值
-      const throttleOnScroll = this.$Main.throttle(this.onScroll, 500);
+      this.throttleOnScroll = this.$Main.throttle(this.onScroll, 500);
       // 为 window 添加滚动事件
-      window.addEventListener("scroll", throttleOnScroll);
+      window.addEventListener("scroll", this.throttleOnScroll);
+    },
+    beforeDestroy() {
+      // 组件销毁前移除事件监听，避免内存泄漏
+      window.removeEventListener("scroll", this.throttleOnScroll);
     },
     methods: {
       // 获取 window.pageYOffset 值并赋值给 scrollVal
@@ -15039,6 +15164,9 @@ export default {
   };
 </script>
 ```
+
+> [!WARNING]
+> `window.pageYOffset` 已被规范标记为废弃（deprecated），现代浏览器推荐直接使用 `window.scrollY`。
 
 `window.pageYOffset` 是 `window.scrollY` 的别名，前者的浏览器兼容性较好，调用时将返回文档在垂直方向已滚动的像素值。
 
@@ -15060,14 +15188,18 @@ export default {
 - [彻底弄懂函数防抖和函数节流](https://segmentfault.com/a/1190000018445196), 2019-03-09
 - [什么是防抖和节流？有什么区别？如何实现](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5), 2019-01-23
 - [浅析函数防抖与函数节流](https://www.jianshu.com/p/f9f6b637fd6c), 2018-08-12
-]]></content:encoded><atom:updated>Sat, 08 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Windows 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本博客基于 CMake 实现编译  版本。 本博客的 Windows 端使用的命令提示符界面为 Powershell。
+]]></content:encoded><atom:updated>Sat, 08 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Windows 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[Warning 本文编写于 2021 年，文中使用的 、Visual Studio 2015/2017、CMake 3.20.1 等版本均已大幅过时。如需在 Windows 上编译新版 gRPC，请参考最新的官方 BUILDING.md 文档。
+
+本博客基于 CMake 实现编译  版本。
+
+本博客的 Windows 端使用的命令提示符界面为 Powershell。
 
 安装编译依赖软件
 
-在 Windows 系统上编译 gRPC 需要首先准备下述软件：
+在…]]></description><link>https://blog.towind.cn/posts/windows-install-grpc</link><guid isPermaLink="false">windows-install-grpc</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 26 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文编写于 2021 年，文中使用的 `gRPC 1.28.1`、Visual Studio 2015/2017、CMake 3.20.1 等版本均已大幅过时。如需在 Windows 上编译新版 gRPC，请参考最新的官方 [BUILDING.md](https://github.com/grpc/grpc/blob/master/BUILDING.md) 文档。
 
-Visual Studio 2015（或 2017），将使用到 Visual C++ compiler Git CMake nasm ninja（可选）
-Visual Studio 2015…]]></description><link>https://blog.towind.cn/posts/windows-install-grpc</link><guid isPermaLink="false">windows-install-grpc</guid><category><![CDATA[软件开发]]></category><pubDate>Mon, 26 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 本博客基于 CMake 实现编译 `gRPC 1.28.1` 版本。
 
 本博客的 Windows 端使用的命令提示符界面为 Powershell。
@@ -15101,7 +15233,7 @@ git version 2.21.0.windows.1
 
 ### CMake
 
-用于生成编译 gRPC 的 Makefile 文件。
+用于生成编译 gRPC 的 Visual Studio 解决方案（`.sln`）和工程文件。
 
 在 [CMake 官网](https://cmake.org/download/)下载，可以选择下载 `.msi` 文件直接安装。
 
@@ -15150,7 +15282,7 @@ NASM version 2.15.05 compiled on Aug 28 2020
 git clone https://github.com/grpc/grpc.git
 # 获取 gRPC 第三方依赖
 cd grpc
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 ## 编译安装 gRPC
@@ -15159,15 +15291,15 @@ git submodule update --init
 
 下面的内容基于的 CMake 版本不低于 3.13，且编译的 gRPC 版本不低于 1.27。
 
-首先创建文件夹存储编译结果，并执行 `cmake` 命令生成 Makefile 文件。使用**管理员权限**打开命令行界面，执行下面的命令：
+首先创建文件夹存储编译结果，并执行 `cmake` 命令生成 Visual Studio 解决方案（`.sln`）和工程文件。使用**管理员权限**打开命令行界面，执行下面的命令：
 
 ```powershell
 # 在 grpc 目录下创建 .build 目录并进入
 md .build
 cd .build
-# 生成 Makefile 文件
-# 其中 Visual Studio 15 2017 为当前的 VS 版本
-cmake .. -DgRPC_INSTALL=ON -G "Visual Studio 15 2017"
+# 生成 Visual Studio 解决方案（.sln）和工程文件
+# 其中 Visual Studio 15 2017 为当前的 VS 版本，-A x64 指定 64 位架构
+cmake .. -DgRPC_INSTALL=ON -G "Visual Studio 15 2017" -A x64
 ```
 
 > [!TIP]
@@ -15209,7 +15341,7 @@ gRPC 默认安装在 `C:\Program Files (x86)\grpc` 目录。
 移动到 git 克隆的 gRPC 源码目录下的 `grpc\examples\cpp\helloworld` 目录，创建存放编译结果的文件夹 `cmake\build`，进入到该目录，执行下面的命令：
 
 ```powershell
-# 生成 Makefile 文件
+# 生成 Visual Studio 解决方案（.sln）和工程文件
 # 其中 C:\Program Files (x86)\grpc 是 gRPC 默认的安装目录
 cmake -DCMAKE_PREFIX_PATH='C:\Program Files (x86)\grpc' ../..
 ```
@@ -15243,13 +15375,12 @@ Hello, gRPC world!
 ## 参考资料
 
 - [编译 gRPC(windows)和测试 demo](https://blog.csdn.net/xiaoyafang123/article/details/76529917) - 2017.08.01 - 注：博主填的转载，暂未找到原文链接
-]]></content:encoded><atom:updated>Mon, 26 Apr 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议使用 git 进行。 如果在能直接连接外网的机器上编译，可直接按照 gRPC 官网文档的指引快速执行编译操作。
+]]></content:encoded><atom:updated>Mon, 26 Apr 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 系统编译安装基于 C++ 的 gRPC]]></title><description><![CDATA[Warning 本文基于已于 2024-06-30 停止维护（EOL）的 CentOS 7 以及较早期的 gRPC 1.28.x、CMake 3.20.1 与 GCC 4.9+ 要求编写。现代 C++ gRPC 通常需要支持 C++14/17 的编译器以及 CMake 3.16+，建议结合最新官方文档操作。
 
-安装基本依赖
+本文适用于 C++ 版本 gRPC 的离线编译安装，但对于下载 gRPC 步骤强烈建议…]]></description><link>https://blog.towind.cn/posts/linux-docker-install-grpc</link><guid isPermaLink="false">linux-docker-install-grpc</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 22 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文基于已于 2024-06-30 停止维护（EOL）的 CentOS 7 以及较早期的 gRPC 1.28.x、CMake 3.20.1 与 GCC 4.9+ 要求编写。现代 C++ gRPC 通常需要支持 C++14/17 的编译器以及 CMake 3.16+，建议结合最新官方文档操作。
 
-确保机器上包括这些基本依赖：, ,  与 C++ 编译环境。
-
-gRPC 的编译需要  版本在  及以上。假如版本低于此，应当在 Docker 容器中安装较新版本的 GCC 再执行编译操作…]]></description><link>https://blog.towind.cn/posts/linux-docker-install-grpc</link><guid isPermaLink="false">linux-docker-install-grpc</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 22 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 本文适用于 C++ 版本 gRPC 的离线编译安装，但对于[下载 gRPC](#下载-gRPC) 步骤强烈建议使用 git 进行。
 
 如果在能直接连接外网的机器上编译，可直接按照 [gRPC 官网文档](https://github.com/grpc/grpc)的指引快速执行编译操作。
@@ -15372,16 +15503,23 @@ make -j ${JOBS_NUM}
 make install
 ```
 
-如果想要编译动态库 `.so` 文件，可以在上一步执行 `cmake` 命令时设置 `-DBUILD_SHARED_LIBS=ON`，如：
+如果想要编译动态库 `.so` 文件，可以在上一步执行 `cmake` 命令时加上 `-DBUILD_SHARED_LIBS=ON`（同时保留安装相关参数），如：
 
 ```bash
 # 生成编译 gRPC 的 Makefile 文件
-cmake -DBUILD_SHARED_LIBS=ON ../..
+cmake -DgRPC_INSTALL=ON \
+    -DgRPC_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \
+    -DBUILD_SHARED_LIBS=ON \
+    ../..
 ```
 
 假如编译失败，可以参考笔者遇到的[错误和解决方案](#可能遇见的错误)。
 
-C++ 版本的 gRPC 还依赖于 Abseil C++ 库，因此需要单独编译安装它：
+> [!WARNING]
+> 通过 `git submodule update --init` 拉取源码后，CMake 构建 gRPC 时默认会自动内置构建并安装 `third_party/abseil-cpp`（无需在编译 gRPC 之后再单独安装）。如果需要使用外部包模式的 Abseil（`-DgRPC_ABSL_PROVIDER=package`），也应当在编译 gRPC **之前**预先编译安装好 Abseil。
+
+下面保留当年单独编译安装 Abseil C++ 库时的操作步骤供参考：
 
 ```bash
 # 回到 gRPC 根目录
@@ -15465,10 +15603,13 @@ error: no matching function for call to ‘StrFormat(const char [22], const char
 
 提示报错没有找到 `StrFormat` 函数，请确保 `gcc` 版本在 `4.9` 及以上，可以执行 `gcc -v` 命令查看当前版本。
 
-建议[更新](http://3ms.huawei.com/km/blogs/details/10193429)到 `gcc 4.9.4` 版本，笔者在该版本下顺利编译 gRPC。
-]]></content:encoded><atom:updated>Tue, 11 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 容器更新或降级 GCC 版本]]></title><description><![CDATA[如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如： 本文适用于系统中包含有其它版本的 GCC 编译器情况下，手动更新或降级 GCC 编译器。编译 GCC 的过程十分耗时，如果能使用包管理器尽量还是使用包管理器吧。
+建议更新到 `gcc 4.9.4` 及以上版本（可参考笔者的<Link to="/posts/linux-docker-gcc-update">这一篇博客</Link>），笔者在该版本下顺利编译 gRPC。
+]]></content:encoded><atom:updated>Tue, 11 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 容器更新或降级 GCC 版本]]></title><description><![CDATA[Warning 本文基于已于 2024-06-30 停止维护（EOL）的 CentOS 7 与较早的 GCC 10.3.0 编写。现代 RHEL 系发行版（如 Rocky Linux / AlmaLinux / Fedora）已普遍转向  包管理器，下载 GCC 源码及依赖时也建议优先使用 HTTPS 协议。
 
-NOTE: 如果仅使用 GCC 进行编译操作或不确定当前系统能否兼容新版本的 GCC，建议在 Docker…]]></description><link>https://blog.towind.cn/posts/linux-docker-gcc-update</link><guid isPermaLink="false">linux-docker-gcc-update</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 20 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的…]]></description><link>https://blog.towind.cn/posts/linux-docker-gcc-update</link><guid isPermaLink="false">linux-docker-gcc-update</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 20 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文基于已于 2024-06-30 停止维护（EOL）的 CentOS 7 与较早的 GCC 10.3.0 编写。现代 RHEL 系发行版（如 Rocky Linux / AlmaLinux / Fedora）已普遍转向 `dnf` 包管理器，下载 GCC 源码及依赖时也建议优先使用 HTTPS 协议。
+
 如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的 apt 包管理器等一键安装 GCC，例如：
 
 ```bash
@@ -15581,11 +15722,11 @@ Tue Apr 20 9:52 CST 2021 - Tue Apr 20 12:33:29 CST 2021.
 make install
 ```
 
-此时直接执行 `gcc -v` 仍会显示以前安装的版本，在**重启系统**之后就会显示为当前安装的版本。
+此时如果直接在当前终端执行 `gcc -v` 仍显示以前安装的版本，通常是因为 bash 缓存了旧的可执行文件路径（`/usr/bin/gcc`），执行 `hash -r` 刷新路径缓存即可生效（同时确保 `PATH` 环境变量中 `/usr/local/bin` 排在 `/usr/bin` 之前），无需重启系统或容器。
 
 ```bash
-# 重启容器环境
-docker restart ${CONTAINER}
+# 刷新 bash 命令路径缓存
+hash -r
 
 # 检查安装是否成功
 gcc -v
@@ -15720,6 +15861,9 @@ message SearchRequest {
 
 上例中定义了三个 singular 字段 `query`, `page_number` 和 `result_per_page`，以及一个 `repeated` 字段 `query_extras`.
 
+> [!WARNING]
+> 自 Protobuf v3.15 起，`proto3` 已重新支持 `optional` 关键字（用于显式追踪字段存在性）；此外，Protobuf 后续也推出了统一 `proto2` 与 `proto3` 演进模式的 Protobuf Editions。本文撰写时基于早期的 `proto3` 规范。
+
 <details>
 <summary>
 作为补充，proto2 包括三种字段规则：<code>required</code>, <code>optional</code> 和 <code>repeated</code>.
@@ -15729,7 +15873,7 @@ message SearchRequest {
 - `optional`. 一则 message 中只能拥有不超过一个该字段，相当于 proto3 的 singular.
 - `repeated`. 一则 message 可以拥有任意个该字段，相当于 proto3 的 `repeated`.
 
-[相关链接](<(https://developers.google.com/protocol-buffers/docs/proto#specifying_field_rules)>)
+[相关链接](https://developers.google.com/protocol-buffers/docs/proto#specifying_field_rules)
 
 </details>
 
@@ -15911,12 +16055,12 @@ message AddressBook {
 }
 ```
 
-使用 `protoc` 命令对编写的 `.protoc` 文件进行编译。
+使用 `protoc` 命令对编写的 `.proto` 文件进行编译。
 
 ### Go 版本编译
 
 ```bash
-# 编译 Go 版本的 .protoc 文件
+# 编译 Go 版本的 .proto 文件
 protoc -I=$SRC_DIR --go_out=$DST_DIR $SRC_DIR/addressbook-go.proto
 ```
 
@@ -15955,7 +16099,7 @@ func listPeople(w io.Writer, book *pb.AddressBook) {
 ### C++ 版本编译
 
 ```bash
-# 编译 C++ 版本的 .protoc 文件
+# 编译 C++ 版本的 .proto 文件
 protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook-cpp.proto
 ```
 
@@ -15999,14 +16143,18 @@ void ListPeople(const tutorial::AddressBook& address_book) {
   }
 }
 ```
-]]></content:encoded><atom:updated>Mon, 29 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Nuxt.js 中引入高德地图并实现定位及逆地理编码]]></title><description><![CDATA[迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！ 高德地图与腾讯地图定位功能区别
 
-高德地图将定位功能和逆地理编码功能分开为两个操作，而腾讯地图将二者合并。
+> [!WARNING]
+> 本文撰写于 2021 年，部分外部链接现已变更：Protobuf 官方文档已从 `developers.google.com/protocol-buffers` 迁移至 [`protobuf.dev`](https://protobuf.dev/)，GitHub 仓库默认分支也已从 `master` 迁移为 `main`，文中部分旧链接可能会重定向或失效。
+]]></content:encoded><atom:updated>Mon, 29 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[在 Nuxt.js 中引入高德地图并实现定位及逆地理编码]]></title><description><![CDATA[迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！ Warning
 
-这意味着使用高德地图实现逆地理编码，首先需要执行定位操作，再将得到的结果传给逆地理编码插件获得最后的结果。
+本文基于已停止维护（EOL）的 Vue 2 与 Nuxt 2 编写；此外，自 2021 年 12 月 2 日起，高德地图 JS API 2.0 强制要求配合安全密钥（）或代理服务器使用，仅传入  已无法正常调用接口。
 
-此外…]]></description><link>https://blog.towind.cn/posts/amap-import-vue</link><guid isPermaLink="false">amap-import-vue</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 17 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+高德地图与腾讯地图定位功能…]]></description><link>https://blog.towind.cn/posts/amap-import-vue</link><guid isPermaLink="false">amap-import-vue</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 17 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 迷途知反！腾讯地图的 JS API 文档实在过于简陋，且库很久没有更新，转身投入高德地图的怀抱，享受 this moment 的美好！
+
+> [!WARNING]
+> 本文基于已停止维护（EOL）的 Vue 2 与 Nuxt 2 编写；此外，自 2021 年 12 月 2 日起，高德地图 JS API 2.0 强制要求配合安全密钥（`window._AMapSecurityConfig`）或代理服务器使用，仅传入 `key` 已无法正常调用接口。
 
 ## 高德地图与腾讯地图定位功能区别
 
@@ -16041,8 +16189,8 @@ script: [
 
 此外要注意：
 
-- 为避免地图数据协议和前端资源不匹配导致页面运行报错，只允许在线加载 JS API，禁止进行本地转存、与其它代码混合打包等用法。——[JS API 的加载](https://developer.amap.com/api/javascript-api/guide/abc/load)
-- 由于 Chrome、IOS10 等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到 HTTPS。——[AMap.Geolocation 插件](https://developer.amap.com/api/javascript-api/reference/location)
+- 为避免地图数据协议和前端资源不匹配导致页面运行报错，只允许在线加载 JS API，禁止进行本地转存、与其它代码混合打包等用法。——[JS API 的加载](https://developer.amap.com/api/jsapi-v2/guide/abc/load)
+- 由于 Chrome、IOS10 等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到 HTTPS。——[AMap.Geolocation 插件](https://developer.amap.com/api/jsapi-v2/reference/location)
 
 ## 高德地图定位功能实现
 
@@ -16057,7 +16205,7 @@ const geolocation = new AMap.Geolocation({
 });
 ```
 
-更多的构造选项可参考 [AMap.Geolocation 插件官方文档](https://developer.amap.com/api/javascript-api/reference/location)。
+更多的构造选项可参考 [AMap.Geolocation 插件官方文档](https://developer.amap.com/api/jsapi-v2/reference/location)。
 
 对于定位方法 `getCurrentPosition(callback:function(status,result){})`，可以用 callback 的方式或事件监听的方式实现取得返回值。以 callback 的方式为例，可编写：
 
@@ -16109,7 +16257,7 @@ getCurrentPosition()
 
 ## 高德地图逆地理编码功能实现
 
-[高德地图逆地理编码](https://developer.amap.com/api/javascript-api/reference/lnglat-to-address)由 `AMap.Geocoder` 插件实现，我们也已经引入。
+[高德地图逆地理编码](https://developer.amap.com/api/jsapi-v2/reference/lnglat-to-address)由 `AMap.Geocoder` 插件实现，我们也已经引入。
 
 因此只需要将上一步得到的地理经纬度坐标信息作为参数传入即可：
 
@@ -16172,7 +16320,7 @@ const geolocation = new AMap.Geolocation({
 
 /**
  * 获取当前的经纬度坐标
- * https://developer.amap.com/api/javascript-api/reference/location
+ * https://developer.amap.com/api/jsapi-v2/reference/location
  */
 function getCurrentPosition() {
   return new Promise((resolve, reject) => {
@@ -16194,7 +16342,7 @@ function getCurrentPosition() {
 
 /**
  * 获取当前地理坐标的逆编码结果
- * https://developer.amap.com/api/javascript-api/reference/lnglat-to-address
+ * https://developer.amap.com/api/jsapi-v2/reference/lnglat-to-address
  */
 function getCurrentAddress() {
   return new Promise((resolve, reject) => {
@@ -16272,13 +16420,12 @@ this.$Geolocation
 - <Link to="/posts/tencent-map-api-get-current-location">
     使用腾讯位置服务进行 Web 前端定位
   </Link>
-]]></content:encoded><atom:updated>Thu, 18 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用腾讯位置服务进行 Web 前端定位]]></title><description><![CDATA[正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的定位解决方案里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。 终于在不起眼的地方找到了前端定位组件，适用于浏览器进行定位操作。
+]]></content:encoded><atom:updated>Thu, 18 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用腾讯位置服务进行 Web 前端定位]]></title><description><![CDATA[Warning 本文编写于 2021 年，文中的前端工程示例基于已停止维护（EOL）的 Nuxt 2 配置语法，定位实现则使用了早期的前端定位组件（）。现行腾讯位置服务 Web 端开发已全面转向 JavaScript API GL，新项目建议参考最新的官方 JavaScript API GL 文档。
 
-本文基于 Nuxt.js 实现前端定位功能。
+正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务…]]></description><link>https://blog.towind.cn/posts/tencent-map-api-get-current-location</link><guid isPermaLink="false">tencent-map-api-get-current-location</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 16 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文编写于 2021 年，文中的前端工程示例基于已停止维护（EOL）的 Nuxt 2 配置语法，定位实现则使用了早期的前端定位组件（`qq.maps.Geolocation`）。现行腾讯位置服务 Web 端开发已全面转向 JavaScript API GL，新项目建议参考最新的官方 [JavaScript API GL 文档](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)。
 
-它能做什么
-
-组件旨在优化纯 HTM…]]></description><link>https://blog.towind.cn/posts/tencent-map-api-get-current-location</link><guid isPermaLink="false">tencent-map-api-get-current-location</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 16 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务。位置信息需要精确到区。在腾讯位置服务的[定位解决方案](https://lbs.qq.com/location/#anchor)里想要搜索可用的 JavaScript 库，只看到了服务端的 IP 定位和移动端的几个 SDK 包，甚异之。
 
 终于在不起眼的地方找到了[前端定位组件](https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation)，适用于浏览器进行定位操作。
@@ -16384,16 +16531,19 @@ geolocation.getLocation(
 定位成功精确到当前我所处的区和地址，满足项目开发要求。
 
 其它相关方法和说明敬请参考[官方文档](https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation)的“暗示”。
-]]></content:encoded><atom:updated>Tue, 16 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[提示 *** is not a symbolic link 解决方案]]></title><description><![CDATA[问题描述 在 CentOS 环境下执行  和  命令时都出现提示警告，节选内容如下所示：
+]]></content:encoded><atom:updated>Tue, 16 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[提示 *** is not a symbolic link 解决方案]]></title><description><![CDATA[问题描述 Warning
+
+本文涉及的 CentOS 7/8 均已停止维护（EOL）。现代 RHEL 系发行版（如 Rocky Linux、AlmaLinux、CentOS Stream）的默认包管理器已替换为 。
+
+在 CentOS 环境下执行  和  命令时都出现提示警告，节选内容如下所示：
 
 错误分析
 
-进入到对应目录下查找可以发现，这里的  与  实际上是相同的动态库文件，而非我们期望的符号链接和动态库文件。
-
-这个错误的产生原因是， 在正常情况下应该是一个指向  文件的软链接，但却变成了一个动态库文件。
-
-在一般情况下，这个错误并不会导致严重的问题；但假如目录下有多个不同版本的动态库文件…]]></description><link>https://blog.towind.cn/posts/xxx-is-not-a-symbolic-link</link><guid isPermaLink="false">xxx-is-not-a-symbolic-link</guid><category><![CDATA[技术琐事]]></category><pubDate>Wed, 10 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+进入到对应目录下查找可以发现，这里的  与  实际上是相同的动态库文件…]]></description><link>https://blog.towind.cn/posts/xxx-is-not-a-symbolic-link</link><guid isPermaLink="false">xxx-is-not-a-symbolic-link</guid><category><![CDATA[技术琐事]]></category><pubDate>Wed, 10 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 ## 问题描述
+
+> [!WARNING]
+> 本文涉及的 CentOS 7/8 均已停止维护（EOL）。现代 RHEL 系发行版（如 Rocky Linux、AlmaLinux、CentOS Stream）的默认包管理器已替换为 `dnf`。
 
 在 CentOS 环境下执行 `yum update` 和 `ldconfig` 命令时都出现提示警告，节选内容如下所示：
 
@@ -16442,12 +16592,12 @@ lrwxrwxrwx. 1 root root     21 Mar 10 16:26 librdmacm.so.1 -> librdmacm.so.1.1.1
 将 `ldconfig` 命令的错误输出重定向到临时文件中，读取内容，组合使用 `cut` 和 `rm` 命令即可实现删除重复文件，接下来删除存储错误信息的临时文件。最后再次执行 `ldconfig` 创建软链接。
 
 ```bash
-# 标准错误输出到 dupNote 临时文件中
-ldconfig 2> dupNote
-# 删除重复的动态库（非软链接）文件
-cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs rm -rf
+# 固定英文输出并将标准错误输出到 dupNote 临时文件中
+LC_ALL=C ldconfig 2> dupNote
+# 仅筛选 "is not a symbolic link" 提示，提取路径并删除重复的动态库文件（避免误删其他报错路径或含空格路径）
+grep "is not a symbolic link" dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs -d '\n' rm -f
 # 删除刚刚创建的临时文件
-rm -rf dupNote
+rm -f dupNote
 # 创建软链接
 ldconfig
 ```
@@ -16455,7 +16605,7 @@ ldconfig
 当然可以合起来变成一条命令使用：
 
 ```bash
-ldconfig 2> dupNote ; cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs rm -rf ; rm -rf dupNote ; ldconfig
+LC_ALL=C ldconfig 2> dupNote && grep "is not a symbolic link" dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs -d '\n' rm -f && rm -f dupNote && ldconfig
 ```
 
 现在执行 `ldconfig` 不再提示 `*** is not a symbolic link` 错误，问题顺利解决！
@@ -16464,9 +16614,18 @@ ldconfig 2> dupNote ; cat dupNote | cut -c 11- | rev | cut -c 23- | rev | xargs 
 
 - [/usr/lib/\*\*\* is not a symbolic link 问题解决 - CSDN](https://blog.csdn.net/qq_34213260/article/details/107399507)
 - [Linux ln 命令 - 菜鸟教程](https://www.runoob.com/linux/linux-comm-ln.html)
-]]></content:encoded><atom:updated>Wed, 10 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[前端工程配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？ 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码质量问题，还是会在编译器里看到红色波浪线，提醒还有些代码风格需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
+]]></content:encoded><atom:updated>Wed, 10 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[前端工程配置 ESLint 和 Prettier 检查并规范代码质量与格式]]></title><description><![CDATA[Warning 本文部分配置方式已过时：
 
-本…]]></description><link>https://blog.towind.cn/posts/nodejs-eslint-prettier</link><guid isPermaLink="false">nodejs-eslint-prettier</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 03 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+传统的  配置文件已在 ESLint v9 中废弃，并在 ESLint v10 中正式移除，现行标准为 Flat Config（）。 Prettier 与 ESLint 官方均已不再推荐通过  在 ESLint 中运行格式化，建议两者各自独立运行，仅保留  关闭冲突规则。 新版 VS Code 中  的布尔值  已废弃，应改为  或 。
+
+哪位代码人…]]></description><link>https://blog.towind.cn/posts/nodejs-eslint-prettier</link><guid isPermaLink="false">nodejs-eslint-prettier</guid><category><![CDATA[软件开发]]></category><pubDate>Wed, 03 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文部分配置方式已过时：
+>
+> 1. 传统的 `.eslintrc.*` 配置文件已在 ESLint v9 中废弃，并在 ESLint v10 中正式移除，现行标准为 Flat Config（`eslint.config.*`）。
+> 2. Prettier 与 ESLint 官方均已不再推荐通过 `eslint-plugin-prettier` 在 ESLint 中运行格式化，建议两者各自独立运行，仅保留 `eslint-config-prettier` 关闭冲突规则。
+> 3. 新版 VS Code 中 `editor.codeActionsOnSave` 的布尔值 `true` 已废弃，应改为 `"explicit"` 或 `"always"`。
+
 哪位代码人不希望自己的代码总有统一优美的风格，不会因为合作开发项目而杂乱呢？
 
 在最开始写项目代码的时候我就用起了 ESLint 和 Prettier，再装一堆预设的配置，便跑了起来。令人沮丧的是，用 ESLint 修复了代码**质量**问题，还是会在编译器里看到红色波浪线，提醒还有些代码**风格**需要修复。直到这一次，我才忽然意识到 ESLint 和 Prettier 其实分工了不同领域，协同使用体验极好。
@@ -16508,6 +16667,9 @@ yarn add --dev eslint prettier
 ```bash
 yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```
+
+> [!WARNING]
+> `.eslintrc.*` 已在 ESLint v9 废弃、v10 移除，且官方已不再推荐通过 `eslint-plugin-prettier` 运行格式化（建议仅使用 `eslint-config-prettier` 并由 Prettier 独立执行格式化）。下文相关配置仅作历史参考。
 
 将 `eslint-plugin-prettier` 的推荐配置 `plugin:prettier/recommended` 放到 ESLint 配置里 `extends` 的最后一项即可，它将自动配置并启用 `eslint-config-prettier`。如下所示：
 
@@ -16573,6 +16735,9 @@ yarn lint --fix
 
 此外，VSCode 还可以设置**保存时自动修复代码问题**，如下所示。这样执行 `Ctrl + S` 保存时会自动格式化代码文件。
 
+> [!WARNING]
+> 新版 VS Code 中 `editor.codeActionsOnSave` 的布尔值 `true` 已废弃，现行配置应改为 `"explicit"` 或 `"always"`。
+
 ```json
 // settings.json
 "editor.codeActionsOnSave": {
@@ -16614,6 +16779,9 @@ blogFiles.keys().forEach((key) => {
 });
 ```
 
+> [!NOTE]
+> Webpack 默认无法直接解析 `.md` 文件，使用前需先在 Webpack 配置中为 `/\.md$/` 规则配置 `raw-loader`（Webpack 4）或 `type: "asset/source"`（Webpack 5），否则构建时会报模块解析错误。
+
 ## 对 .md 文件进行预处理
 
 参考 Hexo 博客的撰写格式，可以规定 NetUnion 官网的新闻和博客撰写格式如下：
@@ -16636,6 +16804,9 @@ ${main-text}
 // content 为传入的 .md 文件内容
 const contentArray = content.split(/---+\r?\n/g);
 ```
+
+> [!NOTE]
+> 直接使用 `content.split(/---+\r?\n/g)` 全局切分存在一定局限性：如果正文中包含 `---` 水平分割线或代码块中的 `---`，不仅会被误切分，后续用 `---\n` 重新拼接时还可能破坏原本的 `----` 或 `\r\n` 换行格式。更稳妥的做法是仅匹配文件开头的 frontmatter 区块，例如使用 `content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/)`。
 
 对属性内容的处理同样可以先使用 `split()` 方法按换行符拆分为数组。
 
@@ -16716,15 +16887,20 @@ const htmlContent = md.render(result.content);
 ```
 
 完整的解析文件[在这里](https://github.com/uestclug/nu-official/blob/frontend/src/utils/mdParser.js)。
-]]></content:encoded><atom:updated>Sat, 26 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[一键安装并配置 MTProto Proxy 代理 Telegram]]></title><description><![CDATA[Telegram 和 MTProto 是什么 Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
+]]></content:encoded><atom:updated>Sat, 26 Jun 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[一键安装并配置 MTProto Proxy 代理 Telegram]]></title><description><![CDATA[Warning 本文编写于 2021 年，文中提及的支持系统列表中的 CentOS 7/8、Debian 8/9、Ubuntu 16 均已结束生命周期（EOL），且文中安装命令使用的  短链接服务已于 2022 年 4 月永久关闭。如仍需部署，请使用受支持的现代 Linux 发行版并前往原项目仓库获取最新安装命令。
 
-私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。 安全性。端对端加密，不受审查。 完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告…]]></description><link>https://blog.towind.cn/posts/tg-mtproto-one-click</link><guid isPermaLink="false">tg-mtproto-one-click</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+Telegram 和 MTProto 是什么
+
+Telegram，中文名称为…]]></description><link>https://blog.towind.cn/posts/tg-mtproto-one-click</link><guid isPermaLink="false">tg-mtproto-one-click</guid><category><![CDATA[技术琐事]]></category><pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文编写于 2021 年，文中提及的支持系统列表中的 CentOS 7/8、Debian 8/9、Ubuntu 16 均已结束生命周期（EOL），且文中安装命令使用的 `git.io` 短链接服务已于 2022 年 4 月永久关闭。如仍需部署，请使用受支持的现代 Linux 发行版并前往原项目仓库获取最新安装命令。
+
 ## Telegram 和 MTProto 是什么
 
 Telegram，中文名称为“电报”，或简称“tg”，是一款跨平台即时通讯软件，客户端完全开源。我觉得重要的有如下 Features：
 
 - 私密性高。不再使用的账号最长保留年限为 1 年，随时销毁聊天记录和一切账号资料。
-- 安全性。端对端加密，不受审查。
+- 安全性。常规云端聊天采用客户端与服务端之间的传输加密，而“私密聊天（Secret Chats）”和音视频通话则支持端对端加密。
 - 完全免费。不限制上传文件（视频会有压缩），甚至可以拿来当备用网盘使用。不过已经确认会在将来布局群组广告，“钞能力”还是抵不过越来越多涌入的各国用户。
 
 当然，在被屏蔽的地域需要翻墙使用。
@@ -16784,6 +16960,9 @@ MTProto 是一种协议，旨在帮助移动设备上的应用程序访问服务
 ```bash
 curl -o MTProtoProxyInstall.sh -L https://git.io/fjo34 && bash MTProtoProxyInstall.sh
 ```
+
+> [!WARNING]
+> GitHub 已于 2022 年 4 月永久关闭 `git.io` 短链接服务，因此上述命令中的 `https://git.io/fjo34` 已失效。请前往 [MTProtoProxyInstaller 仓库](https://github.com/HirbodBehnam/MTProtoProxyInstaller) 获取最新的脚本下载链接。
 
 根据提示进行配置，觉得不妥还可以重新执行上述命令重装代理服务。
 
@@ -16888,9 +17067,14 @@ Feb 21 15:17:25 ******** python3.8[39940]: Got cert from the MASK_HOST www.cloud
 ```bash
 systemctl stop mtprotoproxy # 暂停代理服务
 ```
-]]></content:encoded><atom:updated>Tue, 23 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 Github Actions 持续集成与部署 Hexo 博客]]></title><description><![CDATA[这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
+]]></content:encoded><atom:updated>Tue, 23 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用 Github Actions 持续集成与部署 Hexo 博客]]></title><description><![CDATA[Warning 本文工作流中使用的 Node.js 12.x、 分支以及 、、、 均已过时或停止受支持。截至 2026 年，现代项目建议升级至 Node.js 20+、 及以上版本的 Action，或直接使用官方的  完成部署。
 
-大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions…]]></description><link>https://blog.towind.cn/posts/hexo-github-actions-ci-cd</link><guid isPermaLink="false">hexo-github-actions-ci-cd</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 19 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
+
+Github Actions 是…]]></description><link>https://blog.towind.cn/posts/hexo-github-actions-ci-cd</link><guid isPermaLink="false">hexo-github-actions-ci-cd</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 19 Feb 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文工作流中使用的 Node.js 12.x、`master` 分支以及 `actions/checkout@v2`、`actions/setup-node@v1`、`actions/cache@v2`、`peaceiris/actions-gh-pages@v3` 均已过时或停止受支持。截至 2026 年，现代项目建议升级至 Node.js 20+、`@v4` 及以上版本的 Action，或直接使用官方的 `actions/deploy-pages` 完成部署。
+
 这是我撰写的第一篇与 Github Actions 有关的博客，那么就首先对 Github Actions 做一个简短的介绍吧。
 
 Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）。
@@ -16978,9 +17162,9 @@ jobs:
 
 最后，等到 Github Pages 也更新完毕后，就可以访问您的博客啦！
 
-### 假如您采用了账户两重验证
+### 假如遇到推送权限或部署失败
 
-Ops, 也许您的邮箱收到了一份新的邮件，遗憾地通知您 Github Actions 执行失败。这时您可以想一想自己是否启用了 Github 账号的双重验证或其它安全访问验证。这都可能导致自动部署失败。
+Ops, 也许您的邮箱收到了一份新的邮件，遗憾地通知您 Github Actions 执行失败。需要说明的是，工作流中的 `secrets.GITHUB_TOKEN` 是 GitHub Actions 在运行时自动签发的临时令牌，与您是否启用了 GitHub 账号双重验证（2FA）并无关系；若自动部署失败并需要额外配置 `deploy_key` 或个人访问令牌（PAT），通常是由于跨仓库推送、`GITHUB_TOKEN` 默认权限受限，或希望推送后能触发下游的 GitHub Pages 构建。
 
 但是别担心，您可以通过[添加 SSH 身份验证](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-create-ssh-deploy-key)来解决这个问题。
 
@@ -17032,11 +17216,16 @@ jobs:
 当然，您也可以生成 Github personal access token，本文不再赘述。
 
 最后，提交您的修改，一切都工作得如此完美。
-]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法]]></title><description><![CDATA[关于 本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[IEEE 1471（ISO/IEC/IEEE 42010）架构描述方法]]></title><description><![CDATA[Warning 本文依据的  标准已被 2022 年发布的  修订并取代。
 
-本文绝大多数内容通过 DeepL 翻译 ISO/IEC/IEEE 42010 原文得来。
+关于
 
-本文系…]]></description><link>https://blog.towind.cn/posts/ISO-IEC-IEEE-42010-des</link><guid isPermaLink="false">ISO-IEC-IEEE-42010-des</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
+
+本文绝大多数内容…]]></description><link>https://blog.towind.cn/posts/ISO-IEC-IEEE-42010-des</link><guid isPermaLink="false">ISO-IEC-IEEE-42010-des</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文依据的 `ISO/IEC/IEEE 42010:2011` 标准已被 2022 年发布的 `ISO/IEC/IEEE 42010:2022` 修订并取代。
+
 ## 关于
 
 本文对软件体系架构的描述方法的研究基于 ISO/IEC/IEEE 42010. ISO/IEC/IEEE 42010 于 2011 年批准使用并发布，该标准是继 2006 年 ISO 快速采用 IEEE 标准后，ISO 和 IEEE 联合制定的修订 IEEE Std 1471:2000 的产物。
@@ -17054,9 +17243,7 @@ jobs:
 配置远程桌面
 配置接受连接的主机
 
-首先需要目的主机打开允许远程协助的选项。进入高级系统设置-远程，勾选即可。
-
-您可以选择允许进行远程登录的账号…]]></description><link>https://blog.towind.cn/posts/connect-remote-desktop</link><guid isPermaLink="false">connect-remote-desktop</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 07 Dec 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+首先需要目的主机打开允许远程连接到此计算机（远程桌面）的选项。进入高级系统设置-远程，勾选对应选项即可（注意：同页面上方的…]]></description><link>https://blog.towind.cn/posts/connect-remote-desktop</link><guid isPermaLink="false">connect-remote-desktop</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 07 Dec 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 ## 环境
 
 本文以电子科技大学（沙河校区）的校园网为例。家用场合可能需要拨打网络运营商开公网 IP，或通过 FRP 等技术实现。
@@ -17070,7 +17257,7 @@ jobs:
 
 ### 配置接受连接的主机
 
-首先需要目的主机打开允许远程协助的选项。进入高级系统设置-远程，勾选即可。
+首先需要目的主机打开允许远程连接到此计算机（远程桌面）的选项。进入高级系统设置-远程，勾选对应选项即可（注意：同页面上方的“远程协助”与“远程桌面（RDP）”属于不同功能，本文使用的是远程桌面）。
 
 ![搜索高级系统设置](./connect-remote-desktop/搜索高级系统设置.png)
 
@@ -17133,11 +17320,16 @@ jobs:
 现在您可以使用任意连接互联网的设备通过远程桌面服务访问目的主机！如下图搜索 `210.41.103.31:3390` 所对应的远程桌面服务。
 
 ![连接远程桌面](./connect-remote-desktop/连接远程桌面.png)
-]]></content:encoded><atom:updated>Fri, 10 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[PyTorch 在 Windows 10 系统下的环境配置及安装]]></title><description><![CDATA[关于 PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
+]]></content:encoded><atom:updated>Fri, 10 May 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[PyTorch 在 Windows 10 系统下的环境配置及安装]]></title><description><![CDATA[Warning 本文所引用的 2020–2021 年外部教程中涉及的 CUDA 与 PyTorch 安装版本均已过时，请以 PyTorch 官网 的最新安装指引为准。
 
-本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
+关于
 
-访问我的 CSDN 博客以查看此文章。]]></description><link>https://blog.towind.cn/posts/pytorch-install-windows-10</link><guid isPermaLink="false">pytorch-install-windows-10</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 28 Sep 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
+
+本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的…]]></description><link>https://blog.towind.cn/posts/pytorch-install-windows-10</link><guid isPermaLink="false">pytorch-install-windows-10</guid><category><![CDATA[技术琐事]]></category><pubDate>Mon, 28 Sep 2020 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文所引用的 2020–2021 年外部教程中涉及的 CUDA 与 PyTorch 安装版本均已过时，请以 [PyTorch 官网](https://pytorch.org/get-started/locally/) 的最新安装指引为准。
+
 ## 关于
 
 PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然语言处理等应用程序。
@@ -17145,11 +17337,12 @@ PyTorch 是一个开源的 Python 机器学习库，基于 Torch，用于自然�
 本文基于 Windows 10 系统实现 PyTorch 的安装与配置，并且演示了如何安装启用 NVIDIA 显卡的 GPU 加速。
 
 访问[我的 CSDN 博客](https://blog.csdn.net/qq_43374102/article/details/108857215)以查看此文章。
-]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Hello Hexo World]]></title><description><![CDATA[搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！ 正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。
+]]></content:encoded><atom:updated>Fri, 19 Feb 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Hello Hexo World]]></title><description><![CDATA[Warning 本文撰写于 2019 年，文中提及的 Node.js 10.x、Hexo 5.x 以及  默认分支均已过时。截至 2026 年，现代 Hexo 需要更高版本的 Node.js，且 GitHub 仓库的默认分支名称已普遍改为 。
 
-开始前
+搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考…]]></description><link>https://blog.towind.cn/posts/hello-hexo-world</link><guid isPermaLink="false">hello-hexo-world</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 27 Dec 2019 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+> [!WARNING]
+> 本文撰写于 2019 年，文中提及的 Node.js 10.x、Hexo 5.x 以及 `master` 默认分支均已过时。截至 2026 年，现代 Hexo 需要更高版本的 Node.js，且 GitHub 仓库的默认分支名称已普遍改为 `main`。
 
-假设你已了解何为 Github Pages，并充分认识到它对于一个渴望搭建博客的中国人的难以替代性（是的，我不愿意备案）。在开始之前…]]></description><link>https://blog.towind.cn/posts/hello-hexo-world</link><guid isPermaLink="false">hello-hexo-world</guid><category><![CDATA[技术琐事]]></category><pubDate>Fri, 27 Dec 2019 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 搭建一个自己的博客是多少投身于 IT 行业的男人女人们的梦想！撇开维护所花费的巨量时间开销不看，能够在网络上划得一片净土去传递自己的故事与思考，是一件何等快乐的事情！
 
 正如许多人的第一篇博客那样，在这里记录下搭建博客的流程，也许能带给你些许决意和帮助。
@@ -17217,17 +17410,17 @@ npm install hexo-deployer-git --save
 
 2.修改 Hexo 目录下的配置文件 `_config.yml` 中 deploy 的内容如下。
 
-```json
+```yaml
 deploy:
   type: git
-  repo: 你的 Github Pages 链接 # 例如https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+  repo: 你的 Github Pages 链接 # 例如 https://github.com/JohnSmith/johnsmith.github.io
   branch: master
 ```
 
 3.生成站点文件并推送至 Github 库。
 
 ```bash
-hexo clean && hexo deploy
+hexo clean && hexo deploy -g
 ```
 
 至此，博客便已经搭建完毕了！Hexo 拥有一个 landscape 的初始主题，意味着现在你就可以访问你自己的 Github Pages 了！
@@ -17238,7 +17431,7 @@ hexo clean && hexo deploy
 
 当执行 `hexo deploy` 时，Hexo 会将 `public` 目录中的文件和目录推送至 `_config.yml` 中指定的远端仓库和分支中，并且**完全覆盖**该分支下的已有内容。
 
-编写好博客推送以后，只需要用 Git bash 移动到 Hexo 目录，使用 `hexo clean && hexo deploy` 命令（在 windows terminal 上请使用 `hexo clean ; hexo deploy`），即可完成博客页面的更新与同步了。
+编写好博客推送以后，只需要用 Git bash 移动到 Hexo 目录，使用 `hexo clean && hexo deploy -g`（或者先执行 `hexo generate` 生成静态文件，再执行 `hexo deploy`）命令，即可完成博客页面的更新与同步了（注意：在 Windows 自带的 PowerShell 5.1 中不支持 `&&` 操作符，请改用 `;` 分隔，如 `hexo clean ; hexo deploy -g`；Bash、CMD 以及 PowerShell 7+ 均支持 `&&`）。
 
 ## 关于
 
