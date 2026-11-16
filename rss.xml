@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 16 Nov 2026 06:59:58 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 16 Nov 2026 10:55:38 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。
 
 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH 的配置和使用略显复杂，我记录下这篇博客，也许对你有所帮助。
@@ -2137,7 +2137,7 @@ CAMOFOX_API_KEY=your-generated-key
 
 最后，像对 OpenClaw 做的一样，我也会备份 Hermes Agent 的数据文件。
 
-省略<Link to="/posts/openclaw-setup#数据备份">通用步骤</Link>，在 `~/.hermes/.gitignore` 文件中添加如下内容：
+省略[通用步骤](./openclaw-setup.mdx#数据备份)，在 `~/.hermes/.gitignore` 文件中添加如下内容：
 
 ```
 *
@@ -4082,7 +4082,7 @@ openclaw plugins update --all # 更新所有插件
 }
 ```
 
-OpenClaw 支持配置多模型多代理的模式，作为进阶选项，可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型则设为子代理模型，利用其优势区间负责特定类型的任务，在得到更优结果的同时，也能提升运行效率，平衡令牌使用成本。我在<Link to="/posts/openclaw-multiple-agents">这篇博客</Link>里就做了尝试，感觉还不错。
+OpenClaw 支持配置多模型多代理的模式，作为进阶选项，可以将 Kimi 设为主代理模型，用以调度和规划任务，其它模型则设为子代理模型，利用其优势区间负责特定类型的任务，在得到更优结果的同时，也能提升运行效率，平衡令牌使用成本。我在[这篇博客](./openclaw-multiple-agents.mdx)里就做了尝试，感觉还不错。
 
 ## 代理身份
 
@@ -5150,7 +5150,7 @@ Blue Marble 的[官方文档](https://wplace-pixel.com/zh/blue-marble)提供了�
 
 ---
 
-接下来的作品不再来自纯手点像素的小画家了……在博客<Link to="/posts/wplace-painter-automatic">《不再是小画家了……自动化 Wplace 绘画清日常》</Link>中，我找到了自动化作画的秘技。
+接下来的作品不再来自纯手点像素的小画家了……在博客[《不再是小画家了……自动化 Wplace 绘画清日常》](./wplace-painter-automatic.mdx)中，我找到了自动化作画的秘技。
 
 ### 菲比问号
 
@@ -6714,7 +6714,7 @@ const detailedIllustrations = await execLimitConcurrentPromises(
 
 回想笔者的历程，刚上大学的时候就摩拳擦掌想要实现一个博客系统，但在 Github 上创建了仓库以后就开始了无限期的拖延：自己没有任何的开发经验，不知道框架也不知道 UI 组件库，只知道要写 HTML + CSS + JavaScript 代码，面对眼前想要实现的完整系统不知该如何下手。
 
-从零开始实现博客系统的计划虽然搁浅，但是拥有一个自己的博客的愿望没有改变。如果自己还没有能力去开发，那末至少基于现有的博客平台去搭建一个博客吧，毕竟对于博客来说，最重要的还是内容本身。终于在大二上学期的时候收集资料，横向对比，考量不同博客平台的优势与短板，最终选择了基于 Hexo 搭建自己的静态博客系统，能够部署在 Github Pages 上而不需要自己去维护服务器。还根据自己搭建的经验，模仿别人写了一篇搭建 Hexo 博客的<Link to="/posts/hello-hexo-world">简易教程</Link>，这篇教程也顺理成章成为了自己的第一篇技术博客。
+从零开始实现博客系统的计划虽然搁浅，但是拥有一个自己的博客的愿望没有改变。如果自己还没有能力去开发，那末至少基于现有的博客平台去搭建一个博客吧，毕竟对于博客来说，最重要的还是内容本身。终于在大二上学期的时候收集资料，横向对比，考量不同博客平台的优势与短板，最终选择了基于 Hexo 搭建自己的静态博客系统，能够部署在 Github Pages 上而不需要自己去维护服务器。还根据自己搭建的经验，模仿别人写了一篇搭建 Hexo 博客的[简易教程](./hello-hexo-world.mdx)，这篇教程也顺理成章成为了自己的第一篇技术博客。
 
 Hexo 由目录结构驱动，简单好用，作为博主可以全身心投入到博客的撰写中去。Hexo 的生态里已经有着非常多的惹眼且实用的博客主题，下载到到对应目录下再修改全局配置项即可一键启用。笔者在大学生涯相当慢热，直到认为自己应该开始做某件事情时，才不留余力地去 push 自己，可谓是充分享受了青春。因此在拥有了博客系统之后，反而失去了很多原初的动力，又因为自己并没有沉浸于对技术的学习中去，也就没有什么好写下来记成博客的。
 
@@ -7760,7 +7760,7 @@ FFXIVQuickLauncher 就可以直接配置随游戏启动的软件列表，在这�
   - 对于新月岛：在地图上标注宝箱刷新点，同时在接近时提示是否存在宝箱；拥有魔法罐 CE 的计时器，使用插件的人可以共享计时器时间；寻找魔法罐宝箱过程中，也会把可能出现宝箱的地点标记出来，方便根据方位和距离指示挖掘。
 - [Globetrotter](https://github.com/chirpxiv/Globetrotter)：自动显示藏宝图挖掘点的位置。虽然对着地图一点一点比对寻找挖掘点也是一种乐趣，但是久而久之还是觉得麻烦，使用这款插件可以省略掉这个过程。
 
-在另一篇博客<Link to="/posts/ffxiv-man-on-the-moon">《月球上的最终幻想 14 玩家，用插件改善劳动生活》</Link>里，我详细介绍了自己常使用的几款生产采集插件，感兴趣的话可以跳转阅读。
+在另一篇博客[《月球上的最终幻想 14 玩家，用插件改善劳动生活》](./ffxiv-man-on-the-moon.mdx)里，我详细介绍了自己常使用的几款生产采集插件，感兴趣的话可以跳转阅读。
 
 ### ReShade 滤镜
 
@@ -8921,7 +8921,7 @@ server {
 
 ### 服务器备份
 
-时常 Minecraft 备份服务器数据并上传到云盘是一个非常好的习惯，笔者在<Link to="/posts/backup-mc-server">另一篇博客</Link>里实现了数据的定时备份与上传，供君参考。
+时常 Minecraft 备份服务器数据并上传到云盘是一个非常好的习惯，笔者在[另一篇博客](./backup-mc-server.mdx)里实现了数据的定时备份与上传，供君参考。
 ]]></content:encoded><atom:updated>Sat, 13 Jul 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 SteamCMD 部署一个给朋友使用的饥荒联机版服务器]]></title><description><![CDATA[Warning CentOS 7 已于 2024 年 6 月 30 日正式停止维护（EOL），官方  软件源已下线，直接运行文中的  命令将会失败。建议改用 Rocky Linux、AlmaLinux 或 Ubuntu 等仍在维护的 Linux 发行版。
 
 本文重现了笔者在自己的 CentOS 7 (64-bit) 系统中部署饥荒联机版服务器的全过程，供君参考。
@@ -14189,7 +14189,7 @@ class MyMixin extends CatMixin {
 主要参考了 MDN 上关于类和相关内容的[描述](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)。
 
 - [Mixins - JAVASCRIPT.INFO](https://javascript.info/mixins)
-]]></content:encoded><atom:updated>Wed, 14 Aug 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 闭包]]></title><description><![CDATA[JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。 为了更好理解闭包的作用，不妨看看我的关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
+]]></content:encoded><atom:updated>Wed, 14 Aug 2024 00:00:00 GMT</atom:updated></item><item><title><![CDATA[漫谈 JavaScript 闭包]]></title><description><![CDATA[JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。 为了更好理解闭包的作用，不妨看看我的这一篇博客关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
 
 作用域
 
@@ -14198,7 +14198,7 @@ class MyMixin extends CatMixin {
 如果一个变量或其它表达式不在当前作用域中，就会沿作用域链…]]></description><link>https://blog.towind.cn/posts/js-closure</link><guid isPermaLink="false">js-closure</guid><category><![CDATA[技术琐事]]></category><pubDate>Tue, 18 May 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 JavaScript 中有一个叫作闭包（Closure）的概念，非常有趣且适用，值得学习并整理为一篇博客。
 
-为了更好理解闭包的作用，不妨看看我的<Link to="/posts/js-hoisting">这一篇博客</Link>关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
+为了更好理解闭包的作用，不妨看看我的[这一篇博客](./js-hoisting.mdx)关于 JS 变量提升（Hoisting）和函数提升现象的阐述。
 
 ## 作用域
 
@@ -14442,7 +14442,7 @@ _You Don't Know Javascript_ 中如是写道。
 
 ### 函数防抖和节流
 
-函数防抖和函数节流就是典型的闭包用例，我在<Link to="/posts/js-debounce-throttle">这一篇博客</Link>里对它们进行了编写。
+函数防抖和函数节流就是典型的闭包用例，我在[这一篇博客](./js-debounce-throttle.mdx)里对它们进行了编写。
 
 ### 函数工厂
 
@@ -15404,7 +15404,7 @@ gRPC 的编译需要 `gcc` 版本在 `4.9` 及以上。假如版本低于此，�
 
 我使用 `gcc 4.9.4` 成功编译 `gRPC 1.28.x`，另外[有人测试](https://github.com/grpc/grpc/issues/24932#issuecomment-754344093)在 `4.9.2`, `5.3.1` 以及 `7.3.1` 版本编译成功；而我使用撰写此文时使用最新版本 `10.3.0` 编译报错，请读者加以选择。
 
-更新 GCC 的方法可以参考我的<Link to="/posts/linux-docker-gcc-update">这一篇博客</Link>。
+更新 GCC 的方法可以参考我的[这一篇博客](./linux-docker-gcc-update.mdx)。
 
 ```bash
 # 查看 gcc 版本
@@ -15603,7 +15603,7 @@ error: no matching function for call to ‘StrFormat(const char [22], const char
 
 提示报错没有找到 `StrFormat` 函数，请确保 `gcc` 版本在 `4.9` 及以上，可以执行 `gcc -v` 命令查看当前版本。
 
-建议更新到 `gcc 4.9.4` 及以上版本（可参考笔者的<Link to="/posts/linux-docker-gcc-update">这一篇博客</Link>），笔者在该版本下顺利编译 gRPC。
+建议更新到 `gcc 4.9.4` 及以上版本（可参考笔者的[这一篇博客](./linux-docker-gcc-update.mdx)），笔者在该版本下顺利编译 gRPC。
 ]]></content:encoded><atom:updated>Tue, 11 May 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[Linux 容器更新或降级 GCC 版本]]></title><description><![CDATA[Warning 本文基于已于 2024-06-30 停止维护（EOL）的 CentOS 7 与较早的 GCC 10.3.0 编写。现代 RHEL 系发行版（如 Rocky Linux / AlmaLinux / Fedora）已普遍转向  包管理器，下载 GCC 源码及依赖时也建议优先使用 HTTPS 协议。
 
 如果软件源可用，可以使用 CentOS 的 yum 包管理器或 Ubuntu 的…]]></description><link>https://blog.towind.cn/posts/linux-docker-gcc-update</link><guid isPermaLink="false">linux-docker-gcc-update</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 20 Apr 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
@@ -16417,9 +16417,7 @@ this.$Geolocation
 
 ## 相关链接
 
-- <Link to="/posts/tencent-map-api-get-current-location">
-    使用腾讯位置服务进行 Web 前端定位
-  </Link>
+- [使用腾讯位置服务进行 Web 前端定位](./tencent-map-api-get-current-location.mdx)
 ]]></content:encoded><atom:updated>Thu, 18 Mar 2021 00:00:00 GMT</atom:updated></item><item><title><![CDATA[使用腾讯位置服务进行 Web 前端定位]]></title><description><![CDATA[Warning 本文编写于 2021 年，文中的前端工程示例基于已停止维护（EOL）的 Nuxt 2 配置语法，定位实现则使用了早期的前端定位组件（）。现行腾讯位置服务 Web 端开发已全面转向 JavaScript API GL，新项目建议参考最新的官方 JavaScript API GL 文档。
 
 正在开发的 Web 项目需要获取使用者的位置信息，而使用者主要通过移动端访问此 Web 服务…]]></description><link>https://blog.towind.cn/posts/tencent-map-api-get-current-location</link><guid isPermaLink="false">tencent-map-api-get-current-location</guid><category><![CDATA[软件开发]]></category><pubDate>Tue, 16 Mar 2021 00:00:00 GMT</pubDate><content:encoded><![CDATA[
@@ -17088,7 +17086,7 @@ Github Actions 是 Github 于 2018 年 10 月推出的持续集成服务（CI）
 
 ## 持续集成与部署 Hexo 博客
 
-在<Link to="/posts/hello-hexo-world">搭建自己的 Hexo 博客</Link>那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署到仓库](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.
+在[搭建自己的 Hexo 博客](./hello-hexo-world.mdx)那篇文章的最后，我们使用的是 [hexo-deployer-git 一键部署到仓库](https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository)的方式，实现手动构建个人博客网页并通过脚本推送部署到自己的 Github Pages.
 
 事实上，利用 Github Actions 就再也不用多此一举：每次提交代码到 Github 后，就可以触发 Github Actions 并自动部署新的博客内容。
 
