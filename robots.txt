@@ -1,6 +1,3 @@
 User-agent: *
-Disallow: /icons/
-Disallow: /images/
-Disallow: /static/
-Sitemap: https://blog.towind.cn/sitemap-towind.xml
-Sitemap: https://lolipopj.github.io/sitemap-github.xml
+Allow: /
+Sitemap: https://blog.towind.cn/sitemap.xml
