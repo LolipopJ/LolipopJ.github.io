@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 16 Nov 2026 12:01:35 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 18 Nov 2026 00:18:06 GMT</lastBuildDate><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。
 
 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH 的配置和使用略显复杂，我记录下这篇博客，也许对你有所帮助。
@@ -7455,38 +7455,40 @@ FF14 作为一款 MMORPG 拥有如下令我喜爱的地方：
   <tbody style={{ textAlign: "center" }}>
     <tr>
       <td>2019</td>
-      <td>
-        最佳角色扮演游戏（提名），最佳运营游戏（提名），最佳社群支持（提名）
-      </td>
+      <td>最佳角色扮演（提名），最佳运营游戏（提名），最佳社群支持（提名）</td>
     </tr>
     <tr>
       <td>2021</td>
-      <td>最佳社群支持，最佳持续经营游戏</td>
+      <td>最佳社群支持，最佳持续运营</td>
     </tr>
     <tr>
       <td>2022</td>
-      <td>最佳社群支持，最佳持续经营游戏</td>
+      <td>最佳社群支持，最佳持续运营</td>
     </tr>
     <tr>
       <td>2023</td>
-      <td>最佳社群支持（提名），最佳持续经营游戏（提名）</td>
+      <td>最佳社群支持（提名），最佳持续运营（提名）</td>
     </tr>
     <tr>
       <td>2024</td>
-      <td>最佳社群支持（提名），最佳持续经营游戏（提名）</td>
+      <td>最佳社群支持（提名），最佳持续运营（提名）</td>
     </tr>
     <tr>
       <td>2025</td>
-      <td>最佳社群支持（提名），最佳持续经营游戏（提名）</td>
+      <td>最佳社群支持（提名），最佳持续运营（提名）</td>
+    </tr>
+    <tr>
+      <td>2026</td>
+      <td>最佳持续运营（提名）</td>
     </tr>
   </tbody>
 </table>
 
-为什么我选择入坑国际服呢？原因在于我认为国际服环境更加单纯，对休闲玩家更加友好。事实也确实如此，挑战高难度副本即使灭队也几乎没有人表达不满，不会被教育做事，大不了就是 1 饭 30 分钟的时间散团重组。关于这点，论坛上也有[一些声音与挑战](https://bbs.nga.cn/read.php?tid=40652678)，可供参考。此外，和不同文化的其他国籍的人交流也算一番新奇体验。
+为什么我选择入坑国际服呢？原因在于我认为国际服环境更加单纯，对休闲玩家更加友好。事实也确实如此，挑战高难度副本即使灭队也几乎没有人表达不满，不会被教育做事，大不了就是 1 饭 30 分钟的时间散团重组。事无完美，关于这点，论坛上也有[更深的探讨与挑战](https://bbs.nga.cn/read.php?tid=40652678)，见仁见智。此外，和不同文化的其他国籍的人交流也算一番新奇体验。
 
-加入国际服也意味着你需要有一定的**自强**能力，找寻方法改善自己的游玩体验，实现与其它语言玩家的无虞沟通，融入不同国家社群的游戏文化。同时，如果你的实际水平高于国际服松弛的高难人的话，预期的过本时间可能会多不少。如果这一切令你生畏的话，还是选择国服吧。
+加入国际服也意味着你需要有**一定的自强能力**，找寻方法改善自己的游玩体验，实现与其它语言玩家的无虞沟通，融入不同国家社群的游戏文化。同时，如果你的实际水平高于国际服松弛的高难人的话，过本时间可能相对国服肌肉队会多上不少。如果这一切令你生畏的话，还是选择国服吧。
 
-当然，FF14 远非完美无虞，比如这里能看到不少的[反噬与愤懑](https://www.saraba1st.com/2b/thread-2185571-1-1.html)，直指从 6.x 版本开始的，游戏公式化更新导致的在体验上的重复高与设计上的不走心等问题。从 2024-2025 年的社区节奏来看，WOW 的版本迭代内容更胜一筹，值得称道。当然，我尚处于与 FF14 相伴的甜蜜期，这些批评丝毫没有影响到我从游戏中获取到的快乐，等到某一天我也成为了老登，因游戏内容的匮乏而丧失打开游戏的兴趣后，再来声讨吉田老贼吧。
+当然，FF14 远非完美无虞，比如这里能看到不少的[反噬与愤懑](https://www.saraba1st.com/2b/thread-2185571-1-1.html)，直指从 6.1 版本开始的，游戏公式化更新导致的在体验上的重复高与设计上的不走心等问题。在 7.x 版本，这样的不满更是达到了巅峰，玩家的大量流失就连官方也不得不滑跪反思问题，甚至推出了一键完成 6.1 版本到 7.4 版本剧情的直升包。从 2024-2026 年的社区节奏来看，WOW 的版本迭代以及拓展内容更胜一筹。然而没办法啊兄弟，像我这样的颜控二次元，几次入坑 WOW 都宣告失败，FF14 就是我唯一能选择的 MMORPG 题材游戏。
 
 ## 在开始之前
 
@@ -7522,11 +7524,11 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 
 ![注册 SE 账号](./ffxiv-global/register.png)
 
-注册时填写的信息请尽可能记录保留下来，以防未来意外封禁时，验证真实身份时使用。
+强烈建议将注册时填写的信息（如姓名、住址等）记录下来放置到网盘备份，未来如果遇到意外问题时，可以在验证真实身份时使用。虽然我至今还没有用上，但这确实是兜底的账号财产保护措施。
 
 ## 激活试玩账号
 
-注册完毕后，请访问[试玩版激活页面](https://secure.square-enix.com/account/app/svc/ffxivregister?lng=ja-jp)，点击左侧的“スクウェア・エニックス アカウントでログイン”按钮，登录你刚才注册的账号：
+账号注册完毕还无法直接登录游戏。请访问[试玩版激活页面](https://secure.square-enix.com/account/app/svc/ffxivregister?lng=ja-jp)，点击左侧的“スクウェア・エニックス アカウントでログイン”按钮，登录你刚才注册的账号：
 
 ![激活 FF14 试玩账号](./ffxiv-global/activate-free-trail.png)
 
@@ -7543,11 +7545,11 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 - 无法体验部分游戏内容，如 PVP 和绝境战。
 - 如果服务器负载较高（通常发生在中型版本更新时），将无法排队进入游戏。
 
-如果你被游戏吸引，想要继续玩下去，品鉴 6.0 版本及之后的内容，就需要购买游戏本体与资料包了。请留意，一旦购买游戏，解除了试玩版限制，就需要充值月卡了。
+如果你被游戏吸引，想要继续玩下去，品鉴 6.0 版本及之后的内容，就需要购买游戏本体与资料包了。请留意，一旦购买游戏，意味着你的账号解除了试玩版限制，继续游玩就需要充值月卡了。若非必要，一般建议在推完试玩版支持的所有主线任务后，再决定是否购买游戏。
 
 ![购买 FF14 游戏](./ffxiv-global/purchase.png)
 
-如上图蓝色方框勾选所示，正式入坑国际服意味着你需要首先花费 6380 日元 / Crysta 购买游戏本体与全部资料片。周年庆（夏）和圣诞节（冬）期间，官方商城通常会迎来不小的折扣活动，游戏本体与资料片也会同步打折，大型版本中后期也会时而不时推出打折活动，想省钱的玩家可以等到此时购买。由于汇率的缘故，购买**日版游戏**会更便宜，且之后月卡和官方商城付费道具的开销相比美版**便宜近一半**！
+如上图蓝色方框勾选所示，正式入坑国际服意味着你需要首先花费 6380 日元 / Crysta 购买游戏本体与全部资料片。周年庆（夏）和圣诞节（冬）期间，官方商城通常会迎来不小的折扣活动，游戏本体与资料片也会同步打折；大型版本中后期也会时而不时推出打折活动，想省钱的玩家可以等到此时购买。由于汇率的缘故，购买**日版游戏**会更便宜，且之后月卡和官方商城付费道具的开销相比美版**便宜近一半**！
 
 国际服采用月卡付费机制，日服最低为每月 1408 日元 / Crysta。首次激活游戏时会附赠 30 天的游玩资格，此期间可以找我或捡到你的导师要一个招待码，在 [Mog Station](https://secure.square-enix.com/account/app/svc/ffxivshopacctop) 激活，能拿到一些[不错的奖励](https://jp.finalfantasyxiv.com/lodestone/special/friend_recruit/?utm_source=lodestone&utm_medium=pc_banner&utm_campaign=jp_friendrecruit)，**赠送的游玩资格结束后就无法再使用招待码啦**。
 
@@ -7566,6 +7568,8 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 > We put a lot of effort into ensuring that XIVLauncher is safe to use for everyone.
 > Please read through our FAQ entry on this matter if you want to know more.
 
+截止目前，我和我认识的朋友们没有因为使用此启动器而导致过账号封禁。
+
 打开后将自动下载并安装国际版客户端到指定目录。完毕后，输入账号密码即可启动游戏。
 
 请注意，如果你是未购买游戏的试用账户，需要打开启动器的设置页面，找到“游戏设置”，勾选“使用试用账户”。否则在登录时可能会报错“请检查用户名或密码”。
@@ -7574,23 +7578,21 @@ FF14 账号的注册，游戏的激活和游玩时间的充值等操作都在 [M
 
 FFXIVQuickLauncher 内置了 Dalamud 卫月插件加载器，未来如果需要，可以添加插件以提升游戏体验。
 
-请注意，使用三方插件存在一定的账号安全风险，请勿在网络上公开传播你使用插件的截图或视频，避免被有心之人举报而封禁。
-
 ## 汉化游戏
 
-推荐使用开源的 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma) 来汉化游戏客户端，下载最新版本的汉化工具压缩包：
+推荐使用开源的 [FFXIVChnTextPatch-Souma](https://github.com/Souma-Sumire/FFXIVChnTextPatch-Souma/releases/latest) 来汉化游戏客户端。
+
+下载最新版本的汉化工具，对于 Windows 是 `FFXIVChnTextPatch-SM-v2.exe`，对于 MacOS 是 `FFXIVChnTextPatch-SM-v2-macOS.zip`：
 
 ![在 Github 下载汉化工具](./ffxiv-global/chn-tool-download.png)
 
-解压后打开目录里的 `FFXIVChnTextPatch-SM.exe` 汉化工具，在设置里选中游戏安装路径，如下图所示：
+打开汉化工具，配置“修改范围”为“全量汉化”：
 
-![选择汉化目录](./ffxiv-global/chn-tool-setting.png)
+![选择汉化范围](./ffxiv-global/chn-tool-setting.png)
 
-点击“详细设定”可以选择汉化的范围，推荐“全选”。这是因为 FFXIVChnTextPatch-Souma 为兼容某些三方工具，在默认情况下不会汉化 BOSS 名称。但从我的体验来看，全部汉化并不会影响到本文涉及到的三方工具的正常使用。
+回到工具主页，点击右下角的“开始汉化”按钮即可。
 
-保存设置，在主界面点击汉化按钮，等待完成即可。后续重新汉化时，可以在设置里取消勾选“替换字体”，减少汉化时间。如若出现游戏异常崩溃的情况，建议先还原汉化以便进一步排查问题。
-
-如果你有 Git 的使用经验，建议克隆该项目到本地，游戏版本更新后可以直接拉取最新的提交，避免每次都要重新下载整个压缩包。
+![汉化游戏](./ffxiv-global/chn-tool-run-patch.png)
 
 ## 加速器
 
@@ -7818,7 +7820,7 @@ FF14 提供了招募板功能，让大家能方便地加入并练习自己想打
 - **解禁跨职业装备幻化。** 也就是说白魔法师可以一只手持短杖，另一只手持盾牌来 cos 牧师了！咳咳，主要是服饰装扮不再局限于本职业可用的装备了，这大大提升了时尚搭配的自由度，对于以人物美型为重要卖点的 FF14 来说，堪称史诗级更新。未来要是把幻化柜升级成手游版本的图鉴模式就完美了，800 个格子对于光之收藏家们来说还是太少了。
 
 我仍然对 FF14 的未来保持乐观，期待 8.0 的大版本更新能重振荣光，带来更多有趣的内容吧。
-]]></content:encoded><atom:updated>Sat, 31 Oct 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
+]]></content:encoded><atom:updated>Wed, 18 Nov 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[从同步 QQ 空间说说到前端呈现，我都做了些啥]]></title><description><![CDATA[最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。 过去，我尝试把这个想法放到 Telegram 上实现，把发言和记录同步到我的频道上。但是格式转换的繁杂以及自由度上的限制让我大费周章，加之增量开设的同步内容会以消息的方式一条一条添加到末尾，无法按时间排序，最终我放弃了这个方案。
 
 言归正传，在项目开发的过程中…]]></description><link>https://blog.towind.cn/posts/sync-qzone-talks</link><guid isPermaLink="false">sync-qzone-talks</guid><category><![CDATA[软件开发]]></category><pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 最近在捣腾我的 Timeline 时间线项目，希望将我在不同平台上的发言和活跃记录同步过来，在独立的站点上按照创建时间倒序呈现。
