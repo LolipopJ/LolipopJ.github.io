@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Nov 2026 11:36:07 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Nov 2026 11:53:52 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。
 
 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT 为首的图片生成模型的能力已经抵达了我的审美舒适区，最近的闲暇时间，我就热衷于研究图片生成技术，看看怎样能得到我满意的生成结果。
@@ -143,7 +143,7 @@ ChatGPT 教给我的焚诀是：
 皮肤细节必须符合人物年龄、拍摄距离、光照条件和镜头成像特征。保持年轻自然的肤质，不刻意增加皱纹、瑕疵和衰老特征。
 ```
 
-**人是看脸的生物。**这里请多花点心思，选出自己最喜欢的结果，必要时进行局部调整，让她成为你的永久 AI 模特：
+**人是看脸的生物。** 这里请多花点心思，选出自己最喜欢的结果，必要时进行局部调整，让她成为你的永久 AI 模特：
 
 ![生成人物面部多角度参考图](./ai-generate-photos-with-chatgpt/multi-angle-face-views.png)
 
