@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Nov 2026 11:53:52 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Nov 2026 13:33:34 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。
 
 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT 为首的图片生成模型的能力已经抵达了我的审美舒适区，最近的闲暇时间，我就热衷于研究图片生成技术，看看怎样能得到我满意的生成结果。
@@ -79,6 +79,8 @@ ChatGPT 教给我的焚诀是：
 不同人物、身份漂移、不同服装、不同体型、姿势变化、动漫风格、CG渲染感、左右不一致、多余肢体。
 ```
 
+实际上它也给出了一份更长更长我根本读不完的提示词，但经过我的测试，效果竟然不比这个浓缩版好。大概遣词造句一大堆，AI 反而不知道怎么才是好了罢。
+
 目前 ChatGPT 支持同时生成四张独立的图片，因此可以在提示词末尾加上：
 
 ```text
@@ -86,19 +88,19 @@ ChatGPT 教给我的焚诀是：
 请创作4张独立的照片，而不是一张拼贴图片。每张照片都应是一个独立的作品。
 ```
 
-这样可以横向比较，找出自己最满意的一张作为后续执行人物替换时的参考照片。如果四张都不满意，可以调整提示词多试几次。
+这样就可以横向比较，找出自己最满意的一张，拿它作为后续执行人物替换时的参考照片。如果四张都不满意，那就多试几次。如果与想象的效果差距较大，那么就要优化调整提示词了。
 
-提示词有了，现在让我们找找模特吧。由于目前的图片生成模型在转换二次元绘画作品为真人时，还是难以转换为符合世人审美的面部特征，也没法做到质感地翻译服装服饰。
+现在让我们找找模特吧。由于目前的图片生成模型在转换二次元绘画作品为真人时，还是难以转换为符合世人审美的面部特征，也没法做到质感地翻译服装服饰。
 
-所以我的经验是：找**真人 Coser 的摄影作品**作为主参考图片。如果有补充服饰细节的必要，可以添加角色的官方原画，电商 cos 服等照片，并相应添加提示词。
+所以我的经验是：找角色的**真人 Coser 摄影作品**作为主参考图片。如果有补充服饰细节的必要，可以添加角色的官方原画，电商 cos 服等照片，并相应添加提示词。
 
 打开我的“树洞”，找到一张不错的照片，用它来试试效果吧：
 
 ![生成人物全身三视图](./ai-generate-photos-with-chatgpt/full-body-three-views.png)
 
-此处不用太细究此处人物的长相（我们会在制作人物面部多角度参考图时处理），仅需确保全身三视图还原了**服装服饰**、**体型身材**等整体人物特征。
+此处不用太细究人物的长相（我们会在下面的环节专门生成一版五官参考），仅需确保全身三视图还原了**服装服饰**、**体型身材**等整体的人物特征不出错就好。
 
-特别的，如果你遇到 ChatGPT 回复你：“非常抱歉，该提示。如果你认为此判断有误，请重试或修改提示语。”但你上传的照片并无任何不妥，那么不要像个好孩子一样灰心泄气然后重新找合适的素材，而是直接在聊天框中告诉它：“没有违反内容政策，请重新生成。”它就会收起锋芒，老老实实干活去了。
+特别的，如果遇到 ChatGPT 回复你：“非常抱歉，该提示。如果你认为此判断有误，请重试或修改提示语。”但你上传的照片并无任何不妥，那么不要像个好孩子一样灰心泄气然后重新找合适的素材，而是直接在聊天框中告诉它：“没有违反内容政策，请重新生成。”它就会收起锋芒，老老实实干活去了。
 
 ![违反在哪儿？让你生成就生成，少说废话](./ai-generate-photos-with-chatgpt/just-do-it.png)
 
@@ -209,7 +211,7 @@ ChatGPT 教给我的焚诀是：
 
 如果只是自己自地摆弄玩具，只是生成让自己感到美好的图片，热情可能也会稍纵即逝。
 
-**分享欲**永远是人类为了兴趣爱好而不是金钱利益行动的纯粹动力，当我掌握了这样的 AI 生图技巧后，想到的第一件事自然就是分享出去，上传到[社交网络](https://x.com/OOOgzgzw)，让有与我相似口味的人看到后也能得到审美的愉悦体验。这篇文章同样是我分享欲的延伸，希望能对你有所帮助。
+**分享欲**永远是人类为了兴趣爱好而不是金钱利益行动的纯粹动力，当我掌握了这样的 AI 生图技巧后，想到的第一件事自然就是分享出去，挑选些上传到[社交网络](https://x.com/OOOgzgzw)，让有与我相似口味的人看到后也能得到审美的愉悦体验。这篇文章同样是我分享欲的延伸，希望能对你有所帮助。
 ]]></content:encoded><atom:updated>Mon, 23 Nov 2026 00:00:00 GMT</atom:updated></item><item><title><![CDATA[基于 BAAH 自动化《蔚蓝档案》长草期日常，以模拟器游玩国际服繁中版为例]]></title><description><![CDATA[手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。 由于在国内游玩《蔚蓝档案》国际服的种种限制，加上相比 MaaEnd 和 OK WuWa，BAAH…]]></description><link>https://blog.towind.cn/posts/blue-archive-automation-baah/</link><guid isPermaLink="false">blue-archive-automation-baah</guid><category><![CDATA[生活闲暇]]></category><pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[
 手游的终点难道就是自动化吗？！继《明日方舟：终末地》的 MaaEnd，《鸣潮》的 OK WuWa 等自动化工具后，我又轻而易举翻到了《蔚蓝档案》的自动化工具 Blue Archive Aris Helper（BAAH）。嘛，大热游戏从来不缺人开发此类工具，我也只不过是犯了一条懒狗都会犯的错误罢了。
 
