@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Nov 2026 11:03:44 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><enclosure url="https://blog.towind.cn/static/ccefc8831b471d1f0241ee582c3a404c/banner.png" length="2041610" type="image/png"/><content:encoded><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lolipop's Studio | RSS Feed]]></title><description><![CDATA[Homepage and blog of Lolipop, share my thoughts about software development & AI technology.]]></description><link>https://blog.towind.cn</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Nov 2026 19:19:40 GMT</lastBuildDate><item><title><![CDATA[我是如何使用 ChatGPT 生成令我满意的 AI 照片的]]></title><description><![CDATA[介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT…]]></description><link>https://blog.towind.cn/posts/ai-generate-photos-with-chatgpt/</link><guid isPermaLink="false">ai-generate-photos-with-chatgpt</guid><category><![CDATA[人工智能]]></category><pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate><enclosure url="https://blog.towind.cn/static/ccefc8831b471d1f0241ee582c3a404c/banner.png" length="2041610" type="image/png"/><content:encoded><![CDATA[
 介绍我自己，不知道从何时起染上了互联网屯屯鼠癖，喜好将遇到的好看插画与摄影作品存储下来，上传到云盘。虽则自己几乎不会再回头欣赏自己存过的图片，但只是下载、保存这个过程，以及过程中映入眼帘的片刻关于美的阐释，就足以让我感到喜悦了。而正因为时时刻刻都有新的“松果”等我搬到“树洞”里去，我也就能够每天都感受到类似的期待与惊喜。
 
 2026 年真可谓 AI 进步幅度最大的一年，以 ChatGPT 为首的图片生成模型的能力已经抵达了我的审美舒适区，最近的闲暇时间，我就热衷于研究图片生成技术，看看怎样能得到我满意的生成结果。
@@ -13,9 +13,9 @@
 - 一张照片作为**目标摄影照片**，提供场景、构图、镜头、姿势、肢体动作、光照、相片质感及人物空间关系。
 - 另外的照片提供最高优先级的人物身份和外貌基准。这些照片描述的是同一位用于替换的人物。
 
-最终将目标摄影照片中的人物替换为指定的人物。我游玩不少二次元游戏，也看过不少番剧，所以本文就主要面向使用二次元角色替换真人的场景。
+最终将目标摄影照片中的人物替换为我指定的人物。这样做的好处是，能直接利用到目标摄影照片上人物的姿态动作、巧思的布景设计与真实的光照氛围等，而不是基于抽象的提示词全权让图片模型自己生成，后者很容易导致生成的照片 AI 味过重。
 
-此外，服装服饰既可以由目标摄影照片上被替换的人物提供，也可以由指定的人物提供。
+我游玩不少二次元游戏，也看过不少番剧，所以本文就主要面向使用二次元角色替换真人的场景。至于服装服饰，既可以由目标摄影照片上被替换的人物提供，也可以由指定的人物提供。
 
 总之，先简单感受一下实现的效果。只替换人物，不替换衣着：
 
@@ -23,11 +23,13 @@
 
 ![莉莉 x 目标摄影照片衣着](./ai-generate-photos-with-chatgpt/lily-with-original-clothes.png)
 
-同时替换人物和衣着：
+不过与原来的摄影照片相似度太高，只是替换五官与发型，有种古法 P 图的感觉。
+
+所以我做的最多的还是同时替换人物和衣着：
+
+![龙华妃咲 x 自己的衣着](./ai-generate-photos-with-chatgpt/kisaki-with-self-clothes.jpg)
 
 ![杏山和纱 x 自己的衣着](./ai-generate-photos-with-chatgpt/kazusa-with-self-clothes.jpg)
-
-![猫魅族 x 自己的衣着](./ai-generate-photos-with-chatgpt/miqote-with-self-clothes.png)
 
 ## 先问 AI
 
